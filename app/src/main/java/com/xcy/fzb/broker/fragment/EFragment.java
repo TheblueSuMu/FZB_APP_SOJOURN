@@ -301,7 +301,7 @@ public class EFragment extends AllFragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-
+        initClientCommissions();
         initUserMessage();
     }
 

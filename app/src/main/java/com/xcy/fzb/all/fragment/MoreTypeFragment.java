@@ -26,6 +26,7 @@ public class MoreTypeFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private List<MoreBean.DataBean> list;
+    private List<MoreBean.DataBean.ValueBeanX> array;
     private View view;
 
     public MoreTypeFragment(List<MoreBean.DataBean> list) {
@@ -42,13 +43,13 @@ public class MoreTypeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         StatusBar.makeStatusBarTransparent(getActivity());
-
+        array = list.get(1).getValue();
         view  = inflater.inflate(R.layout.fragment_more_type, container, false);
         recyclerView = view.findViewById(R.id.more_type_rv);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        MoreTypeAdapter recyclerAdapter = new MoreTypeAdapter(list);
+        MoreTypeAdapter recyclerAdapter = new MoreTypeAdapter(array);
         recyclerView.setAdapter(recyclerAdapter);
         return view;
     }

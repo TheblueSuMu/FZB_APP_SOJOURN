@@ -1,5 +1,6 @@
 package com.xcy.fzb.all.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,13 @@ import com.xcy.fzb.all.modle.MoreBean;
 import java.util.List;
 
 public class MoreTypeAdapter extends RecyclerView.Adapter<MoreTypeAdapter.ViewHolder>{
-    private List<MoreBean.DataBean> list;
+    private List<MoreBean.DataBean.ValueBeanX> list;
     private int more = 0;
     private int[] img = {R.drawable.more_type_1, R.drawable.more_type_2};
 
-    public MoreTypeAdapter(List<MoreBean.DataBean> list) {
+    public MoreTypeAdapter(List<MoreBean.DataBean.ValueBeanX> list) {
         this.list = list;
+        Log.i("长度","list"+list.size());
     }
 
     @NonNull
@@ -34,11 +36,11 @@ public class MoreTypeAdapter extends RecyclerView.Adapter<MoreTypeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.nameText.setText(list.get(0).getValue().get(0).getKey());
-        holder.area.setText(list.get(0).getValue().get(0).getValue().get(0).getValue());
-        holder.year.setText(list.get(0).getValue().get(0).getValue().get(2).getValue());
-        holder.price.setText(list.get(0).getValue().get(0).getValue().get(1).getValue());
-        holder.form.setText(list.get(0).getValue().get(0).getValue().get(3).getValue());
+        holder.nameText.setText(list.get(position).getKey());
+        holder.area.setText(list.get(position).getValue().get(0).getValue());
+        holder.year.setText(list.get(position).getValue().get(2).getValue());
+        holder.price.setText(list.get(position).getValue().get(1).getValue());
+        holder.form.setText(list.get(position).getValue().get(3).getValue());
         holder.more_img_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
