@@ -8,14 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.view.BigPhotoActivity;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class WebAdapter extends RecyclerView.Adapter<WebAdapter.ViewHolder>{
     private List<String> list;
@@ -39,7 +39,7 @@ public class WebAdapter extends RecyclerView.Adapter<WebAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(context).load("http://39.98.173.250:8080" + list.get(position)).into(holder.item_web_adapter_img);
         Log.i("图片加载","http://39.98.173.250:8080"+ list.get(position));
         if (ImageUrl.equals("")) {
@@ -48,6 +48,7 @@ public class WebAdapter extends RecyclerView.Adapter<WebAdapter.ViewHolder>{
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, BigPhotoActivity.class);
+                    intent.putExtra("index",position);
                     intent.putExtra("bigPhotoimg", ImageUrl);
                     context.startActivity(intent);
                 }

@@ -234,6 +234,9 @@ public interface MyService {
     @POST("commonSelect/projectMoreInfo")
     Observable<MoreBean> getProjectMoreInfo(@Query("id") String id);
 
+    //项目详情相册
+    @POST("commonSelect/projectPhoto")
+    Observable<PhotoBean> getProjectPhoto(@Query("userId") String userId, @Query("projectId") String projectId);
 
     //列表数据
     @POST("commonSelect/projectList?")

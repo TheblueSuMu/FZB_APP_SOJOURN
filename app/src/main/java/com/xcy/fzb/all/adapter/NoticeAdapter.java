@@ -45,13 +45,13 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
     @Override
     public void onBindViewHolder(@NonNull NoticeViewHolder holder, final int position) {
 
-        if (rows.get(position).getType2().equals("5")) {
+        if (rows.get(position).getType2().equals("1")) {
             Glide.with(holder.itemView.getContext()).load(R.mipmap.z20).into(holder.room_title_img);
-        } else if (rows.get(position).getType2().equals("6")) {
+        } else if (rows.get(position).getType2().equals("2")) {
             Glide.with(holder.itemView.getContext()).load(R.mipmap.z23).into(holder.room_title_img);
-        } else if (rows.get(position).getType2().equals("7")) {
+        } else if (rows.get(position).getType2().equals("3")) {
             Glide.with(holder.itemView.getContext()).load(R.mipmap.z24).into(holder.room_title_img);
-        } else if (rows.get(position).getType2().equals("8")) {
+        } else if (rows.get(position).getType2().equals("4")) {
             Glide.with(holder.itemView.getContext()).load(R.mipmap.z25).into(holder.room_title_img);
         }
         if (rows.get(position).getImgPath().equals("")) {

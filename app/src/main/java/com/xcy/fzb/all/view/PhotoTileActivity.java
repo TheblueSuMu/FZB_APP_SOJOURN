@@ -10,27 +10,36 @@ import android.widget.LinearLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.PhotoTileAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.PhotoBean;
-import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.service.MyService;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PhotoTileActivity extends AllActivity {
     private LinearLayout photo_img;
     private RecyclerView photoTileRv;
     private String photoUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectPhoto?";
+    private List<String> array = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_tile);
         StatusBar.makeStatusBarTransparent(this);
-
         initView();
         initRv();
     }
@@ -38,7 +47,7 @@ public class PhotoTileActivity extends AllActivity {
     private void initView() {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        photo_img = findViewById(R.id.photo_tile_back);;
+        photo_img = findViewById(R.id.photo_tile_back);
         photoTileRv = findViewById(R.id.photo_tile_rv);
 
         photo_img.setOnClickListener(new View.OnClickListener() {
@@ -51,18 +60,49 @@ public class PhotoTileActivity extends AllActivity {
 
     @SuppressLint("WrongConstant")
     private void initRv(){
-        String url = photoUrl+"&userId="+ FinalContents.getUserID()+"&projectId="+FinalContents.getProjectID();
-        Log.i("aaa","项目ID："+ FinalContents.getProjectID());
-        OkHttpPost okHttpPost = new OkHttpPost(url);
-        String data = okHttpPost.post();
-        Log.i("qssm","项目图片："+data);
+        Log.i("格式","用户名："+FinalContents.getUserID());
+        Log.i("格式","项目名："+FinalContents.getProjectID());
 
-        PhotoBean photoBean = new Gson().fromJson(data, PhotoBean.class);
-        List<PhotoBean.DataBean> list = photoBean.getData();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        photoTileRv.setLayoutManager(layoutManager);
-        PhotoTileAdapter recyclerAdapter = new PhotoTileAdapter(list);
-        photoTileRv.setAdapter(recyclerAdapter);
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<PhotoBean> clientFragment = fzbInterface.getProjectPhoto(FinalContents.getUserID(), FinalContents.getProjectID());
+        clientFragment.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<PhotoBean>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(PhotoBean photoBean) {
+                        for (int i = 0;i < photoBean.getSlideImgList().size();i++){
+                            array.add("http://39.98.173.250:8080" + photoBean.getSlideImgList().get(i));
+                        }
+                        List<PhotoBean.DataBean> list = photoBean.getData();
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(PhotoTileActivity.this);
+                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                        photoTileRv.setLayoutManager(layoutManager);
+                        PhotoTileAdapter recyclerAdapter = new PhotoTileAdapter(list);
+                        recyclerAdapter.setArray(array);
+                        photoTileRv.setAdapter(recyclerAdapter);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "相册" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 }

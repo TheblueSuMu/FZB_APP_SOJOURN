@@ -7,14 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.view.BigPhotoActivity;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
     private List<String> list;
@@ -46,6 +46,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, BigPhotoActivity.class);
+                    intent.putExtra("index",position);
                     intent.putExtra("bigPhotoimg", ImageUrl);
                     context.startActivity(intent);
                 }

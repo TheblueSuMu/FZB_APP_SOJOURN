@@ -29,6 +29,7 @@ public class ReviewAdapterItemAdapter extends RecyclerView.Adapter<ReviewAdapter
 
     public ReviewAdapterItemAdapter(List<String> list) {
         this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -42,13 +43,14 @@ public class ReviewAdapterItemAdapter extends RecyclerView.Adapter<ReviewAdapter
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.i("图片","数据图片："+list.get(position));
         Glide.with(context).load("http://39.98.173.250:8080" + list.get(position)).into(holder.item_review_adapter_item_recycler_img);
         holder.item_review_adapter_item_recycler_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, BigPhotoActivity.class);
+                intent.putExtra("index",position);
                 intent.putExtra("bigPhotoimg",imgUrl);
                 context.startActivity(intent);
             }

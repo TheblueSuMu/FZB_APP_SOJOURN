@@ -47,7 +47,7 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
             if (substring.equals("")) {
             }else {
                 if (substring.equals("/")) {
-                    arraylist.clear();
+                    arraylist = new ArrayList<>();
                     holder.item_reivew_adapter_item.setVisibility(View.VISIBLE);
                     holder.item_reivew_adapter_item_value.setVisibility(View.GONE);
                     String[] a  = list.get(position).getValue().split("[|]");

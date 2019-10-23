@@ -7,6 +7,13 @@ import android.graphics.BitmapFactory;
 
 import com.xcy.fzb.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
@@ -883,11 +890,57 @@ public class FinalContents {
             Bitmap bmp = BitmapFactory.decodeResource(res, R.mipmap.logo_garden);
             oks.setImageData(bmp);
         }else if(imagePath != null){
+//            Bitmap bitmap = returnBitMap(imagePath);
+//            byte[] bytes = bitmap2Bytes(bitmap, 32);
+//            Bitmap bitmap2 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             oks.setImageUrl(imagePath); //网络地址
         }
         // url在微信、微博，Facebook等平台中使用
         oks.setUrl(url);
         // 启动分享GUI
         oks.show(context);
+    }
+
+    /**
+     * 将URL转化成bitmap形式
+     *
+     * @param url
+     * @return bitmap type
+     */
+    public final static Bitmap returnBitMap(String url) {
+        URL myFileUrl;
+        Bitmap bitmap = null;
+        try {
+            myFileUrl = new URL(url);
+            HttpURLConnection conn;
+            conn = (HttpURLConnection) myFileUrl.openConnection();
+            conn.setDoInput(true);
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            bitmap = BitmapFactory.decodeStream(is);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
+    /**
+     * Bitmap转换成byte[]并且进行压缩,压缩到不大于maxkb
+     * @param bitmap
+     * @param maxkb
+     * @return
+     */
+    public static byte[] bitmap2Bytes(Bitmap bitmap, int maxkb) {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+        int options = 100;
+        while (output.toByteArray().length > maxkb&& options != 10) {
+            output.reset(); //清空output
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, output);//这里压缩options%，把压缩后的数据存放到output中
+            options -= 10;
+        }
+        return output.toByteArray();
     }
 }

@@ -148,6 +148,7 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
                             @Override
                             public void tp(int position) {
                                 Intent intent = new Intent(BuildingDynamicActivity.this, BigPhotoActivity.class);
+                                intent.putExtra("index",position);
                                 intent.putExtra("bigPhotoimg", list.get(position).getImg());
                                 startActivity(intent);
                             }

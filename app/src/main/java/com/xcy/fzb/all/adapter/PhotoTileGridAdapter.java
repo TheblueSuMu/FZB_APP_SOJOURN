@@ -16,12 +16,20 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.modle.PhotoBean;
 import com.xcy.fzb.all.view.BannerPhotoActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PhotoTileGridAdapter extends RecyclerView.Adapter<PhotoTileGridAdapter.ViewHolder>{
 
     private List<PhotoBean.DataBean.DataListBean> list;
     private Context context;
+    private List<String> array = new ArrayList<>();
+    private String url = "";
+    private int index = -1;
+
+    public void setArray(List<String> array) {
+        this.array = array;
+    }
 
     public PhotoTileGridAdapter(List<PhotoBean.DataBean.DataListBean> list, Context context) {
         this.list = list;
@@ -44,9 +52,18 @@ public class PhotoTileGridAdapter extends RecyclerView.Adapter<PhotoTileGridAdap
         viewHolder.imageAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i("下标","图片地址中http://39.98.173.250:8080" + list.get(i).getImgPath());
+                url = "http://39.98.173.250:8080" + list.get(i).getImgPath();
+                for (int posotion = 0;posotion < array.size();posotion++){
+                    if (array.get(posotion).equals(url)) {
+                        index = posotion;
+                        Log.i("下标","index￥："+index);
+                        Log.i("下标","图片地址："+url);
+                        Log.i("下标","列表图片地址："+array.get(posotion));
+                    }
+                }
                 Intent intent = new Intent(context, BannerPhotoActivity.class);
-                intent.putExtra("index",i);
-                Log.i("图片","图片地址：" + list.get(i).getImgPath());
+                intent.putExtra("index",index);
                 context.startActivity(intent);
             }
         });

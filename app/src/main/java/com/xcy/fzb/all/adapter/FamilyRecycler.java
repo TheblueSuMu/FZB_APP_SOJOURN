@@ -58,7 +58,7 @@ public class FamilyRecycler extends RecyclerView.Adapter<FamilyRecycler.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(context).load("http://39.98.173.250:8080"+list.get(position).getFloorPlan()).into(holder.imageAvatar);
 
 
@@ -72,6 +72,7 @@ public class FamilyRecycler extends RecyclerView.Adapter<FamilyRecycler.ViewHold
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,BigPhotoActivity.class);
+                intent.putExtra("index",position);
                 intent.putExtra("bigPhotoimg",s.toString());
                 context.startActivity(intent);
             }
