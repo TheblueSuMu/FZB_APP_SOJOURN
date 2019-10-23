@@ -321,15 +321,15 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                             sales_details_details_tv1.setText(agentDetailsBean.getData().getAgentInfo().getName() + "(" + agentDetailsBean.getData().getAgentInfo().getRatioName() + ")");
                             if (agentDetailsBean.getData().getAgentInfo().getCounselorNum().equals("")) {
                                 if (agentDetailsBean.getData().getAgentInfo().getLeaderName().equals("")) {
-                                    sales_details_details_tv3.setText("团队长：暂无  顾问0人");
+                                    sales_details_details_tv3.setText("团队长：暂无  顾问：0人");
                                 }else {
                                     sales_details_details_tv3.setText("团队长：" + agentDetailsBean.getData().getAgentInfo().getLeaderName() + "  顾问0人");
                                 }
                             } else {
                                 if (agentDetailsBean.getData().getAgentInfo().getLeaderName().equals("")) {
-                                    sales_details_details_tv3.setText("团队长：暂无  顾问" + agentDetailsBean.getData().getAgentInfo().getCounselorNum() + "人");
+                                    sales_details_details_tv3.setText("团队长：暂无  顾问：" + agentDetailsBean.getData().getAgentInfo().getCounselorNum() + "人");
                                 }else {
-                                    sales_details_details_tv3.setText("团队长：" + agentDetailsBean.getData().getAgentInfo().getLeaderName() + "  顾问" + agentDetailsBean.getData().getAgentInfo().getCounselorNum() + "人");
+                                    sales_details_details_tv3.setText("团队长：" + agentDetailsBean.getData().getAgentInfo().getLeaderName() + "  顾问：" + agentDetailsBean.getData().getAgentInfo().getCounselorNum() + "人");
                                 }
                             }
                             sales_details_details_tv10.setText("他的顾问");
@@ -343,9 +343,9 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                                 }
                             } else {
                                 if (agentDetailsBean.getData().getAgentInfo().getLeaderName().equals("")) {
-                                    sales_details_details_tv3.setText("团队长：暂无  销售" + agentDetailsBean.getData().getAgentInfo().getSaleName());
+                                    sales_details_details_tv3.setText("团队长：暂无  销售：" + agentDetailsBean.getData().getAgentInfo().getSaleName());
                                 }else {
-                                    sales_details_details_tv3.setText("团队长：" + agentDetailsBean.getData().getAgentInfo().getLeaderName() + "  销售" + agentDetailsBean.getData().getAgentInfo().getSaleName());
+                                    sales_details_details_tv3.setText("团队长：" + agentDetailsBean.getData().getAgentInfo().getLeaderName() + "  销售：" + agentDetailsBean.getData().getAgentInfo().getSaleName());
                                 }
                             }
                             sales_details_details_tv10.setText("他的销售");
@@ -353,15 +353,15 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                             sales_details_details_tv1.setText(agentDetailsBean.getData().getAgentInfo().getName());
                             if (agentDetailsBean.getData().getAgentInfo().getCounselorNum().equals("")) {
                                 if (agentDetailsBean.getData().getAgentInfo().getSaleNum().equals("")) {
-                                    sales_details_details_tv3.setText("销售：0 人  顾问0人");
+                                    sales_details_details_tv3.setText("销售：0 人  顾问：0人");
                                 }else {
-                                    sales_details_details_tv3.setText("销售：" + agentDetailsBean.getData().getAgentInfo().getSaleNum() + "人  顾问0人");
+                                    sales_details_details_tv3.setText("销售：" + agentDetailsBean.getData().getAgentInfo().getSaleNum() + "人  顾问：0人");
                                 }
                             } else {
                                 if (agentDetailsBean.getData().getAgentInfo().getSaleNum().equals("")) {
-                                    sales_details_details_tv3.setText("销售：0 人  顾问" + agentDetailsBean.getData().getAgentInfo().getCounselorNum() + "人");
+                                    sales_details_details_tv3.setText("销售：0 人  顾问：" + agentDetailsBean.getData().getAgentInfo().getCounselorNum() + "人");
                                 }else {
-                                    sales_details_details_tv3.setText("销售：" + agentDetailsBean.getData().getAgentInfo().getSaleNum() + "人  顾问" + agentDetailsBean.getData().getAgentInfo().getCounselorNum() + "人");
+                                    sales_details_details_tv3.setText("销售：" + agentDetailsBean.getData().getAgentInfo().getSaleNum() + "人  顾问：" + agentDetailsBean.getData().getAgentInfo().getCounselorNum() + "人");
                                 }
                             }
                             sales_details_details_tv10.setText("他的销售");
