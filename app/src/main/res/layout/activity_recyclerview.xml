@@ -3,13 +3,22 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/web_linear"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_alignParentTop="true"
         android:background="@drawable/my_brokerage"
         android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/recycler_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="项目列表"
+            android:textColor="#FFFEFE"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:id="@+id/recycler_back"
@@ -24,15 +33,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/recycler_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="项目列表"
-            android:textColor="#FFFEFE"
-            android:textSize="18sp" />
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView

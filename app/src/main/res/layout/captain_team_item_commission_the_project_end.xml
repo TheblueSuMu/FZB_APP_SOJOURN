@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:text="4"
+                android:layout_marginRight="135dp"
                 android:textColor="#333333"
                 android:textSize="12sp" />
 

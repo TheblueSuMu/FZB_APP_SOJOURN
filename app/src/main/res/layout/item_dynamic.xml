@@ -25,26 +25,31 @@
             app:riv_corner_radius="5dp"
             app:riv_oval="true" />
 
-
-        <TextView
-            android:id="@+id/circle_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_marginLeft="69dp"
             android:layout_marginTop="1dp"
-            android:text="曼谷中央豪庭"
-            android:textColor="#ff334485"
-            android:textSize="15sp" />
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/circle_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="曼谷中央豪庭"
+                android:textColor="#ff334485"
+                android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/circle_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="69dp"
-            android:layout_marginTop="27dp"
-            android:text="2分钟前"
-            android:textColor="#ff999999"
-            android:textSize="11sp" />
+            <TextView
+                android:id="@+id/circle_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="2分钟前"
+                android:textColor="#ff999999"
+                android:textSize="11sp" />
+        </LinearLayout>
+
 
     </RelativeLayout>
 

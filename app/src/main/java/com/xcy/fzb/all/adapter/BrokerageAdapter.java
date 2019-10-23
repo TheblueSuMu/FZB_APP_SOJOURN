@@ -1,5 +1,7 @@
 package com.xcy.fzb.all.adapter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,11 +36,24 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BrokerageViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final BrokerageViewHolder holder, final int position) {
 
         Log.i("MyCL","测试:");
 
         holder.brokerage_item_name.setText(rows.get(position).getCustomerName() + "(" + rows.get(position).getCustomerPhone() + ")");
+
+        holder.brokerage_item_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(rows.get(position).getCustomerPhone().equals("")){
+
+                }else {
+                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rows.get(position).getCustomerPhone()));//跳转到拨号界面，同时传递电话号码
+                    holder.itemView.getContext().startActivity(dialIntent);
+                }
+            }
+        });
+
         holder.brokerage_item_roomNumber.setText(rows.get(position).getRoomNumber());
         holder.brokerage_item_projectName.setText(rows.get(position).getProjectName());
         holder.brokerage_item_ziji.setText("自己");

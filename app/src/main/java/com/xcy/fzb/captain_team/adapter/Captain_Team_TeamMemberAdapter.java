@@ -75,9 +75,9 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
                         }
                     } else {
                         if (list.get(i).getSaleNum().equals("")) {
-                            holder.member_name_tv1.setText("销售：0 人  顾问" + list.get(i).getCounselorNum() + "人");
+                            holder.member_name_tv1.setText("销售：0 人  顾问：" + list.get(i).getCounselorNum() + "人");
                         }else {
-                            holder.member_name_tv1.setText("销售：" + list.get(i).getSaleNum() + "人  顾问" + list.get(i).getCounselorNum() + "人");
+                            holder.member_name_tv1.setText("销售：" + list.get(i).getSaleNum() + "人  顾问：" + list.get(i).getCounselorNum() + "人");
                         }
                     }
 
@@ -85,15 +85,15 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
                     holder.tvName.setText(contact.getName() + "(" + list.get(i).getRatioName() + ")");
                     if (list.get(i).getCounselorNum().equals("")) {
                         if (list.get(i).getLeaderName().equals("")) {
-                            holder.member_name_tv1.setText("团队长：暂无  顾问0人");
+                            holder.member_name_tv1.setText("团队长：暂无  顾问：0人");
                         }else {
-                            holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  顾问0人");
+                            holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  顾问：0人");
                         }
                     } else {
                         if (list.get(i).getLeaderName().equals("")) {
-                            holder.member_name_tv1.setText("团队长：暂无  顾问" + list.get(i).getCounselorNum() + "人");
+                            holder.member_name_tv1.setText("团队长：暂无  顾问：" + list.get(i).getCounselorNum() + "人");
                         }else {
-                            holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  顾问" + list.get(i).getCounselorNum() + "人");
+                            holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  顾问：" + list.get(i).getCounselorNum() + "人");
                         }
                     }
 
@@ -107,9 +107,9 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
                         }
                     } else {
                         if (list.get(i).getLeaderName().equals("")) {
-                            holder.member_name_tv1.setText("团队长：暂无  销售" + list.get(i).getSaleName());
+                            holder.member_name_tv1.setText("团队长：暂无  销售：" + list.get(i).getSaleName());
                         }else {
-                            holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  销售" + list.get(i).getSaleName());
+                            holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  销售：" + list.get(i).getSaleName());
                         }
                     }
                 }

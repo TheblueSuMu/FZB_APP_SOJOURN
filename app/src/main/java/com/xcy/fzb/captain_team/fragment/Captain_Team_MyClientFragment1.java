@@ -107,7 +107,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                     public void onNext(ClientBean clientBean) {
                         data = clientBean.getData();
                         for (int i = 0; i < data.size(); ++i) {
-                            ContactModel contactModel = new ContactModel(data.get(i).getName());
+                            ContactModel contactModel = new ContactModel(data.get(i).getName()+ "@" + data.get(i).getId());
                             mContactModels.add(contactModel);
                         }
                         initDatas();
@@ -190,7 +190,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                         mContactModels.clear();
                         data = clientBean.getData();
                         for (int i = 0; i < data.size(); ++i) {
-                            ContactModel contactModel = new ContactModel(data.get(i).getName());
+                            ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
                             mContactModels.add(contactModel);
                         }
                         initDatas();
@@ -213,21 +213,32 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     @Override
     public void itemClick(String itemName) {
 
-        for (int i = 0; i < data.size(); ++i) {
-            if (data.get(i).getName().equals(itemName)) {
-                if (FinalContents.getNUM().equals("1")) {
-                    FinalContents.setClientName(data.get(i).getName());
-                    FinalContents.setCustomerID(data.get(i).getId());
+        StringBuffer stringBuffer = new StringBuffer();
+        StringBuffer append = stringBuffer.append(itemName);
+
+        if (FinalContents.getNUM().equals("1")) {
+            for (int j = 0; j < append.length(); ++j) {
+                if (append.substring(j, j + 1).equals("@")) {
+                    FinalContents.setClientName(append.substring(0, j));
+                    FinalContents.setCustomerID(append.substring(j + 1));
                     getActivity().finish();
                     FinalContents.setNUM("0");
                     Intent intent = new Intent(context, ReportActivity.class);
                     startActivity(intent);
-                }else {
-                    FinalContents.setCustomerID(data.get(i).getId());
-                    Intent intent = new Intent(getContext(), ClientParticularsActivity.class);
-                    startActivity(intent);
+                    break;
                 }
             }
+        } else {
+            for (int j = 0; j < append.length(); ++j) {
+                if (append.substring(j, j + 1).equals("@")) {
+                    FinalContents.setCustomerID(append.substring(j + 1));
+                    Intent intent = new Intent(getContext(), ClientParticularsActivity.class);
+                    startActivity(intent);
+                    Log.i("团队长", "contacts.get(position).getName()：" + append.substring(j + 1));
+                    break;
+                }
+            }
+
         }
 
     }

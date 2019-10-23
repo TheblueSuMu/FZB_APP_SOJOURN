@@ -1,6 +1,7 @@
 package com.xcy.fzb.all.persente;
 
 import com.nanchen.wavesidebar.FirstLetterUtil;
+import com.xcy.fzb.all.utils.Pinyin4jUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +30,7 @@ public class ContactModel {
     }
 
     public ContactModel(String name){
-        this.index = FirstLetterUtil.getFirstLetter(name);
+        this.index = Pinyin4jUtil.getAllFirstLetter(name);
         this.name = name;
     }
 

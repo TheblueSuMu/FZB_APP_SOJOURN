@@ -1,12 +1,15 @@
 package com.xcy.fzb.captain_team.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +40,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TheProjectEndCommissionViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final TheProjectEndCommissionViewHolder holder, final int position) {
 
         if (FinalContents.getIdentity().equals("63")) {
 
@@ -51,6 +54,30 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
             holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
             holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
             holder.the_project_end_bargain_time.setText(rowsBeanList.get(position).getAgentName() + "(" + rowsBeanList.get(position).getAgentPhone() + ")");
+
+            holder.the_project_end_title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(rowsBeanList.get(position).getCustomerPhone().equals("")){
+
+                    }else {
+                        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rowsBeanList.get(position).getCustomerPhone()));//跳转到拨号界面，同时传递电话号码
+                        holder.itemView.getContext().startActivity(dialIntent);
+                    }
+                }
+            });
+            holder.the_project_end_time.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(rowsBeanList.get(position).getAgentPhone().equals("")){
+
+                    }else {
+                        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rowsBeanList.get(position).getAgentPhone()));//跳转到拨号界面，同时传递电话号码
+                        holder.itemView.getContext().startActivity(dialIntent);
+                    }
+                }
+            });
+
             if (rowsBeanList.get(position).getTradeDate().equals("")) {
                 holder.the_project_end_company.setVisibility(View.GONE);
             } else {

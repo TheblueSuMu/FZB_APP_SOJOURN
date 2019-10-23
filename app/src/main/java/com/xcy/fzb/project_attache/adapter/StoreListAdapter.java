@@ -62,6 +62,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
     @Override
     public void onBindViewHolder(final ContactsViewHolder holder, final int position) {
 
+
         Log.i("MyCL", "集合长度：" + contacts.size());
         contact = contacts.get(position);
         Log.e("MyCL", "onBindViewHolder: index:" + contact.getIndex());
@@ -76,6 +77,8 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
 
             if ((listData.get(i).getCompanyName() + listData.get(i).getStoreName()).equals(contact.getName())) {
 
+                final int FinID = i;
+
                 if (FinalContents.getStoreList().equals("1")) {
                     holder.tvName.setText(listData.get(i).getCompanyName());
                     holder.store_tv.setText("-" + listData.get(i).getStoreName());
@@ -88,6 +91,19 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
 //                        holder.contacts_name.setVisibility(View.GONE);
 //                    }
                     holder.contacts_name.setText("店长：" + listData.get(i).getShopownerName() + " " + listData.get(i).getShopownerPhone());
+
+                    holder.contacts_name.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (listData.get(FinID).getShopownerPhone().equals("")) {
+                                Toast.makeText(holder.itemView.getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + listData.get(FinID).getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
+                                holder.itemView.getContext().startActivity(dialIntent);
+                            }
+                        }
+                    });
+
                 } else if (FinalContents.getStoreList().equals("2")) {
                     holder.tvName.setText(listData.get(i).getCompanyName());
                     holder.store_tv.setText("");
@@ -100,6 +116,20 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
 //                        holder.contacts_name.setVisibility(View.GONE);
 //                    }
                     holder.contacts_name.setText("公司负责人：" + listData.get(i).getShopownerName() + " " + listData.get(i).getShopownerPhone());
+
+
+
+                    holder.contacts_name.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (listData.get(FinID).getShopownerPhone().equals("")) {
+                                Toast.makeText(holder.itemView.getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + listData.get(FinID).getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
+                                holder.itemView.getContext().startActivity(dialIntent);
+                            }
+                        }
+                    });
 
                 }
 
@@ -117,17 +147,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
 
         }
 
-        holder.contacts_name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listData.get(position).getShopownerPhone().equals("")) {
-                    Toast.makeText(holder.itemView.getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + listData.get(position).getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
-                    holder.itemView.getContext().startActivity(dialIntent);
-                }
-            }
-        });
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -166,7 +166,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     SharItOff.setShar("隐");
                     Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
                 }
-                Log.i("MyCL","摇一摇");
+                Log.i("MyCL", "摇一摇");
                 initHotList();
 
                 vibrator.vibrate(100);
@@ -198,7 +198,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     }
 
     //命名区域
-    private void fvbId(View view){
+    private void fvbId(View view) {
         application = (DemoApplication) getActivity().getApplication();
 
         home_item_yongjin = view.findViewById(R.id.home_item_yongjin);
@@ -207,7 +207,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         banner = view.findViewById(R.id.home_banner);
 
         layout = view.findViewById(R.id.home_srl);
-        tvBanner2 =  view.findViewById(R.id.tv_banner2);
+        tvBanner2 = view.findViewById(R.id.tv_banner2);
 
         textView1 = view.findViewById(R.id.home_item_sojourn);
         textView2 = view.findViewById(R.id.home_item_overseas);
@@ -244,32 +244,32 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     //点击事件
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.project_city_selector){
+        if (view.getId() == R.id.project_city_selector) {
             showPickerView();
         } else if (view.getId() == R.id.home_search) {
             Intent intent = new Intent(view.getContext(), SearchInterfaceActivity.class);
-            intent.putExtra("project","0");
+            intent.putExtra("project", "0");
             startActivity(intent);
         } else if (view.getId() == R.id.home_item_sojourn) {
             FinalContents.setProjectType("3");
             Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
             startActivity(intent);
-        }else if (view.getId() == R.id.home_item_overseas) {
+        } else if (view.getId() == R.id.home_item_overseas) {
             FinalContents.setProjectType("2");
             Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
             startActivity(intent);
-        }else if (view.getId() == R.id.home_item_brokerage) {
+        } else if (view.getId() == R.id.home_item_brokerage) {
 
             FinalContents.setStoreId("");
             FinalContents.setAgentId(FinalContents.getUserID());
             Intent intent_overseas = new Intent(getContext(), Captain_Team_MyClientActivity.class);
             FinalContents.setQuanceng("1");
             FinalContents.setMySelf("0");
-            intent_overseas.putExtra("client","1");
+            intent_overseas.putExtra("client", "1");
             startActivity(intent_overseas);
 
 
-        }else if (view.getId() == R.id.home_item_client) {
+        } else if (view.getId() == R.id.home_item_client) {
             //  TODO    判断不同的身份进入不同的佣金界面
             if (FinalContents.getIdentity().equals("60")) {
                 //  TODO    团队长
@@ -277,17 +277,19 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 //                startActivity(intent);
                 Intent intent = new Intent(getContext(), Captain_Team_MyTeamActivity.class);
                 startActivity(intent);
-            } else if (FinalContents.getIdentity().equals("61")){
+            } else if (FinalContents.getIdentity().equals("61")) {
                 //  TODO    销售
 //                Intent intent = new Intent(view.getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
 //                startActivity(intent);
                 Intent intent = new Intent(view.getContext(), Captain_Market_MyTeamActivity.class);
                 startActivity(intent);
-            } else if (FinalContents.getIdentity().equals("62")){
-                Toast.makeText(getContext(),"顾问暂无团队",Toast.LENGTH_SHORT).show();
+            } else if (FinalContents.getIdentity().equals("62")) {
                 //  TODO    顾问
-//                Intent intent = new Intent(view.getContext(), Captain_Counselor_CommissionTheProjectEndActivity.class);
-//                startActivity(intent);
+                FinalContents.setMySelf("1");
+                Intent intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
+                intent.putExtra("client", "0");
+                FinalContents.setAgentId(FinalContents.getUserID());
+                startActivity(intent);
             }
         }
     }
@@ -328,7 +330,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                 //              展示选中数据
                                 city.setText(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
-                                Log.i("city",FinalContents.getCityID());
+                                Log.i("city", FinalContents.getCityID());
                                 initHotList();
                             }
                         })
@@ -359,7 +361,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<HotBean> userMessage = fzbInterface.getHotList(FinalContents.getUserID(),FinalContents.getCityID(),"1","1000");
+        Observable<HotBean> userMessage = fzbInterface.getHotList(FinalContents.getUserID(), FinalContents.getCityID(), "1", "1000");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HotBean>() {
@@ -371,7 +373,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(HotBean hotBean) {
-                        Log.i("city",hotBean.getCode());
+                        Log.i("city", hotBean.getCode());
                         if (hotBean.getCode().equals("1")) {
                             HotBean.DataBean hotBeanData = hotBean.getData();
                             hotlist = hotBeanData.getRows();
@@ -387,14 +389,14 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                             recyclerView.setAdapter(recyclerAdapter);
                             recyclerAdapter.notifyDataSetChanged();
 
-                        }else {
+                        } else {
                             recyclerView.setVisibility(View.GONE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -405,14 +407,14 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     }
 
     //文字轮播
-    private void tvBanner(){
+    private void tvBanner() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<MessageBean2> userMessage = fzbInterface.getMessageTextList(FinalContents.getUserID(),FinalContents.getCityID(),"");
+        Observable<MessageBean2> userMessage = fzbInterface.getMessageTextList(FinalContents.getUserID(), FinalContents.getCityID(), "");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MessageBean2>() {
@@ -427,13 +429,13 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                         MessageBean2.DataBean dataBean = messageBean.getData();
                         messagelist = dataBean.getRows();
 
-                        for (int i = 0; i < messagelist.size(); i++){
+                        for (int i = 0; i < messagelist.size(); i++) {
                             if (messagelist.get(i).getType().equals("0")) {
-                                messagelist2.add(new Bean(R.mipmap.give,messagelist.get(i).getTitle()));
-                            }else if (messagelist.get(i).getType().equals("2")){
-                                messagelist2.add(new Bean(R.mipmap.lodger,messagelist.get(i).getTitle()));
-                            }else if (messagelist.get(i).getType().equals("5")){
-                                messagelist2.add(new Bean(R.mipmap.goodnews,messagelist.get(i).getTitle()));
+                                messagelist2.add(new Bean(R.mipmap.give, messagelist.get(i).getTitle()));
+                            } else if (messagelist.get(i).getType().equals("2")) {
+                                messagelist2.add(new Bean(R.mipmap.lodger, messagelist.get(i).getTitle()));
+                            } else if (messagelist.get(i).getType().equals("5")) {
+                                messagelist2.add(new Bean(R.mipmap.goodnews, messagelist.get(i).getTitle()));
                             }
                         }
 
@@ -446,9 +448,9 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                             public void onItemClick(int postion) {
                                 if (messagelist.get(postion).getType().equals("0")) {
                                     listterner.process("0"); // 3.1 执行回调
-                                }else if (messagelist.get(postion).getType().equals("2")){
+                                } else if (messagelist.get(postion).getType().equals("2")) {
                                     listterner.process("2"); // 3.1 执行回调
-                                }else if (messagelist.get(postion).getType().equals("5")){
+                                } else if (messagelist.get(postion).getType().equals("5")) {
                                     listterner.process("5"); // 3.1 执行回调
                                 }
                             }
@@ -457,7 +459,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("新闻头条列表获取错误","错误"+e);
+                        Log.i("新闻头条列表获取错误", "错误" + e);
                     }
 
                     @Override
@@ -480,7 +482,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(),FinalContents.getCityID(),projectType,arrposid);
+        Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(), FinalContents.getCityID(), projectType, arrposid);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ImgData>() {
@@ -493,11 +495,11 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     @Override
                     public void onNext(ImgData imgData) {
                         imglist = imgData.getData();
-                        Log.i("aaa","图片地址："+ imglist.get(0).getCoverImg());
+                        Log.i("aaa", "图片地址：" + imglist.get(0).getCoverImg());
 
-                        Log.i("aaa","图片"+ imglist.get(0).getCoverImg());
-                        for (int i = 0; i < imglist.size(); i++){
-                            list_path.add("http://39.98.173.250:8080"+ imglist.get(i).getCoverImg());
+                        Log.i("aaa", "图片" + imglist.get(0).getCoverImg());
+                        for (int i = 0; i < imglist.size(); i++) {
+                            list_path.add("http://39.98.173.250:8080" + imglist.get(i).getCoverImg());
                             list_title.add(imglist.get(i).getTitle());
                         }
 
@@ -526,12 +528,12 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                 FinalContents.setIPhone(imglist.get(position).getProjectMap().getPhone());
                                 FinalContents.setProjectID(imglist.get(position).getProject().getId());
                                 FinalContents.setNewID(imglist.get(position).getId());
-                                Log.i("详情","项目ID"+FinalContents.getProjectID());
-                                Log.i("详情","用户ID"+FinalContents.getUserID());
-                                Log.i("详情","用户ID"+FinalContents.getNewID());
+                                Log.i("详情", "项目ID" + FinalContents.getProjectID());
+                                Log.i("详情", "用户ID" + FinalContents.getUserID());
+                                Log.i("详情", "用户ID" + FinalContents.getNewID());
                                 Intent intent = new Intent(view.getContext(), WebViewActivity.class);
-                                intent.putExtra("title","新闻详情");
-                                intent.putExtra("webview",imglist.get(position).getContent());
+                                intent.putExtra("title", "新闻详情");
+                                intent.putExtra("webview", imglist.get(position).getContent());
                                 startActivity(intent);
                             }
                         });
@@ -539,7 +541,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -586,9 +588,9 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        if(activity instanceof FragmentInteraction) {
-            listterner = (FragmentInteraction)activity; // 2.2 获取到宿主activity并赋值
-        } else{
+        if (activity instanceof FragmentInteraction) {
+            listterner = (FragmentInteraction) activity; // 2.2 获取到宿主activity并赋值
+        } else {
             throw new IllegalArgumentException("activity must implements FragmentInteraction");
         }
     }
