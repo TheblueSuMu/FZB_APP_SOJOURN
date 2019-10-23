@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item_popwindoe_1s"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="全部"
+        android:textColor="#ff333333"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/item_popwindoe_2s"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="只看异常门店"
+        android:textColor="#ff333333"
+        android:textSize="13sp" />
+
+</LinearLayout>

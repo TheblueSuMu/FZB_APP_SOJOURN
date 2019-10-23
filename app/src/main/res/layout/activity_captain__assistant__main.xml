@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".captain_assistant.view.Captain_Assistant_MainActivity">
+
+    <FrameLayout
+        android:id="@+id/team_main_framelayout"
+        android:layout_above="@id/team_main_rg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/team_main_rg"
+        android:background="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="10dp"
+        android:paddingBottom="7dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/team_main_home"
+            android:layout_weight="1"
+            android:text="首页"
+            android:textSize="12sp"
+            android:textColor="#333333"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:drawableTop="@drawable/tab_home_check"
+            android:drawablePadding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/team_main_message"
+            android:layout_weight="1"
+            android:text="消息"
+            android:textSize="12sp"
+            android:textColor="#333333"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableTop="@drawable/tab_message_check"
+            android:drawablePadding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/team_main_project"
+            android:layout_weight="1"
+            android:text="项目"
+            android:textSize="12sp"
+            android:textColor="#333333"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableTop="@drawable/team_assistant_check"
+            android:drawablePadding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/team_main_me"
+            android:layout_weight="1"
+            android:text="我的"
+            android:textSize="12sp"
+            android:textColor="#333333"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableTop="@drawable/tab_me_check"
+            android:drawablePadding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RadioGroup>
+
+</RelativeLayout>

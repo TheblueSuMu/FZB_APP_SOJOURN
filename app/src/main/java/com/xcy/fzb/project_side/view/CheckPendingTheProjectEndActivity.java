@@ -1,0 +1,291 @@
+package com.xcy.fzb.project_side.view;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.modle.CheckPendingBean;
+import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.view.AllActivity;
+import com.xcy.fzb.project_side.adapter.CheckPendingTheProjectEndAdapter;
+
+import java.util.List;
+
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+//TODO 待我审核
+public class CheckPendingTheProjectEndActivity extends AllActivity implements View.OnClickListener{
+
+    PtrClassicFrameLayout mPtrClassicFrameLayout;
+
+    RelativeLayout check_pending_the_project_end_return;
+    TextView check_pending_the_project_end_tv;
+    LinearLayout check_pending_the_project_end_ll1;
+    LinearLayout check_pending_the_project_end_ll2;
+    LinearLayout check_pending_the_project_end_ll3;
+    LinearLayout check_pending_the_project_end_ll4;
+    LinearLayout check_pending_the_project_end_ll5;
+    LinearLayout check_pending_the_project_end_ll6;
+    LinearLayout check_pending_the_project_end_ll7;
+    LinearLayout check_pending_the_project_end_ll8;
+    RecyclerView check_pending_the_project_end_rv;
+    CheckPendingTheProjectEndAdapter adapter;
+    private List<CheckPendingBean.DataBean.RowsBean> rows;
+    private Intent intent;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.project_side_activity_check_pending_the_project_end);
+        initView();
+
+    }
+
+    private void initView() {
+
+        StatusBar.makeStatusBarTransparent(this);
+
+        mPtrClassicFrameLayout = findViewById(R.id.store_house_ptr_frame_1);
+
+        check_pending_the_project_end_return = findViewById(R.id.check_pending_the_project_end_return);
+        check_pending_the_project_end_tv = findViewById(R.id.check_pending_the_project_end_tv);
+        check_pending_the_project_end_ll1 = findViewById(R.id.check_pending_the_project_end_ll1);
+        check_pending_the_project_end_ll2 = findViewById(R.id.check_pending_the_project_end_ll2);
+        check_pending_the_project_end_ll3 = findViewById(R.id.check_pending_the_project_end_ll3);
+        check_pending_the_project_end_ll4 = findViewById(R.id.check_pending_the_project_end_ll4);
+        check_pending_the_project_end_ll5 = findViewById(R.id.check_pending_the_project_end_ll5);
+        check_pending_the_project_end_ll6 = findViewById(R.id.check_pending_the_project_end_ll6);
+        check_pending_the_project_end_ll7 = findViewById(R.id.check_pending_the_project_end_ll7);
+        check_pending_the_project_end_ll8 = findViewById(R.id.check_pending_the_project_end_ll8);
+        check_pending_the_project_end_rv = findViewById(R.id.check_pending_the_project_end_rv);
+
+        check_pending_the_project_end_return.setOnClickListener(this);
+        check_pending_the_project_end_tv.setOnClickListener(this);
+        check_pending_the_project_end_ll1.setOnClickListener(this);
+        check_pending_the_project_end_ll3.setOnClickListener(this);
+        check_pending_the_project_end_ll5.setOnClickListener(this);
+        check_pending_the_project_end_ll7.setOnClickListener(this);
+
+
+        mPtrClassicFrameLayout.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPtrClassicFrameLayout.refreshComplete();
+                        mPtrClassicFrameLayout.setLastUpdateTimeKey("2017-2-10");
+                        if (check_pending_the_project_end_ll2.getVisibility() == View.VISIBLE) {
+                            initData(1);
+                        } else if (check_pending_the_project_end_ll4.getVisibility() == View.VISIBLE) {
+                            initData(2);
+                        } else if (check_pending_the_project_end_ll6.getVisibility() == View.VISIBLE) {
+                            initData(3);
+                        } else if (check_pending_the_project_end_ll8.getVisibility() == View.VISIBLE) {
+                            initData(4);
+                        }
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+//            TODO 返回上一层
+            case R.id.check_pending_the_project_end_return:
+                finish();
+                break;
+            //            TODO 拒绝记录
+            case R.id.check_pending_the_project_end_tv:
+                Intent intent = new Intent(CheckPendingTheProjectEndActivity.this, CheckPendingTheProjectActivity.class);
+                FinalContents.setJJ("待我审核");
+                startActivity(intent);
+                finish();
+                break;
+            //            TODO 报备
+            case R.id.check_pending_the_project_end_ll1:
+
+                initData(1);
+
+                check_pending_the_project_end_ll2.setVisibility(View.VISIBLE);
+                check_pending_the_project_end_ll4.setVisibility(View.GONE);
+                check_pending_the_project_end_ll6.setVisibility(View.GONE);
+                check_pending_the_project_end_ll8.setVisibility(View.GONE);
+
+                break;
+            //            TODO 到访
+            case R.id.check_pending_the_project_end_ll3:
+
+                initData(2);
+
+                check_pending_the_project_end_ll2.setVisibility(View.GONE);
+                check_pending_the_project_end_ll4.setVisibility(View.VISIBLE);
+                check_pending_the_project_end_ll6.setVisibility(View.GONE);
+                check_pending_the_project_end_ll8.setVisibility(View.GONE);
+                break;
+            //            TODO 认筹
+            case R.id.check_pending_the_project_end_ll5:
+
+                initData(3);
+
+                check_pending_the_project_end_ll2.setVisibility(View.GONE);
+                check_pending_the_project_end_ll4.setVisibility(View.GONE);
+                check_pending_the_project_end_ll6.setVisibility(View.VISIBLE);
+                check_pending_the_project_end_ll8.setVisibility(View.GONE);
+
+                break;
+            //            TODO 成功
+            case R.id.check_pending_the_project_end_ll7:
+
+                initData(4);
+
+                check_pending_the_project_end_ll2.setVisibility(View.GONE);
+                check_pending_the_project_end_ll4.setVisibility(View.GONE);
+                check_pending_the_project_end_ll6.setVisibility(View.GONE);
+                check_pending_the_project_end_ll8.setVisibility(View.VISIBLE);
+
+                break;
+        }
+
+    }
+
+    @SuppressLint("WrongConstant")
+    private void initData(int position) {
+        String ProjectID = "";
+
+        if (FinalContents.getDetails().equals("项目详情")) {
+            ProjectID = FinalContents.getProjectID();
+        }
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        check_pending_the_project_end_rv.setLayoutManager(manager);
+        adapter = new CheckPendingTheProjectEndAdapter();
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<CheckPendingBean> userMessage = fzbInterface.getToAuditList(FinalContents.getUserID(),ProjectID,"1",position,"1000");
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CheckPendingBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @SuppressLint("WrongConstant")
+                    @Override
+                    public void onNext(CheckPendingBean checkPendingBean) {
+                        rows = checkPendingBean.getData().getRows();
+                        adapter.setRows(rows);
+                        adapter.setOnItemClick(new CheckPendingTheProjectEndAdapter.OnItemClick() {
+                            @Override
+                            public void itemItem(int position) {
+                                intent = new Intent(CheckPendingTheProjectEndActivity.this, CheckPendingActivity.class);
+
+                                if (rows.get(position).getRelatedData().equals("认筹") || rows.get(position).getRelatedData().equals("成功")) {
+                                    intent.putExtra("Mycheck", "2");
+                                } else {
+                                    intent.putExtra("Mycheck", "1");
+                                }
+                                if (check_pending_the_project_end_ll2.getVisibility() == View.VISIBLE) {
+                                    intent.putExtra("name", "报备");
+                                    FinalContents.setNumS(1);
+                                } else if (check_pending_the_project_end_ll4.getVisibility() == View.VISIBLE) {
+                                    FinalContents.setNumS(2);
+                                    intent.putExtra("name", "到访");
+                                } else if (check_pending_the_project_end_ll6.getVisibility() == View.VISIBLE) {
+                                    FinalContents.setNumS(3);
+                                    intent.putExtra("name", "认筹");
+                                } else if (check_pending_the_project_end_ll8.getVisibility() == View.VISIBLE) {
+                                    FinalContents.setNumS(4);
+                                    intent.putExtra("name", "失效");
+                                }
+
+                                FinalContents.setPreparationId(rows.get(position).getPreparationId());
+                                FinalContents.setCustomerID(rows.get(position).getCustomerId());
+                                FinalContents.setStatus(rows.get(position).getStatus());
+                                Log.i("MyCL", "getPreparationId：" + rows.get(position).getPreparationId());
+                                Log.i("MyCL", "getCustomerId：" + rows.get(position).getCustomerId());
+                                startActivity(intent);
+                            }
+                        });
+                        check_pending_the_project_end_rv.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("列表数据获取错误","错误"+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (FinalContents.getEndStart().equals("成功")) {
+            finish();
+        }
+        initData(FinalContents.getNumS());
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        FinalContents.setJuJue("待我审核");
+        Log.i("dialog","数字:"+FinalContents.getNumS());
+        if (FinalContents.getNumS() == 1) {
+            initData(1);
+        } else if (FinalContents.getNumS() == 2) {
+            initData(2);
+        } else if (FinalContents.getNumS() == 3) {
+            initData(3);
+        } else if (FinalContents.getNumS() == 4) {
+            initData(4);
+        } else {
+            initData(1);
+        }
+    }
+}

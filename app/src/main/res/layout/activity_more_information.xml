@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@drawable/my_brokerage">
+
+            <LinearLayout
+                android:id="@+id/more_img"
+                android:layout_width="50dp"
+                android:layout_height="80dp">
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="33dp"
+                    android:src="@mipmap/return2" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="更多信息"
+                android:textColor="#ffffffff"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/more_tablayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#00000000"
+                    app:tabIndicatorColor="#fff"
+                    app:tabIndicatorHeight="4dp"
+                    app:tabSelectedTextColor="#fff"
+                    app:tabTextColor="#fff"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/more_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F0F0F0"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/more_report"
+                android:layout_width="131dp"
+                android:layout_height="37dp"
+                android:background="@mipmap/island_back"
+                android:text="我要报备"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/more_call"
+                android:layout_width="131dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="3dp"
+                android:background="@mipmap/more_report"
+                android:text="项目专线"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

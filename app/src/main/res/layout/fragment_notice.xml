@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    android:background="#EEEEEE"
+    android:orientation="vertical"
+    tools:context=".all.fragment.NoticeFragment">
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:layout_width="match_parent"
+        cube_ptr:ptr_duration_to_close="300"
+        cube_ptr:ptr_duration_to_close_header="800"
+        cube_ptr:ptr_keep_header_when_refresh="true"
+        cube_ptr:ptr_pull_to_fresh="false"
+        cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+        cube_ptr:ptr_resistance="1.7"
+        android:id="@+id/store_house_ptr_frame_12"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notice_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="12sp"
+            android:layout_marginRight="15dp"></androidx.recyclerview.widget.RecyclerView>
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+
+    <TextView
+        android:layout_below="@id/dynamic_rv"
+        android:text="没有更多数据了"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

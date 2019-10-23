@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".all.view.InformationActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:background="@drawable/my_brokerage">
+
+        <ImageView
+            android:id="@+id/information_return"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="31dp"
+            android:src="@mipmap/return2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:text="消息"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="71dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/information_ll_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="楼盘动态"
+                    android:textColor="#ffffffff"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/information_ll_5"
+                    android:layout_width="58dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/information_ll_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="通知"
+                    android:textColor="#ffffffff"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/information_ll_6"
+                    android:layout_width="28dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    android:visibility="invisible"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/information_ll_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="房客"
+                    android:textColor="#ffffffff"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/information_ll_7"
+                    android:layout_width="28dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    android:visibility="invisible"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/information_ll_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="喜报"
+                    android:textColor="#ffffffff"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/information_ll_8"
+                    android:layout_width="28dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    android:visibility="invisible"></LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/information_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+</LinearLayout>

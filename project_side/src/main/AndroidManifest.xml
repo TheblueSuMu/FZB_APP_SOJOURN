@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.xcy.fzb.project_side">
+
+    <!--TODO 摇一摇-->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <!--TODO 百度地图 start-->
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- 访问网络，进行地图相关业务数据请求，包括地图数据，路线规划，POI检索等 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取网络状态，根据网络状态切换进行数据请求网络转换 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- 读取外置存储。如果开发者使用了so动态加载功能并且把so文件放在了外置存储区域，则需要申请该权限，否则不需要 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 写外置存储。如果开发者使用了离线地图，并且数据写在外置存储区域，则需要申请该权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!--TODO 百度地图 end-->
+
+    <application
+        android:name=".application.DemoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".LoginActivity" android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <!--TODO 百度地图 start-->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="HmPVKuXGlaqvD1TV6XTNTlF6giQK2c3l" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+        <!--TODO 百度地图 end-->
+        <activity android:name=".view.AllActivity" android:launchMode="singleTop"/>         <!--TODO 封装activity-->
+        <activity android:name=".view.OverSeaActivity" android:launchMode="singleTop"/>     <!--TODO 项目海外-->
+        <activity android:name=".view.ProjectDetails" android:launchMode="singleTop"/>      <!--TODO 项目界面的项目详情-->
+        <activity android:name=".view.AboutFZBTheProjectEndActivity" android:launchMode="singleTop"/>       <!--TODO 关于房坐标-->
+        <activity android:name=".view.BannerPhotoActivity" android:launchMode="singleTop"/>       <!--TODO 点击图片后出现的界面-->
+        <activity android:name=".view.BuildingDynamicActivity" android:launchMode="singleTop"/>       <!--TODO 楼盘动态-->
+        <activity android:name=".view.BuildingInformationActivity" android:launchMode="singleTop"/>       <!--TODO 楼栋信息-->
+        <activity android:name=".view.CheckPendingTheProjectEndActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.ClientTheProjectEndActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.CollectActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.CommissionTheProjectEndActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.DetailsTheProjectEndActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.DisclaimerActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.FeedbackTheProjectEndActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.MessageCommentActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.MoreInformationActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.MyBrokerageActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.PhotoTileActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.RecyclerViewActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.RefuseTheProjectEndActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.SearchInterfaceActivity" android:launchMode="singleTop"/>         <!--TODO 搜索页-->
+        <activity android:name=".view.WebViewActivity" android:launchMode="singleTop"/>         <!--TODO 新闻详情-->
+        <activity android:name=".view.MyClientActivity" android:launchMode="singleTop"/>         <!--TODO 客户-->
+        <activity android:name=".view.MapActivity" android:launchMode="singleTop"/>         <!--TODO 地图-->
+        <activity android:name=".view.MyProjectActivity" android:launchMode="singleTop"/>         <!--TODO 我的项目-->
+        <activity android:name=".view.InitiatedTheReviewActivity" android:launchMode="singleTop"/>         <!--TODO 我发起的审核-->
+
+        <activity android:name=".view.MessageIssueActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.MyClientAddActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.FailureActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.MakeABargainActivity" android:launchMode="singleTop"></activity>
+
+        <activity android:name=".view.ToApplyForAnlsland2Activity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.ConfessToRaiseInformationActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.BackToRaiseThatActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.ListOfBackActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.FillInTransactionInformationActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.ReviewTheSuccessActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.VisitingScheduleActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.EssentialInformationActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.ToApplyForAnIslandActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.UnderReviewActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.ConfessToRaiseDetailsActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.ConfirmTheVisitActivity" android:launchMode="singleTop" android:exported="true"></activity>
+
+        <activity android:name=".view.ModifyTheRecognitionToRaiseActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.TheReasonForRefusalActivity" android:launchMode="singleTop"/>
+        <activity android:name=".view.CheckPendingActivity" android:launchMode="singleTop"/>
+
+
+        <!--TODO 今日头条 start-->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="375"/>
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="667"/>
+
+    </application>
+
+</manifest>

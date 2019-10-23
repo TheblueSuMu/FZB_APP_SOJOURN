@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/report_tool"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/my_brokerage">
+
+        <RelativeLayout
+            android:id="@+id/report_back"
+            android:layout_width="50dp"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="34dp"
+                android:src="@mipmap/return2" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="新增报备"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/report_tool"
+        android:layout_marginTop="5dp"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="客户姓名"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="9dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_you" />
+
+                    <TextView
+                        android:id="@+id/report_client_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:gravity="right"
+                        android:hint="点击选择客户"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="选择房源"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="9dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_you" />
+
+                    <TextView
+                        android:id="@+id/report_project_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:gravity="right"
+                        android:hint="点击选择房源"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="填写身份证号码："
+                        android:textColor="#111111"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/report_IDcard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="#FFFFFF"
+                        android:digits="1234567890zZXY"
+                        android:gravity="right"
+                        android:maxLength="18"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#EEEEEE">
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="是否计划登岛"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/report_btn_yes"
+                            android:layout_width="82dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/add_aa"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="是"
+                            android:textColor="@drawable/text_back"
+                            android:textSize="15sp" />
+
+                        <RadioButton
+                            android:id="@+id/report_btn_no"
+                            android:layout_width="82dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/add_bb"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:text="否"
+                            android:textColor="@drawable/text_back"
+                            android:textSize="15sp" />
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/report_tv_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/report_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=""
+                        android:textColor="#ff354687"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/report_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text=""
+                        android:textColor="#ff354687"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="客户意向："
+                        android:textColor="#ff1a1a1a"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/report_tv_sq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="展开"
+                        android:textColor="#ff364888"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!--TODO 收起start-->
+            <LinearLayout
+                android:id="@+id/report_ll_start_sq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="类型"
+                    android:textColor="#ff111111"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/report_type_1"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="住宅"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_type_2"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="公寓"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_type_3"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="写字间"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_type_4"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="商铺"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/report_type_5"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="别墅"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:textColor="#121212"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:textColor="#121212"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:textColor="#121212"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="面积"
+                    android:textColor="#ff111111"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/report_area_1"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="50㎡以下"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_area_2"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="50-70㎡"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_area_3"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="70-90㎡"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_area_4"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="90-110㎡"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/report_area_5"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="110-130㎡"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_area_6"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="130-150㎡"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_area_7"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="150-200㎡"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_area_8"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="200㎡以上"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="单价"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/report_price_start"
+                        android:layout_width="110dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/my_fine_fram"
+                        android:gravity="center"
+                        android:hint="意向单价"
+                        android:textColor="#111111"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="元"
+                        android:textColor="#ff111111"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:text="至"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/report_price_end"
+                        android:layout_width="110dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="11dp"
+                        android:background="@drawable/my_fine_fram"
+                        android:gravity="center"
+                        android:hint="意向单价"
+                        android:textColor="#111111"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="元"
+                        android:textColor="#ff111111"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="置业目的"
+                    android:textColor="#ff111111"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/report_goal_1"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="自住"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_goal_2"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="婚房"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_goal_3"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="改善"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_goal_4"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="投资"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/report_goal_5"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="孩子上学"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_goal_6"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="度假"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_goal_7"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="留学"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/report_goal_8"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/screen_back"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="移民"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/checkbox_text_checked"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/report_ll_start_sq1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:text="楼盘特色"
+                    android:textColor="#ff111111"
+                    android:textSize="15sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/report_rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/report_ll_start_sq2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="备注："
+                    android:textColor="#ff111111"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/report_remarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/my_fine_fram"
+                    android:gravity="top"
+                    android:lineSpacingMultiplier="1.2"
+                    android:minLines="5"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:textScaleX="1.2"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/report_ensure"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginRight="38dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/points_dialog_but"
+                android:gravity="center"
+                android:text="提交"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+            <!--TODO 外层LinearLayout-->
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/report_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#e7e7e7"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/report_picker_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="取消"
+                android:textColor="#ff666666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="请选择时间"
+                android:textColor="#ff111111"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/report_picker_ensure"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="确定"
+                android:textColor="#334485"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <top.defaults.view.DateTimePickerView
+            android:id="@+id/report_pickerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e7e7e7"
+            app:preferredMaxOffsetItemCount="4" />
+    </LinearLayout>
+</RelativeLayout>

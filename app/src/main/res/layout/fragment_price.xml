@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="horizontal"
+    tools:context=".all.fragment.PriceFragment">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/price_down_count"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/oversea_price"
+            android:gravity="center"
+            android:hint="最低总价"
+            android:textColor="#999999"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/price_up_count"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/oversea_price"
+            android:gravity="center"
+            android:hint="最高总价"
+            android:textColor="#999999"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/price_ensure"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/oversea_price_btn"
+            android:text="确定"
+            android:textColor="#334485"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

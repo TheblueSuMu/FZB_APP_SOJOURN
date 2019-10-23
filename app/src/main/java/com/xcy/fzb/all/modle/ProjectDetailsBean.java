@@ -1,0 +1,7659 @@
+package com.xcy.fzb.all.modle;
+
+import java.util.List;
+
+public class ProjectDetailsBean {
+
+    /**
+     * code : 1
+     * msg : 成功
+     * data : {"projectListVo":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"dd1c32fcfb9141e6b030ec2c1dbb1cff","projectName":"融创东海湾","listPageCover":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/8/fd1b27c4ebaa89890243820b3d522bb9(1).jpg","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/8/fd1b27c4ebaa89890243820b3d522bb9(1).jpg","detailAddress":"山东省烟台市海天二路和阳光二路交叉口","browseNum":"288","forwardingAmount":"7","reportAmount":"16","collectionNum":"1","awardRules":"","commissionRules":"","productFeature":"品牌房企,精装修","buildingArea":"988200","saleStatus":"3","location":"120.493936,37.74289","amountIncentiveId":"3694deec8b7945559f7513c25b715cc9","guideRuleId":"a66fe66e469048dbb18a13ab4992ed46","isPhone":"0","digit":"","isPapers":"0","projectType":"3","type":"1","percent":"8","amount":"","contractAmount":"","contractPercent":"10","secondsAmount":"","isSeconds":"0","area":"烟台","isgroup":"0","groupNum":"0","salesOfficeLocation":"120.433951,36.197757","onlineState":"","remindstatus1":"0","remindstatus2":"0","productTypeSize":2,"productUnitPrice":"8000","productTotalPrice":"","referenceToatlPrice":"","areaIntervalStart":"98","areaIntervalEnd":"158","areaInterval":"98-158㎡","monetaryUnit":"元起/㎡","commission":"总房款的8%","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"0","ffAttacheList":[{"id":"54c150483d2f4981b7ad8d5eae54019c","remarks":"","createBy":"","createDate":"2019-08-05 11:29:08","updateBy":"","updateDate":"","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"attacheId":"1f34a32cc63d4849a4df56c7c3485e84","name":"李洋","phone":"15204414455"}],"brokerUserPhone":"15204414455","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""},"houseImgCountNum":12,"houseCountImg":"","amountIncentiveList":[{"id":"3694deec8b7945559f7513c25b715cc9","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:45:02","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:31:55","datePicker":"","startDate":"2019-06-01","endDate":"2019-12-31","mainTitle":"住宅佣金","type":"1","percent":"8","amount":"","contractPercent":"10","contractAmount":"","isSeconds":"0","secondsAmount":"","executeState":"","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"onlineState":"1","isProjectShow":1,"currentDate":"","commissionFormat":"总房款的8%","secondsFormat":"无秒结","teams":"","teamNames":""}],"guideRuleList":[{"guideRuleId":"a66fe66e469048dbb18a13ab4992ed46","isPapers":"0","report":"如客户想到项目地了解项目，需要提前报备客户身份证号码","visit":"","clientDefineType":"1"}],"guideRules":[{"value":"30天","key":"报备有效期："},{"value":"如客户想到项目地了解项目，需要提前报备客户身份证号码","key":"报备规则："}],"housesDynamics":[{"id":"c7cc5912d7d94420b34f1b9200480312","remarks":"","createBy":{"id":"1","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"总部超级管理员","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/userfiles/1/attachment/sys/user/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":true},"createDate":"2019-06-16 10:48:09","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:22:08","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/8/fd1b27c4ebaa89890243820b3d522bb9(1).jpg","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"title":"项目简介","content":"龙口，中国海滨投资最后的价值洼地\r\n融创东海湾位于龙口市北侧的南山东海旅游度假区内，西侧毗邻海天二路，北侧为阳光二路，东临海安路，南为阳光三路。地块总用地面积约41.7公顷，规划总建筑面积98.82万平方米。容积率为2.0。","img":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/ff/server/ffServerHousesDynamic/2019/6/tp2.png","video":"","onlineState":"1","likeNum":2,"commentNum":0,"isLike":"","imgUrl":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/ff/server/ffServerHousesDynamic/2019/6/tp2.png","attaches":""}],"familyInfomations":[{"id":"76886d795b7646048b2189f38c29303b","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-08-05 10:43:42","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:43:42","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"familyName":"E","productType":"1","room":"3","hall":"2","toilet":"2","familyArea":"128","familyOrientation":"南北","getHouseRate":"","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","modelHouseChart":"","familySlideImgList":["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]},{"id":"4ddb5028f18144718fb19bae0a140965","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:11:41","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:43:06","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"familyName":"D","productType":"1","room":"3","hall":"2","toilet":"1","familyArea":"109","familyOrientation":"南北","getHouseRate":"","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","modelHouseChart":"","familySlideImgList":["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]},{"id":"2885b7afb5b84dc3bff1ed3044d2fe85","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:13:34","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:41:46","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"familyName":"C","productType":"1","room":"4","hall":"2","toilet":"2","familyArea":"158","familyOrientation":"南北","getHouseRate":"","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","modelHouseChart":"","familySlideImgList":["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]},{"id":"f93136761d5f4676b2970671ebee0406","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:15:22","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:41:16","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"familyName":"B","productType":"1","room":"3","hall":"2","toilet":"2","familyArea":"116","familyOrientation":"南北","getHouseRate":"","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","modelHouseChart":"","familySlideImgList":["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]},{"id":"1a5af10a47cb47c3b03ea589e7f3b2b1","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:20:35","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:40:45","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"familyName":"A","productType":"1","room":"3","hall":"2","toilet":"1","familyArea":"98","familyOrientation":"南北","getHouseRate":"","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg","modelHouseChart":"","familySlideImgList":["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]}],"matingInformation":{"id":"ce27e31305924bb5b3195c29aeb3a577","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:27:17","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 09:24:25","traffic":"龙口市是烟台市下辖县级市，东距烟台市约80km，西距离济南320km，北距北京425km，南距青岛186km","education":"东海外国语学校，龙口一中，南山双语学校，南山学院","medical":"齐鲁医院南山分院","shopping":"33000㎡万国风情步行街、滨海商贸街","entertainment":"幼儿园、快递柜、超市、商业街、地下停车场、露天停车位","famousScene":"东海、南山度假区","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""}},"housesDynamicsStatus":"0","buildingInfoStatus":"1","buildingImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/6/效果图1.png","isTalkTool":"1","talkToolData":[{"img":"/fangfang/static/common/images/haibao.png","num":"1","typeName":"项目海报","type":"1"},{"img":"/fangfang/static/common/images/shipin.png","num":"1","typeName":"项目视频","type":"2"}],"propertyServiceList":[]}
+     */
+
+    private String code;
+    private String msg;
+    private DataBean data;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
+    public static class DataBean {
+        /**
+         * projectListVo : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"dd1c32fcfb9141e6b030ec2c1dbb1cff","projectName":"融创东海湾","listPageCover":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/8/fd1b27c4ebaa89890243820b3d522bb9(1).jpg","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/8/fd1b27c4ebaa89890243820b3d522bb9(1).jpg","detailAddress":"山东省烟台市海天二路和阳光二路交叉口","browseNum":"288","forwardingAmount":"7","reportAmount":"16","collectionNum":"1","awardRules":"","commissionRules":"","productFeature":"品牌房企,精装修","buildingArea":"988200","saleStatus":"3","location":"120.493936,37.74289","amountIncentiveId":"3694deec8b7945559f7513c25b715cc9","guideRuleId":"a66fe66e469048dbb18a13ab4992ed46","isPhone":"0","digit":"","isPapers":"0","projectType":"3","type":"1","percent":"8","amount":"","contractAmount":"","contractPercent":"10","secondsAmount":"","isSeconds":"0","area":"烟台","isgroup":"0","groupNum":"0","salesOfficeLocation":"120.433951,36.197757","onlineState":"","remindstatus1":"0","remindstatus2":"0","productTypeSize":2,"productUnitPrice":"8000","productTotalPrice":"","referenceToatlPrice":"","areaIntervalStart":"98","areaIntervalEnd":"158","areaInterval":"98-158㎡","monetaryUnit":"元起/㎡","commission":"总房款的8%","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"0","ffAttacheList":[{"id":"54c150483d2f4981b7ad8d5eae54019c","remarks":"","createBy":"","createDate":"2019-08-05 11:29:08","updateBy":"","updateDate":"","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"attacheId":"1f34a32cc63d4849a4df56c7c3485e84","name":"李洋","phone":"15204414455"}],"brokerUserPhone":"15204414455","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""}
+         * houseImgCountNum : 12
+         * houseCountImg :
+         * amountIncentiveList : [{"id":"3694deec8b7945559f7513c25b715cc9","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:45:02","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:31:55","datePicker":"","startDate":"2019-06-01","endDate":"2019-12-31","mainTitle":"住宅佣金","type":"1","percent":"8","amount":"","contractPercent":"10","contractAmount":"","isSeconds":"0","secondsAmount":"","executeState":"","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"onlineState":"1","isProjectShow":1,"currentDate":"","commissionFormat":"总房款的8%","secondsFormat":"无秒结","teams":"","teamNames":""}]
+         * guideRuleList : [{"guideRuleId":"a66fe66e469048dbb18a13ab4992ed46","isPapers":"0","report":"如客户想到项目地了解项目，需要提前报备客户身份证号码","visit":"","clientDefineType":"1"}]
+         * guideRules : [{"value":"30天","key":"报备有效期："},{"value":"如客户想到项目地了解项目，需要提前报备客户身份证号码","key":"报备规则："}]
+         * housesDynamics : [{"id":"c7cc5912d7d94420b34f1b9200480312","remarks":"","createBy":{"id":"1","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"总部超级管理员","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/userfiles/1/attachment/sys/user/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":true},"createDate":"2019-06-16 10:48:09","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:22:08","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/8/fd1b27c4ebaa89890243820b3d522bb9(1).jpg","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"title":"项目简介","content":"龙口，中国海滨投资最后的价值洼地\r\n融创东海湾位于龙口市北侧的南山东海旅游度假区内，西侧毗邻海天二路，北侧为阳光二路，东临海安路，南为阳光三路。地块总用地面积约41.7公顷，规划总建筑面积98.82万平方米。容积率为2.0。","img":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/ff/server/ffServerHousesDynamic/2019/6/tp2.png","video":"","onlineState":"1","likeNum":2,"commentNum":0,"isLike":"","imgUrl":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/ff/server/ffServerHousesDynamic/2019/6/tp2.png","attaches":""}]
+         * familyInfomations : [{"id":"76886d795b7646048b2189f38c29303b","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-08-05 10:43:42","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:43:42","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"familyName":"E","productType":"1","room":"3","hall":"2","toilet":"2","familyArea":"128","familyOrientation":"南北","getHouseRate":"","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","modelHouseChart":"","familySlideImgList":["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]},{"id":"4ddb5028f18144718fb19bae0a140965","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:11:41","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:43:06","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"familyName":"D","productType":"1","room":"3","hall":"2","toilet":"1","familyArea":"109","familyOrientation":"南北","getHouseRate":"","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","modelHouseChart":"","familySlideImgList":["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]},{"id":"2885b7afb5b84dc3bff1ed3044d2fe85","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:13:34","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:41:46","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"familyName":"C","productType":"1","room":"4","hall":"2","toilet":"2","familyArea":"158","familyOrientation":"南北","getHouseRate":"","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","modelHouseChart":"","familySlideImgList":["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]},{"id":"f93136761d5f4676b2970671ebee0406","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:15:22","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:41:16","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"familyName":"B","productType":"1","room":"3","hall":"2","toilet":"2","familyArea":"116","familyOrientation":"南北","getHouseRate":"","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","modelHouseChart":"","familySlideImgList":["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]},{"id":"1a5af10a47cb47c3b03ea589e7f3b2b1","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:20:35","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 10:40:45","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"familyName":"A","productType":"1","room":"3","hall":"2","toilet":"1","familyArea":"98","familyOrientation":"南北","getHouseRate":"","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg","modelHouseChart":"","familySlideImgList":["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]}]
+         * matingInformation : {"id":"ce27e31305924bb5b3195c29aeb3a577","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"createDate":"2019-06-16 10:27:17","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false},"updateDate":"2019-08-05 09:24:25","traffic":"龙口市是烟台市下辖县级市，东距烟台市约80km，西距离济南320km，北距北京425km，南距青岛186km","education":"东海外国语学校，龙口一中，南山双语学校，南山学院","medical":"齐鲁医院南山分院","shopping":"33000㎡万国风情步行街、滨海商贸街","entertainment":"幼儿园、快递柜、超市、商业街、地下停车场、露天停车位","famousScene":"东海、南山度假区","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""}}
+         * housesDynamicsStatus : 0
+         * buildingInfoStatus : 1
+         * buildingImg : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/6/效果图1.png
+         * isTalkTool : 1
+         * talkToolData : [{"img":"/fangfang/static/common/images/haibao.png","num":"1","typeName":"项目海报","type":"1"},{"img":"/fangfang/static/common/images/shipin.png","num":"1","typeName":"项目视频","type":"2"}]
+         * propertyServiceList : []
+         */
+
+        private ProjectListVoBean projectListVo;
+        private int houseImgCountNum;
+        private String houseCountImg;
+        private MatingInformationBean matingInformation;
+        private String housesDynamicsStatus;
+        private String buildingInfoStatus;
+        private String buildingImg;
+        private String isTalkTool;
+        private List<AmountIncentiveListBean> amountIncentiveList;
+        private List<GuideRuleListBean> guideRuleList;
+        private List<GuideRulesBean> guideRules;
+        private List<HousesDynamicsBean> housesDynamics;
+        private List<FamilyInfomationsBean> familyInfomations;
+        private List<TalkToolDataBean> talkToolData;
+        private List<?> propertyServiceList;
+
+        public ProjectListVoBean getProjectListVo() {
+            return projectListVo;
+        }
+
+        public void setProjectListVo(ProjectListVoBean projectListVo) {
+            this.projectListVo = projectListVo;
+        }
+
+        public int getHouseImgCountNum() {
+            return houseImgCountNum;
+        }
+
+        public void setHouseImgCountNum(int houseImgCountNum) {
+            this.houseImgCountNum = houseImgCountNum;
+        }
+
+        public String getHouseCountImg() {
+            return houseCountImg;
+        }
+
+        public void setHouseCountImg(String houseCountImg) {
+            this.houseCountImg = houseCountImg;
+        }
+
+        public MatingInformationBean getMatingInformation() {
+            return matingInformation;
+        }
+
+        public void setMatingInformation(MatingInformationBean matingInformation) {
+            this.matingInformation = matingInformation;
+        }
+
+        public String getHousesDynamicsStatus() {
+            return housesDynamicsStatus;
+        }
+
+        public void setHousesDynamicsStatus(String housesDynamicsStatus) {
+            this.housesDynamicsStatus = housesDynamicsStatus;
+        }
+
+        public String getBuildingInfoStatus() {
+            return buildingInfoStatus;
+        }
+
+        public void setBuildingInfoStatus(String buildingInfoStatus) {
+            this.buildingInfoStatus = buildingInfoStatus;
+        }
+
+        public String getBuildingImg() {
+            return buildingImg;
+        }
+
+        public void setBuildingImg(String buildingImg) {
+            this.buildingImg = buildingImg;
+        }
+
+        public String getIsTalkTool() {
+            return isTalkTool;
+        }
+
+        public void setIsTalkTool(String isTalkTool) {
+            this.isTalkTool = isTalkTool;
+        }
+
+        public List<AmountIncentiveListBean> getAmountIncentiveList() {
+            return amountIncentiveList;
+        }
+
+        public void setAmountIncentiveList(List<AmountIncentiveListBean> amountIncentiveList) {
+            this.amountIncentiveList = amountIncentiveList;
+        }
+
+        public List<GuideRuleListBean> getGuideRuleList() {
+            return guideRuleList;
+        }
+
+        public void setGuideRuleList(List<GuideRuleListBean> guideRuleList) {
+            this.guideRuleList = guideRuleList;
+        }
+
+        public List<GuideRulesBean> getGuideRules() {
+            return guideRules;
+        }
+
+        public void setGuideRules(List<GuideRulesBean> guideRules) {
+            this.guideRules = guideRules;
+        }
+
+        public List<HousesDynamicsBean> getHousesDynamics() {
+            return housesDynamics;
+        }
+
+        public void setHousesDynamics(List<HousesDynamicsBean> housesDynamics) {
+            this.housesDynamics = housesDynamics;
+        }
+
+        public List<FamilyInfomationsBean> getFamilyInfomations() {
+            return familyInfomations;
+        }
+
+        public void setFamilyInfomations(List<FamilyInfomationsBean> familyInfomations) {
+            this.familyInfomations = familyInfomations;
+        }
+
+        public List<TalkToolDataBean> getTalkToolData() {
+            return talkToolData;
+        }
+
+        public void setTalkToolData(List<TalkToolDataBean> talkToolData) {
+            this.talkToolData = talkToolData;
+        }
+
+        public List<?> getPropertyServiceList() {
+            return propertyServiceList;
+        }
+
+        public void setPropertyServiceList(List<?> propertyServiceList) {
+            this.propertyServiceList = propertyServiceList;
+        }
+
+        public static class ProjectListVoBean {
+            /**
+             * id :
+             * remarks :
+             * createBy :
+             * createDate :
+             * updateBy :
+             * updateDate :
+             * projectId : dd1c32fcfb9141e6b030ec2c1dbb1cff
+             * projectName : 融创东海湾
+             * listPageCover : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/8/fd1b27c4ebaa89890243820b3d522bb9(1).jpg
+             * projectImg : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/8/fd1b27c4ebaa89890243820b3d522bb9(1).jpg
+             * detailAddress : 山东省烟台市海天二路和阳光二路交叉口
+             * browseNum : 288
+             * forwardingAmount : 7
+             * reportAmount : 16
+             * collectionNum : 1
+             * awardRules :
+             * commissionRules :
+             * productFeature : 品牌房企,精装修
+             * buildingArea : 988200
+             * saleStatus : 3
+             * location : 120.493936,37.74289
+             * amountIncentiveId : 3694deec8b7945559f7513c25b715cc9
+             * guideRuleId : a66fe66e469048dbb18a13ab4992ed46
+             * isPhone : 0
+             * digit :
+             * isPapers : 0
+             * projectType : 3
+             * type : 1
+             * percent : 8
+             * amount :
+             * contractAmount :
+             * contractPercent : 10
+             * secondsAmount :
+             * isSeconds : 0
+             * area : 烟台
+             * isgroup : 0
+             * groupNum : 0
+             * salesOfficeLocation : 120.433951,36.197757
+             * onlineState :
+             * remindstatus1 : 0
+             * remindstatus2 : 0
+             * productTypeSize : 2
+             * productUnitPrice : 8000
+             * productTotalPrice :
+             * referenceToatlPrice :
+             * areaIntervalStart : 98
+             * areaIntervalEnd : 158
+             * areaInterval : 98-158㎡
+             * monetaryUnit : 元起/㎡
+             * commission : 总房款的8%
+             * secondPay : 无秒结
+             * hot :
+             * city :
+             * nation :
+             * searchContent :
+             * searchName :
+             * attacheId :
+             * businessType :
+             * collectionId :
+             * isCollection : 0
+             * ffAttacheList : [{"id":"54c150483d2f4981b7ad8d5eae54019c","remarks":"","createBy":"","createDate":"2019-08-05 11:29:08","updateBy":"","updateDate":"","project":{"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""},"attacheId":"1f34a32cc63d4849a4df56c7c3485e84","name":"李洋","phone":"15204414455"}]
+             * brokerUserPhone : 15204414455
+             * projectLabel :
+             * projectLabelStr :
+             * comprehensiveSorting :
+             * comprehensiveSortingStr : pm.create_date DESC
+             * apartment :
+             * projectPriceStart :
+             * projectPriceEnd :
+             * areaSection :
+             * ffProjectTrait :
+             * procuctType :
+             * fitmentState :
+             */
+
+            private String id;
+            private String remarks;
+            private String createBy;
+            private String createDate;
+            private String updateBy;
+            private String updateDate;
+            private String projectId;
+            private String projectName;
+            private String listPageCover;
+            private String projectImg;
+            private String detailAddress;
+            private String browseNum;
+            private String forwardingAmount;
+            private String reportAmount;
+            private String collectionNum;
+            private String awardRules;
+            private String commissionRules;
+            private String productFeature;
+            private String buildingArea;
+            private String saleStatus;
+            private String location;
+            private String amountIncentiveId;
+            private String guideRuleId;
+            private String isPhone;
+            private String digit;
+            private String isPapers;
+            private String projectType;
+            private String type;
+            private String percent;
+            private String amount;
+            private String contractAmount;
+            private String contractPercent;
+            private String secondsAmount;
+            private String isSeconds;
+            private String area;
+            private String isgroup;
+            private String groupNum;
+            private String salesOfficeLocation;
+            private String onlineState;
+            private String remindstatus1;
+            private String remindstatus2;
+            private int productTypeSize;
+            private String productUnitPrice;
+            private String productTotalPrice;
+            private String referenceToatlPrice;
+            private String areaIntervalStart;
+            private String areaIntervalEnd;
+            private String areaInterval;
+            private String monetaryUnit;
+            private String commission;
+            private String secondPay;
+            private String hot;
+            private String city;
+            private String nation;
+            private String searchContent;
+            private String searchName;
+            private String attacheId;
+            private String businessType;
+            private String collectionId;
+            private String isCollection;
+            private String brokerUserPhone;
+            private String projectLabel;
+            private String projectLabelStr;
+            private String comprehensiveSorting;
+            private String comprehensiveSortingStr;
+            private String apartment;
+            private String projectPriceStart;
+            private String projectPriceEnd;
+            private String areaSection;
+            private String ffProjectTrait;
+            private String procuctType;
+            private String fitmentState;
+            private List<FfAttacheListBean> ffAttacheList;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getRemarks() {
+                return remarks;
+            }
+
+            public void setRemarks(String remarks) {
+                this.remarks = remarks;
+            }
+
+            public String getCreateBy() {
+                return createBy;
+            }
+
+            public void setCreateBy(String createBy) {
+                this.createBy = createBy;
+            }
+
+            public String getCreateDate() {
+                return createDate;
+            }
+
+            public void setCreateDate(String createDate) {
+                this.createDate = createDate;
+            }
+
+            public String getUpdateBy() {
+                return updateBy;
+            }
+
+            public void setUpdateBy(String updateBy) {
+                this.updateBy = updateBy;
+            }
+
+            public String getUpdateDate() {
+                return updateDate;
+            }
+
+            public void setUpdateDate(String updateDate) {
+                this.updateDate = updateDate;
+            }
+
+            public String getProjectId() {
+                return projectId;
+            }
+
+            public void setProjectId(String projectId) {
+                this.projectId = projectId;
+            }
+
+            public String getProjectName() {
+                return projectName;
+            }
+
+            public void setProjectName(String projectName) {
+                this.projectName = projectName;
+            }
+
+            public String getListPageCover() {
+                return listPageCover;
+            }
+
+            public void setListPageCover(String listPageCover) {
+                this.listPageCover = listPageCover;
+            }
+
+            public String getProjectImg() {
+                return projectImg;
+            }
+
+            public void setProjectImg(String projectImg) {
+                this.projectImg = projectImg;
+            }
+
+            public String getDetailAddress() {
+                return detailAddress;
+            }
+
+            public void setDetailAddress(String detailAddress) {
+                this.detailAddress = detailAddress;
+            }
+
+            public String getBrowseNum() {
+                return browseNum;
+            }
+
+            public void setBrowseNum(String browseNum) {
+                this.browseNum = browseNum;
+            }
+
+            public String getForwardingAmount() {
+                return forwardingAmount;
+            }
+
+            public void setForwardingAmount(String forwardingAmount) {
+                this.forwardingAmount = forwardingAmount;
+            }
+
+            public String getReportAmount() {
+                return reportAmount;
+            }
+
+            public void setReportAmount(String reportAmount) {
+                this.reportAmount = reportAmount;
+            }
+
+            public String getCollectionNum() {
+                return collectionNum;
+            }
+
+            public void setCollectionNum(String collectionNum) {
+                this.collectionNum = collectionNum;
+            }
+
+            public String getAwardRules() {
+                return awardRules;
+            }
+
+            public void setAwardRules(String awardRules) {
+                this.awardRules = awardRules;
+            }
+
+            public String getCommissionRules() {
+                return commissionRules;
+            }
+
+            public void setCommissionRules(String commissionRules) {
+                this.commissionRules = commissionRules;
+            }
+
+            public String getProductFeature() {
+                return productFeature;
+            }
+
+            public void setProductFeature(String productFeature) {
+                this.productFeature = productFeature;
+            }
+
+            public String getBuildingArea() {
+                return buildingArea;
+            }
+
+            public void setBuildingArea(String buildingArea) {
+                this.buildingArea = buildingArea;
+            }
+
+            public String getSaleStatus() {
+                return saleStatus;
+            }
+
+            public void setSaleStatus(String saleStatus) {
+                this.saleStatus = saleStatus;
+            }
+
+            public String getLocation() {
+                return location;
+            }
+
+            public void setLocation(String location) {
+                this.location = location;
+            }
+
+            public String getAmountIncentiveId() {
+                return amountIncentiveId;
+            }
+
+            public void setAmountIncentiveId(String amountIncentiveId) {
+                this.amountIncentiveId = amountIncentiveId;
+            }
+
+            public String getGuideRuleId() {
+                return guideRuleId;
+            }
+
+            public void setGuideRuleId(String guideRuleId) {
+                this.guideRuleId = guideRuleId;
+            }
+
+            public String getIsPhone() {
+                return isPhone;
+            }
+
+            public void setIsPhone(String isPhone) {
+                this.isPhone = isPhone;
+            }
+
+            public String getDigit() {
+                return digit;
+            }
+
+            public void setDigit(String digit) {
+                this.digit = digit;
+            }
+
+            public String getIsPapers() {
+                return isPapers;
+            }
+
+            public void setIsPapers(String isPapers) {
+                this.isPapers = isPapers;
+            }
+
+            public String getProjectType() {
+                return projectType;
+            }
+
+            public void setProjectType(String projectType) {
+                this.projectType = projectType;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getPercent() {
+                return percent;
+            }
+
+            public void setPercent(String percent) {
+                this.percent = percent;
+            }
+
+            public String getAmount() {
+                return amount;
+            }
+
+            public void setAmount(String amount) {
+                this.amount = amount;
+            }
+
+            public String getContractAmount() {
+                return contractAmount;
+            }
+
+            public void setContractAmount(String contractAmount) {
+                this.contractAmount = contractAmount;
+            }
+
+            public String getContractPercent() {
+                return contractPercent;
+            }
+
+            public void setContractPercent(String contractPercent) {
+                this.contractPercent = contractPercent;
+            }
+
+            public String getSecondsAmount() {
+                return secondsAmount;
+            }
+
+            public void setSecondsAmount(String secondsAmount) {
+                this.secondsAmount = secondsAmount;
+            }
+
+            public String getIsSeconds() {
+                return isSeconds;
+            }
+
+            public void setIsSeconds(String isSeconds) {
+                this.isSeconds = isSeconds;
+            }
+
+            public String getArea() {
+                return area;
+            }
+
+            public void setArea(String area) {
+                this.area = area;
+            }
+
+            public String getIsgroup() {
+                return isgroup;
+            }
+
+            public void setIsgroup(String isgroup) {
+                this.isgroup = isgroup;
+            }
+
+            public String getGroupNum() {
+                return groupNum;
+            }
+
+            public void setGroupNum(String groupNum) {
+                this.groupNum = groupNum;
+            }
+
+            public String getSalesOfficeLocation() {
+                return salesOfficeLocation;
+            }
+
+            public void setSalesOfficeLocation(String salesOfficeLocation) {
+                this.salesOfficeLocation = salesOfficeLocation;
+            }
+
+            public String getOnlineState() {
+                return onlineState;
+            }
+
+            public void setOnlineState(String onlineState) {
+                this.onlineState = onlineState;
+            }
+
+            public String getRemindstatus1() {
+                return remindstatus1;
+            }
+
+            public void setRemindstatus1(String remindstatus1) {
+                this.remindstatus1 = remindstatus1;
+            }
+
+            public String getRemindstatus2() {
+                return remindstatus2;
+            }
+
+            public void setRemindstatus2(String remindstatus2) {
+                this.remindstatus2 = remindstatus2;
+            }
+
+            public int getProductTypeSize() {
+                return productTypeSize;
+            }
+
+            public void setProductTypeSize(int productTypeSize) {
+                this.productTypeSize = productTypeSize;
+            }
+
+            public String getProductUnitPrice() {
+                return productUnitPrice;
+            }
+
+            public void setProductUnitPrice(String productUnitPrice) {
+                this.productUnitPrice = productUnitPrice;
+            }
+
+            public String getProductTotalPrice() {
+                return productTotalPrice;
+            }
+
+            public void setProductTotalPrice(String productTotalPrice) {
+                this.productTotalPrice = productTotalPrice;
+            }
+
+            public String getReferenceToatlPrice() {
+                return referenceToatlPrice;
+            }
+
+            public void setReferenceToatlPrice(String referenceToatlPrice) {
+                this.referenceToatlPrice = referenceToatlPrice;
+            }
+
+            public String getAreaIntervalStart() {
+                return areaIntervalStart;
+            }
+
+            public void setAreaIntervalStart(String areaIntervalStart) {
+                this.areaIntervalStart = areaIntervalStart;
+            }
+
+            public String getAreaIntervalEnd() {
+                return areaIntervalEnd;
+            }
+
+            public void setAreaIntervalEnd(String areaIntervalEnd) {
+                this.areaIntervalEnd = areaIntervalEnd;
+            }
+
+            public String getAreaInterval() {
+                return areaInterval;
+            }
+
+            public void setAreaInterval(String areaInterval) {
+                this.areaInterval = areaInterval;
+            }
+
+            public String getMonetaryUnit() {
+                return monetaryUnit;
+            }
+
+            public void setMonetaryUnit(String monetaryUnit) {
+                this.monetaryUnit = monetaryUnit;
+            }
+
+            public String getCommission() {
+                return commission;
+            }
+
+            public void setCommission(String commission) {
+                this.commission = commission;
+            }
+
+            public String getSecondPay() {
+                return secondPay;
+            }
+
+            public void setSecondPay(String secondPay) {
+                this.secondPay = secondPay;
+            }
+
+            public String getHot() {
+                return hot;
+            }
+
+            public void setHot(String hot) {
+                this.hot = hot;
+            }
+
+            public String getCity() {
+                return city;
+            }
+
+            public void setCity(String city) {
+                this.city = city;
+            }
+
+            public String getNation() {
+                return nation;
+            }
+
+            public void setNation(String nation) {
+                this.nation = nation;
+            }
+
+            public String getSearchContent() {
+                return searchContent;
+            }
+
+            public void setSearchContent(String searchContent) {
+                this.searchContent = searchContent;
+            }
+
+            public String getSearchName() {
+                return searchName;
+            }
+
+            public void setSearchName(String searchName) {
+                this.searchName = searchName;
+            }
+
+            public String getAttacheId() {
+                return attacheId;
+            }
+
+            public void setAttacheId(String attacheId) {
+                this.attacheId = attacheId;
+            }
+
+            public String getBusinessType() {
+                return businessType;
+            }
+
+            public void setBusinessType(String businessType) {
+                this.businessType = businessType;
+            }
+
+            public String getCollectionId() {
+                return collectionId;
+            }
+
+            public void setCollectionId(String collectionId) {
+                this.collectionId = collectionId;
+            }
+
+            public String getIsCollection() {
+                return isCollection;
+            }
+
+            public void setIsCollection(String isCollection) {
+                this.isCollection = isCollection;
+            }
+
+            public String getBrokerUserPhone() {
+                return brokerUserPhone;
+            }
+
+            public void setBrokerUserPhone(String brokerUserPhone) {
+                this.brokerUserPhone = brokerUserPhone;
+            }
+
+            public String getProjectLabel() {
+                return projectLabel;
+            }
+
+            public void setProjectLabel(String projectLabel) {
+                this.projectLabel = projectLabel;
+            }
+
+            public String getProjectLabelStr() {
+                return projectLabelStr;
+            }
+
+            public void setProjectLabelStr(String projectLabelStr) {
+                this.projectLabelStr = projectLabelStr;
+            }
+
+            public String getComprehensiveSorting() {
+                return comprehensiveSorting;
+            }
+
+            public void setComprehensiveSorting(String comprehensiveSorting) {
+                this.comprehensiveSorting = comprehensiveSorting;
+            }
+
+            public String getComprehensiveSortingStr() {
+                return comprehensiveSortingStr;
+            }
+
+            public void setComprehensiveSortingStr(String comprehensiveSortingStr) {
+                this.comprehensiveSortingStr = comprehensiveSortingStr;
+            }
+
+            public String getApartment() {
+                return apartment;
+            }
+
+            public void setApartment(String apartment) {
+                this.apartment = apartment;
+            }
+
+            public String getProjectPriceStart() {
+                return projectPriceStart;
+            }
+
+            public void setProjectPriceStart(String projectPriceStart) {
+                this.projectPriceStart = projectPriceStart;
+            }
+
+            public String getProjectPriceEnd() {
+                return projectPriceEnd;
+            }
+
+            public void setProjectPriceEnd(String projectPriceEnd) {
+                this.projectPriceEnd = projectPriceEnd;
+            }
+
+            public String getAreaSection() {
+                return areaSection;
+            }
+
+            public void setAreaSection(String areaSection) {
+                this.areaSection = areaSection;
+            }
+
+            public String getFfProjectTrait() {
+                return ffProjectTrait;
+            }
+
+            public void setFfProjectTrait(String ffProjectTrait) {
+                this.ffProjectTrait = ffProjectTrait;
+            }
+
+            public String getProcuctType() {
+                return procuctType;
+            }
+
+            public void setProcuctType(String procuctType) {
+                this.procuctType = procuctType;
+            }
+
+            public String getFitmentState() {
+                return fitmentState;
+            }
+
+            public void setFitmentState(String fitmentState) {
+                this.fitmentState = fitmentState;
+            }
+
+            public List<FfAttacheListBean> getFfAttacheList() {
+                return ffAttacheList;
+            }
+
+            public void setFfAttacheList(List<FfAttacheListBean> ffAttacheList) {
+                this.ffAttacheList = ffAttacheList;
+            }
+
+            public static class FfAttacheListBean {
+                /**
+                 * id : 54c150483d2f4981b7ad8d5eae54019c
+                 * remarks :
+                 * createBy :
+                 * createDate : 2019-08-05 11:29:08
+                 * updateBy :
+                 * updateDate :
+                 * project : {"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""}
+                 * attacheId : 1f34a32cc63d4849a4df56c7c3485e84
+                 * name : 李洋
+                 * phone : 15204414455
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private ProjectBean project;
+                private String attacheId;
+                private String name;
+                private String phone;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public ProjectBean getProject() {
+                    return project;
+                }
+
+                public void setProject(ProjectBean project) {
+                    this.project = project;
+                }
+
+                public String getAttacheId() {
+                    return attacheId;
+                }
+
+                public void setAttacheId(String attacheId) {
+                    this.attacheId = attacheId;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public static class ProjectBean {
+                    /**
+                     * id : dd1c32fcfb9141e6b030ec2c1dbb1cff
+                     * remarks :
+                     * createBy :
+                     * createDate :
+                     * updateBy :
+                     * updateDate :
+                     * projectName :
+                     * developer :
+                     * houseCompany :
+                     * cityCompany :
+                     * projectType :
+                     * attache :
+                     * cooperationState :
+                     * onlineState :
+                     * belongsArea :
+                     * address :
+                     * location :
+                     * totalBuildings :
+                     * hot :
+                     * sort :
+                     * remark :
+                     * province :
+                     * city :
+                     * region :
+                     * forwardingAmount :
+                     * reportAmount :
+                     * nation :
+                     * hotSort :
+                     * projectImg :
+                     * projectListImg :
+                     * buildingImg :
+                     * browseNum :
+                     * awardRules :
+                     * commissionRules :
+                     * searchName :
+                     * collectionNum :
+                     * productTypeId :
+                     * productTypeSize :
+                     * amountIncentiveId :
+                     * cityName :
+                     * haveInformation :
+                     * projectTypeName :
+                     * isgroup :
+                     * groupNum :
+                     */
+
+                    private String id;
+                    private String remarks;
+                    private String createBy;
+                    private String createDate;
+                    private String updateBy;
+                    private String updateDate;
+                    private String projectName;
+                    private String developer;
+                    private String houseCompany;
+                    private String cityCompany;
+                    private String projectType;
+                    private String attache;
+                    private String cooperationState;
+                    private String onlineState;
+                    private String belongsArea;
+                    private String address;
+                    private String location;
+                    private String totalBuildings;
+                    private String hot;
+                    private String sort;
+                    private String remark;
+                    private String province;
+                    private String city;
+                    private String region;
+                    private String forwardingAmount;
+                    private String reportAmount;
+                    private String nation;
+                    private String hotSort;
+                    private String projectImg;
+                    private String projectListImg;
+                    private String buildingImg;
+                    private String browseNum;
+                    private String awardRules;
+                    private String commissionRules;
+                    private String searchName;
+                    private String collectionNum;
+                    private String productTypeId;
+                    private String productTypeSize;
+                    private String amountIncentiveId;
+                    private String cityName;
+                    private String haveInformation;
+                    private String projectTypeName;
+                    private String isgroup;
+                    private String groupNum;
+
+                    public String getId() {
+                        return id;
+                    }
+
+                    public void setId(String id) {
+                        this.id = id;
+                    }
+
+                    public String getRemarks() {
+                        return remarks;
+                    }
+
+                    public void setRemarks(String remarks) {
+                        this.remarks = remarks;
+                    }
+
+                    public String getCreateBy() {
+                        return createBy;
+                    }
+
+                    public void setCreateBy(String createBy) {
+                        this.createBy = createBy;
+                    }
+
+                    public String getCreateDate() {
+                        return createDate;
+                    }
+
+                    public void setCreateDate(String createDate) {
+                        this.createDate = createDate;
+                    }
+
+                    public String getUpdateBy() {
+                        return updateBy;
+                    }
+
+                    public void setUpdateBy(String updateBy) {
+                        this.updateBy = updateBy;
+                    }
+
+                    public String getUpdateDate() {
+                        return updateDate;
+                    }
+
+                    public void setUpdateDate(String updateDate) {
+                        this.updateDate = updateDate;
+                    }
+
+                    public String getProjectName() {
+                        return projectName;
+                    }
+
+                    public void setProjectName(String projectName) {
+                        this.projectName = projectName;
+                    }
+
+                    public String getDeveloper() {
+                        return developer;
+                    }
+
+                    public void setDeveloper(String developer) {
+                        this.developer = developer;
+                    }
+
+                    public String getHouseCompany() {
+                        return houseCompany;
+                    }
+
+                    public void setHouseCompany(String houseCompany) {
+                        this.houseCompany = houseCompany;
+                    }
+
+                    public String getCityCompany() {
+                        return cityCompany;
+                    }
+
+                    public void setCityCompany(String cityCompany) {
+                        this.cityCompany = cityCompany;
+                    }
+
+                    public String getProjectType() {
+                        return projectType;
+                    }
+
+                    public void setProjectType(String projectType) {
+                        this.projectType = projectType;
+                    }
+
+                    public String getAttache() {
+                        return attache;
+                    }
+
+                    public void setAttache(String attache) {
+                        this.attache = attache;
+                    }
+
+                    public String getCooperationState() {
+                        return cooperationState;
+                    }
+
+                    public void setCooperationState(String cooperationState) {
+                        this.cooperationState = cooperationState;
+                    }
+
+                    public String getOnlineState() {
+                        return onlineState;
+                    }
+
+                    public void setOnlineState(String onlineState) {
+                        this.onlineState = onlineState;
+                    }
+
+                    public String getBelongsArea() {
+                        return belongsArea;
+                    }
+
+                    public void setBelongsArea(String belongsArea) {
+                        this.belongsArea = belongsArea;
+                    }
+
+                    public String getAddress() {
+                        return address;
+                    }
+
+                    public void setAddress(String address) {
+                        this.address = address;
+                    }
+
+                    public String getLocation() {
+                        return location;
+                    }
+
+                    public void setLocation(String location) {
+                        this.location = location;
+                    }
+
+                    public String getTotalBuildings() {
+                        return totalBuildings;
+                    }
+
+                    public void setTotalBuildings(String totalBuildings) {
+                        this.totalBuildings = totalBuildings;
+                    }
+
+                    public String getHot() {
+                        return hot;
+                    }
+
+                    public void setHot(String hot) {
+                        this.hot = hot;
+                    }
+
+                    public String getSort() {
+                        return sort;
+                    }
+
+                    public void setSort(String sort) {
+                        this.sort = sort;
+                    }
+
+                    public String getRemark() {
+                        return remark;
+                    }
+
+                    public void setRemark(String remark) {
+                        this.remark = remark;
+                    }
+
+                    public String getProvince() {
+                        return province;
+                    }
+
+                    public void setProvince(String province) {
+                        this.province = province;
+                    }
+
+                    public String getCity() {
+                        return city;
+                    }
+
+                    public void setCity(String city) {
+                        this.city = city;
+                    }
+
+                    public String getRegion() {
+                        return region;
+                    }
+
+                    public void setRegion(String region) {
+                        this.region = region;
+                    }
+
+                    public String getForwardingAmount() {
+                        return forwardingAmount;
+                    }
+
+                    public void setForwardingAmount(String forwardingAmount) {
+                        this.forwardingAmount = forwardingAmount;
+                    }
+
+                    public String getReportAmount() {
+                        return reportAmount;
+                    }
+
+                    public void setReportAmount(String reportAmount) {
+                        this.reportAmount = reportAmount;
+                    }
+
+                    public String getNation() {
+                        return nation;
+                    }
+
+                    public void setNation(String nation) {
+                        this.nation = nation;
+                    }
+
+                    public String getHotSort() {
+                        return hotSort;
+                    }
+
+                    public void setHotSort(String hotSort) {
+                        this.hotSort = hotSort;
+                    }
+
+                    public String getProjectImg() {
+                        return projectImg;
+                    }
+
+                    public void setProjectImg(String projectImg) {
+                        this.projectImg = projectImg;
+                    }
+
+                    public String getProjectListImg() {
+                        return projectListImg;
+                    }
+
+                    public void setProjectListImg(String projectListImg) {
+                        this.projectListImg = projectListImg;
+                    }
+
+                    public String getBuildingImg() {
+                        return buildingImg;
+                    }
+
+                    public void setBuildingImg(String buildingImg) {
+                        this.buildingImg = buildingImg;
+                    }
+
+                    public String getBrowseNum() {
+                        return browseNum;
+                    }
+
+                    public void setBrowseNum(String browseNum) {
+                        this.browseNum = browseNum;
+                    }
+
+                    public String getAwardRules() {
+                        return awardRules;
+                    }
+
+                    public void setAwardRules(String awardRules) {
+                        this.awardRules = awardRules;
+                    }
+
+                    public String getCommissionRules() {
+                        return commissionRules;
+                    }
+
+                    public void setCommissionRules(String commissionRules) {
+                        this.commissionRules = commissionRules;
+                    }
+
+                    public String getSearchName() {
+                        return searchName;
+                    }
+
+                    public void setSearchName(String searchName) {
+                        this.searchName = searchName;
+                    }
+
+                    public String getCollectionNum() {
+                        return collectionNum;
+                    }
+
+                    public void setCollectionNum(String collectionNum) {
+                        this.collectionNum = collectionNum;
+                    }
+
+                    public String getProductTypeId() {
+                        return productTypeId;
+                    }
+
+                    public void setProductTypeId(String productTypeId) {
+                        this.productTypeId = productTypeId;
+                    }
+
+                    public String getProductTypeSize() {
+                        return productTypeSize;
+                    }
+
+                    public void setProductTypeSize(String productTypeSize) {
+                        this.productTypeSize = productTypeSize;
+                    }
+
+                    public String getAmountIncentiveId() {
+                        return amountIncentiveId;
+                    }
+
+                    public void setAmountIncentiveId(String amountIncentiveId) {
+                        this.amountIncentiveId = amountIncentiveId;
+                    }
+
+                    public String getCityName() {
+                        return cityName;
+                    }
+
+                    public void setCityName(String cityName) {
+                        this.cityName = cityName;
+                    }
+
+                    public String getHaveInformation() {
+                        return haveInformation;
+                    }
+
+                    public void setHaveInformation(String haveInformation) {
+                        this.haveInformation = haveInformation;
+                    }
+
+                    public String getProjectTypeName() {
+                        return projectTypeName;
+                    }
+
+                    public void setProjectTypeName(String projectTypeName) {
+                        this.projectTypeName = projectTypeName;
+                    }
+
+                    public String getIsgroup() {
+                        return isgroup;
+                    }
+
+                    public void setIsgroup(String isgroup) {
+                        this.isgroup = isgroup;
+                    }
+
+                    public String getGroupNum() {
+                        return groupNum;
+                    }
+
+                    public void setGroupNum(String groupNum) {
+                        this.groupNum = groupNum;
+                    }
+                }
+            }
+        }
+
+        public static class MatingInformationBean {
+            /**
+             * id : ce27e31305924bb5b3195c29aeb3a577
+             * remarks :
+             * createBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false}
+             * createDate : 2019-06-16 10:27:17
+             * updateBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false}
+             * updateDate : 2019-08-05 09:24:25
+             * traffic : 龙口市是烟台市下辖县级市，东距烟台市约80km，西距离济南320km，北距北京425km，南距青岛186km
+             * education : 东海外国语学校，龙口一中，南山双语学校，南山学院
+             * medical : 齐鲁医院南山分院
+             * shopping : 33000㎡万国风情步行街、滨海商贸街
+             * entertainment : 幼儿园、快递柜、超市、商业街、地下停车场、露天停车位
+             * famousScene : 东海、南山度假区
+             * project : {"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""}
+             */
+
+            private String id;
+            private String remarks;
+            private CreateByBean createBy;
+            private String createDate;
+            private UpdateByBean updateBy;
+            private String updateDate;
+            private String traffic;
+            private String education;
+            private String medical;
+            private String shopping;
+            private String entertainment;
+            private String famousScene;
+            private ProjectBeanX project;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getRemarks() {
+                return remarks;
+            }
+
+            public void setRemarks(String remarks) {
+                this.remarks = remarks;
+            }
+
+            public CreateByBean getCreateBy() {
+                return createBy;
+            }
+
+            public void setCreateBy(CreateByBean createBy) {
+                this.createBy = createBy;
+            }
+
+            public String getCreateDate() {
+                return createDate;
+            }
+
+            public void setCreateDate(String createDate) {
+                this.createDate = createDate;
+            }
+
+            public UpdateByBean getUpdateBy() {
+                return updateBy;
+            }
+
+            public void setUpdateBy(UpdateByBean updateBy) {
+                this.updateBy = updateBy;
+            }
+
+            public String getUpdateDate() {
+                return updateDate;
+            }
+
+            public void setUpdateDate(String updateDate) {
+                this.updateDate = updateDate;
+            }
+
+            public String getTraffic() {
+                return traffic;
+            }
+
+            public void setTraffic(String traffic) {
+                this.traffic = traffic;
+            }
+
+            public String getEducation() {
+                return education;
+            }
+
+            public void setEducation(String education) {
+                this.education = education;
+            }
+
+            public String getMedical() {
+                return medical;
+            }
+
+            public void setMedical(String medical) {
+                this.medical = medical;
+            }
+
+            public String getShopping() {
+                return shopping;
+            }
+
+            public void setShopping(String shopping) {
+                this.shopping = shopping;
+            }
+
+            public String getEntertainment() {
+                return entertainment;
+            }
+
+            public void setEntertainment(String entertainment) {
+                this.entertainment = entertainment;
+            }
+
+            public String getFamousScene() {
+                return famousScene;
+            }
+
+            public void setFamousScene(String famousScene) {
+                this.famousScene = famousScene;
+            }
+
+            public ProjectBeanX getProject() {
+                return project;
+            }
+
+            public void setProject(ProjectBeanX project) {
+                this.project = project;
+            }
+
+            public static class CreateByBean {
+                /**
+                 * id :
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * company :
+                 * office :
+                 * post :
+                 * loginName :
+                 * no :
+                 * name : 房坐标长春公司总经理
+                 * email :
+                 * phone :
+                 * oldPhone :
+                 * mobile :
+                 * loginIp :
+                 * loginDate :
+                 * loginFlag : 1
+                 * photo : /fangfang/static/common/images/flat-avatar.png
+                 * qrCode :
+                 * oldLoginName :
+                 * newPassword :
+                 * sign :
+                 * oldLoginIp :
+                 * oldLoginDate :
+                 * wechatOpenid :
+                 * wechatData :
+                 * role :
+                 * sex :
+                 * province :
+                 * city :
+                 * county :
+                 * identity :
+                 * brokerId :
+                 * storeId :
+                 * companyManage :
+                 * storeManage :
+                 * classics : 0
+                 * team :
+                 * layerTeamVo :
+                 * roleNames :
+                 * admin : false
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String company;
+                private String office;
+                private String post;
+                private String loginName;
+                private String no;
+                private String name;
+                private String email;
+                private String phone;
+                private String oldPhone;
+                private String mobile;
+                private String loginIp;
+                private String loginDate;
+                private String loginFlag;
+                private String photo;
+                private String qrCode;
+                private String oldLoginName;
+                private String newPassword;
+                private String sign;
+                private String oldLoginIp;
+                private String oldLoginDate;
+                private String wechatOpenid;
+                private String wechatData;
+                private String role;
+                private String sex;
+                private String province;
+                private String city;
+                private String county;
+                private String identity;
+                private String brokerId;
+                private String storeId;
+                private String companyManage;
+                private String storeManage;
+                private int classics;
+                private String team;
+                private String layerTeamVo;
+                private String roleNames;
+                private boolean admin;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getCompany() {
+                    return company;
+                }
+
+                public void setCompany(String company) {
+                    this.company = company;
+                }
+
+                public String getOffice() {
+                    return office;
+                }
+
+                public void setOffice(String office) {
+                    this.office = office;
+                }
+
+                public String getPost() {
+                    return post;
+                }
+
+                public void setPost(String post) {
+                    this.post = post;
+                }
+
+                public String getLoginName() {
+                    return loginName;
+                }
+
+                public void setLoginName(String loginName) {
+                    this.loginName = loginName;
+                }
+
+                public String getNo() {
+                    return no;
+                }
+
+                public void setNo(String no) {
+                    this.no = no;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getEmail() {
+                    return email;
+                }
+
+                public void setEmail(String email) {
+                    this.email = email;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getOldPhone() {
+                    return oldPhone;
+                }
+
+                public void setOldPhone(String oldPhone) {
+                    this.oldPhone = oldPhone;
+                }
+
+                public String getMobile() {
+                    return mobile;
+                }
+
+                public void setMobile(String mobile) {
+                    this.mobile = mobile;
+                }
+
+                public String getLoginIp() {
+                    return loginIp;
+                }
+
+                public void setLoginIp(String loginIp) {
+                    this.loginIp = loginIp;
+                }
+
+                public String getLoginDate() {
+                    return loginDate;
+                }
+
+                public void setLoginDate(String loginDate) {
+                    this.loginDate = loginDate;
+                }
+
+                public String getLoginFlag() {
+                    return loginFlag;
+                }
+
+                public void setLoginFlag(String loginFlag) {
+                    this.loginFlag = loginFlag;
+                }
+
+                public String getPhoto() {
+                    return photo;
+                }
+
+                public void setPhoto(String photo) {
+                    this.photo = photo;
+                }
+
+                public String getQrCode() {
+                    return qrCode;
+                }
+
+                public void setQrCode(String qrCode) {
+                    this.qrCode = qrCode;
+                }
+
+                public String getOldLoginName() {
+                    return oldLoginName;
+                }
+
+                public void setOldLoginName(String oldLoginName) {
+                    this.oldLoginName = oldLoginName;
+                }
+
+                public String getNewPassword() {
+                    return newPassword;
+                }
+
+                public void setNewPassword(String newPassword) {
+                    this.newPassword = newPassword;
+                }
+
+                public String getSign() {
+                    return sign;
+                }
+
+                public void setSign(String sign) {
+                    this.sign = sign;
+                }
+
+                public String getOldLoginIp() {
+                    return oldLoginIp;
+                }
+
+                public void setOldLoginIp(String oldLoginIp) {
+                    this.oldLoginIp = oldLoginIp;
+                }
+
+                public String getOldLoginDate() {
+                    return oldLoginDate;
+                }
+
+                public void setOldLoginDate(String oldLoginDate) {
+                    this.oldLoginDate = oldLoginDate;
+                }
+
+                public String getWechatOpenid() {
+                    return wechatOpenid;
+                }
+
+                public void setWechatOpenid(String wechatOpenid) {
+                    this.wechatOpenid = wechatOpenid;
+                }
+
+                public String getWechatData() {
+                    return wechatData;
+                }
+
+                public void setWechatData(String wechatData) {
+                    this.wechatData = wechatData;
+                }
+
+                public String getRole() {
+                    return role;
+                }
+
+                public void setRole(String role) {
+                    this.role = role;
+                }
+
+                public String getSex() {
+                    return sex;
+                }
+
+                public void setSex(String sex) {
+                    this.sex = sex;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getCounty() {
+                    return county;
+                }
+
+                public void setCounty(String county) {
+                    this.county = county;
+                }
+
+                public String getIdentity() {
+                    return identity;
+                }
+
+                public void setIdentity(String identity) {
+                    this.identity = identity;
+                }
+
+                public String getBrokerId() {
+                    return brokerId;
+                }
+
+                public void setBrokerId(String brokerId) {
+                    this.brokerId = brokerId;
+                }
+
+                public String getStoreId() {
+                    return storeId;
+                }
+
+                public void setStoreId(String storeId) {
+                    this.storeId = storeId;
+                }
+
+                public String getCompanyManage() {
+                    return companyManage;
+                }
+
+                public void setCompanyManage(String companyManage) {
+                    this.companyManage = companyManage;
+                }
+
+                public String getStoreManage() {
+                    return storeManage;
+                }
+
+                public void setStoreManage(String storeManage) {
+                    this.storeManage = storeManage;
+                }
+
+                public int getClassics() {
+                    return classics;
+                }
+
+                public void setClassics(int classics) {
+                    this.classics = classics;
+                }
+
+                public String getTeam() {
+                    return team;
+                }
+
+                public void setTeam(String team) {
+                    this.team = team;
+                }
+
+                public String getLayerTeamVo() {
+                    return layerTeamVo;
+                }
+
+                public void setLayerTeamVo(String layerTeamVo) {
+                    this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getRoleNames() {
+                    return roleNames;
+                }
+
+                public void setRoleNames(String roleNames) {
+                    this.roleNames = roleNames;
+                }
+
+                public boolean isAdmin() {
+                    return admin;
+                }
+
+                public void setAdmin(boolean admin) {
+                    this.admin = admin;
+                }
+            }
+
+            public static class UpdateByBean {
+                /**
+                 * id :
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * company :
+                 * office :
+                 * post :
+                 * loginName :
+                 * no :
+                 * name : 房坐标长春公司总经理
+                 * email :
+                 * phone :
+                 * oldPhone :
+                 * mobile :
+                 * loginIp :
+                 * loginDate :
+                 * loginFlag : 1
+                 * photo : /fangfang/static/common/images/flat-avatar.png
+                 * qrCode :
+                 * oldLoginName :
+                 * newPassword :
+                 * sign :
+                 * oldLoginIp :
+                 * oldLoginDate :
+                 * wechatOpenid :
+                 * wechatData :
+                 * role :
+                 * sex :
+                 * province :
+                 * city :
+                 * county :
+                 * identity :
+                 * brokerId :
+                 * storeId :
+                 * companyManage :
+                 * storeManage :
+                 * classics : 0
+                 * team :
+                 * layerTeamVo :
+                 * roleNames :
+                 * admin : false
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String company;
+                private String office;
+                private String post;
+                private String loginName;
+                private String no;
+                private String name;
+                private String email;
+                private String phone;
+                private String oldPhone;
+                private String mobile;
+                private String loginIp;
+                private String loginDate;
+                private String loginFlag;
+                private String photo;
+                private String qrCode;
+                private String oldLoginName;
+                private String newPassword;
+                private String sign;
+                private String oldLoginIp;
+                private String oldLoginDate;
+                private String wechatOpenid;
+                private String wechatData;
+                private String role;
+                private String sex;
+                private String province;
+                private String city;
+                private String county;
+                private String identity;
+                private String brokerId;
+                private String storeId;
+                private String companyManage;
+                private String storeManage;
+                private int classics;
+                private String team;
+                private String layerTeamVo;
+                private String roleNames;
+                private boolean admin;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getCompany() {
+                    return company;
+                }
+
+                public void setCompany(String company) {
+                    this.company = company;
+                }
+
+                public String getOffice() {
+                    return office;
+                }
+
+                public void setOffice(String office) {
+                    this.office = office;
+                }
+
+                public String getPost() {
+                    return post;
+                }
+
+                public void setPost(String post) {
+                    this.post = post;
+                }
+
+                public String getLoginName() {
+                    return loginName;
+                }
+
+                public void setLoginName(String loginName) {
+                    this.loginName = loginName;
+                }
+
+                public String getNo() {
+                    return no;
+                }
+
+                public void setNo(String no) {
+                    this.no = no;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getEmail() {
+                    return email;
+                }
+
+                public void setEmail(String email) {
+                    this.email = email;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getOldPhone() {
+                    return oldPhone;
+                }
+
+                public void setOldPhone(String oldPhone) {
+                    this.oldPhone = oldPhone;
+                }
+
+                public String getMobile() {
+                    return mobile;
+                }
+
+                public void setMobile(String mobile) {
+                    this.mobile = mobile;
+                }
+
+                public String getLoginIp() {
+                    return loginIp;
+                }
+
+                public void setLoginIp(String loginIp) {
+                    this.loginIp = loginIp;
+                }
+
+                public String getLoginDate() {
+                    return loginDate;
+                }
+
+                public void setLoginDate(String loginDate) {
+                    this.loginDate = loginDate;
+                }
+
+                public String getLoginFlag() {
+                    return loginFlag;
+                }
+
+                public void setLoginFlag(String loginFlag) {
+                    this.loginFlag = loginFlag;
+                }
+
+                public String getPhoto() {
+                    return photo;
+                }
+
+                public void setPhoto(String photo) {
+                    this.photo = photo;
+                }
+
+                public String getQrCode() {
+                    return qrCode;
+                }
+
+                public void setQrCode(String qrCode) {
+                    this.qrCode = qrCode;
+                }
+
+                public String getOldLoginName() {
+                    return oldLoginName;
+                }
+
+                public void setOldLoginName(String oldLoginName) {
+                    this.oldLoginName = oldLoginName;
+                }
+
+                public String getNewPassword() {
+                    return newPassword;
+                }
+
+                public void setNewPassword(String newPassword) {
+                    this.newPassword = newPassword;
+                }
+
+                public String getSign() {
+                    return sign;
+                }
+
+                public void setSign(String sign) {
+                    this.sign = sign;
+                }
+
+                public String getOldLoginIp() {
+                    return oldLoginIp;
+                }
+
+                public void setOldLoginIp(String oldLoginIp) {
+                    this.oldLoginIp = oldLoginIp;
+                }
+
+                public String getOldLoginDate() {
+                    return oldLoginDate;
+                }
+
+                public void setOldLoginDate(String oldLoginDate) {
+                    this.oldLoginDate = oldLoginDate;
+                }
+
+                public String getWechatOpenid() {
+                    return wechatOpenid;
+                }
+
+                public void setWechatOpenid(String wechatOpenid) {
+                    this.wechatOpenid = wechatOpenid;
+                }
+
+                public String getWechatData() {
+                    return wechatData;
+                }
+
+                public void setWechatData(String wechatData) {
+                    this.wechatData = wechatData;
+                }
+
+                public String getRole() {
+                    return role;
+                }
+
+                public void setRole(String role) {
+                    this.role = role;
+                }
+
+                public String getSex() {
+                    return sex;
+                }
+
+                public void setSex(String sex) {
+                    this.sex = sex;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getCounty() {
+                    return county;
+                }
+
+                public void setCounty(String county) {
+                    this.county = county;
+                }
+
+                public String getIdentity() {
+                    return identity;
+                }
+
+                public void setIdentity(String identity) {
+                    this.identity = identity;
+                }
+
+                public String getBrokerId() {
+                    return brokerId;
+                }
+
+                public void setBrokerId(String brokerId) {
+                    this.brokerId = brokerId;
+                }
+
+                public String getStoreId() {
+                    return storeId;
+                }
+
+                public void setStoreId(String storeId) {
+                    this.storeId = storeId;
+                }
+
+                public String getCompanyManage() {
+                    return companyManage;
+                }
+
+                public void setCompanyManage(String companyManage) {
+                    this.companyManage = companyManage;
+                }
+
+                public String getStoreManage() {
+                    return storeManage;
+                }
+
+                public void setStoreManage(String storeManage) {
+                    this.storeManage = storeManage;
+                }
+
+                public int getClassics() {
+                    return classics;
+                }
+
+                public void setClassics(int classics) {
+                    this.classics = classics;
+                }
+
+                public String getTeam() {
+                    return team;
+                }
+
+                public void setTeam(String team) {
+                    this.team = team;
+                }
+
+                public String getLayerTeamVo() {
+                    return layerTeamVo;
+                }
+
+                public void setLayerTeamVo(String layerTeamVo) {
+                    this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getRoleNames() {
+                    return roleNames;
+                }
+
+                public void setRoleNames(String roleNames) {
+                    this.roleNames = roleNames;
+                }
+
+                public boolean isAdmin() {
+                    return admin;
+                }
+
+                public void setAdmin(boolean admin) {
+                    this.admin = admin;
+                }
+            }
+
+            public static class ProjectBeanX {
+                /**
+                 * id : dd1c32fcfb9141e6b030ec2c1dbb1cff
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * projectName : 融创东海湾
+                 * developer :
+                 * houseCompany :
+                 * cityCompany :
+                 * projectType :
+                 * attache :
+                 * cooperationState :
+                 * onlineState :
+                 * belongsArea :
+                 * address :
+                 * location :
+                 * totalBuildings :
+                 * hot :
+                 * sort :
+                 * remark :
+                 * province :
+                 * city :
+                 * region :
+                 * forwardingAmount :
+                 * reportAmount :
+                 * nation :
+                 * hotSort :
+                 * projectImg :
+                 * projectListImg :
+                 * buildingImg :
+                 * browseNum :
+                 * awardRules :
+                 * commissionRules :
+                 * searchName :
+                 * collectionNum :
+                 * productTypeId :
+                 * productTypeSize :
+                 * amountIncentiveId :
+                 * cityName :
+                 * haveInformation :
+                 * projectTypeName :
+                 * isgroup :
+                 * groupNum :
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String projectName;
+                private String developer;
+                private String houseCompany;
+                private String cityCompany;
+                private String projectType;
+                private String attache;
+                private String cooperationState;
+                private String onlineState;
+                private String belongsArea;
+                private String address;
+                private String location;
+                private String totalBuildings;
+                private String hot;
+                private String sort;
+                private String remark;
+                private String province;
+                private String city;
+                private String region;
+                private String forwardingAmount;
+                private String reportAmount;
+                private String nation;
+                private String hotSort;
+                private String projectImg;
+                private String projectListImg;
+                private String buildingImg;
+                private String browseNum;
+                private String awardRules;
+                private String commissionRules;
+                private String searchName;
+                private String collectionNum;
+                private String productTypeId;
+                private String productTypeSize;
+                private String amountIncentiveId;
+                private String cityName;
+                private String haveInformation;
+                private String projectTypeName;
+                private String isgroup;
+                private String groupNum;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getProjectName() {
+                    return projectName;
+                }
+
+                public void setProjectName(String projectName) {
+                    this.projectName = projectName;
+                }
+
+                public String getDeveloper() {
+                    return developer;
+                }
+
+                public void setDeveloper(String developer) {
+                    this.developer = developer;
+                }
+
+                public String getHouseCompany() {
+                    return houseCompany;
+                }
+
+                public void setHouseCompany(String houseCompany) {
+                    this.houseCompany = houseCompany;
+                }
+
+                public String getCityCompany() {
+                    return cityCompany;
+                }
+
+                public void setCityCompany(String cityCompany) {
+                    this.cityCompany = cityCompany;
+                }
+
+                public String getProjectType() {
+                    return projectType;
+                }
+
+                public void setProjectType(String projectType) {
+                    this.projectType = projectType;
+                }
+
+                public String getAttache() {
+                    return attache;
+                }
+
+                public void setAttache(String attache) {
+                    this.attache = attache;
+                }
+
+                public String getCooperationState() {
+                    return cooperationState;
+                }
+
+                public void setCooperationState(String cooperationState) {
+                    this.cooperationState = cooperationState;
+                }
+
+                public String getOnlineState() {
+                    return onlineState;
+                }
+
+                public void setOnlineState(String onlineState) {
+                    this.onlineState = onlineState;
+                }
+
+                public String getBelongsArea() {
+                    return belongsArea;
+                }
+
+                public void setBelongsArea(String belongsArea) {
+                    this.belongsArea = belongsArea;
+                }
+
+                public String getAddress() {
+                    return address;
+                }
+
+                public void setAddress(String address) {
+                    this.address = address;
+                }
+
+                public String getLocation() {
+                    return location;
+                }
+
+                public void setLocation(String location) {
+                    this.location = location;
+                }
+
+                public String getTotalBuildings() {
+                    return totalBuildings;
+                }
+
+                public void setTotalBuildings(String totalBuildings) {
+                    this.totalBuildings = totalBuildings;
+                }
+
+                public String getHot() {
+                    return hot;
+                }
+
+                public void setHot(String hot) {
+                    this.hot = hot;
+                }
+
+                public String getSort() {
+                    return sort;
+                }
+
+                public void setSort(String sort) {
+                    this.sort = sort;
+                }
+
+                public String getRemark() {
+                    return remark;
+                }
+
+                public void setRemark(String remark) {
+                    this.remark = remark;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getRegion() {
+                    return region;
+                }
+
+                public void setRegion(String region) {
+                    this.region = region;
+                }
+
+                public String getForwardingAmount() {
+                    return forwardingAmount;
+                }
+
+                public void setForwardingAmount(String forwardingAmount) {
+                    this.forwardingAmount = forwardingAmount;
+                }
+
+                public String getReportAmount() {
+                    return reportAmount;
+                }
+
+                public void setReportAmount(String reportAmount) {
+                    this.reportAmount = reportAmount;
+                }
+
+                public String getNation() {
+                    return nation;
+                }
+
+                public void setNation(String nation) {
+                    this.nation = nation;
+                }
+
+                public String getHotSort() {
+                    return hotSort;
+                }
+
+                public void setHotSort(String hotSort) {
+                    this.hotSort = hotSort;
+                }
+
+                public String getProjectImg() {
+                    return projectImg;
+                }
+
+                public void setProjectImg(String projectImg) {
+                    this.projectImg = projectImg;
+                }
+
+                public String getProjectListImg() {
+                    return projectListImg;
+                }
+
+                public void setProjectListImg(String projectListImg) {
+                    this.projectListImg = projectListImg;
+                }
+
+                public String getBuildingImg() {
+                    return buildingImg;
+                }
+
+                public void setBuildingImg(String buildingImg) {
+                    this.buildingImg = buildingImg;
+                }
+
+                public String getBrowseNum() {
+                    return browseNum;
+                }
+
+                public void setBrowseNum(String browseNum) {
+                    this.browseNum = browseNum;
+                }
+
+                public String getAwardRules() {
+                    return awardRules;
+                }
+
+                public void setAwardRules(String awardRules) {
+                    this.awardRules = awardRules;
+                }
+
+                public String getCommissionRules() {
+                    return commissionRules;
+                }
+
+                public void setCommissionRules(String commissionRules) {
+                    this.commissionRules = commissionRules;
+                }
+
+                public String getSearchName() {
+                    return searchName;
+                }
+
+                public void setSearchName(String searchName) {
+                    this.searchName = searchName;
+                }
+
+                public String getCollectionNum() {
+                    return collectionNum;
+                }
+
+                public void setCollectionNum(String collectionNum) {
+                    this.collectionNum = collectionNum;
+                }
+
+                public String getProductTypeId() {
+                    return productTypeId;
+                }
+
+                public void setProductTypeId(String productTypeId) {
+                    this.productTypeId = productTypeId;
+                }
+
+                public String getProductTypeSize() {
+                    return productTypeSize;
+                }
+
+                public void setProductTypeSize(String productTypeSize) {
+                    this.productTypeSize = productTypeSize;
+                }
+
+                public String getAmountIncentiveId() {
+                    return amountIncentiveId;
+                }
+
+                public void setAmountIncentiveId(String amountIncentiveId) {
+                    this.amountIncentiveId = amountIncentiveId;
+                }
+
+                public String getCityName() {
+                    return cityName;
+                }
+
+                public void setCityName(String cityName) {
+                    this.cityName = cityName;
+                }
+
+                public String getHaveInformation() {
+                    return haveInformation;
+                }
+
+                public void setHaveInformation(String haveInformation) {
+                    this.haveInformation = haveInformation;
+                }
+
+                public String getProjectTypeName() {
+                    return projectTypeName;
+                }
+
+                public void setProjectTypeName(String projectTypeName) {
+                    this.projectTypeName = projectTypeName;
+                }
+
+                public String getIsgroup() {
+                    return isgroup;
+                }
+
+                public void setIsgroup(String isgroup) {
+                    this.isgroup = isgroup;
+                }
+
+                public String getGroupNum() {
+                    return groupNum;
+                }
+
+                public void setGroupNum(String groupNum) {
+                    this.groupNum = groupNum;
+                }
+            }
+        }
+
+        public static class AmountIncentiveListBean {
+            /**
+             * id : 3694deec8b7945559f7513c25b715cc9
+             * remarks :
+             * createBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false}
+             * createDate : 2019-06-16 10:45:02
+             * updateBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"房坐标长春公司总经理","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false}
+             * updateDate : 2019-08-05 10:31:55
+             * datePicker :
+             * startDate : 2019-06-01
+             * endDate : 2019-12-31
+             * mainTitle : 住宅佣金
+             * type : 1
+             * percent : 8
+             * amount :
+             * contractPercent : 10
+             * contractAmount :
+             * isSeconds : 0
+             * secondsAmount :
+             * executeState :
+             * project : {"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""}
+             * onlineState : 1
+             * isProjectShow : 1
+             * currentDate :
+             * commissionFormat : 总房款的8%
+             * secondsFormat : 无秒结
+             * teams :
+             * teamNames :
+             */
+
+            private String id;
+            private String remarks;
+            private CreateByBeanX createBy;
+            private String createDate;
+            private UpdateByBeanX updateBy;
+            private String updateDate;
+            private String datePicker;
+            private String startDate;
+            private String endDate;
+            private String mainTitle;
+            private String type;
+            private String percent;
+            private String amount;
+            private String contractPercent;
+            private String contractAmount;
+            private String isSeconds;
+            private String secondsAmount;
+            private String executeState;
+            private ProjectBeanXX project;
+            private String onlineState;
+            private int isProjectShow;
+            private String currentDate;
+            private String commissionFormat;
+            private String secondsFormat;
+            private String teams;
+            private String teamNames;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getRemarks() {
+                return remarks;
+            }
+
+            public void setRemarks(String remarks) {
+                this.remarks = remarks;
+            }
+
+            public CreateByBeanX getCreateBy() {
+                return createBy;
+            }
+
+            public void setCreateBy(CreateByBeanX createBy) {
+                this.createBy = createBy;
+            }
+
+            public String getCreateDate() {
+                return createDate;
+            }
+
+            public void setCreateDate(String createDate) {
+                this.createDate = createDate;
+            }
+
+            public UpdateByBeanX getUpdateBy() {
+                return updateBy;
+            }
+
+            public void setUpdateBy(UpdateByBeanX updateBy) {
+                this.updateBy = updateBy;
+            }
+
+            public String getUpdateDate() {
+                return updateDate;
+            }
+
+            public void setUpdateDate(String updateDate) {
+                this.updateDate = updateDate;
+            }
+
+            public String getDatePicker() {
+                return datePicker;
+            }
+
+            public void setDatePicker(String datePicker) {
+                this.datePicker = datePicker;
+            }
+
+            public String getStartDate() {
+                return startDate;
+            }
+
+            public void setStartDate(String startDate) {
+                this.startDate = startDate;
+            }
+
+            public String getEndDate() {
+                return endDate;
+            }
+
+            public void setEndDate(String endDate) {
+                this.endDate = endDate;
+            }
+
+            public String getMainTitle() {
+                return mainTitle;
+            }
+
+            public void setMainTitle(String mainTitle) {
+                this.mainTitle = mainTitle;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getPercent() {
+                return percent;
+            }
+
+            public void setPercent(String percent) {
+                this.percent = percent;
+            }
+
+            public String getAmount() {
+                return amount;
+            }
+
+            public void setAmount(String amount) {
+                this.amount = amount;
+            }
+
+            public String getContractPercent() {
+                return contractPercent;
+            }
+
+            public void setContractPercent(String contractPercent) {
+                this.contractPercent = contractPercent;
+            }
+
+            public String getContractAmount() {
+                return contractAmount;
+            }
+
+            public void setContractAmount(String contractAmount) {
+                this.contractAmount = contractAmount;
+            }
+
+            public String getIsSeconds() {
+                return isSeconds;
+            }
+
+            public void setIsSeconds(String isSeconds) {
+                this.isSeconds = isSeconds;
+            }
+
+            public String getSecondsAmount() {
+                return secondsAmount;
+            }
+
+            public void setSecondsAmount(String secondsAmount) {
+                this.secondsAmount = secondsAmount;
+            }
+
+            public String getExecuteState() {
+                return executeState;
+            }
+
+            public void setExecuteState(String executeState) {
+                this.executeState = executeState;
+            }
+
+            public ProjectBeanXX getProject() {
+                return project;
+            }
+
+            public void setProject(ProjectBeanXX project) {
+                this.project = project;
+            }
+
+            public String getOnlineState() {
+                return onlineState;
+            }
+
+            public void setOnlineState(String onlineState) {
+                this.onlineState = onlineState;
+            }
+
+            public int getIsProjectShow() {
+                return isProjectShow;
+            }
+
+            public void setIsProjectShow(int isProjectShow) {
+                this.isProjectShow = isProjectShow;
+            }
+
+            public String getCurrentDate() {
+                return currentDate;
+            }
+
+            public void setCurrentDate(String currentDate) {
+                this.currentDate = currentDate;
+            }
+
+            public String getCommissionFormat() {
+                return commissionFormat;
+            }
+
+            public void setCommissionFormat(String commissionFormat) {
+                this.commissionFormat = commissionFormat;
+            }
+
+            public String getSecondsFormat() {
+                return secondsFormat;
+            }
+
+            public void setSecondsFormat(String secondsFormat) {
+                this.secondsFormat = secondsFormat;
+            }
+
+            public String getTeams() {
+                return teams;
+            }
+
+            public void setTeams(String teams) {
+                this.teams = teams;
+            }
+
+            public String getTeamNames() {
+                return teamNames;
+            }
+
+            public void setTeamNames(String teamNames) {
+                this.teamNames = teamNames;
+            }
+
+            public static class CreateByBeanX {
+                /**
+                 * id :
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * company :
+                 * office :
+                 * post :
+                 * loginName :
+                 * no :
+                 * name : 房坐标长春公司总经理
+                 * email :
+                 * phone :
+                 * oldPhone :
+                 * mobile :
+                 * loginIp :
+                 * loginDate :
+                 * loginFlag : 1
+                 * photo : /fangfang/static/common/images/flat-avatar.png
+                 * qrCode :
+                 * oldLoginName :
+                 * newPassword :
+                 * sign :
+                 * oldLoginIp :
+                 * oldLoginDate :
+                 * wechatOpenid :
+                 * wechatData :
+                 * role :
+                 * sex :
+                 * province :
+                 * city :
+                 * county :
+                 * identity :
+                 * brokerId :
+                 * storeId :
+                 * companyManage :
+                 * storeManage :
+                 * classics : 0
+                 * team :
+                 * layerTeamVo :
+                 * roleNames :
+                 * admin : false
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String company;
+                private String office;
+                private String post;
+                private String loginName;
+                private String no;
+                private String name;
+                private String email;
+                private String phone;
+                private String oldPhone;
+                private String mobile;
+                private String loginIp;
+                private String loginDate;
+                private String loginFlag;
+                private String photo;
+                private String qrCode;
+                private String oldLoginName;
+                private String newPassword;
+                private String sign;
+                private String oldLoginIp;
+                private String oldLoginDate;
+                private String wechatOpenid;
+                private String wechatData;
+                private String role;
+                private String sex;
+                private String province;
+                private String city;
+                private String county;
+                private String identity;
+                private String brokerId;
+                private String storeId;
+                private String companyManage;
+                private String storeManage;
+                private int classics;
+                private String team;
+                private String layerTeamVo;
+                private String roleNames;
+                private boolean admin;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getCompany() {
+                    return company;
+                }
+
+                public void setCompany(String company) {
+                    this.company = company;
+                }
+
+                public String getOffice() {
+                    return office;
+                }
+
+                public void setOffice(String office) {
+                    this.office = office;
+                }
+
+                public String getPost() {
+                    return post;
+                }
+
+                public void setPost(String post) {
+                    this.post = post;
+                }
+
+                public String getLoginName() {
+                    return loginName;
+                }
+
+                public void setLoginName(String loginName) {
+                    this.loginName = loginName;
+                }
+
+                public String getNo() {
+                    return no;
+                }
+
+                public void setNo(String no) {
+                    this.no = no;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getEmail() {
+                    return email;
+                }
+
+                public void setEmail(String email) {
+                    this.email = email;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getOldPhone() {
+                    return oldPhone;
+                }
+
+                public void setOldPhone(String oldPhone) {
+                    this.oldPhone = oldPhone;
+                }
+
+                public String getMobile() {
+                    return mobile;
+                }
+
+                public void setMobile(String mobile) {
+                    this.mobile = mobile;
+                }
+
+                public String getLoginIp() {
+                    return loginIp;
+                }
+
+                public void setLoginIp(String loginIp) {
+                    this.loginIp = loginIp;
+                }
+
+                public String getLoginDate() {
+                    return loginDate;
+                }
+
+                public void setLoginDate(String loginDate) {
+                    this.loginDate = loginDate;
+                }
+
+                public String getLoginFlag() {
+                    return loginFlag;
+                }
+
+                public void setLoginFlag(String loginFlag) {
+                    this.loginFlag = loginFlag;
+                }
+
+                public String getPhoto() {
+                    return photo;
+                }
+
+                public void setPhoto(String photo) {
+                    this.photo = photo;
+                }
+
+                public String getQrCode() {
+                    return qrCode;
+                }
+
+                public void setQrCode(String qrCode) {
+                    this.qrCode = qrCode;
+                }
+
+                public String getOldLoginName() {
+                    return oldLoginName;
+                }
+
+                public void setOldLoginName(String oldLoginName) {
+                    this.oldLoginName = oldLoginName;
+                }
+
+                public String getNewPassword() {
+                    return newPassword;
+                }
+
+                public void setNewPassword(String newPassword) {
+                    this.newPassword = newPassword;
+                }
+
+                public String getSign() {
+                    return sign;
+                }
+
+                public void setSign(String sign) {
+                    this.sign = sign;
+                }
+
+                public String getOldLoginIp() {
+                    return oldLoginIp;
+                }
+
+                public void setOldLoginIp(String oldLoginIp) {
+                    this.oldLoginIp = oldLoginIp;
+                }
+
+                public String getOldLoginDate() {
+                    return oldLoginDate;
+                }
+
+                public void setOldLoginDate(String oldLoginDate) {
+                    this.oldLoginDate = oldLoginDate;
+                }
+
+                public String getWechatOpenid() {
+                    return wechatOpenid;
+                }
+
+                public void setWechatOpenid(String wechatOpenid) {
+                    this.wechatOpenid = wechatOpenid;
+                }
+
+                public String getWechatData() {
+                    return wechatData;
+                }
+
+                public void setWechatData(String wechatData) {
+                    this.wechatData = wechatData;
+                }
+
+                public String getRole() {
+                    return role;
+                }
+
+                public void setRole(String role) {
+                    this.role = role;
+                }
+
+                public String getSex() {
+                    return sex;
+                }
+
+                public void setSex(String sex) {
+                    this.sex = sex;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getCounty() {
+                    return county;
+                }
+
+                public void setCounty(String county) {
+                    this.county = county;
+                }
+
+                public String getIdentity() {
+                    return identity;
+                }
+
+                public void setIdentity(String identity) {
+                    this.identity = identity;
+                }
+
+                public String getBrokerId() {
+                    return brokerId;
+                }
+
+                public void setBrokerId(String brokerId) {
+                    this.brokerId = brokerId;
+                }
+
+                public String getStoreId() {
+                    return storeId;
+                }
+
+                public void setStoreId(String storeId) {
+                    this.storeId = storeId;
+                }
+
+                public String getCompanyManage() {
+                    return companyManage;
+                }
+
+                public void setCompanyManage(String companyManage) {
+                    this.companyManage = companyManage;
+                }
+
+                public String getStoreManage() {
+                    return storeManage;
+                }
+
+                public void setStoreManage(String storeManage) {
+                    this.storeManage = storeManage;
+                }
+
+                public int getClassics() {
+                    return classics;
+                }
+
+                public void setClassics(int classics) {
+                    this.classics = classics;
+                }
+
+                public String getTeam() {
+                    return team;
+                }
+
+                public void setTeam(String team) {
+                    this.team = team;
+                }
+
+                public String getLayerTeamVo() {
+                    return layerTeamVo;
+                }
+
+                public void setLayerTeamVo(String layerTeamVo) {
+                    this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getRoleNames() {
+                    return roleNames;
+                }
+
+                public void setRoleNames(String roleNames) {
+                    this.roleNames = roleNames;
+                }
+
+                public boolean isAdmin() {
+                    return admin;
+                }
+
+                public void setAdmin(boolean admin) {
+                    this.admin = admin;
+                }
+            }
+
+            public static class UpdateByBeanX {
+                /**
+                 * id :
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * company :
+                 * office :
+                 * post :
+                 * loginName :
+                 * no :
+                 * name : 房坐标长春公司总经理
+                 * email :
+                 * phone :
+                 * oldPhone :
+                 * mobile :
+                 * loginIp :
+                 * loginDate :
+                 * loginFlag : 1
+                 * photo : /fangfang/static/common/images/flat-avatar.png
+                 * qrCode :
+                 * oldLoginName :
+                 * newPassword :
+                 * sign :
+                 * oldLoginIp :
+                 * oldLoginDate :
+                 * wechatOpenid :
+                 * wechatData :
+                 * role :
+                 * sex :
+                 * province :
+                 * city :
+                 * county :
+                 * identity :
+                 * brokerId :
+                 * storeId :
+                 * companyManage :
+                 * storeManage :
+                 * classics : 0
+                 * team :
+                 * layerTeamVo :
+                 * roleNames :
+                 * admin : false
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String company;
+                private String office;
+                private String post;
+                private String loginName;
+                private String no;
+                private String name;
+                private String email;
+                private String phone;
+                private String oldPhone;
+                private String mobile;
+                private String loginIp;
+                private String loginDate;
+                private String loginFlag;
+                private String photo;
+                private String qrCode;
+                private String oldLoginName;
+                private String newPassword;
+                private String sign;
+                private String oldLoginIp;
+                private String oldLoginDate;
+                private String wechatOpenid;
+                private String wechatData;
+                private String role;
+                private String sex;
+                private String province;
+                private String city;
+                private String county;
+                private String identity;
+                private String brokerId;
+                private String storeId;
+                private String companyManage;
+                private String storeManage;
+                private int classics;
+                private String team;
+                private String layerTeamVo;
+                private String roleNames;
+                private boolean admin;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getCompany() {
+                    return company;
+                }
+
+                public void setCompany(String company) {
+                    this.company = company;
+                }
+
+                public String getOffice() {
+                    return office;
+                }
+
+                public void setOffice(String office) {
+                    this.office = office;
+                }
+
+                public String getPost() {
+                    return post;
+                }
+
+                public void setPost(String post) {
+                    this.post = post;
+                }
+
+                public String getLoginName() {
+                    return loginName;
+                }
+
+                public void setLoginName(String loginName) {
+                    this.loginName = loginName;
+                }
+
+                public String getNo() {
+                    return no;
+                }
+
+                public void setNo(String no) {
+                    this.no = no;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getEmail() {
+                    return email;
+                }
+
+                public void setEmail(String email) {
+                    this.email = email;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getOldPhone() {
+                    return oldPhone;
+                }
+
+                public void setOldPhone(String oldPhone) {
+                    this.oldPhone = oldPhone;
+                }
+
+                public String getMobile() {
+                    return mobile;
+                }
+
+                public void setMobile(String mobile) {
+                    this.mobile = mobile;
+                }
+
+                public String getLoginIp() {
+                    return loginIp;
+                }
+
+                public void setLoginIp(String loginIp) {
+                    this.loginIp = loginIp;
+                }
+
+                public String getLoginDate() {
+                    return loginDate;
+                }
+
+                public void setLoginDate(String loginDate) {
+                    this.loginDate = loginDate;
+                }
+
+                public String getLoginFlag() {
+                    return loginFlag;
+                }
+
+                public void setLoginFlag(String loginFlag) {
+                    this.loginFlag = loginFlag;
+                }
+
+                public String getPhoto() {
+                    return photo;
+                }
+
+                public void setPhoto(String photo) {
+                    this.photo = photo;
+                }
+
+                public String getQrCode() {
+                    return qrCode;
+                }
+
+                public void setQrCode(String qrCode) {
+                    this.qrCode = qrCode;
+                }
+
+                public String getOldLoginName() {
+                    return oldLoginName;
+                }
+
+                public void setOldLoginName(String oldLoginName) {
+                    this.oldLoginName = oldLoginName;
+                }
+
+                public String getNewPassword() {
+                    return newPassword;
+                }
+
+                public void setNewPassword(String newPassword) {
+                    this.newPassword = newPassword;
+                }
+
+                public String getSign() {
+                    return sign;
+                }
+
+                public void setSign(String sign) {
+                    this.sign = sign;
+                }
+
+                public String getOldLoginIp() {
+                    return oldLoginIp;
+                }
+
+                public void setOldLoginIp(String oldLoginIp) {
+                    this.oldLoginIp = oldLoginIp;
+                }
+
+                public String getOldLoginDate() {
+                    return oldLoginDate;
+                }
+
+                public void setOldLoginDate(String oldLoginDate) {
+                    this.oldLoginDate = oldLoginDate;
+                }
+
+                public String getWechatOpenid() {
+                    return wechatOpenid;
+                }
+
+                public void setWechatOpenid(String wechatOpenid) {
+                    this.wechatOpenid = wechatOpenid;
+                }
+
+                public String getWechatData() {
+                    return wechatData;
+                }
+
+                public void setWechatData(String wechatData) {
+                    this.wechatData = wechatData;
+                }
+
+                public String getRole() {
+                    return role;
+                }
+
+                public void setRole(String role) {
+                    this.role = role;
+                }
+
+                public String getSex() {
+                    return sex;
+                }
+
+                public void setSex(String sex) {
+                    this.sex = sex;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getCounty() {
+                    return county;
+                }
+
+                public void setCounty(String county) {
+                    this.county = county;
+                }
+
+                public String getIdentity() {
+                    return identity;
+                }
+
+                public void setIdentity(String identity) {
+                    this.identity = identity;
+                }
+
+                public String getBrokerId() {
+                    return brokerId;
+                }
+
+                public void setBrokerId(String brokerId) {
+                    this.brokerId = brokerId;
+                }
+
+                public String getStoreId() {
+                    return storeId;
+                }
+
+                public void setStoreId(String storeId) {
+                    this.storeId = storeId;
+                }
+
+                public String getCompanyManage() {
+                    return companyManage;
+                }
+
+                public void setCompanyManage(String companyManage) {
+                    this.companyManage = companyManage;
+                }
+
+                public String getStoreManage() {
+                    return storeManage;
+                }
+
+                public void setStoreManage(String storeManage) {
+                    this.storeManage = storeManage;
+                }
+
+                public int getClassics() {
+                    return classics;
+                }
+
+                public void setClassics(int classics) {
+                    this.classics = classics;
+                }
+
+                public String getTeam() {
+                    return team;
+                }
+
+                public void setTeam(String team) {
+                    this.team = team;
+                }
+
+                public String getLayerTeamVo() {
+                    return layerTeamVo;
+                }
+
+                public void setLayerTeamVo(String layerTeamVo) {
+                    this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getRoleNames() {
+                    return roleNames;
+                }
+
+                public void setRoleNames(String roleNames) {
+                    this.roleNames = roleNames;
+                }
+
+                public boolean isAdmin() {
+                    return admin;
+                }
+
+                public void setAdmin(boolean admin) {
+                    this.admin = admin;
+                }
+            }
+
+            public static class ProjectBeanXX {
+                /**
+                 * id : dd1c32fcfb9141e6b030ec2c1dbb1cff
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * projectName :
+                 * developer :
+                 * houseCompany :
+                 * cityCompany :
+                 * projectType :
+                 * attache :
+                 * cooperationState :
+                 * onlineState :
+                 * belongsArea :
+                 * address :
+                 * location :
+                 * totalBuildings :
+                 * hot :
+                 * sort :
+                 * remark :
+                 * province :
+                 * city :
+                 * region :
+                 * forwardingAmount :
+                 * reportAmount :
+                 * nation :
+                 * hotSort :
+                 * projectImg :
+                 * projectListImg :
+                 * buildingImg :
+                 * browseNum :
+                 * awardRules :
+                 * commissionRules :
+                 * searchName :
+                 * collectionNum :
+                 * productTypeId :
+                 * productTypeSize :
+                 * amountIncentiveId :
+                 * cityName :
+                 * haveInformation :
+                 * projectTypeName :
+                 * isgroup :
+                 * groupNum :
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String projectName;
+                private String developer;
+                private String houseCompany;
+                private String cityCompany;
+                private String projectType;
+                private String attache;
+                private String cooperationState;
+                private String onlineState;
+                private String belongsArea;
+                private String address;
+                private String location;
+                private String totalBuildings;
+                private String hot;
+                private String sort;
+                private String remark;
+                private String province;
+                private String city;
+                private String region;
+                private String forwardingAmount;
+                private String reportAmount;
+                private String nation;
+                private String hotSort;
+                private String projectImg;
+                private String projectListImg;
+                private String buildingImg;
+                private String browseNum;
+                private String awardRules;
+                private String commissionRules;
+                private String searchName;
+                private String collectionNum;
+                private String productTypeId;
+                private String productTypeSize;
+                private String amountIncentiveId;
+                private String cityName;
+                private String haveInformation;
+                private String projectTypeName;
+                private String isgroup;
+                private String groupNum;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getProjectName() {
+                    return projectName;
+                }
+
+                public void setProjectName(String projectName) {
+                    this.projectName = projectName;
+                }
+
+                public String getDeveloper() {
+                    return developer;
+                }
+
+                public void setDeveloper(String developer) {
+                    this.developer = developer;
+                }
+
+                public String getHouseCompany() {
+                    return houseCompany;
+                }
+
+                public void setHouseCompany(String houseCompany) {
+                    this.houseCompany = houseCompany;
+                }
+
+                public String getCityCompany() {
+                    return cityCompany;
+                }
+
+                public void setCityCompany(String cityCompany) {
+                    this.cityCompany = cityCompany;
+                }
+
+                public String getProjectType() {
+                    return projectType;
+                }
+
+                public void setProjectType(String projectType) {
+                    this.projectType = projectType;
+                }
+
+                public String getAttache() {
+                    return attache;
+                }
+
+                public void setAttache(String attache) {
+                    this.attache = attache;
+                }
+
+                public String getCooperationState() {
+                    return cooperationState;
+                }
+
+                public void setCooperationState(String cooperationState) {
+                    this.cooperationState = cooperationState;
+                }
+
+                public String getOnlineState() {
+                    return onlineState;
+                }
+
+                public void setOnlineState(String onlineState) {
+                    this.onlineState = onlineState;
+                }
+
+                public String getBelongsArea() {
+                    return belongsArea;
+                }
+
+                public void setBelongsArea(String belongsArea) {
+                    this.belongsArea = belongsArea;
+                }
+
+                public String getAddress() {
+                    return address;
+                }
+
+                public void setAddress(String address) {
+                    this.address = address;
+                }
+
+                public String getLocation() {
+                    return location;
+                }
+
+                public void setLocation(String location) {
+                    this.location = location;
+                }
+
+                public String getTotalBuildings() {
+                    return totalBuildings;
+                }
+
+                public void setTotalBuildings(String totalBuildings) {
+                    this.totalBuildings = totalBuildings;
+                }
+
+                public String getHot() {
+                    return hot;
+                }
+
+                public void setHot(String hot) {
+                    this.hot = hot;
+                }
+
+                public String getSort() {
+                    return sort;
+                }
+
+                public void setSort(String sort) {
+                    this.sort = sort;
+                }
+
+                public String getRemark() {
+                    return remark;
+                }
+
+                public void setRemark(String remark) {
+                    this.remark = remark;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getRegion() {
+                    return region;
+                }
+
+                public void setRegion(String region) {
+                    this.region = region;
+                }
+
+                public String getForwardingAmount() {
+                    return forwardingAmount;
+                }
+
+                public void setForwardingAmount(String forwardingAmount) {
+                    this.forwardingAmount = forwardingAmount;
+                }
+
+                public String getReportAmount() {
+                    return reportAmount;
+                }
+
+                public void setReportAmount(String reportAmount) {
+                    this.reportAmount = reportAmount;
+                }
+
+                public String getNation() {
+                    return nation;
+                }
+
+                public void setNation(String nation) {
+                    this.nation = nation;
+                }
+
+                public String getHotSort() {
+                    return hotSort;
+                }
+
+                public void setHotSort(String hotSort) {
+                    this.hotSort = hotSort;
+                }
+
+                public String getProjectImg() {
+                    return projectImg;
+                }
+
+                public void setProjectImg(String projectImg) {
+                    this.projectImg = projectImg;
+                }
+
+                public String getProjectListImg() {
+                    return projectListImg;
+                }
+
+                public void setProjectListImg(String projectListImg) {
+                    this.projectListImg = projectListImg;
+                }
+
+                public String getBuildingImg() {
+                    return buildingImg;
+                }
+
+                public void setBuildingImg(String buildingImg) {
+                    this.buildingImg = buildingImg;
+                }
+
+                public String getBrowseNum() {
+                    return browseNum;
+                }
+
+                public void setBrowseNum(String browseNum) {
+                    this.browseNum = browseNum;
+                }
+
+                public String getAwardRules() {
+                    return awardRules;
+                }
+
+                public void setAwardRules(String awardRules) {
+                    this.awardRules = awardRules;
+                }
+
+                public String getCommissionRules() {
+                    return commissionRules;
+                }
+
+                public void setCommissionRules(String commissionRules) {
+                    this.commissionRules = commissionRules;
+                }
+
+                public String getSearchName() {
+                    return searchName;
+                }
+
+                public void setSearchName(String searchName) {
+                    this.searchName = searchName;
+                }
+
+                public String getCollectionNum() {
+                    return collectionNum;
+                }
+
+                public void setCollectionNum(String collectionNum) {
+                    this.collectionNum = collectionNum;
+                }
+
+                public String getProductTypeId() {
+                    return productTypeId;
+                }
+
+                public void setProductTypeId(String productTypeId) {
+                    this.productTypeId = productTypeId;
+                }
+
+                public String getProductTypeSize() {
+                    return productTypeSize;
+                }
+
+                public void setProductTypeSize(String productTypeSize) {
+                    this.productTypeSize = productTypeSize;
+                }
+
+                public String getAmountIncentiveId() {
+                    return amountIncentiveId;
+                }
+
+                public void setAmountIncentiveId(String amountIncentiveId) {
+                    this.amountIncentiveId = amountIncentiveId;
+                }
+
+                public String getCityName() {
+                    return cityName;
+                }
+
+                public void setCityName(String cityName) {
+                    this.cityName = cityName;
+                }
+
+                public String getHaveInformation() {
+                    return haveInformation;
+                }
+
+                public void setHaveInformation(String haveInformation) {
+                    this.haveInformation = haveInformation;
+                }
+
+                public String getProjectTypeName() {
+                    return projectTypeName;
+                }
+
+                public void setProjectTypeName(String projectTypeName) {
+                    this.projectTypeName = projectTypeName;
+                }
+
+                public String getIsgroup() {
+                    return isgroup;
+                }
+
+                public void setIsgroup(String isgroup) {
+                    this.isgroup = isgroup;
+                }
+
+                public String getGroupNum() {
+                    return groupNum;
+                }
+
+                public void setGroupNum(String groupNum) {
+                    this.groupNum = groupNum;
+                }
+            }
+        }
+
+        public static class GuideRuleListBean {
+            /**
+             * guideRuleId : a66fe66e469048dbb18a13ab4992ed46
+             * isPapers : 0
+             * report : 如客户想到项目地了解项目，需要提前报备客户身份证号码
+             * visit :
+             * clientDefineType : 1
+             */
+
+            private String guideRuleId;
+            private String isPapers;
+            private String report;
+            private String visit;
+            private String clientDefineType;
+
+            public String getGuideRuleId() {
+                return guideRuleId;
+            }
+
+            public void setGuideRuleId(String guideRuleId) {
+                this.guideRuleId = guideRuleId;
+            }
+
+            public String getIsPapers() {
+                return isPapers;
+            }
+
+            public void setIsPapers(String isPapers) {
+                this.isPapers = isPapers;
+            }
+
+            public String getReport() {
+                return report;
+            }
+
+            public void setReport(String report) {
+                this.report = report;
+            }
+
+            public String getVisit() {
+                return visit;
+            }
+
+            public void setVisit(String visit) {
+                this.visit = visit;
+            }
+
+            public String getClientDefineType() {
+                return clientDefineType;
+            }
+
+            public void setClientDefineType(String clientDefineType) {
+                this.clientDefineType = clientDefineType;
+            }
+        }
+
+        public static class GuideRulesBean {
+            /**
+             * value : 30天
+             * key : 报备有效期：
+             */
+
+            private String value;
+            private String key;
+
+            public String getValue() {
+                return value;
+            }
+
+            public void setValue(String value) {
+                this.value = value;
+            }
+
+            public String getKey() {
+                return key;
+            }
+
+            public void setKey(String key) {
+                this.key = key;
+            }
+        }
+
+        public static class HousesDynamicsBean {
+            /**
+             * id : c7cc5912d7d94420b34f1b9200480312
+             * remarks :
+             * createBy : {"id":"1","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"总部超级管理员","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/userfiles/1/attachment/sys/user/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":true}
+             * createDate : 2019-06-16 10:48:09
+             * updateBy : {"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false}
+             * updateDate : 2019-08-05 10:22:08
+             * project : {"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/8/fd1b27c4ebaa89890243820b3d522bb9(1).jpg","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""}
+             * title : 项目简介
+             * content : 龙口，中国海滨投资最后的价值洼地
+             融创东海湾位于龙口市北侧的南山东海旅游度假区内，西侧毗邻海天二路，北侧为阳光二路，东临海安路，南为阳光三路。地块总用地面积约41.7公顷，规划总建筑面积98.82万平方米。容积率为2.0。
+             * img : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/ff/server/ffServerHousesDynamic/2019/6/tp2.png
+             * video :
+             * onlineState : 1
+             * likeNum : 2
+             * commentNum : 0
+             * isLike :
+             * imgUrl : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/ff/server/ffServerHousesDynamic/2019/6/tp2.png
+             * attaches :
+             */
+
+            private String id;
+            private String remarks;
+            private CreateByBeanXX createBy;
+            private String createDate;
+            private UpdateByBeanXX updateBy;
+            private String updateDate;
+            private ProjectBeanXXX project;
+            private String title;
+            private String content;
+            private String img;
+            private String video;
+            private String onlineState;
+            private int likeNum;
+            private int commentNum;
+            private String isLike;
+            private String imgUrl;
+            private String attaches;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getRemarks() {
+                return remarks;
+            }
+
+            public void setRemarks(String remarks) {
+                this.remarks = remarks;
+            }
+
+            public CreateByBeanXX getCreateBy() {
+                return createBy;
+            }
+
+            public void setCreateBy(CreateByBeanXX createBy) {
+                this.createBy = createBy;
+            }
+
+            public String getCreateDate() {
+                return createDate;
+            }
+
+            public void setCreateDate(String createDate) {
+                this.createDate = createDate;
+            }
+
+            public UpdateByBeanXX getUpdateBy() {
+                return updateBy;
+            }
+
+            public void setUpdateBy(UpdateByBeanXX updateBy) {
+                this.updateBy = updateBy;
+            }
+
+            public String getUpdateDate() {
+                return updateDate;
+            }
+
+            public void setUpdateDate(String updateDate) {
+                this.updateDate = updateDate;
+            }
+
+            public ProjectBeanXXX getProject() {
+                return project;
+            }
+
+            public void setProject(ProjectBeanXXX project) {
+                this.project = project;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
+            }
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+
+            public String getImg() {
+                return img;
+            }
+
+            public void setImg(String img) {
+                this.img = img;
+            }
+
+            public String getVideo() {
+                return video;
+            }
+
+            public void setVideo(String video) {
+                this.video = video;
+            }
+
+            public String getOnlineState() {
+                return onlineState;
+            }
+
+            public void setOnlineState(String onlineState) {
+                this.onlineState = onlineState;
+            }
+
+            public int getLikeNum() {
+                return likeNum;
+            }
+
+            public void setLikeNum(int likeNum) {
+                this.likeNum = likeNum;
+            }
+
+            public int getCommentNum() {
+                return commentNum;
+            }
+
+            public void setCommentNum(int commentNum) {
+                this.commentNum = commentNum;
+            }
+
+            public String getIsLike() {
+                return isLike;
+            }
+
+            public void setIsLike(String isLike) {
+                this.isLike = isLike;
+            }
+
+            public String getImgUrl() {
+                return imgUrl;
+            }
+
+            public void setImgUrl(String imgUrl) {
+                this.imgUrl = imgUrl;
+            }
+
+            public String getAttaches() {
+                return attaches;
+            }
+
+            public void setAttaches(String attaches) {
+                this.attaches = attaches;
+            }
+
+            public static class CreateByBeanXX {
+                /**
+                 * id : 1
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * company :
+                 * office :
+                 * post :
+                 * loginName :
+                 * no :
+                 * name : 总部超级管理员
+                 * email :
+                 * phone :
+                 * oldPhone :
+                 * mobile :
+                 * loginIp :
+                 * loginDate :
+                 * loginFlag : 1
+                 * photo : /fangfang/userfiles/1/attachment/sys/user/images/flat-avatar.png
+                 * qrCode :
+                 * oldLoginName :
+                 * newPassword :
+                 * sign :
+                 * oldLoginIp :
+                 * oldLoginDate :
+                 * wechatOpenid :
+                 * wechatData :
+                 * role :
+                 * sex :
+                 * province :
+                 * city :
+                 * county :
+                 * identity :
+                 * brokerId :
+                 * storeId :
+                 * companyManage :
+                 * storeManage :
+                 * classics : 0
+                 * team :
+                 * layerTeamVo :
+                 * roleNames :
+                 * admin : true
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String company;
+                private String office;
+                private String post;
+                private String loginName;
+                private String no;
+                private String name;
+                private String email;
+                private String phone;
+                private String oldPhone;
+                private String mobile;
+                private String loginIp;
+                private String loginDate;
+                private String loginFlag;
+                private String photo;
+                private String qrCode;
+                private String oldLoginName;
+                private String newPassword;
+                private String sign;
+                private String oldLoginIp;
+                private String oldLoginDate;
+                private String wechatOpenid;
+                private String wechatData;
+                private String role;
+                private String sex;
+                private String province;
+                private String city;
+                private String county;
+                private String identity;
+                private String brokerId;
+                private String storeId;
+                private String companyManage;
+                private String storeManage;
+                private int classics;
+                private String team;
+                private String layerTeamVo;
+                private String roleNames;
+                private boolean admin;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getCompany() {
+                    return company;
+                }
+
+                public void setCompany(String company) {
+                    this.company = company;
+                }
+
+                public String getOffice() {
+                    return office;
+                }
+
+                public void setOffice(String office) {
+                    this.office = office;
+                }
+
+                public String getPost() {
+                    return post;
+                }
+
+                public void setPost(String post) {
+                    this.post = post;
+                }
+
+                public String getLoginName() {
+                    return loginName;
+                }
+
+                public void setLoginName(String loginName) {
+                    this.loginName = loginName;
+                }
+
+                public String getNo() {
+                    return no;
+                }
+
+                public void setNo(String no) {
+                    this.no = no;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getEmail() {
+                    return email;
+                }
+
+                public void setEmail(String email) {
+                    this.email = email;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getOldPhone() {
+                    return oldPhone;
+                }
+
+                public void setOldPhone(String oldPhone) {
+                    this.oldPhone = oldPhone;
+                }
+
+                public String getMobile() {
+                    return mobile;
+                }
+
+                public void setMobile(String mobile) {
+                    this.mobile = mobile;
+                }
+
+                public String getLoginIp() {
+                    return loginIp;
+                }
+
+                public void setLoginIp(String loginIp) {
+                    this.loginIp = loginIp;
+                }
+
+                public String getLoginDate() {
+                    return loginDate;
+                }
+
+                public void setLoginDate(String loginDate) {
+                    this.loginDate = loginDate;
+                }
+
+                public String getLoginFlag() {
+                    return loginFlag;
+                }
+
+                public void setLoginFlag(String loginFlag) {
+                    this.loginFlag = loginFlag;
+                }
+
+                public String getPhoto() {
+                    return photo;
+                }
+
+                public void setPhoto(String photo) {
+                    this.photo = photo;
+                }
+
+                public String getQrCode() {
+                    return qrCode;
+                }
+
+                public void setQrCode(String qrCode) {
+                    this.qrCode = qrCode;
+                }
+
+                public String getOldLoginName() {
+                    return oldLoginName;
+                }
+
+                public void setOldLoginName(String oldLoginName) {
+                    this.oldLoginName = oldLoginName;
+                }
+
+                public String getNewPassword() {
+                    return newPassword;
+                }
+
+                public void setNewPassword(String newPassword) {
+                    this.newPassword = newPassword;
+                }
+
+                public String getSign() {
+                    return sign;
+                }
+
+                public void setSign(String sign) {
+                    this.sign = sign;
+                }
+
+                public String getOldLoginIp() {
+                    return oldLoginIp;
+                }
+
+                public void setOldLoginIp(String oldLoginIp) {
+                    this.oldLoginIp = oldLoginIp;
+                }
+
+                public String getOldLoginDate() {
+                    return oldLoginDate;
+                }
+
+                public void setOldLoginDate(String oldLoginDate) {
+                    this.oldLoginDate = oldLoginDate;
+                }
+
+                public String getWechatOpenid() {
+                    return wechatOpenid;
+                }
+
+                public void setWechatOpenid(String wechatOpenid) {
+                    this.wechatOpenid = wechatOpenid;
+                }
+
+                public String getWechatData() {
+                    return wechatData;
+                }
+
+                public void setWechatData(String wechatData) {
+                    this.wechatData = wechatData;
+                }
+
+                public String getRole() {
+                    return role;
+                }
+
+                public void setRole(String role) {
+                    this.role = role;
+                }
+
+                public String getSex() {
+                    return sex;
+                }
+
+                public void setSex(String sex) {
+                    this.sex = sex;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getCounty() {
+                    return county;
+                }
+
+                public void setCounty(String county) {
+                    this.county = county;
+                }
+
+                public String getIdentity() {
+                    return identity;
+                }
+
+                public void setIdentity(String identity) {
+                    this.identity = identity;
+                }
+
+                public String getBrokerId() {
+                    return brokerId;
+                }
+
+                public void setBrokerId(String brokerId) {
+                    this.brokerId = brokerId;
+                }
+
+                public String getStoreId() {
+                    return storeId;
+                }
+
+                public void setStoreId(String storeId) {
+                    this.storeId = storeId;
+                }
+
+                public String getCompanyManage() {
+                    return companyManage;
+                }
+
+                public void setCompanyManage(String companyManage) {
+                    this.companyManage = companyManage;
+                }
+
+                public String getStoreManage() {
+                    return storeManage;
+                }
+
+                public void setStoreManage(String storeManage) {
+                    this.storeManage = storeManage;
+                }
+
+                public int getClassics() {
+                    return classics;
+                }
+
+                public void setClassics(int classics) {
+                    this.classics = classics;
+                }
+
+                public String getTeam() {
+                    return team;
+                }
+
+                public void setTeam(String team) {
+                    this.team = team;
+                }
+
+                public String getLayerTeamVo() {
+                    return layerTeamVo;
+                }
+
+                public void setLayerTeamVo(String layerTeamVo) {
+                    this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getRoleNames() {
+                    return roleNames;
+                }
+
+                public void setRoleNames(String roleNames) {
+                    this.roleNames = roleNames;
+                }
+
+                public boolean isAdmin() {
+                    return admin;
+                }
+
+                public void setAdmin(boolean admin) {
+                    this.admin = admin;
+                }
+            }
+
+            public static class UpdateByBeanXX {
+                /**
+                 * id : 3c37d25396a940f9b784b4c180f7db37
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * company :
+                 * office :
+                 * post :
+                 * loginName :
+                 * no :
+                 * name :
+                 * email :
+                 * phone :
+                 * oldPhone :
+                 * mobile :
+                 * loginIp :
+                 * loginDate :
+                 * loginFlag : 1
+                 * photo : /fangfang/static/common/images/flat-avatar.png
+                 * qrCode :
+                 * oldLoginName :
+                 * newPassword :
+                 * sign :
+                 * oldLoginIp :
+                 * oldLoginDate :
+                 * wechatOpenid :
+                 * wechatData :
+                 * role :
+                 * sex :
+                 * province :
+                 * city :
+                 * county :
+                 * identity :
+                 * brokerId :
+                 * storeId :
+                 * companyManage :
+                 * storeManage :
+                 * classics : 0
+                 * team :
+                 * layerTeamVo :
+                 * roleNames :
+                 * admin : false
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String company;
+                private String office;
+                private String post;
+                private String loginName;
+                private String no;
+                private String name;
+                private String email;
+                private String phone;
+                private String oldPhone;
+                private String mobile;
+                private String loginIp;
+                private String loginDate;
+                private String loginFlag;
+                private String photo;
+                private String qrCode;
+                private String oldLoginName;
+                private String newPassword;
+                private String sign;
+                private String oldLoginIp;
+                private String oldLoginDate;
+                private String wechatOpenid;
+                private String wechatData;
+                private String role;
+                private String sex;
+                private String province;
+                private String city;
+                private String county;
+                private String identity;
+                private String brokerId;
+                private String storeId;
+                private String companyManage;
+                private String storeManage;
+                private int classics;
+                private String team;
+                private String layerTeamVo;
+                private String roleNames;
+                private boolean admin;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getCompany() {
+                    return company;
+                }
+
+                public void setCompany(String company) {
+                    this.company = company;
+                }
+
+                public String getOffice() {
+                    return office;
+                }
+
+                public void setOffice(String office) {
+                    this.office = office;
+                }
+
+                public String getPost() {
+                    return post;
+                }
+
+                public void setPost(String post) {
+                    this.post = post;
+                }
+
+                public String getLoginName() {
+                    return loginName;
+                }
+
+                public void setLoginName(String loginName) {
+                    this.loginName = loginName;
+                }
+
+                public String getNo() {
+                    return no;
+                }
+
+                public void setNo(String no) {
+                    this.no = no;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getEmail() {
+                    return email;
+                }
+
+                public void setEmail(String email) {
+                    this.email = email;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getOldPhone() {
+                    return oldPhone;
+                }
+
+                public void setOldPhone(String oldPhone) {
+                    this.oldPhone = oldPhone;
+                }
+
+                public String getMobile() {
+                    return mobile;
+                }
+
+                public void setMobile(String mobile) {
+                    this.mobile = mobile;
+                }
+
+                public String getLoginIp() {
+                    return loginIp;
+                }
+
+                public void setLoginIp(String loginIp) {
+                    this.loginIp = loginIp;
+                }
+
+                public String getLoginDate() {
+                    return loginDate;
+                }
+
+                public void setLoginDate(String loginDate) {
+                    this.loginDate = loginDate;
+                }
+
+                public String getLoginFlag() {
+                    return loginFlag;
+                }
+
+                public void setLoginFlag(String loginFlag) {
+                    this.loginFlag = loginFlag;
+                }
+
+                public String getPhoto() {
+                    return photo;
+                }
+
+                public void setPhoto(String photo) {
+                    this.photo = photo;
+                }
+
+                public String getQrCode() {
+                    return qrCode;
+                }
+
+                public void setQrCode(String qrCode) {
+                    this.qrCode = qrCode;
+                }
+
+                public String getOldLoginName() {
+                    return oldLoginName;
+                }
+
+                public void setOldLoginName(String oldLoginName) {
+                    this.oldLoginName = oldLoginName;
+                }
+
+                public String getNewPassword() {
+                    return newPassword;
+                }
+
+                public void setNewPassword(String newPassword) {
+                    this.newPassword = newPassword;
+                }
+
+                public String getSign() {
+                    return sign;
+                }
+
+                public void setSign(String sign) {
+                    this.sign = sign;
+                }
+
+                public String getOldLoginIp() {
+                    return oldLoginIp;
+                }
+
+                public void setOldLoginIp(String oldLoginIp) {
+                    this.oldLoginIp = oldLoginIp;
+                }
+
+                public String getOldLoginDate() {
+                    return oldLoginDate;
+                }
+
+                public void setOldLoginDate(String oldLoginDate) {
+                    this.oldLoginDate = oldLoginDate;
+                }
+
+                public String getWechatOpenid() {
+                    return wechatOpenid;
+                }
+
+                public void setWechatOpenid(String wechatOpenid) {
+                    this.wechatOpenid = wechatOpenid;
+                }
+
+                public String getWechatData() {
+                    return wechatData;
+                }
+
+                public void setWechatData(String wechatData) {
+                    this.wechatData = wechatData;
+                }
+
+                public String getRole() {
+                    return role;
+                }
+
+                public void setRole(String role) {
+                    this.role = role;
+                }
+
+                public String getSex() {
+                    return sex;
+                }
+
+                public void setSex(String sex) {
+                    this.sex = sex;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getCounty() {
+                    return county;
+                }
+
+                public void setCounty(String county) {
+                    this.county = county;
+                }
+
+                public String getIdentity() {
+                    return identity;
+                }
+
+                public void setIdentity(String identity) {
+                    this.identity = identity;
+                }
+
+                public String getBrokerId() {
+                    return brokerId;
+                }
+
+                public void setBrokerId(String brokerId) {
+                    this.brokerId = brokerId;
+                }
+
+                public String getStoreId() {
+                    return storeId;
+                }
+
+                public void setStoreId(String storeId) {
+                    this.storeId = storeId;
+                }
+
+                public String getCompanyManage() {
+                    return companyManage;
+                }
+
+                public void setCompanyManage(String companyManage) {
+                    this.companyManage = companyManage;
+                }
+
+                public String getStoreManage() {
+                    return storeManage;
+                }
+
+                public void setStoreManage(String storeManage) {
+                    this.storeManage = storeManage;
+                }
+
+                public int getClassics() {
+                    return classics;
+                }
+
+                public void setClassics(int classics) {
+                    this.classics = classics;
+                }
+
+                public String getTeam() {
+                    return team;
+                }
+
+                public void setTeam(String team) {
+                    this.team = team;
+                }
+
+                public String getLayerTeamVo() {
+                    return layerTeamVo;
+                }
+
+                public void setLayerTeamVo(String layerTeamVo) {
+                    this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getRoleNames() {
+                    return roleNames;
+                }
+
+                public void setRoleNames(String roleNames) {
+                    this.roleNames = roleNames;
+                }
+
+                public boolean isAdmin() {
+                    return admin;
+                }
+
+                public void setAdmin(boolean admin) {
+                    this.admin = admin;
+                }
+            }
+
+            public static class ProjectBeanXXX {
+                /**
+                 * id : dd1c32fcfb9141e6b030ec2c1dbb1cff
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * projectName : 融创东海湾
+                 * developer :
+                 * houseCompany :
+                 * cityCompany :
+                 * projectType :
+                 * attache :
+                 * cooperationState :
+                 * onlineState :
+                 * belongsArea :
+                 * address :
+                 * location :
+                 * totalBuildings :
+                 * hot :
+                 * sort :
+                 * remark :
+                 * province :
+                 * city :
+                 * region :
+                 * forwardingAmount :
+                 * reportAmount :
+                 * nation :
+                 * hotSort :
+                 * projectImg : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/8/fd1b27c4ebaa89890243820b3d522bb9(1).jpg
+                 * projectListImg :
+                 * buildingImg :
+                 * browseNum :
+                 * awardRules :
+                 * commissionRules :
+                 * searchName :
+                 * collectionNum :
+                 * productTypeId :
+                 * productTypeSize :
+                 * amountIncentiveId :
+                 * cityName :
+                 * haveInformation :
+                 * projectTypeName :
+                 * isgroup :
+                 * groupNum :
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String projectName;
+                private String developer;
+                private String houseCompany;
+                private String cityCompany;
+                private String projectType;
+                private String attache;
+                private String cooperationState;
+                private String onlineState;
+                private String belongsArea;
+                private String address;
+                private String location;
+                private String totalBuildings;
+                private String hot;
+                private String sort;
+                private String remark;
+                private String province;
+                private String city;
+                private String region;
+                private String forwardingAmount;
+                private String reportAmount;
+                private String nation;
+                private String hotSort;
+                private String projectImg;
+                private String projectListImg;
+                private String buildingImg;
+                private String browseNum;
+                private String awardRules;
+                private String commissionRules;
+                private String searchName;
+                private String collectionNum;
+                private String productTypeId;
+                private String productTypeSize;
+                private String amountIncentiveId;
+                private String cityName;
+                private String haveInformation;
+                private String projectTypeName;
+                private String isgroup;
+                private String groupNum;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getProjectName() {
+                    return projectName;
+                }
+
+                public void setProjectName(String projectName) {
+                    this.projectName = projectName;
+                }
+
+                public String getDeveloper() {
+                    return developer;
+                }
+
+                public void setDeveloper(String developer) {
+                    this.developer = developer;
+                }
+
+                public String getHouseCompany() {
+                    return houseCompany;
+                }
+
+                public void setHouseCompany(String houseCompany) {
+                    this.houseCompany = houseCompany;
+                }
+
+                public String getCityCompany() {
+                    return cityCompany;
+                }
+
+                public void setCityCompany(String cityCompany) {
+                    this.cityCompany = cityCompany;
+                }
+
+                public String getProjectType() {
+                    return projectType;
+                }
+
+                public void setProjectType(String projectType) {
+                    this.projectType = projectType;
+                }
+
+                public String getAttache() {
+                    return attache;
+                }
+
+                public void setAttache(String attache) {
+                    this.attache = attache;
+                }
+
+                public String getCooperationState() {
+                    return cooperationState;
+                }
+
+                public void setCooperationState(String cooperationState) {
+                    this.cooperationState = cooperationState;
+                }
+
+                public String getOnlineState() {
+                    return onlineState;
+                }
+
+                public void setOnlineState(String onlineState) {
+                    this.onlineState = onlineState;
+                }
+
+                public String getBelongsArea() {
+                    return belongsArea;
+                }
+
+                public void setBelongsArea(String belongsArea) {
+                    this.belongsArea = belongsArea;
+                }
+
+                public String getAddress() {
+                    return address;
+                }
+
+                public void setAddress(String address) {
+                    this.address = address;
+                }
+
+                public String getLocation() {
+                    return location;
+                }
+
+                public void setLocation(String location) {
+                    this.location = location;
+                }
+
+                public String getTotalBuildings() {
+                    return totalBuildings;
+                }
+
+                public void setTotalBuildings(String totalBuildings) {
+                    this.totalBuildings = totalBuildings;
+                }
+
+                public String getHot() {
+                    return hot;
+                }
+
+                public void setHot(String hot) {
+                    this.hot = hot;
+                }
+
+                public String getSort() {
+                    return sort;
+                }
+
+                public void setSort(String sort) {
+                    this.sort = sort;
+                }
+
+                public String getRemark() {
+                    return remark;
+                }
+
+                public void setRemark(String remark) {
+                    this.remark = remark;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getRegion() {
+                    return region;
+                }
+
+                public void setRegion(String region) {
+                    this.region = region;
+                }
+
+                public String getForwardingAmount() {
+                    return forwardingAmount;
+                }
+
+                public void setForwardingAmount(String forwardingAmount) {
+                    this.forwardingAmount = forwardingAmount;
+                }
+
+                public String getReportAmount() {
+                    return reportAmount;
+                }
+
+                public void setReportAmount(String reportAmount) {
+                    this.reportAmount = reportAmount;
+                }
+
+                public String getNation() {
+                    return nation;
+                }
+
+                public void setNation(String nation) {
+                    this.nation = nation;
+                }
+
+                public String getHotSort() {
+                    return hotSort;
+                }
+
+                public void setHotSort(String hotSort) {
+                    this.hotSort = hotSort;
+                }
+
+                public String getProjectImg() {
+                    return projectImg;
+                }
+
+                public void setProjectImg(String projectImg) {
+                    this.projectImg = projectImg;
+                }
+
+                public String getProjectListImg() {
+                    return projectListImg;
+                }
+
+                public void setProjectListImg(String projectListImg) {
+                    this.projectListImg = projectListImg;
+                }
+
+                public String getBuildingImg() {
+                    return buildingImg;
+                }
+
+                public void setBuildingImg(String buildingImg) {
+                    this.buildingImg = buildingImg;
+                }
+
+                public String getBrowseNum() {
+                    return browseNum;
+                }
+
+                public void setBrowseNum(String browseNum) {
+                    this.browseNum = browseNum;
+                }
+
+                public String getAwardRules() {
+                    return awardRules;
+                }
+
+                public void setAwardRules(String awardRules) {
+                    this.awardRules = awardRules;
+                }
+
+                public String getCommissionRules() {
+                    return commissionRules;
+                }
+
+                public void setCommissionRules(String commissionRules) {
+                    this.commissionRules = commissionRules;
+                }
+
+                public String getSearchName() {
+                    return searchName;
+                }
+
+                public void setSearchName(String searchName) {
+                    this.searchName = searchName;
+                }
+
+                public String getCollectionNum() {
+                    return collectionNum;
+                }
+
+                public void setCollectionNum(String collectionNum) {
+                    this.collectionNum = collectionNum;
+                }
+
+                public String getProductTypeId() {
+                    return productTypeId;
+                }
+
+                public void setProductTypeId(String productTypeId) {
+                    this.productTypeId = productTypeId;
+                }
+
+                public String getProductTypeSize() {
+                    return productTypeSize;
+                }
+
+                public void setProductTypeSize(String productTypeSize) {
+                    this.productTypeSize = productTypeSize;
+                }
+
+                public String getAmountIncentiveId() {
+                    return amountIncentiveId;
+                }
+
+                public void setAmountIncentiveId(String amountIncentiveId) {
+                    this.amountIncentiveId = amountIncentiveId;
+                }
+
+                public String getCityName() {
+                    return cityName;
+                }
+
+                public void setCityName(String cityName) {
+                    this.cityName = cityName;
+                }
+
+                public String getHaveInformation() {
+                    return haveInformation;
+                }
+
+                public void setHaveInformation(String haveInformation) {
+                    this.haveInformation = haveInformation;
+                }
+
+                public String getProjectTypeName() {
+                    return projectTypeName;
+                }
+
+                public void setProjectTypeName(String projectTypeName) {
+                    this.projectTypeName = projectTypeName;
+                }
+
+                public String getIsgroup() {
+                    return isgroup;
+                }
+
+                public void setIsgroup(String isgroup) {
+                    this.isgroup = isgroup;
+                }
+
+                public String getGroupNum() {
+                    return groupNum;
+                }
+
+                public void setGroupNum(String groupNum) {
+                    this.groupNum = groupNum;
+                }
+            }
+        }
+
+        public static class FamilyInfomationsBean {
+            /**
+             * id : 76886d795b7646048b2189f38c29303b
+             * remarks :
+             * createBy : {"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false}
+             * createDate : 2019-08-05 10:43:42
+             * updateBy : {"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","roleNames":"","admin":false}
+             * updateDate : 2019-08-05 10:43:42
+             * project : {"id":"dd1c32fcfb9141e6b030ec2c1dbb1cff","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创东海湾","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":""}
+             * familyName : E
+             * productType : 1
+             * room : 3
+             * hall : 2
+             * toilet : 2
+             * familyArea : 128
+             * familyOrientation : 南北
+             * getHouseRate :
+             * modelHouse : 2
+             * floorPlan : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg
+             * modelHouseChart :
+             * familySlideImgList : ["/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/E.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/D.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/C.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/B.jpg","/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/8/A.jpg"]
+             */
+
+            private String id;
+            private String remarks;
+            private CreateByBeanXXX createBy;
+            private String createDate;
+            private UpdateByBeanXXX updateBy;
+            private String updateDate;
+            private ProjectBeanXXXX project;
+            private String familyName;
+            private String productType;
+            private String room;
+            private String hall;
+            private String toilet;
+            private String familyArea;
+            private String familyOrientation;
+            private String getHouseRate;
+            private String modelHouse;
+            private String floorPlan;
+            private String modelHouseChart;
+            private List<String> familySlideImgList;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getRemarks() {
+                return remarks;
+            }
+
+            public void setRemarks(String remarks) {
+                this.remarks = remarks;
+            }
+
+            public CreateByBeanXXX getCreateBy() {
+                return createBy;
+            }
+
+            public void setCreateBy(CreateByBeanXXX createBy) {
+                this.createBy = createBy;
+            }
+
+            public String getCreateDate() {
+                return createDate;
+            }
+
+            public void setCreateDate(String createDate) {
+                this.createDate = createDate;
+            }
+
+            public UpdateByBeanXXX getUpdateBy() {
+                return updateBy;
+            }
+
+            public void setUpdateBy(UpdateByBeanXXX updateBy) {
+                this.updateBy = updateBy;
+            }
+
+            public String getUpdateDate() {
+                return updateDate;
+            }
+
+            public void setUpdateDate(String updateDate) {
+                this.updateDate = updateDate;
+            }
+
+            public ProjectBeanXXXX getProject() {
+                return project;
+            }
+
+            public void setProject(ProjectBeanXXXX project) {
+                this.project = project;
+            }
+
+            public String getFamilyName() {
+                return familyName;
+            }
+
+            public void setFamilyName(String familyName) {
+                this.familyName = familyName;
+            }
+
+            public String getProductType() {
+                return productType;
+            }
+
+            public void setProductType(String productType) {
+                this.productType = productType;
+            }
+
+            public String getRoom() {
+                return room;
+            }
+
+            public void setRoom(String room) {
+                this.room = room;
+            }
+
+            public String getHall() {
+                return hall;
+            }
+
+            public void setHall(String hall) {
+                this.hall = hall;
+            }
+
+            public String getToilet() {
+                return toilet;
+            }
+
+            public void setToilet(String toilet) {
+                this.toilet = toilet;
+            }
+
+            public String getFamilyArea() {
+                return familyArea;
+            }
+
+            public void setFamilyArea(String familyArea) {
+                this.familyArea = familyArea;
+            }
+
+            public String getFamilyOrientation() {
+                return familyOrientation;
+            }
+
+            public void setFamilyOrientation(String familyOrientation) {
+                this.familyOrientation = familyOrientation;
+            }
+
+            public String getGetHouseRate() {
+                return getHouseRate;
+            }
+
+            public void setGetHouseRate(String getHouseRate) {
+                this.getHouseRate = getHouseRate;
+            }
+
+            public String getModelHouse() {
+                return modelHouse;
+            }
+
+            public void setModelHouse(String modelHouse) {
+                this.modelHouse = modelHouse;
+            }
+
+            public String getFloorPlan() {
+                return floorPlan;
+            }
+
+            public void setFloorPlan(String floorPlan) {
+                this.floorPlan = floorPlan;
+            }
+
+            public String getModelHouseChart() {
+                return modelHouseChart;
+            }
+
+            public void setModelHouseChart(String modelHouseChart) {
+                this.modelHouseChart = modelHouseChart;
+            }
+
+            public List<String> getFamilySlideImgList() {
+                return familySlideImgList;
+            }
+
+            public void setFamilySlideImgList(List<String> familySlideImgList) {
+                this.familySlideImgList = familySlideImgList;
+            }
+
+            public static class CreateByBeanXXX {
+                /**
+                 * id : 3c37d25396a940f9b784b4c180f7db37
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * company :
+                 * office :
+                 * post :
+                 * loginName :
+                 * no :
+                 * name :
+                 * email :
+                 * phone :
+                 * oldPhone :
+                 * mobile :
+                 * loginIp :
+                 * loginDate :
+                 * loginFlag : 1
+                 * photo : /fangfang/static/common/images/flat-avatar.png
+                 * qrCode :
+                 * oldLoginName :
+                 * newPassword :
+                 * sign :
+                 * oldLoginIp :
+                 * oldLoginDate :
+                 * wechatOpenid :
+                 * wechatData :
+                 * role :
+                 * sex :
+                 * province :
+                 * city :
+                 * county :
+                 * identity :
+                 * brokerId :
+                 * storeId :
+                 * companyManage :
+                 * storeManage :
+                 * classics : 0
+                 * team :
+                 * layerTeamVo :
+                 * roleNames :
+                 * admin : false
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String company;
+                private String office;
+                private String post;
+                private String loginName;
+                private String no;
+                private String name;
+                private String email;
+                private String phone;
+                private String oldPhone;
+                private String mobile;
+                private String loginIp;
+                private String loginDate;
+                private String loginFlag;
+                private String photo;
+                private String qrCode;
+                private String oldLoginName;
+                private String newPassword;
+                private String sign;
+                private String oldLoginIp;
+                private String oldLoginDate;
+                private String wechatOpenid;
+                private String wechatData;
+                private String role;
+                private String sex;
+                private String province;
+                private String city;
+                private String county;
+                private String identity;
+                private String brokerId;
+                private String storeId;
+                private String companyManage;
+                private String storeManage;
+                private int classics;
+                private String team;
+                private String layerTeamVo;
+                private String roleNames;
+                private boolean admin;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getCompany() {
+                    return company;
+                }
+
+                public void setCompany(String company) {
+                    this.company = company;
+                }
+
+                public String getOffice() {
+                    return office;
+                }
+
+                public void setOffice(String office) {
+                    this.office = office;
+                }
+
+                public String getPost() {
+                    return post;
+                }
+
+                public void setPost(String post) {
+                    this.post = post;
+                }
+
+                public String getLoginName() {
+                    return loginName;
+                }
+
+                public void setLoginName(String loginName) {
+                    this.loginName = loginName;
+                }
+
+                public String getNo() {
+                    return no;
+                }
+
+                public void setNo(String no) {
+                    this.no = no;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getEmail() {
+                    return email;
+                }
+
+                public void setEmail(String email) {
+                    this.email = email;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getOldPhone() {
+                    return oldPhone;
+                }
+
+                public void setOldPhone(String oldPhone) {
+                    this.oldPhone = oldPhone;
+                }
+
+                public String getMobile() {
+                    return mobile;
+                }
+
+                public void setMobile(String mobile) {
+                    this.mobile = mobile;
+                }
+
+                public String getLoginIp() {
+                    return loginIp;
+                }
+
+                public void setLoginIp(String loginIp) {
+                    this.loginIp = loginIp;
+                }
+
+                public String getLoginDate() {
+                    return loginDate;
+                }
+
+                public void setLoginDate(String loginDate) {
+                    this.loginDate = loginDate;
+                }
+
+                public String getLoginFlag() {
+                    return loginFlag;
+                }
+
+                public void setLoginFlag(String loginFlag) {
+                    this.loginFlag = loginFlag;
+                }
+
+                public String getPhoto() {
+                    return photo;
+                }
+
+                public void setPhoto(String photo) {
+                    this.photo = photo;
+                }
+
+                public String getQrCode() {
+                    return qrCode;
+                }
+
+                public void setQrCode(String qrCode) {
+                    this.qrCode = qrCode;
+                }
+
+                public String getOldLoginName() {
+                    return oldLoginName;
+                }
+
+                public void setOldLoginName(String oldLoginName) {
+                    this.oldLoginName = oldLoginName;
+                }
+
+                public String getNewPassword() {
+                    return newPassword;
+                }
+
+                public void setNewPassword(String newPassword) {
+                    this.newPassword = newPassword;
+                }
+
+                public String getSign() {
+                    return sign;
+                }
+
+                public void setSign(String sign) {
+                    this.sign = sign;
+                }
+
+                public String getOldLoginIp() {
+                    return oldLoginIp;
+                }
+
+                public void setOldLoginIp(String oldLoginIp) {
+                    this.oldLoginIp = oldLoginIp;
+                }
+
+                public String getOldLoginDate() {
+                    return oldLoginDate;
+                }
+
+                public void setOldLoginDate(String oldLoginDate) {
+                    this.oldLoginDate = oldLoginDate;
+                }
+
+                public String getWechatOpenid() {
+                    return wechatOpenid;
+                }
+
+                public void setWechatOpenid(String wechatOpenid) {
+                    this.wechatOpenid = wechatOpenid;
+                }
+
+                public String getWechatData() {
+                    return wechatData;
+                }
+
+                public void setWechatData(String wechatData) {
+                    this.wechatData = wechatData;
+                }
+
+                public String getRole() {
+                    return role;
+                }
+
+                public void setRole(String role) {
+                    this.role = role;
+                }
+
+                public String getSex() {
+                    return sex;
+                }
+
+                public void setSex(String sex) {
+                    this.sex = sex;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getCounty() {
+                    return county;
+                }
+
+                public void setCounty(String county) {
+                    this.county = county;
+                }
+
+                public String getIdentity() {
+                    return identity;
+                }
+
+                public void setIdentity(String identity) {
+                    this.identity = identity;
+                }
+
+                public String getBrokerId() {
+                    return brokerId;
+                }
+
+                public void setBrokerId(String brokerId) {
+                    this.brokerId = brokerId;
+                }
+
+                public String getStoreId() {
+                    return storeId;
+                }
+
+                public void setStoreId(String storeId) {
+                    this.storeId = storeId;
+                }
+
+                public String getCompanyManage() {
+                    return companyManage;
+                }
+
+                public void setCompanyManage(String companyManage) {
+                    this.companyManage = companyManage;
+                }
+
+                public String getStoreManage() {
+                    return storeManage;
+                }
+
+                public void setStoreManage(String storeManage) {
+                    this.storeManage = storeManage;
+                }
+
+                public int getClassics() {
+                    return classics;
+                }
+
+                public void setClassics(int classics) {
+                    this.classics = classics;
+                }
+
+                public String getTeam() {
+                    return team;
+                }
+
+                public void setTeam(String team) {
+                    this.team = team;
+                }
+
+                public String getLayerTeamVo() {
+                    return layerTeamVo;
+                }
+
+                public void setLayerTeamVo(String layerTeamVo) {
+                    this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getRoleNames() {
+                    return roleNames;
+                }
+
+                public void setRoleNames(String roleNames) {
+                    this.roleNames = roleNames;
+                }
+
+                public boolean isAdmin() {
+                    return admin;
+                }
+
+                public void setAdmin(boolean admin) {
+                    this.admin = admin;
+                }
+            }
+
+            public static class UpdateByBeanXXX {
+                /**
+                 * id : 3c37d25396a940f9b784b4c180f7db37
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * company :
+                 * office :
+                 * post :
+                 * loginName :
+                 * no :
+                 * name :
+                 * email :
+                 * phone :
+                 * oldPhone :
+                 * mobile :
+                 * loginIp :
+                 * loginDate :
+                 * loginFlag : 1
+                 * photo : /fangfang/static/common/images/flat-avatar.png
+                 * qrCode :
+                 * oldLoginName :
+                 * newPassword :
+                 * sign :
+                 * oldLoginIp :
+                 * oldLoginDate :
+                 * wechatOpenid :
+                 * wechatData :
+                 * role :
+                 * sex :
+                 * province :
+                 * city :
+                 * county :
+                 * identity :
+                 * brokerId :
+                 * storeId :
+                 * companyManage :
+                 * storeManage :
+                 * classics : 0
+                 * team :
+                 * layerTeamVo :
+                 * roleNames :
+                 * admin : false
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String company;
+                private String office;
+                private String post;
+                private String loginName;
+                private String no;
+                private String name;
+                private String email;
+                private String phone;
+                private String oldPhone;
+                private String mobile;
+                private String loginIp;
+                private String loginDate;
+                private String loginFlag;
+                private String photo;
+                private String qrCode;
+                private String oldLoginName;
+                private String newPassword;
+                private String sign;
+                private String oldLoginIp;
+                private String oldLoginDate;
+                private String wechatOpenid;
+                private String wechatData;
+                private String role;
+                private String sex;
+                private String province;
+                private String city;
+                private String county;
+                private String identity;
+                private String brokerId;
+                private String storeId;
+                private String companyManage;
+                private String storeManage;
+                private int classics;
+                private String team;
+                private String layerTeamVo;
+                private String roleNames;
+                private boolean admin;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getCompany() {
+                    return company;
+                }
+
+                public void setCompany(String company) {
+                    this.company = company;
+                }
+
+                public String getOffice() {
+                    return office;
+                }
+
+                public void setOffice(String office) {
+                    this.office = office;
+                }
+
+                public String getPost() {
+                    return post;
+                }
+
+                public void setPost(String post) {
+                    this.post = post;
+                }
+
+                public String getLoginName() {
+                    return loginName;
+                }
+
+                public void setLoginName(String loginName) {
+                    this.loginName = loginName;
+                }
+
+                public String getNo() {
+                    return no;
+                }
+
+                public void setNo(String no) {
+                    this.no = no;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getEmail() {
+                    return email;
+                }
+
+                public void setEmail(String email) {
+                    this.email = email;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getOldPhone() {
+                    return oldPhone;
+                }
+
+                public void setOldPhone(String oldPhone) {
+                    this.oldPhone = oldPhone;
+                }
+
+                public String getMobile() {
+                    return mobile;
+                }
+
+                public void setMobile(String mobile) {
+                    this.mobile = mobile;
+                }
+
+                public String getLoginIp() {
+                    return loginIp;
+                }
+
+                public void setLoginIp(String loginIp) {
+                    this.loginIp = loginIp;
+                }
+
+                public String getLoginDate() {
+                    return loginDate;
+                }
+
+                public void setLoginDate(String loginDate) {
+                    this.loginDate = loginDate;
+                }
+
+                public String getLoginFlag() {
+                    return loginFlag;
+                }
+
+                public void setLoginFlag(String loginFlag) {
+                    this.loginFlag = loginFlag;
+                }
+
+                public String getPhoto() {
+                    return photo;
+                }
+
+                public void setPhoto(String photo) {
+                    this.photo = photo;
+                }
+
+                public String getQrCode() {
+                    return qrCode;
+                }
+
+                public void setQrCode(String qrCode) {
+                    this.qrCode = qrCode;
+                }
+
+                public String getOldLoginName() {
+                    return oldLoginName;
+                }
+
+                public void setOldLoginName(String oldLoginName) {
+                    this.oldLoginName = oldLoginName;
+                }
+
+                public String getNewPassword() {
+                    return newPassword;
+                }
+
+                public void setNewPassword(String newPassword) {
+                    this.newPassword = newPassword;
+                }
+
+                public String getSign() {
+                    return sign;
+                }
+
+                public void setSign(String sign) {
+                    this.sign = sign;
+                }
+
+                public String getOldLoginIp() {
+                    return oldLoginIp;
+                }
+
+                public void setOldLoginIp(String oldLoginIp) {
+                    this.oldLoginIp = oldLoginIp;
+                }
+
+                public String getOldLoginDate() {
+                    return oldLoginDate;
+                }
+
+                public void setOldLoginDate(String oldLoginDate) {
+                    this.oldLoginDate = oldLoginDate;
+                }
+
+                public String getWechatOpenid() {
+                    return wechatOpenid;
+                }
+
+                public void setWechatOpenid(String wechatOpenid) {
+                    this.wechatOpenid = wechatOpenid;
+                }
+
+                public String getWechatData() {
+                    return wechatData;
+                }
+
+                public void setWechatData(String wechatData) {
+                    this.wechatData = wechatData;
+                }
+
+                public String getRole() {
+                    return role;
+                }
+
+                public void setRole(String role) {
+                    this.role = role;
+                }
+
+                public String getSex() {
+                    return sex;
+                }
+
+                public void setSex(String sex) {
+                    this.sex = sex;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getCounty() {
+                    return county;
+                }
+
+                public void setCounty(String county) {
+                    this.county = county;
+                }
+
+                public String getIdentity() {
+                    return identity;
+                }
+
+                public void setIdentity(String identity) {
+                    this.identity = identity;
+                }
+
+                public String getBrokerId() {
+                    return brokerId;
+                }
+
+                public void setBrokerId(String brokerId) {
+                    this.brokerId = brokerId;
+                }
+
+                public String getStoreId() {
+                    return storeId;
+                }
+
+                public void setStoreId(String storeId) {
+                    this.storeId = storeId;
+                }
+
+                public String getCompanyManage() {
+                    return companyManage;
+                }
+
+                public void setCompanyManage(String companyManage) {
+                    this.companyManage = companyManage;
+                }
+
+                public String getStoreManage() {
+                    return storeManage;
+                }
+
+                public void setStoreManage(String storeManage) {
+                    this.storeManage = storeManage;
+                }
+
+                public int getClassics() {
+                    return classics;
+                }
+
+                public void setClassics(int classics) {
+                    this.classics = classics;
+                }
+
+                public String getTeam() {
+                    return team;
+                }
+
+                public void setTeam(String team) {
+                    this.team = team;
+                }
+
+                public String getLayerTeamVo() {
+                    return layerTeamVo;
+                }
+
+                public void setLayerTeamVo(String layerTeamVo) {
+                    this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getRoleNames() {
+                    return roleNames;
+                }
+
+                public void setRoleNames(String roleNames) {
+                    this.roleNames = roleNames;
+                }
+
+                public boolean isAdmin() {
+                    return admin;
+                }
+
+                public void setAdmin(boolean admin) {
+                    this.admin = admin;
+                }
+            }
+
+            public static class ProjectBeanXXXX {
+                /**
+                 * id : dd1c32fcfb9141e6b030ec2c1dbb1cff
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * projectName : 融创东海湾
+                 * developer :
+                 * houseCompany :
+                 * cityCompany :
+                 * projectType :
+                 * attache :
+                 * cooperationState :
+                 * onlineState :
+                 * belongsArea :
+                 * address :
+                 * location :
+                 * totalBuildings :
+                 * hot :
+                 * sort :
+                 * remark :
+                 * province :
+                 * city :
+                 * region :
+                 * forwardingAmount :
+                 * reportAmount :
+                 * nation :
+                 * hotSort :
+                 * projectImg :
+                 * projectListImg :
+                 * buildingImg :
+                 * browseNum :
+                 * awardRules :
+                 * commissionRules :
+                 * searchName :
+                 * collectionNum :
+                 * productTypeId :
+                 * productTypeSize :
+                 * amountIncentiveId :
+                 * cityName :
+                 * haveInformation :
+                 * projectTypeName :
+                 * isgroup :
+                 * groupNum :
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String projectName;
+                private String developer;
+                private String houseCompany;
+                private String cityCompany;
+                private String projectType;
+                private String attache;
+                private String cooperationState;
+                private String onlineState;
+                private String belongsArea;
+                private String address;
+                private String location;
+                private String totalBuildings;
+                private String hot;
+                private String sort;
+                private String remark;
+                private String province;
+                private String city;
+                private String region;
+                private String forwardingAmount;
+                private String reportAmount;
+                private String nation;
+                private String hotSort;
+                private String projectImg;
+                private String projectListImg;
+                private String buildingImg;
+                private String browseNum;
+                private String awardRules;
+                private String commissionRules;
+                private String searchName;
+                private String collectionNum;
+                private String productTypeId;
+                private String productTypeSize;
+                private String amountIncentiveId;
+                private String cityName;
+                private String haveInformation;
+                private String projectTypeName;
+                private String isgroup;
+                private String groupNum;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getProjectName() {
+                    return projectName;
+                }
+
+                public void setProjectName(String projectName) {
+                    this.projectName = projectName;
+                }
+
+                public String getDeveloper() {
+                    return developer;
+                }
+
+                public void setDeveloper(String developer) {
+                    this.developer = developer;
+                }
+
+                public String getHouseCompany() {
+                    return houseCompany;
+                }
+
+                public void setHouseCompany(String houseCompany) {
+                    this.houseCompany = houseCompany;
+                }
+
+                public String getCityCompany() {
+                    return cityCompany;
+                }
+
+                public void setCityCompany(String cityCompany) {
+                    this.cityCompany = cityCompany;
+                }
+
+                public String getProjectType() {
+                    return projectType;
+                }
+
+                public void setProjectType(String projectType) {
+                    this.projectType = projectType;
+                }
+
+                public String getAttache() {
+                    return attache;
+                }
+
+                public void setAttache(String attache) {
+                    this.attache = attache;
+                }
+
+                public String getCooperationState() {
+                    return cooperationState;
+                }
+
+                public void setCooperationState(String cooperationState) {
+                    this.cooperationState = cooperationState;
+                }
+
+                public String getOnlineState() {
+                    return onlineState;
+                }
+
+                public void setOnlineState(String onlineState) {
+                    this.onlineState = onlineState;
+                }
+
+                public String getBelongsArea() {
+                    return belongsArea;
+                }
+
+                public void setBelongsArea(String belongsArea) {
+                    this.belongsArea = belongsArea;
+                }
+
+                public String getAddress() {
+                    return address;
+                }
+
+                public void setAddress(String address) {
+                    this.address = address;
+                }
+
+                public String getLocation() {
+                    return location;
+                }
+
+                public void setLocation(String location) {
+                    this.location = location;
+                }
+
+                public String getTotalBuildings() {
+                    return totalBuildings;
+                }
+
+                public void setTotalBuildings(String totalBuildings) {
+                    this.totalBuildings = totalBuildings;
+                }
+
+                public String getHot() {
+                    return hot;
+                }
+
+                public void setHot(String hot) {
+                    this.hot = hot;
+                }
+
+                public String getSort() {
+                    return sort;
+                }
+
+                public void setSort(String sort) {
+                    this.sort = sort;
+                }
+
+                public String getRemark() {
+                    return remark;
+                }
+
+                public void setRemark(String remark) {
+                    this.remark = remark;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getRegion() {
+                    return region;
+                }
+
+                public void setRegion(String region) {
+                    this.region = region;
+                }
+
+                public String getForwardingAmount() {
+                    return forwardingAmount;
+                }
+
+                public void setForwardingAmount(String forwardingAmount) {
+                    this.forwardingAmount = forwardingAmount;
+                }
+
+                public String getReportAmount() {
+                    return reportAmount;
+                }
+
+                public void setReportAmount(String reportAmount) {
+                    this.reportAmount = reportAmount;
+                }
+
+                public String getNation() {
+                    return nation;
+                }
+
+                public void setNation(String nation) {
+                    this.nation = nation;
+                }
+
+                public String getHotSort() {
+                    return hotSort;
+                }
+
+                public void setHotSort(String hotSort) {
+                    this.hotSort = hotSort;
+                }
+
+                public String getProjectImg() {
+                    return projectImg;
+                }
+
+                public void setProjectImg(String projectImg) {
+                    this.projectImg = projectImg;
+                }
+
+                public String getProjectListImg() {
+                    return projectListImg;
+                }
+
+                public void setProjectListImg(String projectListImg) {
+                    this.projectListImg = projectListImg;
+                }
+
+                public String getBuildingImg() {
+                    return buildingImg;
+                }
+
+                public void setBuildingImg(String buildingImg) {
+                    this.buildingImg = buildingImg;
+                }
+
+                public String getBrowseNum() {
+                    return browseNum;
+                }
+
+                public void setBrowseNum(String browseNum) {
+                    this.browseNum = browseNum;
+                }
+
+                public String getAwardRules() {
+                    return awardRules;
+                }
+
+                public void setAwardRules(String awardRules) {
+                    this.awardRules = awardRules;
+                }
+
+                public String getCommissionRules() {
+                    return commissionRules;
+                }
+
+                public void setCommissionRules(String commissionRules) {
+                    this.commissionRules = commissionRules;
+                }
+
+                public String getSearchName() {
+                    return searchName;
+                }
+
+                public void setSearchName(String searchName) {
+                    this.searchName = searchName;
+                }
+
+                public String getCollectionNum() {
+                    return collectionNum;
+                }
+
+                public void setCollectionNum(String collectionNum) {
+                    this.collectionNum = collectionNum;
+                }
+
+                public String getProductTypeId() {
+                    return productTypeId;
+                }
+
+                public void setProductTypeId(String productTypeId) {
+                    this.productTypeId = productTypeId;
+                }
+
+                public String getProductTypeSize() {
+                    return productTypeSize;
+                }
+
+                public void setProductTypeSize(String productTypeSize) {
+                    this.productTypeSize = productTypeSize;
+                }
+
+                public String getAmountIncentiveId() {
+                    return amountIncentiveId;
+                }
+
+                public void setAmountIncentiveId(String amountIncentiveId) {
+                    this.amountIncentiveId = amountIncentiveId;
+                }
+
+                public String getCityName() {
+                    return cityName;
+                }
+
+                public void setCityName(String cityName) {
+                    this.cityName = cityName;
+                }
+
+                public String getHaveInformation() {
+                    return haveInformation;
+                }
+
+                public void setHaveInformation(String haveInformation) {
+                    this.haveInformation = haveInformation;
+                }
+
+                public String getProjectTypeName() {
+                    return projectTypeName;
+                }
+
+                public void setProjectTypeName(String projectTypeName) {
+                    this.projectTypeName = projectTypeName;
+                }
+
+                public String getIsgroup() {
+                    return isgroup;
+                }
+
+                public void setIsgroup(String isgroup) {
+                    this.isgroup = isgroup;
+                }
+
+                public String getGroupNum() {
+                    return groupNum;
+                }
+
+                public void setGroupNum(String groupNum) {
+                    this.groupNum = groupNum;
+                }
+            }
+        }
+
+        public static class TalkToolDataBean {
+            /**
+             * img : /fangfang/static/common/images/haibao.png
+             * num : 1
+             * typeName : 项目海报
+             * type : 1
+             */
+
+            private String img;
+            private String num;
+            private String typeName;
+            private String type;
+
+            public String getImg() {
+                return img;
+            }
+
+            public void setImg(String img) {
+                this.img = img;
+            }
+
+            public String getNum() {
+                return num;
+            }
+
+            public void setNum(String num) {
+                this.num = num;
+            }
+
+            public String getTypeName() {
+                return typeName;
+            }
+
+            public void setTypeName(String typeName) {
+                this.typeName = typeName;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+        }
+    }
+}

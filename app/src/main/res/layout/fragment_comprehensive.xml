@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".all.fragment.ComprehensiveFragment">
+
+    <RadioGroup
+        android:id="@+id/comprehensive_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/comprehensive_rb_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:button="@null"
+            android:checked="true"
+            android:text="默认排序"
+            android:textColor="@drawable/comprehensive"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="#EEEEEE"></LinearLayout>
+
+        <RadioButton
+            android:id="@+id/comprehensive_rb_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:button="@null"
+            android:text="价格降序"
+            android:textColor="@drawable/comprehensive"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="#EEEEEE"></LinearLayout>
+
+        <RadioButton
+            android:id="@+id/comprehensive_rb_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:button="@null"
+            android:text="价格升序"
+            android:textColor="@drawable/comprehensive"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="#EEEEEE"></LinearLayout>
+
+        <RadioButton
+            android:id="@+id/comprehensive_rb_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:button="@null"
+            android:text="成交排序"
+            android:textColor="@drawable/comprehensive"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="#EEEEEE"></LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp">
+
+            <Button
+                android:id="@+id/ensure"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="38dp"
+                android:layout_marginRight="38dp"
+                android:background="@drawable/points_dialog_but"
+                android:text="确定"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </RadioGroup>
+
+</LinearLayout>

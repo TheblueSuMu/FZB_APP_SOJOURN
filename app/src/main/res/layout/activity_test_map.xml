@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".all.view.TestMapActivity">
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true" />
+    <Button
+        android:id="@+id/map_sendmap_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:onClick="sendMessage"
+        android:layout_marginRight="10dp"
+        android:text="保存"/>
+
+    <RelativeLayout
+        android:id="@+id/text_map_rl"
+        android:layout_width="match_parent"
+        android:background="#4D000000"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/text_map_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:src="@mipmap/maps"
+            android:layout_centerHorizontal="true"></ImageView>
+
+    </RelativeLayout>
+
+</RelativeLayout >

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="1dp"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ImageView"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/fzb_down_s"
+            app:riv_corner_radius="5dp" />
+
+        <ImageView
+            android:id="@+id/item_OnlineState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@mipmap/onlinestate"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/group_booking_item"
+            android:layout_width="130dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="85dp"
+            android:background="@drawable/pingtuan"
+            android:gravity="center"
+            android:lines="1"
+            android:singleLine="true"
+            android:text="可拼团"
+            android:textColor="#fff"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/TextViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/ImageView"
+            android:text="[河东区]书香蓝郡-住宅"
+            android:textColor="#ff111111"
+            android:textSize="15sp" />
+
+        <co.lujun.androidtagview.TagContainerLayout
+            android:id="@+id/tagView"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_below="@id/TextViewName"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/ImageView"
+            android:text="标签"
+            android:textColor="#ff8296aa"
+            app:container_background_color="#fff"
+            app:container_border_color="#fff"
+            app:horizontal_interval="2dp"
+            app:tag_background_color="#ffeceff3"
+            app:tag_border_color="#fff"
+            app:tag_clickable="true"
+            app:tag_corner_radius="2dp"
+            app:tag_horizontal_padding="3dp"
+            app:tag_text_color="#ff8296aa"
+            app:tag_text_size="10sp"
+            app:tag_theme="pure_teal"
+            app:tag_vertical_padding="3dp" />
+
+        <LinearLayout
+            android:id="@+id/www"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tagView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/ImageView">
+
+            <TextView
+                android:id="@+id/chick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="报备"
+                android:textColor="#666666"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/attention"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="关注"
+                android:textColor="#666666"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="收藏"
+                android:textColor="#666666"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/transmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:singleLine="true"
+                android:text="转发"
+                android:textColor="#666666"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/www"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/ImageView">
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="价格"
+                android:textColor="#A52A2A"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/price_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="价格"
+                android:textColor="#A52A2A"
+                android:textSize="9sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="3dp"
+                android:background="#ffd2d2d2" />
+
+            <TextView
+                android:id="@+id/square"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="平方"
+                android:textColor="#ff666666"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:background="#ffeeeeee" />
+
+    <LinearLayout
+        android:id="@+id/modulebroke_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/commission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:drawableLeft="@mipmap/brokerage"
+                    android:drawablePadding="2dp"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="佣金：10000元/套"
+                    android:textColor="#ff666666"
+                    android:textSize="10sp" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="2dp"
+                android:background="#ffeeeeee" />
+
+            <TextView
+                android:id="@+id/second"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/time"
+                android:gravity="center_vertical"
+                android:paddingLeft="45dp"
+                android:text="秒结：10000元"
+                android:textColor="#ff666666"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#ffeeeeee" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

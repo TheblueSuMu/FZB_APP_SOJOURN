@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".all.view.BannerPhotoActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/my_brokerage">
+
+        <RelativeLayout
+            android:id="@+id/banner_photo_img"
+            android:layout_width="50dp"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="33dp"
+                android:src="@mipmap/return2" />
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="相册"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/banner_photo_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        app:tabIndicatorColor="#3B82D2"
+        app:tabSelectedTextColor="#3B82D2"
+        app:tabTextColor="#FFFFFF"></com.google.android.material.tabs.TabLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <com.youth.banner.Banner
+            android:id="@+id/mbanner"
+            android:layout_width="match_parent"
+            app:image_scale_type="fit_center"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"></com.youth.banner.Banner>
+
+        <TextView
+            android:id="@+id/photo_message"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</RelativeLayout>

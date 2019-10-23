@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/the_project_end_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="泰国华欣三百峰皇家旅游度假区"
+                android:textColor="#111111"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/the_project_end_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="小小（13800000000）"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/the_project_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:text="7-1-1002"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/the_project_end_bargain_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:text="成交时间：2019-03-11"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/the_project_end_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="团队长-下级人员姓名(身份)"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/the_project_end_img"
+                android:layout_width="48dp"
+                android:layout_height="41dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="2dp"
+                android:src="@mipmap/tdr" />
+
+            <TextView
+                android:id="@+id/the_project_end_tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:text="应收：￥10000"
+                android:textColor="#ff333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/the_project_end_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:text="已结：￥1000"
+                android:textColor="#ff43987c"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/the_project_end_tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:text="待结：￥9000"
+                android:textColor="#ff334485"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/the_project_end_tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:text="未结：￥9000"
+                android:textColor="#ffc3555b"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/the_project_end_tv5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:text="*需追款"
+                android:visibility="gone"
+                android:textColor="#ffc3555b"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/the_project_end_tv6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:text="已结清"
+                android:visibility="gone"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/the_project_end_tv7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:text="2019-03-11"
+                android:visibility="gone"
+                android:textColor="#999999"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#EEEEEE"></LinearLayout>
+</LinearLayout>

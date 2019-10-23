@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/item_market_img1"
+        android:layout_width="36dp"
+        android:layout_height="50dp"/>
+
+    <ImageView
+        android:id="@+id/item_market_img2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="28dp"/>
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="13dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="47dp"
+        android:src="@mipmap/qzl" />
+
+    <TextView
+        android:id="@+id/item_market_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:textColor="#ff000000"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="13dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="65dp"
+        android:src="@mipmap/qcj" />
+
+    <TextView
+        android:id="@+id/item_market_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:textColor="#ff000000"
+        android:textSize="15sp" />
+</LinearLayout>

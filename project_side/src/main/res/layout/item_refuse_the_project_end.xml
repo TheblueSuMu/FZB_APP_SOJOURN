@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp">
+
+        <ImageView
+            android:id="@+id/item_refuse_the_project_end_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="75dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_refuse_the_project_end_tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="小小(13800000000）"
+                android:textColor="#111111"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/item_refuse_the_project_end_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="报备项目名称"
+                android:textColor="#333333"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/item_refuse_the_project_end_tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="2019-03-15 15：30"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+		android:id="@+id/item_refuse_the_project_end_tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="拒绝"
+            android:textColor="#ffe50c0c"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#EEEEEE"></LinearLayout>
+
+</LinearLayout>

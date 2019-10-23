@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/item_sales_details_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:id="@+id/item_sales_details_img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/qtopimg" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/item_sales_details_tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="经纪人姓名(一级)"
+                    android:textColor="#ff111111"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/item_sales_details_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13800000000"
+                    android:layout_marginLeft="4dp"
+                    android:textColor="#ff666666"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_sales_details_tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="销售：刘喆"
+                android:textColor="#ff666666"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/item_sales_details_tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="最后上线时间2019-03-03 15：50"
+                android:textColor="#ff666666"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/nexts"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="1dp"
+        android:background="#EEEEEE"></LinearLayout>
+</LinearLayout>

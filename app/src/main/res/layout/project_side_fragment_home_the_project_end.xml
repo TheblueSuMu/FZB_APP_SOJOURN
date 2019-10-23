@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+            android:id="@+id/store_house_ptr_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            cube_ptr:ptr_duration_to_close="300"
+            cube_ptr:ptr_duration_to_close_header="800"
+            cube_ptr:ptr_keep_header_when_refresh="true"
+            cube_ptr:ptr_pull_to_fresh="false"
+            cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+            cube_ptr:ptr_resistance="1.7">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <!--TODO 头-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:background="@drawable/my_brokerage">
+
+                            <com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/img_home_the_project_end"
+                                android:layout_width="45dp"
+                                app:riv_oval="true"
+                                android:layout_centerVertical="true"
+                                android:layout_height="45dp"
+                                android:layout_marginLeft="16dp"
+                                android:scaleType="fitXY" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="71dp"
+                                android:layout_centerVertical="true"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:id="@+id/namelayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/name_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=""
+                                        android:textColor="#ffffffff"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/position_home_the_project_end"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="专案"
+                                        android:textColor="#ffffffff"
+                                        android:textSize="12sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/city_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text=""
+                                        android:textColor="#ffffffff"
+                                        android:textSize="12sp" />
+
+
+                                    <TextView
+                                        android:id="@+id/shop_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:text=""
+                                        android:textColor="#ffffffff"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+
+                        </RelativeLayout>
+                        <!--TODO 我的运营数据-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginRight="15dp">
+
+                            <TextView
+                                android:id="@+id/project_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="我的运营数据"
+                                android:textColor="#ff000000"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:layout_width="13dp"
+                                android:layout_height="13dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="5dp"
+                                android:layout_toRightOf="@id/project_tv"
+                                android:src="@mipmap/icon_6" />
+
+                            <RadioGroup
+                                android:id="@+id/rg_home_the_project_end"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/rb1_home_the_project_end"
+                                    android:layout_width="50dp"
+                                    android:layout_height="23dp"
+                                    android:background="@drawable/home_selector_all"
+                                    android:button="@null"
+                                    android:checked="true"
+                                    android:text="全部"
+                                    android:textAlignment="center"
+                                    android:textColor="@drawable/home_selector_text"
+                                    android:textSize="13sp" />
+
+                                <RadioButton
+                                    android:id="@+id/rb2_home_the_project_end"
+                                    android:layout_width="50dp"
+                                    android:layout_height="23dp"
+                                    android:background="@drawable/home_selector"
+                                    android:button="@null"
+                                    android:text="昨天"
+                                    android:textAlignment="center"
+                                    android:textColor="@drawable/home_selector_text"
+                                    android:textSize="13sp" />
+
+                                <RadioButton
+                                    android:id="@+id/rb3_home_the_project_end"
+                                    android:layout_width="50dp"
+                                    android:layout_height="23dp"
+                                    android:background="@drawable/home_selector"
+                                    android:button="@null"
+                                    android:text="近七日"
+                                    android:textAlignment="center"
+                                    android:textColor="@drawable/home_selector_text"
+                                    android:textSize="13sp" />
+
+                                <RadioButton
+                                    android:id="@+id/rb4_home_the_project_end"
+                                    android:layout_width="50dp"
+                                    android:layout_height="23dp"
+                                    android:background="@drawable/home_selector_custom"
+                                    android:button="@null"
+                                    android:text="自定义"
+                                    android:textAlignment="center"
+                                    android:textColor="@drawable/home_selector_text"
+                                    android:textSize="13sp" />
+                            </RadioGroup>
+
+                        </RelativeLayout>
+                        <!--TODO 日期-->
+                        <LinearLayout
+                            android:id="@+id/time1_ll1_home_the_project_end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+
+                            <TextView
+                                android:id="@+id/time1_home_the_project_end"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2019.03.23"
+                                android:textColor="#ff334485"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textColor="#ff334485"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:id="@+id/time2_home_the_project_end"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2019.04.03"
+                                android:textColor="#ff334485"
+                                android:textSize="13sp" />
+
+                        </LinearLayout>
+                        <!--TODO -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="#EEEEED"></LinearLayout>
+                        <!--TODO 我的项目-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/myproject"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv1_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#ffac1e26"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:text="我的项目"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="-3dp"
+                                android:background="#E5E5E5"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv2_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:text="报备"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="-3dp"
+                                android:background="#E5E5E5"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv3_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:text="到访"
+
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="-3dp"
+                                android:background="#E5E5E5"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv5_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:text="登岛"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--TODO 登岛-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv6_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:text="认筹"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="-3dp"
+                                android:background="#E5E5E5"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv7_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:text="成交"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="-3dp"
+                                android:background="#E5E5E5"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv8_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:text="失效"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="-3dp"
+                                android:background="#E5E5E5"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv9_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:text="应收(万)"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--TODO 应收-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv10_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:text="已结(万)"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="-3dp"
+                                android:background="#E5E5E5"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv11_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:text="待结(万)"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="-3dp"
+                                android:background="#E5E5E5"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/layout10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv12_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:text="未结(万)"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="-3dp"
+                                android:background="@mipmap/zx9"
+                                android:visibility="invisible"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:visibility="invisible">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="15dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:text="未结(万)"
+                                        android:textColor="#ff666666"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="#EEEEED"></LinearLayout>
+                        <!--TODO 待我审核-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/AuditList"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv13_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="18sp" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                        <ImageView
+                                            android:layout_width="12dp"
+                                            android:layout_height="13dp"
+                                            android:src="@mipmap/icon_7" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="5dp"
+                                            android:text="待我审核"
+                                            android:textColor="#ff666666"
+                                            android:textSize="13sp" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center"
+                                android:background="#EEEEEE"></LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/mypost"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv14_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#334485"
+                                        android:textSize="18sp" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                        <ImageView
+                                            android:layout_width="12dp"
+                                            android:layout_height="13dp"
+                                            android:src="@mipmap/icon_8" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="5dp"
+                                            android:text="我发起的审核"
+                                            android:textColor="#ff666666"
+                                            android:textSize="13sp" />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--TODO 尾-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="7dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="17dp"
+                            android:layout_marginRight="15dp"
+                            android:background="#F7F7F7"></LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="13dp"
+                            android:text="我的项目"
+                            android:textColor="#ff111111"
+                            android:textSize="18sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_home_the_project_end"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </androidx.recyclerview.widget.RecyclerView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </ScrollView>
+
+
+        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/home_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#e7e7e7"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/home_picker_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="取消"
+                android:textColor="#ff666666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="请选择时间"
+                android:textColor="#ff111111"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/home_picker_ensure"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="确定"
+                android:textColor="#334485"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <top.defaults.view.DateTimePickerView
+            android:id="@+id/home_pickerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e7e7e7"
+            app:preferredMaxOffsetItemCount="4" />
+    </LinearLayout>
+
+
+</RelativeLayout>

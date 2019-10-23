@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="155dp"
+    android:layout_height="160dp"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="15dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/z3" />
+
+    <RelativeLayout
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="2室2厅2卫"
+            android:textColor="#333333"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="面积约："
+                android:textColor="#999999"
+                android:textSize="9sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="120㎡"
+                android:textColor="#999999"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8700"
+                android:textColor="#AC1E26"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="元/㎡"
+                android:textColor="#AC1E26"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="28dp"
+            android:layout_height="14dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/apartment"
+            android:gravity="center"
+            android:text="公寓"
+            android:textColor="#FFFFFF"
+            android:textSize="9sp" />
+
+        <TextView
+            android:layout_width="28dp"
+            android:layout_height="14dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/commission_sale"
+            android:gravity="center"
+            android:text="待售"
+            android:textColor="#FFFFFF"
+            android:textSize="9sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="朝向："
+                android:textColor="#ff999999"
+                android:textSize="9sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="南，北"
+                android:textColor="#ff999999"
+                android:textSize="9sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/webview_linear"
+        android:layout_width="match_parent"
+        android:paddingTop="20dp"
+        android:layout_height="64dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/my_brokerage"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/webview_return"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/return2" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/webview_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="新闻详情"
+            android:textColor="#FFFEFE"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/webview_share"
+            android:layout_width="17dp"
+            android:layout_height="15dp"
+            android:src="@mipmap/share1"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/web_fl"
+        android:layout_below="@id/webview_linear"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:visibility="visible"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/web_layout_title"
+            android:textColor="#ff333333"
+            android:textSize="23sp"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="11dp"
+            android:id="@+id/web_time"
+            android:textColor="#ff999999"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <WebView
+                android:id="@+id/web_webview"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/web_content"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/web_rv"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

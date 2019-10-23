@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#EEEEEE">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="14dp"
+                android:text="选择时间"
+                android:textColor="#ff111111"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/item_screen_rg1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/item_screen_rb1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/screen_selector"
+                android:button="@null"
+                android:checked="true"
+                android:paddingLeft="17dp"
+                android:paddingTop="6dp"
+                android:paddingRight="17dp"
+                android:paddingBottom="6dp"
+                android:text="全部"
+                android:textAlignment="center"
+                android:textColor="@drawable/screen_check_text"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/item_screen_rb2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/screen_selector"
+                android:button="@null"
+                android:paddingLeft="17dp"
+                android:paddingTop="6dp"
+                android:paddingRight="17dp"
+                android:paddingBottom="6dp"
+                android:text="自定义"
+                android:textAlignment="center"
+                android:textColor="@drawable/screen_check_text"
+                android:textSize="14sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_screen_tiem1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019.03.23"
+                android:textColor="#ff31447f"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="#ff31447f"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/item_screen_tiem2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019.04.03"
+                android:textColor="#ff31447f"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:text="结款状态"
+            android:textColor="#ff111111"
+            android:textSize="15sp" />
+
+        <RadioGroup
+            android:id="@+id/item_screen_rg2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/item_screen_rb3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/screen_selector"
+                android:button="@null"
+                android:checked="true"
+                android:paddingLeft="17dp"
+                android:paddingTop="6dp"
+                android:paddingRight="17dp"
+                android:paddingBottom="6dp"
+                android:text="全部"
+                android:textAlignment="center"
+                android:textColor="@drawable/screen_check_text"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/item_screen_rb4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/screen_selector"
+                android:button="@null"
+                android:paddingLeft="17dp"
+                android:paddingTop="6dp"
+                android:paddingRight="17dp"
+                android:paddingBottom="6dp"
+                android:text="自定义"
+                android:textAlignment="center"
+                android:textColor="@drawable/screen_check_text"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/item_screen_rb5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/screen_selector"
+                android:button="@null"
+                android:paddingLeft="17dp"
+                android:paddingTop="6dp"
+                android:paddingRight="17dp"
+                android:paddingBottom="6dp"
+                android:text="退还"
+                android:textAlignment="center"
+                android:textColor="@drawable/screen_check_text"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/item_screen_rb6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/screen_selector"
+                android:button="@null"
+                android:paddingLeft="17dp"
+                android:paddingTop="6dp"
+                android:paddingRight="17dp"
+                android:paddingBottom="6dp"
+                android:text="结清"
+                android:textAlignment="center"
+                android:textColor="@drawable/screen_check_text"
+                android:textSize="14sp" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/item_screen_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_weight="1"
+            android:background="@drawable/if_the_island_back"
+            android:gravity="center"
+            android:text="我要报备"
+            android:textColor="#fff"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/item_screen_tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/more_reported"
+            android:gravity="center"
+            android:text="项目专线"
+            android:textColor="#fff"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</RelativeLayout>

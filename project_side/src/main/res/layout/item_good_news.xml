@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/economic_circle"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/news_img"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/z4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="22dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/news_title_img"
+                android:layout_width="30dp"
+                android:layout_gravity="center"
+                android:layout_height="15dp"
+                android:src="@mipmap/z20" />
+            <TextView
+                android:id="@+id/news_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:text="房房网2019年06月17日成交喜报"
+                android:textColor="#ff31447f"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/news_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="71dp"
+            android:lineSpacingExtra="12dp"
+            android:text="房房网2019年07月29日成交喜报\\n恭喜刘丽丽\\n喜获佣金2,000元！\\n成交客户:刘玉博\\n成功认购 【西港云上】公寓1套\\n成交房号：1栋1单元1室\\n成交面积： 250平米\\n成交时间：2019年07月11日\\n"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

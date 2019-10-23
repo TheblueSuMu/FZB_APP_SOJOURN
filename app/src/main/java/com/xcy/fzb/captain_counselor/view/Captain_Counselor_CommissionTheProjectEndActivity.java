@@ -1,0 +1,203 @@
+package com.xcy.fzb.captain_counselor.view;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.database.CommissionListBean;
+import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.KeyUtils;
+import com.xcy.fzb.all.view.AllActivity;
+import com.xcy.fzb.captain_counselor.adapter.TheProjectEndCommissionAdapter;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivity implements View.OnClickListener {
+
+
+    RelativeLayout commission_the_project_end_return;
+    EditText commission_the_project_end_et;
+
+    LinearLayout commission_the_project_end_l1;
+    LinearLayout commission_the_project_end_l2;
+    LinearLayout commission_the_project_end_l3;
+    LinearLayout commission_the_project_end_l4;
+    LinearLayout commission_the_project_end_l5;
+    LinearLayout commission_the_project_end_l6;
+
+    RelativeLayout commission_the_project_end_rl;
+    RecyclerView commission_the_project_end_rv;
+
+    private TheProjectEndCommissionAdapter adapter;
+
+    String search = "";
+    String status = "";
+    String projectType = "3";
+    String projectId = "";
+    String startTime = "";
+    String endTime = "";
+    private PopupWindow p;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.captain_counselor_activity_commission_the_project_end);
+
+        initView();
+        initDataBean();
+    }
+
+    private void initView() {
+        StatusBar.makeStatusBarTransparent(this);
+        commission_the_project_end_return = findViewById(R.id.commission_the_project_end_return);
+        commission_the_project_end_et = findViewById(R.id.commission_the_project_end_et);
+        commission_the_project_end_l1 = findViewById(R.id.commission_the_project_end_l1);
+        commission_the_project_end_l2 = findViewById(R.id.commission_the_project_end_l2);
+        commission_the_project_end_l3 = findViewById(R.id.commission_the_project_end_l3);
+        commission_the_project_end_l4 = findViewById(R.id.commission_the_project_end_l4);
+        commission_the_project_end_l5 = findViewById(R.id.commission_the_project_end_l5);
+        commission_the_project_end_l6 = findViewById(R.id.commission_the_project_end_l6);
+        commission_the_project_end_rl = findViewById(R.id.commission_the_project_end_rl);
+        commission_the_project_end_rv = findViewById(R.id.commission_the_project_end_rv);
+
+        initDataBean();
+
+
+        commission_the_project_end_return.setOnClickListener(this);
+        commission_the_project_end_l1.setOnClickListener(this);
+        commission_the_project_end_l3.setOnClickListener(this);
+        commission_the_project_end_l5.setOnClickListener(this);
+
+        commission_the_project_end_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                //如果actionId是搜索的id，则进行下一步的操作
+                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                    // 当按了搜索之后关闭软键盘
+                    KeyUtils.hideKeyboard(commission_the_project_end_et);
+                    search = commission_the_project_end_et.getText().toString();
+                    initDataBean();
+                }
+                return false;    
+            }
+        });
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+//            TODO 返回上一层
+            case R.id.commission_the_project_end_return:
+                finish();
+                break;
+//                TODO 城市房产
+            case R.id.commission_the_project_end_l5:
+                commission_the_project_end_l2.setVisibility(View.GONE);
+                commission_the_project_end_l4.setVisibility(View.GONE);
+                commission_the_project_end_l6.setVisibility(View.VISIBLE);
+                projectType = "1";
+                initDataBean();
+                break;
+//                TODO 旅居房产
+            case R.id.commission_the_project_end_l1:
+
+                commission_the_project_end_l2.setVisibility(View.VISIBLE);
+                commission_the_project_end_l4.setVisibility(View.GONE);
+                commission_the_project_end_l6.setVisibility(View.GONE);
+                projectType = "3";
+                initDataBean();
+
+                break;
+//                TODO 海外房产
+            case R.id.commission_the_project_end_l3:
+
+                commission_the_project_end_l2.setVisibility(View.GONE);
+                commission_the_project_end_l6.setVisibility(View.GONE);
+                commission_the_project_end_l4.setVisibility(View.VISIBLE);
+                projectType = "2";
+                initDataBean();
+                break;
+        }
+
+    }
+
+    //TODO 我的佣金下半部分数据填充
+    private void initDataBean() {
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<CommissionListBean> userMessage = fzbInterface.getCommissionList(FinalContents.getUserID(),projectType,search,status,"1000");
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CommissionListBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @SuppressLint("WrongConstant")
+                    @Override
+                    public void onNext(CommissionListBean commissionListBean) {
+                        if (commissionListBean.getCode().equals("1")) {
+                            if (commissionListBean.getData() != null) {
+                                CommissionListBean.DataBean commissionListBeanData = commissionListBean.getData();
+                                List<CommissionListBean.DataBean.RowsBean> rowsBeanList = commissionListBeanData.getRows();
+                                //在此处修改布局排列方向
+                                commission_the_project_end_rv.setVisibility(View.VISIBLE);
+                                MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(Captain_Counselor_CommissionTheProjectEndActivity.this);
+                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                commission_the_project_end_rv.setLayoutManager(layoutManager);
+                                TheProjectEndCommissionAdapter recyclerAdapter = new TheProjectEndCommissionAdapter(rowsBeanList);
+                                commission_the_project_end_rv.setAdapter(recyclerAdapter);
+                                recyclerAdapter.notifyDataSetChanged();
+                            }else {
+                                commission_the_project_end_rv.setVisibility(View.GONE);
+                            }
+                        }else {
+                            commission_the_project_end_rv.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("列表数据获取错误","错误"+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+}

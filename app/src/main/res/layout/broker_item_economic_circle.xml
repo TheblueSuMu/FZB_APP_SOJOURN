@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/economic_circle"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="345dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/all_img"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginLeft="17dp"
+            android:scaleType="center"
+            app:riv_corner_radius = "5dp"
+            app:riv_oval="true" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="70dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/all_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#ff334485"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/all_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text=""
+                android:textColor="#ff999999"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/item_economic_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/all_message"
+            android:layout_marginTop="17dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="14dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/circle_ll"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/all_img_rv"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:id="@+id/all_fuzhi"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/economic_circle_s"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="12dp"
+                android:src="@mipmap/fz" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:text="一键复制"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/all_pinglun"
+            android:layout_width="70dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="127dp"
+            android:background="@drawable/economic_circle_s"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="12dp"
+                android:src="@mipmap/icon_3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="7dp"
+                android:text="评论"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/all_zan"
+            android:layout_width="65dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toStartOf="@+id/all_pinglun"
+            android:layout_toLeftOf="@+id/all_pinglun"
+            android:background="@drawable/economic_circle_s"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/item_circle_like"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="12dp"
+                android:src="@mipmap/icon_2" />
+
+            <TextView
+                android:id="@+id/total_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="7dp"
+                android:text=""
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

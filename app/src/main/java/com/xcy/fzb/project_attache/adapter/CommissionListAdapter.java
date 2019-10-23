@@ -1,0 +1,176 @@
+package com.xcy.fzb.project_attache.adapter;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.xcy.fzb.R;
+import com.xcy.fzb.all.database.CommissionListBean;
+
+import java.util.List;
+
+public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAdapter.CommissionListViewHolder> {
+    private List<CommissionListBean.DataBean.RowsBean> rows;
+
+    public void setRows(List<CommissionListBean.DataBean.RowsBean> rows) {
+        this.rows = rows;
+    }
+
+    @NonNull
+    @Override
+    public CommissionListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.project_attache_item_commission_list, parent, false);
+        return new CommissionListViewHolder(inflate);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CommissionListViewHolder holder, int position) {
+
+        holder.item_commission_list_tv1.setText(rows.get(position).getCustomerName());
+        holder.item_commission_list_tv2.setText(rows.get(position).getProjectName());
+        holder.item_commission_list_tv3.setText(rows.get(position).getCompanyName());
+        holder.item_commission_list_tv4.setText(rows.get(position).getStoreName());
+        holder.item_commission_list_tv5.setText(rows.get(position).getAgentName());
+
+        if (rows.get(position).getStatus().equals("0")) {
+
+            if (rows.get(position).getMoneyStatus() == 0) {
+                if (rows.get(position).getTotalAmount().equals("")) {
+                    holder.item_commission_list_tv6.setText("总佣金：￥0");
+                }else {
+                    holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
+                }
+
+                if (rows.get(position).getSecondsAmount().equals("") || rows.get(position).getSecondsAmount().equals("0")) {
+                    holder.item_commission_list_tv7.setText("无秒结");
+                }else {
+                    holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
+                }
+
+                if (rows.get(position).getAlreadyAmount().equals("")) {
+                    holder.item_commission_list_tv8.setText("已结：￥0");
+                }else {
+                    holder.item_commission_list_tv8.setText("已结：￥" + rows.get(position).getAlreadyAmount() + "");
+                }
+
+                if (rows.get(position).getNotAmount().equals("")) {
+                    holder.item_commission_list_tv9.setText("未结：￥0");
+                }else {
+                    holder.item_commission_list_tv9.setText("未结：￥" + rows.get(position).getNotAmount() + "");
+                }
+
+                holder.item_commission_list_tv6.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv7.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv8.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
+
+
+
+            } else if (rows.get(position).getMoneyStatus() == 1) {
+
+                holder.item_commission_list_tv6.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv7.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv8.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
+
+                if (rows.get(position).getTotalAmount().equals("")) {
+                    holder.item_commission_list_tv6.setText("总佣金：￥0");
+                }else {
+                    holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
+                }
+
+                if (rows.get(position).getSecondsAmount().equals("")) {
+                    holder.item_commission_list_tv7.setText("秒结：￥0");
+                }else {
+                    holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
+                }
+
+                if (rows.get(position).getAlreadyAmount().equals("")) {
+                    holder.item_commission_list_tv8.setText("已结：￥0");
+                }else {
+                    holder.item_commission_list_tv8.setText("已结：￥" + rows.get(position).getAlreadyAmount() + "");
+                }
+
+                if (rows.get(position).getNotAmount().equals("")) {
+                    holder.item_commission_list_tv9.setText("未结：￥0");
+                }else {
+                    holder.item_commission_list_tv9.setText("未结：￥" + rows.get(position).getNotAmount() + "");
+                }
+
+                Glide.with(holder.itemView.getContext()).load(R.mipmap.tdg).into(holder.item_commission_list_img);
+            } else if (rows.get(position).getMoneyStatus() == 2) {
+
+                holder.item_commission_list_tv6.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
+
+                Glide.with(holder.itemView.getContext()).load(R.mipmap.tdr).into(holder.item_commission_list_img);
+                holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
+                holder.item_commission_list_tv9.setText("需退还：￥" + rows.get(position).getReturnedMoney() + "");
+            }
+        } else {
+
+            holder.item_commission_list_tv6.setVisibility(View.VISIBLE);
+            holder.item_commission_list_tv7.setVisibility(View.VISIBLE);
+            holder.item_commission_list_tv11.setVisibility(View.VISIBLE);
+
+            if (rows.get(position).getSecondsAmount().equals("")) {
+                holder.item_commission_list_tv7.setText("秒结：￥0");
+            }else {
+                holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
+            }
+
+            holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
+            holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
+            holder.item_commission_list_tv10.setVisibility(View.VISIBLE);
+            holder.item_commission_list_tv11.setText("结清时间：" + rows.get(position).getClosingTime() + "");
+        }
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return rows.size();
+    }
+
+    class CommissionListViewHolder extends RecyclerView.ViewHolder {
+
+        TextView item_commission_list_tv1;
+        TextView item_commission_list_tv2;
+        TextView item_commission_list_tv3;
+        TextView item_commission_list_tv4;
+        TextView item_commission_list_tv5;
+        TextView item_commission_list_tv6;
+        TextView item_commission_list_tv7;
+        TextView item_commission_list_tv8;
+        TextView item_commission_list_tv9;
+        TextView item_commission_list_tv10;
+        TextView item_commission_list_tv11;
+
+        ImageView item_commission_list_img;
+
+        public CommissionListViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            item_commission_list_tv1 = itemView.findViewById(R.id.item_commission_list_tv1);
+            item_commission_list_tv2 = itemView.findViewById(R.id.item_commission_list_tv2);
+            item_commission_list_tv3 = itemView.findViewById(R.id.item_commission_list_tv3);
+            item_commission_list_tv4 = itemView.findViewById(R.id.item_commission_list_tv4);
+            item_commission_list_tv5 = itemView.findViewById(R.id.item_commission_list_tv5);
+            item_commission_list_tv6 = itemView.findViewById(R.id.item_commission_list_tv6);
+            item_commission_list_tv7 = itemView.findViewById(R.id.item_commission_list_tv7);
+            item_commission_list_tv8 = itemView.findViewById(R.id.item_commission_list_tv8);
+            item_commission_list_tv9 = itemView.findViewById(R.id.item_commission_list_tv9);
+            item_commission_list_tv10 = itemView.findViewById(R.id.item_commission_list_tv10);
+            item_commission_list_tv11 = itemView.findViewById(R.id.item_commission_list_tv11);
+
+            item_commission_list_img = itemView.findViewById(R.id.item_commission_list_img);
+        }
+    }
+
+}

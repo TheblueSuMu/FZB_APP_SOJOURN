@@ -1,0 +1,1 @@
+include ':app', ':gallery', ':project_side', ':shoppingguide', ':shopping_guide', ':captain_team'

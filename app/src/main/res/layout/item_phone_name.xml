@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20sp"
+            android:src="@mipmap/me1" />
+
+        <TextView
+            android:id="@+id/item_phone_name_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="刘喆"
+            android:textColor="#666666"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/item_phone_name_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="138000000"
+            android:textColor="#666666"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+</LinearLayout>

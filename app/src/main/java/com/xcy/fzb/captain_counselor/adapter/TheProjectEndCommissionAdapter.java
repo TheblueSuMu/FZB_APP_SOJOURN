@@ -1,0 +1,99 @@
+package com.xcy.fzb.captain_counselor.adapter;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.xcy.fzb.R;
+import com.xcy.fzb.all.database.CommissionListBean;
+
+import java.util.List;
+
+public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProjectEndCommissionAdapter.TheProjectEndCommissionViewHolder> {
+
+    private List<CommissionListBean.DataBean.RowsBean> rowsBeanList;
+    private Context context;
+
+    public TheProjectEndCommissionAdapter(List<CommissionListBean.DataBean.RowsBean> rowsBeanList) {
+        this.rowsBeanList = rowsBeanList;
+    }
+
+    @NonNull
+    @Override
+    public TheProjectEndCommissionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.captain_counselor_item_commission_the_project_end, parent, false);
+        context = parent.getContext();
+        return new TheProjectEndCommissionViewHolder(inflate);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull TheProjectEndCommissionViewHolder holder, int position) {
+
+        holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "(" + rowsBeanList.get(position).getCustomerPhone() + ")");
+        holder.the_project_end_name.setText(rowsBeanList.get(position).getRoomNumber());
+        holder.the_project_end_time.setText(rowsBeanList.get(position).getProjectName());
+
+        if (rowsBeanList.get(position).getStatus().equals("1")) {
+            holder.the_project_end_img1.setVisibility(View.VISIBLE);
+            holder.the_project_end_tv1.setVisibility(View.VISIBLE);
+            holder.the_project_end_tv1.setText("总佣金：" + rowsBeanList.get(position).getTotalAmount());
+        } else if (rowsBeanList.get(position).getStatus().equals("2")) {
+            holder.the_project_end_img.setVisibility(View.VISIBLE);
+            holder.the_project_end_tv1.setVisibility(View.VISIBLE);
+            holder.the_project_end_tv1.setText("总佣金：" + rowsBeanList.get(position).getTotalAmount());
+        } else {
+            if (rowsBeanList.get(position).getReturnedMoney().equals("")) {
+                holder.the_project_end_tv1.setVisibility(View.VISIBLE);
+                holder.the_project_end_tv1.setText("总佣金：" + rowsBeanList.get(position).getTotalAmount());
+            } else {
+                holder.the_project_end_tv1.setVisibility(View.VISIBLE);
+                holder.the_project_end_tv6.setVisibility(View.GONE);
+                holder.the_project_end_tv7.setVisibility(View.GONE);
+                holder.the_project_end_tv1.setText("总佣金：" + rowsBeanList.get(position).getTotalAmount());
+                holder.the_project_end_tv6.setText("已结清");
+                holder.the_project_end_tv7.setText(rowsBeanList.get(position).getClosingTime());
+            }
+        }
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return rowsBeanList.size();
+    }
+
+    class TheProjectEndCommissionViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView the_project_end_img;
+        ImageView the_project_end_img1;
+
+        TextView the_project_end_title;
+        TextView the_project_end_name;
+        TextView the_project_end_time;
+        TextView the_project_end_tv1;
+        TextView the_project_end_tv6;
+        TextView the_project_end_tv7;
+
+        public TheProjectEndCommissionViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            the_project_end_img = itemView.findViewById(R.id.the_project_end_img);
+            the_project_end_img1 = itemView.findViewById(R.id.the_project_end_img1);
+            the_project_end_title = itemView.findViewById(R.id.the_project_end_title);
+            the_project_end_name = itemView.findViewById(R.id.the_project_end_name);
+            the_project_end_time = itemView.findViewById(R.id.the_project_end_time);
+            the_project_end_tv1 = itemView.findViewById(R.id.the_project_end_tv1);
+            the_project_end_tv6 = itemView.findViewById(R.id.the_project_end_tv6);
+            the_project_end_tv7 = itemView.findViewById(R.id.the_project_end_tv7);
+
+        }
+    }
+
+}

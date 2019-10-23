@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item_popwindoe_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="近七天的活动度"
+        android:textColor="#ff333333"
+        android:textSize="13sp" />
+    <TextView
+        android:id="@+id/item_popwindoe_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="近七天的新增量"
+        android:textColor="#ff333333"
+        android:textSize="13sp" />
+    <TextView
+        android:id="@+id/item_popwindoe_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="近七天的递减量"
+        android:textColor="#ff333333"
+        android:textSize="13sp" />
+</LinearLayout>

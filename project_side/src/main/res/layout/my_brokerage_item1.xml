@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="346dp"
+    android:layout_height="124dp"
+    tools:ignore="ResourceName">
+
+    <TextView
+        android:id="@+id/brokerage_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="小熊（13800000000）"
+        android:textColor="#111111"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/brokerage_item_roomNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="7-1-1002"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/brokerage_item_projectName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="59dp"
+        android:text="泰国华欣三百峰皇家旅游度假区"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/brokerage_item_ziji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="79dp"
+        android:text="自己"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/brokerage_item_tradeDat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="2019-03-26"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总佣金：￥"
+            android:textColor="#ff333333"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/brokerage_item_totalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10000"
+            android:textColor="#ff333333"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="59dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="秒结：￥"
+            android:textColor="#ff333333"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/brokerage_item_secondsAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9000"
+            android:textColor="#ff333333"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="78dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="已结：￥"
+            android:textColor="#ff43987c"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/brokerage_item_alreadyAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9000"
+            android:textColor="#ff43987c"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="98dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="未结：￥"
+            android:textColor="#ffc25157"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/brokerage_item_notAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9000"
+            android:textColor="#ffc25157"
+            android:textSize="12sp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_brokerage">
+
+        <ImageView
+            android:id="@+id/the_project_end_refuse_return"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="35dp"
+            android:src="@mipmap/return2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:text="拒绝记录"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="85dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/the_project_end_refuse_ll1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="退筹"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/the_project_end_refuse_ll2"
+                    android:layout_width="30dp"
+                    android:layout_height="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/the_project_end_underline"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/the_project_end_refuse_ll3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="调单"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/the_project_end_refuse_ll4"
+                    android:orientation="horizontal"
+                    android:layout_width="30dp"
+                    android:layout_height="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/the_project_end_underline"
+                    android:visibility="gone"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/the_project_end_refuse_ll5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="退单"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/the_project_end_refuse_ll6"
+                    android:orientation="horizontal"
+                    android:layout_width="30dp"
+                    android:layout_height="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/the_project_end_underline"
+                    android:visibility="gone"></LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/the_project_end_refuse_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

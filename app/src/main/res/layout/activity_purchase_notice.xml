@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+    <LinearLayout
+        android:id="@+id/few1"
+        android:layout_width="match_parent"
+        android:layout_height="131dp"
+        android:background="@drawable/my_brokerage"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp">
+
+            <LinearLayout
+                android:id="@+id/notice_img"
+                android:layout_width="50dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:src="@mipmap/return2" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="购房须知"
+                android:textColor="#FFFEFE"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="34dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/notice_t1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="置业流程"
+                android:textColor="#ffffffff"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/notice_t2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:text="城市介绍"
+                android:textColor="#ffffffff"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/notice_t3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:text="房企介绍"
+                android:textColor="#ffffffff"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/notice_l1"
+                android:layout_width="58dp"
+                android:layout_height="3dp"
+                android:background="#FFFFFF"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/notice_l2"
+                android:layout_width="58dp"
+                android:layout_height="3dp"
+                android:layout_marginLeft="35dp"
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:visibility="invisible"></LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/notice_l3"
+                android:layout_width="58dp"
+                android:layout_height="3dp"
+                android:layout_marginLeft="40dp"
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:visibility="invisible"></LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/notice_fl"
+        android:layout_below="@id/few1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginBottom="65dp">
+
+        <TextView
+            android:id="@+id/notice_title"
+            android:textColor="#ff333333"
+            android:textSize="23sp"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="11dp"
+            android:id="@+id/notice_time"
+            android:textColor="#ff999999"
+            android:textSize="12sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:id="@+id/notice_content"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/back_yy">
+
+        <Button
+            android:id="@+id/notice_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:background="@drawable/points_dialog_but"
+            android:text="转发"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/my_brokerage"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/map_return"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/return2" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="位置及周边"
+            android:textColor="#FFFEFE"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/map_navigation"
+            android:layout_width="17dp"
+            android:layout_height="19sp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="34dp"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/dh" />
+    </RelativeLayout>
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:clickable="true" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/map_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:background="#FFFFFF"
+        app:tabIndicatorColor="#FFFFFF"
+        app:tabSelectedTextColor="#334485"
+        app:tabTextColor="#333333"></com.google.android.material.tabs.TabLayout>
+</LinearLayout>

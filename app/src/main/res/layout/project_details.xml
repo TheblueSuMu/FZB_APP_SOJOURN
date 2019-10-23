@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFAFA"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="210dp">
+
+                <ImageView
+                    android:id="@+id/project_details_backimg"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@+id/project_details_number"
+                    android:layout_width="48dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/project_details_background"
+                    android:gravity="center"
+                    android:text="120张"
+                    android:textColor="#fff" />
+
+                <LinearLayout
+                    android:id="@+id/project_details_back"
+                    android:layout_width="50dp"
+                    android:layout_height="80dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="30dp"
+                        android:src="@mipmap/return2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="131dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/card_back">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:paddingLeft="5dp">
+
+                        <TextView
+                            android:id="@+id/project_details_attention"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:drawableLeft="@mipmap/eye"
+                            android:gravity="center"
+                            android:text="  项目关注度"
+                            android:textColor="#ff333333"
+                            android:textSize="12sp" />
+
+
+                        <TextView
+                            android:id="@+id/project_details_attention_num"
+                            android:layout_width="60dp"
+                            android:layout_height="15dp"
+                            android:layout_below="@+id/project_details_attention"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="项目关注度"
+                            android:textColor="#ff333333"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@id/project_details_attention"
+                        android:background="#ffd2d2d2" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:paddingLeft="5dp">
+
+                        <TextView
+                            android:id="@+id/project_details_transmit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:drawableLeft="@mipmap/plane"
+                            android:gravity="center"
+                            android:text="  转发量"
+                            android:textColor="#ff333333"
+                            android:textSize="12sp" />
+
+
+                        <TextView
+                            android:id="@+id/project_details_transmit_num"
+                            android:layout_width="60dp"
+                            android:layout_height="15dp"
+                            android:layout_below="@+id/project_details_transmit"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="项目关注度"
+                            android:textColor="#ff333333"
+                            android:textSize="12sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@id/project_details_transmit"
+                        android:background="#ffd2d2d2" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:paddingLeft="5dp">
+
+                        <TextView
+                            android:id="@+id/project_details_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:drawableLeft="@mipmap/apply"
+                            android:gravity="center"
+                            android:text="  报备量"
+                            android:textColor="#ff333333"
+                            android:textSize="12sp" />
+
+
+                        <TextView
+                            android:id="@+id/project_details_amount_num"
+                            android:layout_width="60dp"
+                            android:layout_height="15dp"
+                            android:layout_below="@+id/project_details_amount"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="项目关注度"
+                            android:textColor="#ff333333"
+                            android:textSize="12sp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/project_details_salestatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/project_salestatus_back"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:paddingBottom="1dp"
+                        android:text="销售"
+                        android:textColor="#ffac1e26"
+                        android:textSize="10sp" />
+
+                    <co.lujun.androidtagview.TagContainerLayout
+                        android:id="@+id/project_details_productfeature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="4dp"
+                        android:layout_toRightOf="@id/project_details_salestatus"
+                        android:textColor="#ff8296aa"
+                        app:container_background_color="#fff"
+                        app:container_border_color="#fff"
+                        app:horizontal_interval="2dp"
+                        app:tag_background_color="#ffeceff3"
+                        app:tag_border_color="#fff"
+                        app:tag_clickable="true"
+                        app:tag_corner_radius="1dp"
+                        app:tag_horizontal_padding="5dp"
+                        app:tag_text_color="#ff8296aa"
+                        app:tag_text_size="10sp"
+                        app:tag_theme="pure_teal"
+                        app:tag_vertical_padding="3dp" />
+
+                    <TextView
+                        android:id="@+id/project_details_group_booking"
+                        android:layout_width="54dp"
+                        android:layout_height="27dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/pingtuan_background"
+                        android:gravity="center"
+                        android:paddingLeft="15dp"
+                        android:text="拼团"
+                        android:textColor="#fff"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/project_details_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:paddingLeft="15dp"
+                    android:text="标题"
+                    android:textColor="#000"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/project_details_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:drawableRight="@mipmap/location"
+                    android:paddingRight="15dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:textScaleX="1.1"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="15dp"
+                    android:text="地址"
+                    android:textColor="#111"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/linear0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/guowai1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/project_details_toatl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="价格"
+                                android:textColor="#ffac1e26"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/project_details_tary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="单位 "
+                                android:textColor="#ffac1e26"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text=" 参考总价"
+                            android:textColor="#111"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/guowai2"
+                        android:layout_width="1dp"
+                        android:layout_height="39dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#ffe5e5e5" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/project_details_unit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="单价"
+                                android:textColor="#ffac1e26"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="元/m²"
+                                android:textColor="#ffac1e26"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="参考均价"
+                            android:textColor="#111"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="39dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#ffe5e5e5" />
+
+                    <LinearLayout
+                        android:id="@+id/guowai3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/project_details_areainterval"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="面积单位 "
+                            android:textColor="#ffac1e26"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="在售面积区间"
+                            android:textColor="#111"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/project_details_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#fffbfafa"
+                    android:gravity="center"
+                    android:text="更多信息"
+                    android:textColor="#ff334485"
+                    android:textSize="14sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/project_details_ding"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="74dp"
+                        android:drawableLeft="@mipmap/trend"
+                        android:text=" 变价通知"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/project_details_kai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="79dp"
+                        android:drawableLeft="@mipmap/inform"
+                        android:text=" 开盘通知"
+                        android:textSize="14sp" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#fff3f2f7" />
+
+                <LinearLayout
+                    android:id="@+id/linear1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:descendantFocusability="blocksDescendants"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:text="报备规则"
+                        android:textColor="#111"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/project_details_report_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="17dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#fff3f2f7" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="佣金规则"
+                        android:textColor="#111"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/project_details_commission"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="21dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11dp"
+                        android:text="结佣流程：开发商结款后24小时内发放佣金。"
+                        android:textColor="#666666"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#fff3f2f7" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/project_details_award_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="17dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="奖励规则"
+                        android:textColor="#111"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/project_details_award"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="2019-03-15到2019-03-29期间，成功带看4人奖励100元"
+                        android:textColor="#111"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#fff3f2f7" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linear3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="17dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="楼盘动态"
+                        android:textColor="#000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/project_details_house_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="21dp"
+                        android:lineSpacingExtra="5dp"
+                        android:lineSpacingMultiplier="1.2"
+                        android:lines="2"
+                        android:singleLine="true"
+                        android:text="三百峰项目频获关注，河南的到家吧就看得见你减多少南京南京可能就就不打就开始可能是看来你！"
+                        android:textColor="#111111"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/project_details_house_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:text="2019-03-15 12：33：30"
+                        android:textColor="#666666"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/project_details_transmit_house"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#fffbfafa"
+                        android:gravity="center"
+                        android:text="查看全部动态"
+                        android:textColor="#334485"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#fff3f2f7" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/project_details_talktool_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="拓客工具"
+                        android:textColor="#111"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/project_details_talktool"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="户型介绍"
+                        android:textColor="#000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/project_details_family"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#fff3f2f7" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linear5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="楼栋信息"
+                        android:textColor="#111"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/project_details_building"
+                        android:layout_width="345dp"
+                        android:layout_height="160dp"
+                        android:layout_marginTop="20dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#fff3f2f7" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="物业服务"
+                        android:textColor="#111"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/project_details_repast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:drawableLeft="@mipmap/business"
+                        android:text="餐饮中心"
+                        android:textColor="#111"
+                        android:textSize="16sp" />
+
+                    <co.lujun.androidtagview.TagContainerLayout
+                        android:id="@+id/project_details_repast_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="标题下的内容"
+                        android:textColor="#111"
+                        android:textSize="14sp"
+                        app:container_background_color="#fff"
+                        app:container_border_color="#fff"
+                        app:tag_background_color="#ffaab4d1"
+                        app:tag_border_color="#fff"
+                        app:tag_clickable="true"
+                        app:tag_corner_radius="5dp"
+                        app:tag_theme="pure_teal" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="16dp"
+                        android:background="#fff3f2f7" />
+
+                    <TextView
+                        android:id="@+id/project_details_recuperate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:drawableLeft="@mipmap/hospital"
+                        android:text="医疗中心"
+                        android:textColor="#111"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/project_details_recuperate_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="标题下的内容"
+                        android:textColor="#111"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="16dp"
+                        android:background="#fff3f2f7" />
+
+                    <TextView
+                        android:id="@+id/project_details_business"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:drawableLeft="@mipmap/tableware"
+                        android:text="商务中心"
+                        android:textColor="#111"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/project_details_business_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="标题下的内容"
+                        android:textColor="#111"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="16dp"
+                        android:background="#fff3f2f7" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linear7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="60dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="周边配套"
+                        android:textColor="#111"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-10dp"
+                        android:layout_marginTop="5dp">
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/project_details_tab"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:tabIndicatorColor="#fff"
+                            app:tabMode="scrollable"
+                            app:tabSelectedTextColor="#334485"
+                            app:tabTextColor="#333333">
+
+                        </com.google.android.material.tabs.TabLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/project_details_message"
+                        android:layout_width="match_parent"
+                        android:lineSpacingMultiplier="1.2"
+                        android:textScaleX="1.1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="周边信息"
+                        android:textColor="#111"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/project_details_all"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/project_details_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/collect_checked"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="收藏"
+                android:textColor="#ff6d6d6d"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/project_details_share"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/share_back"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="转发"
+                android:textColor="#ff6d6d6d"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/project_details_report"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@mipmap/island_back"
+                android:gravity="center"
+                android:text="我要报备"
+                android:textColor="#fff"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/project_details_call"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="1"
+                android:background="@mipmap/more_report"
+                android:gravity="center"
+                android:text="项目专线"
+                android:textColor="#fff"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/project_details_qt"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/project_details_collect_all"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/collect_checked"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="收藏"
+                android:textColor="#ff6d6d6d"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/project_details_share_all"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/share_back"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="转发"
+                android:textColor="#ff6d6d6d"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/project_details_qt_call"
+                android:layout_width="90dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/points_dialog_but"
+                android:gravity="center"
+                android:text="项目专线"
+                android:textColor="#fff"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

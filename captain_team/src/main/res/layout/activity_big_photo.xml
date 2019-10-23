@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/big_tv"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="35dp"
+        android:text="1/1"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF" />
+
+    <com.youth.banner.Banner
+        android:id="@+id/big_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.youth.banner.Banner>
+
+    <ImageView
+        android:id="@+id/big_photo_img"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

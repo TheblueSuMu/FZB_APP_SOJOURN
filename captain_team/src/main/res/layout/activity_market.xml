@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".application.MarketActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/my_brokerage">
+
+        <ImageView
+            android:id="@+id/market_img"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="17dp"
+            android:src="@mipmap/return2"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:text="我的团队"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!--TODO LinearLayout up-->
+
+
+                <RelativeLayout
+                    android:id="@+id/market_time_rl"
+                    android:layout_width="212dp"
+                    android:layout_height="112dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@mipmap/qcw">
+
+                    <TextView
+                        android:id="@+id/market_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:text="686"
+                        android:textColor="#ff333333"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="#EEEEED"></LinearLayout>
+                <!--TODO 数据统计-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="数据统计"
+                        android:textColor="#ff000000"
+                        android:textSize="15sp" />
+
+                    <RadioGroup
+                        android:id="@+id/market_time_rg1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb1"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector_all"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text="全部"
+                            android:textColor="@drawable/home_selector_text"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb2"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector"
+                            android:button="@null"
+                            android:text="昨天"
+                            android:textColor="@drawable/home_selector_text"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb3"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector"
+                            android:button="@null"
+                            android:textColor="@drawable/home_selector_text"
+                            android:text="近七日"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb4"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector_custom"
+                            android:button="@null"
+                            android:text="自定义"
+                            android:textColor="@drawable/home_selector_text"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+                    </RadioGroup>
+
+                </RelativeLayout>
+                <!--TODO 日期-->
+                <LinearLayout
+                    android:id="@+id/market_time_ll10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/market_time_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019.03.23"
+                        android:textColor="#ff334485"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textColor="#ff334485"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/market_time_tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019.04.03"
+                        android:textColor="#ff334485"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+                <!--TODO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#EEEEED"></LinearLayout>
+                <!--TODO 报备-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/market_time_ll1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/market_tv2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="12"
+                                android:textColor="#334485"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:text="报备"
+                                android:textColor="#ff666666"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="-3dp"
+                        android:background="#E5E5E5"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/market_time_ll2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/market_tv3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="7"
+                                android:textColor="#334485"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:text="到访"
+                                android:textColor="#ff666666"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="-3dp"
+                        android:background="#E5E5E5"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/market_time_ll3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/market_tv4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="10"
+                                android:textColor="#334485"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:text="登岛"
+
+                                android:textColor="#ff666666"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!--TODO 认筹-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/market_time_ll4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/market_tv5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="12"
+                                android:textColor="#334485"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:text="认筹"
+                                android:textColor="#ff666666"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="-3dp"
+                        android:background="#E5E5E5"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/market_time_ll5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/market_tv6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="5"
+                                android:textColor="#334485"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:text="成交"
+                                android:textColor="#ff666666"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="-3dp"
+                        android:background="#E5E5E5"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/market_time_ll6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/market_tv7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="12"
+                                android:textColor="#334485"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:text="失效"
+                                android:textColor="#ff666666"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="5dp"
+                    android:background="#EEEEED"></LinearLayout>
+                <!--TODO 财务数据-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="财务数据"
+                        android:textColor="#ff000000"
+                        android:textSize="15sp" />
+
+                    <RadioGroup
+                        android:id="@+id/market_time_rg2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb5"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector_all"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text="全部"
+                            android:textColor="@drawable/home_selector_text"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb6"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector"
+                            android:button="@null"
+                            android:text="昨天"
+                            android:textColor="@drawable/home_selector_text"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb7"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector"
+                            android:button="@null"
+                            android:textColor="@drawable/home_selector_text"
+                            android:text="近30日"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb8"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector_custom"
+                            android:button="@null"
+                            android:text="自定义"
+                            android:textColor="@drawable/home_selector_text"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+                    </RadioGroup>
+
+                </RelativeLayout>
+                <!--TODO 日期-->
+                <LinearLayout
+                    android:id="@+id/market_time_ll11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/market_time_tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019.03.23"
+                        android:textColor="#ff334485"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textColor="#ff334485"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/market_time_tv4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019.04.03"
+                        android:textColor="#ff334485"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+                <!--TODO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#EEEEED"></LinearLayout>
+                <!--TODO 总佣金-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/market_time_ll7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/market_tv8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="12"
+                                android:textColor="#334485"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:text="总佣金(万)"
+                                android:textColor="#ff666666"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="-3dp"
+                        android:background="#E5E5E5"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/market_time_ll8"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/market_tv9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="7"
+                                android:textColor="#334485"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:text="已结(万)"
+                                android:textColor="#ff666666"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="-3dp"
+                        android:background="#E5E5E5"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/market_time_ll9"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/market_tv10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="10"
+                                android:textColor="#334485"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:text="未结(万)"
+                                android:textColor="#ff666666"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="5dp"
+                    android:background="#EEEEED"></LinearLayout>
+                <!--TODO 顾问成交TOP5-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="顾问成交TOP5"
+                        android:textColor="#ff000000"
+                        android:textSize="15sp" />
+
+                    <RadioGroup
+                        android:id="@+id/market_time_rg3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb9"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector_all"
+                            android:button="@null"
+                            android:checked="true"
+                            android:text="全部"
+                            android:textColor="@drawable/home_selector_text"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb10"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector"
+                            android:button="@null"
+                            android:text="昨天"
+                            android:textColor="@drawable/home_selector_text"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb11"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector"
+                            android:button="@null"
+                            android:textColor="@drawable/home_selector_text"
+                            android:text="近七日"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/market_time_rb12"
+                            android:layout_width="50dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/home_selector_custom"
+                            android:button="@null"
+                            android:text="自定义"
+                            android:textColor="@drawable/home_selector_text"
+                            android:textAlignment="center"
+                            android:textSize="13sp" />
+                    </RadioGroup>
+
+                </RelativeLayout>
+                <!--TODO 日期-->
+                <LinearLayout
+                    android:id="@+id/market_time_ll12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/market_time_tv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019.03.23"
+                        android:textColor="#ff334485"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textColor="#ff334485"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/market_time_tv6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019.04.03"
+                        android:textColor="#ff334485"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#F6F5F4"
+                    android:layout_marginTop="15dp"></LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/market_time_rv"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+                <!--TODO LinearLayout down-->
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/market_picker"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e7e7e7"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/market_cancel"
+                    android:text="取消"
+                    android:textSize="18sp"
+                    android:textColor="#ff666666"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="请选择时间"
+                    android:gravity="center"
+                    android:textColor="#ff111111"
+                    android:textSize="18sp"
+                    />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/market_ensure"
+                    android:text="确定"
+                    android:textSize="18sp"
+                    android:textColor="#334485"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical|right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp" />
+
+
+            </LinearLayout>
+
+            <top.defaults.view.DateTimePickerView
+                android:id="@+id/market_pickerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:preferredMaxOffsetItemCount="4"
+                android:background="#e7e7e7"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

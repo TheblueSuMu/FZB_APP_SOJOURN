@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/my_brokerage">
+
+        <LinearLayout
+            android:id="@+id/building_img"
+            android:layout_width="50dp"
+           android:layout_height="match_parent">
+           <ImageView
+               android:layout_width="10dp"
+               android:layout_height="18dp"
+               android:layout_marginLeft="14dp"
+               android:layout_marginTop="33dp"
+               android:src="@mipmap/return2" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="楼栋信息"
+            android:textColor="#ffffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/building_pic"
+                android:layout_width="match_parent"
+                android:layout_height="162dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/z4" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/building_tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabSelectedTextColor="#334485"
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="5dp"
+                app:tabTextColor="#111111"
+                app:tabMode="scrollable">
+
+            </com.google.android.material.tabs.TabLayout>
+
+
+            <TextView
+                android:id="@+id/building_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="25dp"
+                android:text="泰国华欣三百峰皇家旅游度假区"
+                android:textColor="#ff111111"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="售卖状态："
+                        android:textColor="#999999"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/building_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="待售"
+                        android:textColor="#111111"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="210dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="梯户比："
+                        android:textColor="#999999"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/building_ladder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2梯2户"
+                        android:textColor="#111111"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="总层数   ："
+                        android:textColor="#999999"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/building_tier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32层"
+                        android:textColor="#111111"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="210dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="单元数："
+                        android:textColor="#999999"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/building_cell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:textColor="#111111"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开盘时间："
+                    android:textColor="#999999"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/building_open"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2019-06-03"
+                    android:textColor="#111111"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="入住时间："
+                    android:textColor="#999999"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/building_occupancy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2019-09-03"
+                    android:textColor="#111111"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="装修情况："
+                    android:textColor="#999999"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/building_case"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="精装"
+                    android:textColor="#111111"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="装修标准："
+                    android:textColor="#999999"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/building_standard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="150元/㎡"
+                    android:textColor="#111111"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="包含户型："
+                    android:textColor="#999999"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/building_house_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="21dp"
+                android:layout_marginBottom="15dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

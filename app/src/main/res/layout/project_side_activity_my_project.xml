@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/my_brokerage">
+
+        <RelativeLayout
+            android:id="@+id/my_project_img"
+            android:layout_width="50dp"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="33dp"
+                android:src="@mipmap/return2" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的项目"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:textColor="#ffffffff"
+            android:textSize="18sp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/my_project_l1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="海外房产"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/my_project_ll1"
+                    android:layout_width="59dp"
+                    android:layout_height="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/the_project_end_underline"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/my_project_l2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="旅居房产"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/my_project_ll2"
+                    android:layout_width="59dp"
+                    android:layout_height="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/the_project_end_underline"
+                    android:orientation="vertical"
+                    android:visibility="invisible"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/my_project_l3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="城市房产"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/my_project_ll3"
+                    android:layout_width="59dp"
+                    android:layout_height="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/the_project_end_underline"
+                    android:orientation="vertical"
+                    android:visibility="invisible"></LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="197dp"
+                android:text="未找到匹配项目"
+                android:textColor="#333333"
+                android:textSize="15sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            cube_ptr:ptr_duration_to_close="300"
+            cube_ptr:ptr_duration_to_close_header="800"
+            cube_ptr:ptr_keep_header_when_refresh="true"
+            cube_ptr:ptr_pull_to_fresh="false"
+            cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+            cube_ptr:ptr_resistance="1.7"
+            android:id="@+id/store_house_ptr_frame_10"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:background="#fff"
+                android:id="@+id/my_project_recyler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

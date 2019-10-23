@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mDlMain"
+    android:background="#EEEEED">
+
+
+
+   <LinearLayout
+       android:orientation="vertical"
+       android:background="#EEEEED"
+       android:visibility="visible"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/the_project_end_brokerage"
+           android:orientation="vertical"
+           android:paddingBottom="15dp">
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="27dp">
+
+               <ImageView
+                   android:id="@+id/commission_the_project_end_return"
+                   android:layout_width="10dp"
+                   android:layout_height="18dp"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="16dp"
+                   android:src="@mipmap/return2" />
+
+               <EditText
+                   android:id="@+id/commission_the_project_end_et"
+                   android:layout_width="match_parent"
+                   android:layout_height="30dp"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="58dp"
+                   android:layout_marginRight="58dp"
+                   android:background="@drawable/comment"
+                   android:inputType="text"
+                   android:singleLine="true"
+                   android:imeOptions="actionSearch"
+                   android:gravity="center"
+                   android:hint="搜索"
+                   android:textColor="#333333"
+                   android:textSize="12sp" />
+
+               <ImageView
+                   android:id="@+id/commission_the_project_end_screen"
+                   android:layout_width="17dp"
+                   android:layout_height="20dp"
+                   android:layout_alignParentRight="true"
+                   android:layout_centerVertical="true"
+                   android:layout_marginRight="15dp"
+                   android:src="@mipmap/sx" />
+           </RelativeLayout>
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:layout_marginTop="23dp"
+               android:orientation="horizontal">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical"
+                   android:text="应收(万元)"
+                   android:textColor="#ffffffff"
+                   android:textSize="11sp" />
+
+               <ImageView
+                   android:layout_width="9dp"
+                   android:layout_height="11dp"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="5dp"
+                   android:src="@mipmap/cb" />
+           </LinearLayout>
+
+           <TextView
+               android:id="@+id/commission_the_project_end_tv1"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:layout_marginTop="10dp"
+               android:shadowColor="#1a202020"
+               android:shadowDx="0"
+               android:shadowDy="1"
+               android:shadowRadius="3.0"
+               android:text="1,334.00"
+               android:textColor="#ffffffff"
+               android:textSize="24sp" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="15dp"
+               android:orientation="horizontal">
+
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:text="已结佣金(万元)"
+                       android:textColor="#FFFFFF"
+                       android:textSize="11sp" />
+
+                   <TextView
+                       android:id="@+id/commission_the_project_end_tv2"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center_horizontal"
+                       android:shadowColor="#4d202020"
+                       android:shadowDx="1"
+                       android:shadowDy="1"
+                       android:shadowRadius="3.0"
+                       android:text="1,666.00"
+                       android:textColor="#ffffffff"
+                       android:textSize="18sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="1dp"
+                   android:layout_height="25dp"
+                   android:layout_gravity="center_vertical"
+                   android:background="@drawable/the_project_end_vertical_bar"></LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:text="待结佣金(万元)"
+                       android:textColor="#FFFFFF"
+                       android:textSize="11sp" />
+
+                   <TextView
+                       android:id="@+id/commission_the_project_end_tv3"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center_horizontal"
+                       android:shadowColor="#4d202020"
+                       android:shadowDx="1"
+                       android:shadowDy="1"
+                       android:shadowRadius="3.0"
+                       android:text="1,666.00"
+                       android:textColor="#ffffffff"
+                       android:textSize="18sp" />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="1dp"
+                   android:layout_height="25dp"
+                   android:layout_gravity="center_vertical"
+                   android:background="@drawable/the_project_end_vertical_bar"></LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:text="未结佣金(万元)"
+                       android:textColor="#FFFFFF"
+                       android:textSize="11sp" />
+
+                   <TextView
+                       android:id="@+id/commission_the_project_end_tv4"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center_horizontal"
+                       android:shadowColor="#4d202020"
+                       android:shadowDx="1"
+                       android:shadowDy="1"
+                       android:shadowRadius="3.0"
+                       android:text="334.00"
+                       android:textColor="#ffffffff"
+                       android:textSize="18sp" />
+               </LinearLayout>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:layout_marginTop="15dp"
+               android:orientation="horizontal">
+
+               <LinearLayout
+                   android:id="@+id/commission_the_project_end_l1"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_horizontal"
+                       android:text="旅居房产"
+                       android:textColor="#FFFFFF"
+                       android:textSize="15sp" />
+
+                   <LinearLayout
+                       android:id="@+id/commission_the_project_end_l2"
+                       android:layout_width="58dp"
+                       android:layout_height="3dp"
+                       android:layout_gravity="center_horizontal"
+                       android:layout_marginTop="10dp"
+                       android:background="@drawable/the_project_end_underline"
+                       android:orientation="vertical"></LinearLayout>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:id="@+id/commission_the_project_end_l3"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="50dp"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_horizontal"
+                       android:text="海外房产"
+                       android:textColor="#FFFFFF"
+                       android:textSize="15sp" />
+
+                   <LinearLayout
+                       android:id="@+id/commission_the_project_end_l4"
+                       android:layout_width="58dp"
+                       android:layout_height="3dp"
+                       android:layout_gravity="center_horizontal"
+                       android:layout_marginTop="10dp"
+                       android:background="@drawable/the_project_end_underline"
+                       android:orientation="vertical"
+                       android:visibility="gone"></LinearLayout>
+               </LinearLayout>
+           </LinearLayout>
+
+       </LinearLayout>
+
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <RelativeLayout
+               android:id="@+id/commission_the_project_end_rl"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:visibility="gone">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginTop="197dp"
+                   android:text="未找到匹配项目"
+                   android:textColor="#333333"
+                   android:textSize="15sp" />
+           </RelativeLayout>
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/commission_the_project_end_rv"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+           </androidx.recyclerview.widget.RecyclerView>
+       </RelativeLayout>
+
+   </LinearLayout>
+
+    <!--右边抽屉菜单-->
+    <LinearLayout
+        android:id="@+id/rl_right"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="right"
+        android:background="#fff"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#EEEEEE"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择时间"
+                android:textSize="15sp"
+                android:textColor="#111111"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/drawer_time_all"
+                android:layout_weight="1"
+                android:text="全部"
+                android:textSize="14sp"
+                android:textColor="@drawable/drawer_text_check"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:background="@drawable/drawer_background_checked"
+                android:layout_marginLeft="15dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"/>
+
+            <RadioButton
+                android:id="@+id/drawer_time_custom"
+                android:layout_weight="1"
+                android:text="自定义"
+                android:textSize="14sp"
+                android:textColor="@drawable/drawer_text_check"
+                android:button="@null"
+                android:gravity="center"
+                android:background="@drawable/drawer_background_checked"
+                android:layout_marginLeft="15dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"/>
+
+            <RadioButton
+                android:layout_weight="1"
+                android:text="全部"
+                android:textSize="14sp"
+                android:visibility="invisible"
+                android:textColor="@drawable/drawer_text_check"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:background="@drawable/drawer_background_checked"
+                android:layout_marginLeft="15dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"/>
+
+            <RadioButton
+                android:layout_weight="1"
+                android:text="自定义"
+                android:textSize="14sp"
+                android:textColor="@drawable/drawer_text_check"
+                android:button="@null"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:background="@drawable/drawer_background_checked"
+                android:layout_marginLeft="15dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"/>
+
+        </RadioGroup>
+
+        <!--TODO 日期-->
+        <LinearLayout
+            android:id="@+id/drawer_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/drawer_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019.03.23"
+                android:textColor="#ff334485"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="#ff334485"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/drawer_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019.04.03"
+                android:textColor="#ff334485"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="结款状态"
+                android:textSize="15sp"
+                android:textColor="#111111"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/drawer_status_all"
+                android:layout_weight="1"
+                android:text="全部"
+                android:textSize="14sp"
+                android:textColor="@drawable/drawer_text_check"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:background="@drawable/drawer_background_checked"
+                android:layout_marginLeft="15dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"/>
+
+            <RadioButton
+                android:id="@+id/drawer_status_custom"
+                android:layout_weight="1"
+                android:text="未结"
+                android:textSize="14sp"
+                android:textColor="@drawable/drawer_text_check"
+                android:button="@null"
+                android:gravity="center"
+                android:background="@drawable/drawer_background_checked"
+                android:layout_marginLeft="15dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"/>
+
+            <RadioButton
+                android:id="@+id/drawer_status_back"
+                android:layout_weight="1"
+                android:text="退还"
+                android:textSize="14sp"
+                android:textColor="@drawable/drawer_text_check"
+                android:button="@null"
+                android:gravity="center"
+                android:background="@drawable/drawer_background_checked"
+                android:layout_marginLeft="15dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"/>
+
+            <RadioButton
+                android:id="@+id/drawer_status_settle"
+                android:layout_weight="1"
+                android:text="结清"
+                android:textSize="14sp"
+                android:textColor="@drawable/drawer_text_check"
+                android:button="@null"
+                android:gravity="center"
+                android:background="@drawable/drawer_background_checked"
+                android:layout_marginLeft="15dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"/>
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="6dp">
+
+                <TextView
+                    android:id="@+id/drawer_reset"
+                    android:layout_weight="1"
+                    android:text="重置"
+                    android:textSize="15sp"
+                    android:textColor="#fff"
+                    android:background="@mipmap/island_back"
+                    android:gravity="center"
+                    android:layout_width="90dp"
+                    android:layout_height="40dp" />
+
+                <TextView
+                    android:id="@+id/drawer_ensure"
+                    android:layout_weight="1"
+                    android:text="确定"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#fff"
+                    android:background="@mipmap/more_report"
+                    android:gravity="center"
+                    android:layout_width="90dp"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/drawer_picker"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#e7e7e7"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/drawer_picker_cancel"
+                        android:text="取消"
+                        android:textSize="18sp"
+                        android:textColor="#ff666666"
+                        android:layout_marginLeft="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="请选择时间"
+                        android:gravity="center"
+                        android:textColor="#ff111111"
+                        android:textSize="18sp"
+                        />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/drawer_picker_ensure"
+                        android:text="确定"
+                        android:textSize="18sp"
+                        android:textColor="#334485"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical|right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp" />
+
+
+                </LinearLayout>
+
+                <top.defaults.view.DateTimePickerView
+                    android:id="@+id/drawer_pickerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:preferredMaxOffsetItemCount="4"
+                    android:background="#e7e7e7"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

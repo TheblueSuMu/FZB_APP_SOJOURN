@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/my_brokerage">
+
+        <ImageView
+            android:id="@+id/return_about_fzb__the_project_end"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/return2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:text="关于房坐标"
+            android:textColor="#fffffefe"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/fx_about_fzb__the_project_end"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginRight="14dp"
+            android:src="@mipmap/share1" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="分享二维码给好友，扫描下载房坐标"
+        android:textColor="#ff111111"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="21dp"
+        android:src="@mipmap/fzb_down_s"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="当前版本号：V1.0.0"
+        android:textColor="#ff111111"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_marginTop="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#EEEEEE"></LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/jc_about_fzb__the_project_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="版本检测"
+            android:textColor="#ff111111"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="11dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_you" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="已是最新版本V1.0.0"
+            android:textColor="#ff999999"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#EEEEEE"></LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/mz_about_fzb__the_project_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="免责声明"
+            android:textColor="#ff111111"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="11dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_you" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#EEEEEE"></LinearLayout>
+
+</LinearLayout>
