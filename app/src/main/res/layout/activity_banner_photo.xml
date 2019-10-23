@@ -53,12 +53,10 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
-        <com.youth.banner.Banner
-            android:id="@+id/mbanner"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            app:image_scale_type="fit_center"
-            android:layout_height="300dp"
-            android:scaleType="fitXY"></com.youth.banner.Banner>
+            android:layout_height="300dp" />
 
         <TextView
             android:id="@+id/photo_message"

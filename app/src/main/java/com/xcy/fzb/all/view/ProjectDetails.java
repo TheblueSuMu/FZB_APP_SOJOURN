@@ -228,7 +228,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         backimg.setOnClickListener(this);
         more.setOnClickListener(this);
         transmit_house.setOnClickListener(this);
-        building.setOnClickListener(this);
+
+
+
 
         location.setOnClickListener(this);
         project_details_group_booking.setOnClickListener(this);
@@ -419,11 +421,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
             case R.id.project_details_transmit_house:
                 Intent transmitintent = new Intent(this, BuildingDynamicActivity.class);
                 startActivity(transmitintent);
-                break;
-            case R.id.project_details_building:
-                Intent buildingInformationintent = new Intent(this, BuildingInformationActivity.class);
-                buildingInformationintent.putExtra("pic", "http://39.98.173.250:8080" + projectDetailsBeanData.getProjectListVo().getProjectImg());
-                startActivity(buildingInformationintent);
                 break;
             case R.id.project_details_location:
                 Intent mapintent = new Intent(this, MapActivity.class);
@@ -749,11 +746,19 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         }
 
 
-                        if (projectDetailsBeanData.getBuildingImg().equals("")) {
+                        if (projectDetailsBeanData.getBuildingInfoStatus().equals("0")) {
                             linear5.setVisibility(View.GONE);
-                        } else {
+                        } else if (projectDetailsBeanData.getBuildingInfoStatus().equals("1")){
                             linear5.setVisibility(View.VISIBLE);
                             Glide.with(ProjectDetails.this).load("http://39.98.173.250:8080" + projectDetailsBeanData.getBuildingImg()).into(building);
+                            building.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent buildingInformationintent = new Intent(ProjectDetails.this, BuildingInformationActivity.class);
+                                    buildingInformationintent.putExtra("pic", "http://39.98.173.250:8080" + projectDetailsBeanData.getProjectListVo().getProjectImg());
+                                    startActivity(buildingInformationintent);
+                                }
+                            });
                         }
                     }
 

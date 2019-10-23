@@ -34,11 +34,11 @@ public class MoreTypeAdapter extends RecyclerView.Adapter<MoreTypeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.nameText.setText(list.get(1).getValue().get(0).getKey());
-        holder.area.setText(list.get(1).getValue().get(0).getValue().get(0).getValue());
-        holder.year.setText(list.get(1).getValue().get(0).getValue().get(2).getValue());
-        holder.price.setText(list.get(1).getValue().get(0).getValue().get(1).getValue());
-        holder.form.setText(list.get(1).getValue().get(0).getValue().get(3).getValue());
+        holder.nameText.setText(list.get(0).getValue().get(0).getKey());
+        holder.area.setText(list.get(0).getValue().get(0).getValue().get(0).getValue());
+        holder.year.setText(list.get(0).getValue().get(0).getValue().get(2).getValue());
+        holder.price.setText(list.get(0).getValue().get(0).getValue().get(1).getValue());
+        holder.form.setText(list.get(0).getValue().get(0).getValue().get(3).getValue());
         holder.more_img_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

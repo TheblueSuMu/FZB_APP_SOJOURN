@@ -1,28 +1,24 @@
 package com.xcy.fzb.all.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.fragment.PhotoFragment;
 import com.xcy.fzb.all.modle.PhotoBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.listener.OnBannerListener;
-import com.youth.banner.loader.ImageLoader;
+import com.xcy.fzb.shopping_guide.adapter.BaseFragmentAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,15 +34,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class BannerPhotoActivity extends AllActivity {
 
     List<String> list;
-    Banner banner;
+    ViewPager viewpager;
     TextView photo_message;
     TabLayout banner_photo_tab_layout;
     RelativeLayout banner_photo_img;
-    private List<PhotoBean.DataBean.DataListBean> dataList;
     private List<String> message;
     private List<String> name;
     private List<String> ifname;
-    int sum = 0;
+    private List<Fragment> mFragments;
+    private int index = -1;
+    private String[] mTitles = new String[]{};
+    private List<PhotoBean.DataBean> data;
+    private PhotoBean photoBean1;
+    private String url = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +57,11 @@ public class BannerPhotoActivity extends AllActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        index = getIntent().getIntExtra("index", 0);
 
-        banner = findViewById(R.id.mbanner);
+        Log.i("下标", "index：" + index);
+
+        viewpager = findViewById(R.id.viewpager);
         photo_message = findViewById(R.id.photo_message);
         banner_photo_tab_layout = findViewById(R.id.banner_photo_tab_layout);
         banner_photo_img = findViewById(R.id.banner_photo_img);
@@ -66,14 +69,12 @@ public class BannerPhotoActivity extends AllActivity {
         initData();
 
     }
-    private void initData() {
 
+    private void initData() {
         list = new ArrayList<>();
         message = new ArrayList<>();
         name = new ArrayList<>();
         ifname = new ArrayList<>();
-
-
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -91,25 +92,18 @@ public class BannerPhotoActivity extends AllActivity {
 
                     @Override
                     public void onNext(PhotoBean photoBean) {
-                        List<PhotoBean.DataBean> data1 = photoBean.getData();
-                        for (int i = 0; i < data1.size(); ++i) {
-                            dataList = data1.get(i).getDataList();
-                            for (int j = 0; j < dataList.size(); ++j) {
-                                ifname.add(data1.get(i).getTypeName());
-                                sum++;
-                                String imgPath = dataList.get(j).getImgPath();
-//                                Log.i("MyCL", "图片地址：" + imgPath);
-                                list.add("http://39.98.173.250:8080" + imgPath);
-                                message.add(dataList.get(j).getRemarks() + "");
-
+                        photoBean1 = photoBean;
+                        data = photoBean.getData();
+                        for (int i = 0; i < photoBean.getData().size(); ++i) {
+                            for (int j = 0; j < photoBean.getData().get(i).getDataList().size(); ++j) {
+                                ifname.add(photoBean.getData().get(i).getTypeName());
+                                message.add(photoBean.getData().get(i).getDataList().get(j).getRemarks() + "");
                             }
-                            String typeName = data1.get(i).getTypeName();
-                            name.add(typeName);
-//                            Log.i("MyCL", "项目名称" + typeName);
+                            name.add(photoBean.getData().get(i).getTypeName());
                         }
-//                        for (int l = 0; l < ifname.size(); ++l) {
-//                            Log.i("MyCL", "项目名称" + ifname.get(l));
-//                        }
+                        for (int k = 0;k < photoBean.getSlideImgList().size();k++){
+                            list.add("http://39.98.173.250:8080" + photoBean.getSlideImgList().get(k));
+                        }
                         initView();
                     }
 
@@ -126,9 +120,6 @@ public class BannerPhotoActivity extends AllActivity {
     }
 
     private void initView() {
-
-
-
         banner_photo_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,58 +131,69 @@ public class BannerPhotoActivity extends AllActivity {
             banner_photo_tab_layout.addTab(banner_photo_tab_layout.newTab().setText(name.get(j)));
         }
 
-        for (int i = 0; i < list.size(); ++i) {
-            banner.setImageLoader(new ImageLoader() {
-                @Override
-                public void displayImage(Context context, Object path, ImageView imageView) {
-                    Glide.with(context).load(path).into(imageView);
-                }
-            });
+        mFragments = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            mFragments.add(PhotoFragment.newInstance(list.get(i)));
         }
-        banner.setBannerStyle(BannerConfig.NOT_INDICATOR);
-        banner.isAutoPlay(false);
-        banner.setImages(list);
-        banner.setOnBannerListener(new OnBannerListener() {
-            @Override
-            public void OnBannerClick(int position) {
-                finish();
-            }
-        });
-        banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
+        photo_message.setText(index + 1 + "/" + mFragments.size() + "       " + message.get(index));
+        BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, mTitles);
+        viewpager.setAdapter(adapter);
+        viewpager.setCurrentItem(index);
+        viewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                int currentPosition = position;
+                photo_message.setText(currentPosition + 1 + "/" + mFragments.size() + "       " + message.get(position));
+
                 for (int i = 0; i < name.size(); ++i) {
                     if (name.get(i).equals(ifname.get(position))) {
                         banner_photo_tab_layout.getTabAt(i).select();
                     }
                 }
-                photo_message.setText((position + 1) + "/" + sum + "    " + message.get(position));
+            }
+        });
+
+        for (int i = 0; i < name.size(); ++i) {
+            if (name.get(i).equals(ifname.get(index))) {
+                banner_photo_tab_layout.getTabAt(i).select();
+            }
+        }
+
+
+        banner_photo_tab_layout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                for(int i = 0;i < data.size();i++){
+                    if (tab.getText().toString().equals(data.get(i).getTypeName())){
+                        boolean whever = true;
+                        String url = "http://39.98.173.250:8080"+data.get(i).getDataList().get(0).getImgPath();
+                        for (int k = 0;k < list.size(); k++){
+                            if (list.get(k).equals(url)) {
+                                if (whever) {
+                                    viewpager.setCurrentItem(k);
+                                    photo_message.setText(k + 1 + "/" + mFragments.size() + "       " + message.get(k));
+                                    whever = false;
+                                }
+                            }
+                        }
+
+                    }
+                }
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
-        banner.start();
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        banner.startAutoPlay();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        banner.stopAutoPlay();
     }
 
 

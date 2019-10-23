@@ -41,10 +41,6 @@ MobSDK {
                 withShareTicket true
                 miniprogramType 2
             }
-            QQ {
-                appId "869592978"
-                appKey "aed9b0303e3ed1e27bae87c33761161d"
-            }
             WechatMoments {
                 appId "wx9d85bc7226e4f900"
                 appSecret "94e5ef971d7e3ba906fcfbd935fefa68"
@@ -134,6 +130,9 @@ dependencies {
 
     //TODO 刷新
     implementation 'in.srain.cube:ultra-ptr:1.0.11'
+
+    //TODO 图片缩放
+    implementation 'com.github.chrisbanes.photoview:library:+'
 
     implementation 'me.jessyan:autosize:1.1.2'
     implementation project(path: ':gallery')

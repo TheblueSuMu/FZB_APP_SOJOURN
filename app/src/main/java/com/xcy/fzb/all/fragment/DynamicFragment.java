@@ -276,6 +276,7 @@ public class DynamicFragment extends Fragment {
                             @Override
                             public void tp(int position) {
                                 Intent intent = new Intent(getContext(), BigPhotoActivity.class);
+                                intent.putExtra("index",position);
                                 intent.putExtra("bigPhotoimg", list.get(position).getImg());
                                 startActivity(intent);
                             }
