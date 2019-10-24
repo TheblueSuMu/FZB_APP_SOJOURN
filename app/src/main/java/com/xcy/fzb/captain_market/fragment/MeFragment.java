@@ -170,7 +170,7 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
                         StringBuffer stringBuffer = new StringBuffer();
                         stringBuffer.append(s);
 
-                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getPhoto()).placeholder(R.mipmap.logo_square).into(me_photo);
+                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getPhoto()).into(me_photo);
 
                         me_name.setText(data.getSysUser().getName());
                         if (data.getSysUser().getIdentity().equals("61")) {

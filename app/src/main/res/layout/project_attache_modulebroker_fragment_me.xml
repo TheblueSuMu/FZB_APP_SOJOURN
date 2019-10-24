@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E9EBEB"
     tools:ignore="MissingDefaultResource,ResourceName">
 
@@ -35,10 +36,12 @@
                     android:scaleType="fitXY"
                     android:src="@mipmap/white_next" />
 
-                <ImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/me_photo"
                     android:layout_width="50dp"
+                    app:riv_oval="true"
                     android:layout_height="50dp"
+                    android:src="@mipmap/logo_garden"
                     android:scaleType="fitXY"/>
 
                 <LinearLayout

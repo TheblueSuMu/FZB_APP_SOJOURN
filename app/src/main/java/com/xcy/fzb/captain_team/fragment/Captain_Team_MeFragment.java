@@ -159,7 +159,7 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
                     public void onNext(ZhangBingDataBean userMessageBean) {
                         ZhangBingDataBean.DataBean data = userMessageBean.getData();
 
-                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getPhoto()).placeholder(R.mipmap.logo_square).into(me_photo);
+                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getPhoto()).into(me_photo);
 
                         me_name.setText(data.getSysUser().getName());
 

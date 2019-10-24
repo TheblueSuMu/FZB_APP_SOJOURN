@@ -32,6 +32,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dp"
             android:layout_marginBottom="40dp"
+            android:src="@mipmap/logo_garden"
             app:riv_oval="true"
             android:scaleType="fitXY" />
 

@@ -129,7 +129,7 @@ public class EFragment extends Fragment implements View.OnClickListener {
                         StringBuffer stringBuffer = new StringBuffer();
                         stringBuffer.append(s);
 
-                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getPhoto()).placeholder(R.mipmap.logo_square).into(me_photo);
+                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getPhoto()).into(me_photo);
 
                         me_name.setText(data.getName());
                         if (userMessageBean.getData().getIdentity().equals("5")) {
