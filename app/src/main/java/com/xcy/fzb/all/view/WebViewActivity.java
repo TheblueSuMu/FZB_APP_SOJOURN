@@ -76,7 +76,9 @@ public class WebViewActivity extends AllActivity {
         title.setText(stringExtra);
         if (time == null) {
             web_share.setVisibility(View.VISIBLE);
-            web_f1.setVisibility(View.GONE);
+            web_content.setVisibility(View.GONE);
+            layout_title.setText(stringExtra);
+            web_time.setText(time);
             webView.loadDataWithBaseURL(null, webviewUrl, "text/html", "utf-8", null);
             web_bottom.setVisibility(View.VISIBLE);
             Log.i("轮播图详情数据","新闻："+FinalContents.getNewID());
