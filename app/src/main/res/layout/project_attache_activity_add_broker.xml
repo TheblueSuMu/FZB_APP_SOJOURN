@@ -229,6 +229,8 @@
                         android:background="#FFFFFF"
                         android:hint="输入手机号"
                         android:textColor="#ff666666"
+                        android:digits="0123456789"
+                        android:maxLength="11"
                         android:textSize="15sp" />
                 </RelativeLayout>
 

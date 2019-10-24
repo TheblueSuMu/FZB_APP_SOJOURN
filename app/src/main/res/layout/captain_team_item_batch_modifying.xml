@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -10,7 +11,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
+            app:riv_oval="true"
             android:id="@+id/item_batch_modifying_img"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -35,9 +37,9 @@
                 android:id="@+id/item_batch_modifying_tv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text=""
                 android:textColor="#ff666666"
-                android:layout_marginTop="5dp"
                 android:textSize="12sp" />
 
             <TextView
@@ -54,11 +56,11 @@
             android:id="@+id/item_batch_modifying_rb"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:button="@null"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:background="@drawable/selector_batch_modifying"/>
+            android:background="@drawable/selector_batch_modifying"
+            android:button="@null" />
 
     </RelativeLayout>
 

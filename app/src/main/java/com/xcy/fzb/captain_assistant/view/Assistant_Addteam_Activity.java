@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
@@ -23,7 +25,6 @@ import com.xcy.fzb.all.modle.SysUser3Bean;
 import com.xcy.fzb.all.persente.SlideSwitch;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
-import com.xcy.fzb.all.view.AllActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Assistant_Addteam_Activity extends AllActivity implements View.OnClickListener, SlideSwitch.SlideListener {
+public class Assistant_Addteam_Activity extends AppCompatActivity implements View.OnClickListener, SlideSwitch.SlideListener {
 
     RelativeLayout add_aconsultant_img;
 
@@ -149,7 +150,7 @@ public class Assistant_Addteam_Activity extends AllActivity implements View.OnCl
 
     }
 
-    private void initRatioByOwnerId(){
+    private void initRatioByOwnerId() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -178,7 +179,7 @@ public class Assistant_Addteam_Activity extends AllActivity implements View.OnCl
                             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                 //               返回的分别是三个级别的选中位置
                                 //              展示选中数据
-                                add_aconsultant_tv3.setText(ratioByOwnerIdBean.getData().get(options1).getName()+"");
+                                add_aconsultant_tv3.setText(ratioByOwnerIdBean.getData().get(options1).getName() + "");
                                 FinalContents.setRatioId(ratioByOwnerIdBean.getData().get(options1).getId());
                             }
                         })
@@ -193,7 +194,7 @@ public class Assistant_Addteam_Activity extends AllActivity implements View.OnCl
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -203,25 +204,25 @@ public class Assistant_Addteam_Activity extends AllActivity implements View.OnCl
                 });
     }
 
-    private void initData(){
+    private void initData() {
         name = add_aconsultant_et1.getText().toString();
         industry = add_aconsultant_et2.getText().toString();
         phone = add_aconsultant_et3.getText().toString();
         loginName = add_aconsultant_et4.getText().toString();
         password = add_aconsultant_et5.getText().toString();
 
-        if(add_team_rb1.isChecked()){
+        if (add_team_rb1.isChecked()) {
             manageFlag = "1";
-        }else if(add_team_rb2.isChecked()){
+        } else if (add_team_rb2.isChecked()) {
             manageFlag = "0";
         }
 
-        if (txt.getVisibility() == View.VISIBLE){
+        if (txt.getVisibility() == View.VISIBLE) {
             loginFlag = "1";
-        }else {
+        } else {
             loginFlag = "0";
         }
-        Log.i("修改团队长","ID++:"+FinalContents.getRatioId());
+        Log.i("修改团队长", "ID++:" + FinalContents.getRatioId());
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -230,56 +231,64 @@ public class Assistant_Addteam_Activity extends AllActivity implements View.OnCl
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
 
-        Log.i("添加团队长",id);
-        Log.i("添加团队长",industry);
-        Log.i("添加团队长",name);
-        Log.i("添加团队长",phone);
-        Log.i("添加团队长",loginName);
-        Log.i("添加团队长",password);
-        Log.i("添加团队长",loginFlag);
-        Log.i("添加团队长",manageFlag);
-        Log.i("添加团队长",FinalContents.getUserID());
-        Log.i("添加团队长",FinalContents.getRatioId());
-        Log.i("添加团队长",FinalContents.getUserID());
-        Log.i("添加团队长",type);
+        Log.i("添加团队长", id);
+        Log.i("添加团队长", industry);
+        Log.i("添加团队长", name);
+        Log.i("添加团队长", phone);
+        Log.i("添加团队长", loginName);
+        Log.i("添加团队长", password);
+        Log.i("添加团队长", loginFlag);
+        Log.i("添加团队长", manageFlag);
+        Log.i("添加团队长", FinalContents.getUserID());
+        Log.i("添加团队长", FinalContents.getRatioId());
+        Log.i("添加团队长", FinalContents.getUserID());
+        Log.i("添加团队长", type);
 
-        Observable<BrokerSaveBean> userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag,FinalContents.getUserID(),"",FinalContents.getUserID(), type,FinalContents.getRatioId());
-        userMessage.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<BrokerSaveBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+        if (add_aconsultant_et1.getText().equals("") || add_aconsultant_et2.getText().equals("") || add_aconsultant_et3.getText().equals("") || add_aconsultant_et4.getText().equals("") || add_aconsultant_tv3.getText().equals("")) {
+            Toast.makeText(Assistant_Addteam_Activity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
+        } else {
+            Observable<BrokerSaveBean> userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), "", FinalContents.getUserID(), type, FinalContents.getRatioId());
+            userMessage.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<BrokerSaveBean>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
 
-                    }
+                        }
 
-                    @SuppressLint("WrongConstant")
-                    @Override
-                    public void onNext(BrokerSaveBean brokerSaveBean) {
-                        Toast.makeText(Assistant_Addteam_Activity.this, brokerSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
+                        @SuppressLint("WrongConstant")
+                        @Override
+                        public void onNext(BrokerSaveBean brokerSaveBean) {
+                            Toast.makeText(Assistant_Addteam_Activity.this, brokerSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            if(brokerSaveBean.getData().getMessage().equals("保存成功")){
+                                finish();
+                            }else {
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("添加销售获取错误","错误"+e);
-                    }
+                            }
+                        }
 
-                    @Override
-                    public void onComplete() {
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.i("添加销售获取错误", "错误" + e);
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
     }
 
-    private void initSysUser(){
-        Log.i("团队长","ID2："+FinalContents.getAgentId());
+    private void initSysUser() {
+        Log.i("团队长", "ID2：" + FinalContents.getAgentId());
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<SysUser3Bean> userMessage = fzbInterface.getSysUser3(FinalContents.getUserID(),FinalContents.getAgentId());
+        Observable<SysUser3Bean> userMessage = fzbInterface.getSysUser3(FinalContents.getUserID(), FinalContents.getAgentId());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<SysUser3Bean>() {
@@ -303,19 +312,19 @@ public class Assistant_Addteam_Activity extends AllActivity implements View.OnCl
                         } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
                             slide.setState(false);
                         }
-                        if(sysUser2Bean.getData().getSysUser().getManageFlag().equals("1")){
+                        if (sysUser2Bean.getData().getSysUser().getManageFlag().equals("1")) {
                             add_team_rb1.setChecked(true);
-                        }else {
+                        } else {
                             add_team_rb2.setChecked(true);
                         }
                         FinalContents.setRatioId(sysUser2Bean.getData().getSysUser().getLevel().getId());
                         id = sysUser2Bean.getData().getSysUser().getId();
-                        Log.i("修改团队长","ID:"+FinalContents.getRatioId());
+                        Log.i("修改团队长", "ID:" + FinalContents.getRatioId());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -337,7 +346,6 @@ public class Assistant_Addteam_Activity extends AllActivity implements View.OnCl
         txt.setVisibility(View.GONE);
         txt1.setVisibility(View.VISIBLE);
     }
-
 
 
 }

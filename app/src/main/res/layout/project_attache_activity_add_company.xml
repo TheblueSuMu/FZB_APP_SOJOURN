@@ -408,6 +408,8 @@
                         android:background="#FFFFFF"
                         android:gravity="right"
                         android:hint="请输入手机号"
+                        android:digits="0123456789"
+                        android:maxLength="11"
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
 

@@ -80,7 +80,6 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
                             holder.member_name_tv1.setText("销售：" + list.get(i).getSaleNum() + "人  顾问：" + list.get(i).getCounselorNum() + "人");
                         }
                     }
-
                 } else if (list.get(i).getType().equals("2")) {
                     holder.tvName.setText(contact.getName() + "(" + list.get(i).getRatioName() + ")");
                     if (list.get(i).getCounselorNum().equals("")) {

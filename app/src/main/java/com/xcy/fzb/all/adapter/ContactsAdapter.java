@@ -59,7 +59,16 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         } else {
             holder.tvIndex.setVisibility(View.GONE);
         }
-        holder.tvName.setText(contact.getName());
+
+        StringBuffer stringBuffer = new StringBuffer();
+        StringBuffer append = stringBuffer.append(contact.getName());
+        for (int i = 0; i < append.length(); ++i) {
+            if (append.substring(i, i + 1).equals("@")) {
+                holder.tvName.setText(append.substring(0, i));
+//                Log.i("客户","name：" + append.substring(0, i));
+//                Log.i("客户","id：" + append.substring(i + 1));
+            }
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

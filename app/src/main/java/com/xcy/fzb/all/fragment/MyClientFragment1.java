@@ -57,6 +57,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     private List<ClientBean.DataBean> data;
     private Context context;
     int i = 0;
+
     public MyClientFragment1() {
         // Required empty public constructor
     }
@@ -88,7 +89,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     }
 
     private void initData() {
-        Log.i("MyCL","进入initData");
+        Log.i("MyCL", "进入initData");
         data.clear();
         mContactModels.clear();
 
@@ -98,7 +99,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ClientBean> client = fzbInterface.getClient("", FinalContents.getUserID(),"1000");
+        Observable<ClientBean> client = fzbInterface.getClient("", FinalContents.getUserID(), "1000");
         client.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ClientBean>() {
@@ -110,9 +111,9 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                     @Override
                     public void onNext(ClientBean clientBean) {
                         data = clientBean.getData();
-                        Log.i("MyCL","数据长度：" + data.size());
+                        Log.i("MyCL", "数据长度：" + data.size());
                         for (int i = 0; i < data.size(); ++i) {
-                            ContactModel contactModel = new ContactModel(data.get(i).getName());
+                            ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
                             mContactModels.add(contactModel);
                         }
                         initDatas();
@@ -182,7 +183,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
         Log.i("MyCL", "2");
-        Observable<ClientBean> client = fzbInterface.getClient(name, FinalContents.getUserID() + "","1000");
+        Observable<ClientBean> client = fzbInterface.getClient(name, FinalContents.getUserID() + "", "1000");
         client.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ClientBean>() {
@@ -197,7 +198,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                         mContactModels.clear();
                         data = clientBean.getData();
                         for (int i = 0; i < data.size(); ++i) {
-                            ContactModel contactModel = new ContactModel(data.get(i).getName());
+                            ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
                             mContactModels.add(contactModel);
                         }
                         initDatas();
@@ -220,21 +221,31 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     @Override
     public void itemClick(String itemName) {
 
-        for (int i = 0; i < data.size(); ++i) {
-            if (data.get(i).getName().equals(itemName)) {
-                if (FinalContents.getNUM().equals("1")) {
-                    FinalContents.setClientName(data.get(i).getName());
-                    FinalContents.setCustomerID(data.get(i).getId());
+        StringBuffer stringBuffer = new StringBuffer();
+        StringBuffer append = stringBuffer.append(itemName);
+        if (FinalContents.getNUM().equals("1")) {
+            for (int j = 0; j < append.length(); ++j) {
+                if (append.substring(j, j + 1).equals("@")) {
+                    FinalContents.setClientName(append.substring(0, j));
+                    FinalContents.setCustomerID(append.substring(j + 1));
                     getActivity().finish();
                     FinalContents.setNUM("0");
                     Intent intent = new Intent(context, ReportActivity.class);
                     startActivity(intent);
-                } else {
-                    FinalContents.setCustomerID(data.get(i).getId());
-                    Intent intent = new Intent(getContext(), ClientParticularsActivity.class);
-                    startActivity(intent);
+                    break;
                 }
             }
+        } else {
+            for (int j = 0; j < append.length(); ++j) {
+                if (append.substring(j, j + 1).equals("@")) {
+                    FinalContents.setCustomerID(append.substring(j + 1));
+                    Intent intent = new Intent(getContext(), ClientParticularsActivity.class);
+                    startActivity(intent);
+                    Log.i("团队长", "contacts.get(position).getName()：" + append.substring(j + 1));
+                    break;
+                }
+            }
+
         }
 
     }
@@ -242,10 +253,10 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("MyCL","onResume");
-        if(i == 0){
+        Log.i("MyCL", "onResume");
+        if (i == 0) {
             i = 1;
-        }else {
+        } else {
             initData();
         }
     }
@@ -254,7 +265,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     @Override
     public void onPause() {
         super.onPause();
-        Log.i("MyCL","onPause");
+        Log.i("MyCL", "onPause");
         i = 1;
     }
 

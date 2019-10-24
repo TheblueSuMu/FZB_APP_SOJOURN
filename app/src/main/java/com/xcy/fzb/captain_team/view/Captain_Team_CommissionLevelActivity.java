@@ -127,7 +127,9 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                             public void onItemClick(final int postion) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(Captain_Team_CommissionLevelActivity.this);
                                 builder.setTitle(data.get(postion).getName());    //设置对话框标题
+
                                 final EditText edit = new EditText(Captain_Team_CommissionLevelActivity.this);
+                                edit.setPadding(50,0,0,30);
                                 edit.setHint("请输入要修改的佣金比例");
                                 builder.setView(edit);
                                 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
@@ -255,6 +257,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                                 AlertDialog.Builder builder = new AlertDialog.Builder(Captain_Team_CommissionLevelActivity.this);
                                 builder.setTitle(data.get(postion).getName());    //设置对话框标题
                                 final EditText edit = new EditText(Captain_Team_CommissionLevelActivity.this);
+                                edit.setPadding(50,0,0,30);
                                 edit.setHint("请输入要修改的佣金比例");
                                 builder.setView(edit);
                                 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
