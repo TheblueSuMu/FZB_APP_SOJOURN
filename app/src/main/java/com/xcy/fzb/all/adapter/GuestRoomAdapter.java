@@ -38,7 +38,7 @@ public class GuestRoomAdapter extends RecyclerView.Adapter<GuestRoomAdapter.Gues
     @Override
     public GuestRoomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_guest_room, null);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_guest_room, parent,false);
 
         return new GuestRoomViewHolder(inflate);
     }
