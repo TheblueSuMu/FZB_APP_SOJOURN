@@ -180,7 +180,6 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
             case R.id.map_navigation:
                 initgh();
 //                initTestBtn("餐厅");
-
                 break;
         }
 
