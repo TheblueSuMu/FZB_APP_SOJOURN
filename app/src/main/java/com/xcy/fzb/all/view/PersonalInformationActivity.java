@@ -186,7 +186,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         @Override
                         public void onNext(UserMessageBean userMessageBean) {
                             UserMessageBean.DataBean data = userMessageBean.getData();
-                            Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).placeholder(R.mipmap.logo_square).into(personal_photo);
+                            Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).into(personal_photo);
                             personal_name.setText(data.getName());
                             personal_identity.setText("经纪人");
                             personal_city.setText(data.getCity());
@@ -223,7 +223,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             information_rl.setVisibility(View.GONE);
                             information_ll.setVisibility(View.GONE);
                             XSDataBean.DataBean data = userMessageBean.getData();
-                            Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).placeholder(R.mipmap.logo_square).into(personal_photo);
+                            Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).into(personal_photo);
                             personal_name.setText(data.getName());
                             personal_identity.setText("专案");
                             personal_city.setText(data.getCity());
@@ -260,7 +260,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             information_rl.setVisibility(View.GONE);
                             information_ll.setVisibility(View.GONE);
                             ZYDataBean.DataBean data = userMessageBean.getData();
-                            Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).placeholder(R.mipmap.logo_square).into(personal_photo);
+                            Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).into(personal_photo);
                             personal_name.setText(data.getName());
                             if (data.getIdentity().equals("5")) {
                                 personal_identity.setText("专员");
@@ -312,9 +312,9 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         public void onNext(ZhangBingDataBean userMessageBean) {
 
                             if (userMessageBean.getData().getSysUser().getPhoto().equals("")) {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getManager().getPhoto()).placeholder(R.mipmap.logo_square).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
                             } else {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getPhoto()).placeholder(R.mipmap.logo_square).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
                             }
 
                             personal_name.setText(userMessageBean.getData().getSysUser().getName());
@@ -359,9 +359,9 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         public void onNext(GWDataBean userMessageBean) {
 
                             if (userMessageBean.getData().getSysUser().getPhoto().equals("")) {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getManager().getPhoto()).placeholder(R.mipmap.logo_square).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
                             } else {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getPhoto()).placeholder(R.mipmap.logo_square).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
                             }
 
 
@@ -407,9 +407,9 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         public void onNext(TZBean userMessageBean) {
 
                             if (userMessageBean.getData().getSysUser().getPhoto().equals("")) {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getManager().getPhoto()).placeholder(R.mipmap.logo_square).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
                             } else {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getPhoto()).placeholder(R.mipmap.logo_square).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
                             }
 
 
@@ -713,7 +713,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         imgStr = addPhotoBean.getData().getUrl();
                                         Log.i("MyCL", "解析完成后图片路径：" + imgStr);
-                                        Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + imgStr).placeholder(R.mipmap.logo_square).into(personal_photo);
+                                        Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + imgStr).into(personal_photo);
                                         Retrofit.Builder builder = new Retrofit.Builder();
                                         builder.baseUrl(FinalContents.getBaseUrl());
                                         builder.addConverterFactory(GsonConverterFactory.create());
@@ -863,7 +863,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     imgStr = addPhotoBean.getData().getUrl();
                                     Log.i("MyCL", "解析完成后图片路径：" + imgStr);
-                                    Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + imgStr).placeholder(R.mipmap.logo_square).into(personal_photo);
+                                    Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + imgStr).into(personal_photo);
                                     Retrofit.Builder builder = new Retrofit.Builder();
                                     builder.baseUrl(FinalContents.getBaseUrl());
                                     builder.addConverterFactory(GsonConverterFactory.create());

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -22,6 +21,7 @@ import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.MessageCommentAdapter;
+import com.xcy.fzb.all.api.AndroidBug5497Workaround;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.LikeNumBean;
 import com.xcy.fzb.all.modle.CommentBean;
@@ -65,7 +65,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_comment);
-
+        AndroidBug5497Workaround.assistActivity(this);
 
         initView();
         initET();

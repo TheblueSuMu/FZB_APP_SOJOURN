@@ -39,6 +39,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "(" + rowsBeanList.get(position).getCustomerPhone() + ")");
         holder.the_project_end_name.setText(rowsBeanList.get(position).getRoomNumber());
         holder.the_project_end_time.setText(rowsBeanList.get(position).getProjectName());
+        holder.the_project_end_dong.setText(rowsBeanList.get(position).getClosingTime());
 
         if (rowsBeanList.get(position).getStatus().equals("1")) {
             holder.the_project_end_img1.setVisibility(View.VISIBLE);
@@ -80,6 +81,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         TextView the_project_end_tv1;
         TextView the_project_end_tv6;
         TextView the_project_end_tv7;
+        TextView the_project_end_dong;
 
         public TheProjectEndCommissionViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,6 +94,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
             the_project_end_tv1 = itemView.findViewById(R.id.the_project_end_tv1);
             the_project_end_tv6 = itemView.findViewById(R.id.the_project_end_tv6);
             the_project_end_tv7 = itemView.findViewById(R.id.the_project_end_tv7);
+            the_project_end_dong = itemView.findViewById(R.id.the_project_end_dong);
 
         }
     }

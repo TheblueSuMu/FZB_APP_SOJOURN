@@ -53,7 +53,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp">
 
-                <ImageView
+                <com.makeramen.roundedimageview.RoundedImageView
+                    app:riv_oval="true"
                     android:id="@+id/particulars_buddha"
                     android:layout_width="43dp"
                     android:layout_height="43dp"
@@ -164,7 +165,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true">
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        app:riv_oval="true"
                         android:id="@+id/particulars_img_1"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
@@ -173,7 +175,8 @@
                         android:scaleType="fitXY"
                         android:src="@mipmap/xq1" />
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        app:riv_oval="true"
                         android:id="@+id/particulars_img_2"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
@@ -182,7 +185,8 @@
                         android:layout_marginRight="15dp"
                         android:scaleType="fitXY" />
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        app:riv_oval="true"
                         android:id="@+id/particulars_img_3"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
@@ -191,7 +195,8 @@
                         android:layout_marginRight="40dp"
                         android:scaleType="fitXY" />
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        app:riv_oval="true"
                         android:id="@+id/particulars_img_4"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
@@ -200,7 +205,8 @@
                         android:layout_marginRight="55dp"
                         android:scaleType="fitXY" />
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        app:riv_oval="true"
                         android:id="@+id/particulars_img_5"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
@@ -209,7 +215,8 @@
                         android:layout_marginRight="70dp"
                         android:scaleType="fitXY" />
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        app:riv_oval="true"
                         android:id="@+id/particulars_img_6"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
@@ -251,7 +258,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/z3"
+                    android:src="@mipmap/logo_square"
                     app:riv_oval="true" />
 
                 <TextView
