@@ -51,7 +51,13 @@
 
     </RelativeLayout>
 
-
+    <WebView
+        android:id="@+id/webview"
+        android:layout_below="@id/web_linear"
+        android:layout_above="@id/web_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </WebView>
 
     <LinearLayout
         android:id="@+id/web_fl"
@@ -62,7 +68,7 @@
         android:layout_height="match_parent"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:background="#fff">
 
         <TextView
@@ -81,26 +87,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <RelativeLayout
+        <TextView
+            android:layout_marginTop="15dp"
+            android:id="@+id/web_content"
+            android:textSize="14sp"
+            android:textColor="#666666"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_marginTop="15dp"
-                android:id="@+id/web_content"
-                android:textSize="14sp"
-                android:textColor="#666666"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <WebView
-                android:id="@+id/webview"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </WebView>
-
-        </RelativeLayout>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

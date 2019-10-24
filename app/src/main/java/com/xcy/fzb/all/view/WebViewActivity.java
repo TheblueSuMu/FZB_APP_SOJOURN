@@ -43,14 +43,11 @@ public class WebViewActivity extends AllActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
-
+        StatusBar.makeStatusBarTransparent(this);
 
         init();
     }
     private void init(){
-
-        StatusBar.makeStatusBarTransparent(this);
-
         webView = findViewById(R.id.webview);
         title = findViewById(R.id.web_title);
         back = findViewById(R.id.web_return);
@@ -79,9 +76,7 @@ public class WebViewActivity extends AllActivity {
         title.setText(stringExtra);
         if (time == null) {
             web_share.setVisibility(View.VISIBLE);
-            web_content.setVisibility(View.GONE);
-            layout_title.setText(stringExtra);
-            web_time.setText(time);
+            web_f1.setVisibility(View.GONE);
             webView.loadDataWithBaseURL(null, webviewUrl, "text/html", "utf-8", null);
             web_bottom.setVisibility(View.VISIBLE);
             Log.i("轮播图详情数据","新闻："+FinalContents.getNewID());
