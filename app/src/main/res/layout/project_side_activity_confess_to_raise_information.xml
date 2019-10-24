@@ -195,7 +195,7 @@
                         <EditText
                             android:id="@+id/confess_to_raise_information_et1"
                             android:background="#FFFFFF"
-                            android:layout_width="wrap_content"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:layout_alignParentRight="true"
@@ -277,7 +277,7 @@
                         <EditText
                             android:id="@+id/confess_to_raise_information_et2"
                             android:background="#FFFFFF"
-                            android:layout_width="wrap_content"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:layout_alignParentRight="true"
@@ -314,7 +314,7 @@
                         <EditText
                             android:id="@+id/confess_to_raise_information_et3"
                             android:background="#FFFFFF"
-                            android:layout_width="wrap_content"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
@@ -394,7 +394,7 @@
                         <EditText
                             android:id="@+id/confess_to_raise_information_et4"
                             android:background="#FFFFFF"
-                            android:layout_width="wrap_content"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:layout_alignParentRight="true"
@@ -472,7 +472,7 @@
                         <EditText
                             android:id="@+id/confess_to_raise_information_et5"
                             android:background="#FFFFFF"
-                            android:layout_width="wrap_content"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="right"

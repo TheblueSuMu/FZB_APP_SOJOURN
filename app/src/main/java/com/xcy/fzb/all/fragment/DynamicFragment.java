@@ -252,12 +252,10 @@ public class DynamicFragment extends Fragment {
                                             }
                                         }).start();
                                     }
-
 //        String imagename = list.get(position).getContent();
 ////        TODO 图片保存到本地
-
-                                    Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
                                 }
+                                Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
                             }
                         });
 

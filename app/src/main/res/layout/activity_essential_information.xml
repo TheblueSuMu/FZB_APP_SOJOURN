@@ -71,7 +71,7 @@
 
                     <EditText
                         android:id="@+id/essential_information_et1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
@@ -108,7 +108,7 @@
 
                     <EditText
                         android:id="@+id/essential_information_et2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
@@ -145,7 +145,7 @@
 
                     <EditText
                         android:id="@+id/essential_information_et3"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="right"
@@ -182,7 +182,7 @@
 
                     <EditText
                         android:id="@+id/essential_information_et4"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
@@ -219,7 +219,7 @@
 
                     <EditText
                         android:id="@+id/essential_information_et5"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
@@ -303,7 +303,7 @@
 
                     <EditText
                         android:id="@+id/essential_information_et6"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
@@ -340,7 +340,7 @@
 
                     <EditText
                         android:id="@+id/essential_information_et7"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
@@ -377,7 +377,7 @@
 
                     <EditText
                         android:id="@+id/essential_information_et8"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"

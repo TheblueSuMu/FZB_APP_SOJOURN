@@ -233,32 +233,38 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
     //点击事件
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.home_city_selector){
-            showPickerView();
-        } else if (view.getId() == R.id.home_search) {
-            Intent intent = new Intent(view.getContext(), SearchInterfaceActivity.class);
-            startActivity(intent);
-        } else if (view.getId() == R.id.home_item_sojourn) {
-            FinalContents.setProjectType("3");
-            Intent intent_sojourn = new Intent(view.getContext(), OverSeaActivity.class);
-            startActivity(intent_sojourn);
-        }else if (view.getId() == R.id.home_item_overseas) {
-            FinalContents.setProjectType("2");
-            Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
-            startActivity(intent_overseas);
-        }else if (view.getId() == R.id.home_item_client) {
-            Intent intent_overseas = new Intent(view.getContext(), Assistant_Teams_Activity.class);
-            FinalContents.setMyAddType("");
-            intent_overseas.putExtra("Iftz","1");
-            startActivity(intent_overseas);
-        }else if (view.getId() == R.id.home_item_brokerage) {
-            FinalContents.setStoreId("");
-            FinalContents.setAgentId(FinalContents.getUserID());
-            Intent intent_overseas = new Intent(view.getContext(), Captain_Team_MyClientActivity.class);
-            FinalContents.setQuanceng("1");
-            FinalContents.setMySelf("0");
-            intent_overseas.putExtra("client","1");
-            startActivity(intent_overseas);
+        if (hotlist.size() != 0) {
+            if (view.getId() == R.id.home_city_selector) {
+                showPickerView();
+            } else if (view.getId() == R.id.home_search) {
+                Intent intent = new Intent(view.getContext(), SearchInterfaceActivity.class);
+                startActivity(intent);
+            } else if (view.getId() == R.id.home_item_sojourn) {
+                FinalContents.setProjectType("3");
+                Intent intent_sojourn = new Intent(view.getContext(), OverSeaActivity.class);
+                startActivity(intent_sojourn);
+            } else if (view.getId() == R.id.home_item_overseas) {
+                FinalContents.setProjectType("2");
+                Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
+                startActivity(intent_overseas);
+            } else if (view.getId() == R.id.home_item_client) {
+                Intent intent_overseas = new Intent(view.getContext(), Assistant_Teams_Activity.class);
+                FinalContents.setMyAddType("");
+                intent_overseas.putExtra("Iftz", "1");
+                startActivity(intent_overseas);
+            } else if (view.getId() == R.id.home_item_brokerage) {
+                FinalContents.setStoreId("");
+                FinalContents.setAgentId(FinalContents.getUserID());
+                Intent intent_overseas = new Intent(view.getContext(), Captain_Team_MyClientActivity.class);
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
+                intent_overseas.putExtra("client", "1");
+                startActivity(intent_overseas);
+            }
+        }else {
+            if (view.getId() == R.id.home_city_selector) {
+                showPickerView();
+            }
         }
     }
 
@@ -464,48 +470,47 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                     @Override
                     public void onNext(ImgData imgData) {
                         imglist = imgData.getData();
-                        Log.i("aaa","图片地址："+ imglist.get(0).getCoverImg());
-
-                        Log.i("aaa","图片"+ imglist.get(0).getCoverImg());
-                        for (int i = 0; i < imglist.size(); i++){
-                            list_path.add("http://39.98.173.250:8080"+ imglist.get(i).getCoverImg());
-                            list_title.add(imglist.get(i).getTitle());
-                        }
-
-                        //设置banner样式
-                        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
-                        //设置图片加载器
-                        banner.setImageLoader(new MyLoader());
-                        //设置图片集合
-                        banner.setImages(list_path);
-                        //设置banner动画效果
-                        banner.setBannerAnimation(Transformer.Default);
-                        //设置标题集合（当banner样式有显示title时）
-                        banner.setBannerTitles(list_title);
-                        //设置自动轮播，默认为true
-                        banner.isAutoPlay(true);
-                        //设置轮播时间
-                        banner.setDelayTime(3000);
-                        //设置指示器位置（当banner模式中有指示器时）
-                        banner.setIndicatorGravity(BannerConfig.CENTER);
-                        //banner设置方法全部调用完毕时最后调用
-                        banner.start();
-
-                        banner.setOnBannerListener(new OnBannerListener() {
-                            @Override
-                            public void OnBannerClick(int position) {
-                                FinalContents.setIPhone(imglist.get(position).getProjectMap().getPhone());
-                                FinalContents.setProjectID(imglist.get(position).getProject().getId());
-                                FinalContents.setNewID(imglist.get(position).getId());
-                                Log.i("详情","项目ID"+FinalContents.getProjectID());
-                                Log.i("详情","用户ID"+FinalContents.getUserID());
-                                Log.i("详情","用户ID"+FinalContents.getNewID());
-                                Intent intent = new Intent(view.getContext(), WebViewActivity.class);
-                                intent.putExtra("title","新闻详情");
-                                intent.putExtra("webview",imglist.get(position).getContent());
-                                startActivity(intent);
+                        if (imglist.size() != 0) {
+                            for (int i = 0; i < imglist.size(); i++) {
+                                list_path.add("http://39.98.173.250:8080" + imglist.get(i).getCoverImg());
+                                list_title.add(imglist.get(i).getTitle());
                             }
-                        });
+
+                            //设置banner样式
+                            banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+                            //设置图片加载器
+                            banner.setImageLoader(new MyLoader());
+                            //设置图片集合
+                            banner.setImages(list_path);
+                            //设置banner动画效果
+                            banner.setBannerAnimation(Transformer.Default);
+                            //设置标题集合（当banner样式有显示title时）
+                            banner.setBannerTitles(list_title);
+                            //设置自动轮播，默认为true
+                            banner.isAutoPlay(true);
+                            //设置轮播时间
+                            banner.setDelayTime(3000);
+                            //设置指示器位置（当banner模式中有指示器时）
+                            banner.setIndicatorGravity(BannerConfig.CENTER);
+                            //banner设置方法全部调用完毕时最后调用
+                            banner.start();
+
+                            banner.setOnBannerListener(new OnBannerListener() {
+                                @Override
+                                public void OnBannerClick(int position) {
+                                    FinalContents.setIPhone(imglist.get(position).getProjectMap().getPhone());
+                                    FinalContents.setProjectID(imglist.get(position).getProject().getId());
+                                    FinalContents.setNewID(imglist.get(position).getId());
+                                    Log.i("详情", "项目ID" + FinalContents.getProjectID());
+                                    Log.i("详情", "用户ID" + FinalContents.getUserID());
+                                    Log.i("详情", "用户ID" + FinalContents.getNewID());
+                                    Intent intent = new Intent(view.getContext(), WebViewActivity.class);
+                                    intent.putExtra("title", "新闻详情");
+                                    intent.putExtra("webview", imglist.get(position).getContent());
+                                    startActivity(intent);
+                                }
+                            });
+                        }
                     }
 
                     @Override

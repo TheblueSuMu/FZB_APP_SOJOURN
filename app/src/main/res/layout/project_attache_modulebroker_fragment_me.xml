@@ -29,8 +29,7 @@
                     android:id="@+id/me_photo"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/z3" />
+                    android:scaleType="fitXY"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -42,7 +41,7 @@
                         android:id="@+id/me_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="张三"
+                        android:text=""
                         android:textColor="#FFFFFF"
                         android:textSize="20dp" />
 
@@ -51,7 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="经纪人"
+                        android:text=""
                         android:textColor="#FFFFFF"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -67,7 +66,7 @@
                         android:id="@+id/me_city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="长春市"
+                        android:text=""
                         android:textColor="#FFFFFF"
                         android:textSize="12sp" />
 
@@ -76,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="SDVJS门店"
+                        android:text=""
                         android:textColor="#FFFFFF"
                         android:textSize="12sp" />
                 </LinearLayout>

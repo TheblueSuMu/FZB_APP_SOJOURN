@@ -83,8 +83,8 @@ public class ConfirmTheVisitActivity extends AllActivity {
     private File file;
 
     int isIF = 0;
-    private String getLongitude;
-    private String getLatitude;
+    private String getLongitude = "";
+    private String getLatitude = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,10 +127,8 @@ public class ConfirmTheVisitActivity extends AllActivity {
             public void onClick(View view) {
                 isIF = 1;
                 Intent intent = new Intent(ConfirmTheVisitActivity.this, TestMapActivity.class);
-
                 intent.putExtra("La",getLatitude);
                 intent.putExtra("Lo",getLongitude);
-
                 startActivityForResult(intent, 1);
             }
         });

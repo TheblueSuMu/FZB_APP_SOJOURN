@@ -55,8 +55,8 @@ public class TestMapActivity extends AppCompatActivity {
     private LatLng latLng1;
     private RoutePlanSearch mSearch;
     GeoCoder geoCoder = GeoCoder.newInstance();
-    private String la;
-    private String lo;
+    private String la = "";
+    private String lo = "";
     private LatLng ll;
     private MyLocationData locData;
 
