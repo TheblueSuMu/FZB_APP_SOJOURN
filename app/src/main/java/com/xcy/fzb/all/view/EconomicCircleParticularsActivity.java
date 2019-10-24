@@ -247,54 +247,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                         int j = 0;
                         int sum = 0;
 //        TODO 图片加载
-//                        for (int i = 0; i < stringBuffer.length(); ++i) {
-//                            if (stringBuffer.substring(i, i + 1).equals("|")) {
-//                                if (sum == 0 && stringBuffer.substring(0, 3).equals("/fa")) {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(0, i)).into(particulars_img_s1);
-//                                    sum++;
-//                                } else if (sum == 0 && !stringBuffer.substring(0, 3).equals("/fa")) {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load(stringBuffer.substring(0, i)).into(particulars_img_s1);
-//                                    Log.i("MyCL", "测试1：" + stringBuffer.substring(0, i));
-//                                    sum++;
-//                                } else if (sum == 1 && stringBuffer.substring(j, j + 3).equals("/fa")) {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(j, i)).into(particulars_img_s2);
-//                                    sum++;
-//                                } else if (sum == 1 && !stringBuffer.substring(j, j + 3).equals("/fa")) {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load(stringBuffer.substring(j, i)).into(particulars_img_s2);
-//                                    sum++;
-//                                } else if (sum == 2 && stringBuffer.substring(j, j + 3).equals("/fa")) {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(j, i)).into(particulars_img_s3);
-//                                    sum++;
-//                                } else if (sum == 2 && !stringBuffer.substring(j, j + 3).equals("/fa")) {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load(stringBuffer.substring(j, i)).into(particulars_img_s3);
-//                                    sum++;
-//                                }
-//                                j = i + 1;
-//                            } else if (sum == 0 && i == stringBuffer.length() - 1) {
-//
-//                                if (stringBuffer.substring(0, 3).equals("/fa")) {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(0)).into(particulars_img_s1);
-//                                } else if (stringBuffer.substring(0, 1).equals("[")) {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load(stringBuffer.substring(1, i)).into(particulars_img_s1);
-//                                } else {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load(stringBuffer.substring(0, i + 1)).into(particulars_img_s1);
-//                                }
-//                            } else if (sum == 1 && i == stringBuffer.length() - 1) {
-//                                if (stringBuffer.substring(j).equals("/fa")) {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(j, i)).into(particulars_img_s2);
-//                                } else {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load(stringBuffer.substring(j, i + 1)).into(particulars_img_s2);
-//                                    Log.i("MyCL", "测试2：" + stringBuffer.substring(j, i + 1));
-//                                }
-//                            } else if (sum == 2 && i == stringBuffer.length() - 1) {
-//                                if (stringBuffer.substring(j).equals("/fa")) {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(j, i)).into(particulars_img_s3);
-//                                } else {
-//                                    Glide.with(EconomicCircleParticularsActivity.this).load(stringBuffer.substring(j, i + 1)).into(particulars_img_s3);
-//                                }
-//                            }
-//                        }
-//        TODO 图片加载
                         for (int i = 0; i < stringBuffer.length(); ++i) {
                             if (stringBuffer.substring(i, i + 1).equals("|")) {
                                 if (sum == 0) {

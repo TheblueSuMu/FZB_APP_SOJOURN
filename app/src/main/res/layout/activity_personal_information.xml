@@ -55,7 +55,7 @@
             android:layout_centerVertical="true"
             android:text="头像"
             android:textColor="#333333"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <ImageView
             android:layout_width="8dp"
@@ -97,7 +97,7 @@
             android:layout_centerVertical="true"
             android:text="昵称"
             android:textColor="#333333"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
 
         <ImageView
@@ -151,7 +151,7 @@
             android:layout_centerVertical="true"
             android:text="性别"
             android:textColor="#333333"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <ImageView
             android:layout_width="8dp"
@@ -192,7 +192,7 @@
             android:layout_centerVertical="true"
             android:text="手机号"
             android:textColor="#333333"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <ImageView
             android:layout_width="8dp"
@@ -225,7 +225,7 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginRight="15sp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -263,7 +263,7 @@
             android:layout_centerVertical="true"
             android:text="第三方账号设置"
             android:textColor="#333333"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <ImageView
             android:layout_width="8dp"
@@ -292,7 +292,7 @@
             android:layout_centerVertical="true"
             android:text="城市"
             android:textColor="#333333"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/personal_city"
@@ -325,7 +325,7 @@
             android:layout_centerVertical="true"
             android:text="门店"
             android:textColor="#333333"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/personal_store"
@@ -358,7 +358,7 @@
             android:layout_centerVertical="true"
             android:text="身份"
             android:textColor="#333333"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/personal_identity"

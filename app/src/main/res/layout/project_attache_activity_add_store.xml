@@ -68,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
-                        android:text="门店ID*"
+                        android:text="门店ID"
                         android:textColor="#ff333333"
                         android:textSize="15sp" />
 
@@ -96,15 +96,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="选择经纪公司*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="选择经纪公司"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <TextView
                         android:id="@+id/add_broker_tv2"
@@ -137,15 +150,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="门店名称*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="门店名称"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <EditText
                         android:id="@+id/add_broker_et2"
@@ -174,15 +200,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="所在的区域*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="所在的区域"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <TextView
                         android:id="@+id/add_broker_et3"
@@ -208,15 +247,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="详细地址*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="详细地址"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <EditText
                         android:id="@+id/add_broker_et4"
@@ -244,15 +296,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="是否合作*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="是否合作"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <RadioGroup
                         android:layout_width="wrap_content"

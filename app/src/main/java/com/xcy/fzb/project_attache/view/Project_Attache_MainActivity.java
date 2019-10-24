@@ -78,7 +78,7 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
                 messageFragment.setType("2");
                 transaction.replace(R.id.main_framelayout,messageFragment);
                 transaction.commit();
-                button_message.setChecked(true);
+                button_economics.setChecked(true);
             } else if (str.equals("2")) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
@@ -86,7 +86,7 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
                 messageFragment.setType("3");
                 transaction.replace(R.id.main_framelayout,messageFragment);
                 transaction.commit();
-                button_message.setChecked(true);
+                button_economics.setChecked(true);
             } else if (str.equals("5")) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
@@ -94,7 +94,7 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
                 messageFragment.setType("4");
                 transaction.replace(R.id.main_framelayout,messageFragment);
                 transaction.commit();
-                button_message.setChecked(true);
+                button_economics.setChecked(true);
             }
         }
     }

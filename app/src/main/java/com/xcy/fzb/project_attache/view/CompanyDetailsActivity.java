@@ -420,6 +420,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         details_tv6.setText(dataNumBean.getData().getTradeNumber() + "");
                         details_tv7.setText(dataNumBean.getData().getLandingNumber() + "");
 
+
                     }
 
                     @Override
@@ -458,22 +459,20 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                     public void onNext(CompanyDetailsBean companyDetailsBean) {
                         storeInfo = companyDetailsBean.getData().getStoreInfo();
 
-//                        if(storeInfo.getStatus().equals("2")){
-//                            ll1.setVisibility(View.VISIBLE);
-//                            tv1.setText("异常原因：门店取消合作");
-//                        }else if(storeInfo.getStatus().equals("3")){
-//                            ll1.setVisibility(View.VISIBLE);
-//                            tv1.setText("异常原因：门店已倒闭");
-//                        }
-
                         details_tv8.setText(storeInfo.getStoreName());
                         company_details_tv1.setText(storeInfo.getCompanyName() + "-" + storeInfo.getStoreName());
                         company_details_tv2.setText(storeInfo.getStoreIdCode());
                         if (storeInfo.getShopownerName().equals("")) {
                             company_details_tv3.setVisibility(View.GONE);
+                            company_details_call.setVisibility(View.GONE);
                         }else {
                             company_details_tv3.setVisibility(View.VISIBLE);
                             company_details_tv3.setText("店长：" + storeInfo.getShopownerName() + " " + storeInfo.getShopownerPhone());
+                            if(storeInfo.getShopownerPhone().equals("")){
+                                company_details_call.setVisibility(View.GONE);
+                            }else {
+                                company_details_call.setVisibility(View.VISIBLE);
+                            }
                         }
 //                        TODO 数据统计
                         CompanyDetailsBean.DataBean.StoreDataStatisticsBean storeDataStatistics = companyDetailsBean.getData().getStoreDataStatistics();

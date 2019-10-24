@@ -129,6 +129,8 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                         data = brokerChangeBean.getData();
                         add_store_tv1.setText(brokerChangeBean.getData().getCompanyManage().getCompanyName());
                         add_store_tv2.setText(brokerChangeBean.getData().getStoreManage().getStoreName());
+                        FinalContents.setAddtype1(brokerChangeBean.getData().getStoreManage().getStoreName());
+                        FinalContents.setAddtype2(brokerChangeBean.getData().getCompanyManage().getCompanyName());
                         String identity = brokerChangeBean.getData().getIdentity();
                         if (identity.equals("1")) {
                             add_store_tv3.setText("经纪公司管理者");
@@ -219,6 +221,10 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 s5 = add_store_et3.getText().toString();
                 s6 = add_store_et4.getText().toString();
 
+                if (s6.equals("")) {
+                    s6 = 123456 + "";
+                }
+
                 initData();
 
                 break;
@@ -237,39 +243,43 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 num = "3";
             }
 
-            Retrofit.Builder builder = new Retrofit.Builder();
-            builder.baseUrl(FinalContents.getBaseUrl());
-            builder.addConverterFactory(GsonConverterFactory.create());
-            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-            Retrofit build = builder.build();
-            MyService fzbInterface = build.create(MyService.class);
-            Observable<AddBrokerBean> addBrokerBean = fzbInterface.getAddBrokerBean("", num, s3, s4, s5, s6, FinalContents.getUserID(), FinalContents.getCompanyManageId(), FinalContents.getStoreManageId(), "");
-            addBrokerBean.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<AddBrokerBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
-                        }
-
-                        @Override
-                        public void onNext(AddBrokerBean addBrokerBean) {
-                            if (addBrokerBean.getData().getMessage().equals("保存成功")) {
-                                Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
-                            } else {
-                                Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
+            if (s.equals("") || s2.equals("") || s11.equals("") || s3.equals("") || s4.equals("") || s5.equals("")) {
+                Toast.makeText(AddBrokerActivity.this, "带*数据请填写完整", Toast.LENGTH_SHORT).show();
+            } else {
+                Retrofit.Builder builder = new Retrofit.Builder();
+                builder.baseUrl(FinalContents.getBaseUrl());
+                builder.addConverterFactory(GsonConverterFactory.create());
+                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                Retrofit build = builder.build();
+                MyService fzbInterface = build.create(MyService.class);
+                Observable<AddBrokerBean> addBrokerBean = fzbInterface.getAddBrokerBean("", num, s3, s4, s5, s6, FinalContents.getUserID(), FinalContents.getCompanyManageId(), FinalContents.getStoreManageId(), "");
+                addBrokerBean.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<AddBrokerBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
                             }
-                        }
 
-                        @Override
-                        public void onError(Throwable e) {
-                        }
+                            @Override
+                            public void onNext(AddBrokerBean addBrokerBean) {
+                                if (addBrokerBean.getData().getMessage().equals("保存成功")) {
+                                    Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            }
 
-                        @Override
-                        public void onComplete() {
-                        }
-                    });
+                            @Override
+                            public void onError(Throwable e) {
+                            }
+
+                            @Override
+                            public void onComplete() {
+                            }
+                        });
+            }
         } else if (FinalContents.getBorkerChange().equals("修改")) {
             if (s11.equals("经纪公司管理者")) {
                 num = "1";
@@ -278,41 +288,45 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
             } else if (s11.equals("普通经纪人")) {
                 num = "3";
             }
-            Retrofit.Builder builder = new Retrofit.Builder();
-            builder.baseUrl(FinalContents.getBaseUrl());
-            builder.addConverterFactory(GsonConverterFactory.create());
-            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-            Retrofit build = builder.build();
-            MyService fzbInterface = build.create(MyService.class);
-            Observable<AddBrokerBean> addBrokerBean = fzbInterface.getAddBrokerBean(data.getId(), num, s3, s4, s5, s6, FinalContents.getUserID(), FinalContents.getCompanyManageId(), FinalContents.getStoreManageId(), "1");
-            addBrokerBean.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<AddBrokerBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
-                        }
-
-                        @Override
-                        public void onNext(AddBrokerBean addBrokerBean) {
-                            if (addBrokerBean.getData().getMessage().equals("保存成功")) {
-                                Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                FinalContents.setAddtype1("");
-                                FinalContents.setAddtype2("");
-                                finish();
-                            } else {
-                                Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
+            if (s.equals("") || s2.equals("") || s11.equals("") || s3.equals("") || s4.equals("") || s5.equals("")) {
+                Toast.makeText(AddBrokerActivity.this, "带*数据请填写完整", Toast.LENGTH_SHORT).show();
+            } else {
+                Retrofit.Builder builder = new Retrofit.Builder();
+                builder.baseUrl(FinalContents.getBaseUrl());
+                builder.addConverterFactory(GsonConverterFactory.create());
+                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                Retrofit build = builder.build();
+                MyService fzbInterface = build.create(MyService.class);
+                Observable<AddBrokerBean> addBrokerBean = fzbInterface.getAddBrokerBean(data.getId(), num, s3, s4, s5, s6, FinalContents.getUserID(), FinalContents.getCompanyManageId(), FinalContents.getStoreManageId(), "1");
+                addBrokerBean.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<AddBrokerBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
                             }
-                        }
 
-                        @Override
-                        public void onError(Throwable e) {
-                        }
+                            @Override
+                            public void onNext(AddBrokerBean addBrokerBean) {
+                                if (addBrokerBean.getData().getMessage().equals("保存成功")) {
+                                    Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    FinalContents.setAddtype1("");
+                                    FinalContents.setAddtype2("");
+                                    finish();
+                                } else {
+                                    Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            }
 
-                        @Override
-                        public void onComplete() {
-                        }
-                    });
+                            @Override
+                            public void onError(Throwable e) {
+                            }
+
+                            @Override
+                            public void onComplete() {
+                            }
+                        });
+            }
             FinalContents.setBorkerChange("");
         }
 
@@ -322,6 +336,10 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
     @Override
     protected void onRestart() {
         super.onRestart();
+
+        Log.i("专员","FinalContents.getAddtype2()：" + FinalContents.getAddtype2());
+        Log.i("专员","FinalContents.getAddtype1()：" + FinalContents.getAddtype1());
+
         add_store_tv1.setText(FinalContents.getAddtype2());
         add_store_tv2.setText(FinalContents.getAddtype1());
 

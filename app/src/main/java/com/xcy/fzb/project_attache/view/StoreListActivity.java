@@ -147,23 +147,22 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             store_list_ll2.setVisibility(View.GONE);
             initDatam("", "");
             FinalContents.setStoreList("2");
-            Log.i("专员","进入公司");
+            Log.i("专员", "进入公司");
         } else if (FinalContents.getMyAddType().equals("门店")) {
-            Log.i("专员","进入门店");
-            Log.i("专员","FinalContents.getCompanyId()：" + FinalContents.getCompanyManageId());
+            Log.i("专员", "进入门店");
+            Log.i("专员", "FinalContents.getCompanyId()：" + FinalContents.getCompanyManageId());
             store_list_tv1.setTextColor(Color.parseColor("#334485"));
             store_list_tv2.setTextColor(Color.parseColor("#ff333333"));
             store_list_ll2.setVisibility(View.VISIBLE);
             store_list_ll4.setVisibility(View.GONE);
             initData(FinalContents.getCompanyManageId(), "", "");
             FinalContents.setStoreList("1");
-        }else {
-            Log.i("专员","else");
-            Log.i("专员","FinalContents.getCompanyId()：" + FinalContents.getCompanyId());
+        } else {
+            Log.i("专员", "else");
+            Log.i("专员", "FinalContents.getCompanyId()：" + FinalContents.getCompanyId());
             initData(FinalContents.getCompanyId(), "", "");
             FinalContents.setStoreList("1");
         }
-
 
 
     }
@@ -309,7 +308,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
     private void initDatam(String search, String status) {
 
-        Log.i("专员","进入公司1");
+        Log.i("专员", "进入公司1");
 
         context = StoreListActivity.this;
         mContactModels = new ArrayList<>();
@@ -341,7 +340,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                             if (rows.get(i).getCompanyName().equals("")) {
 
                             } else {
-                                Log.i("专员","进入公司2");
+                                Log.i("专员", "进入公司2");
                                 ContactModel contactModel = new ContactModel(StoreListActivity.this.rows.get(i).getCompanyName() + rows.get(i).getStoreName());
                                 StoreListData storeListData = new StoreListData();
 
@@ -472,8 +471,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             Log.i("专员", "门店");
             store_list_tv1.setTextColor(Color.parseColor("#334485"));
             store_list_tv2.setTextColor(Color.parseColor("#ff333333"));
-            store_list_ll2.setVisibility(View.VISIBLE);
             store_list_ll4.setVisibility(View.GONE);
+            store_list_ll2.setVisibility(View.VISIBLE);
             FinalContents.setStoreList("1");
             FinalContents.setMyAddType("");
             initData("", "", "");
