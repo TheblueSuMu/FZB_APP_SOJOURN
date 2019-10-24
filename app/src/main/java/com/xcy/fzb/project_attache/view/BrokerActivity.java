@@ -353,6 +353,19 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
             }
         });
 
+
+        broker_tv1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(agentInfo.getAgentPhone().equals("")){
+                    Toast.makeText(BrokerActivity.this,"暂无电话",Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + agentInfo.getAgentPhone()));//跳转到拨号界面，同时传递电话号码
+                    startActivity(dialIntent);
+                }
+            }
+        });
+
     }
 
     private void initFinanceNum(String type, String startTime, String endTime) {

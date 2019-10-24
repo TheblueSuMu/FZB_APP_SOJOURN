@@ -1,6 +1,7 @@
 package com.xcy.fzb.project_attache.view;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
@@ -37,6 +39,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
     RelativeLayout store_details_return;
     ImageView store_details_change;
+    ImageView store_details_call;
 
 
     RadioGroup store_details_rg1;
@@ -98,6 +101,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         store_details_return = findViewById(R.id.store_details_return);
         store_details_change = findViewById(R.id.store_details_change);
         store_details_tv13 = findViewById(R.id.store_details_tv13);
+        store_details_call = findViewById(R.id.store_details_call);
 
         store_details_rg1 = findViewById(R.id.store_details_rg1);
         store_details_rg2 = findViewById(R.id.store_details_rg2);
@@ -149,6 +153,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         store_details_ll3.setOnClickListener(this);
         store_details_ll4.setOnClickListener(this);
         store_details_ll5.setOnClickListener(this);
+        store_details_call.setOnClickListener(this);
 
         store_details_rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -227,8 +232,8 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("公司詳情",FinalContents.getUserID());
-        Log.i("公司詳情","**********" + FinalContents.getCompanyId());
+        Log.i("公司詳情", FinalContents.getUserID());
+        Log.i("公司詳情", "**********" + FinalContents.getCompanyId());
         final Observable<CompanyBean> companyDetails = fzbInterface.getCompanyDetails(FinalContents.getUserID(), FinalContents.getCompanyId());
         companyDetails.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -256,6 +261,13 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         companyInfo = companyBean.getData().getCompanyInfo();
                         store_details_tv1.setText(companyInfo.getCompanyName());
                         store_details_tv2.setText(companyInfo.getCompanyAddress());
+
+                        if (companyInfo.getShopownerPhone().equals("")) {
+                            store_details_call.setVisibility(View.GONE);
+                        } else {
+                            store_details_call.setVisibility(View.VISIBLE);
+                        }
+
                         store_details_tv3.setText("公司负责人：" + companyInfo.getShopownerName() + " " + companyInfo.getShopownerPhone());
                         store_details_tv13.setText(companyInfo.getCompanyName());
 
@@ -358,11 +370,15 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
             case R.id.store_details_return:
                 finish();
                 break;
+            case R.id.store_details_call:
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + companyInfo.getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
+                startActivity(dialIntent);
+                break;
             case R.id.store_details_change:
                 finish();
                 intent = new Intent(StoreDetailsActivity.this, AddCompanyActivity.class);
                 FinalContents.setCompanyId(companyInfo.getCompanyId());
-                Log.i("专员","companyInfo.getCompanyId()：" + companyInfo.getCompanyId());
+                Log.i("专员", "companyInfo.getCompanyId()：" + companyInfo.getCompanyId());
                 FinalContents.setStoreChange("修改");
                 startActivity(intent);
                 break;
@@ -401,7 +417,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                 break;
             case R.id.store_details_rl1:
                 intent = new Intent(StoreDetailsActivity.this, StoreListActivity.class);
-                Log.i("专员","FinalContents.getCompanyId()：" + companyInfo.getCompanyId());
+                Log.i("专员", "FinalContents.getCompanyId()：" + companyInfo.getCompanyId());
                 FinalContents.setMyAddType("");
                 FinalContents.setCompanyId(companyInfo.getCompanyId());
                 startActivity(intent);
