@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.fragment.MeFragment;
 import com.xcy.fzb.project_side.fragment.MessageFragment;
@@ -69,6 +70,9 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
     }
 
     private void initfvb(){
+
+        StatusBar.makeStatusBarTransparent(this);
+
         home = findViewById(R.id.main_home);
         project = findViewById(R.id.main_project);
         message = findViewById(R.id.main_message);

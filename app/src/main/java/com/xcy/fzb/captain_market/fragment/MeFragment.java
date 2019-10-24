@@ -170,7 +170,7 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
                         StringBuffer stringBuffer = new StringBuffer();
                         stringBuffer.append(s);
 
-                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getPhoto()).placeholder(R.mipmap.logo_square).into(me_photo);
+                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getPhoto()).into(me_photo);
 
                         me_name.setText(data.getSysUser().getName());
                         if (data.getSysUser().getIdentity().equals("61")) {
@@ -220,6 +220,7 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
             FinalContents.setMySelf("1");
             intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
             intent.putExtra("client","5");
+            FinalContents.setQuanceng("1");
             FinalContents.setAgentId(FinalContents.getUserID());
             startActivity(intent);
         }else if (id == R.id.me_team) {

@@ -59,6 +59,9 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
     }
 
     private void initView() {
+
+        StatusBar.makeStatusBarTransparent(this);
+
 //        if (FinalContents.getIdentity().equals("60")) {
 //            type = "2";
 //        }else if (FinalContents.getIdentity().equals("61")){

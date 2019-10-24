@@ -140,7 +140,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_details);
-        StatusBar.makeStatusBarTransparent(this);
+
         initfvb();
         init();
 
@@ -148,6 +148,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
     //命名区域
     private void initfvb() {
+
+        StatusBar.makeStatusBarTransparent(this);
+
         project_details_kai = findViewById(R.id.project_details_kai);
         project_details_ding = findViewById(R.id.project_details_ding);
         project_details_qt_call = findViewById(R.id.project_details_qt_call);

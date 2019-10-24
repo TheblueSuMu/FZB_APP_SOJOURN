@@ -66,14 +66,14 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_client);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
     }
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         my_client_return = findViewById(R.id.my_client_return);
         client_add = findViewById(R.id.client_add);

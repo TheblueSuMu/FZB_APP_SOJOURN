@@ -41,14 +41,14 @@ public class InformationActivity extends AllActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
     }
 
     private void initView() {
-
+        StatusBar.makeStatusBarTransparent(this);
         information_fl = findViewById(R.id.information_fl);
         information_return = findViewById(R.id.information_return);
 

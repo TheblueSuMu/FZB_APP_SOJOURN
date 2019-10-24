@@ -69,21 +69,16 @@
             android:hint="搜索"
             android:textColor="#333333"
             android:textSize="12sp" />
-
         <CheckBox
             android:id="@+id/store_list_cb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:button="@null"
-            android:drawableLeft="@drawable/store_list_checked_select"
-            android:drawablePadding="7dp"
             android:text="只看合作"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
             android:layout_marginRight="15dp"/>
-
     </RelativeLayout>
 
     <LinearLayout

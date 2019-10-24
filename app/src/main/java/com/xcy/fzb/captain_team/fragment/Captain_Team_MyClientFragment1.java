@@ -82,6 +82,48 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
         mRecyclerView = getActivity().findViewById(R.id.main_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         decoration = new PinnedHeaderDecoration();
+
+        initData();
+    }
+
+    private void initData() {
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ClientBean> client = fzbInterface.getClient("", FinalContents.getUserID() + "","1000");
+        client.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ClientBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ClientBean clientBean) {
+                        data = clientBean.getData();
+                        for (int i = 0; i < data.size(); ++i) {
+                            ContactModel contactModel = new ContactModel(data.get(i).getName()+ "@" + data.get(i).getId());
+                            mContactModels.add(contactModel);
+                        }
+                        initDatas();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "客户列表错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 
     private void initDatas() {
@@ -201,12 +243,6 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
 
     }
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        inithot("");
-    }
 
     @Override
     public void onDestroy() {

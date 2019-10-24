@@ -21,7 +21,6 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.CommentListAdapter;
-import com.xcy.fzb.all.api.AndroidBug5497Workaround;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CircleBean;
 import com.xcy.fzb.all.modle.EconomicCircleBean;
@@ -82,17 +81,17 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_economic_circle_particulars);
-        AndroidBug5497Workaround.assistActivity(this);
+
         initView();
         initET();
 
-        StatusBar.makeStatusBarTransparent(this);
+
 
     }
 
     private void initET() {
 
-
+        StatusBar.makeStatusBarTransparent(this);
 
         particulars_et_comment.setOnKeyListener(new View.OnKeyListener() {
             @Override

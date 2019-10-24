@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E9EBEB"
     tools:ignore="MissingDefaultResource,ResourceName">
 
@@ -20,15 +21,27 @@
 
             <RelativeLayout
                 android:id="@+id/me_gr"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="65dp">
 
                 <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="2dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/white_next" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/me_photo"
                     android:layout_width="50dp"
+                    app:riv_oval="true"
                     android:layout_height="50dp"
+                    android:src="@mipmap/logo_garden"
                     android:scaleType="fitXY"/>
 
                 <LinearLayout

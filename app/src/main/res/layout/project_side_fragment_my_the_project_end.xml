@@ -15,6 +15,16 @@
         android:layout_height="150dp"
         android:background="@drawable/my_brokerage">
 
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/white_next" />
+
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/img_my_the_project_end"
             android:layout_width="50dp"
@@ -22,6 +32,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dp"
             android:layout_marginBottom="40dp"
+            android:src="@mipmap/logo_garden"
             app:riv_oval="true"
             android:scaleType="fitXY" />
 

@@ -39,14 +39,14 @@ public class PhotoTileActivity extends AllActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_tile);
-        StatusBar.makeStatusBarTransparent(this);
+
         initView();
         initRv();
     }
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
         photo_img = findViewById(R.id.photo_tile_back);
         photoTileRv = findViewById(R.id.photo_tile_rv);
 

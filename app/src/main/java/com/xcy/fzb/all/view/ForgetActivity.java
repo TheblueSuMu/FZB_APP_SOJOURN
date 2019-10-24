@@ -44,13 +44,13 @@ public class ForgetActivity extends AllActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initfvb();
     }
 
     private void initfvb(){
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
         binding_return = findViewById(R.id.binding_return);
         phone = findViewById(R.id.forget_phone);
         password = findViewById(R.id.forget_password);

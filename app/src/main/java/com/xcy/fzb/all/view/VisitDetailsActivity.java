@@ -17,7 +17,7 @@ public class VisitDetailsActivity extends AllActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visit_details);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -26,10 +26,7 @@ public class VisitDetailsActivity extends AllActivity implements View.OnClickLis
     //TODO 视图
     private void initView() {
 
-        //TODO 设置导航栏、标题栏透明
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+        StatusBar.makeStatusBarTransparent(this);
 
 
         visit_return = findViewById(R.id.visit_return);

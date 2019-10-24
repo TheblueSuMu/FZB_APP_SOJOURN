@@ -46,12 +46,15 @@ public class WebActivity extends AllActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.web_activity);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         init();
     }
 
     private void init(){
+
+        StatusBar.makeStatusBarTransparent(this);
+
         web_layout_title = findViewById(R.id.web_layout_title);
         web_time = findViewById(R.id.web_time);
         web_content = findViewById(R.id.web_content);
@@ -130,7 +133,7 @@ public class WebActivity extends AllActivity {
                         share.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectTalkToolShareBean.getData().getTalkToolInfo().getTitle(),webUrl,titleUrl,"http://39.98.173.250:8080"+projectTalkToolShareBean.getData().getTalkToolInfo().getShareIcon(),webUrl,WebActivity.this);
+                                FinalContents.showShare(titleUrl,webUrl,projectTalkToolShareBean.getData().getTalkToolInfo().getTitle(),"http://39.98.173.250:8080"+projectTalkToolShareBean.getData().getTalkToolInfo().getShareIcon(),webUrl,WebActivity.this);
                             }
                         });
                     }

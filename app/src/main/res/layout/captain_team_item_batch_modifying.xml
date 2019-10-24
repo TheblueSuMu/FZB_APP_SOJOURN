@@ -13,7 +13,6 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             app:riv_oval="true"
-            android:src="@mipmap/logo_square"
             android:id="@+id/item_batch_modifying_img"
             android:layout_width="60dp"
             android:layout_height="60dp"

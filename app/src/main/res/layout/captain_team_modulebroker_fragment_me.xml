@@ -38,6 +38,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     app:riv_oval="true"
+                    android:src="@mipmap/logo_garden"
                     android:scaleType="fitXY" />
 
                 <LinearLayout

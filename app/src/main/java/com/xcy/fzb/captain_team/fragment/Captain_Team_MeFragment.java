@@ -159,7 +159,7 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
                     public void onNext(ZhangBingDataBean userMessageBean) {
                         ZhangBingDataBean.DataBean data = userMessageBean.getData();
 
-                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getPhoto()).placeholder(R.mipmap.logo_square).into(me_photo);
+                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getPhoto()).into(me_photo);
 
                         me_name.setText(data.getSysUser().getName());
 
@@ -205,9 +205,10 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
             startActivity(intent);
         } else if (id == R.id.me_Client) {
 //            TODO 成交量
-            FinalContents.setMySelf("1");
             intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
             intent.putExtra("client","5");
+            FinalContents.setMySelf("1");
+            FinalContents.setQuanceng("1");
             FinalContents.setAgentId(FinalContents.getUserID());
             startActivity(intent);
 

@@ -60,50 +60,8 @@ public class PurchaseNoticeActivity extends AllActivity implements View.OnClickL
         setContentView(R.layout.activity_purchase_notice);
 
 
-
         initView();
         init();
-    }
-
-    private void init(){
-
-        StatusBar.makeStatusBarTransparent(this);
-
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
-        Observable<HouseBean> houseBean1 = fzbInterface.getHouseBean(FinalContents.getUserID(), FinalContents.getProjectID(), "1","1000");
-        houseBean1.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<HouseBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(HouseBean houseBean) {
-                        houseDataData = houseBean.getData();
-                        title.setText(houseDataData.getPropertyHouseList().get(0).getTitle()+"");
-                        time.setText(houseDataData.getPropertyHouseList().get(0).getCreateDate()+"");
-                        content.setText("       "+houseDataData.getPropertyHouseList().get(0).getContent());
-                        talkToolId = houseDataData.getPropertyHouseList().get(0).getId();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("MyCL","PurchaseNoticeActivity错误信息：" + e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
     }
 
     public void initView() {
@@ -138,6 +96,53 @@ public class PurchaseNoticeActivity extends AllActivity implements View.OnClickL
 
     }
 
+    private void init() {
+
+        StatusBar.makeStatusBarTransparent(this);
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<HouseBean> houseBean1 = fzbInterface.getHouseBean(FinalContents.getUserID(), FinalContents.getProjectID(), "1", "1000");
+        houseBean1.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<HouseBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(HouseBean houseBean) {
+                        houseDataData = houseBean.getData();
+                        if (houseDataData.getPropertyHouseList().size() >= 1) {
+                            title.setText(houseDataData.getPropertyHouseList().get(0).getTitle());
+                            time.setText(houseDataData.getPropertyHouseList().get(0).getCreateDate());
+                            content.setText("       " + houseDataData.getPropertyHouseList().get(0).getContent());
+                            talkToolId = houseDataData.getPropertyHouseList().get(0).getId();
+                        } else {
+                            title.setText("");
+                            time.setText("");
+                            content.setText("");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "PurchaseNoticeActivity错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -147,30 +152,51 @@ public class PurchaseNoticeActivity extends AllActivity implements View.OnClickL
             notice_l1.setVisibility(View.VISIBLE);
             notice_l2.setVisibility(View.INVISIBLE);
             notice_l3.setVisibility(View.INVISIBLE);
-            title.setText(houseDataData.getPropertyHouseList().get(0).getTitle());
-            time.setText(houseDataData.getPropertyHouseList().get(0).getCreateDate());
-            content.setText("       "+houseDataData.getPropertyHouseList().get(0).getContent());
-            talkToolId = houseDataData.getPropertyHouseList().get(0).getId();
+            if (houseDataData.getPropertyHouseList().size() >= 1) {
+                title.setText(houseDataData.getPropertyHouseList().get(0).getTitle());
+                time.setText(houseDataData.getPropertyHouseList().get(0).getCreateDate());
+                content.setText("       " + houseDataData.getPropertyHouseList().get(0).getContent());
+                talkToolId = houseDataData.getPropertyHouseList().get(0).getId();
+            } else {
+                title.setText("");
+                time.setText("");
+                content.setText("");
+            }
+
         } else if (id == R.id.notice_t2) {
 
             notice_l1.setVisibility(View.INVISIBLE);
             notice_l2.setVisibility(View.VISIBLE);
             notice_l3.setVisibility(View.INVISIBLE);
-            title.setText(houseDataData.getPropertyHouseList().get(1).getTitle());
-            time.setText(houseDataData.getPropertyHouseList().get(1).getCreateDate());
-            content.setText("       "+houseDataData.getPropertyHouseList().get(1).getContent());
-            talkToolId = houseDataData.getPropertyHouseList().get(1).getId();
+            if (houseDataData.getPropertyHouseList().size() >= 2) {
+                title.setText(houseDataData.getPropertyHouseList().get(1).getTitle());
+                time.setText(houseDataData.getPropertyHouseList().get(1).getCreateDate());
+                content.setText("       " + houseDataData.getPropertyHouseList().get(1).getContent());
+                talkToolId = houseDataData.getPropertyHouseList().get(1).getId();
+            } else {
+                title.setText("");
+                time.setText("");
+                content.setText("");
+            }
+
         } else if (id == R.id.notice_t3) {
 
             notice_l1.setVisibility(View.INVISIBLE);
             notice_l2.setVisibility(View.INVISIBLE);
             notice_l3.setVisibility(View.VISIBLE);
-            title.setText(houseDataData.getPropertyHouseList().get(2).getTitle());
-            time.setText(houseDataData.getPropertyHouseList().get(2).getCreateDate());
-            content.setText("       "+houseDataData.getPropertyHouseList().get(2).getContent());
-            talkToolId = houseDataData.getPropertyHouseList().get(2).getId();
+            if (houseDataData.getPropertyHouseList().size() >= 3) {
+                title.setText(houseDataData.getPropertyHouseList().get(2).getTitle());
+                time.setText(houseDataData.getPropertyHouseList().get(2).getCreateDate());
+                content.setText("       " + houseDataData.getPropertyHouseList().get(2).getContent());
+                talkToolId = houseDataData.getPropertyHouseList().get(2).getId();
+            } else {
+                title.setText("");
+                time.setText("");
+                content.setText("");
+            }
+
         } else if (id == R.id.notice_btn) {
-            FinalContents.showShare(title.getText().toString(),"http://test.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+talkToolId,content.getText().toString(),"http://39.98.173.250:8080"+houseDataData.getPropertyHouseList().get(0).getShareIcon(),"http://test.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+talkToolId,this);
+            FinalContents.showShare(title.getText().toString(), "http://test.fangzuobiao.com:88/sellingPoint?" + "&userId=" + FinalContents.getUserID() + "&talkToolId=" + talkToolId, content.getText().toString(), "http://39.98.173.250:8080" + houseDataData.getPropertyHouseList().get(0).getShareIcon(), "http://test.fangzuobiao.com:88/sellingPoint?" + "&userId=" + FinalContents.getUserID() + "&talkToolId=" + talkToolId, this);
         }
     }
 

@@ -70,13 +70,13 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_client);
-        StatusBar.makeStatusBarTransparent(this);
+
         initView();
     }
 
     private void initView() {
         client = getIntent().getStringExtra("client");
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
 
 

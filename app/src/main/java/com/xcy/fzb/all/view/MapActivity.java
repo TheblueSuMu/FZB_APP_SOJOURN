@@ -81,7 +81,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         Intent intent = getIntent();
         String office = ""+intent.getStringExtra("office");
@@ -104,8 +104,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
     }
 
     private void initView() {
-
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         map_navigation = findViewById(R.id.map_navigation);
         map_return = findViewById(R.id.map_return);
@@ -142,17 +141,17 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                if (tab.getText().equals("交通出行")) {
-                    initTestBtn("交通出行");
-                } else if (tab.getText().equals("教育教学")) {
-                    initTestBtn("教育教学");
-                } else if (tab.getText().equals("医疗健康")) {
-                    initTestBtn("医疗健康");
-                } else if (tab.getText().equals("商场购物")) {
-                    initTestBtn("商场购物");
-                } else if (tab.getText().equals("生活娱乐")) {
-                    initTestBtn("生活娱乐");
-                }
+//                if (tab.getText().equals("交通出行")) {
+//                    initTestBtn("交通出行");
+//                } else if (tab.getText().equals("教育教学")) {
+//                    initTestBtn("教育教学");
+//                } else if (tab.getText().equals("医疗健康")) {
+//                    initTestBtn("医疗健康");
+//                } else if (tab.getText().equals("商场购物")) {
+//                    initTestBtn("商场购物");
+//                } else if (tab.getText().equals("生活娱乐")) {
+//                    initTestBtn("生活娱乐");
+//                }
             }
         });
 
@@ -180,22 +179,35 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
                 break;
             case R.id.map_navigation:
                 initgh();
+//                initTestBtn("餐厅");
+
                 break;
         }
 
     }
 
-    private void initTestBtn(String RetrieveName) {
+    private void initTestBtn(final String RetrieveName) {
 //TODO 创建POI检索实例
         mPoiSearch = PoiSearch.newInstance();
 //TODO 设置检索监听器
         mPoiSearch.setOnGetPoiSearchResultListener(listener);
 //TODO 发起检索请求
-        mPoiSearch.searchNearby(new PoiNearbySearchOption()
-                .location(new LatLng(o, d))
-                .radius(5000)
-                .keyword(RetrieveName)
-                .pageNum(10));
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                Log.i("Map","o：" + o);
+//                Log.i("Map","d：" + d);
+//                Log.i("Map","RetrieveName：" + RetrieveName);
+                mPoiSearch.searchNearby(new PoiNearbySearchOption()
+                        .location(new LatLng(o, d))
+                        .radius(10000)
+                        .keyword(RetrieveName)
+                        .pageNum(10));
+            }
+        }).start();
+
+
 
     }
 
@@ -447,6 +459,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
     protected void onDestroy() {
         mLocationClient.stop();
         mBaiduMap.setMyLocationEnabled(false);
+        mPoiSearch.destroy();
         mMapView.onDestroy();
         mMapView = null;
         super.onDestroy();

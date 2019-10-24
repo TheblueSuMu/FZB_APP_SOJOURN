@@ -192,7 +192,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(UserBean userBean) {
-                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + userBean.getData().getPhoto()).placeholder(R.mipmap.logo_square).into(img_my_the_project_end);
+                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + userBean.getData().getPhoto()).into(img_my_the_project_end);
                         name_my_the_project_end.setText(userBean.getData().getName());
                         city_my_the_project_end.setText(userBean.getData().getCity());
                         shop_my_the_project_end.setText(userBean.getData().getCityName());

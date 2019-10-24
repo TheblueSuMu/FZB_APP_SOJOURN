@@ -41,7 +41,8 @@
         <!--TODO 百度地图 start-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="HmPVKuXGlaqvD1TV6XTNTlF6giQK2c3l" />
+            android:value="Nusds6wsGYfaz2abwLrSvFc7SoKNk0vy" />
+
 
         <service
             android:name="com.baidu.location.f"
@@ -60,8 +61,8 @@
         <activity android:name=".all.view.SearchInterfaceActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.BuildingInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.PhotoActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".all.view.MoreInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".all.view.NickNameActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".all.view.MoreInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/><!--TODO 公用 跟多信息-->
+        <activity android:name=".all.view.NickNameActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/><!--TODO 公用 修改昵称-->
         <activity android:name=".all.view.ForgetActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
 
         <activity android:name=".all.view.AllActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>

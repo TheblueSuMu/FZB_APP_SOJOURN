@@ -109,6 +109,9 @@ public class Captain_Counselor_MainActivity extends AllActivity implements View.
         FragmentTransaction transaction = manager.beginTransaction();
         switch (view.getId()) {
             case R.id.button_economics:
+                FinalContents.setMySelf("1");
+                FinalContents.setQuanceng("1");
+                FinalContents.setAgentId(FinalContents.getUserID());
                 Captain_Team_MyClientFragment myClientFragment = new Captain_Team_MyClientFragment();
                 transaction.replace(R.id.main_framelayout,myClientFragment);
                 break;

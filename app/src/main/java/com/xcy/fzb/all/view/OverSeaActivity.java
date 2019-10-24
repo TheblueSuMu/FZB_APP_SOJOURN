@@ -130,7 +130,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         setContentView(R.layout.activity_over_sea);
 
         title = findViewById(R.id.oversea_title);
-        StatusBar.makeStatusBarTransparent(this);
+
 
 
         seview = findViewById(R.id.seview);
@@ -140,6 +140,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         initissue();
         init();
         EventBus.getDefault().register(this);
+
+
     }
 
     private void init() {
@@ -182,6 +184,9 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     }
 
     private void initfvb() {
+
+        StatusBar.makeStatusBarTransparent(this);
+
         initvoid();
 
         application = (DemoApplication) getApplication();
@@ -280,7 +285,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 oversea_ll.setVisibility(View.GONE);
-                report.setVisibility(View.VISIBLE);
             }
         });
 
@@ -288,7 +292,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 oversea_ll.setVisibility(View.GONE);
-                report.setVisibility(View.VISIBLE);
             }
         });
 
@@ -327,31 +330,26 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         switch (view.getId()) {
             case R.id.overseas_sort:
                 oversea_rb_1.setChecked(true);
-                report.setVisibility(View.GONE);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_screen:
                 oversea_rb_5.setChecked(true);
-                report.setVisibility(View.GONE);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_state:
                 oversea_rb_2s.setChecked(true);
-                report.setVisibility(View.GONE);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_price:
                 oversea_rb_3.setChecked(true);
-                report.setVisibility(View.GONE);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_house_type:
                 oversea_rb_4.setChecked(true);
-                report.setVisibility(View.GONE);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
@@ -534,8 +532,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                         // ...长按事件
                     }
                 });
-
-
             }
         }
 
