@@ -203,11 +203,12 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
             intent = new Intent(getContext(), PersonalInformationActivity.class);
             startActivity(intent);
         } else if (id == R.id.me_Client) {
-//            TODO 我的客户
+//            TODO 成交套
             intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
             FinalContents.setQuanceng("1");
             FinalContents.setMySelf("0");
             intent.putExtra("client","5");
+            FinalContents.setAgentId(FinalContents.getUserID());
             startActivity(intent);
         }else if (id == R.id.me_team) {
 //            TODO 我的团队
@@ -239,7 +240,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
         } else if (id == R.id.my_empty) {
 //            TODO 清空缓存
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("确认清楚缓存吗?");
+            builder.setMessage("确认清除缓存吗?");
             builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

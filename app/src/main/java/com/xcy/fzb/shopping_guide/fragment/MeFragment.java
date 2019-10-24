@@ -127,7 +127,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 //                TODO 清空缓存
             case R.id.empty_my_the_project_end:
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setMessage("确认清楚缓存吗?");
+                builder.setMessage("确认清除缓存吗?");
                 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

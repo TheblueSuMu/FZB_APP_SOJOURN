@@ -159,6 +159,9 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+        Log.i("SZ","FinalContents.getAgentId()：" + FinalContents.getAgentId());
+        Log.i("SZ","FinalContents.getUserID()：" + FinalContents.getUserID());
+        Log.i("SZ","FinalContents.getMySelf()：" + FinalContents.getMySelf());
         Observable<ReportProcessBean> clientFragment = fzbInterface.getReportProcess(FinalContents.getAgentId(), "60", "",FinalContents.getUserID(),"1000",FinalContents.getMySelf());
         clientFragment.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -63,6 +63,19 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
             if (contact.getName().equals(list.get(i).getName())) {
                 Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + list.get(i).getPhoto()).into(holder.member_name_img);
                 if (list.get(i).getType().equals("1")) {
+
+
+//                    StringBuffer stringBuffer = new StringBuffer();
+//                    StringBuffer append = stringBuffer.append(contact.getName());
+//                    for (int j = 0; j < append.length(); ++j) {
+//                        if (append.substring(j, j + 1).equals("@")) {
+//                            holder.tvName.setText(append.substring(0, j));
+////                Log.i("客户","name：" + append.substring(0, i));
+////                Log.i("客户","id：" + append.substring(i + 1));
+//                        }
+//                    }
+
+
                     holder.tvName.setText(contact.getName());
                     /**
                      * 修改
@@ -81,6 +94,18 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
                         }
                     }
                 } else if (list.get(i).getType().equals("2")) {
+
+//
+//                    StringBuffer stringBuffer = new StringBuffer();
+//                    StringBuffer append = stringBuffer.append(contact.getName());
+//                    for (int j = 0; j < append.length(); ++j) {
+//                        if (append.substring(j, j + 1).equals("@")) {
+//                            holder.tvName.setText(append.substring(0, j)+ "(" + list.get(i).getRatioName() + ")");
+////                Log.i("客户","name：" + append.substring(0, i));
+////                Log.i("客户","id：" + append.substring(i + 1));
+//                        }
+//                    }
+
                     holder.tvName.setText(contact.getName() + "(" + list.get(i).getRatioName() + ")");
                     if (list.get(i).getCounselorNum().equals("")) {
                         if (list.get(i).getLeaderName().equals("")) {
@@ -97,6 +122,17 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
                     }
 
                 } else if (list.get(i).getType().equals("3")) {
+
+//                    StringBuffer stringBuffer = new StringBuffer();
+//                    StringBuffer append = stringBuffer.append(contact.getName());
+//                    for (int j = 0; j < append.length(); ++j) {
+//                        if (append.substring(j, j + 1).equals("@")) {
+//                            holder.tvName.setText(append.substring(0, j)+ "(" + list.get(i).getRatioName() + ")");
+////                Log.i("客户","name：" + append.substring(0, i));
+////                Log.i("客户","id：" + append.substring(i + 1));
+//                        }
+//                    }
+
                     holder.tvName.setText(contact.getName() + "(" + list.get(i).getRatioName() + ")");
                     if (list.get(i).getSaleName().equals("")) {
                         if (list.get(i).getLeaderName().equals("")) {

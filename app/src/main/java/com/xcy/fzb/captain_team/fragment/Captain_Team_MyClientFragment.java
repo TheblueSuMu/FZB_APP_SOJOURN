@@ -118,6 +118,8 @@ public class Captain_Team_MyClientFragment extends AllFragment implements View.O
         my_client_11_6.setOnClickListener(this);
         my_client_11_7.setOnClickListener(this);
 
+        my_client_return.setVisibility(View.GONE);
+
         my_client_ss.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
