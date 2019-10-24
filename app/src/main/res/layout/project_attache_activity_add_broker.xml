@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,7 +26,6 @@
                 android:src="@mipmap/return2" />
 
         </RelativeLayout>
-
 
 
         <TextView
@@ -62,14 +61,28 @@
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="选择经纪公司*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="选择经纪公司"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/add_tv1"
@@ -90,24 +103,41 @@
                         android:src="@mipmap/next" />
 
                 </RelativeLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#EEEEEE"></LinearLayout>
+
                 <RelativeLayout
                     android:id="@+id/add_rl2"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="选择经纪门店*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="选择经纪门店"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <TextView
                         android:id="@+id/add_tv2"
@@ -128,24 +158,41 @@
                         android:src="@mipmap/next" />
 
                 </RelativeLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#EEEEEE"></LinearLayout>
+
                 <RelativeLayout
                     android:id="@+id/add_rl3"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="经纪人类型*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="经纪人类型"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <TextView
                         android:id="@+id/add_tv3"
@@ -166,6 +213,7 @@
                         android:src="@mipmap/next" />
 
                 </RelativeLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -176,14 +224,29 @@
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="经纪人姓名*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="经纪人姓名"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <EditText
                         android:id="@+id/add_et1"
@@ -192,8 +255,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
-                        android:gravity="right"
                         android:background="#FFFFFF"
+                        android:gravity="right"
                         android:hint="输入姓名"
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
@@ -209,14 +272,29 @@
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="手机号*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="手机号"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <EditText
                         android:id="@+id/add_et2"
@@ -225,12 +303,12 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
-                        android:gravity="right"
                         android:background="#FFFFFF"
-                        android:hint="输入手机号"
-                        android:textColor="#ff666666"
                         android:digits="0123456789"
+                        android:gravity="right"
+                        android:hint="输入手机号"
                         android:maxLength="11"
+                        android:textColor="#ff666666"
                         android:textSize="15sp" />
                 </RelativeLayout>
 
@@ -244,14 +322,29 @@
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="登录账号*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="登录账号"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <EditText
                         android:id="@+id/add_et3"
@@ -260,8 +353,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
-                        android:gravity="right"
                         android:background="#FFFFFF"
+                        android:gravity="right"
                         android:hint="输入账号"
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
@@ -277,14 +370,29 @@
                     android:layout_height="45dp"
                     android:background="#FFFFFF">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:text="登录密码*"
-                        android:textColor="#ff333333"
-                        android:textSize="15sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:text="登录密码"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="*"
+                            android:textColor="#AC1E26"
+                            android:textSize="15sp"></TextView>
+                    </LinearLayout>
+
 
                     <EditText
                         android:id="@+id/add_et4"
@@ -294,8 +402,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
                         android:background="#FFFFFF"
-                        android:hint="123456"
                         android:gravity="right"
+                        android:hint="123456"
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
                 </RelativeLayout>

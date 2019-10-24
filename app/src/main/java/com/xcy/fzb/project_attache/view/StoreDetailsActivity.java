@@ -262,14 +262,16 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         store_details_tv1.setText(companyInfo.getCompanyName());
                         store_details_tv2.setText(companyInfo.getCompanyAddress());
 
+                        store_details_tv3.setText("公司负责人：" + companyInfo.getShopownerName() + " " + companyInfo.getShopownerPhone());
+                        store_details_tv13.setText(companyInfo.getCompanyName());
+
                         if (companyInfo.getShopownerPhone().equals("")) {
                             store_details_call.setVisibility(View.GONE);
                         } else {
                             store_details_call.setVisibility(View.VISIBLE);
                         }
 
-                        store_details_tv3.setText("公司负责人：" + companyInfo.getShopownerName() + " " + companyInfo.getShopownerPhone());
-                        store_details_tv13.setText(companyInfo.getCompanyName());
+
 
                     }
 
@@ -368,6 +370,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         switch (view.getId()) {
 
             case R.id.store_details_return:
+                FinalContents.setMyAddType("公司");
                 finish();
                 break;
             case R.id.store_details_call:

@@ -206,7 +206,10 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.add_company_return:
                 FinalContents.setStoreChange("");
-                FinalContents.setMyAddType("");
+                /**
+                 *
+                 */
+                FinalContents.setMyAddType("公司");
                 finish();
                 break;
             case R.id.add_company_rl1:
@@ -301,6 +304,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                             Log.i("MyCL", "c2");
                             if (addCompanyBean.getData().getMessage().equals("保存成功")) {
                                 FinalContents.setStoreChange("");
+                                FinalContents.setMyAddType("公司");
                                 Toast.makeText(AddCompanyActivity.this, addCompanyBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
@@ -349,8 +353,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             Log.i("专员公司", " FinalContents.getUserID()：" + FinalContents.getUserID());
 
             addCompanyBean = fzbInterface.getAddCompanyBean(companyManage.getId(), s3, s1, s4, s2, "", "", "", "", num, FinalContents.getUserID());
-
-
             addCompanyBean.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<AddCompanyBean>() {
@@ -364,6 +366,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                             Log.i("MyCL", "c2");
                             if (addCompanyBean.getData().getMessage().equals("保存成功")) {
                                 FinalContents.setStoreChange("");
+                                FinalContents.setMyAddType("公司");
                                 Toast.makeText(AddCompanyActivity.this, addCompanyBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
@@ -439,13 +442,15 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         getLatitude = data.getStringExtra("getLatitude");
         getLongitude = data.getStringExtra("getLongitude");
 
+        Log.i("地图","地图坐标getLongitude：" + getLongitude);
+        Log.i("地图","地图坐标getLatitude：" + getLatitude);
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-
         Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
         changeAddress.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

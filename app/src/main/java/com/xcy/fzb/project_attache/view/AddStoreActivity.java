@@ -332,6 +332,11 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                         Uri photoUri = AddStoreActivity.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 //TODO Uri图片转换成file类型的 start
                         files = uri2File(photoUri);
+
+                        if(isPhoto == 0){
+                            isPhoto = 1;
+                        }
+
                         Log.i("MyCL", "Uri图片转换成file类型的：" + files);
 
 //                        new Thread() {

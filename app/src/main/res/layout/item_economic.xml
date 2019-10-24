@@ -2,9 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
+        app:riv_oval="true"
+        android:src="@mipmap/logo_square"
         android:id="@+id/item_economic_img"
         android:layout_width="25dp"
         android:layout_height="25dp"
