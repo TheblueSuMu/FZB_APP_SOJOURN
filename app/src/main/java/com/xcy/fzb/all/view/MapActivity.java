@@ -457,7 +457,6 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
     protected void onDestroy() {
         mLocationClient.stop();
         mBaiduMap.setMyLocationEnabled(false);
-        mPoiSearch.destroy();
         mMapView.onDestroy();
         mMapView = null;
         super.onDestroy();

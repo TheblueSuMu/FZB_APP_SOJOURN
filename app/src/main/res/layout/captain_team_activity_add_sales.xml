@@ -166,11 +166,13 @@
 
                     <EditText
                         android:id="@+id/add_sales_et1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:background="#FFFFFF"
                         android:gravity="right"
                         android:hint="请输入姓名"
@@ -202,11 +204,13 @@
 
                     <EditText
                         android:id="@+id/add_sales_et2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:background="#FFFFFF"
                         android:gravity="right"
                         android:hint="请输入所在行业"
@@ -238,11 +242,13 @@
 
                     <EditText
                         android:id="@+id/add_sales_et3"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:background="#FFFFFF"
                         android:gravity="right"
                         android:hint="请输入手机号"
@@ -274,11 +280,13 @@
 
                     <EditText
                         android:id="@+id/add_sales_et4"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
+                        android:imeOptions="actionDone"
+                        android:singleLine="true"
                         android:background="#FFFFFF"
                         android:gravity="right"
                         android:hint="请输入登录账号"
@@ -310,7 +318,7 @@
 
                     <EditText
                         android:id="@+id/add_sales_et5"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"

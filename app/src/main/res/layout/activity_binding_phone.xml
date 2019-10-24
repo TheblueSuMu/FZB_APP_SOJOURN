@@ -49,6 +49,8 @@
             android:id="@+id/binding_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
             android:background="#FFFFFF"
             android:digits="0123456789"
             android:maxLength="11"
@@ -98,6 +100,8 @@
             android:id="@+id/binding_et"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
             android:background="#FFFFFF"
             android:hint="请输入验证码" />
     </RelativeLayout>

@@ -2,11 +2,10 @@ package com.xcy.fzb.all.database;
 
 public class ExemplaryUserBean {
 
-
     /**
      * code : 1
      * msg : 成功
-     * data : {"id":"3a0ee28065a84d548c96ee51849b5222","loginName":"wangss","name":"王珊珊","email":"","phone":"13944098039","mobile":"","loginIp":"36.106.96.235","loginDate":1567511507000,"loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/qrcode/3a0ee28065a84d548c96ee51849b5222.png","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"36.106.96.235","oldLoginDate":1567511507000,"sex":"","province":"吉林省","city":"长春市","county":"南关区","identity":"4","companyManage":"","storeManage":"","storeManagePhone":"","storeManageName":"","cityId":"c241db93cbd247f5a8aadf501806b56a","cityName":"长春房坐标（吉海优房）","team":"","codeImg":"/fangfang/static/down/appTwoCode.png","wechatOpenid":"","wechatData":"","codeHref":"/fangfang/static/down/index.html","uId":"f6d5947a3fd35a9e23f9744af065b41473ed4ea6ea18b0979f9a0aa9e95966088d85d48153555e494b79cfa0d9ae3cf1","status":"1","message":""}
+     * data : {"id":"37354ae337d94c62b91c5b678879038c","loginName":"tz","name":"tz","email":"","phone":"18235195990","mobile":"","loginIp":"36.106.98.121","loginDate":1571917644000,"loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"/fangfang/userfiles/1/attachment/qrcode/.png","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"36.106.98.121","oldLoginDate":1571917644000,"sex":"","province":"吉林省","city":"长春市","county":"南关区","identity":"63","companyManage":"","storeManage":"","storeManagePhone":"","storeManageName":"","cityId":"c241db93cbd247f5a8aadf501806b56a","cityName":"长春房坐标（吉海优房）","team":"","layerTeamVo":"","codeImg":"/fangfang/static/down/appTwoCode.png","wechatOpenid":"","wechatData":"","codeHref":"/fangfang/static/down/index.html","uId":"7a698bb25fc7199f8aef899f29b54a260f666dec46df0bb555e0262edb8635db8d85d48153555e494b79cfa0d9ae3cf1","status":"1","message":""}
      */
 
     private String code;
@@ -39,27 +38,27 @@ public class ExemplaryUserBean {
 
     public static class DataBean {
         /**
-         * id : 3a0ee28065a84d548c96ee51849b5222
-         * loginName : wangss
-         * name : 王珊珊
+         * id : 37354ae337d94c62b91c5b678879038c
+         * loginName : tz
+         * name : tz
          * email :
-         * phone : 13944098039
+         * phone : 18235195990
          * mobile :
-         * loginIp : 36.106.96.235
-         * loginDate : 1567511507000
+         * loginIp : 36.106.98.121
+         * loginDate : 1571917644000
          * loginFlag : 1
          * photo : /fangfang/static/common/images/flat-avatar.png
-         * qrCode : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/qrcode/3a0ee28065a84d548c96ee51849b5222.png
+         * qrCode : /fangfang/userfiles/1/attachment/qrcode/.png
          * oldLoginName :
          * newPassword :
          * sign :
-         * oldLoginIp : 36.106.96.235
-         * oldLoginDate : 1567511507000
+         * oldLoginIp : 36.106.98.121
+         * oldLoginDate : 1571917644000
          * sex :
          * province : 吉林省
          * city : 长春市
          * county : 南关区
-         * identity : 4
+         * identity : 63
          * companyManage :
          * storeManage :
          * storeManagePhone :
@@ -67,11 +66,12 @@ public class ExemplaryUserBean {
          * cityId : c241db93cbd247f5a8aadf501806b56a
          * cityName : 长春房坐标（吉海优房）
          * team :
+         * layerTeamVo :
          * codeImg : /fangfang/static/down/appTwoCode.png
          * wechatOpenid :
          * wechatData :
          * codeHref : /fangfang/static/down/index.html
-         * uId : f6d5947a3fd35a9e23f9744af065b41473ed4ea6ea18b0979f9a0aa9e95966088d85d48153555e494b79cfa0d9ae3cf1
+         * uId : 7a698bb25fc7199f8aef899f29b54a260f666dec46df0bb555e0262edb8635db8d85d48153555e494b79cfa0d9ae3cf1
          * status : 1
          * message :
          */
@@ -104,6 +104,7 @@ public class ExemplaryUserBean {
         private String cityId;
         private String cityName;
         private String team;
+        private String layerTeamVo;
         private String codeImg;
         private String wechatOpenid;
         private String wechatData;
@@ -334,6 +335,14 @@ public class ExemplaryUserBean {
 
         public void setTeam(String team) {
             this.team = team;
+        }
+
+        public String getLayerTeamVo() {
+            return layerTeamVo;
+        }
+
+        public void setLayerTeamVo(String layerTeamVo) {
+            this.layerTeamVo = layerTeamVo;
         }
 
         public String getCodeImg() {

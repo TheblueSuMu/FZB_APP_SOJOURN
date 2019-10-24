@@ -88,6 +88,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:layout_marginLeft="100dp"
                         android:layout_marginRight="50dp"
                         android:background="#FFFFFF"
@@ -154,6 +156,10 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="100dp"
                         android:layout_marginRight="50dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:digits="1234567890"
+                        android:maxLength="11"
                         android:background="#FFFFFF"
                         android:textSize="15sp" />
 

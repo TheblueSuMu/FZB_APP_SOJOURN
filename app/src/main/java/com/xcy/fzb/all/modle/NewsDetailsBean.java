@@ -1,12 +1,13 @@
 package com.xcy.fzb.all.modle;
 
-public class NewsDetailsBean {
+import java.util.List;
 
+public class NewsDetailsBean {
 
     /**
      * code : 1
      * msg : 成功
-     * data : {"id":"6a3f585a0e6a42a49e1d3b592bd527ee","remarks":"","createBy":"","createDate":"2019-10-17 15:14:16","updateBy":"","updateDate":"2019-10-17 15:14:16","coverImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerNewsManage/2019/10/5d354a8a644ea.jpg","title":"啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊","arrposid":"5","content":"<p><img src=\"http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/10/5d354a82b7599.jpg\" style=\"width:100%\"> <\/p>","videoUrl":"","province":"吉林省","city":"长春市","area":"吉林省/长春市/南关区","cityCompany":"c241db93cbd247f5a8aadf501806b56a","sort":"1","onlineState":"1","project":{"id":"a7707dbc70714b7e967a25df7f8008dd","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创孔雀镇","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":""},"company":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"吉林省/长春市/南关区","parentId":"0"},"isProject":1,"projectMap":{"attacheName":"李洋","identityName":"项目专案","phone":"15204414455","name":"李洋","attachePhone":"15204414455"}}
+     * data : {"id":"0855d10400ba429e99e2f1934fd47e72","remarks":"","createBy":"","createDate":"2019-08-01 10:38:13","updateBy":"","updateDate":"2019-08-05 13:56:40","coverImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerNewsManage/2019/8/实景图3.png","title":"十畝生活：健全商家配套，让生活更美好","arrposid":"6","content":"<p> <\/p>\n<p><img src=\"http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/1.jpg\" style=\"width:100%\"><img src=\"http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/2.jpg\" style=\"width:100%\"><img src=\"http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/4.jpg\" style=\"width:100%\"><img src=\"http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/6.jpg\" style=\"width:100%\"><img src=\"http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/8.jpg\" style=\"width:100%\"><img src=\"http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/9.jpg\" style=\"width:100%\"><img src=\"http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/10.jpg\" style=\"width:100%\"><\/p>\n<p><\/p>","videoUrl":"","province":"吉林省","city":"长春市","area":"吉林省/长春市/南关区","cityCompany":"c241db93cbd247f5a8aadf501806b56a","sort":"3","onlineState":"1","project":{"id":"5a9b45bf1d5d41afb93efc670e11115d","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"天泰·大理十畝","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"吉林省/长春市/南关区","parentId":"0"},"isProject":1,"projectMap":"","attList":[{"attacheName":"李洋","attachePhone":"15204414455"},{"attacheName":"王珊珊","attachePhone":"19856581879"}]}
      */
 
     private String code;
@@ -39,27 +40,30 @@ public class NewsDetailsBean {
 
     public static class DataBean {
         /**
-         * id : 6a3f585a0e6a42a49e1d3b592bd527ee
+         * id : 0855d10400ba429e99e2f1934fd47e72
          * remarks :
          * createBy :
-         * createDate : 2019-10-17 15:14:16
+         * createDate : 2019-08-01 10:38:13
          * updateBy :
-         * updateDate : 2019-10-17 15:14:16
-         * coverImg : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerNewsManage/2019/10/5d354a8a644ea.jpg
-         * title : 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-         * arrposid : 5
-         * content : <p><img src="http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/10/5d354a82b7599.jpg" style="width:100%"> </p>
+         * updateDate : 2019-08-05 13:56:40
+         * coverImg : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerNewsManage/2019/8/实景图3.png
+         * title : 十畝生活：健全商家配套，让生活更美好
+         * arrposid : 6
+         * content : <p> </p>
+         <p><img src="http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/1.jpg" style="width:100%"><img src="http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/2.jpg" style="width:100%"><img src="http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/4.jpg" style="width:100%"><img src="http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/6.jpg" style="width:100%"><img src="http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/8.jpg" style="width:100%"><img src="http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/9.jpg" style="width:100%"><img src="http://test.fangzuobiao.com:88//fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment/newsContentImg/2019/8/10.jpg" style="width:100%"></p>
+         <p></p>
          * videoUrl :
          * province : 吉林省
          * city : 长春市
          * area : 吉林省/长春市/南关区
          * cityCompany : c241db93cbd247f5a8aadf501806b56a
-         * sort : 1
+         * sort : 3
          * onlineState : 1
-         * project : {"id":"a7707dbc70714b7e967a25df7f8008dd","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"融创孔雀镇","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":""}
-         * company : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"吉林省/长春市/南关区","parentId":"0"}
+         * project : {"id":"5a9b45bf1d5d41afb93efc670e11115d","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"天泰·大理十畝","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""}
+         * company : {"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"吉林省/长春市/南关区","parentId":"0"}
          * isProject : 1
-         * projectMap : {"attacheName":"李洋","identityName":"项目专案","phone":"15204414455","name":"李洋","attachePhone":"15204414455"}
+         * projectMap :
+         * attList : [{"attacheName":"李洋","attachePhone":"15204414455"},{"attacheName":"王珊珊","attachePhone":"19856581879"}]
          */
 
         private String id;
@@ -82,7 +86,8 @@ public class NewsDetailsBean {
         private ProjectBean project;
         private CompanyBean company;
         private int isProject;
-        private ProjectMapBean projectMap;
+        private String projectMap;
+        private List<AttListBean> attList;
 
         public String getId() {
             return id;
@@ -244,27 +249,36 @@ public class NewsDetailsBean {
             this.isProject = isProject;
         }
 
-        public ProjectMapBean getProjectMap() {
+        public String getProjectMap() {
             return projectMap;
         }
 
-        public void setProjectMap(ProjectMapBean projectMap) {
+        public void setProjectMap(String projectMap) {
             this.projectMap = projectMap;
+        }
+
+        public List<AttListBean> getAttList() {
+            return attList;
+        }
+
+        public void setAttList(List<AttListBean> attList) {
+            this.attList = attList;
         }
 
         public static class ProjectBean {
             /**
-             * id : a7707dbc70714b7e967a25df7f8008dd
+             * id : 5a9b45bf1d5d41afb93efc670e11115d
              * remarks :
              * createBy :
              * createDate :
              * updateBy :
              * updateDate :
-             * projectName : 融创孔雀镇
+             * projectName : 天泰·大理十畝
              * developer :
              * houseCompany :
              * cityCompany :
              * projectType :
+             * cityType :
              * attache :
              * cooperationState :
              * onlineState :
@@ -299,6 +313,12 @@ public class NewsDetailsBean {
              * isgroup :
              * groupNum :
              * developerId :
+             * onlineAuditState :
+             * applyBy :
+             * applyDate :
+             * auditBy :
+             * auditDate :
+             * reason :
              */
 
             private String id;
@@ -312,6 +332,7 @@ public class NewsDetailsBean {
             private String houseCompany;
             private String cityCompany;
             private String projectType;
+            private String cityType;
             private String attache;
             private String cooperationState;
             private String onlineState;
@@ -346,6 +367,12 @@ public class NewsDetailsBean {
             private String isgroup;
             private String groupNum;
             private String developerId;
+            private String onlineAuditState;
+            private String applyBy;
+            private String applyDate;
+            private String auditBy;
+            private String auditDate;
+            private String reason;
 
             public String getId() {
                 return id;
@@ -433,6 +460,14 @@ public class NewsDetailsBean {
 
             public void setProjectType(String projectType) {
                 this.projectType = projectType;
+            }
+
+            public String getCityType() {
+                return cityType;
+            }
+
+            public void setCityType(String cityType) {
+                this.cityType = cityType;
             }
 
             public String getAttache() {
@@ -706,11 +741,59 @@ public class NewsDetailsBean {
             public void setDeveloperId(String developerId) {
                 this.developerId = developerId;
             }
+
+            public String getOnlineAuditState() {
+                return onlineAuditState;
+            }
+
+            public void setOnlineAuditState(String onlineAuditState) {
+                this.onlineAuditState = onlineAuditState;
+            }
+
+            public String getApplyBy() {
+                return applyBy;
+            }
+
+            public void setApplyBy(String applyBy) {
+                this.applyBy = applyBy;
+            }
+
+            public String getApplyDate() {
+                return applyDate;
+            }
+
+            public void setApplyDate(String applyDate) {
+                this.applyDate = applyDate;
+            }
+
+            public String getAuditBy() {
+                return auditBy;
+            }
+
+            public void setAuditBy(String auditBy) {
+                this.auditBy = auditBy;
+            }
+
+            public String getAuditDate() {
+                return auditDate;
+            }
+
+            public void setAuditDate(String auditDate) {
+                this.auditDate = auditDate;
+            }
+
+            public String getReason() {
+                return reason;
+            }
+
+            public void setReason(String reason) {
+                this.reason = reason;
+            }
         }
 
         public static class CompanyBean {
             /**
-             * id :
+             * id : c241db93cbd247f5a8aadf501806b56a
              * remarks :
              * createBy :
              * createDate :
@@ -1004,19 +1087,13 @@ public class NewsDetailsBean {
             }
         }
 
-        public static class ProjectMapBean {
+        public static class AttListBean {
             /**
              * attacheName : 李洋
-             * identityName : 项目专案
-             * phone : 15204414455
-             * name : 李洋
              * attachePhone : 15204414455
              */
 
             private String attacheName;
-            private String identityName;
-            private String phone;
-            private String name;
             private String attachePhone;
 
             public String getAttacheName() {
@@ -1025,30 +1102,6 @@ public class NewsDetailsBean {
 
             public void setAttacheName(String attacheName) {
                 this.attacheName = attacheName;
-            }
-
-            public String getIdentityName() {
-                return identityName;
-            }
-
-            public void setIdentityName(String identityName) {
-                this.identityName = identityName;
-            }
-
-            public String getPhone() {
-                return phone;
-            }
-
-            public void setPhone(String phone) {
-                this.phone = phone;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
             }
 
             public String getAttachePhone() {

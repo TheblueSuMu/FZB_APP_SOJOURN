@@ -58,6 +58,9 @@
 
         <EditText
             android:id="@+id/change_phone_et"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:digits="0123456789"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#FFFFFF"
@@ -107,6 +110,8 @@
             android:id="@+id/change_phone_yanzhengma"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
             android:background="#FFFFFF"
             android:hint="请输入验证码" />
     </RelativeLayout>

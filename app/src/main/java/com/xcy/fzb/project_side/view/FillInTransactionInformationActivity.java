@@ -208,6 +208,36 @@ public class FillInTransactionInformationActivity extends AllActivity implements
         });
 
 
+        fill_in_transaction_information_et4.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (fill_in_transaction_information_et5.getText().toString().equals("")) {
+                }else {
+                    //当actionId == XX_SEND 或者 XX_DONE时都触发
+                    //或者event.getKeyCode == ENTER 且 event.getAction == ACTION_DOWN时也触发
+                    //注意，这是一定要判断event != null。因为在某些输入法上会返回null。
+                    if (actionId == EditorInfo.IME_ACTION_SEND || actionId == EditorInfo.IME_ACTION_DONE || (event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode() && KeyEvent.ACTION_DOWN == event.getAction())) {
+                        //处理事件
+                        KeyUtils.hideKeyboard(fill_in_transaction_information_et5);
+                        String s1 = fill_in_transaction_information_et4.getText().toString();
+                        String s2 = fill_in_transaction_information_et5.getText().toString();
+                        if (s1.equals("") && s2.equals("")) {
+                        }else {
+                            double area = Double.parseDouble(s1);
+                            double price = Double.parseDouble(s2);
+                            sum = (area*price);
+                            Log.i("计算价格","sum:"+sum);
+                            fill_in_transaction_information_et6.setText(sum+"元");
+                            fill_in_transaction_information_tishi.setVisibility(View.GONE);
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+        });
+
 
 
         if (FinalContents.getTiaodan().equals("调单")) {

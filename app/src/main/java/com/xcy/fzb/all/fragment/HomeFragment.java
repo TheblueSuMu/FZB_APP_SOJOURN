@@ -497,7 +497,6 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
                             banner.setOnBannerListener(new OnBannerListener() {
                                 @Override
                                 public void OnBannerClick(int position) {
-                                    FinalContents.setIPhone(imglist.get(position).getProjectMap().getPhone());
                                     FinalContents.setProjectID(imglist.get(position).getProject().getId());
                                     FinalContents.setNewID(imglist.get(position).getId());
                                     Log.i("详情","项目ID"+FinalContents.getProjectID());

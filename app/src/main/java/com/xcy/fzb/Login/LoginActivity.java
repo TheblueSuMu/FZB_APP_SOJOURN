@@ -38,12 +38,10 @@ import com.xcy.fzb.all.modle.LoginUserBean;
 import com.xcy.fzb.all.modle.UserIdentity;
 import com.xcy.fzb.all.modle.UserSaveBean;
 import com.xcy.fzb.all.persente.AdministrationAuthority;
-import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
-import com.xcy.fzb.all.utils.RandomUntil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.ForgetActivity;
 import com.xcy.fzb.broker.view.Broker_MainActivity;
@@ -108,9 +106,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        VirturlUtil.assistActivity(findViewById(android.R.id.content));
-//        StatusBar.makeStatusBarTransparent(this);
-
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
 
@@ -123,7 +118,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
             ActivityCompat.requestPermissions(LoginActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
         } else {
 //            initMap();
-            Toast.makeText(LoginActivity.this, "已开启定位权限", Toast.LENGTH_LONG).show();
+//            Toast.makeText(LoginActivity.this, "已开启定位权限", Toast.LENGTH_LONG).show();
         }
 
         AdministrationAuthority administrationAuthority = new AdministrationAuthority();
@@ -388,13 +383,19 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 startActivity(intent);
                 break;
             case R.id.tv_user_login:
-                if (type.equals("1")) {
-                    userLoginWithAccount();
-                } else if (type.equals("2")) {
-                    userLoginWithCode();
-                } else if (type.equals("")) {
-                    userLoginWithAccount();
+                boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+                if (networkAvailable) {
+                    if (type.equals("1")) {
+                        userLoginWithAccount();
+                    } else if (type.equals("2")) {
+                        userLoginWithCode();
+                    } else if (type.equals("")) {
+                        userLoginWithAccount();
+                    }
+                } else {
+                    Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
                 }
+
                 break;
             case R.id.tv_wechat:
                 Platform plat = ShareSDK.getPlatform(Wechat.NAME);
@@ -586,9 +587,9 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     public void onNext(UserIdentity userIdentity) {
                         if (userIdentity.getData().getIdentity().equals("1") || userIdentity.getData().getIdentity().equals("2") || userIdentity.getData().getIdentity().equals("3")) {
                             initBroker();
-                        } else if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7")) {
+                        } else if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7") || userIdentity.getData().getIdentity().equals("63")) {
                             initExemplary();
-                        } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") || userIdentity.getData().getIdentity().equals("63")) {
+                        } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62")) {
                             initCaptain();
                         }
                         type = "1";
@@ -780,6 +781,22 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 editor.commit();
                                 startActivity(intent);
                                 finish();
+                            }else if (userBean.getData().getIdentity().equals("63")) {
+                                //  TODO 圈层端登录 团助
+                                Intent intent = new Intent(LoginActivity.this, Captain_Assistant_MainActivity.class);
+                                FinalContents.setUserID(userBean.getData().getId());
+                                FinalContents.setCityID(userBean.getData().getCityId());
+                                FinalContents.setIdentity(userBean.getData().getIdentity());
+                                FinalContents.setXSName(userBean.getData().getName());
+                                editor.putString("denglu", "团助");
+                                editor.commit();
+                                Log.i("登录", "数据中：" + pref.getString("denglu", ""));
+                                editor.putString("userID", FinalContents.getUserID());
+                                editor.putString("cityID", FinalContents.getCityID());
+                                editor.putString("identity", FinalContents.getIdentity());
+                                editor.commit();
+                                startActivity(intent);
+                                finish();
                             }
                         } else {
                             Toast.makeText(LoginActivity.this, "当前无网络，请检查网络后再重新登录APP", Toast.LENGTH_SHORT).show();
@@ -886,23 +903,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 FinalContents.setUserName(userBean.getData().getName());
                                 FinalContents.setParentName(userBean.getData().getLayerTeamVo().getTeamLeader().getParent().getName());
                                 editor.putString("denglu", "销售");
-                                editor.commit();
-                                Log.i("登录", "数据中：" + pref.getString("denglu", ""));
-                                editor.putString("userID", FinalContents.getUserID());
-                                editor.putString("cityID", FinalContents.getCityID());
-                                editor.putString("identity", FinalContents.getIdentity());
-                                editor.commit();
-                                startActivity(intent);
-                                finish();
-                            }else if (userBean.getData().getIdentity().equals("63")) {
-                                //  TODO 圈层端登录 团助
-                                Intent intent = new Intent(LoginActivity.this, Captain_Assistant_MainActivity.class);
-                                FinalContents.setUserID(userBean.getData().getId());
-                                FinalContents.setCityID(userBean.getData().getCityId());
-                                FinalContents.setIdentity(userBean.getData().getIdentity());
-                                FinalContents.setXSName(userBean.getData().getName());
-                                FinalContents.setXSTeamName(userBean.getData().getLayerTeamVo().getTeamLeader().getParent().getName());
-                                editor.putString("denglu", "团助");
                                 editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
                                 editor.putString("userID", FinalContents.getUserID());

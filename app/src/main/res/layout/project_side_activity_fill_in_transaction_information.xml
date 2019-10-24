@@ -172,6 +172,8 @@
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
                                 android:layout_marginRight="20dp"
+                                android:imeOptions="actionDone"
+                                android:singleLine="true"
                                 android:gravity="right"
                                 android:background="#FFFFFF"
                                 android:hint="请输入成交客户姓名"
@@ -255,6 +257,8 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginRight="20dp"
                                 android:background="#FFFFFF"
+                                android:imeOptions="actionDone"
+                                android:singleLine="true"
                                 android:gravity="right"
                                 android:digits="0123456789"
                                 android:maxLength="11"
@@ -293,6 +297,8 @@
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
                                 android:layout_marginRight="20dp"
+                                android:imeOptions="actionDone"
+                                android:singleLine="true"
                                 android:digits="0123456789xX"
                                 android:maxLength="18"
                                 android:background="#FFFFFF"
@@ -374,6 +380,8 @@
 
                                 <EditText
                                     android:textSize="13sp"
+                                    android:imeOptions="actionNext"
+                                    android:singleLine="true"
                                     android:id="@+id/fang_hao_et1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
@@ -387,6 +395,8 @@
 
                                 <EditText
                                     android:textSize="13sp"
+                                    android:imeOptions="actionNext"
+                                    android:singleLine="true"
                                     android:id="@+id/fang_hao_et2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
@@ -400,6 +410,8 @@
 
                                 <EditText
                                     android:textSize="13sp"
+                                    android:imeOptions="actionNext"
+                                    android:singleLine="true"
                                     android:id="@+id/fang_hao_et3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
@@ -495,6 +507,7 @@
                                     android:layout_marginRight="8dp"
                                     android:imeOptions="actionDone"
                                     android:background="#FFFFFF"
+                                    android:singleLine="true"
                                     android:hint="请输入成交面积"
                                     android:gravity="right"
                                     android:textColor="#111111"
@@ -547,6 +560,7 @@
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
                                     android:imeOptions="actionDone"
+                                    android:singleLine="true"
                                     android:background="#FFFFFF"
                                     android:hint="请填写成交单价"
                                     android:gravity="right"

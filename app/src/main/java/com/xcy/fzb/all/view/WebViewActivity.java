@@ -10,12 +10,18 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.NewsDetailsBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -106,6 +112,35 @@ public class WebViewActivity extends AllActivity {
                                     FinalContents.showShare(newsDetailsBean.getData().getTitle(),"http://test.fangzuobiao.com:88/NewsSharing?userId="+FinalContents.getUserID()+"&newId="+FinalContents.getNewID(),newsDetailsBean.getData().getProject().getProjectName(),"http://39.98.173.250:8080"+newsDetailsBean.getData().getCoverImg(),"http://test.fangzuobiao.com:88/NewsSharing?userId="+FinalContents.getUserID()+"&newId="+FinalContents.getNewID(),WebViewActivity.this);
                                 }
                             });
+                            web_call.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    final List<String> list = new ArrayList<>();
+                                    for (int i = 0; i < newsDetailsBean.getData().getAttList().size(); i++) {
+                                        list.add(newsDetailsBean.getData().getAttList().get(i).getAttacheName());
+                                    }
+                                    //      监听选中
+                                    OptionsPickerView pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
+                                        @Override
+                                        public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                                            //               返回的分别是三个级别的选中位置
+                                            //              展示选中数据
+                                            Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + newsDetailsBean.getData().getAttList().get(options1).getAttachePhone()));//跳转到拨号界面，同时传递电话号码
+                                            startActivity(dialIntent);
+                                        }
+                                    })
+                                            .setSelectOptions(0)//设置选择第一个
+                                            .setOutSideCancelable(false)//点击背的地方不消失
+                                            .build();//创建
+                                    //      把数据绑定到控件上面
+                                    pvOptions.setPicker(list);
+                                    //      展示
+                                    pvOptions.show();
+
+                                }
+                            });
+
+
                         }
 
                         @Override
@@ -128,13 +163,7 @@ public class WebViewActivity extends AllActivity {
             web_content.setText("       "+content);
         }
 
-        web_call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + FinalContents.getIPhone()));//跳转到拨号界面，同时传递电话号码
-                startActivity(dialIntent);
-            }
-        });
+
 
         web_more.setOnClickListener(new View.OnClickListener() {
             @Override

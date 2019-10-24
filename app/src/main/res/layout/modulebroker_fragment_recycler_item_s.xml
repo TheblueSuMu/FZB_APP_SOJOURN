@@ -20,7 +20,7 @@
             android:layout_height="100dp"
             android:layout_margin="5dp"
             android:scaleType="fitXY"
-            android:src="@mipmap/brokerage" />
+            android:src="@mipmap/logo_square" />
 
         <TextView
             android:id="@+id/group_booking_itemS"

@@ -583,7 +583,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                                 .addBannerListener(new BannerViewPager.OnClickBannerListener() {
                                     @Override
                                     public void onBannerClick(int position) {
-                                        FinalContents.setIPhone(imglist.get(position).getProjectMap().getPhone());
                                         FinalContents.setProjectID(imglist.get(position).getProject().getId());
                                         FinalContents.setNewID(imglist.get(position).getId());
                                         Log.i("详情","项目ID"+FinalContents.getProjectID());

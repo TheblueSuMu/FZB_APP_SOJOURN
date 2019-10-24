@@ -2,6 +2,7 @@ package com.xcy.fzb.all.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ImgData;
 import com.xcy.fzb.all.view.WebViewActivity;
 
@@ -43,6 +45,11 @@ public class IssueAdapter extends RecyclerView.Adapter<IssueAdapter.ViewHolder>{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FinalContents.setProjectID(beanList.get(position).getProject().getId());
+                FinalContents.setNewID(beanList.get(position).getId());
+                Log.i("详情","项目ID"+FinalContents.getProjectID());
+                Log.i("详情","用户ID"+FinalContents.getUserID());
+                Log.i("详情","用户ID"+FinalContents.getNewID());
                 Intent intent = new Intent(context, WebViewActivity.class);
                 intent.putExtra("webview",beanList.get(position).getContent());
                 context.startActivity(intent);

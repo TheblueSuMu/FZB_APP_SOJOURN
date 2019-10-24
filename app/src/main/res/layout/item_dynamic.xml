@@ -21,7 +21,7 @@
             android:layout_height="43dp"
             android:layout_marginLeft="17dp"
             android:scaleType="center"
-            android:src="@mipmap/z3"
+            android:src="@mipmap/logo_square"
             app:riv_corner_radius="5dp"
             app:riv_oval="true" />
 
@@ -87,14 +87,15 @@
         android:background="#F3F3F6"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
+            app:riv_oval="true"
             android:id="@+id/circle_img_1"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
             android:scaleType="fitXY"
-            android:src="@mipmap/z4" />
+            android:src="@mipmap/logo_square" />
 
         <TextView
             android:id="@+id/circle_name"

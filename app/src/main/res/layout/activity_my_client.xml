@@ -33,6 +33,8 @@
             android:layout_marginTop="30dp"
             android:layout_marginRight="58dp"
             android:background="@drawable/comment"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
             android:gravity="center"
             android:hint="按客户姓名/手机号搜索"
             android:textColor="#333333"

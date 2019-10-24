@@ -2,11 +2,10 @@ package com.xcy.fzb.all.modle;
 
 public class GWDataBean {
 
-
     /**
      * code : 1
      * msg : 成功
-     * data : {"ratioId":"dcbbeba78c864dc3be039f38da7463aa","ratioName":"顾问一级","sysUser":{"id":"59f45207e7a84c57bd31e9e5955506df","remarks":"","createBy":"","createDate":"2019-10-09 14:39:32","updateBy":"","updateDate":"2019-10-09 18:17:38","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"office":"","loginName":"gw001","newPassword":"","oldLoginName":"","no":"","name":"gw001","position":"","directLeaderId":"","email":"","phone":"1542664525","oldPhone":"","mobile":"","photo":"/fangfang/userfiles/59f45207e7a84c57bd31e9e5955506df/attachment/p/2019/10/Asktx(1).png","loginIp":"36.106.98.96","loginDate":"2019-10-17 18:11:36","loginFlag":"1","qrcode":"","sign":"","sex":"女","province":"吉林省","city":"长春市","county":"南关区","identity":"62","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":{"id":"2d200ecbc5104801be0879a58ea892f0","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"xs001","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""},"industry":"","type":"3","teamLeader":"","level":"","teamRatio":{"id":"dcbbeba78c864dc3be039f38da7463aa","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"顾问一级","type":"","typeName":"","percent":"","owner":""},"manager":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""}}
+     * data : {"ratioId":"a4f065029182471891da6bc2b8e3dec9","ratioName":"销售一级","sysUser":{"id":"829219322112430d819be77906f64e50","remarks":"","createBy":"","createDate":"2019-10-24 20:35:00","updateBy":"","updateDate":"2019-10-24 20:35:07","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"office":"","loginName":"mjx","newPassword":"","oldLoginName":"","no":"","name":"米佳鑫","position":"","directLeaderId":"","email":"","phone":"15816492849","oldPhone":"","mobile":"","photo":"","loginIp":"36.106.98.121","loginDate":"2019-10-24 20:35:18","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"吉林省","city":"长春市","county":"南关区","identity":"61","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":{"id":"02f086f3a8fa446a82328cf23fb15e26","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"鲁艳姣","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""},"industry":"IT","type":"2","teamLeader":"","level":"","teamRatio":{"id":"a4f065029182471891da6bc2b8e3dec9","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"销售一级","type":"","typeName":"","percent":"","owner":""},"manager":{"id":"02f086f3a8fa446a82328cf23fb15e26","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"鲁艳姣","email":"","phone":"15500004567","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""}}
      */
 
     private String code;
@@ -39,9 +38,9 @@ public class GWDataBean {
 
     public static class DataBean {
         /**
-         * ratioId : dcbbeba78c864dc3be039f38da7463aa
-         * ratioName : 顾问一级
-         * sysUser : {"id":"59f45207e7a84c57bd31e9e5955506df","remarks":"","createBy":"","createDate":"2019-10-09 14:39:32","updateBy":"","updateDate":"2019-10-09 18:17:38","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"office":"","loginName":"gw001","newPassword":"","oldLoginName":"","no":"","name":"gw001","position":"","directLeaderId":"","email":"","phone":"1542664525","oldPhone":"","mobile":"","photo":"/fangfang/userfiles/59f45207e7a84c57bd31e9e5955506df/attachment/p/2019/10/Asktx(1).png","loginIp":"36.106.98.96","loginDate":"2019-10-17 18:11:36","loginFlag":"1","qrcode":"","sign":"","sex":"女","province":"吉林省","city":"长春市","county":"南关区","identity":"62","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":{"id":"2d200ecbc5104801be0879a58ea892f0","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"xs001","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""},"industry":"","type":"3","teamLeader":"","level":"","teamRatio":{"id":"dcbbeba78c864dc3be039f38da7463aa","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"顾问一级","type":"","typeName":"","percent":"","owner":""},"manager":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""}
+         * ratioId : a4f065029182471891da6bc2b8e3dec9
+         * ratioName : 销售一级
+         * sysUser : {"id":"829219322112430d819be77906f64e50","remarks":"","createBy":"","createDate":"2019-10-24 20:35:00","updateBy":"","updateDate":"2019-10-24 20:35:07","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"office":"","loginName":"mjx","newPassword":"","oldLoginName":"","no":"","name":"米佳鑫","position":"","directLeaderId":"","email":"","phone":"15816492849","oldPhone":"","mobile":"","photo":"","loginIp":"36.106.98.121","loginDate":"2019-10-24 20:35:18","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"吉林省","city":"长春市","county":"南关区","identity":"61","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":{"id":"02f086f3a8fa446a82328cf23fb15e26","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"鲁艳姣","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""},"industry":"IT","type":"2","teamLeader":"","level":"","teamRatio":{"id":"a4f065029182471891da6bc2b8e3dec9","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"销售一级","type":"","typeName":"","percent":"","owner":""},"manager":{"id":"02f086f3a8fa446a82328cf23fb15e26","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"鲁艳姣","email":"","phone":"15500004567","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""}
          */
 
         private String ratioId;
@@ -74,49 +73,49 @@ public class GWDataBean {
 
         public static class SysUserBean {
             /**
-             * id : 59f45207e7a84c57bd31e9e5955506df
+             * id : 829219322112430d819be77906f64e50
              * remarks :
              * createBy :
-             * createDate : 2019-10-09 14:39:32
+             * createDate : 2019-10-24 20:35:00
              * updateBy :
-             * updateDate : 2019-10-09 18:17:38
+             * updateDate : 2019-10-24 20:35:07
              * company : {"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"}
              * office :
-             * loginName : gw001
+             * loginName : mjx
              * newPassword :
              * oldLoginName :
              * no :
-             * name : gw001
+             * name : 米佳鑫
              * position :
              * directLeaderId :
              * email :
-             * phone : 1542664525
+             * phone : 15816492849
              * oldPhone :
              * mobile :
-             * photo : /fangfang/userfiles/59f45207e7a84c57bd31e9e5955506df/attachment/p/2019/10/Asktx(1).png
-             * loginIp : 36.106.98.96
-             * loginDate : 2019-10-17 18:11:36
+             * photo :
+             * loginIp : 36.106.98.121
+             * loginDate : 2019-10-24 20:35:18
              * loginFlag : 1
              * qrcode :
              * sign :
-             * sex : 女
+             * sex :
              * province : 吉林省
              * city : 长春市
              * county : 南关区
-             * identity : 62
+             * identity : 61
              * companyManage :
              * storeManage :
              * borkerId :
              * storeId :
              * role :
              * isCircle :
-             * parent : {"id":"2d200ecbc5104801be0879a58ea892f0","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"xs001","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""}
-             * industry :
-             * type : 3
+             * parent : {"id":"02f086f3a8fa446a82328cf23fb15e26","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"鲁艳姣","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""}
+             * industry : IT
+             * type : 2
              * teamLeader :
              * level :
-             * teamRatio : {"id":"dcbbeba78c864dc3be039f38da7463aa","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"顾问一级","type":"","typeName":"","percent":"","owner":""}
-             * manager : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""}
+             * teamRatio : {"id":"a4f065029182471891da6bc2b8e3dec9","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"销售一级","type":"","typeName":"","percent":"","owner":""}
+             * manager : {"id":"02f086f3a8fa446a82328cf23fb15e26","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"鲁艳姣","email":"","phone":"15500004567","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""}
              * startTime :
              * endTime :
              * startTime1 :
@@ -875,7 +874,7 @@ public class GWDataBean {
 
             public static class ParentBean {
                 /**
-                 * id : 2d200ecbc5104801be0879a58ea892f0
+                 * id : 02f086f3a8fa446a82328cf23fb15e26
                  * remarks :
                  * createBy :
                  * createDate :
@@ -887,7 +886,7 @@ public class GWDataBean {
                  * newPassword :
                  * oldLoginName :
                  * no :
-                 * name : xs001
+                 * name : 鲁艳姣
                  * position :
                  * directLeaderId :
                  * email :
@@ -1381,13 +1380,13 @@ public class GWDataBean {
 
             public static class TeamRatioBean {
                 /**
-                 * id : dcbbeba78c864dc3be039f38da7463aa
+                 * id : a4f065029182471891da6bc2b8e3dec9
                  * remarks :
                  * createBy :
                  * createDate :
                  * updateBy :
                  * updateDate :
-                 * name : 顾问一级
+                 * name : 销售一级
                  * type :
                  * typeName :
                  * percent :
@@ -1497,7 +1496,7 @@ public class GWDataBean {
 
             public static class ManagerBean {
                 /**
-                 * id :
+                 * id : 02f086f3a8fa446a82328cf23fb15e26
                  * remarks :
                  * createBy :
                  * createDate :
@@ -1508,9 +1507,9 @@ public class GWDataBean {
                  * post :
                  * loginName :
                  * no :
-                 * name :
+                 * name : 鲁艳姣
                  * email :
-                 * phone :
+                 * phone : 15500004567
                  * oldPhone :
                  * mobile :
                  * loginIp :
@@ -1525,6 +1524,8 @@ public class GWDataBean {
                  * oldLoginDate :
                  * wechatOpenid :
                  * wechatData :
+                 * industry :
+                 * manageFlag :
                  * role :
                  * sex :
                  * province :
@@ -1538,6 +1539,9 @@ public class GWDataBean {
                  * classics : 0
                  * team :
                  * layerTeamVo :
+                 * teamParentId :
+                 * commissionLevelId :
+                 * identityStr :
                  * admin : false
                  * roleNames :
                  */
@@ -1570,6 +1574,8 @@ public class GWDataBean {
                 private String oldLoginDate;
                 private String wechatOpenid;
                 private String wechatData;
+                private String industry;
+                private String manageFlag;
                 private String role;
                 private String sex;
                 private String province;
@@ -1583,6 +1589,9 @@ public class GWDataBean {
                 private int classics;
                 private String team;
                 private String layerTeamVo;
+                private String teamParentId;
+                private String commissionLevelId;
+                private String identityStr;
                 private boolean admin;
                 private String roleNames;
 
@@ -1810,6 +1819,22 @@ public class GWDataBean {
                     this.wechatData = wechatData;
                 }
 
+                public String getIndustry() {
+                    return industry;
+                }
+
+                public void setIndustry(String industry) {
+                    this.industry = industry;
+                }
+
+                public String getManageFlag() {
+                    return manageFlag;
+                }
+
+                public void setManageFlag(String manageFlag) {
+                    this.manageFlag = manageFlag;
+                }
+
                 public String getRole() {
                     return role;
                 }
@@ -1912,6 +1937,30 @@ public class GWDataBean {
 
                 public void setLayerTeamVo(String layerTeamVo) {
                     this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getTeamParentId() {
+                    return teamParentId;
+                }
+
+                public void setTeamParentId(String teamParentId) {
+                    this.teamParentId = teamParentId;
+                }
+
+                public String getCommissionLevelId() {
+                    return commissionLevelId;
+                }
+
+                public void setCommissionLevelId(String commissionLevelId) {
+                    this.commissionLevelId = commissionLevelId;
+                }
+
+                public String getIdentityStr() {
+                    return identityStr;
+                }
+
+                public void setIdentityStr(String identityStr) {
+                    this.identityStr = identityStr;
                 }
 
                 public boolean isAdmin() {
