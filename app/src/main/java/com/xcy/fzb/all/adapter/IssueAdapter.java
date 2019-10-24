@@ -2,6 +2,7 @@ package com.xcy.fzb.all.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class IssueAdapter extends RecyclerView.Adapter<IssueAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(context).load("http://39.98.173.250:8080"+beanList.get(position).getCoverImg()).into(holder.imageAvatar);
+        Log.i("标题","123："+beanList.get(position).getTitle());
         holder.nameText.setText(beanList.get(position).getTitle());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

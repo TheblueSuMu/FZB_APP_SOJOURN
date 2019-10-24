@@ -278,6 +278,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 oversea_ll.setVisibility(View.GONE);
+                report.setVisibility(View.VISIBLE);
             }
         });
 
@@ -285,6 +286,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 oversea_ll.setVisibility(View.GONE);
+                report.setVisibility(View.VISIBLE);
             }
         });
 
@@ -323,26 +325,31 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         switch (view.getId()) {
             case R.id.overseas_sort:
                 oversea_rb_1.setChecked(true);
+                report.setVisibility(View.GONE);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_screen:
                 oversea_rb_5.setChecked(true);
+                report.setVisibility(View.GONE);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_state:
                 oversea_rb_2s.setChecked(true);
+                report.setVisibility(View.GONE);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_price:
                 oversea_rb_3.setChecked(true);
+                report.setVisibility(View.GONE);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_house_type:
                 oversea_rb_4.setChecked(true);
+                report.setVisibility(View.GONE);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
@@ -513,6 +520,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                         // ...长按事件
                     }
                 });
+
+
             }
         }
 
