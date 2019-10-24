@@ -52,7 +52,7 @@ public class BannerPhotoActivity extends AllActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banner_photo);
-        StatusBar.makeStatusBarTransparent(this);
+
 
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -71,6 +71,9 @@ public class BannerPhotoActivity extends AllActivity {
     }
 
     private void initData() {
+
+        StatusBar.makeStatusBarTransparent(this);
+
         list = new ArrayList<>();
         message = new ArrayList<>();
         name = new ArrayList<>();

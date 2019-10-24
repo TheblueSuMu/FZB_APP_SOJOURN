@@ -328,6 +328,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 /**
                  * 修改
                  */
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;
@@ -338,6 +340,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 /**
                  * 修改
                  */
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;
@@ -348,6 +352,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 /**
                  * 修改
                  */
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;
@@ -358,6 +364,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 /**
                  * 修改
                  */
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;
@@ -368,6 +376,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 /**
                  * 修改
                  */
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;
@@ -378,6 +388,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 /**
                  * 修改
                  */
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;

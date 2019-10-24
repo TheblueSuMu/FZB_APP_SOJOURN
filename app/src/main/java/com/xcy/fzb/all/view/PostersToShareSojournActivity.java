@@ -17,7 +17,7 @@ public class PostersToShareSojournActivity extends AllActivity implements View.O
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posters_to_share_sojourn);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -25,8 +25,7 @@ public class PostersToShareSojournActivity extends AllActivity implements View.O
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
+        StatusBar.makeStatusBarTransparent(this);
     }
 
 

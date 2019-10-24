@@ -36,7 +36,7 @@ public class SexActivity extends AllActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sex);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -44,7 +44,7 @@ public class SexActivity extends AllActivity implements View.OnClickListener {
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         sex_return = findViewById(R.id.sex_return);
         sex_wc = findViewById(R.id.sex_wc);

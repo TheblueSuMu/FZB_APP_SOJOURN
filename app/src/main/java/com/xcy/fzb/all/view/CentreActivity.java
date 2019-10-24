@@ -27,14 +27,14 @@ public class CentreActivity extends AllActivity implements View.OnClickListener 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_centre);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
     }
 
     public void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         center_img = findViewById(R.id.center_img);
         center_headline = findViewById(R.id.center_headline);

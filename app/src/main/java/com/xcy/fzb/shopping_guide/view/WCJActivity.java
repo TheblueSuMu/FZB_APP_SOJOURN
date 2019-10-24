@@ -83,7 +83,6 @@ public class WCJActivity extends AllActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
-        StatusBar.makeStatusBarTransparent(this);
         initView();
 
     }

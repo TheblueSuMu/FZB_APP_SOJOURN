@@ -31,7 +31,7 @@ public class PhotoActivity extends AllActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -39,7 +39,7 @@ public class PhotoActivity extends AllActivity {
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         photo_img = findViewById(R.id.photo_img);
         photo_tab_layout = findViewById(R.id.photo_tab_layout);

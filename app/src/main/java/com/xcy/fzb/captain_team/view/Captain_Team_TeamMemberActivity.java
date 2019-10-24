@@ -393,7 +393,7 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                             if (rows.get(i).getName().equals("")){
 
                             }else {
-                                ContactModel contactModel = new ContactModel(rows.get(i).getName());
+                                ContactModel contactModel = new ContactModel(rows.get(i).getName() + "@" + rows.get(i).getId());
                                 mContactModels.add(contactModel);
                             }
                         }
@@ -451,7 +451,7 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
     @Override
     public void itemClick(String itemName) {
         for (int i = 0;i < rows.size();i++){
-            if (rows.get(i).getName().equals(itemName)) {
+            if ((rows.get(i).getName() + "@" + rows.get(i).getId()).equals(itemName)) {
                 FinalContents.setAgentId(rows.get(i).getId());
                 FinalContents.setInforId(rows.get(i).getId());
                 Intent intent = new Intent(Captain_Team_TeamMemberActivity.this,Captain_Team_SalesDetailsDetailsActivity.class);

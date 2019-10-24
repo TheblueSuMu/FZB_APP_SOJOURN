@@ -59,41 +59,45 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
         } else {
             holder.tvIndex.setVisibility(View.GONE);
         }
+
         for (int i = 0; i < list.size(); ++i) {
-            if (contact.getName().equals(list.get(i).getName())) {
-                Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + list.get(i).getPhoto()).into(holder.member_name_img);
-                if (list.get(i).getType().equals("1")) {
 
+            StringBuffer stringBuffer = new StringBuffer();
+            StringBuffer append = stringBuffer.append(contact.getName());
+            for (int j = 0; j < append.length(); ++j) {
+                if (append.substring(j, j + 1).equals("@")) {
 
-//                    StringBuffer stringBuffer = new StringBuffer();
-//                    StringBuffer append = stringBuffer.append(contact.getName());
-//                    for (int j = 0; j < append.length(); ++j) {
-//                        if (append.substring(j, j + 1).equals("@")) {
-//                            holder.tvName.setText(append.substring(0, j));
-////                Log.i("客户","name：" + append.substring(0, i));
-////                Log.i("客户","id：" + append.substring(i + 1));
-//                        }
-//                    }
+                    if (contact.getName().equals(list.get(i).getName() + "@" + list.get(i).getId())) {
+                        Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + list.get(i).getPhoto()).into(holder.member_name_img);
+                        if (list.get(i).getType().equals("1")) {
+                            holder.tvName.setText(append.substring(0, j));
+                            if (list.get(i).getCounselorNum().equals("")) {
+                                if (list.get(i).getSaleNum().equals("")) {
+                                    holder.member_name_tv1.setText("销售：0 人  顾问0人");
+                                }else {
+                                    holder.member_name_tv1.setText("销售：" + list.get(i).getSaleNum() + "人  顾问0人");
+                                }
+                            } else {
+                                if (list.get(i).getSaleNum().equals("")) {
+                                    holder.member_name_tv1.setText("销售：0 人  顾问：" + list.get(i).getCounselorNum() + "人");
+                                }else {
+                                    holder.member_name_tv1.setText("销售：" + list.get(i).getSaleNum() + "人  顾问：" + list.get(i).getCounselorNum() + "人");
+                                }
+                            }
 
+                            if (list.get(i).getLoginDate().equals("")) {
+                                holder.member_name_tv2.setVisibility(View.GONE);
+                            } else {
+                                holder.member_name_tv2.setText("最后上线时间" + list.get(i).getLoginDate());
+                            }
+                            holder.member_name_tv3.setText(list.get(i).getPhone());
+                            if (list.get(i).getLoginFlag().equals("0")) {
+                                holder.member_name_rl.setVisibility(View.VISIBLE);
+                            } else {
+                                holder.member_name_rl.setVisibility(View.GONE);
+                            }
 
-                    holder.tvName.setText(contact.getName());
-                    /**
-                     * 修改
-                     */
-                    if (list.get(i).getCounselorNum().equals("")) {
-                        if (list.get(i).getSaleNum().equals("")) {
-                            holder.member_name_tv1.setText("销售：0 人  顾问0人");
-                        }else {
-                            holder.member_name_tv1.setText("销售：" + list.get(i).getSaleNum() + "人  顾问0人");
-                        }
-                    } else {
-                        if (list.get(i).getSaleNum().equals("")) {
-                            holder.member_name_tv1.setText("销售：0 人  顾问：" + list.get(i).getCounselorNum() + "人");
-                        }else {
-                            holder.member_name_tv1.setText("销售：" + list.get(i).getSaleNum() + "人  顾问：" + list.get(i).getCounselorNum() + "人");
-                        }
-                    }
-                } else if (list.get(i).getType().equals("2")) {
+                        } else if (list.get(i).getType().equals("2")) {
 
 //
 //                    StringBuffer stringBuffer = new StringBuffer();
@@ -106,22 +110,34 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
 //                        }
 //                    }
 
-                    holder.tvName.setText(contact.getName() + "(" + list.get(i).getRatioName() + ")");
-                    if (list.get(i).getCounselorNum().equals("")) {
-                        if (list.get(i).getLeaderName().equals("")) {
-                            holder.member_name_tv1.setText("团队长：暂无  顾问：0人");
-                        }else {
-                            holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  顾问：0人");
-                        }
-                    } else {
-                        if (list.get(i).getLeaderName().equals("")) {
-                            holder.member_name_tv1.setText("团队长：暂无  顾问：" + list.get(i).getCounselorNum() + "人");
-                        }else {
-                            holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  顾问：" + list.get(i).getCounselorNum() + "人");
-                        }
-                    }
+                            holder.tvName.setText(append.substring(0, j) + "(" + list.get(i).getRatioName() + ")");
+                            if (list.get(i).getCounselorNum().equals("")) {
+                                if (list.get(i).getLeaderName().equals("")) {
+                                    holder.member_name_tv1.setText("团队长：暂无  顾问：0人");
+                                }else {
+                                    holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  顾问：0人");
+                                }
+                            } else {
+                                if (list.get(i).getLeaderName().equals("")) {
+                                    holder.member_name_tv1.setText("团队长：暂无  顾问：" + list.get(i).getCounselorNum() + "人");
+                                }else {
+                                    holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  顾问：" + list.get(i).getCounselorNum() + "人");
+                                }
+                            }
 
-                } else if (list.get(i).getType().equals("3")) {
+                            if (list.get(i).getLoginDate().equals("")) {
+                                holder.member_name_tv2.setVisibility(View.GONE);
+                            } else {
+                                holder.member_name_tv2.setText("最后上线时间" + list.get(i).getLoginDate());
+                            }
+                            holder.member_name_tv3.setText(list.get(i).getPhone());
+                            if (list.get(i).getLoginFlag().equals("0")) {
+                                holder.member_name_rl.setVisibility(View.VISIBLE);
+                            } else {
+                                holder.member_name_rl.setVisibility(View.GONE);
+                            }
+
+                        } else if (list.get(i).getType().equals("3")) {
 
 //                    StringBuffer stringBuffer = new StringBuffer();
 //                    StringBuffer append = stringBuffer.append(contact.getName());
@@ -133,34 +149,38 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
 //                        }
 //                    }
 
-                    holder.tvName.setText(contact.getName() + "(" + list.get(i).getRatioName() + ")");
-                    if (list.get(i).getSaleName().equals("")) {
-                        if (list.get(i).getLeaderName().equals("")) {
-                            holder.member_name_tv1.setText("团队长：暂无  暂无销售");
-                        }else {
-                            holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  暂无销售");
-                        }
-                    } else {
-                        if (list.get(i).getLeaderName().equals("")) {
-                            holder.member_name_tv1.setText("团队长：暂无  销售：" + list.get(i).getSaleName());
-                        }else {
-                            holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  销售：" + list.get(i).getSaleName());
+                            holder.tvName.setText(append.substring(0, j) + "(" + list.get(i).getRatioName() + ")");
+                            if (list.get(i).getSaleName().equals("")) {
+                                if (list.get(i).getLeaderName().equals("")) {
+                                    holder.member_name_tv1.setText("团队长：暂无  暂无销售");
+                                }else {
+                                    holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  暂无销售");
+                                }
+                            } else {
+                                if (list.get(i).getLeaderName().equals("")) {
+                                    holder.member_name_tv1.setText("团队长：暂无  销售：" + list.get(i).getSaleName());
+                                }else {
+                                    holder.member_name_tv1.setText("团队长：" + list.get(i).getLeaderName() + "  销售：" + list.get(i).getSaleName());
+                                }
+                            }
+
+                            if (list.get(i).getLoginDate().equals("")) {
+                                holder.member_name_tv2.setVisibility(View.GONE);
+                            } else {
+                                holder.member_name_tv2.setText("最后上线时间" + list.get(i).getLoginDate());
+                            }
+                            holder.member_name_tv3.setText(list.get(i).getPhone());
+                            if (list.get(i).getLoginFlag().equals("0")) {
+                                holder.member_name_rl.setVisibility(View.VISIBLE);
+                            } else {
+                                holder.member_name_rl.setVisibility(View.GONE);
+                            }
+
                         }
                     }
                 }
-
-                if (list.get(i).getLoginDate().equals("")) {
-                    holder.member_name_tv2.setVisibility(View.GONE);
-                } else {
-                    holder.member_name_tv2.setText("最后上线时间" + list.get(i).getLoginDate());
-                }
-                holder.member_name_tv3.setText(list.get(i).getPhone());
-                if (list.get(i).getLoginFlag().equals("0")) {
-                    holder.member_name_rl.setVisibility(View.VISIBLE);
-                } else {
-                    holder.member_name_rl.setVisibility(View.GONE);
-                }
             }
+
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

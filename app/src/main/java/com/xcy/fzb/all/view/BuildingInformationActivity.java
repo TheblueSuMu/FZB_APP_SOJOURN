@@ -56,7 +56,7 @@ public class BuildingInformationActivity extends AllActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building_information);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         picUrl = getIntent().getStringExtra("pic");
         initView();
@@ -64,7 +64,7 @@ public class BuildingInformationActivity extends AllActivity {
     }
 
     private void initView() {
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
         name = findViewById(R.id.building_name);
         state = findViewById(R.id.building_state);
         ladder = findViewById(R.id.building_ladder);

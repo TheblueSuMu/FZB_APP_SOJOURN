@@ -303,7 +303,7 @@ public class TeamMemberActivity extends AllActivity implements View.OnClickListe
                     public void onNext(TeamMemberBean teamMemberBean) {
                         rows = teamMemberBean.getData().getRows();
                         for (int i = 0; i < rows.size(); ++i) {
-                            ContactModel contactModel = new ContactModel(rows.get(i).getName());
+                            ContactModel contactModel = new ContactModel(rows.get(i).getName() + "@" + rows.get(i).getId());
                             mContactModels.add(contactModel);
                         }
                         initDatas();
@@ -360,7 +360,7 @@ public class TeamMemberActivity extends AllActivity implements View.OnClickListe
     @Override
     public void itemClick(String itemName) {
         for (int i = 0; i < rows.size(); i++) {
-            if (rows.get(i).getName().equals(itemName)) {
+            if ((rows.get(i).getName() + "@" + rows.get(i).getId()).equals(itemName)) {
                 FinalContents.setAgentId(rows.get(i).getId());
                 FinalContents.setInforId(rows.get(i).getId());
                 Log.i("顾问","ID："+FinalContents.getInforId());

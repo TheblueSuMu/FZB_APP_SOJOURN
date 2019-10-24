@@ -30,7 +30,7 @@ public class NickNameActivity extends AllActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nick_name);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -38,7 +38,7 @@ public class NickNameActivity extends AllActivity implements View.OnClickListene
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         xb = getIntent().getStringExtra("xb");
 

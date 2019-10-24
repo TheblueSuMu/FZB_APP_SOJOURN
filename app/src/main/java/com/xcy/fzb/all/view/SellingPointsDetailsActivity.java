@@ -17,7 +17,7 @@ public class SellingPointsDetailsActivity extends AllActivity implements View.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selling_points_details);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -25,7 +25,7 @@ public class SellingPointsDetailsActivity extends AllActivity implements View.On
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
     }
 

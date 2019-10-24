@@ -42,7 +42,7 @@ public class ProjectSellingPointsnActivity extends AllActivity implements View.O
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_selling_pointsn);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -51,7 +51,7 @@ public class ProjectSellingPointsnActivity extends AllActivity implements View.O
     @SuppressLint("WrongConstant")
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         project_selling_rv = findViewById(R.id.project_selling_rv);
         project_selling_return = findViewById(R.id.project_selling_return);

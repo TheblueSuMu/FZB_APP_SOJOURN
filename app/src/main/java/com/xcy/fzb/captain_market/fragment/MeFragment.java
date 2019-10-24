@@ -220,6 +220,7 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
             FinalContents.setMySelf("1");
             intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
             intent.putExtra("client","5");
+            FinalContents.setQuanceng("1");
             FinalContents.setAgentId(FinalContents.getUserID());
             startActivity(intent);
         }else if (id == R.id.me_team) {

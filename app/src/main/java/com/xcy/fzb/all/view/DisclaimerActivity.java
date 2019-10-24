@@ -34,7 +34,7 @@ public class DisclaimerActivity extends AllActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disclaimer);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -42,7 +42,7 @@ public class DisclaimerActivity extends AllActivity implements View.OnClickListe
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         disclaimer_return = findViewById(R.id.disclaimer_return);
         disclaimer_title = findViewById(R.id.disclaimer_title);

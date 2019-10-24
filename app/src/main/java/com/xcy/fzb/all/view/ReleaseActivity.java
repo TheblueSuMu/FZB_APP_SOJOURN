@@ -83,14 +83,14 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_release);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
     }
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         release_qx = findViewById(R.id.release_qx);
         release_fb = findViewById(R.id.release_fb);

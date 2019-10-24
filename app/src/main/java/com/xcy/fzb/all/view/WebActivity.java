@@ -46,12 +46,15 @@ public class WebActivity extends AllActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.web_activity);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         init();
     }
 
     private void init(){
+
+        StatusBar.makeStatusBarTransparent(this);
+
         web_layout_title = findViewById(R.id.web_layout_title);
         web_time = findViewById(R.id.web_time);
         web_content = findViewById(R.id.web_content);

@@ -205,9 +205,10 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
             startActivity(intent);
         } else if (id == R.id.me_Client) {
 //            TODO 成交量
-            FinalContents.setMySelf("1");
             intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
             intent.putExtra("client","5");
+            FinalContents.setMySelf("1");
+            FinalContents.setQuanceng("1");
             FinalContents.setAgentId(FinalContents.getUserID());
             startActivity(intent);
 

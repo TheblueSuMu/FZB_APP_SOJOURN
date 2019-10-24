@@ -90,14 +90,14 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building_dynamic);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
     }
 
     private void initView() {
-
+        StatusBar.makeStatusBarTransparent(this);
         dynamic_return = findViewById(R.id.dynamic_return);
         dynamic_rv = findViewById(R.id.dynamic_rv);
 //        TODO 返回上一级

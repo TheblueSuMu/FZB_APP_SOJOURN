@@ -88,7 +88,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="售卖状态："
+                        android:text="售卖状态"
                         android:textColor="#999999"
                         android:textSize="15sp" />
 
@@ -111,7 +111,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="梯户比："
+                        android:text="梯户比"
                         android:textColor="#999999"
                         android:textSize="15sp" />
 
@@ -141,7 +141,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="总层数   ："
+                        android:text="总层数   "
                         android:textColor="#999999"
                         android:textSize="15sp" />
 
@@ -164,7 +164,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="单元数："
+                        android:text="单元数"
                         android:textColor="#999999"
                         android:textSize="15sp" />
 
@@ -188,7 +188,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="开盘时间："
+                    android:text="开盘时间"
                     android:textColor="#999999"
                     android:textSize="15sp" />
 
@@ -211,7 +211,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="入住时间："
+                    android:text="入住时间"
                     android:textColor="#999999"
                     android:textSize="15sp" />
 
@@ -234,7 +234,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="装修情况："
+                    android:text="装修情况"
                     android:textColor="#999999"
                     android:textSize="15sp" />
 
@@ -257,7 +257,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="装修标准："
+                    android:text="装修标准"
                     android:textColor="#999999"
                     android:textSize="15sp" />
 
@@ -280,7 +280,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="包含户型："
+                    android:text="包含户型"
                     android:textColor="#999999"
                     android:textSize="15sp" />
             </LinearLayout>

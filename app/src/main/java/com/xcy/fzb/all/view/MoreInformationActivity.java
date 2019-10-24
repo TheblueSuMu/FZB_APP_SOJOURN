@@ -58,7 +58,7 @@ public class MoreInformationActivity extends AllActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_information);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -66,7 +66,7 @@ public class MoreInformationActivity extends AllActivity implements View.OnClick
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
         more_img = findViewById(R.id.more_img);
         more_report = findViewById(R.id.more_report);
         more_call = findViewById(R.id.more_call);

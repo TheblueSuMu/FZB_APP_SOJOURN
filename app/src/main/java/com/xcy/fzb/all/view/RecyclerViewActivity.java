@@ -44,7 +44,7 @@ public class RecyclerViewActivity extends AllActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyclerview);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         nation = getIntent().getStringExtra("nation");
         initfvb();
@@ -52,6 +52,9 @@ public class RecyclerViewActivity extends AllActivity {
     }
 
     private void initfvb() {
+
+        StatusBar.makeStatusBarTransparent(this);
+
         title = findViewById(R.id.recycler_title);
         back = findViewById(R.id.recycler_back);
         recyclerView = findViewById(R.id.recycler_rv);

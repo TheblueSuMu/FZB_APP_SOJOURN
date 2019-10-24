@@ -81,7 +81,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         Intent intent = getIntent();
         String office = ""+intent.getStringExtra("office");
@@ -104,8 +104,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
     }
 
     private void initView() {
-
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         map_navigation = findViewById(R.id.map_navigation);
         map_return = findViewById(R.id.map_return);
@@ -193,7 +192,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
 //TODO 发起检索请求
         mPoiSearch.searchNearby(new PoiNearbySearchOption()
                 .location(new LatLng(o, d))
-                .radius(5000)
+                .radius(10000)
                 .keyword(RetrieveName)
                 .pageNum(10));
 

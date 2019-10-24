@@ -85,13 +85,13 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
         initView();
         initET();
 
-        StatusBar.makeStatusBarTransparent(this);
+
 
     }
 
     private void initET() {
 
-
+        StatusBar.makeStatusBarTransparent(this);
 
         particulars_et_comment.setOnKeyListener(new View.OnKeyListener() {
             @Override

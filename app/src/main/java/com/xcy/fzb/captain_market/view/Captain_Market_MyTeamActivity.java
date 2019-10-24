@@ -300,6 +300,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             case R.id.my_team_ll1:
                 intent = new Intent(Captain_Market_MyTeamActivity.this, Captain_Team_MyClientActivity.class);
                 intent.putExtra("client","1");
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;
@@ -307,6 +309,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             case R.id.my_team_ll2:
                 intent = new Intent(Captain_Market_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
                 intent.putExtra("client","2");
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;
@@ -314,6 +318,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             case R.id.my_team_ll3:
                 intent = new Intent(Captain_Market_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
                 intent.putExtra("client","3");
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;
@@ -321,6 +327,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             case R.id.my_team_ll4:
                 intent = new Intent(Captain_Market_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
                 intent.putExtra("client","4");
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;
@@ -328,6 +336,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             case R.id.my_team_ll5:
                 intent = new Intent(Captain_Market_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
                 intent.putExtra("client","5");
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;
@@ -335,6 +345,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             case R.id.my_team_ll6:
                 intent = new Intent(Captain_Market_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
                 intent.putExtra("client","6");
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 startActivity(intent);
                 break;

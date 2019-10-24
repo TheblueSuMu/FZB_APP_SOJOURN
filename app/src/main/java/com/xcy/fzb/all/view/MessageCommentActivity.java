@@ -65,7 +65,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_comment);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
         initET();
@@ -95,7 +95,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
 
     private void initView() {
 //        TODO 透明状态栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
         particulars_xiao_pinglun = findViewById(R.id.particulars_xiao_pinglun);
         comment_return = findViewById(R.id.comment_return);

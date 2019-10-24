@@ -128,7 +128,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         setContentView(R.layout.activity_over_sea);
 
         title = findViewById(R.id.oversea_title);
-        StatusBar.makeStatusBarTransparent(this);
+
 
 
         seview = findViewById(R.id.seview);
@@ -138,6 +138,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         initissue();
         init();
         EventBus.getDefault().register(this);
+
+
     }
 
     private void init() {
@@ -180,6 +182,9 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     }
 
     private void initfvb() {
+
+        StatusBar.makeStatusBarTransparent(this);
+
         initvoid();
 
         application = (DemoApplication) getApplication();

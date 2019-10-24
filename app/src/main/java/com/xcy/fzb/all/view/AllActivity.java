@@ -16,7 +16,7 @@ public class AllActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);      //  TODO    始终竖屏
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -24,7 +24,7 @@ public class AllActivity extends AppCompatActivity {
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
     }
 }

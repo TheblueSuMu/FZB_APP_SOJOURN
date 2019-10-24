@@ -18,7 +18,7 @@ public class PostersToShareActivity extends AllActivity implements View.OnClickL
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posters_to_share);
-        StatusBar.makeStatusBarTransparent(this);
+
 
         initView();
 
@@ -26,7 +26,7 @@ public class PostersToShareActivity extends AllActivity implements View.OnClickL
 
     private void initView() {
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        StatusBar.makeStatusBarTransparent(this);
 
     }
 
