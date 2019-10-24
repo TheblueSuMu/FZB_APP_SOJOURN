@@ -82,7 +82,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_economic_circle_particulars);
 
-
         initView();
         initET();
 
