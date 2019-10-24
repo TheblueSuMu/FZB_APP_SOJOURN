@@ -457,7 +457,8 @@ public class Assistant_Teams_Activity extends AllActivity implements View.OnClic
                             if (rows.get(i).getName().equals("")) {
 
                             } else {
-                                ContactModel contactModel = new ContactModel(rows.get(i).getName());
+                                ContactModel contactModel = new ContactModel(rows.get(i).getName());// + "@" + rows.get(i).getId()
+                                Log.i("TZ", "数据查看：" + rows.get(i).getName() + "@" + rows.get(i).getId());
                                 mContactModels.add(contactModel);
                             }
                         }
@@ -516,12 +517,19 @@ public class Assistant_Teams_Activity extends AllActivity implements View.OnClic
     public void itemClick(String itemName) {
         for (int i = 0; i < rows.size(); i++) {
             if (rows.get(i).getName().equals(itemName)) {
-                FinalContents.setAgentId(rows.get(i).getId());
-                FinalContents.setInforId(rows.get(i).getId());
+//              StringBuffer stringBuffer = new StringBuffer();
+//              StringBuffer append = stringBuffer.append(itemName);
+//              for (int j = 0; j < append.length(); ++j) {
+//                if (append.substring(j, j + 1).equals("@")) {
+                FinalContents.setAgentId(rows.get(i).getId());//
+                FinalContents.setInforId(rows.get(i).getId());//
                 Log.i("团助端修改", FinalContents.getAgentId());
                 Log.i("团助端修改", FinalContents.getInforId());
                 Intent intent = new Intent(Assistant_Teams_Activity.this, Captain_Team_SalesDetailsDetailsActivity.class);
                 startActivity(intent);
+//                  }
+//                }
+
             }
         }
     }

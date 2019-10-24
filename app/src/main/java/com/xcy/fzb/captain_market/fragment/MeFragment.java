@@ -220,6 +220,7 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
             FinalContents.setMySelf("1");
             intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
             intent.putExtra("client","5");
+            FinalContents.setAgentId(FinalContents.getUserID());
             startActivity(intent);
         }else if (id == R.id.me_team) {
 //            TODO 我的团队
@@ -250,7 +251,7 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
         } else if (id == R.id.my_empty) {
 //            TODO 清空缓存
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("确认清楚缓存吗?");
+            builder.setMessage("确认清除缓存吗?");
             builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

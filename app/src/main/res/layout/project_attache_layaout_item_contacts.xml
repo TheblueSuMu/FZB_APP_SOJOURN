@@ -51,6 +51,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center_vertical"
+                android:visibility="gone"
                 android:layout_marginLeft="5dp"
                 android:src="@mipmap/icon_mine_call" />
         </LinearLayout>
