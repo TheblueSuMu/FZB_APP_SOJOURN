@@ -384,45 +384,52 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
             loginFlag = "0";
         }
 
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
-        if (FinalContents.getIdentity().equals("63")) {
-            userMessage = fzbInterface.getBrokerSave(FinalContents.getAgentId(), industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getOwnerId001(), type, FinalContents.getLevelId());
+        if (add_sales_et1.getText().toString().equals("") || add_sales_et2.getText().toString().equals("") || add_sales_et3.getText().toString().equals("") || add_sales_et4.getText().toString().equals("") || add_sales_tv1.getText().toString().equals("") || add_sales_tv2.getText().toString().equals("")) {
+            Toast.makeText(Captain_Team_AddSalesActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
         } else {
-            userMessage = fzbInterface.getBrokerSave(FinalContents.getAgentId(), industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getUserID(), type, FinalContents.getLevelId());
-        }
-        userMessage.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<BrokerSaveBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
 
-                    }
+            Retrofit.Builder builder = new Retrofit.Builder();
+            builder.baseUrl(FinalContents.getBaseUrl());
+            builder.addConverterFactory(GsonConverterFactory.create());
+            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+            Retrofit build = builder.build();
+            MyService fzbInterface = build.create(MyService.class);
+            if (FinalContents.getIdentity().equals("63")) {
+                userMessage = fzbInterface.getBrokerSave(FinalContents.getAgentId(), industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getOwnerId001(), type, FinalContents.getLevelId());
+            } else {
+                userMessage = fzbInterface.getBrokerSave(FinalContents.getAgentId(), industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getUserID(), type, FinalContents.getLevelId());
+            }
+            userMessage.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<BrokerSaveBean>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
 
-                    @SuppressLint("WrongConstant")
-                    @Override
-                    public void onNext(BrokerSaveBean brokerSaveBean) {
-                        Toast.makeText(Captain_Team_AddSalesActivity.this, brokerSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                        if (brokerSaveBean.getData().getMessage().equals("保存成功")) {
-                            FinalContents.setOwnerId001("");
-                            finish();
                         }
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("添加销售获取错误", "错误" + e);
-                    }
+                        @SuppressLint("WrongConstant")
+                        @Override
+                        public void onNext(BrokerSaveBean brokerSaveBean) {
+                            Toast.makeText(Captain_Team_AddSalesActivity.this, brokerSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            if (brokerSaveBean.getData().getMessage().equals("保存成功")) {
+                                FinalContents.setOwnerId001("");
+                                finish();
+                            }else {
 
-                    @Override
-                    public void onComplete() {
+                            }
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.i("添加销售获取错误", "错误" + e);
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
     }
 
     //    TODO 新增

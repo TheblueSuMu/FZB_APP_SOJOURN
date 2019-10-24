@@ -6,7 +6,7 @@ public class TZBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"ratioId":"","ratioName":"","sysUser":{"id":"795df250a4a24fd486d65f818cc480bb","remarks":"","createBy":"","createDate":"2019-10-09 18:45:20","updateBy":"","updateDate":"2019-10-09 18:45:20","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"office":"","loginName":"tz","newPassword":"","oldLoginName":"","no":"","name":"tz","position":"","directLeaderId":"","email":"","phone":"18235198765","oldPhone":"","mobile":"","photo":"","loginIp":"36.106.98.96","loginDate":"2019-10-17 18:52:48","loginFlag":"1","qrcode":"","sign":"","sex":"男","province":"吉林省","city":"长春市","county":"南关区","identity":"63","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":{"id":"795df250a4a24fd486d65f818cc480bb","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"tz","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""},"industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""}}
+     * data : {"ratioId":"","ratioName":"","sysUser":{"id":"795df250a4a24fd486d65f818cc480bb","remarks":"","createBy":"","createDate":"2019-10-09 18:45:20","updateBy":"","updateDate":"2019-10-23 20:06:40","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"office":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"logi123nName":"tz","newPassword":"","oldLoginName":"","no":"","name":"tz","position":"","directLeaderId":"","email":"","phone":"18235198765","oldPhone":"","mobile":"","photo":"/fangfang/userfiles/795df250a4a24fd486d65f818cc480bb/attachment/p/2019/10/Asktx.png","loginIp":"36.106.98.121","loginDate":"2019-10-23 20:51:01","loginFlag":"1","qrcode":"/fangfang/userfiles/1/attachment/qrcode/795df250a4a24fd486d65f818cc480bb.png","sign":"","sex":"男","province":"吉林省","city":"长春市","county":"南关区","identity":"63","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":{"id":"795df250a4a24fd486d65f818cc480bb","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"tz","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""},"industry":"","type":"2","teamLeader":"","level":"","teamRatio":"","manager":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"1","admin":false,"roleNames":""}}
      */
 
     private String code;
@@ -41,7 +41,7 @@ public class TZBean {
         /**
          * ratioId :
          * ratioName :
-         * sysUser : {"id":"795df250a4a24fd486d65f818cc480bb","remarks":"","createBy":"","createDate":"2019-10-09 18:45:20","updateBy":"","updateDate":"2019-10-09 18:45:20","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"office":"","loginName":"tz","newPassword":"","oldLoginName":"","no":"","name":"tz","position":"","directLeaderId":"","email":"","phone":"18235198765","oldPhone":"","mobile":"","photo":"","loginIp":"36.106.98.96","loginDate":"2019-10-17 18:52:48","loginFlag":"1","qrcode":"","sign":"","sex":"男","province":"吉林省","city":"长春市","county":"南关区","identity":"63","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":{"id":"795df250a4a24fd486d65f818cc480bb","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"tz","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""},"industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""}
+         * sysUser : {"id":"795df250a4a24fd486d65f818cc480bb","remarks":"","createBy":"","createDate":"2019-10-09 18:45:20","updateBy":"","updateDate":"2019-10-23 20:06:40","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"office":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"logi123nName":"tz","newPassword":"","oldLoginName":"","no":"","name":"tz","position":"","directLeaderId":"","email":"","phone":"18235198765","oldPhone":"","mobile":"","photo":"/fangfang/userfiles/795df250a4a24fd486d65f818cc480bb/attachment/p/2019/10/Asktx.png","loginIp":"36.106.98.121","loginDate":"2019-10-23 20:51:01","loginFlag":"1","qrcode":"/fangfang/userfiles/1/attachment/qrcode/795df250a4a24fd486d65f818cc480bb.png","sign":"","sex":"男","province":"吉林省","city":"长春市","county":"南关区","identity":"63","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":{"id":"795df250a4a24fd486d65f818cc480bb","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"tz","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""},"industry":"","type":"2","teamLeader":"","level":"","teamRatio":"","manager":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"1","admin":false,"roleNames":""}
          */
 
         private String ratioId;
@@ -79,10 +79,10 @@ public class TZBean {
              * createBy :
              * createDate : 2019-10-09 18:45:20
              * updateBy :
-             * updateDate : 2019-10-09 18:45:20
+             * updateDate : 2019-10-23 20:06:40
              * company : {"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"}
-             * office :
-             * loginName : tz
+             * office : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"}
+             * logi123nName : tz
              * newPassword :
              * oldLoginName :
              * no :
@@ -93,11 +93,11 @@ public class TZBean {
              * phone : 18235198765
              * oldPhone :
              * mobile :
-             * photo :
-             * loginIp : 36.106.98.96
-             * loginDate : 2019-10-17 18:52:48
+             * photo : /fangfang/userfiles/795df250a4a24fd486d65f818cc480bb/attachment/p/2019/10/Asktx.png
+             * loginIp : 36.106.98.121
+             * loginDate : 2019-10-23 20:51:01
              * loginFlag : 1
-             * qrcode :
+             * qrcode : /fangfang/userfiles/1/attachment/qrcode/795df250a4a24fd486d65f818cc480bb.png
              * sign :
              * sex : 男
              * province : 吉林省
@@ -112,16 +112,16 @@ public class TZBean {
              * isCircle :
              * parent : {"id":"795df250a4a24fd486d65f818cc480bb","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"tz","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":"","storeManage":"","borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","admin":false,"roleNames":""}
              * industry :
-             * type :
+             * type : 2
              * teamLeader :
              * level :
              * teamRatio :
-             * manager : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""}
+             * manager : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""}
              * startTime :
              * endTime :
              * startTime1 :
              * endTime1 :
-             * manageFlag :
+             * manageFlag : 1
              * admin : false
              * roleNames :
              */
@@ -133,8 +133,8 @@ public class TZBean {
             private String updateBy;
             private String updateDate;
             private CompanyBean company;
-            private String office;
-            private String loginName;
+            private OfficeBean office;
+            private String logi123nName;
             private String newPassword;
             private String oldLoginName;
             private String no;
@@ -233,20 +233,20 @@ public class TZBean {
                 this.company = company;
             }
 
-            public String getOffice() {
+            public OfficeBean getOffice() {
                 return office;
             }
 
-            public void setOffice(String office) {
+            public void setOffice(OfficeBean office) {
                 this.office = office;
             }
 
-            public String getLoginName() {
-                return loginName;
+            public String getLogi123nName() {
+                return logi123nName;
             }
 
-            public void setLoginName(String loginName) {
-                this.loginName = loginName;
+            public void setLogi123nName(String logi123nName) {
+                this.logi123nName = logi123nName;
             }
 
             public String getNewPassword() {
@@ -587,6 +587,302 @@ public class TZBean {
                  * updateDate :
                  * parentIds :
                  * name : 长春房坐标（吉海优房）
+                 * sort : 30
+                 * hasChildren : false
+                 * area :
+                 * code :
+                 * type : 2
+                 * grade :
+                 * address :
+                 * zipCode :
+                 * master :
+                 * phone :
+                 * fax :
+                 * email :
+                 * useable :
+                 * primaryPerson :
+                 * deputyPerson :
+                 * childDeptList :
+                 * province :
+                 * city :
+                 * county :
+                 * areas :
+                 * parentId : 0
+                 */
+
+                private String id;
+                private String remarks;
+                private String createBy;
+                private String createDate;
+                private String updateBy;
+                private String updateDate;
+                private String parentIds;
+                private String name;
+                private int sort;
+                private boolean hasChildren;
+                private String area;
+                private String code;
+                private String type;
+                private String grade;
+                private String address;
+                private String zipCode;
+                private String master;
+                private String phone;
+                private String fax;
+                private String email;
+                private String useable;
+                private String primaryPerson;
+                private String deputyPerson;
+                private String childDeptList;
+                private String province;
+                private String city;
+                private String county;
+                private String areas;
+                private String parentId;
+
+                public String getId() {
+                    return id;
+                }
+
+                public void setId(String id) {
+                    this.id = id;
+                }
+
+                public String getRemarks() {
+                    return remarks;
+                }
+
+                public void setRemarks(String remarks) {
+                    this.remarks = remarks;
+                }
+
+                public String getCreateBy() {
+                    return createBy;
+                }
+
+                public void setCreateBy(String createBy) {
+                    this.createBy = createBy;
+                }
+
+                public String getCreateDate() {
+                    return createDate;
+                }
+
+                public void setCreateDate(String createDate) {
+                    this.createDate = createDate;
+                }
+
+                public String getUpdateBy() {
+                    return updateBy;
+                }
+
+                public void setUpdateBy(String updateBy) {
+                    this.updateBy = updateBy;
+                }
+
+                public String getUpdateDate() {
+                    return updateDate;
+                }
+
+                public void setUpdateDate(String updateDate) {
+                    this.updateDate = updateDate;
+                }
+
+                public String getParentIds() {
+                    return parentIds;
+                }
+
+                public void setParentIds(String parentIds) {
+                    this.parentIds = parentIds;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public int getSort() {
+                    return sort;
+                }
+
+                public void setSort(int sort) {
+                    this.sort = sort;
+                }
+
+                public boolean isHasChildren() {
+                    return hasChildren;
+                }
+
+                public void setHasChildren(boolean hasChildren) {
+                    this.hasChildren = hasChildren;
+                }
+
+                public String getArea() {
+                    return area;
+                }
+
+                public void setArea(String area) {
+                    this.area = area;
+                }
+
+                public String getCode() {
+                    return code;
+                }
+
+                public void setCode(String code) {
+                    this.code = code;
+                }
+
+                public String getType() {
+                    return type;
+                }
+
+                public void setType(String type) {
+                    this.type = type;
+                }
+
+                public String getGrade() {
+                    return grade;
+                }
+
+                public void setGrade(String grade) {
+                    this.grade = grade;
+                }
+
+                public String getAddress() {
+                    return address;
+                }
+
+                public void setAddress(String address) {
+                    this.address = address;
+                }
+
+                public String getZipCode() {
+                    return zipCode;
+                }
+
+                public void setZipCode(String zipCode) {
+                    this.zipCode = zipCode;
+                }
+
+                public String getMaster() {
+                    return master;
+                }
+
+                public void setMaster(String master) {
+                    this.master = master;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getFax() {
+                    return fax;
+                }
+
+                public void setFax(String fax) {
+                    this.fax = fax;
+                }
+
+                public String getEmail() {
+                    return email;
+                }
+
+                public void setEmail(String email) {
+                    this.email = email;
+                }
+
+                public String getUseable() {
+                    return useable;
+                }
+
+                public void setUseable(String useable) {
+                    this.useable = useable;
+                }
+
+                public String getPrimaryPerson() {
+                    return primaryPerson;
+                }
+
+                public void setPrimaryPerson(String primaryPerson) {
+                    this.primaryPerson = primaryPerson;
+                }
+
+                public String getDeputyPerson() {
+                    return deputyPerson;
+                }
+
+                public void setDeputyPerson(String deputyPerson) {
+                    this.deputyPerson = deputyPerson;
+                }
+
+                public String getChildDeptList() {
+                    return childDeptList;
+                }
+
+                public void setChildDeptList(String childDeptList) {
+                    this.childDeptList = childDeptList;
+                }
+
+                public String getProvince() {
+                    return province;
+                }
+
+                public void setProvince(String province) {
+                    this.province = province;
+                }
+
+                public String getCity() {
+                    return city;
+                }
+
+                public void setCity(String city) {
+                    this.city = city;
+                }
+
+                public String getCounty() {
+                    return county;
+                }
+
+                public void setCounty(String county) {
+                    this.county = county;
+                }
+
+                public String getAreas() {
+                    return areas;
+                }
+
+                public void setAreas(String areas) {
+                    this.areas = areas;
+                }
+
+                public String getParentId() {
+                    return parentId;
+                }
+
+                public void setParentId(String parentId) {
+                    this.parentId = parentId;
+                }
+            }
+
+            public static class OfficeBean {
+                /**
+                 * id :
+                 * remarks :
+                 * createBy :
+                 * createDate :
+                 * updateBy :
+                 * updateDate :
+                 * parentIds :
+                 * name :
                  * sort : 30
                  * hasChildren : false
                  * area :
@@ -1409,6 +1705,8 @@ public class TZBean {
                  * oldLoginDate :
                  * wechatOpenid :
                  * wechatData :
+                 * industry :
+                 * manageFlag :
                  * role :
                  * sex :
                  * province :
@@ -1422,6 +1720,9 @@ public class TZBean {
                  * classics : 0
                  * team :
                  * layerTeamVo :
+                 * teamParentId :
+                 * commissionLevelId :
+                 * identityStr :
                  * admin : false
                  * roleNames :
                  */
@@ -1454,6 +1755,8 @@ public class TZBean {
                 private String oldLoginDate;
                 private String wechatOpenid;
                 private String wechatData;
+                private String industry;
+                private String manageFlag;
                 private String role;
                 private String sex;
                 private String province;
@@ -1467,6 +1770,9 @@ public class TZBean {
                 private int classics;
                 private String team;
                 private String layerTeamVo;
+                private String teamParentId;
+                private String commissionLevelId;
+                private String identityStr;
                 private boolean admin;
                 private String roleNames;
 
@@ -1694,6 +2000,22 @@ public class TZBean {
                     this.wechatData = wechatData;
                 }
 
+                public String getIndustry() {
+                    return industry;
+                }
+
+                public void setIndustry(String industry) {
+                    this.industry = industry;
+                }
+
+                public String getManageFlag() {
+                    return manageFlag;
+                }
+
+                public void setManageFlag(String manageFlag) {
+                    this.manageFlag = manageFlag;
+                }
+
                 public String getRole() {
                     return role;
                 }
@@ -1796,6 +2118,30 @@ public class TZBean {
 
                 public void setLayerTeamVo(String layerTeamVo) {
                     this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getTeamParentId() {
+                    return teamParentId;
+                }
+
+                public void setTeamParentId(String teamParentId) {
+                    this.teamParentId = teamParentId;
+                }
+
+                public String getCommissionLevelId() {
+                    return commissionLevelId;
+                }
+
+                public void setCommissionLevelId(String commissionLevelId) {
+                    this.commissionLevelId = commissionLevelId;
+                }
+
+                public String getIdentityStr() {
+                    return identityStr;
+                }
+
+                public void setIdentityStr(String identityStr) {
+                    this.identityStr = identityStr;
                 }
 
                 public boolean isAdmin() {

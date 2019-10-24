@@ -443,7 +443,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<BrokerBean> clientCommissions = fzbInterface.getEAgentDetails(FinalContents.getAgentId(),FinalContents.getUserID());
+        Observable<BrokerBean> clientCommissions = fzbInterface.getEAgentDetails(FinalContents.getAgentId(), FinalContents.getUserID());
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BrokerBean>() {
@@ -458,24 +458,32 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         agentInfo = brokerBean.getData().getAgentInfo();
                         if (agentInfo.getStatus().equals("0") || agentInfo.getStatus().equals("1")) {
                             broker_rl.setVisibility(View.GONE);
-                        } else  if (agentInfo.getStatus().equals("2")){
+                        } else if (agentInfo.getStatus().equals("2")) {
                             broker_rl.setVisibility(View.VISIBLE);
-                            if(agentInfo.getReason().equals("")){
+                            if (agentInfo.getReason().equals("")) {
                                 broker_tv.setText("异常原因：公司取消合作");
-                            }else {
+                            } else {
                                 broker_tv.setText("异常原因：" + agentInfo.getReason());
                             }
-                        }else  if (agentInfo.getStatus().equals("3")){
+                        } else if (agentInfo.getStatus().equals("3")) {
                             broker_rl.setVisibility(View.VISIBLE);
-                            if(agentInfo.getReason().equals("")){
+                            if (agentInfo.getReason().equals("")) {
                                 broker_tv.setText("异常原因：公司倒闭");
-                            }else {
+                            } else {
                                 broker_tv.setText("异常原因：" + agentInfo.getReason());
                             }
                         }
                         broker_tv18.setText(agentInfo.getAgentName());
                         broker_tv1.setText(agentInfo.getAgentName() + " " + agentInfo.getAgentPhone() + "  ");
-                        broker_tv2.setText(agentInfo.getCompanyName() + "-" + agentInfo.getStoreName());
+                        /**
+                         * 修改 20191023
+                         */
+                        if (agentInfo.getStoreName().equals("")) {
+                            broker_tv2.setText(agentInfo.getCompanyName());
+                        } else {
+                            broker_tv2.setText(agentInfo.getCompanyName() + "-" + agentInfo.getStoreName());
+                        }
+
 //        TODO 数据统计
                         BrokerBean.DataBean.AgentDataStatisticsBean agentDataStatistics = brokerBean.getData().getAgentDataStatistics();
                         broker_tv6.setText(agentDataStatistics.getReportNumber() + "");
@@ -520,7 +528,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                 break;
             case R.id.broker_ll2:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
-                Log.i("专员","agentInfo.getStoreId()：" + agentInfo.getStoreId());
+                Log.i("专员", "agentInfo.getStoreId()：" + agentInfo.getStoreId());
                 FinalContents.setStoreId(agentInfo.getStoreId());
                 intent.putExtra("client", "1");
                 startActivity(intent);

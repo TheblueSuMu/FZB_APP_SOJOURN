@@ -182,6 +182,8 @@
                         android:background="#FFFFFF"
                         android:hint="请输入手机号"
                         android:gravity="right"
+                        android:digits="0123456789"
+                        android:maxLength="11"
                         android:textColor="#ff111111"
                         android:textSize="13sp" />
 
@@ -217,6 +219,8 @@
                         android:background="#FFFFFF"
                         android:hint="请输入身份证号"
                         android:gravity="right"
+                        android:digits="0123456789X"
+                        android:maxLength="18"
                         android:textColor="#ff111111"
                         android:textSize="13sp" />
 

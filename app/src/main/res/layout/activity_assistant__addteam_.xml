@@ -198,6 +198,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
                         android:background="#FFFFFF"
+                        android:digits="0123456789"
+                        android:maxLength="11"
                         android:gravity="right"
                         android:hint="请输入手机号"
                         android:textColor="#ff666666"
@@ -373,6 +375,7 @@
                             android:id="@+id/add_team_rb1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:checked="true"
                             android:text="是" />
 
                         <RadioButton

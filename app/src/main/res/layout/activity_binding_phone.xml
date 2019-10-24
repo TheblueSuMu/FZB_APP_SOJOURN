@@ -50,6 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#FFFFFF"
+            android:digits="0123456789"
+            android:maxLength="11"
             android:hint="请输入手机号" />
 
         <Button

@@ -182,7 +182,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("销售",FinalContents.getUserID());
+        Log.i("销售", FinalContents.getUserID());
         Observable<TeamMemberBean> teamMemberBeane = fzbInterface.getTeamMemberBeane("", "1", loginFlag, FinalContents.getUserID(), FinalContents.getUserID(), "1000");
         teamMemberBeane.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -440,7 +440,51 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
             if (FinalContents.getOwnerId001().equals("")) {
 
             } else {
-                userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getOwnerId001(), type, "");
+
+                if (add_aconsultant_et1.getText().toString().equals("") || add_aconsultant_et2.getText().toString().equals("") || add_aconsultant_et3.getText().toString().equals("") || add_aconsultant_et4.getText().toString().equals("") || add_aconsultant_tv1.getText().toString().equals("") || add_aconsultant_tv2.getText().toString().equals("") || add_aconsultant_tv3.getText().toString().equals("")) {
+                    Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getOwnerId001(), type, "");
+                    userMessage.subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<BrokerSaveBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+
+                                }
+
+                                @SuppressLint("WrongConstant")
+                                @Override
+                                public void onNext(BrokerSaveBean brokerSaveBean) {
+                                    Toast.makeText(Captain_Team_AddAConsultantActivity.this, brokerSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    if (brokerSaveBean.getData().getMessage().equals("保存成功")) {
+                                        FinalContents.setOwnerId("");
+                                        FinalContents.setOwnerId001("");
+                                        FinalContents.setOwnerId002("");
+                                        finish();
+                                    }else {
+
+                                    }
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.i("添加销售获取错误", "错误" + e);
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+                }
+            }
+        } else {
+            if (add_aconsultant_et1.getText().toString().equals("") || add_aconsultant_et2.getText().toString().equals("") || add_aconsultant_et3.getText().toString().equals("") || add_aconsultant_et4.getText().toString().equals("") || add_aconsultant_tv1.getText().toString().equals("") || add_aconsultant_tv2.getText().toString().equals("") || add_aconsultant_tv3.getText().toString().equals("")) {
+                Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
+            } else {
+                userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getUserID(), type, "");
                 userMessage.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Observer<BrokerSaveBean>() {
@@ -458,6 +502,8 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                                     FinalContents.setOwnerId001("");
                                     FinalContents.setOwnerId002("");
                                     finish();
+                                }else {
+
                                 }
                             }
 
@@ -472,38 +518,6 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                             }
                         });
             }
-        } else {
-            userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getUserID(), type, "");
-            userMessage.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<BrokerSaveBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
-
-                        }
-
-                        @SuppressLint("WrongConstant")
-                        @Override
-                        public void onNext(BrokerSaveBean brokerSaveBean) {
-                            Toast.makeText(Captain_Team_AddAConsultantActivity.this, brokerSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                            if (brokerSaveBean.getData().getMessage().equals("保存成功")) {
-                                FinalContents.setOwnerId("");
-                                FinalContents.setOwnerId001("");
-                                FinalContents.setOwnerId002("");
-                                finish();
-                            }
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.i("添加销售获取错误", "错误" + e);
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
         }
 
     }
