@@ -43,6 +43,7 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="HmPVKuXGlaqvD1TV6XTNTlF6giQK2c3l" />
 
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
