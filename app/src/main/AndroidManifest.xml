@@ -41,7 +41,7 @@
         <!--TODO 百度地图 start-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="HmPVKuXGlaqvD1TV6XTNTlF6giQK2c3l" />
+            android:value="Nusds6wsGYfaz2abwLrSvFc7SoKNk0vy" />
 
 
         <service
