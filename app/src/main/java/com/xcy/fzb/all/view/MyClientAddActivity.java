@@ -14,7 +14,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -150,8 +149,6 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
         name1 = client_add_photo_tv_1.getText().toString();
         name2 = client_add_photo_tv_2.getText().toString();
         name3 = client_add_photo_tv_3.getText().toString();
-
-        Glide.with(MyClientAddActivity.this).load(R.mipmap.z4).into(client_add_img);
 
         client_add_return.setOnClickListener(this);
         client_add_img.setOnClickListener(this);

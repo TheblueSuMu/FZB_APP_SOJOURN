@@ -45,7 +45,7 @@
             android:text="  只看未结"
             android:textColor="#FFFFFF"
             android:button="@null"
-            android:drawableLeft="@drawable/checkbox_check"
+            android:drawableLeft="@drawable/store_list_checked_select"
             android:layout_marginRight="15dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="43dp"

@@ -54,7 +54,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp">
 
-                <ImageView
+                <com.makeramen.roundedimageview.RoundedImageView
+                    app:riv_oval="true"
                     android:id="@+id/comment_buddha"
                     android:layout_width="43dp"
                     android:layout_height="43dp"
@@ -122,7 +123,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/z3" />
+                    android:src="@mipmap/logo_square" />
 
                 <TextView
                     android:layout_width="match_parent"
