@@ -18,12 +18,14 @@ import android.widget.TextView;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.lzj.gallery.library.views.BannerViewPager;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.CityAdapter;
 import com.xcy.fzb.all.adapter.IssueAdapter;
 import com.xcy.fzb.all.adapter.OverseaCityAdapter;
 import com.xcy.fzb.all.adapter.RecyclerAdapter;
@@ -151,18 +153,18 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             nationRv.setVisibility(View.VISIBLE);
             oversea_rb_2s.setText("国家");
             state.setText("国家");
-            seview.setVisibility(View.VISIBLE);
+            seview.setVisibility(View.GONE);
             initcity();
             inithot();
         } else if (FinalContents.getProjectType().equals("3")) {
             title.setText("旅居房产");
             arrposid = "5";
             arrpos = "6";
-            oversea_linear.setVisibility(View.VISIBLE);
-            nationRv.setVisibility(View.GONE);
+            oversea_linear.setVisibility(View.GONE);
+            nationRv.setVisibility(View.VISIBLE);
             oversea_rb_2s.setText("城市");
             state.setText("城市");
-            seview.setVisibility(View.GONE);
+            seview.setVisibility(View.VISIBLE);
             initcity();
             inithot();
         }
@@ -455,27 +457,39 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                                 nationRv.setAdapter(recyclerAdapter);
                                 recyclerAdapter.notifyDataSetChanged();
                             } else if (FinalContents.getProjectType().equals("3")) {
-                                final List<String> cityName = new ArrayList<>();
-                                for (int i = 0; i < nationlist.size(); i++) {
-                                    cityName.add(nationlist.get(i).getNationName());
+//                                final List<String> cityName = new ArrayList<>();
+//                                for (int i = 0; i < nationlist.size(); i++) {
+//                                    cityName.add(nationlist.get(i).getNationName());
+//                                }
+//                                tagView.setTheme(ColorFactory.RANDOM);
+//                                tagView.setTags(cityName);
+//                                tagView.setOnTagClickListener(new TagView.OnTagClickListener() {
+//                                    @Override
+//                                    public void onTagClick(int position, String text) {
+//                                        // ...点击事件
+//                                        Intent intent = new Intent(OverSeaActivity.this, RecyclerViewActivity.class);
+//                                        intent.putExtra("nation", cityName.get(position));
+//                                        startActivity(intent);
+//                                    }
+//
+//                                    @Override
+//                                    public void onTagLongClick(final int position, String text) {
+//                                        // ...长按事件
+//                                    }
+//                                });
+
+                                if (nationlist.size() > 4) {
+                                    GridLayoutManager layoutManager = new GridLayoutManager(OverSeaActivity.this,4);
+                                    layoutManager.setOrientation(GridLayoutManager.VERTICAL);
+                                    nationRv.setLayoutManager(layoutManager);
+                                } else if (nationlist.size() <= 4 && nationlist.size() != 0) {
+                                    LinearLayoutManager layoutManager = new LinearLayoutManager(OverSeaActivity.this);
+                                    layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                    nationRv.setLayoutManager(layoutManager);
                                 }
-                                tagView.setTheme(ColorFactory.RANDOM);
-                                tagView.setTags(cityName);
-
-                                tagView.setOnTagClickListener(new TagView.OnTagClickListener() {
-                                    @Override
-                                    public void onTagClick(int position, String text) {
-                                        // ...点击事件
-                                        Intent intent = new Intent(OverSeaActivity.this, RecyclerViewActivity.class);
-                                        intent.putExtra("nation", cityName.get(position));
-                                        startActivity(intent);
-                                    }
-
-                                    @Override
-                                    public void onTagLongClick(final int position, String text) {
-                                        // ...长按事件
-                                    }
-                                });
+                                CityAdapter recyclerAdapter = new CityAdapter(nationlist);
+                                nationRv.setAdapter(recyclerAdapter);
+                                recyclerAdapter.notifyDataSetChanged();
                             }
                         }
 

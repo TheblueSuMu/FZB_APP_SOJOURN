@@ -43,14 +43,11 @@ public class WebViewActivity extends AllActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
-
+        StatusBar.makeStatusBarTransparent(this);
 
         init();
     }
     private void init(){
-
-        StatusBar.makeStatusBarTransparent(this);
-
         webView = findViewById(R.id.webview);
         title = findViewById(R.id.web_title);
         back = findViewById(R.id.web_return);
