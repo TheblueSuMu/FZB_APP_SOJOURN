@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -480,5 +479,16 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    /**
+     * 监听Back键按下事件
+     */
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        Toast.makeText(MapActivity.this,"请选择坐标并且发送", Toast.LENGTH_SHORT).show();
+        Log.i("键","点击了回退键");
+
     }
 }
