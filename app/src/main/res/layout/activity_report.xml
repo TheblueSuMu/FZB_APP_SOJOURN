@@ -155,6 +155,7 @@
                         android:layout_gravity="center_vertical"
                         android:background="#FFFFFF"
                         android:digits="1234567890zZXY"
+                        android:inputType="number"
                         android:gravity="right"
                         android:maxLength="18"
                         android:textColor="#ff111111"
@@ -799,7 +800,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
