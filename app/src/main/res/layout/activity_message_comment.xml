@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp">
+                android:layout_marginRight="15dp">
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     app:riv_oval="true"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="17dp"
-                android:layout_marginRight="13dp"
+                android:layout_marginRight="15dp"
                 android:text=""
                 android:textColor="#ff666666"
                 android:textSize="14sp" />
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="15dp"
                 android:background="#FFFFFF"></androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>

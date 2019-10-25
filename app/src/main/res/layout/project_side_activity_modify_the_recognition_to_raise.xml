@@ -72,7 +72,6 @@
                     android:gravity="right"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:layout_marginRight="20dp"
                     android:text="回显数据"
                     android:textColor="#999999"
                     android:textSize="13sp" />
@@ -107,7 +106,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -156,7 +154,6 @@
                     android:gravity="right"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:layout_marginRight="20dp"
                     android:text="回显数据"
                     android:textColor="#999999"
                     android:textSize="13sp" />
@@ -194,7 +191,6 @@
                     android:gravity="right"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:layout_marginRight="20dp"
                     android:text="回显数据"
                     android:textColor="#999999"
                     android:textSize="13sp" />
@@ -232,7 +228,6 @@
                     android:gravity="right"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:layout_marginRight="20dp"
                     android:text="回显数据"
                     android:textColor="#999999"
                     android:textSize="13sp" />
@@ -278,7 +273,6 @@
                     android:singleLine="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
                     android:text="回显数据"
                     android:textColor="#999999"
                     android:textSize="13sp" />
@@ -316,7 +310,6 @@
                     android:gravity="right"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:layout_marginRight="20dp"
                     android:text="回显数据"
                     android:textColor="#999999"
                     android:textSize="13sp" />
@@ -360,7 +353,6 @@
                     android:gravity="right"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:layout_marginRight="20dp"
                     android:text="回显数据"
                     android:textColor="#999999"
                     android:textSize="13sp" />

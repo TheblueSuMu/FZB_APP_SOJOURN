@@ -283,24 +283,41 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                 store_list_tv2.setTextColor(Color.parseColor("#ff333333"));
                 store_list_ll2.setVisibility(View.VISIBLE);
                 store_list_ll4.setVisibility(View.GONE);
-                FinalContents.setStoreList("1");
-                if (store_list_cb.isChecked()) {
-                    initData("", "", "1");
-                } else {
-                    initData("", "", "");
-                }
+
+
+               if(FinalContents.getMyAddType().equals("门店")){
+                   initData(FinalContents.getCompanyManageId(), "", "");
+                   FinalContents.setStoreList("1");
+               }else {
+                   if (store_list_cb.isChecked()) {
+                       initData("", "", "1");
+                   } else {
+                       initData("", "", "");
+                   }
+                   FinalContents.setStoreList("1");
+               }
+
                 break;
             case R.id.store_list_ll3:
                 store_list_tv2.setTextColor(Color.parseColor("#334485"));
                 store_list_tv1.setTextColor(Color.parseColor("#ff333333"));
                 store_list_ll4.setVisibility(View.VISIBLE);
                 store_list_ll2.setVisibility(View.GONE);
-                FinalContents.setStoreList("2");
-                if (store_list_cb.isChecked()) {
-                    initDatam("", "1");
-                } else {
+
+                if(FinalContents.getMyAddType().equals("公司")){
                     initDatam("", "");
+                    FinalContents.setStoreList("2");
+                    Log.i("专员", "进入公司");
+                }else {
+                    FinalContents.setStoreList("2");
+                    if (store_list_cb.isChecked()) {
+                        initDatam("", "1");
+                    } else {
+                        initDatam("", "");
+                    }
                 }
+
+
                 break;
         }
 

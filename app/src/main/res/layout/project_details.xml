@@ -416,7 +416,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="21dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="15dp"
                     android:background="#fffbfafa"
                     android:gravity="center"
                     android:text="更多信息"
@@ -779,7 +779,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginRight="15dp"
                         android:background="#fff3f2f7" />
 
                     <TextView
@@ -806,7 +806,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginRight="15dp"
                         android:background="#fff3f2f7" />
 
                     <TextView
@@ -833,7 +833,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginRight="15dp"
                         android:background="#fff3f2f7" />
 
 
