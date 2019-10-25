@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="40dp"
-            android:layout_marginRight="17dp"
+            android:layout_marginRight="15dp"
             android:scaleType="fitXY"
             android:src="@mipmap/icon_1" />
 

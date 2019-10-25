@@ -479,15 +479,4 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
                 break;
         }
     }
-
-    /**
-     * 监听Back键按下事件
-     */
-    @Override
-    public void onBackPressed() {
-//        super.onBackPressed();
-        Toast.makeText(MapActivity.this,"请选择坐标并且发送", Toast.LENGTH_SHORT).show();
-        Log.i("键","点击了回退键");
-
-    }
 }

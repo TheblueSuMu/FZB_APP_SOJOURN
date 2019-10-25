@@ -296,7 +296,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="客户基本信息临摹"
+                        android:text="客户基本信息摹"
                         android:textColor="#ff111111"
                         android:textSize="15sp" />
 
