@@ -8,7 +8,6 @@ import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -21,6 +20,7 @@ import com.xcy.fzb.all.modle.VerificationBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
+import com.xcy.fzb.all.utils.MatcherUtils;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -86,7 +86,12 @@ public class BindingPhoneActivity extends AllActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.binding_btn_1:
-                initData1();
+                if (!MatcherUtils.isMobile(binding_phone.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    initData1();
+                }
                 break;
             case R.id.binding_btn:
                 initData2();

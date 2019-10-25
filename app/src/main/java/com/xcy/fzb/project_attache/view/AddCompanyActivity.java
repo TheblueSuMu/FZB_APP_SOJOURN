@@ -23,6 +23,7 @@ import com.xcy.fzb.all.modle.ChangeAddress;
 import com.xcy.fzb.all.modle.ComapnyManage;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.TestMapActivity;
 
@@ -227,6 +228,11 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 //                add_company_tv3.setText("117.155243,39.112389");
                 break;
             case R.id.add_company_btn:
+                if (!MatcherUtils.isMobile(add_company_et4.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                }
                 s = add_company_tv1.getText().toString();
                 s1 = add_company_tv2.getText().toString();
                 s2 = add_company_tv3.getText().toString();

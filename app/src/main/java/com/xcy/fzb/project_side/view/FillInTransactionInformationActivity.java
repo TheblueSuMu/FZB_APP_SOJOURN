@@ -35,6 +35,7 @@ import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.KeyUtils;
+import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.adapter.TimeRangeAdapter;
 
@@ -433,11 +434,17 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                 break;
             //            TODO 提交
             case R.id.fill_in_transaction_information_btn:
-                if (FinalContents.getTiaodan().equals("调单")) {
-                    initAdjustApplySave();
-                } else if (FinalContents.getTiaodan().equals("成交")) {
-                    initTradeSave();
+                if (!MatcherUtils.isMobile(fill_in_transaction_information_et2.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    if (FinalContents.getTiaodan().equals("调单")) {
+                        initAdjustApplySave();
+                    } else if (FinalContents.getTiaodan().equals("成交")) {
+                        initTradeSave();
+                    }
                 }
+
                 break;
             //            TODO 产品类型
             case R.id.fill_in_transaction_information_rl1:

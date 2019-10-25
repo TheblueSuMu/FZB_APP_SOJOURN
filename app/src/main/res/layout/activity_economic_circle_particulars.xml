@@ -313,8 +313,6 @@
                 android:layout_weight="3"
                 android:background="@drawable/comment"
                 android:drawableLeft="@mipmap/jjqbx"
-                android:imeOptions="actionDone"
-                android:singleLine="true"
                 android:hint="  我来说几句"
                 android:paddingLeft="10dp"
                 android:textColor="#999999"

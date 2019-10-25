@@ -23,6 +23,7 @@ import com.xcy.fzb.all.modle.SysUser2Bean;
 import com.xcy.fzb.all.persente.SlideSwitch;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.view.AllActivity;
 
 import java.util.ArrayList;
@@ -167,7 +168,13 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                 break;
 //                TODO 确定
             case R.id.add_aconsultant_btn:
-                initData();
+                if (!MatcherUtils.isMobile(add_aconsultant_et3.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    initData();
+                }
+
                 break;
         }
 

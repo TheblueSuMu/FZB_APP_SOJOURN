@@ -35,7 +35,7 @@ import com.xcy.fzb.all.modle.ChangeNameBean;
 import com.xcy.fzb.all.modle.ChangeSexBean;
 import com.xcy.fzb.all.modle.GWDataBean;
 import com.xcy.fzb.all.modle.PersonalPhotoBean;
-import com.xcy.fzb.all.modle.TZBean;
+import com.xcy.fzb.all.modle.UserBean;
 import com.xcy.fzb.all.modle.UserMessageBean;
 import com.xcy.fzb.all.modle.XSDataBean;
 import com.xcy.fzb.all.modle.ZYDataBean;
@@ -394,41 +394,41 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         }
                     });
         } else if (FinalContents.getIdentity().equals("63")) {
-            Observable<TZBean> userMessage = fzbInterface.getTZBean(FinalContents.getUserID(), FinalContents.getUserID());
+            Observable<UserBean> userMessage = fzbInterface.getUserBean(FinalContents.getUserID());
             userMessage.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<TZBean>() {
+                    .subscribe(new Observer<UserBean>() {
                         @Override
                         public void onSubscribe(Disposable d) {
 
                         }
 
                         @Override
-                        public void onNext(TZBean userMessageBean) {
+                        public void onNext(UserBean userMessageBean) {
 
-                            if (userMessageBean.getData().getSysUser().getPhoto().equals("")) {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
+                            if (userMessageBean.getData().getPhoto().equals("")) {
+                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getPhoto()).into(personal_photo);
                             } else {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getPhoto()).into(personal_photo);
                             }
 
 
-                            personal_name.setText(userMessageBean.getData().getSysUser().getName());
-                            if (userMessageBean.getData().getSysUser().getIdentity().equals("60")) {
+                            personal_name.setText(userMessageBean.getData().getName());
+                            if (userMessageBean.getData().getIdentity().equals("60")) {
                                 personal_identity.setText("团队长");
-                            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("61")) {
+                            } else if (userMessageBean.getData().getIdentity().equals("61")) {
                                 personal_identity.setText("销售");
-                            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("62")) {
+                            } else if (userMessageBean.getData().getIdentity().equals("62")) {
                                 personal_identity.setText("顾问");
-                            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("63")) {
+                            } else if (userMessageBean.getData().getIdentity().equals("63")) {
                                 personal_identity.setText("团助");
                             }
 
-                            personal_city.setText(userMessageBean.getData().getSysUser().getCity());
-                            personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
-                            personal_phone.setText(userMessageBean.getData().getSysUser().getPhone());
-                            s = userMessageBean.getData().getSysUser().getSex();
-                            personal_store.setText(userMessageBean.getData().getSysUser().getStoreManage());
+                            personal_city.setText(userMessageBean.getData().getCity());
+                            personal_sex.setText(userMessageBean.getData().getSex());
+                            personal_phone.setText(userMessageBean.getData().getPhone());
+                            s = userMessageBean.getData().getSex();
+                            personal_store.setText(userMessageBean.getData().getStoreManage());
                         }
 
                         @Override

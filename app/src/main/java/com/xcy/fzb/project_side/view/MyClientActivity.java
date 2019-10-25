@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -225,6 +224,7 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
         transaction = manager.beginTransaction();
         switch (view.getId()) {
             case R.id.my_client_return:
+                FinalContents.setTiaozhuang("");
                 finish();
                 break;
             case R.id.client_add:
@@ -299,6 +299,7 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        FinalContents.setTiaozhuang("");
     }
 
     @Override
@@ -391,4 +392,6 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
         }
 
     }
+
+
 }

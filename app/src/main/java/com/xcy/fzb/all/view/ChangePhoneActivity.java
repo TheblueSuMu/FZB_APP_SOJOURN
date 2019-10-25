@@ -3,10 +3,8 @@ package com.xcy.fzb.all.view;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -18,6 +16,7 @@ import com.xcy.fzb.all.modle.VerificationBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
+import com.xcy.fzb.all.utils.MatcherUtils;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -77,7 +76,12 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.change_phone_yanzhengma_1:
-                initData2();
+                if (!MatcherUtils.isMobile(change_phone_et.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    initData2();
+                }
                 break;
             case R.id.change_phone_yanzheng:
                 initData1();

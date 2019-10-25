@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -168,7 +167,13 @@ public class ForgetActivity extends AllActivity implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.forget_code_get:
-                sendcode();
+                if (!MatcherUtils.isMobile(phone.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    sendcode();
+                }
+
                 break;
             case R.id.forget_ensure:
                 initEnsure();
