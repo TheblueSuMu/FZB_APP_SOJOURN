@@ -199,7 +199,6 @@
         <activity android:name=".captain_assistant.view.Assistant_Teams_Activity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 团助 团队人员-->
         <activity android:name=".captain_assistant.view.Captain_Assistant_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 团助 主页-->
 
-
         <!--TODO 今日头条 start-->
         <meta-data
             android:name="design_width_in_dp"
