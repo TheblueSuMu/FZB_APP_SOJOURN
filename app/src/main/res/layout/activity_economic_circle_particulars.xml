@@ -315,7 +315,7 @@
                 android:drawableLeft="@mipmap/jjqbx"
                 android:hint="  我来说几句"
                 android:paddingLeft="10dp"
-                android:textColor="#999999"
+                android:textColor="#111"
                 android:textSize="12sp" />
 
             <LinearLayout

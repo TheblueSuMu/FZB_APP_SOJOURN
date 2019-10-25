@@ -240,7 +240,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                             java.text.DecimalFormat myformat=new java.text.DecimalFormat("0.00");
                             String str = myformat.format(sum);
                             Log.i("计算价格","sum:"+sum);
-                            fill_in_transaction_information_et6.setText(sum+"元");
+                            fill_in_transaction_information_et6.setText(str+"元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
                         }
@@ -274,7 +274,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                             java.text.DecimalFormat myformat=new java.text.DecimalFormat("0.00");
                             String str = myformat.format(sum);
                             Log.i("计算价格","sum:"+sum);
-                            fill_in_transaction_information_et6.setText(sum+"元");
+                            fill_in_transaction_information_et6.setText(str+"元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
                         }
@@ -459,11 +459,6 @@ public class FillInTransactionInformationActivity extends AllActivity implements
 
                     if (fill_in_transaction_information_et1.getText().toString().equals("")) {
                         Toast.makeText(this, "请输入成交客户姓名", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (gender.equals("")) {
-                        Toast.makeText(this, "请选择性别", Toast.LENGTH_SHORT).show();
                         return;
                     }
 

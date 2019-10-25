@@ -54,7 +54,7 @@
                 android:layout_marginRight="15dp"
                 android:background="#FFFFFF"
                 android:hint="这一刻的想法..."
-                android:textColor="#999999"
+                android:textColor="#111"
                 android:textSize="12sp" />
 
             <GridView

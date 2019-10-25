@@ -171,6 +171,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
                                 android:imeOptions="actionDone"
                                 android:singleLine="true"
                                 android:gravity="right"
@@ -253,6 +254,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
+                                android:inputType="number"
                                 android:background="#FFFFFF"
                                 android:imeOptions="actionDone"
                                 android:singleLine="true"
@@ -293,6 +296,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
+                                android:inputType="number"
                                 android:imeOptions="actionDone"
                                 android:singleLine="true"
                                 android:digits="0123456789xX"
@@ -340,6 +345,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
                                 android:text=""
                                 android:layout_alignParentRight="true"
                                 android:textColor="#ff111111"
@@ -369,6 +375,7 @@
                                 android:layout_height="wrap_content"/>
 
                             <LinearLayout
+                                android:layout_marginRight="15dp"
                                 android:layout_alignParentRight="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent">
@@ -456,6 +463,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
                                 android:text=""
                                 android:layout_alignParentRight="true"
                                 android:textColor="#ff111111"
@@ -497,6 +505,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
+                                    android:inputType="number"
                                     android:imeOptions="actionDone"
                                     android:background="#FFFFFF"
                                     android:singleLine="true"
@@ -508,6 +517,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginRight="15dp"
                                     android:text="㎡"
                                     android:textColor="#000000"
                                     android:textSize="13sp" />
@@ -550,6 +560,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
                                     android:layout_centerVertical="true"
+                                    android:inputType="number"
                                     android:imeOptions="actionDone"
                                     android:singleLine="true"
                                     android:background="#FFFFFF"
@@ -561,6 +572,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginRight="15dp"
                                     android:text="元/㎡"
                                     android:textColor="#000000"
                                     android:textSize="13sp" />
@@ -609,6 +621,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=""
+                                    android:layout_marginRight="15dp"
                                     android:textColor="#000000"
                                     android:textSize="13sp" />
 
@@ -650,6 +663,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
                                 android:text=""
                                 android:textColor="#ff111111"
                                 android:textSize="13sp" />
@@ -691,6 +705,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
                                 android:text=""
                                 android:textColor="#ff111111"
                                 android:textSize="13sp" />
@@ -731,6 +746,7 @@
                                 android:id="@+id/project_brokerage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
                                 android:layout_centerVertical="true"
                                 android:text=""
                                 android:textColor="#ff111111"
