@@ -316,6 +316,7 @@
         android:id="@+id/information_rl"
         android:layout_width="match_parent"
         android:layout_height="54dp"
+        android:visibility="gone"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="16dp">
 
@@ -340,7 +341,9 @@
 
     <LinearLayout
         android:id="@+id/information_ll"
+        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="1dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"

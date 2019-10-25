@@ -868,6 +868,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 FinalContents.setUserID(userBean.getData().getId());
                                 FinalContents.setCityID(userBean.getData().getCityId());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
+                                FinalContents.setUserName(userBean.getData().getName());
                                 editor.putString("denglu", "团队长");
                                 editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));

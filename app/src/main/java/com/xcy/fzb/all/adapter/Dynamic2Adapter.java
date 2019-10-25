@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -238,7 +239,7 @@ public class Dynamic2Adapter extends RecyclerView.Adapter<Dynamic2Adapter.ViewHo
         TextView circle_message;
         TextView circle_name;
         TextView circle_like;
-        LinearLayout circle_zan;
+        RelativeLayout circle_zan;
         TextView circle_pinglun;
         TextView circle_lianxi;
         TextView circle_fuzhi;

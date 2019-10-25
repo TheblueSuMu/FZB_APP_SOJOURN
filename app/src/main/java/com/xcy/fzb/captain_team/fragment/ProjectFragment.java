@@ -277,6 +277,9 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 //                startActivity(intent);
                 Intent intent = new Intent(getContext(), Captain_Team_MyTeamActivity.class);
                 startActivity(intent);
+
+//                FinalContents.setUserName(data.getSysUser().getName());
+
             } else if (FinalContents.getIdentity().equals("61")) {
                 //  TODO    销售
 //                Intent intent = new Intent(view.getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
