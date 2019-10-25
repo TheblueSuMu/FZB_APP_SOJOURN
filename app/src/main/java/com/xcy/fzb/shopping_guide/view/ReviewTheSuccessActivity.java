@@ -128,13 +128,13 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                     public void onNext(MyClientFragmentBean myClientFragmentBean) {
                         for (int i = 0;i < myClientFragmentBean.getData().getMenuData().size();i++){
                             if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("60")) {
-                                review_the_success_bt5.setVisibility(View.VISIBLE);
+                                review_the_success_bt5.setVisibility(View.VISIBLE);//申请成交
                             } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("50")) {
-                                review_the_success_bt4.setVisibility(View.VISIBLE);
+                                review_the_success_bt4.setVisibility(View.VISIBLE);//申请认筹
                             } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("400")) {
-                                review_the_success_bt1.setVisibility(View.VISIBLE);
+                                review_the_success_bt1.setVisibility(View.VISIBLE);//补全信息
                             } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("402")) {
-                                review_the_success_bt3.setVisibility(View.VISIBLE);
+                                review_the_success_bt3.setVisibility(View.VISIBLE);//未成交
                             }
                         }
 

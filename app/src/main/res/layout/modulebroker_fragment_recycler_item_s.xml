@@ -49,38 +49,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_gravity="center_vertical"
+                android:layout_marginRight="15dp"
                 android:layout_weight="1"
                 android:text="[河东区]书香蓝郡-住宅"
                 android:textColor="#ff111111"
                 android:textSize="15sp" />
-
-            <co.lujun.androidtagview.TagContainerLayout
-                android:id="@+id/tagViewS"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
                 android:layout_weight="1"
-                android:text="标签"
-                android:textColor="#ff8296aa"
-                app:container_background_color="#fff"
-                app:container_border_color="#fff"
-                app:horizontal_interval="2dp"
-                app:tag_background_color="#ffeceff3"
-                app:tag_border_color="#fff"
-                app:tag_clickable="true"
-                app:tag_corner_radius="2dp"
-                app:tag_horizontal_padding="3dp"
-                app:tag_text_color="#ff8296aa"
-                app:tag_text_size="10sp"
-                app:tag_theme="pure_teal"
-                app:tag_vertical_padding="3dp" />
+                android:layout_marginRight="15dp">
+
+                <co.lujun.androidtagview.TagContainerLayout
+                    android:id="@+id/tagViewS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="标签"
+                    android:textColor="#ff8296aa"
+                    android:layout_centerVertical="true"
+                    app:container_background_color="#fff"
+                    app:container_border_color="#fff"
+                    app:horizontal_interval="2dp"
+                    app:tag_background_color="#ffeceff3"
+                    app:tag_border_color="#fff"
+                    app:tag_clickable="true"
+                    app:tag_corner_radius="2dp"
+                    app:tag_horizontal_padding="3dp"
+                    app:tag_text_color="#ff8296aa"
+                    app:tag_text_size="10sp"
+                    app:tag_theme="pure_teal"
+                    app:tag_vertical_padding="3dp" />
+
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:id="@+id/wwwS"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:layout_weight="1">
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
 
                 <TextView
                     android:id="@+id/chickS"
@@ -125,6 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_below="@id/wwwS"
+                android:layout_marginRight="15dp"
                 android:layout_weight="1"
                 android:gravity="bottom">
 
@@ -184,7 +196,7 @@
 
         <TextView
             android:id="@+id/commissionS"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:drawableLeft="@mipmap/money"
@@ -203,8 +215,9 @@
 
         <TextView
             android:id="@+id/secondS"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:drawableLeft="@mipmap/timet"
             android:gravity="center_vertical"
