@@ -158,8 +158,12 @@ public class FillInTransactionInformationActivity extends AllActivity implements
         fill_in_transaction_information_et1 = findViewById(R.id.fill_in_transaction_information_et1);
         fill_in_transaction_information_et2 = findViewById(R.id.fill_in_transaction_information_et2);
         fill_in_transaction_information_et3 = findViewById(R.id.fill_in_transaction_information_et3);
+        fill_in_transaction_information_et2.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+        fill_in_transaction_information_et3.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         fill_in_transaction_information_et4 = findViewById(R.id.fill_in_transaction_information_et4);
         fill_in_transaction_information_et5 = findViewById(R.id.fill_in_transaction_information_et5);
+        fill_in_transaction_information_et4.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+        fill_in_transaction_information_et5.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         fill_in_transaction_information_et6 = findViewById(R.id.fill_in_transaction_information_et6);
 
         fill_in_transaction_information_tishi = findViewById(R.id.fill_in_transaction_information_tishi);
@@ -170,6 +174,9 @@ public class FillInTransactionInformationActivity extends AllActivity implements
         fang_hao_et2 = findViewById(R.id.fang_hao_et2);
         fang_hao_et1 = findViewById(R.id.fang_hao_et1);
 
+        fang_hao_et1.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+        fang_hao_et2.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+        fang_hao_et3.setInputType(EditorInfo.TYPE_CLASS_PHONE);
 
         fill_in_transaction_information_return.setOnClickListener(this);
         fill_in_transaction_information_btn.setOnClickListener(this);

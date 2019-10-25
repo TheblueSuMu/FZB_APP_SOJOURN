@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -95,6 +96,8 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
         add_aconsultant_et3 = findViewById(R.id.add_team_et3);
         add_aconsultant_et4 = findViewById(R.id.add_team_et4);
         add_aconsultant_et5 = findViewById(R.id.add_team_et5);
+
+        add_aconsultant_et3.setInputType(EditorInfo.TYPE_CLASS_PHONE);
 
         add_aconsultant_btn = findViewById(R.id.add_team_btn);
         add_team_rb1 = findViewById(R.id.add_team_rb1);

@@ -2,6 +2,7 @@ package com.xcy.fzb.project_side.view;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -50,6 +51,8 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
         modify_the_recognition_to_raise_tv1 = findViewById(R.id.modify_the_recognition_to_raise_tv1);
         modify_the_recognition_to_raise_tv2 = findViewById(R.id.modify_the_recognition_to_raise_tv2);
         modify_the_recognition_to_raise_tv3 = findViewById(R.id.modify_the_recognition_to_raise_tv3);
+        modify_the_recognition_to_raise_tv2.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+        modify_the_recognition_to_raise_tv3.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         modify_the_recognition_to_raise_tv4 = findViewById(R.id.modify_the_recognition_to_raise_tv4);
         modify_the_recognition_to_raise_tv5 = findViewById(R.id.modify_the_recognition_to_raise_tv5);
         modify_the_recognition_to_raise_tv6 = findViewById(R.id.modify_the_recognition_to_raise_tv6);

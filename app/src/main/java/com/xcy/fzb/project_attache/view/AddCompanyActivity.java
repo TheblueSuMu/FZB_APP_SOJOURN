@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -102,6 +103,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         add_company_et2 = findViewById(R.id.add_company_et2);
         add_company_et3 = findViewById(R.id.add_company_et3);
         add_company_et4 = findViewById(R.id.add_company_et4);
+        add_company_et4.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         add_company_et5 = findViewById(R.id.add_company_et5);
         add_company_et6 = findViewById(R.id.add_company_et6);
         add_company_btn = findViewById(R.id.add_company_btn);

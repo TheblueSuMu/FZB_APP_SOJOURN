@@ -17,6 +17,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -108,7 +109,6 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
         }
 
 
-
         initView();
 
     }
@@ -135,7 +135,8 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
         to_apply_for_an_island_ll2 = findViewById(R.id.to_apply_for_an_island_ll2);
 
         to_apply_for_an_island_btn = findViewById(R.id.to_apply_for_an_island_btn);
-
+        to_apply_for_an_island_et1.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+        to_apply_for_an_island_et2.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         to_apply_for_an_island_return.setOnClickListener(this);
         to_apply_for_an_island_img.setOnClickListener(this);
         to_apply_for_an_island_rl1.setOnClickListener(this);
@@ -146,7 +147,7 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
             //  TODO 海外
             to_apply_for_an_island_ll2.setVisibility(View.VISIBLE);
             to_apply_for_an_island_img.setBackgroundResource(R.mipmap.wx_hz);
-        } else if (FinalContents.getProjectType().equals("3")){
+        } else if (FinalContents.getProjectType().equals("3")) {
             //  TODO 旅居
             to_apply_for_an_island_ll2.setVisibility(View.GONE);
             to_apply_for_an_island_img.setBackgroundResource(R.mipmap.wx_sfz);
@@ -214,7 +215,7 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                                 } else {
                                     Toast.makeText(this, "请输入护照编号", Toast.LENGTH_SHORT).show();
                                 }
-                            } else if (FinalContents.getProjectType().equals("3")){
+                            } else if (FinalContents.getProjectType().equals("3")) {
                                 //  TODO 旅居
                                 intent = new Intent(ToApplyForAnIslandActivity.this, ToApplyForAnlsland2Activity.class);
                                 ProjectProgressApi.setGender(to_apply_for_an_island_tv2.getText().toString());        //      TODO    性别
