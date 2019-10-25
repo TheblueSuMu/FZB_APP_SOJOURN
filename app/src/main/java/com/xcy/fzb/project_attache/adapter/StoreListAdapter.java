@@ -84,12 +84,6 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                     holder.store_tv.setText("-" + listData.get(i).getStoreName());
                     holder.store_id.setText(listData.get(i).getStoreIdCode());
                     holder.store_num.setText("经纪人：" + listData.get(i).getAgentNum());
-//                    if (listData.get(i).getShopownerPhone().equals("")) {
-//                        holder.contacts_call.setVisibility(View.GONE);
-//                    }
-//                    if (listData.get(i).getShopownerName().equals("")) {
-//                        holder.contacts_name.setVisibility(View.GONE);
-//                    }
                     holder.contacts_name.setText("店长：" + listData.get(i).getShopownerName() + " " + listData.get(i).getShopownerPhone());
 
                     holder.contacts_name.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +94,9 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                             } else {
                                 Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + listData.get(FinID).getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
                                 holder.itemView.getContext().startActivity(dialIntent);
+
+                                FinalContents.setMyAddType("门店");
+
                             }
                         }
                     });
@@ -109,12 +106,6 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                     holder.store_tv.setText("");
                     holder.store_id.setText("公司地址：" + listData.get(i).getCompanyAddress());
                     holder.store_num.setText("门店：" + listData.get(i).getStoreNum());
-//                    if (listData.get(i).getShopownerPhone().equals("")) {
-//                        holder.contacts_call.setVisibility(View.GONE);
-//                    }
-//                    if (listData.get(i).getShopownerName().equals("")) {
-//                        holder.contacts_name.setVisibility(View.GONE);
-//                    }
                     holder.contacts_name.setText("公司负责人：" + listData.get(i).getShopownerName() + " " + listData.get(i).getShopownerPhone());
 
 
@@ -127,6 +118,9 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                             } else {
                                 Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + listData.get(FinID).getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
                                 holder.itemView.getContext().startActivity(dialIntent);
+
+                                FinalContents.setMyAddType("公司");
+
                             }
                         }
                     });
