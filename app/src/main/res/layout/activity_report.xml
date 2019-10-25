@@ -154,6 +154,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:background="#FFFFFF"
+                        android:inputType="number"
                         android:digits="1234567890zZXY"
                         android:gravity="right"
                         android:maxLength="18"
