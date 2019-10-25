@@ -53,7 +53,8 @@ public class WebViewActivity extends AllActivity {
 
         init();
     }
-    private void init(){
+
+    private void init() {
         webView = findViewById(R.id.webview);
         title = findViewById(R.id.web_title);
         back = findViewById(R.id.web_return);
@@ -84,15 +85,21 @@ public class WebViewActivity extends AllActivity {
             web_share.setVisibility(View.VISIBLE);
             web_f1.setVisibility(View.GONE);
             webView.loadDataWithBaseURL(null, webviewUrl, "text/html", "utf-8", null);
+
+            Log.i("轮播图","webviewUrl：" + webviewUrl);
+            Log.i("轮播图","stringExtra：" + stringExtra);
+            Log.i("轮播图","time：" + time);
+            Log.i("轮播图","content：" + content);
+
             web_bottom.setVisibility(View.VISIBLE);
-            Log.i("轮播图详情数据","新闻："+FinalContents.getNewID());
+            Log.i("轮播图详情数据", "新闻：" + FinalContents.getNewID());
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
             builder.addConverterFactory(GsonConverterFactory.create());
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<NewsDetailsBean> userMessage = fzbInterface.getNewsDetails(FinalContents.getUserID(),FinalContents.getNewID());
+            Observable<NewsDetailsBean> userMessage = fzbInterface.getNewsDetails(FinalContents.getUserID(), FinalContents.getNewID());
             userMessage.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<NewsDetailsBean>() {
@@ -104,12 +111,15 @@ public class WebViewActivity extends AllActivity {
                         @SuppressLint("WrongConstant")
                         @Override
                         public void onNext(final NewsDetailsBean newsDetailsBean) {
-                            Log.i("轮播图详情数据","走一波");
+
+                            Log.i("轮播图", "内容：" + newsDetailsBean.toString());
+
+                            Log.i("轮播图详情数据", "走一波");
                             web_share.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Log.i("轮播图详情数据","点击分享");
-                                    FinalContents.showShare(newsDetailsBean.getData().getTitle(),"http://test.fangzuobiao.com:88/NewsSharing?userId="+FinalContents.getUserID()+"&newId="+FinalContents.getNewID(),newsDetailsBean.getData().getProject().getProjectName(),"http://39.98.173.250:8080"+newsDetailsBean.getData().getCoverImg(),"http://test.fangzuobiao.com:88/NewsSharing?userId="+FinalContents.getUserID()+"&newId="+FinalContents.getNewID(),WebViewActivity.this);
+                                    Log.i("轮播图详情数据", "点击分享");
+                                    FinalContents.showShare(newsDetailsBean.getData().getTitle(), "http://test.fangzuobiao.com:88/NewsSharing?userId=" + FinalContents.getUserID() + "&newId=" + FinalContents.getNewID(), newsDetailsBean.getData().getProject().getProjectName(), "http://39.98.173.250:8080" + newsDetailsBean.getData().getCoverImg(), "http://test.fangzuobiao.com:88/NewsSharing?userId=" + FinalContents.getUserID() + "&newId=" + FinalContents.getNewID(), WebViewActivity.this);
                                 }
                             });
                             web_call.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +155,7 @@ public class WebViewActivity extends AllActivity {
 
                         @Override
                         public void onError(Throwable e) {
-                            Log.i("轮播图详情数据","错误"+e);
+                            Log.i("轮播图详情数据", "错误" + e);
                         }
 
                         @Override
@@ -154,24 +164,23 @@ public class WebViewActivity extends AllActivity {
                         }
                     });
 
-        }else {
+        } else {
             web_share.setVisibility(View.GONE);
             web_bottom.setVisibility(View.GONE);
             web_f1.setVisibility(View.VISIBLE);
             layout_title.setText(stringExtra);
             web_time.setText(time);
-            web_content.setText("       "+content);
+            web_content.setText("       " + content);
         }
-
 
 
         web_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
-                Log.i("详情","项目中ID"+FinalContents.getProjectID());
-                Log.i("详情","用户中ID"+FinalContents.getUserID());
-                Intent intent1 = new Intent(WebViewActivity.this,ProjectDetails.class);
+                Log.i("详情", "项目中ID" + FinalContents.getProjectID());
+                Log.i("详情", "用户中ID" + FinalContents.getUserID());
+                Intent intent1 = new Intent(WebViewActivity.this, ProjectDetails.class);
                 startActivity(intent1);
             }
         });
