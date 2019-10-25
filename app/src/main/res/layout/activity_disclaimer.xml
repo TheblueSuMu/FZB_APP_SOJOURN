@@ -35,7 +35,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp"
-            android:text="房坐标用户服务条款"
+            android:text="免责声明"
             android:textColor="#ffffff"
             android:textSize="17sp" />
     </RelativeLayout>
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="15dp"
-                android:text="房坐标用户服务条款"
+                android:text="免责声明"
                 android:textColor="#ff333333"
                 android:textSize="23sp" />
 

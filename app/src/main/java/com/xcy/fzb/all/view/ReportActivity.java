@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -215,17 +214,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         goal8 = findViewById(R.id.report_goal_8);
 
         ensure = findViewById(R.id.report_ensure);
-
-        if (FinalContents.isChecked()) {
-            client_name.setText(FinalContents.getClientName());
-        } else {
-            project_name.setText("");
-        }
-        if (FinalContents.isChecked2()) {
-            project_name.setText(FinalContents.getProjectName());
-        } else {
-            project_name.setText("");
-        }
 
         Log.i("报备跳转","数据zhon："+FinalContents.getClientName());
         Log.i("报备跳转","数据zhon："+FinalContents.getCustomerID());
@@ -602,14 +590,12 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 Intent clientIntent = new Intent(ReportActivity.this,MyClientActivity.class);
                 FinalContents.setNUM("1");
                 startActivity(clientIntent);
-                finish();
                 FinalContents.setChecked(true);
                 break;
             case R.id.report_project_name:
                 Intent projectIntent = new Intent(ReportActivity.this,SearchInterfaceActivity.class);
                 FinalContents.setProject("1");
                 startActivity(projectIntent);
-                finish();
                 FinalContents.setChecked2(true);
                 break;
             case R.id.report_ensure:
@@ -736,5 +722,21 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             }
         }
         return false;
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (FinalContents.isChecked()) {
+            client_name.setText(FinalContents.getClientName());
+        } else {
+            project_name.setText("");
+        }
+        if (FinalContents.isChecked2()) {
+            project_name.setText(FinalContents.getProjectName());
+        } else {
+            project_name.setText("");
+        }
     }
 }

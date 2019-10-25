@@ -169,23 +169,27 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
         //        TODO 文本复制
         ClipboardManager clip = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
         clip.setText(hotlist.get(position).getContent() + "");
-        String UrlImage = hotlist.get(position).getImgUrl();
-        final String[] a  = hotlist.get(position).getImgUrl().split("[|]");
-        for (int i = 0; i < a.length; i++){
-            Log.i("分割图片","图片："+ a[i]);
-            final  int finalI = i;
-            Log.i("分割图片","图片151："+imgURl);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    url = a[finalI];
-                    imgURl = "http://39.98.173.250:8080" + url;
-                    mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
-                    Bitmap bp = returnBitMap(imgURl);
-                    Log.i("MyCL", "bp：" + bp);
-                    saveImageToPhotos(getContext(), bp);
-                }
-            }).start();
+        if (hotlist.get(position).getImgUrl().equals("")) {
+
+        }else {
+            String UrlImage = hotlist.get(position).getImgUrl();
+            final String[] a = hotlist.get(position).getImgUrl().split("[|]");
+            for (int i = 0; i < a.length; i++) {
+                Log.i("分割图片", "图片：" + a[i]);
+                final int finalI = i;
+                Log.i("分割图片", "图片151：" + imgURl);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        url = a[finalI];
+                        imgURl = "http://39.98.173.250:8080" + url;
+                        mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
+                        Bitmap bp = returnBitMap(imgURl);
+                        Log.i("MyCL", "bp：" + bp);
+                        saveImageToPhotos(getContext(), bp);
+                    }
+                }).start();
+            }
         }
         Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
         num = 0;

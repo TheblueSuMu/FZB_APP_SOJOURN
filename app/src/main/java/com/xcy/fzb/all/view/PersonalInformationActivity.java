@@ -165,7 +165,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 
     private void initData() {
 
-
+        information_rl.setVisibility(View.VISIBLE);
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -185,9 +185,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 
                         @Override
                         public void onNext(UserMessageBean userMessageBean) {
-
-                            information_rl.setVisibility(View.VISIBLE);
-                            information_ll.setVisibility(View.VISIBLE);
                             UserMessageBean.DataBean data = userMessageBean.getData();
                             Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).into(personal_photo);
                             personal_name.setText(data.getName());
@@ -223,8 +220,8 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 
                         @Override
                         public void onNext(XSDataBean userMessageBean) {
-//                            information_rl.setVisibility(View.GONE);
-//                            information_ll.setVisibility(View.GONE);
+                            information_rl.setVisibility(View.GONE);
+                            information_ll.setVisibility(View.GONE);
                             XSDataBean.DataBean data = userMessageBean.getData();
                             Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).into(personal_photo);
                             personal_name.setText(data.getName());
@@ -260,8 +257,8 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 
                         @Override
                         public void onNext(ZYDataBean userMessageBean) {
-//                            information_rl.setVisibility(View.GONE);
-//                            information_ll.setVisibility(View.GONE);
+                            information_rl.setVisibility(View.GONE);
+                            information_ll.setVisibility(View.GONE);
                             ZYDataBean.DataBean data = userMessageBean.getData();
                             Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).into(personal_photo);
                             personal_name.setText(data.getName());

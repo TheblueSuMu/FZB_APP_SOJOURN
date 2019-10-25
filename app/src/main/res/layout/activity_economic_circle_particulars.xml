@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="15dp">
+                android:layout_marginRight="16dp">
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     app:riv_oval="true"
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="17dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="13dp"
                 android:text=""
                 android:textColor="#ff666666"
                 android:textSize="14sp" />
@@ -97,9 +97,9 @@
                 android:id="@+id/particulars_img_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="10dp"
                 android:orientation="horizontal">
 
                 <ImageView

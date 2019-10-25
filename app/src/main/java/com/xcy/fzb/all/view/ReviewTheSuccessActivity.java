@@ -368,7 +368,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 intent = new Intent(ReviewTheSuccessActivity.this, ModifyTheRecognitionToRaiseActivity.class);
                 startActivity(intent);
                 finish();
-
                 break;
             //            TODO 退筹
             case R.id.review_the_success_bt8:

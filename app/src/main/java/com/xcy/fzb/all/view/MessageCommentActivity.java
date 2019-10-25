@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.MessageCommentAdapter;
@@ -26,7 +25,6 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.LikeNumBean;
 import com.xcy.fzb.all.modle.CommentBean;
 import com.xcy.fzb.all.modle.DynamicDetailsBean;
-import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 
@@ -152,21 +150,44 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
         if (et.equals("")) {
             Toast.makeText(MessageCommentActivity.this, "评论内容不能为空", Toast.LENGTH_SHORT).show();
         } else {
-            String fburl = "http://39.98.173.250:8080/fangfang/app/v1/commonUpdate/housesDynamicCommentLike?type=2" + "&comment=" + et + "&targetId=" + FinalContents.getTargetId() + "&pid=" + FinalContents.getUserID() + "&userId=" + FinalContents.getUserID();
+            Retrofit.Builder builder = new Retrofit.Builder();
+            builder.baseUrl(FinalContents.getBaseUrl());
+            builder.addConverterFactory(GsonConverterFactory.create());
+            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+            Retrofit build = builder.build();
+            MyService fzbInterface = build.create(MyService.class);
+            Observable<CommentBean> dynamicDetailsBean = fzbInterface.getHousesDynamicCommentLike("2",et,FinalContents.getTargetId(),FinalContents.getUserID(), FinalContents.getUserID());
+            dynamicDetailsBean.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<CommentBean>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
 
-            OkHttpPost fbokHttpPost = new OkHttpPost(fburl);
-            String fbdata = fbokHttpPost.post();
+                        }
 
-            Gson gson1 = new Gson();
-            CommentBean commentBean = gson1.fromJson(fbdata, CommentBean.class);
-            if (commentBean.getData().getStatus().equals("2")) {
-                Toast.makeText(MessageCommentActivity.this, commentBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                comment_et.setText("");
-            } else {
-                Toast.makeText(MessageCommentActivity.this, "发布失败", Toast.LENGTH_SHORT).show();
-                comment_et.setText("");
-            }
-            initData();
+                        @Override
+                        public void onNext(CommentBean commentBean) {
+                            if (commentBean.getData().getStatus().equals("2")) {
+                                Toast.makeText(MessageCommentActivity.this, commentBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                comment_et.setText("");
+                            } else {
+                                Toast.makeText(MessageCommentActivity.this, "发布失败", Toast.LENGTH_SHORT).show();
+                                comment_et.setText("");
+                            }
+                            initData();
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.i("MyCL", "错误信息：" + e.getMessage());
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+
         }
     }
 
@@ -217,25 +238,6 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
 
                     }
                 });
-
-//        LinearLayoutManager manager = new LinearLayoutManager(this);
-//        manager.setOrientation(LinearLayoutManager.VERTICAL);
-//        comment_rv.setLayoutManager(manager);
-//
-//        String url = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/housesDynamicDetails?" + "userId=" + FinalContents.getUserID() + "&housesDynamicId=" + FinalContents.getTargetId();//+FinalContents.getTargetId()
-//
-//        OkHttpPost okHttpPost = new OkHttpPost(url);
-//        String data = okHttpPost.post();
-//
-//        Gson gson = new Gson();
-//        DynamicDetailsBean dynamicDetailsBean = gson.fromJson(data, DynamicDetailsBean.class);
-//        commentList = dynamicDetailsBean.getData().getCommentList();
-//        particulars_xiao_pinglun.setText("全部"+commentList.size()+"条评论");
-//        adapter = new MessageCommentAdapter();
-//        adapter.setCommentList(commentList);
-//        comment_rv.setAdapter(adapter);
-
-
     }
 
     @Override
@@ -285,19 +287,6 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
 
                             }
                         });
-
-//                String url = "http://39.98.173.250:8080/fangfang/app/v1/commonUpdate/housesDynamicCommentLike?" + "type=1" + "&targetId=" + FinalContents.getTargetId() + "&userId=" + FinalContents.getUserID();//+FinalContents.getTargetId()
-//
-//                OkHttpPost okHttpPost = new OkHttpPost(url);
-//                String data = okHttpPost.post();
-//
-//                Gson gson = new Gson();
-//                CommentZanBean circleBean = gson.fromJson(data, CommentZanBean.class);
-//                if (circleBean.getData().getStatus().equals("1")) {
-//                    Toast.makeText(MessageCommentActivity.this, "取消点赞", Toast.LENGTH_SHORT).show();
-//                } else if (circleBean.getData().getStatus().equals("0")) {
-//                    Toast.makeText(MessageCommentActivity.this, "点赞成功", Toast.LENGTH_SHORT).show();
-//                }
                 break;
 //                TODO 复制
             case R.id.comment_fb_img:

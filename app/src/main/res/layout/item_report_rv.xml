@@ -20,7 +20,6 @@
         android:textSize="14sp"
         android:textColor="#121212"
         android:gravity="right"
-        android:layout_marginRight="15dp"
         android:layout_alignParentRight="true"
         android:layout_width="240dp"
         android:layout_height="wrap_content" />

@@ -77,11 +77,11 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         client_3_rv.setLayoutManager(manager);
 
-//        if (FinalContents.getQuanceng().equals("1")) {
-//            initData2();
-//        } else{
-//            initData();
-//        }
+        if (FinalContents.getQuanceng().equals("1")) {
+            initData2();
+        } else{
+            initData();
+        }
 
         mPtrClassicFrameLayout = (PtrClassicFrameLayout) getActivity().findViewById(R.id.store_house_ptr_frame_4);
         mPtrClassicFrameLayout.setPtrHandler(new PtrHandler() {
@@ -197,15 +197,4 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
         startActivity(intent);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if (FinalContents.getQuanceng().equals("1")) {
-            initData2();
-        } else{
-            initData();
-        }
-
-    }
 }

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -121,7 +120,7 @@ public class Dynamic2Adapter extends RecyclerView.Adapter<Dynamic2Adapter.ViewHo
 
 
         Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getProject().getProjectImg()).placeholder(R.mipmap.logo_square).into(holder.circle_img_1);
-        holder.circle_title.setText(list.get(position).getProject().getProjectName());
+        holder.circle_title.setText(list.get(position).getTitle());
         holder.circle_message.setText(list.get(position).getContent());
         holder.circle_time.setText(list.get(position).getCreateDate());
         holder.circle_name.setText(list.get(position).getProject().getProjectName());
@@ -239,7 +238,7 @@ public class Dynamic2Adapter extends RecyclerView.Adapter<Dynamic2Adapter.ViewHo
         TextView circle_message;
         TextView circle_name;
         TextView circle_like;
-        RelativeLayout circle_zan;
+        LinearLayout circle_zan;
         TextView circle_pinglun;
         TextView circle_lianxi;
         TextView circle_fuzhi;

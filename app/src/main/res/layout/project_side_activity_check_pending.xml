@@ -60,17 +60,16 @@
                     android:layout_marginRight="15dp">
 
                     <com.makeramen.roundedimageview.RoundedImageView
-                        android:id="@+id/check_pending_img1"
                         app:riv_oval="true"
+                        android:id="@+id/check_pending_img1"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/logo_garden" />
+                        android:src="@mipmap/logo_square" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="75dp"
                         android:orientation="vertical">
@@ -79,7 +78,7 @@
                             android:id="@+id/check_pending_tv1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=""
+                            android:text="小小(13800000000）"
                             android:textColor="#ff111111"
                             android:textSize="15sp" />
 
@@ -87,9 +86,8 @@
                             android:id="@+id/check_pending_tv2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=""
+                            android:text="报备项目名称"
                             android:textColor="#ff666666"
-                            android:layout_marginRight="15dp"
                             android:textSize="13sp" />
 
                         <LinearLayout
@@ -100,7 +98,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=""
+                                android:text="项目负责人:"
                                 android:textColor="#ff666666"
                                 android:textSize="13sp" />
 
@@ -110,7 +108,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="5dp"
-                                android:text=""
+                                android:text="刘喆"
                                 android:textColor="#ff666666"
                                 android:textSize="13sp" />
 

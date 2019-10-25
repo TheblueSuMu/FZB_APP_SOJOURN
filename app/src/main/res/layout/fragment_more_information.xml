@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="41dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="32dp"
                 android:text="切尔西水畔 泰晤士河北岸伦敦西区
 第五大道第三大街"
                 android:textColor="#ff666666"
@@ -72,7 +72,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="41dp"
                 android:paddingRight="30dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="32dp"
                 android:text="永久产权,准现房,学区房,公寓,精装
 修"
                 android:textColor="#ff666666"
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="16dp"
             android:background="#EEEEEE"></LinearLayout>
 
         <LinearLayout
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="41dp"
-                android:layout_marginRight="15dp">
+                android:layout_marginRight="16dp">
 
                 <TextView
                     android:id="@+id/more_information_site"
@@ -136,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="16dp"
             android:background="#EEEEEE"></LinearLayout>
 
         <LinearLayout
@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="27dp"
-                android:layout_marginRight="15dp">
+                android:layout_marginRight="16dp">
 
                 <TextView
                     android:id="@+id/more_information_location"
@@ -188,7 +188,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="16dp"
             android:background="#EEEEEE"></LinearLayout>
 
         <LinearLayout
@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="27dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="32dp"
                 android:text="SFFGHF开发有限公司"
                 android:paddingRight="30dp"
                 android:textColor="#ff666666"
@@ -225,7 +225,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="16dp"
             android:background="#EEEEEE"></LinearLayout>
 
         <LinearLayout
@@ -250,7 +250,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="27dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="32dp"
                 android:text="伯克利集团"
                 android:paddingRight="30dp"
                 android:textColor="#ff666666"
@@ -262,7 +262,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="16dp"
             android:background="#EEEEEE"></LinearLayout>
 
         <LinearLayout
@@ -287,7 +287,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="41dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="32dp"
                 android:text="写字间"
                 android:paddingRight="30dp"
                 android:textColor="#ff666666"
@@ -299,7 +299,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="16dp"
             android:background="#EEEEEE">
 
         </LinearLayout>

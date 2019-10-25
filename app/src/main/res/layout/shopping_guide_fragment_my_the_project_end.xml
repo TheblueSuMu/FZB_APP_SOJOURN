@@ -119,7 +119,7 @@
             android:layout_height="11dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="17dp"
             android:src="@mipmap/next" />
     </RelativeLayout>
     <!--TODO 反馈、关于、清空-->
@@ -135,7 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginRight="16dp">
 
             <ImageView
                 android:id="@+id/my_img_3"
@@ -175,7 +175,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginRight="16dp">
 
             <ImageView
                 android:id="@+id/my_img_4"
@@ -215,7 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginRight="16dp">
 
             <ImageView
                 android:id="@+id/my_img_5"
@@ -284,7 +284,7 @@
             android:layout_height="11dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="17dp"
             android:src="@mipmap/next" />
     </RelativeLayout>
 </LinearLayout>
