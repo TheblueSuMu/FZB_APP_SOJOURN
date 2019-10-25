@@ -763,7 +763,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
-                        android:text="标题下的内容"
+                        android:text=""
                         android:textColor="#111"
                         android:textSize="14sp"
                         app:container_background_color="#fff"
@@ -797,7 +797,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
-                        android:text="标题下的内容"
+                        android:text=""
                         android:textColor="#111"
                         android:textSize="14sp" />
 
@@ -824,7 +824,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
-                        android:text="标题下的内容"
+                        android:text=""
                         android:textColor="#111"
                         android:textSize="14sp" />
 
