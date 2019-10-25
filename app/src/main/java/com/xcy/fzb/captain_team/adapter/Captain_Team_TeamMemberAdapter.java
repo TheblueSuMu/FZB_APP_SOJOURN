@@ -73,9 +73,9 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
                             holder.tvName.setText(append.substring(0, j));
                             if (list.get(i).getCounselorNum().equals("")) {
                                 if (list.get(i).getSaleNum().equals("")) {
-                                    holder.member_name_tv1.setText("销售：0 人  顾问0人");
+                                    holder.member_name_tv1.setText("销售：0 人  顾问：0人");
                                 }else {
-                                    holder.member_name_tv1.setText("销售：" + list.get(i).getSaleNum() + "人  顾问0人");
+                                    holder.member_name_tv1.setText("销售：" + list.get(i).getSaleNum() + "人  顾问：0人");
                                 }
                             } else {
                                 if (list.get(i).getSaleNum().equals("")) {

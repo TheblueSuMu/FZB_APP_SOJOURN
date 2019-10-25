@@ -17,14 +17,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CBean;
 import com.xcy.fzb.all.modle.CheckBean;
 import com.xcy.fzb.all.modle.ReportProcessDetailsBean;
-import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.AllActivity;
@@ -217,45 +215,118 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
         Log.i("MyCL", "getPreparationId：" + FinalContents.getPreparationId());
         Log.i("MyCL","Name：" + name);
         if (name.equals("报备") || name.equals("到访")) {
-            url = FinalContents.getBaseUrl() + "specialUpdate/reportAndVisitAudit?preparationId=" + FinalContents.getPreparationId() + "&maxStatus=" + FinalContents.getStatus() + "&minStatus=1&userId=" + FinalContents.getUserID();
-            OkHttpPost okHttpPost = new OkHttpPost(url);
-            String data = okHttpPost.post();
-            Gson gson = new Gson();
-            CBean cBean = gson.fromJson(data, CBean.class);
-            if (cBean.getMsg().equals("成功")) {
-                Toast.makeText(CheckPendingActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                FinalContents.setEndStart("成功");
-                finish();
-            } else {
-                Toast.makeText(CheckPendingActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                finish();
-            }
+            Retrofit.Builder builder = new Retrofit.Builder();
+            builder.baseUrl(FinalContents.getBaseUrl());
+            builder.addConverterFactory(GsonConverterFactory.create());
+            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+            Retrofit build = builder.build();
+            MyService fzbInterface = build.create(MyService.class);
+            Observable<CBean> clientFragmentBean = fzbInterface.getReportAndVisitAudit(FinalContents.getUserID(), FinalContents.getPreparationId(),FinalContents.getStatus(),"1");
+            clientFragmentBean.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<CBean>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(CBean cBean) {
+                            if (cBean.getMsg().equals("成功")) {
+                                Toast.makeText(CheckPendingActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                FinalContents.setEndStart("成功");
+                                finish();
+                            } else {
+                                Toast.makeText(CheckPendingActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.i("MyCL", "错误信息：" + e.getMessage());
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+
         } else if (name.equals("认筹")) {
-            url = FinalContents.getBaseUrl() + "specialUpdate/earnestMoneyAudit?userId=" + FinalContents.getUserID() + "&preparationId=" + FinalContents.getPreparationId() + "&isUpdate=0";
-            OkHttpPost okHttpPost = new OkHttpPost(url);
-            String data = okHttpPost.post();
-            Gson gson = new Gson();
-            CheckBean checkBean = gson.fromJson(data, CheckBean.class);
-            if (checkBean.getMsg().equals("成功")) {
-                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
-                finish();
-            }
+            Retrofit.Builder builder = new Retrofit.Builder();
+            builder.baseUrl(FinalContents.getBaseUrl());
+            builder.addConverterFactory(GsonConverterFactory.create());
+            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+            Retrofit build = builder.build();
+            MyService fzbInterface = build.create(MyService.class);
+            Observable<CheckBean> clientFragmentBean = fzbInterface.getEarnestMoneyAudit(FinalContents.getUserID(), FinalContents.getPreparationId(),"0");
+            clientFragmentBean.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<CheckBean>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(CheckBean checkBean) {
+                            if (checkBean.getMsg().equals("成功")) {
+                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.i("MyCL", "错误信息：" + e.getMessage());
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
         } else if (name.equals("成功")) {
-            url = FinalContents.getBaseUrl() + "specialUpdate/tradeAudit?userId=" + FinalContents.getUserID() + "&preparationId=" + FinalContents.getPreparationId() + "&isUpdate=0";
-            OkHttpPost okHttpPost = new OkHttpPost(url);
-            String data = okHttpPost.post();
-            Gson gson = new Gson();
-            CheckBean checkBean = gson.fromJson(data, CheckBean.class);
-            if (checkBean.getMsg().equals("成功")) {
-                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
-                finish();
-            }
+            Retrofit.Builder builder = new Retrofit.Builder();
+            builder.baseUrl(FinalContents.getBaseUrl());
+            builder.addConverterFactory(GsonConverterFactory.create());
+            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+            Retrofit build = builder.build();
+            MyService fzbInterface = build.create(MyService.class);
+            Observable<CheckBean> clientFragmentBean = fzbInterface.getTradeAudit(FinalContents.getUserID(), FinalContents.getPreparationId(),"0");
+            clientFragmentBean.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<CheckBean>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(CheckBean checkBean) {
+                            if (checkBean.getMsg().equals("成功")) {
+                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.i("MyCL", "错误信息：" + e.getMessage());
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
         }
 
     }

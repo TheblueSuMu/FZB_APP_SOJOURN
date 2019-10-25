@@ -379,6 +379,10 @@ public interface MyService {
     @POST("commonSelect/housesDynamicDetails")
     Observable<DynamicDetailsBean> getDynamicDetailsBean(@Query("housesDynamicId") String housesDynamicId, @Query("userId") String userId);
 
+    //评论添加
+    @POST("commonUpdate/housesDynamicCommentLike")
+    Observable<CommentBean> getHousesDynamicCommentLike(@Query("type") String type, @Query("comment") String comment, @Query("targetId") String targetId, @Query("pid") String pid, @Query("userId") String userId);
+
     @POST("ordinaryUpdate/economicCircleCommentLike")
     Observable<TotalZanBean> getTotalLikeNum(@Query("targetId") String targetId, @Query("userId") String userId, @Query("type") String type);
 
@@ -491,22 +495,21 @@ public interface MyService {
     @POST("nodeSelect/getColleague")
     Observable<ColleagueBean> getColleague(@Query("userId") String userId, @Query("id") String id);
 
+    //点击补全信息 获取数据回显
+    @POST("specialUpdate/reportAndVisitAudit")
+    Observable<CBean> getReportAndVisitAudit(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("maxStatus") String maxStatus, @Query("minStatus") String minStatus);
+
+    //待我审核 认筹数据
+    @POST("specialUpdate/earnestMoneyAudit")
+    Observable<CheckBean> getEarnestMoneyAudit(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("isUpdate") String isUpdate);
+
+    //待我审核 成交数据
+    @POST("specialUpdate/tradeAudit")
+    Observable<CheckBean> getTradeAudit(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("isUpdate") String isUpdate);
+
     //圈层端我的界面数据
     @POST("layersSelect/myData")
     Observable<MyDataBean> getMyData(@Query("userId") String userId);
-
-//    //团队长用户Id获取用户信息
-//    @POST("commonSelect/getUserInfo")
-//    Observable<ZhangBingDataBean> getZhangBingBean(@Query("userId") String userId);
-
-//    //销售用户Id获取用户信息
-//    @POST("commonSelect/getUserInfo")
-//    Observable<XSDataBean> getXSDataBean(@Query("userId") String userId);
-
-    //顾问用户Id获取用户信息
-//    @POST("commonSelect/getUserInfo")
-//    Observable<GWDataBean> getGWDataBean(@Query("userId") String userId);
-
 
     //圈层端登录
     @POST("commonSelect/login")

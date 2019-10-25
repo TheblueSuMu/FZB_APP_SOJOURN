@@ -746,11 +746,10 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                         project_brokerage.setText(findTradeBean.getData().getFfServerTrade().getCommission().getCommissionFormat());
 
 
-
-                        FinalContents.setPreparationId(findTradeBean.getData().getFfServerTrade().getPreparationId());
+                        FinalContents.setPreparationId(findTradeBean.getData().getComesBackData().getPreparationId());
                         FinalContents.setCommissionId(findTradeBean.getData().getFfServerTrade().getCommissionId());
-                        FinalContents.setCustomerID(findTradeBean.getData().getFfServerTrade().getCustomerId());
-                        FinalContents.setProjectID(findTradeBean.getData().getFfServerTrade().getCommission().getProject().getId());
+                        FinalContents.setCustomerID(findTradeBean.getData().getComesBackData().getCustomerId());
+                        FinalContents.setProjectID(findTradeBean.getData().getComesBackData().getProjectId());
                         FinalContents.setEconomicCircleID(findTradeBean.getData().getComesBackData().getEconomicId());
                     }
 

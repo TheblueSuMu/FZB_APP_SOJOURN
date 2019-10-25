@@ -244,7 +244,7 @@
                             android:singleLine="true"
                             android:hint="请输入护照编号"
                             android:gravity="right"
-                            android:textColor="#999999"
+                            android:textColor="#ff111111"
                             android:textSize="13sp" />
                     </RelativeLayout>
 
@@ -254,7 +254,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="15dp"
-                    android:background="#EEEEEE"></LinearLayout>
+                    android:background="#EEEEEE"/>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
