@@ -108,11 +108,11 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
             }
         });
 
-        if (FinalContents.getZhuanyuan().equals("1")) {
-            initData2("");
-        }else {
-            initData("");
-        }
+//        if (FinalContents.getZhuanyuan().equals("1")) {
+//            initData2("");
+//        }else {
+//            initData("");
+//        }
 
     }
 
@@ -208,6 +208,7 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
 
     @Override
     public void ItemOnClick(int position) {
+
         FinalContents.setPreparationId(rows.get(position).getPreparationId());
         Intent intent = new Intent(getContext(), ReviewTheSuccessActivity.class);
         FinalContents.setCustomerID(rows.get(position).getCustomerId());
@@ -237,7 +238,6 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
                 initData(name);
             }
         }
-
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -95,6 +96,8 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
         add_aconsultant_et3 = findViewById(R.id.add_team_et3);
         add_aconsultant_et4 = findViewById(R.id.add_team_et4);
         add_aconsultant_et5 = findViewById(R.id.add_team_et5);
+
+        add_aconsultant_et3.setInputType(EditorInfo.TYPE_CLASS_PHONE);
 
         add_aconsultant_btn = findViewById(R.id.add_team_btn);
         add_team_rb1 = findViewById(R.id.add_team_rb1);
@@ -250,7 +253,7 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
         Log.i("添加团队长", FinalContents.getUserID());
         Log.i("添加团队长", type);
 
-        if (add_aconsultant_et1.getText().equals("") || add_aconsultant_et2.getText().equals("") || add_aconsultant_et3.getText().equals("") || add_aconsultant_et4.getText().equals("") || add_aconsultant_tv3.getText().equals("")) {
+        if (add_aconsultant_et1.getText().equals("") || add_aconsultant_et2.getText().equals("") || add_aconsultant_et3.getText().equals("") || loginName.equals("") || add_aconsultant_tv3.getText().equals("")) {
             Toast.makeText(Assistant_Addteam_Activity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
         } else {
             Observable<BrokerSaveBean> userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), "", FinalContents.getUserID(), type, FinalContents.getRatioId());
@@ -294,6 +297,8 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+        Log.i("修改团队长","修改团队长：" + FinalContents.getUserID());
+        Log.i("修改团队长","修改团队长：" + FinalContents.getAgentId());
         Observable<SysUser3Bean> userMessage = fzbInterface.getSysUser3(FinalContents.getUserID(), FinalContents.getAgentId());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -74,8 +74,8 @@
 
             <ImageView
                 android:id="@+id/the_project_end_img"
-                android:layout_width="48dp"
-                android:layout_height="41dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginRight="2dp"
                 android:src="@mipmap/tdr" />

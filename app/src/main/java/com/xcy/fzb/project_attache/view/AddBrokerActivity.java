@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -90,6 +91,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
         add_store_tv3 = findViewById(R.id.add_tv3);
         add_store_et1 = findViewById(R.id.add_et1);
         add_store_et2 = findViewById(R.id.add_et2);
+        add_store_et2.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         add_store_et2 = findViewById(R.id.add_et2);
         add_store_et3 = findViewById(R.id.add_et3);
         add_store_et4 = findViewById(R.id.add_et4);

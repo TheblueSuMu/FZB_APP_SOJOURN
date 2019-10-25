@@ -158,17 +158,19 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         store_details_rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.company_details_rb1) {
+                if (i == R.id.store_details_rb1) {
                     initDataNum("0", "", "");
                     store_details_ll1.setVisibility(View.GONE);
-                } else if (i == R.id.company_details_rb2) {
+                } else if (i == R.id.store_details_rb2) {
                     initDataNum("1", "", "");
                     store_details_ll1.setVisibility(View.GONE);
-                } else if (i == R.id.company_details_rb3) {
+                } else if (i == R.id.store_details_rb3) {
                     initDataNum("2", "", "");
                     store_details_ll1.setVisibility(View.GONE);
-                } else if (i == R.id.company_details_rb4) {
-                    initDataNum("3", "", "");
+                } else if (i == R.id.store_details_rb4) {
+                    String s1 = store_details_tv4.getText().toString();
+                    String s = store_details_tv5.getText().toString();
+                    initDataNum("3", s1, s);
                     store_details_ll1.setVisibility(View.VISIBLE);
                 }
             }
@@ -176,17 +178,19 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         store_details_rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.company_details_rb5) {
+                if (i == R.id.store_details_rb5) {
                     initFinanceNum("0", "", "");
                     store_details_ll2.setVisibility(View.GONE);
-                } else if (i == R.id.company_details_rb6) {
+                } else if (i == R.id.store_details_rb6) {
                     initFinanceNum("1", "", "");
                     store_details_ll2.setVisibility(View.GONE);
-                } else if (i == R.id.company_details_rb7) {
+                } else if (i == R.id.store_details_rb7) {
                     initFinanceNum("2", "", "");
                     store_details_ll2.setVisibility(View.GONE);
-                } else if (i == R.id.company_details_rb8) {
-                    initFinanceNum("3", "", "");
+                } else if (i == R.id.store_details_rb8) {
+                    String s1 = store_details_tv8.getText().toString();
+                    String s = store_details_tv9.getText().toString();
+                    initFinanceNum("3", s1, s);
                     store_details_ll2.setVisibility(View.VISIBLE);
                 }
             }
@@ -335,6 +339,11 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+        Log.i("专员时间","FinalContents.getUserID()：" + FinalContents.getUserID());
+        Log.i("专员时间","FinalContents.getCompanyId()：" + FinalContents.getCompanyId());
+        Log.i("专员时间","s：" + s);
+        Log.i("专员时间","s1：" + s1);
+        Log.i("专员时间","s11：" + s11);
         Observable<CompanyDataBean> companyData = fzbInterface.getCompanyData(FinalContents.getUserID(), FinalContents.getCompanyId(), s, s1, s11);
         companyData.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -347,8 +356,8 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                     @Override
                     public void onNext(CompanyDataBean companyDataBean) {
                         CompanyDataBean.DataBean data = companyDataBean.getData();
-                        store_details_tv4.setText(data.getStoreNum());
-                        store_details_tv5.setText(data.getAgentNum());
+                        store_details_tv6.setText(data.getStoreNum() + "");
+                        store_details_tv7.setText(data.getAgentNum() + "");
                     }
 
                     @Override
@@ -384,6 +393,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                 Log.i("专员", "companyInfo.getCompanyId()：" + companyInfo.getCompanyId());
                 FinalContents.setStoreChange("修改");
                 startActivity(intent);
+                finish();
                 break;
             case R.id.store_details_tv4:
                 report_picker.setVisibility(View.VISIBLE);
@@ -482,6 +492,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                 FinalContents.setAgentId("");
                 intent = new Intent(StoreDetailsActivity.this, CommissionActivity.class);
                 startActivity(intent);
+
                 break;
         }
 

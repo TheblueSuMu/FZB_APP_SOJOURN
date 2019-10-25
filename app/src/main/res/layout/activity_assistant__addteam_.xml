@@ -313,7 +313,6 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp">
-                        s
 
                         <com.xcy.fzb.all.persente.SlideSwitch
                             android:id="@+id/ssswit"

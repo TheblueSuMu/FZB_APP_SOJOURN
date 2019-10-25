@@ -608,6 +608,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 FinalContents.setStoreId(storeInfo.getStoreId());
                 FinalContents.setStoreChange("修改");
                 startActivity(intent);
+                finish();
                 break;
         }
 

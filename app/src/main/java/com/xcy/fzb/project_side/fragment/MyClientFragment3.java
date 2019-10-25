@@ -105,13 +105,13 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
             }
         });
 
-        if (FinalContents.getZhuanyuan().equals("1")) {
-            Log.i("刷新","成功刷新1");
-            initData2("");
-        } else {
-            Log.i("刷新","成功刷新1");
-            initData("");
-        }
+//        if (FinalContents.getZhuanyuan().equals("1")) {
+//            Log.i("刷新","成功刷新1");
+//            initData2("");
+//        } else {
+//            Log.i("刷新","成功刷新1");
+//            initData("");
+//        }
     }
 
     private void initData(String name) {
@@ -239,5 +239,17 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        if (FinalContents.getZhuanyuan().equals("1")) {
+            Log.i("刷新","成功刷新1");
+            initData2("");
+        } else {
+            Log.i("刷新","成功刷新1");
+            initData("");
+        }
+
+    }
 }

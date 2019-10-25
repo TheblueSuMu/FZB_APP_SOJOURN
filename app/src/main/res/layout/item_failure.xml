@@ -48,6 +48,7 @@
                 android:id="@+id/item_failure_tv6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/the_project_end_schedule"
                 android:paddingLeft="8dp"
                 android:paddingTop="5dp"
@@ -64,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             android:text="到达机场"
             android:textColor="#ff111111"
             android:textSize="14sp" />
@@ -74,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             android:text="到达机场"
             android:textColor="#999999"
             android:textSize="12sp" />
@@ -84,6 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             android:text="到达机场"
             android:textColor="#999999"
             android:textSize="12sp" />
@@ -94,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             android:text="到达机场"
             android:textColor="#999999"
             android:textSize="12sp" />
@@ -104,6 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             android:text="到达机场"
             android:textColor="#999999"
             android:textSize="12sp" />

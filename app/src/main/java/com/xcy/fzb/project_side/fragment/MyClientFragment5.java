@@ -107,11 +107,11 @@ public class MyClientFragment5 extends Fragment implements ClientFragmentAdapter
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
             }
         });
-        if (FinalContents.getZhuanyuan().equals("1")) {
-            initData2("");
-        }else {
-            initData("");
-        }
+//        if (FinalContents.getZhuanyuan().equals("1")) {
+//            initData2("");
+//        }else {
+//            initData("");
+//        }
 
     }
 
@@ -243,4 +243,15 @@ public class MyClientFragment5 extends Fragment implements ClientFragmentAdapter
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (FinalContents.getZhuanyuan().equals("1")) {
+            initData2("");
+        }else {
+            initData("");
+        }
+
+    }
 }
