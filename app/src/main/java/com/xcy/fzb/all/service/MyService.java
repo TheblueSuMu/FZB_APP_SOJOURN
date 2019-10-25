@@ -617,7 +617,6 @@ public interface MyService {
     @POST("shoppingSelect/customerDetails")
     Observable<com.xcy.fzb.shopping_guide.MyClientFragmentBean> getClientFragmentBeanDao(@Query("userId") String userId, @Query("customerId") String customerId, @Query("landingId") String landingId, @Query("preparationId") String preparationId);
 
-
     // TODO 专员
 
     // 专员端报备流程数据请求

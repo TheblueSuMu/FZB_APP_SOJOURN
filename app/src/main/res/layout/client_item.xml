@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="140dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
         android:orientation="horizontal">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/client_item_img"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            app:riv_oval="true"
             android:layout_gravity="center_vertical"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            app:riv_oval="true" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
@@ -61,8 +64,8 @@
                 android:id="@+id/client_item_project_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="100dp"
                 android:layout_marginTop="3dp"
+                android:layout_marginRight="130dp"
                 android:text=""
                 android:textColor="#ff333333"
                 android:textSize="13sp" />
@@ -79,24 +82,37 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/client_item_cg"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="23dp"
-        android:textColor="#43987C"
-        android:textSize="13sp" />
-
-    <TextView
-        android:id="@+id/client_item_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text=""
-        android:textColor="#ffd08068"
-        android:textSize="13sp" />
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/client_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:textColor="#ffd08068"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/client_item_cg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#43987C"
+            android:textSize="13sp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="#EEEEEE"></LinearLayout>
 </RelativeLayout>

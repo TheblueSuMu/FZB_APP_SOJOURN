@@ -243,6 +243,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/commission_rv"
             android:layout_width="match_parent"
+            android:background="#FFFFFF"
             android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
     </RelativeLayout>

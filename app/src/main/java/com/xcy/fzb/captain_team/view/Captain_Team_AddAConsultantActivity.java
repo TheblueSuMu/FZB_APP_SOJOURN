@@ -445,9 +445,8 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
 
         if (FinalContents.getIdentity().equals("63")) {
             if (FinalContents.getOwnerId001().equals("")) {
-
+                Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
             } else {
-
                 if (add_aconsultant_et1.getText().toString().equals("") || add_aconsultant_et2.getText().toString().equals("") || add_aconsultant_et3.getText().toString().equals("") || add_aconsultant_et4.getText().toString().equals("") || add_aconsultant_tv1.getText().toString().equals("") || add_aconsultant_tv2.getText().toString().equals("") || add_aconsultant_tv3.getText().toString().equals("")) {
                     Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
                 } else {

@@ -90,7 +90,7 @@ public class Dynamic2Adapter extends RecyclerView.Adapter<Dynamic2Adapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
-        Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getCreateBy().getPhoto()).placeholder(R.mipmap.logo_square).into(holder.circle_img);
+        Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getCreateBy().getPhoto()).into(holder.circle_img);
 
         if (list.get(position).getImg().equals("")) {
             holder.item_dynamic_ll.setVisibility(View.GONE);

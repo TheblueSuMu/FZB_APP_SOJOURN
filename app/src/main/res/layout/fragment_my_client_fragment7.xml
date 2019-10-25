@@ -10,14 +10,13 @@
     cube_ptr:ptr_pull_to_fresh="false"
     cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
     cube_ptr:ptr_resistance="1.7"
+    android:background="#FFFFFF"
     android:id="@+id/store_house_ptr_frame_8"
     tools:context=".all.fragment.MyClientFragment1">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/client_7_rv"
         android:layout_width="match_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
 
