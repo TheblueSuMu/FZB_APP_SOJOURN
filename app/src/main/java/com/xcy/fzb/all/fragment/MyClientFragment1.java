@@ -227,7 +227,6 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                 if (append.substring(j, j + 1).equals("@")) {
                     FinalContents.setClientName(append.substring(0, j));
                     FinalContents.setCustomerID(append.substring(j + 1));
-                    getActivity().finish();
                     FinalContents.setNUM("0");
                     getActivity().finish();
                     break;

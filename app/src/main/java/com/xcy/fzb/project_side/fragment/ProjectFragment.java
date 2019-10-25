@@ -261,11 +261,11 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
                 startActivity(intent);
             }
         }else {
-            if(view.getId() == R.id.home_city_selector){
+            if(view.getId() == R.id.project_city_selector){
                 showPickerView();
             }
         }
-        }
+    }
 
     /**
      * 展示选择器
@@ -318,6 +318,7 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.i("城市列表","获取："+e.getMessage());
                     }
 
                     @Override

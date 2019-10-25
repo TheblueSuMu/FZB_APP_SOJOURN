@@ -231,7 +231,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                 if (!MatcherUtils.isMobile(add_company_et4.getText().toString())) {
                     Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
                     return;
-                } else {
                 }
                 s = add_company_tv1.getText().toString();
                 s1 = add_company_tv2.getText().toString();

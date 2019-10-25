@@ -1,6 +1,8 @@
 package com.xcy.fzb.project_side.view;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,18 +16,15 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.google.gson.Gson;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.modle.ConfessBean;
-import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.view.AllActivity;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,6 +32,13 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import top.defaults.view.DateTimePickerView;
 
 //TODO 填写认筹信息
@@ -221,7 +227,6 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
                 if (!MatcherUtils.isMobile(confess_to_raise_information_et2.getText().toString())) {
                     Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
                     return;
-                } else {
                 }
 
                 if(s6.equals("一室")){
@@ -240,37 +245,90 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
                     sex = "男";
                 } else if (confess_to_raise_information_rb2.isChecked()) {
                     sex = "女";
-
-                }
-//                TODO 解析bean类
-                url = FinalContents.getBaseUrl()+"nodeUpdate/earnestMoneySave?preparationId=" + FinalContents.getPreparationId() + "&customerId=" + FinalContents.getCustomerID() + "&projectId=" + FinalContents.getProjectID() + "&fullName=" + s + "&phone=" + s1 + "&idNumber=" + s2 + "&intentionPier=" + s3 + "&apartment=" + s8 + "&intentionalArea=" + s4 + "&recognizeTime=" + s7 + "&relation=" + s5 + "&userId=" + FinalContents.getUserID();
-                OkHttpPost okHttpPost = new OkHttpPost(url);
-                String post = okHttpPost.post();
-
-                try {
-                    JSONObject jsonObject = new JSONObject(post);
-
-                    String msg = jsonObject.getString("msg");
-                    if(msg.equals("")){
-                        Toast.makeText(ConfessToRaiseInformationActivity.this, "该数据无法认筹", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }else {
-                        Gson gson = new Gson();
-                        ConfessBean confessBean1 = gson.fromJson(post, ConfessBean.class);
-                        if (confessBean1.getMsg().equals("成功")) {
-                            Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean1.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                            FinalContents.setTiaozhuang("认筹成功");
-                            finish();
-                        } else {
-                            Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean1.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
 
+                if (confess_to_raise_information_et1.getText().toString().equals("")) {
+                    Toast.makeText(this, "请输入认筹客户姓名", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                if (sex.equals("")) {
+                    Toast.makeText(this, "请选择性别", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_et2.getText().toString().equals("")) {
+                    Toast.makeText(this, "请输入认筹客户电话", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_et3.getText().toString().equals("")) {
+                    Toast.makeText(this, "请输入认筹客户身份证", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_tv4.getText().toString().equals("")) {
+                    Toast.makeText(this, "请选择报备客户与认筹客户关系", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_et4.getText().toString().equals("")) {
+                    Toast.makeText(this, "请输入意向楼栋", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_tv5.getText().toString().equals("")) {
+                    Toast.makeText(this, "请选择意向户型", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_et5.getText().toString().equals("")) {
+                    Toast.makeText(this, "请输入意向面积", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_tv6.getText().toString().equals("")) {
+                    Toast.makeText(this, "请选择认筹时间", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Retrofit.Builder builder = new Retrofit.Builder();
+                builder.baseUrl(FinalContents.getBaseUrl());
+                builder.addConverterFactory(GsonConverterFactory.create());
+                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                Retrofit build = builder.build();
+                MyService fzbInterface = build.create(MyService.class);
+                Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave(FinalContents.getPreparationId(),FinalContents.getCustomerID(),FinalContents.getProjectID(),s,s1,s2, s3,s8,s4,s7,s5,FinalContents.getUserID());
+                userMessage.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<ConfessBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+
+                            }
+
+                            @SuppressLint("WrongConstant")
+                            @Override
+                            public void onNext(ConfessBean confessBean) {
+                                if (confessBean.getMsg().equals("成功")) {
+                                    Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    FinalContents.setTiaozhuang("认筹成功");
+                                    finish();
+                                } else {
+                                    Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Log.i("认筹信息","错误"+e);
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
                 break;
 
         }

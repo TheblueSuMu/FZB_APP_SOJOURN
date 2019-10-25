@@ -519,14 +519,6 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="11dp"
-                        android:text="结佣流程：开发商结款后24小时内发放佣金。"
-                        android:textColor="#666666"
-                        android:textSize="12sp" />
-
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -748,94 +740,117 @@
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/project_details_repast"
+                    <LinearLayout
+                        android:id="@+id/project_details_linear1"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:drawableLeft="@mipmap/business"
-                        android:text="餐饮中心"
-                        android:textColor="#111"
-                        android:textSize="16sp" />
+                        android:layout_height="wrap_content">
 
-                    <co.lujun.androidtagview.TagContainerLayout
-                        android:id="@+id/project_details_repast_content"
+                        <TextView
+                            android:id="@+id/project_details_repast"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:drawableLeft="@mipmap/business"
+                            android:text="餐饮中心"
+                            android:textColor="#111"
+                            android:textSize="16sp" />
+
+                        <co.lujun.androidtagview.TagContainerLayout
+                            android:id="@+id/project_details_repast_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:text="标题下的内容"
+                            android:textColor="#111"
+                            android:textSize="14sp"
+                            app:container_background_color="#fff"
+                            app:container_border_color="#fff"
+                            app:tag_background_color="#ffaab4d1"
+                            app:tag_border_color="#fff"
+                            app:tag_clickable="true"
+                            app:tag_corner_radius="5dp"
+                            app:tag_theme="pure_teal" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="16dp"
+                            android:background="#fff3f2f7" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/project_details_linear2"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:text="标题下的内容"
-                        android:textColor="#111"
-                        android:textSize="14sp"
-                        app:container_background_color="#fff"
-                        app:container_border_color="#fff"
-                        app:tag_background_color="#ffaab4d1"
-                        app:tag_border_color="#fff"
-                        app:tag_clickable="true"
-                        app:tag_corner_radius="5dp"
-                        app:tag_theme="pure_teal" />
+                        android:layout_height="wrap_content">
 
-                    <View
+                        <TextView
+                            android:id="@+id/project_details_recuperate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:drawableLeft="@mipmap/hospital"
+                            android:text="医疗中心"
+                            android:textColor="#111"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/project_details_recuperate_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:text="标题下的内容"
+                            android:textColor="#111"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="16dp"
+                            android:background="#fff3f2f7" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/project_details_linear3"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="16dp"
-                        android:background="#fff3f2f7" />
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/project_details_recuperate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:drawableLeft="@mipmap/hospital"
-                        android:text="医疗中心"
-                        android:textColor="#111"
-                        android:textSize="16sp" />
+                        <TextView
+                            android:id="@+id/project_details_business"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:drawableLeft="@mipmap/tableware"
+                            android:text="商务中心"
+                            android:textColor="#111"
+                            android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/project_details_recuperate_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:text="标题下的内容"
-                        android:textColor="#111"
-                        android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/project_details_business_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:text="标题下的内容"
+                            android:textColor="#111"
+                            android:textSize="14sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="16dp"
-                        android:background="#fff3f2f7" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="16dp"
+                            android:background="#fff3f2f7" />
 
-                    <TextView
-                        android:id="@+id/project_details_business"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:drawableLeft="@mipmap/tableware"
-                        android:text="商务中心"
-                        android:textColor="#111"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/project_details_business_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:text="标题下的内容"
-                        android:textColor="#111"
-                        android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="16dp"
-                        android:background="#fff3f2f7" />
-
+                    </LinearLayout>
 
                 </LinearLayout>
 

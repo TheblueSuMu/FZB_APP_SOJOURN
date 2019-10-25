@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -64,6 +63,11 @@ public class BackToRaiseThatActivity extends AllActivity {
             public void onClick(View view) {
                 Log.i("退筹","："+FinalContents.getPreparationId()+"：中间："+FinalContents.getUserID());
                 message = back_to_raise_that_et.getText().toString();
+                if (message.equals("")) {
+                    Toast.makeText(BackToRaiseThatActivity.this, "请填写退筹说明内容", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Retrofit.Builder builder = new Retrofit.Builder();
                 builder.baseUrl(FinalContents.getBaseUrl());
                 builder.addConverterFactory(GsonConverterFactory.create());

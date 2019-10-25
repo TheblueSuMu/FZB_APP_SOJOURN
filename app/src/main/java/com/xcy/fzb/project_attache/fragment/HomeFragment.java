@@ -319,6 +319,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.i("城市列表","获取："+e.getMessage());
                     }
 
                     @Override

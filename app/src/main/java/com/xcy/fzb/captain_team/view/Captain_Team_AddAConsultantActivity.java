@@ -417,6 +417,8 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
     }
 
     private void initData() {
+
+
         name = add_aconsultant_et1.getText().toString();
         industry = add_aconsultant_et2.getText().toString();
         phone = add_aconsultant_et3.getText().toString();
