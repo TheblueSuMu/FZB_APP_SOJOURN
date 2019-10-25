@@ -196,42 +196,6 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                     Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    if (field_et1.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入客户名", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (field_tv1.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入性别", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (field_et2.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入关系", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-
-                    if (field_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (field_et4.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入身份证号码", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (field_et5.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入护照号码", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (imgUrl.equals("")) {
-                        Toast.makeText(this, "请选择照片", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
                     fieldBean = new FieldBean();
                     ProjectProgressApi.setChongfu("不重复");
                     fieldBean.setFullName(field_et1.getText().toString());      //  TODO    客户名
@@ -240,7 +204,7 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                     fieldBean.setPhone(field_et3.getText().toString());      //  TODO    手机号
                     fieldBean.setIdNumber(field_et4.getText().toString());      //  TODO    身份证号码
                     fieldBean.setPassportNumber(field_et5.getText().toString());      //  TODO    护照号码
-                    fieldBean.setPassportImg(imgUrl);      //  TODO    照片地址
+                    fieldBean.setPassportImg("");      //  TODO    照片地址
 
                     ProjectProgressApi.setFieldBean(fieldBean);
                     ProjectProgressApi.setField("1");
@@ -253,6 +217,7 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                     }
                     finish();
                 }
+
                 break;
         }
 

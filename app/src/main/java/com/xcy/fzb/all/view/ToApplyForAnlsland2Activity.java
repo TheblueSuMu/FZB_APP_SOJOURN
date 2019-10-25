@@ -134,6 +134,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
 
     private void initView() {
 
+        initGetIntent();
         StatusBar.makeStatusBarTransparent(this);
         to_apply_for_an_island2_linear = findViewById(R.id.to_apply_for_an_island2_linear);
         to_apply_for_an_island2_return = findViewById(R.id.to_apply_for_an_island2_return);
@@ -169,6 +170,10 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
         });
     }
 
+
+    private void initGetIntent(){
+
+    }
 
     @Override
     public void onClick(View view) {

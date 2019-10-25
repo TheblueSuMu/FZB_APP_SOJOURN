@@ -1,10 +1,12 @@
 package com.xcy.fzb.all.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -152,6 +154,8 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
                                     FinalContents.setGuideRuleId(hotlist.get(postion).getGuideRuleId());
                                     FinalContents.setProjectID(hotlist.get(postion).getProjectId());
                                     finish();
+                                    Intent intent = new Intent(SearchInterfaceActivity.this,ReportActivity.class);
+                                    startActivity(intent);
                                 }
                             }
                         });

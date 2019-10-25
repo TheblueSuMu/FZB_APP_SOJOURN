@@ -278,12 +278,9 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                     Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    if (client_add_name_et.getText().toString().equals("")) {
-                    }else {
-                        if(addNum == 0){
-                            initData();
-                            addNum = 1;
-                        }
+                    if(addNum == 0){
+                        initData();
+                        addNum = 1;
                     }
                 }
 

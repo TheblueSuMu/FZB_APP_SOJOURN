@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -117,18 +118,9 @@ public class BuildingInformationActivity extends AllActivity {
                             tabLayout.setSelectedTabIndicator(R.drawable.tab_indicator);
                             name.setText(list.get(0).getProject().getProjectName());
                             state.setText(list.get(0).getSaleStatus());
-                            if (list.get(0).getElevator().equals("") || list.get(0).getFamily().equals("")) {
-                                ladder.setText("未知");
-                            }else {
-                                ladder.setText(list.get(0).getElevator() + "梯" + list.get(0).getFamily() + "户");
-                            }
-                            if (list.get(0).getElementNumber().equals("")) {
-                                cell.setText("未知");
-                            }else {
-                                cell.setText(list.get(0).getElementNumber() + "");
-                            }
-
+                            ladder.setText(list.get(0).getElevator() + "梯" + list.get(0).getFamily() + "户");
                             tier.setText(list.get(0).getPliesNumber() + "层");
+                            cell.setText(list.get(0).getElementNumber() + "");
                             open.setText(list.get(0).getBuildTime());
                             occupancy.setText(list.get(0).getCheckInTime());
                             buildingCase.setText(list.get(0).getFitmentState());
@@ -151,17 +143,9 @@ public class BuildingInformationActivity extends AllActivity {
                                         if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
                                             name.setText(list.get(j).getProject().getProjectName());
                                             state.setText(list.get(j).getSaleStatus());
-                                            if (list.get(j).getElevator().equals("") || list.get(j).getFamily().equals("")) {
-                                                ladder.setText("未知");
-                                            }else {
-                                                ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
-                                            }
-                                            if (list.get(j).getElementNumber().equals("")) {
-                                                cell.setText("未知");
-                                            }else {
-                                                cell.setText(list.get(j).getElementNumber() + "");
-                                            }
+                                            ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
                                             tier.setText(list.get(j).getPliesNumber() + "层");
+                                            cell.setText(list.get(j).getElementNumber() + "");
                                             open.setText(list.get(j).getBuildTime());
                                             occupancy.setText(list.get(j).getCheckInTime());
                                             buildingCase.setText(list.get(j).getFitmentState());
@@ -194,17 +178,9 @@ public class BuildingInformationActivity extends AllActivity {
                                         if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
                                             name.setText(list.get(j).getProject().getProjectName());
                                             state.setText(list.get(j).getSaleStatus());
-                                            if (list.get(j).getElevator().equals("") || list.get(j).getFamily().equals("")) {
-                                                ladder.setText("未知");
-                                            }else {
-                                                ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
-                                            }
-                                            if (list.get(j).getElementNumber().equals("")) {
-                                                cell.setText("未知");
-                                            }else {
-                                                cell.setText(list.get(j).getElementNumber() + "");
-                                            }
+                                            ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
                                             tier.setText(list.get(j).getPliesNumber() + "层");
+                                            cell.setText(list.get(j).getElementNumber() + "");
                                             open.setText(list.get(j).getBuildTime());
                                             occupancy.setText(list.get(j).getCheckInTime());
                                             buildingCase.setText(list.get(j).getFitmentState());

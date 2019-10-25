@@ -102,11 +102,8 @@ public class BindingPhoneActivity extends AllActivity implements View.OnClickLis
     }
 
     private void initData2() {
+
         yanzhengma = binding_et.getText().toString();
-        if (yanzhengma.equals("")) {
-            Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
-            return;
-        }
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());

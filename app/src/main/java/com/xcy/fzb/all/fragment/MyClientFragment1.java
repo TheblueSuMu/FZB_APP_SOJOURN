@@ -26,6 +26,7 @@ import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.ClientParticularsActivity;
+import com.xcy.fzb.all.view.ReportActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -227,8 +228,10 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                 if (append.substring(j, j + 1).equals("@")) {
                     FinalContents.setClientName(append.substring(0, j));
                     FinalContents.setCustomerID(append.substring(j + 1));
-                    FinalContents.setNUM("0");
                     getActivity().finish();
+                    FinalContents.setNUM("0");
+                    Intent intent = new Intent(context, ReportActivity.class);
+                    startActivity(intent);
                     break;
                 }
             }

@@ -135,9 +135,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
     private CheckBox project_details_collect_all;
     private TextView project_details_qt_call;
     private LinearLayout project_details_qt;
-    private LinearLayout project_details_linear1;
-    private LinearLayout project_details_linear2;
-    private LinearLayout project_details_linear3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -228,12 +225,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         linear5 = findViewById(R.id.linear5);
         linear6 = findViewById(R.id.linear6);
         linear7 = findViewById(R.id.linear7);
-
-        project_details_linear1 = findViewById(R.id.project_details_linear1);
-
-        project_details_linear2 = findViewById(R.id.project_details_linear2);
-
-        project_details_linear3 = findViewById(R.id.project_details_linear3);
 
         group_booking = findViewById(R.id.project_details_group_booking);
 
@@ -856,9 +847,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                             repast_content.setTheme(ColorFactory.NONE);
                             repast_content.setTags(tags);
                             if (houseDataData.getPropertyHouseList().size() == 1) {
-                                project_details_linear1.setVisibility(View.VISIBLE);
-                                project_details_linear2.setVisibility(View.GONE);
-                                project_details_linear3.setVisibility(View.GONE);
                                 repast.setText(houseDataData.getPropertyHouseList().get(0).getType());
                                 repast.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -871,9 +859,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                     }
                                 });
                             } else if (houseDataData.getPropertyHouseList().size() == 2) {
-                                project_details_linear1.setVisibility(View.VISIBLE);
-                                project_details_linear2.setVisibility(View.VISIBLE);
-                                project_details_linear3.setVisibility(View.GONE);
                                 repast.setText(houseDataData.getPropertyHouseList().get(0).getType());
                                 repast.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -899,9 +884,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 });
                                 recuperate_content.setText(houseDataData.getPropertyHouseList().get(1).getContent());
                             } else if (houseDataData.getPropertyHouseList().size() == 3) {
-                                project_details_linear1.setVisibility(View.VISIBLE);
-                                project_details_linear2.setVisibility(View.VISIBLE);
-                                project_details_linear3.setVisibility(View.VISIBLE);
                                 repast.setText(houseDataData.getPropertyHouseList().get(0).getType());
                                 repast.setOnClickListener(new View.OnClickListener() {
                                     @Override

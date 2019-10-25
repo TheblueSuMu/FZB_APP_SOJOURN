@@ -317,7 +317,6 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("城市列表","获取："+e.getMessage());
                     }
 
                     @Override

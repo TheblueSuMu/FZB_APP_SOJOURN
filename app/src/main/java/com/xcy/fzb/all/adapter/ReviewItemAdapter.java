@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.modle.ReportProcessDetailsBean;
-import com.xcy.fzb.all.persente.MyGridLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +56,8 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
                     }
                     Log.i("走呀","数组的长度："+ a.length);
                     Log.i("走呀","1："+ arraylist.size());
-                    MyGridLayoutManager layoutManager = new MyGridLayoutManager(context,5);
-                    layoutManager.setOrientation(MyGridLayoutManager.VERTICAL);
+                    GridLayoutManager layoutManager = new GridLayoutManager(context,5);
+                    layoutManager.setOrientation(GridLayoutManager.VERTICAL);
                     holder.item_reivew_adapter_item.setLayoutManager(layoutManager);
                     ReviewAdapterItemAdapter reviewAdapterItemAdapter = new ReviewAdapterItemAdapter(arraylist);
                     reviewAdapterItemAdapter.setImgUrl(list.get(position).getValue());

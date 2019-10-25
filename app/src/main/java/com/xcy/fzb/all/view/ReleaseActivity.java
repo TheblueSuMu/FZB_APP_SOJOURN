@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -188,12 +189,6 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
     private void initData() {
 
         String s = stringBuffer.toString();
-
-        if (release_message.getText().toString().equals("")) {
-            Toast.makeText(this, "请输入您要发布的内容", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
 
         Log.i("MyCL", "s：" + s);
 
