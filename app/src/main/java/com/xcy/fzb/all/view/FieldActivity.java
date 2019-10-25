@@ -40,6 +40,7 @@ import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.modle.LandSaveBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.MatcherUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -190,26 +191,33 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                 break;
             //            TODO 完成
             case R.id.field_btn:
-                fieldBean = new FieldBean();
-                ProjectProgressApi.setChongfu("不重复");
-                fieldBean.setFullName(field_et1.getText().toString());      //  TODO    客户名
-                fieldBean.setGender(field_tv1.getText().toString());      //  TODO    性别
-                fieldBean.setRelation(field_et2.getText().toString());      //  TODO    关系
-                fieldBean.setPhone(field_et3.getText().toString());      //  TODO    手机号
-                fieldBean.setIdNumber(field_et4.getText().toString());      //  TODO    身份证号码
-                fieldBean.setPassportNumber(field_et5.getText().toString());      //  TODO    护照号码
-                fieldBean.setPassportImg("");      //  TODO    照片地址
 
-                ProjectProgressApi.setFieldBean(fieldBean);
-                ProjectProgressApi.setField("1");
-                if (ProjectProgressApi.getComplemented().equals("1")) {
-                    initViewData();
-                }else if (ProjectProgressApi.getComplemented().equals("0")) {
-                    fieldBean = ProjectProgressApi.getFieldBean();
-                    list.add(fieldBean);
-                    ProjectProgressApi.setFieldBeanList(list);
+                if (!MatcherUtils.isMobile(field_et3.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    fieldBean = new FieldBean();
+                    ProjectProgressApi.setChongfu("不重复");
+                    fieldBean.setFullName(field_et1.getText().toString());      //  TODO    客户名
+                    fieldBean.setGender(field_tv1.getText().toString());      //  TODO    性别
+                    fieldBean.setRelation(field_et2.getText().toString());      //  TODO    关系
+                    fieldBean.setPhone(field_et3.getText().toString());      //  TODO    手机号
+                    fieldBean.setIdNumber(field_et4.getText().toString());      //  TODO    身份证号码
+                    fieldBean.setPassportNumber(field_et5.getText().toString());      //  TODO    护照号码
+                    fieldBean.setPassportImg("");      //  TODO    照片地址
+
+                    ProjectProgressApi.setFieldBean(fieldBean);
+                    ProjectProgressApi.setField("1");
+                    if (ProjectProgressApi.getComplemented().equals("1")) {
+                        initViewData();
+                    }else if (ProjectProgressApi.getComplemented().equals("0")) {
+                        fieldBean = ProjectProgressApi.getFieldBean();
+                        list.add(fieldBean);
+                        ProjectProgressApi.setFieldBeanList(list);
+                    }
+                    finish();
                 }
-                finish();
+
                 break;
         }
 

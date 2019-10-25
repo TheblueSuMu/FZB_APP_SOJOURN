@@ -33,6 +33,7 @@ import com.xcy.fzb.all.modle.AddClientBean;
 import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.MatcherUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -273,10 +274,16 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                 break;
 //                TODO 编辑
             case R.id.client_add_btn:
-                if(addNum == 0){
-                    initData();
-                    addNum = 1;
+                if (!MatcherUtils.isMobile(client_add_photo_et_1.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    if(addNum == 0){
+                        initData();
+                        addNum = 1;
+                    }
                 }
+
                 break;
 //                TODO 选择联系人
             case R.id.client_add_photo_img_1:
@@ -443,8 +450,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<AddClientBean> addClient = fzbInterface.getAddClient(client_add_name_et.getText().toString(), imgUrl, name1,
-                client_add_photo_et_1.getText().toString(), name2, client_add_photo_et_2.getText().toString(), name3, client_add_photo_et_3.getText().toString(), FinalContents.getUserID());
+        Observable<AddClientBean> addClient = fzbInterface.getAddClient(client_add_name_et.getText().toString(), imgUrl, name1, client_add_photo_et_1.getText().toString(), name2, client_add_photo_et_2.getText().toString(), name3, client_add_photo_et_3.getText().toString(), FinalContents.getUserID());
         addClient.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<AddClientBean>() {

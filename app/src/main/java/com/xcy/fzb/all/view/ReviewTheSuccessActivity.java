@@ -314,6 +314,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         switch (view.getId()) {
             //            TODO 返回上一层
             case R.id.review_the_success_return:
+                FinalContents.setTiaozhuang("");
                 finish();
                 break;
             //            TODO 失效
@@ -495,6 +496,10 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         builder.show();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FinalContents.setTiaozhuang("");
+    }
 }
 

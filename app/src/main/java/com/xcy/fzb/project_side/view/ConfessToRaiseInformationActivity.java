@@ -21,6 +21,7 @@ import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.modle.ConfessBean;
 import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.view.AllActivity;
 
 import org.json.JSONException;
@@ -216,6 +217,12 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
                 s5 = confess_to_raise_information_tv4.getText().toString();
                 s6 = confess_to_raise_information_tv5.getText().toString();
                 s7 = confess_to_raise_information_tv6.getText().toString();
+
+                if (!MatcherUtils.isMobile(confess_to_raise_information_et2.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                }
 
                 if(s6.equals("一室")){
                     s8 = "1";

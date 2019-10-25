@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +23,7 @@ import com.xcy.fzb.all.modle.SysUser2Bean;
 import com.xcy.fzb.all.persente.SlideSwitch;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.view.AllActivity;
 
 import java.util.ArrayList;
@@ -154,7 +154,12 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
                 break;
 //                TODO 确定
             case R.id.add_sales_btn:
-                initData();
+                if (!MatcherUtils.isMobile(add_sales_et3.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    initData();
+                }
                 break;
         }
     }

@@ -20,6 +20,7 @@ import com.xcy.fzb.all.database.AddBrokerBean;
 import com.xcy.fzb.all.database.BrokerChangeBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.view.AllActivity;
 
 import java.util.ArrayList;
@@ -212,6 +213,11 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 pvOptions.show();
                 break;
             case R.id.add_btn:
+                if (!MatcherUtils.isMobile(add_store_et2.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                }
                 s = add_store_tv1.getText().toString();
                 s2 = add_store_tv2.getText().toString();
                 s11 = add_store_tv3.getText().toString();

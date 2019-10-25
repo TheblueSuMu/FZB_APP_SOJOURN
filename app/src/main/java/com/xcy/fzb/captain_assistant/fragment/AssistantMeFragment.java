@@ -25,7 +25,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.MyDataBean;
 import com.xcy.fzb.all.fragment.AllFragment;
-import com.xcy.fzb.all.modle.TZBean;
+import com.xcy.fzb.all.modle.UserBean;
 import com.xcy.fzb.all.persente.CleanDataUtils;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -70,7 +70,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
     ImageView me_img_phone;
 
     private Intent intent;
-    private TZBean.DataBean data;
+    private UserBean.DataBean data;
     private TextView me_tv_name;
     private TextView me_tv_phone;
     private TextView my_tv_huancun;
@@ -146,39 +146,31 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<TZBean> userMessage = fzbInterface.getTZBean(FinalContents.getUserID(), FinalContents.getUserID());
+        Observable<UserBean> userMessage = fzbInterface.getUserBean(FinalContents.getUserID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<TZBean>() {
+                .subscribe(new Observer<UserBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(TZBean userMessageBean) {
+                    public void onNext(UserBean userMessageBean) {
                         data = userMessageBean.getData();
 
-                        String s = data.getSysUser().getPhoto().toString();
-                        StringBuffer stringBuffer = new StringBuffer();
-                        stringBuffer.append(s);
+                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getPhoto()).into(me_photo);
 
-                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getPhoto()).into(me_photo);
-
-                        me_name.setText(data.getSysUser().getName());
-                        if (data.getSysUser().getIdentity().equals("61")) {
+                        me_name.setText(data.getName());
+                        if (data.getIdentity().equals("61")) {
                             me_identity.setText("销售");
-                        } else if (data.getSysUser().getIdentity().equals("62")) {
+                        } else if (data.getIdentity().equals("62")) {
                             me_identity.setText("顾问");
-                        } else if (data.getSysUser().getIdentity().equals("63")) {
+                        } else if (data.getIdentity().equals("63")) {
                             me_identity.setText("团助");
                         }
-                        me_city.setText(data.getSysUser().getCity());
-                        me_store.setText(data.getSysUser().getCounty());
-//                        FinalContents.setUserName(data.getName());
-//                        FinalContents.setParentName(data.getLayerTeamVo().getTeamLeader().getParent().getName());
-//                        me_tv_name.setText(data.getStoreManageName());
-//                        me_tv_phone.setText(data.getStoreManagePhone());
+                        me_city.setText(data.getCity());
+                        me_store.setText(data.getCounty());
                     }
 
                     @Override
