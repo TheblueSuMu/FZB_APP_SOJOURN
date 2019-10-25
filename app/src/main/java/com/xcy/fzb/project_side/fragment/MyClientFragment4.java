@@ -109,11 +109,11 @@ public class MyClientFragment4 extends Fragment implements ClientFragmentAdapter
             }
         });
 
-        if (FinalContents.getZhuanyuan().equals("1")) {
-            initData2("");
-        }else {
-            initData("");
-        }
+//        if (FinalContents.getZhuanyuan().equals("1")) {
+//            initData2("");
+//        }else {
+//            initData("");
+//        }
     }
 
     private void initData(String name) {
@@ -240,4 +240,15 @@ public class MyClientFragment4 extends Fragment implements ClientFragmentAdapter
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (FinalContents.getZhuanyuan().equals("1")) {
+            initData2("");
+        }else {
+            initData("");
+        }
+
+    }
 }

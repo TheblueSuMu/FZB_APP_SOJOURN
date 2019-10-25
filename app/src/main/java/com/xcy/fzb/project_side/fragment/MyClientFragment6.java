@@ -108,11 +108,11 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
             }
         });
 
-        if (FinalContents.getZhuanyuan().equals("1")) {
-            initData2("");
-        }else {
-            initData("");
-        }
+//        if (FinalContents.getZhuanyuan().equals("1")) {
+//            initData2("");
+//        }else {
+//            initData("");
+//        }
 
     }
 
