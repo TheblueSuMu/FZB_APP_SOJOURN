@@ -129,16 +129,21 @@ public class Assistant_Teams_Activity extends AllActivity implements View.OnClic
         iftz = getIntent().getStringExtra("Iftz");
         if (iftz.equals("1")) {
             initData("", "1", "");
+            string1 = "添加团队长";
+            string2 = "批量修改团队长级别";
         } else if (iftz.equals("2")) {
             team_member_ll2.setVisibility(View.VISIBLE);
             team_member_ll4.setVisibility(View.GONE);
             team_member_ll6.setVisibility(View.GONE);
             initData("", "2", "");
+            string1 = "添加销售";
+            string2 = "";
         } else if (iftz.equals("3")) {
             team_member_ll2.setVisibility(View.GONE);
             team_member_ll4.setVisibility(View.VISIBLE);
             team_member_ll6.setVisibility(View.GONE);
             initData("", "3", "");
+            string1 = "添加顾问";
         }
 
 
