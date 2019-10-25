@@ -319,6 +319,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.i("城市列表","获取："+e.getMessage());
                     }
 
                     @Override

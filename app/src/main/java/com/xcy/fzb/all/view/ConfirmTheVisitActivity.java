@@ -225,6 +225,16 @@ public class ConfirmTheVisitActivity extends AllActivity {
 
         String locationS = getLongitude + "," + getLatitude;
 
+        if (comfirm_location.getText().toString().equals("")) {
+            Toast.makeText(this, "请进入地图选择地址", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (stringBuffer.toString().equals("")) {
+            Toast.makeText(this, "请选择照片", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());

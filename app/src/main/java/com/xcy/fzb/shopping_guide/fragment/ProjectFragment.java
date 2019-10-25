@@ -257,7 +257,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                 listterner.process("660"); // 3.1 执行回调
             }
         }else {
-            if(view.getId() == R.id.home_city_selector){
+            if(view.getId() == R.id.project_city_selector){
+                Log.i("点击事件","事件触发");
                 showPickerView();
             }
         }
@@ -355,6 +356,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.i("城市列表","获取："+e.getMessage());
                     }
 
                     @Override

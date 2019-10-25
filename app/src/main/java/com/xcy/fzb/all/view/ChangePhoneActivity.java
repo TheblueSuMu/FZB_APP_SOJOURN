@@ -130,6 +130,10 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
 
     private void initData1() {
         yanzhengma = change_phone_yanzhengma.getText().toString();
+        if (yanzhengma.equals("")) {
+            Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());

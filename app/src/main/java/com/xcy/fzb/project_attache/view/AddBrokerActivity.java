@@ -218,7 +218,6 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 if (!MatcherUtils.isMobile(add_store_et2.getText().toString())) {
                     Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
                     return;
-                } else {
                 }
                 s = add_store_tv1.getText().toString();
                 s2 = add_store_tv2.getText().toString();

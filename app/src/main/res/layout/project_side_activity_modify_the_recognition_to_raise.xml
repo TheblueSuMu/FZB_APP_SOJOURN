@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/lll"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@drawable/the_project_end_brokerage">
@@ -41,6 +43,7 @@
 
 
     <ScrollView
+        android:layout_below="@+id/lll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -72,8 +75,9 @@
                     android:gravity="right"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:text="回显数据"
-                    android:textColor="#999999"
+                    android:layout_marginRight="20dp"
+                    android:hint=""
+                    android:textColor="#111111"
                     android:textSize="13sp" />
 
             </RelativeLayout>
@@ -106,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -154,8 +159,9 @@
                     android:gravity="right"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:text="回显数据"
-                    android:textColor="#999999"
+                    android:layout_marginRight="20dp"
+                    android:hint=""
+                    android:textColor="#111111"
                     android:textSize="13sp" />
 
             </RelativeLayout>
@@ -191,8 +197,9 @@
                     android:gravity="right"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:text="回显数据"
-                    android:textColor="#999999"
+                    android:layout_marginRight="20dp"
+                    android:hint=""
+                    android:textColor="#111111"
                     android:textSize="13sp" />
 
             </RelativeLayout>
@@ -204,6 +211,7 @@
                 android:background="#EEEEEE"></LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/modify_the_recognition_to_raise_rl1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -218,18 +226,17 @@
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
 
-                <EditText
+                <TextView
                     android:background="#FFFFFF"
                     android:id="@+id/modify_the_recognition_to_raise_tv4"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:gravity="right"
-                    android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:text="回显数据"
-                    android:textColor="#999999"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#111111"
                     android:textSize="13sp" />
 
                 <ImageView
@@ -273,8 +280,9 @@
                     android:singleLine="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="回显数据"
-                    android:textColor="#999999"
+                    android:layout_marginRight="20dp"
+                    android:hint=""
+                    android:textColor="#111111"
                     android:textSize="13sp" />
 
             </RelativeLayout>
@@ -283,9 +291,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="15dp"
-                android:background="#EEEEEE"></LinearLayout>
+                android:background="#EEEEEE"/>
 
             <RelativeLayout
+                android:id="@+id/modify_the_recognition_to_raise_rl2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -300,7 +309,7 @@
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
 
-                <EditText
+                <TextView
                     android:background="#FFFFFF"
                     android:id="@+id/modify_the_recognition_to_raise_tv6"
                     android:layout_width="150dp"
@@ -308,10 +317,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:gravity="right"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
-                    android:text="回显数据"
-                    android:textColor="#999999"
+                    android:layout_marginRight="20dp"
+                    android:text=""
+                    android:textColor="#111111"
                     android:textSize="13sp" />
 
                 <ImageView
@@ -353,8 +361,9 @@
                     android:gravity="right"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:text="回显数据"
-                    android:textColor="#999999"
+                    android:layout_marginRight="20dp"
+                    android:hint=""
+                    android:textColor="#111111"
                     android:textSize="13sp" />
 
             </RelativeLayout>
@@ -366,6 +375,7 @@
                 android:background="#EEEEEE"></LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/modify_the_recognition_to_raise_rl3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -380,7 +390,7 @@
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
 
-                <EditText
+                <TextView
                     android:background="#FFFFFF"
                     android:id="@+id/modify_the_recognition_to_raise_tv8"
                     android:layout_width="150dp"
@@ -388,11 +398,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:gravity="right"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
                     android:layout_marginRight="20dp"
-                    android:text="回显数据"
-                    android:textColor="#999999"
+                    android:text=""
+                    android:textColor="#111111"
                     android:textSize="13sp" />
 
                 <ImageView
@@ -407,8 +415,79 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="15dp"
-                android:background="#EEEEEE"></LinearLayout>
+                android:background="#EEEEEE"/>
+
+            <Button
+                android:id="@+id/modify_the_recognition_to_raise_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="38dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/points_dialog_but"
+                android:text="提交"
+                android:textColor="#FFFFFF" />
+
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/picker"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#e7e7e7"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/picker_cancel"
+                android:text="取消"
+                android:textSize="18sp"
+                android:textColor="#ff666666"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="请选择时间"
+                android:gravity="center"
+                android:textColor="#ff111111"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/picker_ensure"
+                android:text="确定"
+                android:textSize="18sp"
+                android:textColor="#334485"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical|right"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+
+
+        </LinearLayout>
+
+        <top.defaults.view.DateTimePickerView
+            android:id="@+id/pickerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:preferredMaxOffsetItemCount="4"
+            android:background="#e7e7e7"/>
+    </LinearLayout>
+
+</RelativeLayout>

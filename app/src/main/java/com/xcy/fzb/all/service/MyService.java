@@ -140,10 +140,17 @@ public interface MyService {
     @POST("nodeUpdate/colleagueUpdate")
     Observable<LandSaveBean> getColleagueUpdate(@Query("id") String id, @Query("landingId") String landingId, @Query("preparationId") String preparationId, @Query("fullName") String fullName, @Query("phone") String phone, @Query("idNumber") String idNumber, @Query("passportNumber") String passportNumber, @Query("passportImg") String passportImg, @Query("gender") String gender, @Query("relation") String relation, @Query("city") String city, @Query("occupation") String occupation, @Query("focus") String focus, @Query("intentionalBuilding") String intentionalBuilding, @Query("paymentMethod") String paymentMethod, @Query("hasDecision") String hasDecision, @Query("resistance") String resistance, @Query("objective") String objective, @Query("idealArea") String idealArea, @Query("userId") String userId);
 
-
     //专案端 成交添加的数据
     @POST("nodeUpdate/tradeSave")
     Observable<TradeSaveBean> getTradeSave(@Query("id") String id, @Query("projectId") String projectId, @Query("economicId") String economicId, @Query("preparationId") String preparationId, @Query("customerId") String customerId, @Query("roomNumber") String roomNumber, @Query("apartment") String apartment, @Query("area") String area, @Query("price") String price, @Query("totalPrice") String totalPrice, @Query("paymentMethod") String paymentMethod, @Query("commissionId") String commissionId, @Query("procuctType") String procuctType, @Query("gender") String gender, @Query("relation") String relation, @Query("fullName") String fullName, @Query("phone") String phone, @Query("idNumber") String idNumber, @Query("userId") String userId, @Query("tradeDateStr") String tradeDateStr);
+
+    //专案端 填写退单说明
+    @POST("specialUpdate/chargebackApply")
+    Observable<ListOfBean> getChargebackApply(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("explain") String explain);
+
+    //专案端 认筹添加的数据
+    @POST("nodeUpdate/earnestMoneySave")
+    Observable<ConfessBean> getEarnestMoneySave(@Query("preparationId") String preparationId, @Query("customerId") String customerId, @Query("projectId") String projectId, @Query("fullName") String fullName, @Query("phone") String phone, @Query("idNumber") String idNumber, @Query("intentionPier") String intentionPier, @Query("apartment") String apartment, @Query("intentionalArea") String intentionalArea, @Query("recognizeTime") String recognizeTime, @Query("relation") String relation, @Query("userId") String userId);
 
     //专案端 调单添加的数据
     @POST("specialUpdate/adjustApplySave")
@@ -379,6 +386,10 @@ public interface MyService {
     @POST("commonSelect/housesDynamicDetails")
     Observable<DynamicDetailsBean> getDynamicDetailsBean(@Query("housesDynamicId") String housesDynamicId, @Query("userId") String userId);
 
+    //评论添加
+    @POST("commonUpdate/housesDynamicCommentLike")
+    Observable<CommentBean> getHousesDynamicCommentLike(@Query("type") String type, @Query("comment") String comment, @Query("targetId") String targetId, @Query("pid") String pid, @Query("userId") String userId);
+
     @POST("ordinaryUpdate/economicCircleCommentLike")
     Observable<TotalZanBean> getTotalLikeNum(@Query("targetId") String targetId, @Query("userId") String userId, @Query("type") String type);
 
@@ -491,22 +502,25 @@ public interface MyService {
     @POST("nodeSelect/getColleague")
     Observable<ColleagueBean> getColleague(@Query("userId") String userId, @Query("id") String id);
 
+    //点击补全信息 获取数据回显
+    @POST("specialUpdate/reportAndVisitAudit")
+    Observable<CBean> getReportAndVisitAudit(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("maxStatus") String maxStatus, @Query("minStatus") String minStatus);
+
+    //待我审核 认筹数据
+    @POST("specialUpdate/earnestMoneyAudit")
+    Observable<CheckBean> getEarnestMoneyAudit(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("isUpdate") String isUpdate);
+
+    //待我审核 认筹修改数据
+    @POST("specialUpdate/earnestMoneyAudit")
+    Observable<EarnestMoneyAuditBean> getEarnestMoneyAuditBean(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("isUpdate") String isUpdate);
+
+    //待我审核 成交数据
+    @POST("specialUpdate/tradeAudit")
+    Observable<CheckBean> getTradeAudit(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("isUpdate") String isUpdate);
+
     //圈层端我的界面数据
     @POST("layersSelect/myData")
     Observable<MyDataBean> getMyData(@Query("userId") String userId);
-
-//    //团队长用户Id获取用户信息
-//    @POST("commonSelect/getUserInfo")
-//    Observable<ZhangBingDataBean> getZhangBingBean(@Query("userId") String userId);
-
-//    //销售用户Id获取用户信息
-//    @POST("commonSelect/getUserInfo")
-//    Observable<XSDataBean> getXSDataBean(@Query("userId") String userId);
-
-    //顾问用户Id获取用户信息
-//    @POST("commonSelect/getUserInfo")
-//    Observable<GWDataBean> getGWDataBean(@Query("userId") String userId);
-
 
     //圈层端登录
     @POST("commonSelect/login")
