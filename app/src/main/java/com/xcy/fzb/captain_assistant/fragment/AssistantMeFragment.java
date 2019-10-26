@@ -34,7 +34,6 @@ import com.xcy.fzb.all.view.AboutFZBActivity;
 import com.xcy.fzb.all.view.CollectActivity;
 import com.xcy.fzb.all.view.FeedbackActivity;
 import com.xcy.fzb.all.view.PersonalInformationActivity;
-import com.xcy.fzb.captain_assistant.view.Assistant_Teams_Activity;
 import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
 
@@ -200,14 +199,12 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
             intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
             FinalContents.setQuanceng("1");
             FinalContents.setMySelf("0");
-            intent.putExtra("client", "5");
+            intent.putExtra("client","5");
             FinalContents.setAgentId(FinalContents.getUserID());
             startActivity(intent);
-        } else if (id == R.id.me_team) {
+        }else if (id == R.id.me_team) {
 //            TODO 我的团队
-            intent = new Intent(getContext(), Assistant_Teams_Activity.class);
-            intent.putExtra("Iftz", "1");
-            startActivity(intent);
+            listterner.process("63"); // 3.1 执行回调
         } else if (id == R.id.me_Brokerage) {
 //            TODO 团队佣金
             intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
@@ -295,7 +292,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
                     public void onNext(MyDataBean myDataBean) {
                         e_client_tv.setText(myDataBean.getData().getTradeNum());
                         e_commissions_tv.setText(myDataBean.getData().getMyAmount());
-                        e_commissions_team.setText(myDataBean.getData().getMyTeamNum() + "");
+                        e_commissions_team.setText(myDataBean.getData().getMyTeamNum()+"");
 
                     }
 
@@ -312,6 +309,32 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
 
     }
 
+    // 2.1 定义用来与外部activity交互，获取到宿主activity
+    private FragmentInteraction listterner;
+
+    // 1 定义了所有activity必须实现的接口方法
+    public interface FragmentInteraction {
+        void process(String str);
+    }
+
+    // 当FRagmen被加载到activity的时候会被回调
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        if(activity instanceof FragmentInteraction) {
+            listterner = (FragmentInteraction)activity; // 2.2 获取到宿主activity并赋值
+        } else{
+            throw new IllegalArgumentException("activity must implements FragmentInteraction");
+        }
+    }
+
+    //把传递进来的activity对象释放掉
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listterner = null;
+    }
 
     @Override
     public void onResume() {
