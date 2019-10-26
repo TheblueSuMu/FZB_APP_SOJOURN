@@ -59,13 +59,11 @@
             android:layout_marginRight="14dp"
             android:lineSpacingExtra="12dp" />
         <!--TODO 放照片-->
-        <ImageView
-            android:id="@+id/room_img"
-            android:layout_width="98dp"
-            android:layout_height="98dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="14dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/good_img_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,7 +109,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="9dp"
                     android:text="13800000000"
-                    android:textColor="#ff999999"
+                    android:textColor="#334485"
+                    android:background="@drawable/x_color"
                     android:textSize="12sp" />
             </LinearLayout>
 

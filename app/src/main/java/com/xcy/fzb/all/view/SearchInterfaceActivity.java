@@ -177,7 +177,7 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
                     }
                 });
 
-        textView.setVisibility(View.GONE);
+//        textView.setVisibility(View.GONE);
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             //用来标记是否正在向最后一个滑动
             boolean isSlidingToLast = false;

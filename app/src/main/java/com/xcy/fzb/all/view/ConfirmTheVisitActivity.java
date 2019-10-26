@@ -150,12 +150,12 @@ public class ConfirmTheVisitActivity extends AllActivity {
                 } else {
                     if (position == parent.getChildCount() - 1) {
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmTheVisitActivity.this);
-                        builder.setTitle("请选择图片来源");
-                        builder.setItems(new String[]{"相机", "相册"}, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                if (i == 0) {
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmTheVisitActivity.this);
+//                        builder.setTitle("请选择图片来源");
+//                        builder.setItems(new String[]{"相机", "相册"}, new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                if (i == 0) {
 
                                     try {
                                         //检测是否有写的权限
@@ -192,25 +192,26 @@ public class ConfirmTheVisitActivity extends AllActivity {
                                     } else {
 
                                     }
-                                } else if (i == 1) {
-                                    Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
-                                    getAlbum.setType(IMAGE_TYPE);
-                                    startActivityForResult(getAlbum, IMAGE_CODE);
                                 }
+//                                else if (i == 1) {
+//                                    Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
+//                                    getAlbum.setType(IMAGE_TYPE);
+//                                    startActivityForResult(getAlbum, IMAGE_CODE);
+//                                }
                             }
-                        });
-                        builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        });
-                        builder.show();
+//                        });
+//                        builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                            }
+//                        });
+//                        builder.show();
                         adapter = new GridViewAdapter(ConfirmTheVisitActivity.this, mDatas);
                         confirm_the_visit_gv.setAdapter(adapter);
 
-                    }
-                }
+//                    }
+//                }
 
             }
         });

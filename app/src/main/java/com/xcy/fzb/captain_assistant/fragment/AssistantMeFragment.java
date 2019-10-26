@@ -342,4 +342,5 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
 
         initUserMessage();
     }
+
 }

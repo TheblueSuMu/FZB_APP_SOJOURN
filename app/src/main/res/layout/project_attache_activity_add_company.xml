@@ -309,13 +309,13 @@
 
                     <EditText
                         android:id="@+id/add_company_et2"
-                        android:layout_width="150dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
+                        android:layout_marginLeft="100dp"
                         android:imeOptions="actionNext"
-                        android:singleLine="true"
                         android:background="#FFFFFF"
                         android:gravity="right"
                         android:hint="请输入详细地址"

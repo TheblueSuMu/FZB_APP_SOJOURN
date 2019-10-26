@@ -9,6 +9,7 @@
         app:riv_oval="true"
         android:src="@mipmap/logo_square"
         android:id="@+id/item_economic_img"
+        android:scaleType="fitXY"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginTop="15dp" />
