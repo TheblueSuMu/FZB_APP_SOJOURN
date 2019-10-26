@@ -126,7 +126,7 @@ public class TaskDetailsActivity extends AllActivity {
             }
         });
 
-        initData();
+//        initData();
     }
 
 
@@ -137,6 +137,8 @@ public class TaskDetailsActivity extends AllActivity {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+        Log.i("即看","" + FinalContents.getUserID());
+        Log.i("即看","" + FinalContents.getRouteTimeId());
         Observable<TaskDetailsBean> userMessage = fzbInterface.getRoutetimeDetails(FinalContents.getUserID(),FinalContents.getRouteTimeId());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

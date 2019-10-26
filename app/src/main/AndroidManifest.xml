@@ -52,7 +52,7 @@
         <activity android:name=".all.view.MessageCommentActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".all.view.MapActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".all.view.BannerPhotoActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".all.view.CollectActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".all.view.CollectActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/><!--TODO 公用 我的收藏-->
         <activity android:name=".all.view.WebViewActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.BuildingDynamicActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.MyClientAddActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
@@ -73,7 +73,7 @@
         <activity android:name=".all.view.AboutFZBActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.RecyclerViewActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.EconomicCircleParticularsActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 经济圈详情-->
-·
+
         <activity android:name=".BaseUrl">       <!--TODO 域名-->
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->

@@ -199,13 +199,13 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
             intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
             FinalContents.setQuanceng("1");
             FinalContents.setMySelf("0");
-            intent.putExtra("client","5");
+            intent.putExtra("client", "5");
             FinalContents.setAgentId(FinalContents.getUserID());
             startActivity(intent);
-        }else if (id == R.id.me_team) {
+        } else if (id == R.id.me_team) {
 //            TODO 我的团队
             intent = new Intent(getContext(), Assistant_Teams_Activity.class);
-            intent.putExtra("Iftz","1");
+            intent.putExtra("Iftz", "1");
             startActivity(intent);
         } else if (id == R.id.me_Brokerage) {
 //            TODO 团队佣金
@@ -294,7 +294,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
                     public void onNext(MyDataBean myDataBean) {
                         e_client_tv.setText(myDataBean.getData().getTradeNum());
                         e_commissions_tv.setText(myDataBean.getData().getMyAmount());
-                        e_commissions_team.setText(myDataBean.getData().getMyTeamNum()+"");
+                        e_commissions_team.setText(myDataBean.getData().getMyTeamNum() + "");
 
                     }
 

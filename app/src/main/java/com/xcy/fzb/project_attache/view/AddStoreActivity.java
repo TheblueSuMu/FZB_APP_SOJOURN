@@ -555,7 +555,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                 //邮编
                 String code = citySelected[3];
                 //为展示区赋值
-                add_broker_et3.setText(city.trim() + "/" + district.trim());
+                add_broker_et3.setText(province + "/" + city.trim() + "/" + district.trim());
             }
         });
 

@@ -1,13 +1,20 @@
 package com.xcy.fzb.all.view;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +23,9 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.RecyclerSAdapter;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.application.DemoApplication;
 import com.xcy.fzb.all.modle.HotBean;
+import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 
@@ -34,7 +43,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CollectActivity extends AllActivity implements View.OnClickListener {
+public class CollectActivity extends AllActivity implements View.OnClickListener , SensorEventListener {
 
     PtrClassicFrameLayout ptrClassicFrameLayout;
 
@@ -48,12 +57,21 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
 
     private RecyclerView recyclerView;
 
+    //TODO     摇一摇
+    private SensorManager mSensorManager;
+    private Vibrator vibrator;
+    private DemoApplication application;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collect);
 
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
+
+        application = (DemoApplication) getApplication();
         initView();
 
 
@@ -63,6 +81,9 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
     private void initView() {
 
         StatusBar.makeStatusBarTransparent(this);
+
+
+
         collect_img = findViewById(R.id.collect_img);
         collect_l1 = findViewById(R.id.collect_l1);
         collect_l2 = findViewById(R.id.collect_l2);
@@ -185,5 +206,69 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
         }else if(collect_ll2.getVisibility() == View.VISIBLE){
             recyclerViewData("2");
         }
+    }
+
+
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+        if(FinalContents.getIdentity().equals("63")){
+
+        }else {
+            int sensortype = event.sensor.getType();
+            float[] values = event.values;
+            if (sensortype == Sensor.TYPE_ACCELEROMETER) {
+                /*因为一般正常情况下，任意轴数值最大就在9.8~10之间，只有在你突然摇动手机
+                 *的时候，瞬时加速度才会突然增大或减少。
+                 *所以，经过实际测试，只需监听任一轴的加速度大于14的时候，改变你需要的设置
+                 *就OK了~~~
+                 */
+                if (Math.abs(values[0]) > 20 || Math.abs(values[1]) > 20 || Math.abs(values[2]) > 20) {
+
+                    if (SharItOff.getShar().equals("隐")) {
+                        SharItOff.setShar("显");
+                        Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
+                    } else if (SharItOff.getShar().equals("显")) {
+                        SharItOff.setShar("隐");
+                        Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                    }
+                    Log.i("MyCL", "摇一摇");
+                    if(collect_ll1.getVisibility() == View.VISIBLE){
+                        recyclerViewData("3");
+                    }else if(collect_ll2.getVisibility() == View.VISIBLE){
+                        recyclerViewData("2");
+                    }
+
+
+                    vibrator.vibrate(100);
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mSensorManager.unregisterListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mSensorManager.unregisterListener(this);
     }
 }

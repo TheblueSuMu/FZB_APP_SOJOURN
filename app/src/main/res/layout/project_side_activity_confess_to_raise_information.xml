@@ -49,10 +49,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+            <Button
+                android:id="@+id/confess_to_raise_information_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="38dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/points_dialog_but"
+                android:text="提交"
+                android:textColor="#FFFFFF" />
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="10dp"
                 android:layout_marginBottom="80dp">
 
                 <LinearLayout
@@ -67,31 +80,31 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         android:text="报备资料"
-                        android:textStyle="bold"
                         android:textColor="#ff111111"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
                         android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_alignParentLeft="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:text="报备客户姓名"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
 
                         <TextView
-                            android:layout_alignParentRight="true"
                             android:id="@+id/confess_to_raise_information_tv1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
                             android:text=""
                             android:textColor="#ff111111"
                             android:textSize="15sp" />
@@ -101,29 +114,29 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="15dp"
-                        android:background="#EEEEEE"/>
+                        android:background="#EEEEEE" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_alignParentLeft="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:text="报备客户电话"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
 
                         <TextView
-                            android:layout_alignParentRight="true"
                             android:id="@+id/confess_to_raise_information_tv2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
                             android:text=""
                             android:textColor="#ff111111"
                             android:textSize="15sp" />
@@ -133,29 +146,29 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="15dp"
-                        android:background="#EEEEEE"/>
+                        android:background="#EEEEEE" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_alignParentLeft="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:text="报备项目"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
 
                         <TextView
-                            android:layout_alignParentRight="true"
                             android:id="@+id/confess_to_raise_information_tv3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
                             android:text=""
                             android:textColor="#ff111111"
                             android:textSize="15sp" />
@@ -165,7 +178,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="5dp"
                         android:layout_marginTop="25dp"
-                        android:background="#EEEEEE"/>
+                        android:background="#EEEEEE" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -173,9 +186,9 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:text="认筹信息"
-                        android:textStyle="bold"
                         android:textColor="#ff111111"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
 
                     <RelativeLayout
@@ -195,16 +208,16 @@
 
                         <EditText
                             android:id="@+id/confess_to_raise_information_et1"
-                            android:background="#FFFFFF"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:imeOptions="actionDone"
-                            android:singleLine="true"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="20dp"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
                             android:hint="请输入认筹客户姓名"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
                             android:textColor="#111"
                             android:textSize="13sp" />
 
@@ -279,17 +292,17 @@
 
                         <EditText
                             android:id="@+id/confess_to_raise_information_et2"
-                            android:background="#FFFFFF"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:gravity="right"
-                            android:imeOptions="actionDone"
-                            android:singleLine="true"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="20dp"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
                             android:hint="请输入认筹客户电话"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:singleLine="true"
                             android:textColor="#111"
                             android:textSize="13sp" />
 
@@ -319,19 +332,19 @@
 
                         <EditText
                             android:id="@+id/confess_to_raise_information_et3"
-                            android:background="#FFFFFF"
                             android:layout_width="150dp"
-                            android:imeOptions="actionDone"
-                            android:singleLine="true"
                             android:layout_height="wrap_content"
-                            android:inputType="number"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:digits="0123456789xX"
-                            android:maxLength="18"
-                            android:gravity="right"
                             android:layout_marginRight="20dp"
+                            android:background="#FFFFFF"
+                            android:digits="0123456789xX"
+                            android:gravity="right"
                             android:hint="请输入认筹客户身份证号"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="18"
+                            android:singleLine="true"
                             android:textColor="#111"
                             android:textSize="13sp" />
 
@@ -359,14 +372,15 @@
                             android:text="报备客户与认筹客户关系"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
+
                         <TextView
                             android:id="@+id/confess_to_raise_information_tv4"
-                            android:background="#FFFFFF"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="20dp"
+                            android:background="#FFFFFF"
                             android:textColor="#ff111111"
                             android:textSize="13sp" />
 
@@ -402,16 +416,16 @@
 
                         <EditText
                             android:id="@+id/confess_to_raise_information_et4"
-                            android:background="#FFFFFF"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:imeOptions="actionDone"
-                            android:singleLine="true"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="20dp"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
                             android:hint="请输入意向楼栋"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
                             android:textColor="#111"
                             android:textSize="13sp" />
 
@@ -439,16 +453,18 @@
                             android:text="意向户型"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
+
                         <TextView
                             android:id="@+id/confess_to_raise_information_tv5"
-                            android:background="#FFFFFF"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="20dp"
+                            android:background="#FFFFFF"
                             android:textColor="#ff666666"
                             android:textSize="13sp" />
+
                         <ImageView
                             android:layout_width="6dp"
                             android:layout_height="9dp"
@@ -482,17 +498,17 @@
 
                         <EditText
                             android:id="@+id/confess_to_raise_information_et5"
-                            android:background="#FFFFFF"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:gravity="right"
-                            android:imeOptions="actionDone"
-                            android:singleLine="true"
                             android:layout_centerVertical="true"
-                            android:inputType="number"
                             android:layout_marginRight="20dp"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
                             android:hint="请输入意向面积"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:singleLine="true"
                             android:textColor="#111"
                             android:textSize="13sp" />
 
@@ -503,7 +519,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="15dp"
-                        android:background="#EEEEEE"/>
+                        android:background="#EEEEEE" />
 
                     <RelativeLayout
                         android:id="@+id/confess_to_raise_information_rl3"
@@ -511,7 +527,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp">
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -520,16 +537,18 @@
                             android:text="认筹时间"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
+
                         <TextView
                             android:id="@+id/confess_to_raise_information_tv6"
-                            android:background="#FFFFFF"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="20dp"
+                            android:background="#FFFFFF"
                             android:textColor="#ff111111"
                             android:textSize="13sp" />
+
                         <ImageView
                             android:layout_width="6dp"
                             android:layout_height="9dp"
@@ -550,21 +569,6 @@
                 </LinearLayout>
 
             </ScrollView>
-
-
-
-            <Button
-                android:id="@+id/confess_to_raise_information_btn"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="38dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="38dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/points_dialog_but"
-                android:text="提交"
-                android:textColor="#FFFFFF" />
 
 
         </RelativeLayout>
