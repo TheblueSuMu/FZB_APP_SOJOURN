@@ -136,7 +136,7 @@ public class EFragment extends Fragment implements View.OnClickListener {
                             me_identity.setText("专员");
                         }
                         me_city.setText(data.getCity());
-                        me_store.setText(data.getStoreManage()+"");
+                        me_store.setText(data.getStoreManage() + "");
                     }
 
                     @Override
@@ -164,7 +164,7 @@ public class EFragment extends Fragment implements View.OnClickListener {
             intent = new Intent(getContext(), CollectActivity.class);
 
             startActivity(intent);
-        }else if (id == R.id.my_rl_1) {
+        } else if (id == R.id.my_rl_1) {
 //            TODO 个人信息
             Log.i("MyCL", "个人信息");
             intent = new Intent(getContext(), PersonalInformationActivity.class);

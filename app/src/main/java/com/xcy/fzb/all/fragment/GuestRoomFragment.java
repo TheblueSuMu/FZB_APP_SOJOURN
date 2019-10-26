@@ -209,6 +209,7 @@ public class GuestRoomFragment extends Fragment{
                                 } else {
                                     if (num == 0) {
                                         imgURl = "http://39.98.173.250:8080" + rows.get(position).getImgPath();
+                                        Log.i("MyCL", "imgURl：" + imgURl);
                                         new Thread(new Runnable() {
                                             @Override
                                             public void run() {
@@ -221,10 +222,11 @@ public class GuestRoomFragment extends Fragment{
                                     }
                                     else {
                                         for (int i = 0; i < list.size(); ++i){
-                                            imgURl = "http://39.98.173.250:8080" + list.get(i);
+                                            final int finI = i;
                                             new Thread(new Runnable() {
                                                 @Override
                                                 public void run() {
+                                                    imgURl = "http://39.98.173.250:8080" + list.get(finI);
                                                     mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
                                                     Bitmap bp = returnBitMap(imgURl);
                                                     Log.i("MyCL", "bp：" + bp);
@@ -279,14 +281,14 @@ public class GuestRoomFragment extends Fragment{
             e.printStackTrace();
         }
         // 其次把文件插入到系统图库
-        try {
-            MediaStore.Images.Media.insertImage(context.getContentResolver(),
-                    file.getAbsolutePath(), fileName, null);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            mHandler.obtainMessage(SAVE_FAILURE).sendToTarget();
-            return;
-        }
+//        try {
+//            MediaStore.Images.Media.insertImage(context.getContentResolver(),
+//                    file.getAbsolutePath(), fileName, null);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//            mHandler.obtainMessage(SAVE_FAILURE).sendToTarget();
+//            return;
+//        }
         // 最后通知图库更新
         Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         Uri uri = Uri.fromFile(file);

@@ -1,8 +1,14 @@
 package com.xcy.fzb.all.view;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -40,6 +47,7 @@ import com.xcy.fzb.all.modle.HotBean;
 import com.xcy.fzb.all.modle.ImgData;
 import com.xcy.fzb.all.modle.NationBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 
@@ -61,7 +69,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class OverSeaActivity extends AllActivity implements View.OnClickListener {
+public class OverSeaActivity extends AllActivity implements View.OnClickListener, SensorEventListener {
     private BannerViewPager banner;
     private List<String> list_img;
     private String newsListUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/newsList?";
@@ -124,6 +132,10 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     View seview;
     private ImageView all_no_information;
 
+    //TODO     摇一摇
+    private SensorManager mSensorManager;
+    private Vibrator vibrator;
+//    private DemoApplication application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +144,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
         title = findViewById(R.id.oversea_title);
 
-
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         seview = findViewById(R.id.seview);
 
@@ -144,6 +157,51 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
 
     }
+
+
+    /**
+     *  摇一摇
+     */
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+        if(FinalContents.getIdentity().equals("63")){
+
+        }else {
+            int sensortype = event.sensor.getType();
+            float[] values = event.values;
+            if (sensortype == Sensor.TYPE_ACCELEROMETER) {
+                /*因为一般正常情况下，任意轴数值最大就在9.8~10之间，只有在你突然摇动手机
+                 *的时候，瞬时加速度才会突然增大或减少。
+                 *所以，经过实际测试，只需监听任一轴的加速度大于14的时候，改变你需要的设置
+                 *就OK了~~~
+                 */
+                if (Math.abs(values[0]) > 20 || Math.abs(values[1]) > 20 || Math.abs(values[2]) > 20) {
+
+                    if (SharItOff.getShar().equals("隐")) {
+                        SharItOff.setShar("显");
+                        Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
+                    } else if (SharItOff.getShar().equals("显")) {
+                        SharItOff.setShar("隐");
+                        Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                    }
+                    Log.i("MyCL", "摇一摇");
+                    inithot();
+
+                    vibrator.vibrate(100);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+
+
 
     private void init() {
         if (FinalContents.getProjectType().equals("2")) {
@@ -738,5 +796,31 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     protected void onDestroy() {
         super.onDestroy();
         FinalContents.setIndex(-1);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_NORMAL);
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        //        TODO 摇一摇
+        mSensorManager.unregisterListener(this);
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        mSensorManager.unregisterListener(this);
+
     }
 }

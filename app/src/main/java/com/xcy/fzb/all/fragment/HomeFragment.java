@@ -130,8 +130,6 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
 
         tvBanner();
 
-        initHotList();
-
         return view;
     }
 
@@ -142,6 +140,7 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
         mSensorManager.unregisterListener(this);
     }
 
+    //  TODO 摇一摇
     @SuppressLint("MissingPermission")
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -163,8 +162,8 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
                     Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
                 }
                 Log.i("MyCL","摇一摇");
-                initHotList();
 
+                initHotList();
                 vibrator.vibrate(100);
             }
         }
@@ -179,6 +178,9 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
     @Override
     public void onResume() {
         super.onResume();
+
+        initHotList();
+
         tvBanner2.startFlipping();
         city.setText(FinalContents.getCityName());
         //TODO 获取加速传感器
@@ -574,4 +576,5 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
         super.onDetach();
         listterner = null;
     }
+
 }
