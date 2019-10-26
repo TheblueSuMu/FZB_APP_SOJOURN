@@ -18,7 +18,7 @@ import com.xcy.fzb.captain_assistant.fragment.TeamFragment;
 import me.jessyan.autosize.AutoSizeConfig;
 import me.jessyan.autosize.internal.CustomAdapt;
 
-public class Captain_Assistant_MainActivity extends AllActivity implements View.OnClickListener, CustomAdapt,AssistantHomeFragment.FragmentInteraction{
+public class Captain_Assistant_MainActivity extends AllActivity implements View.OnClickListener, CustomAdapt,AssistantHomeFragment.FragmentInteraction,AssistantMeFragment.FragmentInteraction{
 
     private RadioButton home;
     private RadioButton project;
@@ -86,6 +86,13 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
                 transaction.replace(R.id.team_main_framelayout,messageFragment);
                 transaction.commit();
                 message.setChecked(true);
+            } else if (str.equals("63")) {
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                TeamFragment teamFragment = new TeamFragment();
+                transaction.replace(R.id.team_main_framelayout, teamFragment);
+                transaction.commit();
+                project.setChecked(true);
             }
         }
     }

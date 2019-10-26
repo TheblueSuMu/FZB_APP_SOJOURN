@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
     private String text = "";
     private String url = hotUrl + "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID() + "&projectType=3" + "&searchName=" + text;
     private List<HotBean.DataBean.RowsBean> hotlist = new ArrayList<>();
+    private ImageView all_no_information;
 
 
     @Override
@@ -75,6 +77,8 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
         textView = findViewById(R.id.search_text);
 
         recyclerView = findViewById(R.id.search_recyler);
+
+        all_no_information = findViewById(R.id.all_no_information);
 
         search_img.setOnClickListener(this);
         search_l1.setOnClickListener(this);
@@ -130,9 +134,12 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
                         Log.i("调接口", "接收值" + hotlist.size());
                         //在此处修改布局排列方向
                         if (hotlist.size() == 0) {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
                             recyclerAdapter.notifyDataSetChanged();
-                            nofound.setVisibility(View.VISIBLE);
                         } else {
+                            all_no_information.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
                             nofound.setVisibility(View.GONE);
                             LinearLayoutManager layoutManager = new LinearLayoutManager(SearchInterfaceActivity.this);
                             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -159,6 +166,8 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
                         Log.i("MyCL","SearchInterfaceActivity错误信息：" + e.getMessage());
                     }
 

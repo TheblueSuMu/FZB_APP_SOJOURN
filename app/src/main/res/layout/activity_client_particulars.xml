@@ -83,8 +83,8 @@
 
             <ImageView
                 android:id="@+id/client_particulars_call"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/icon_mine_call" />
@@ -97,14 +97,28 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="18dp"
             android:layout_marginRight="15dp"
-            android:background="#EEEEEE"></LinearLayout>
+            android:background="#EEEEEE"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/client_particulars_rv"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/client_particulars_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/all_no_information"
+                android:background="#fff"
+                android:visibility="gone"
+                android:src="@mipmap/no_information"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

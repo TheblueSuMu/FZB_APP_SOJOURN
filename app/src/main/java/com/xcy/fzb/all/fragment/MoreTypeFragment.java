@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +29,7 @@ public class MoreTypeFragment extends Fragment {
     private List<MoreBean.DataBean> list;
     private List<MoreBean.DataBean.ValueBeanX> array;
     private View view;
+    private ImageView all_no_information;
 
     public MoreTypeFragment(List<MoreBean.DataBean> list) {
         this.list = list;
@@ -46,11 +48,18 @@ public class MoreTypeFragment extends Fragment {
         array = list.get(1).getValue();
         view  = inflater.inflate(R.layout.fragment_more_type, container, false);
         recyclerView = view.findViewById(R.id.more_type_rv);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-        MoreTypeAdapter recyclerAdapter = new MoreTypeAdapter(array);
-        recyclerView.setAdapter(recyclerAdapter);
+        all_no_information = view.findViewById(R.id.all_no_information);
+
+        if (list.size() != 0) {
+            all_no_information.setVisibility(View.GONE);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            recyclerView.setLayoutManager(layoutManager);
+            MoreTypeAdapter recyclerAdapter = new MoreTypeAdapter(array);
+            recyclerView.setAdapter(recyclerAdapter);
+        }else {
+            all_no_information.setVisibility(View.VISIBLE);
+        }
         return view;
     }
 

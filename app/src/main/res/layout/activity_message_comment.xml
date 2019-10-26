@@ -8,6 +8,7 @@
     tools:context=".all.view.MessageCommentActivity">
 
     <RelativeLayout
+        android:id="@+id/l565"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="@drawable/my_brokerage">
@@ -39,7 +40,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="64dp"
+        android:layout_below="@id/l565"
         android:layout_marginBottom="56dp">
 
         <LinearLayout
@@ -144,7 +145,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
-                android:background="#FFFFFF"></androidx.recyclerview.widget.RecyclerView>
+                android:background="#FFFFFF"/>
 
         </LinearLayout>
     </ScrollView>
@@ -208,5 +209,6 @@
         </LinearLayout>
 
     </RelativeLayout>
+
 
 </RelativeLayout>

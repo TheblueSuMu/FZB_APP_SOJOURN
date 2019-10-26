@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public class MoreInformationFragment extends AllFragment {
     private RelativeLayout project_location;
 
     private Context context;
+    private ImageView all_no_information;
 
     public MoreInformationFragment(List<MoreBean.DataBean> list) {
         this.list = list;
@@ -68,6 +70,8 @@ public class MoreInformationFragment extends AllFragment {
         state = view.findViewById(R.id.more_information_state);
         project_location = view.findViewById(R.id.project_location);
         office_location = view.findViewById(R.id.office_location);
+        all_no_information = view.findViewById(R.id.all_no_information);
+
         Log.i("经纬度","查看更多信息经纬度"+ FinalContents.getO1()+"---"+FinalContents.getD1());
         project_location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +91,14 @@ public class MoreInformationFragment extends AllFragment {
                 startActivity(intent);
             }
         });
-        initView();
+
+        if (list.size() != 0) {
+            initView();
+            all_no_information.setVisibility(View.GONE);
+        }else {
+            all_no_information.setVisibility(View.VISIBLE);
+        }
+
     }
 
     private void initView(){

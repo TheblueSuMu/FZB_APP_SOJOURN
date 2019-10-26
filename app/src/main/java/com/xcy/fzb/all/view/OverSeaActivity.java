@@ -122,6 +122,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private CheckBox checkBox7;
 
     View seview;
+    private ImageView all_no_information;
 
 
     @Override
@@ -245,6 +246,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         oversea_rg = findViewById(R.id.oversea_rg);
         oversea_ll = findViewById(R.id.oversea_ll);
         oversea_lll = findViewById(R.id.oversea_lll);
+
+        all_no_information = findViewById(R.id.all_no_information);
 
         search = findViewById(R.id.oversea_search);
         search.setFocusable(false);
@@ -680,18 +683,29 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                         HotBean.DataBean hotBeanData = hotBean.getData();
                         hotlist = hotBeanData.getRows();
 
-                        //在此处修改布局排列方向
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(OverSeaActivity.this);
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        layoutManager.setScrollEnabled(false);
-                        hotRv.setLayoutManager(layoutManager);
-                        recyclerAdapter = new RecyclerAdapter(hotlist);
-                        hotRv.setAdapter(recyclerAdapter);
-                        recyclerAdapter.notifyDataSetChanged();
+                        if (hotlist.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            hotRv.setVisibility(View.VISIBLE);
+                            //在此处修改布局排列方向
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(OverSeaActivity.this);
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            layoutManager.setScrollEnabled(false);
+                            hotRv.setLayoutManager(layoutManager);
+                            recyclerAdapter = new RecyclerAdapter(hotlist);
+                            hotRv.setAdapter(recyclerAdapter);
+                            recyclerAdapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            hotRv.setVisibility(View.GONE);
+                        }
+
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        hotRv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

@@ -809,7 +809,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 @Override
                                 public void onClick(View view) {
                                     Intent buildingInformationintent = new Intent(ProjectDetails.this, BuildingInformationActivity.class);
-                                    buildingInformationintent.putExtra("pic", "http://39.98.173.250:8080" + projectDetailsBeanData.getProjectListVo().getProjectImg());
+                                    buildingInformationintent.putExtra("pic", "http://39.98.173.250:8080" + projectDetailsBeanData.getBuildingImg());
                                     startActivity(buildingInformationintent);
                                 }
                             });

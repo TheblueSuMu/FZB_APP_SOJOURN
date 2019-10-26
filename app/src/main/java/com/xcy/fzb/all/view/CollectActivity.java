@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -47,6 +46,7 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
     private String hotUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?";
 
     private RecyclerView recyclerView;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +55,6 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
 
 
         initView();
-
-
-
     }
 
     private void initView() {
@@ -70,13 +67,14 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
         collect_ll2 = findViewById(R.id.collect_ll2);
 
         recyclerView = findViewById(R.id.collect_recyler);
+        all_no_information = findViewById(R.id.all_no_information);
 
         collect_img.setOnClickListener(this);
         collect_l1.setOnClickListener(this);
         collect_l2.setOnClickListener(this);
 
 
-        ptrClassicFrameLayout = (PtrClassicFrameLayout) findViewById(R.id.store_house_ptr_frame_9);
+        ptrClassicFrameLayout = findViewById(R.id.store_house_ptr_frame_9);
         ptrClassicFrameLayout.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
@@ -106,7 +104,6 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
 
     @SuppressLint("WrongConstant")
     private void recyclerViewData(String projectType ) {
-//        String url = hotUrl + "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
 
         Log.i("bbb", "用户名ID：" + FinalContents.getUserID());
         Log.i("bbb", "城市ID：" + FinalContents.getCityID());
@@ -133,21 +130,26 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
 
                     @Override
                     public void onNext(HotBean hotBean) {
+
                         HotBean.DataBean hotBeanData = hotBean.getData();
                         List<HotBean.DataBean.RowsBean> hotlist = hotBeanData.getRows();
-//                        Log.i("aaa", "项目名称地址：" + hotlist.get(0).getProjectName());
+                        if (hotlist.size() != 0){
+                            all_no_information.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            RecyclerSAdapter recyclerAdapter = new RecyclerSAdapter(hotlist);
+                            recyclerView.setAdapter(recyclerAdapter);
+                            recyclerAdapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
+                        }
 
-//            Log.i("aaa","图片"+imglist.get(0).getCoverImg());
-
-                        //在此处修改布局排列方向
-
-                        RecyclerSAdapter recyclerAdapter = new RecyclerSAdapter(hotlist);
-                        recyclerView.setAdapter(recyclerAdapter);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        all_no_information.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
                         Log.i("MyCL", "CollectActivity错误信息：" + e.getMessage());
                     }
 

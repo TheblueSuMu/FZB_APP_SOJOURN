@@ -211,7 +211,6 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                                     ProjectProgressApi.setPassportNumber(to_apply_for_an_island_et2.getText().toString());        //      TODO    护照号码
                                     ProjectProgressApi.setPassportimg(imgUrl);        //      TODO    身份证或护照 照片
                                     startActivity(intent);
-                                    finish();
                                 } else {
                                     Toast.makeText(this, "请输入护照编号", Toast.LENGTH_SHORT).show();
                                 }
@@ -224,7 +223,6 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                                 ProjectProgressApi.setPassportNumber(to_apply_for_an_island_et2.getText().toString());        //      TODO    护照号码
                                 ProjectProgressApi.setPassportimg(imgUrl);        //      TODO    身份证或护照 照片
                                 startActivity(intent);
-                                finish();
                             }
 
                         } else {

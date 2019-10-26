@@ -177,6 +177,17 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             }
         });
 
+        if (FinalContents.isChecked()) {
+            client_name.setText(FinalContents.getClientName());
+        } else {
+            project_name.setText("");
+        }
+        if (FinalContents.isChecked2()) {
+            project_name.setText(FinalContents.getProjectName());
+        } else {
+            project_name.setText("");
+        }
+
         report_cancel = findViewById(R.id.report_picker_cancel);
         report_ensure = findViewById(R.id.report_picker_ensure);
 

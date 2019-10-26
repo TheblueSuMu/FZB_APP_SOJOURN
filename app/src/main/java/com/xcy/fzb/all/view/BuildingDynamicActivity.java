@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -85,6 +86,7 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
         }
     };
     private String url;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +102,7 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
         StatusBar.makeStatusBarTransparent(this);
         dynamic_return = findViewById(R.id.dynamic_return);
         dynamic_rv = findViewById(R.id.dynamic_rv);
+        all_no_information = findViewById(R.id.all_no_information);
 //        TODO 返回上一级
         dynamic_return.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,24 +145,35 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
                     public void onNext(Dynamic2Bean dynamicBean) {
                         dynamicBeanData = dynamicBean.getData();
                         list = dynamicBeanData.getRows();
-                        FinalContents.setTargetId(FinalContents.getProjectID());
+                        if (list.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            dynamic_rv.setVisibility(View.VISIBLE);
+                            FinalContents.setTargetId(FinalContents.getProjectID());
 //  TODO 图片查看
-                        recyclerAdapter.setTuPian(new Dynamic2Adapter.TuPian() {
-                            @Override
-                            public void tp(int position) {
-                                Intent intent = new Intent(BuildingDynamicActivity.this, BigPhotoActivity.class);
-                                intent.putExtra("index",position);
-                                intent.putExtra("bigPhotoimg", list.get(position).getImg());
-                                startActivity(intent);
-                            }
-                        });
-                        recyclerAdapter.setList(list);
-                        recyclerAdapter.setBuiling(1);
-                        dynamic_rv.setAdapter(recyclerAdapter);
+                            recyclerAdapter.setTuPian(new Dynamic2Adapter.TuPian() {
+                                @Override
+                                public void tp(int position) {
+                                    Intent intent = new Intent(BuildingDynamicActivity.this, BigPhotoActivity.class);
+                                    intent.putExtra("index",position);
+                                    intent.putExtra("bigPhotoimg", list.get(position).getImg());
+                                    startActivity(intent);
+                                }
+                            });
+                            recyclerAdapter.setList(list);
+                            recyclerAdapter.setBuiling(1);
+                            dynamic_rv.setAdapter(recyclerAdapter);
+                            recyclerAdapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            dynamic_rv.setVisibility(View.GONE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        dynamic_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "BuildingDynamicActivity错误信息：" + e.getMessage());
                     }
 

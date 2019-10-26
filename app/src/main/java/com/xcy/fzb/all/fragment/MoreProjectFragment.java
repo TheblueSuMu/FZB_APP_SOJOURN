@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ public class MoreProjectFragment extends Fragment {
     private TextView value6;
     private TextView value7;
     private TextView value8;
+    private ImageView all_no_information;
 
 
     public MoreProjectFragment(List<MoreBean.DataBean> list) {
@@ -61,15 +63,22 @@ public class MoreProjectFragment extends Fragment {
         value6 = getActivity().findViewById(R.id.value6);
         value7 = getActivity().findViewById(R.id.value7);
         value8 = getActivity().findViewById(R.id.value8);
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
 
-        value1.setText(list.get(2).getValue().get(0).getValue().get(0).getValue());
-        value2.setText(list.get(2).getValue().get(0).getValue().get(1).getValue());
-        value3.setText(list.get(2).getValue().get(0).getValue().get(2).getValue());
-        value4.setText(list.get(2).getValue().get(0).getValue().get(3).getValue());
-        value5.setText(list.get(2).getValue().get(0).getValue().get(4).getValue());
-        value6.setText(list.get(2).getValue().get(0).getValue().get(5).getValue());
-        value7.setText(list.get(2).getValue().get(0).getValue().get(6).getValue());
-        value8.setText(list.get(2).getValue().get(0).getValue().get(7).getValue());
+        if (list.size() != 0) {
+            all_no_information.setVisibility(View.GONE);
+            value1.setText(list.get(2).getValue().get(0).getValue().get(0).getValue());
+            value2.setText(list.get(2).getValue().get(0).getValue().get(1).getValue());
+            value3.setText(list.get(2).getValue().get(0).getValue().get(2).getValue());
+            value4.setText(list.get(2).getValue().get(0).getValue().get(3).getValue());
+            value5.setText(list.get(2).getValue().get(0).getValue().get(4).getValue());
+            value6.setText(list.get(2).getValue().get(0).getValue().get(5).getValue());
+            value7.setText(list.get(2).getValue().get(0).getValue().get(6).getValue());
+            value8.setText(list.get(2).getValue().get(0).getValue().get(7).getValue());
+
+        }else {
+            all_no_information.setVisibility(View.VISIBLE);
+        }
 
     }
 }

@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -52,6 +51,7 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
     ClientParticularsAdapter clientParticularsAdapter;
     private ClientParticularsBean.DataBean.InfoDataBean infoData;
     private ImageView client_particulars_report;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +73,7 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
         client_particulars_name = findViewById(R.id.client_particulars_name);
         client_particulars_phone = findViewById(R.id.client_particulars_phone);
         client_particulars_rv = findViewById(R.id.client_particulars_rv);
+        all_no_information = findViewById(R.id.all_no_information);
 
         client_particulars_img.setOnClickListener(this);
         client_particulars_return.setOnClickListener(this);
@@ -209,15 +210,25 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
                             }
                         });
 
-//        TODO RecyclerView
-                        List<ClientParticularsBean.DataBean.ListDataBean> listData = clientParticularsBean.getData().getListData();
-                        clientParticularsAdapter = new ClientParticularsAdapter();
-                        clientParticularsAdapter.setListData(listData);
-                        client_particulars_rv.setAdapter(clientParticularsAdapter);
+                        if (clientParticularsBean.getData().getListData().size() != 0) {
+                            //        TODO RecyclerView
+                            List<ClientParticularsBean.DataBean.ListDataBean> listData = clientParticularsBean.getData().getListData();
+                            clientParticularsAdapter = new ClientParticularsAdapter();
+                            clientParticularsAdapter.setListData(listData);
+                            client_particulars_rv.setAdapter(clientParticularsAdapter);
+                            client_particulars_rv.setVisibility(View.VISIBLE);
+                            all_no_information.setVisibility(View.GONE);
+                        }else {
+                            client_particulars_rv.setVisibility(View.GONE);
+                            all_no_information.setVisibility(View.VISIBLE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        client_particulars_rv.setVisibility(View.GONE);
+                        all_no_information.setVisibility(View.VISIBLE);
                         Log.i("MyCL", "ClientParticularsActivity错误信息：" + e.getMessage());
                     }
 

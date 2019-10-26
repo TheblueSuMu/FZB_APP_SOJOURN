@@ -222,9 +222,11 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                         return;
                     }
 
-                    if (field_et5.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入护照号码", Toast.LENGTH_SHORT).show();
-                        return;
+                    if (FinalContents.getProjectType().equals("2")) {
+                        if (field_et5.getText().toString().equals("")) {
+                            Toast.makeText(this, "请输入护照号码", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     }
 
                     if (imgUrl.equals("")) {

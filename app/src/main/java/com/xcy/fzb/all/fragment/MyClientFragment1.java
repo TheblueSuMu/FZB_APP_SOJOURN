@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -56,6 +57,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     private List<ClientBean.DataBean> data;
     private Context context;
     int i = 0;
+    private ImageView all_no_information;
 
     public MyClientFragment1() {
         // Required empty public constructor
@@ -81,6 +83,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
         mContactModels = new ArrayList<>();
         mWaveSideBarView = getActivity().findViewById(R.id.main_side_bar);
         mRecyclerView = getActivity().findViewById(R.id.main_recycler);
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         decoration = new PinnedHeaderDecoration();
 
