@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="60dp"
-            android:layout_marginTop="5dp"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_marginTop="5dp"/>
 
         <Button
             android:id="@+id/batch_modifying_btn"
@@ -64,6 +64,14 @@
             android:text="选择级别"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/all_no_information"
+            android:background="#fff"
+            android:visibility="gone"
+            android:src="@mipmap/no_information"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </RelativeLayout>
 
 

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -52,6 +53,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
     private List<ClientFragmentBean.DataBean.RowsBean> rows;
     private List<ReportProcessBean.DataBean.RowsBean> rowsList;
     private ReportProcessAdapter reportProcessAdapter;
+    private ImageView all_no_information;
 
     public MyClientFragment2() {
         // Required empty public constructor
@@ -73,6 +75,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
         super.onActivityCreated(savedInstanceState);
 
         client_2_rv = getActivity().findViewById(R.id.client_2_rv);
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -132,13 +135,24 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
                     @Override
                     public void onNext(ClientFragmentBean clientFragmentBean) {
                         rows = clientFragmentBean.getData().getRows();
-                        clientFragmentAdapter.setRows(rows);
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            client_2_rv.setVisibility(View.VISIBLE);
+                            clientFragmentAdapter.setRows(rows);
 
-                        client_2_rv.setAdapter(clientFragmentAdapter);
+                            client_2_rv.setAdapter(clientFragmentAdapter);
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            client_2_rv.setVisibility(View.GONE);
+                        }
+
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        client_2_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "我的客户（报备）错误信息" + e.getMessage());
                     }
 
@@ -171,12 +185,22 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
                     @Override
                     public void onNext(ReportProcessBean reportProcessBean) {
                         rowsList = reportProcessBean.getData().getRows();
-                        reportProcessAdapter.setRows(rowsList);
-                        client_2_rv.setAdapter(reportProcessAdapter);
+                        if (rowsList.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            client_2_rv.setVisibility(View.VISIBLE);
+                            reportProcessAdapter.setRows(rowsList);
+
+                            client_2_rv.setAdapter(reportProcessAdapter);
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            client_2_rv.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        client_2_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "圈层端我的客户（报备）错误信息" + e.getMessage());
                     }
 

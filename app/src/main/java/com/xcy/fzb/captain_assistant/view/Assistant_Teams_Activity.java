@@ -16,7 +16,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -81,6 +80,7 @@ public class Assistant_Teams_Activity extends AllActivity implements View.OnClic
     private String string2 = "批量修改团队长级别";
     int isnum = 0;
     private String iftz;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public class Assistant_Teams_Activity extends AllActivity implements View.OnClic
         if (FinalContents.getIdentity().equals("62")) {
             team_member_img2.setVisibility(View.GONE);
         }
-
+        all_no_information = findViewById(R.id.all_no_information);
         team_member_img1 = findViewById(R.id.assistant_team_img1);
         team_member_img2 = findViewById(R.id.assistant_team_img2);
 
@@ -144,6 +144,8 @@ public class Assistant_Teams_Activity extends AllActivity implements View.OnClic
             team_member_ll6.setVisibility(View.GONE);
             initData("", "3", "");
             string1 = "添加顾问";
+            string2 = "";
+
         }
 
 
@@ -458,21 +460,30 @@ public class Assistant_Teams_Activity extends AllActivity implements View.OnClic
                     @Override
                     public void onNext(TeamMemberBean teamMemberBean) {
                         rows = teamMemberBean.getData().getRows();
-                        for (int i = 0; i < rows.size(); ++i) {
-                            if (rows.get(i).getName().equals("")) {
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            team_member_rv.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < rows.size(); ++i) {
+                                if (rows.get(i).getName().equals("")) {
 
-                            } else {
-                                ContactModel contactModel = new ContactModel(rows.get(i).getName() + "@" + rows.get(i).getId());// + "@" + rows.get(i).getId()
-                                Log.i("TZ", "数据查看：" + rows.get(i).getName() + "@" + rows.get(i).getId());
-                                mContactModels.add(contactModel);
+                                } else {
+                                    ContactModel contactModel = new ContactModel(rows.get(i).getName() + "@" + rows.get(i).getId());// + "@" + rows.get(i).getId()
+                                    Log.i("TZ", "数据查看：" + rows.get(i).getName() + "@" + rows.get(i).getId());
+                                    mContactModels.add(contactModel);
+                                }
                             }
+                            initDatas();
+                            flag = 0;
+                        }else {
+                            team_member_rv.setVisibility(View.GONE);
+                            all_no_information.setVisibility(View.VISIBLE);
                         }
-                        initDatas();
-                        flag = 0;
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        team_member_rv.setVisibility(View.GONE);
+                        all_no_information.setVisibility(View.VISIBLE);
                         Log.i("MyCL", "TeamMemberActivity错误信息：" + e.getMessage());
                     }
 

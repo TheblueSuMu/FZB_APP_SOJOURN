@@ -168,23 +168,39 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/assistant_team_rv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-
-        <!--字母导航栏-->
-        <com.nanchen.wavesidebar.WaveSideBarView
-            android:id="@+id/assistant_team_side_bar"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"
-            app:sidebar_lazy_respond="false"
-            app:sidebar_text_color="#344586"/>
+            android:layout_marginTop="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/assistant_team_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <!--字母导航栏-->
+            <com.nanchen.wavesidebar.WaveSideBarView
+                android:id="@+id/assistant_team_side_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                app:sidebar_lazy_respond="false"
+                app:sidebar_text_color="#344586"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/all_no_information"
+            android:background="#fff"
+            android:visibility="gone"
+            android:src="@mipmap/no_information"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </RelativeLayout>
+
+
 
 </LinearLayout>

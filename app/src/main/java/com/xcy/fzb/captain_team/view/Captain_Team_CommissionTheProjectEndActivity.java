@@ -308,6 +308,8 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
                     public void onNext(CommissionListBean commissionListBean) {
                         if (commissionListBean.getCode().equals("1")) {
                             if (commissionListBean.getData() != null) {
+                                commission_the_project_end_rv.setVisibility(View.VISIBLE);
+                                commission_the_project_end_rl.setVisibility(View.GONE);
                                 CommissionListBean.DataBean commissionListBeanData = commissionListBean.getData();
                                 List<CommissionListBean.DataBean.RowsBean> rowsBeanList = commissionListBeanData.getRows();
                                 //在此处修改布局排列方向
@@ -319,15 +321,19 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
                                 commission_the_project_end_rv.setAdapter(recyclerAdapter);
                                 recyclerAdapter.notifyDataSetChanged();
                             } else {
+                                commission_the_project_end_rl.setVisibility(View.VISIBLE);
                                 commission_the_project_end_rv.setVisibility(View.GONE);
                             }
                         } else {
+                            commission_the_project_end_rl.setVisibility(View.VISIBLE);
                             commission_the_project_end_rv.setVisibility(View.GONE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        commission_the_project_end_rl.setVisibility(View.VISIBLE);
+                        commission_the_project_end_rv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

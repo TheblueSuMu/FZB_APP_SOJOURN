@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -56,6 +57,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     private PinnedHeaderDecoration decoration;
     private List<ClientBean.DataBean> data;
     private Context context;
+    private ImageView all_no_information;
 
 
     public Captain_Team_MyClientFragment1() {
@@ -80,6 +82,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
         mContactModels = new ArrayList<>();
         mWaveSideBarView = getActivity().findViewById(R.id.main_side_bar);
         mRecyclerView = getActivity().findViewById(R.id.main_recycler);
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         decoration = new PinnedHeaderDecoration();
 
@@ -149,15 +152,25 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                         Log.i("MyCL", "1");
                         mContactModels.clear();
                         data = clientBean.getData();
-                        for (int i = 0; i < data.size(); ++i) {
-                            ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
-                            mContactModels.add(contactModel);
+                        if (data.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            mRecyclerView.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < data.size(); ++i) {
+                                ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
+                                mContactModels.add(contactModel);
+                            }
+                            initDatas();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            mRecyclerView.setVisibility(View.GONE);
                         }
-                        initDatas();
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        mRecyclerView.setVisibility(View.GONE);
                         Log.i("MyCL", "客户列表错误信息：" + e.getMessage());
                     }
 

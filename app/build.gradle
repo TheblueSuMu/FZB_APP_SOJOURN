@@ -134,6 +134,9 @@ dependencies {
     //TODO 图片缩放
     implementation 'com.github.chrisbanes.photoview:library:+'
 
+    //TODO Loading加载页
+    implementation 'com.github.androidprogresslayout:library:2.0.2'
+
     implementation 'me.jessyan:autosize:1.1.2'
     implementation project(path: ':gallery')
 

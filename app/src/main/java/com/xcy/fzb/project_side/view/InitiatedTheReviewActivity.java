@@ -50,6 +50,7 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
 
     InitiatedAdapter adapter;
     private List<InitiatedBean.DataBean.RowsBean> rows;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
 
     private void initView() {
         StatusBar.makeStatusBarTransparent(this);
+        all_no_information = findViewById(R.id.all_no_information);
         initiated_the_review_return = findViewById(R.id.initiated_the_review_return);
         initiated_the_review_tv = findViewById(R.id.initiated_the_review_tv);
         initiated_the_review_ll1 = findViewById(R.id.initiated_the_review_ll1);
@@ -182,20 +184,29 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                     @Override
                     public void onNext(InitiatedBean initiatedBean) {
                         rows = initiatedBean.getData().getRows();
-                        adapter.setRows(rows);
-                        adapter.setOnItemClick(new InitiatedAdapter.OnItemClick() {
-                            @Override
-                            public void Item(int position) {
-                                Intent intent = new Intent(InitiatedTheReviewActivity.this, InitiatedActivity.class);
-                                FinalContents.setPreparationId(rows.get(position).getPreparationId());
-                                startActivity(intent);
-                            }
-                        });
-                        initiated_the_review_rv.setAdapter(adapter);
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            initiated_the_review_rv.setVisibility(View.VISIBLE);
+                            adapter.setRows(rows);
+                            adapter.setOnItemClick(new InitiatedAdapter.OnItemClick() {
+                                @Override
+                                public void Item(int position) {
+                                    Intent intent = new Intent(InitiatedTheReviewActivity.this, InitiatedActivity.class);
+                                    FinalContents.setPreparationId(rows.get(position).getPreparationId());
+                                    startActivity(intent);
+                                }
+                            });
+                            initiated_the_review_rv.setAdapter(adapter);
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            initiated_the_review_rv.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        initiated_the_review_rv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

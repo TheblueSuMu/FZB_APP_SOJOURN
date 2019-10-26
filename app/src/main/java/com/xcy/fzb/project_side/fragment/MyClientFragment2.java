@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -58,6 +59,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
     private List<ClientFragmentBean.DataBean.RowsBean> rows;
     private List<ProcessDataBean.DataBean.RowsBean> rowsList;
     private ProcessDataAdapter processDataAdapter;
+    private ImageView all_no_information;
 
 
     public MyClientFragment2() {
@@ -80,12 +82,12 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
         super.onActivityCreated(savedInstanceState);
         EventBus.getDefault().register(this);
         client_2_rv = getActivity().findViewById(R.id.client_2_rv);
-
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         client_2_rv.setLayoutManager(manager);
 
-        mPtrClassicFrameLayout = (PtrClassicFrameLayout) getActivity().findViewById(R.id.store_house_ptr_frame_3);
+        mPtrClassicFrameLayout = getActivity().findViewById(R.id.store_house_ptr_frame_3);
         mPtrClassicFrameLayout.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
@@ -110,12 +112,6 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
             }
         });
-
-//        if (FinalContents.getZhuanyuan().equals("1")) {
-//            initData2("");
-//        }else {
-//            initData("");
-//        }
 
     }
 
@@ -147,13 +143,23 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
                     @Override
                     public void onNext(ClientFragmentBean clientFragmentBean) {
                         rows = clientFragmentBean.getData().getRows();
-                        clientFragmentAdapter.setRows(rows);
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            client_2_rv.setVisibility(View.VISIBLE);
+                            clientFragmentAdapter.setRows(rows);
+                            client_2_rv.setAdapter(clientFragmentAdapter);
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            client_2_rv.setVisibility(View.GONE);
+                        }
 
-                        client_2_rv.setAdapter(clientFragmentAdapter);
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        client_2_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "我的客户（报备）错误信息" + e.getMessage());
                     }
 
@@ -186,12 +192,21 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
                     @Override
                     public void onNext(ProcessDataBean processDataBean) {
                         rowsList = processDataBean.getData().getRows();
-                        processDataAdapter.setRows(rowsList);
-                        client_2_rv.setAdapter(processDataAdapter);
+                        if (rowsList.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            client_2_rv.setVisibility(View.VISIBLE);
+                            processDataAdapter.setRows(rowsList);
+                            client_2_rv.setAdapter(processDataAdapter);
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            client_2_rv.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        client_2_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "我的客户（报备）错误信息" + e.getMessage());
                     }
 

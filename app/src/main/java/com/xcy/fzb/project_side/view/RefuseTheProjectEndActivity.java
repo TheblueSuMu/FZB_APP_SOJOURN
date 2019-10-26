@@ -45,6 +45,7 @@ public class RefuseTheProjectEndActivity extends AllActivity implements View.OnC
 
     InitiatedAdapter adapter;
     private List<InitiatedBean.DataBean.RowsBean> rows;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class RefuseTheProjectEndActivity extends AllActivity implements View.OnC
     private void initView() {
 
         StatusBar.makeStatusBarTransparent(this);
-
+        all_no_information = findViewById(R.id.all_no_information);
         the_project_end_refuse_return = findViewById(R.id.the_project_end_refuse_return);
         the_project_end_refuse_rv = findViewById(R.id.the_project_end_refuse_rv);
 
@@ -137,14 +138,22 @@ public class RefuseTheProjectEndActivity extends AllActivity implements View.OnC
                     @Override
                     public void onNext(InitiatedBean examinelistBean) {
                         rows = examinelistBean.getData().getRows();
-                        adapter.setRows(rows);
-                        adapter.setOnItemClick(RefuseTheProjectEndActivity.this);
-                        the_project_end_refuse_rv.setAdapter(adapter);
-                        Log.i("MyCL", "拒绝记录成功情况下信息：" + rows.toString());
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            the_project_end_refuse_rv.setVisibility(View.VISIBLE);
+                            adapter.setRows(rows);
+                            adapter.setOnItemClick(RefuseTheProjectEndActivity.this);
+                            the_project_end_refuse_rv.setAdapter(adapter);
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            the_project_end_refuse_rv.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        the_project_end_refuse_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "拒绝记录错误信息：" + e.getMessage());
                     }
 

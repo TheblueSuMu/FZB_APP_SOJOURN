@@ -88,6 +88,8 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     private List<ReportProcessDetailsBean.DataBean.ProcessDataBean> processData;
     private String name = "";
     private RecyclerView review_the_success_nameRv;
+    private ImageView all_no_information;
+    private RelativeLayout lien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +119,8 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         ProjectProgressApi.setCustomerObjective("");
         ProjectProgressApi.setCustomerAuditStatus("");
 
-
+        lien = findViewById(R.id.lien);
+        all_no_information = findViewById(R.id.all_no_information);
         review_the_success_return = findViewById(R.id.review_the_success_return);
         review_the_success_img1 = findViewById(R.id.review_the_success_img1);
         review_the_success_tv1 = findViewById(R.id.review_the_success_tv1);
@@ -198,6 +201,8 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
                     @Override
                     public void onNext(ReportProcessDetailsBean reportProcessDetailsBean) {
+                        lien.setVisibility(View.VISIBLE);
+                        all_no_information.setVisibility(View.GONE);
                         for (int i = 0;i < reportProcessDetailsBean.getData().getMenuData().size();i++){
                             if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("0")) {
                                 //  TODO    失效
@@ -284,6 +289,8 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        lien.setVisibility(View.GONE);
                         Log.i("项目进度页", "错误信息：" + e.getMessage());
                     }
 

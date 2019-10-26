@@ -1,109 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.github.androidprogresslayout.ProgressLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:progressLayout="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="#FFFFFF"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/progress_layout"
+    android:background="#fff"
+    progressLayout:progressBackground="#999999"
+    progressLayout:progress="false">
 
-    <FrameLayout
-        android:id="@+id/main_framelayout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/main_rg"
-        >
+        android:layout_height="match_parent">
 
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/main_framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/main_rg"
+            >
 
-    <RadioGroup
-        android:id="@+id/main_rg"
-        android:paddingTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/back_yy"
-        android:orientation="horizontal">
+        </FrameLayout>
 
-        <RadioButton
-            android:paddingLeft="15dp"
-            android:id="@+id/button_home"
-            android:layout_width="0dp"
+        <RadioGroup
+            android:id="@+id/main_rg"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:checked="true"
-            android:drawableTop="@drawable/checked_home"
-            android:gravity="center"
-            android:drawablePadding="6dp"
-            android:text="首页"
-            android:textColor="#ff333333"
-            android:textSize="12sp"/>
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/back_yy"
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/button_message"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/checked_attache"
-            android:gravity="center"
-            android:drawablePadding="6dp"
-            android:text="门店"
-            android:textColor="#ff333333"
-            android:textSize="12sp"/>
+            <RadioButton
+                android:paddingLeft="15dp"
+                android:id="@+id/button_home"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:drawableTop="@drawable/checked_home"
+                android:gravity="center"
+                android:drawablePadding="6dp"
+                android:text="首页"
+                android:textColor="#ff333333"
+                android:textSize="12sp"/>
 
-
-        <RadioButton
-            android:id="@+id/button_backup"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center"
-            android:text="添加"
-            android:textColor="#ff333333"
-            android:textSize="12sp"/>
+            <RadioButton
+                android:id="@+id/button_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/checked_attache"
+                android:gravity="center"
+                android:drawablePadding="6dp"
+                android:text="门店"
+                android:textColor="#ff333333"
+                android:textSize="12sp"/>
 
 
-        <RadioButton
-            android:id="@+id/button_economics"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/checked_message"
-            android:gravity="center"
-            android:drawablePadding="6dp"
-            android:text="消息"
-            android:textColor="#ff333333"
-            android:textSize="12sp"
+            <RadioButton
+                android:id="@+id/button_backup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="添加"
+                android:textColor="#ff333333"
+                android:textSize="12sp"/>
+
+
+            <RadioButton
+                android:id="@+id/button_economics"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/checked_message"
+                android:gravity="center"
+                android:drawablePadding="6dp"
+                android:text="消息"
+                android:textColor="#ff333333"
+                android:textSize="12sp"
+                />
+
+            <RadioButton
+                android:id="@+id/button_me"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/checked_me"
+                android:gravity="center"
+                android:drawablePadding="6dp"
+                android:text="我的"
+                android:textColor="#ff333333"
+                android:textSize="12sp"/>
+
+        </RadioGroup>
+
+
+        <ImageView
+            android:id="@+id/img_backup"
+            android:paddingTop="5dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/back_yuan"
             />
 
-        <RadioButton
-            android:id="@+id/button_me"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/checked_me"
-            android:gravity="center"
-            android:drawablePadding="6dp"
-            android:text="我的"
-            android:textColor="#ff333333"
-            android:textSize="12sp"/>
-
-    </RadioGroup>
+    </RelativeLayout>
 
 
-    <ImageView
-        android:id="@+id/img_backup"
-        android:paddingTop="5dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="25dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/back_yuan"
-        />
 
-</RelativeLayout>
+</com.github.androidprogresslayout.ProgressLayout>

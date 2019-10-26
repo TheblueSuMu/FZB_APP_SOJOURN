@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -55,6 +56,7 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
     private List<ClientFragmentBean.DataBean.RowsBean> rows;
     private ProcessDataAdapter processDataAdapter;
     private List<ProcessDataBean.DataBean.RowsBean> rowsList;
+    private ImageView all_no_information;
 
     public MyClientFragment6() {
         // Required empty public constructor
@@ -79,6 +81,7 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
         Log.i("刷新","正在刷新1");
 
         client_6_rv = getActivity().findViewById(R.id.client_6_rv);
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -145,14 +148,22 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
                     @Override
                     public void onNext(ClientFragmentBean clientFragmentBean) {
                         rows = clientFragmentBean.getData().getRows();
-                        clientFragmentAdapter.setRows(rows);
-                        client_6_rv.setAdapter(clientFragmentAdapter);
-                        clientFragmentAdapter.notifyDataSetChanged();
-                        Log.i("刷新","成功刷新1");
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            client_6_rv.setVisibility(View.VISIBLE);
+                            clientFragmentAdapter.setRows(rows);
+                            client_6_rv.setAdapter(clientFragmentAdapter);
+                            clientFragmentAdapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            client_6_rv.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        client_6_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "我的客户（成交）错误信息" + e.getMessage());
                     }
 
@@ -185,14 +196,22 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
                     @Override
                     public void onNext(ProcessDataBean processDataBean) {
                         rowsList = processDataBean.getData().getRows();
-                        processDataAdapter.setRows(rowsList);
-                        client_6_rv.setAdapter(processDataAdapter);
-                        processDataAdapter.notifyDataSetChanged();
-                        Log.i("刷新","成功刷新2");
+                        if (rowsList.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            client_6_rv.setVisibility(View.VISIBLE);
+                            processDataAdapter.setRows(rowsList);
+                            client_6_rv.setAdapter(processDataAdapter);
+                            processDataAdapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            client_6_rv.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        client_6_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "我的客户（报备）错误信息" + e.getMessage());
                     }
 

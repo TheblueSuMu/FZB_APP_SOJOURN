@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -56,6 +57,7 @@ public class MyClientFragment5 extends Fragment implements ClientFragmentAdapter
     private List<ClientFragmentBean.DataBean.RowsBean> rows;
     private ProcessDataAdapter processDataAdapter;
     private List<ProcessDataBean.DataBean.RowsBean> rowsList;
+    private ImageView all_no_information;
 
 
     public MyClientFragment5() {
@@ -80,6 +82,7 @@ public class MyClientFragment5 extends Fragment implements ClientFragmentAdapter
         EventBus.getDefault().register(this);
 
         client_5_rv = getActivity().findViewById(R.id.client_5_rv);
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -145,17 +148,22 @@ public class MyClientFragment5 extends Fragment implements ClientFragmentAdapter
                     public void onNext(ClientFragmentBean clientFragmentBean) {
                         rows = clientFragmentBean.getData().getRows();
 
-
-                        clientFragmentAdapter.setRows(rows);
-                        client_5_rv.setAdapter(clientFragmentAdapter);
-                        for (int i = 0; i < rows.size(); ++i) {
-
-                            Log.i("MyCL", "id：" + rows.get(i).getCustomerId());
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            client_5_rv.setVisibility(View.VISIBLE);
+                            clientFragmentAdapter.setRows(rows);
+                            client_5_rv.setAdapter(clientFragmentAdapter);
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            client_5_rv.setVisibility(View.GONE);
                         }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        client_5_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "我的客户（认筹）错误信息" + e.getMessage());
                     }
 
@@ -188,12 +196,21 @@ public class MyClientFragment5 extends Fragment implements ClientFragmentAdapter
                     @Override
                     public void onNext(ProcessDataBean processDataBean) {
                         rowsList = processDataBean.getData().getRows();
-                        processDataAdapter.setRows(rowsList);
-                        client_5_rv.setAdapter(processDataAdapter);
+                        if (rowsList.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            client_5_rv.setVisibility(View.VISIBLE);
+                            processDataAdapter.setRows(rowsList);
+                            client_5_rv.setAdapter(processDataAdapter);
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            client_5_rv.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        client_5_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "我的客户（报备）错误信息" + e.getMessage());
                     }
 

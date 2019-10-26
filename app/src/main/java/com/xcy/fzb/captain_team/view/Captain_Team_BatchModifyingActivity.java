@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
     String IDS = "";
     private OptionsPickerView pvOptions;
     private String type = "";
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
         }
 
 		StatusBar.makeStatusBarTransparent(this);
-		
+        all_no_information = findViewById(R.id.all_no_information);
         batch_modifying_img = findViewById(R.id.batch_modifying_img);
 
         batch_modifying_img.setOnClickListener(new View.OnClickListener() {
@@ -231,26 +233,37 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
                     @Override
                     public void onNext(final TeamMemberBean teamMemberBean) {
 
-                        LinearLayoutManager manager = new LinearLayoutManager(Captain_Team_BatchModifyingActivity.this);
-                        manager.setOrientation(LinearLayoutManager.VERTICAL);
-                        batch_modifying_rv.setLayoutManager(manager);
-                        adapter = new Captain_Team_BatchModifyingAdapter(teamMemberBean.getData().getRows());
-                        batch_modifying_rv.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                        adapter.setOnItemClickListener(new Captain_Team_BatchModifyingAdapter.OnItemClickLisenter() {
-                            @Override
-                            public void onItemClick(int postion) {
-                                if (IDS.equals("")) {
-                                    IDS = teamMemberBean.getData().getRows().get(postion).getId();
-                                }else {
-                                    IDS = IDS +","+ teamMemberBean.getData().getRows().get(postion).getId();
+                        if (teamMemberBean.getData().getRows().size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            batch_modifying_rv.setVisibility(View.VISIBLE);
+                            LinearLayoutManager manager = new LinearLayoutManager(Captain_Team_BatchModifyingActivity.this);
+                            manager.setOrientation(LinearLayoutManager.VERTICAL);
+                            batch_modifying_rv.setLayoutManager(manager);
+                            adapter = new Captain_Team_BatchModifyingAdapter(teamMemberBean.getData().getRows());
+                            batch_modifying_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                            adapter.setOnItemClickListener(new Captain_Team_BatchModifyingAdapter.OnItemClickLisenter() {
+                                @Override
+                                public void onItemClick(int postion) {
+                                    if (IDS.equals("")) {
+                                        IDS = teamMemberBean.getData().getRows().get(postion).getId();
+                                    }else {
+                                        IDS = IDS +","+ teamMemberBean.getData().getRows().get(postion).getId();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            batch_modifying_rv.setVisibility(View.GONE);
+                        }
+
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        batch_modifying_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "批量修改错误信息：" + e.getMessage());
                     }
 

@@ -49,6 +49,7 @@ public class MyProjectActivity extends AllActivity implements View.OnClickListen
 
     RecyclerView my_project_recyler;
     String projectType = "2";
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class MyProjectActivity extends AllActivity implements View.OnClickListen
     }
 
     private void initView() {
-
+        all_no_information = findViewById(R.id.all_no_information);
         my_project_img = findViewById(R.id.my_project_img);
         my_project_l1 = findViewById(R.id.my_project_l1);
         my_project_l2 = findViewById(R.id.my_project_l2);
@@ -160,6 +161,7 @@ public class MyProjectActivity extends AllActivity implements View.OnClickListen
                     @Override
                     public void onNext(SideHomeBean homeListBean) {
                         if (homeListBean.getCode().equals("1") || homeListBean.getData().getRows().size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
                             SideHomeBean.DataBean homeListBeanData = homeListBean.getData();
                             final List<SideHomeBean.DataBean.RowsBean> homeListBeanDataRows = homeListBeanData.getRows();
                             //在此处修改布局排列方向
@@ -182,11 +184,14 @@ public class MyProjectActivity extends AllActivity implements View.OnClickListen
                             recyclerAdapter.notifyDataSetChanged();
                         }else {
                             my_project_recyler.setVisibility(View.GONE);
+                            all_no_information.setVisibility(View.VISIBLE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        my_project_recyler.setVisibility(View.GONE);
+                        all_no_information.setVisibility(View.VISIBLE);
                         Log.i("列表数据获取错误","错误"+e);
                     }
 

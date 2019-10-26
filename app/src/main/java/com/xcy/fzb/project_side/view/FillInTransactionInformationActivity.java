@@ -108,6 +108,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
     private RecyclerView fill_in_transaction_information_rv;
     private TextView fill_in_transaction_information_tishi;
     private boolean whethe = false;
+    private String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,9 +207,9 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                         double price = Double.parseDouble(s2);
                         sum = (area*price);
                         java.text.DecimalFormat myformat=new java.text.DecimalFormat("0.00");
-                        String str = myformat.format(sum);
+                        str = myformat.format(sum);
                         Log.i("计算价格","sum:"+sum);
-                        fill_in_transaction_information_et6.setText(str+"元");
+                        fill_in_transaction_information_et6.setText(str +"元");
                         fill_in_transaction_information_tishi.setVisibility(View.GONE);
                         return true;
                     }
@@ -238,7 +239,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                             double price = Double.parseDouble(s2);
                             sum = (area*price);
                             java.text.DecimalFormat myformat=new java.text.DecimalFormat("0.00");
-                            String str = myformat.format(sum);
+                            str = myformat.format(sum);
                             Log.i("计算价格","sum:"+sum);
                             fill_in_transaction_information_et6.setText(str+"元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
@@ -272,7 +273,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                             double price = Double.parseDouble(s2);
                             sum = (area*price);
                             java.text.DecimalFormat myformat=new java.text.DecimalFormat("0.00");
-                            String str = myformat.format(sum);
+                            str = myformat.format(sum);
                             Log.i("计算价格","sum:"+sum);
                             fill_in_transaction_information_et6.setText(str+"元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
@@ -344,7 +345,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<TradeSaveBean> userMessage = fzbInterface.getTradeSave("",FinalContents.getProjectID(),"",FinalContents.getPreparationId(),FinalContents.getCustomerID(),fang_hao_et1.getText().toString()+"栋"+fang_hao_et2.getText().toString()+"单元"+fang_hao_et3.getText().toString()+"室", apartment,fill_in_transaction_information_et4.getText().toString(),fill_in_transaction_information_et5.getText().toString(),sum+"",payment_way.getText().toString(),FinalContents.getCommissionId(),projecttype, gender,project_relation.getText().toString(),fill_in_transaction_information_et1.getText().toString(),fill_in_transaction_information_et2.getText().toString(),fill_in_transaction_information_et3.getText().toString(),FinalContents.getUserID(),project_time.getText().toString());
+            Observable<TradeSaveBean> userMessage = fzbInterface.getTradeSave("",FinalContents.getProjectID(),"",FinalContents.getPreparationId(),FinalContents.getCustomerID(),fang_hao_et1.getText().toString()+"栋"+fang_hao_et2.getText().toString()+"单元"+fang_hao_et3.getText().toString()+"室", apartment,fill_in_transaction_information_et4.getText().toString(),fill_in_transaction_information_et5.getText().toString(),str,payment_way.getText().toString(),FinalContents.getCommissionId(),projecttype, gender,project_relation.getText().toString(),fill_in_transaction_information_et1.getText().toString(),fill_in_transaction_information_et2.getText().toString(),fill_in_transaction_information_et3.getText().toString(),FinalContents.getUserID(),project_time.getText().toString());
             userMessage.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<TradeSaveBean>() {
@@ -403,7 +404,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<TradeSaveBean> userMessage = fzbInterface.getAdjustApplySave(FinalContents.getPreparationId(),FinalContents.getCustomerID(),fang_hao_et1.getText().toString()+"栋"+fang_hao_et2.getText().toString()+"单元"+fang_hao_et3.getText().toString()+"室",apartment,fill_in_transaction_information_et4.getText().toString(),fill_in_transaction_information_et5.getText().toString(),sum+"",payment_way.getText().toString(),FinalContents.getCommissionId(),projecttype,gender,project_relation.getText().toString(),fill_in_transaction_information_et1.getText().toString(),fill_in_transaction_information_et2.getText().toString(),fill_in_transaction_information_et3.getText().toString(),FinalContents.getUserID(),FinalContents.getProjectID(),FinalContents.getEconomicCircleID(),project_time.getText().toString());
+        Observable<TradeSaveBean> userMessage = fzbInterface.getAdjustApplySave(FinalContents.getPreparationId(),FinalContents.getCustomerID(),fang_hao_et1.getText().toString()+"栋"+fang_hao_et2.getText().toString()+"单元"+fang_hao_et3.getText().toString()+"室",apartment,fill_in_transaction_information_et4.getText().toString(),fill_in_transaction_information_et5.getText().toString(),str,payment_way.getText().toString(),FinalContents.getCommissionId(),projecttype,gender,project_relation.getText().toString(),fill_in_transaction_information_et1.getText().toString(),fill_in_transaction_information_et2.getText().toString(),fill_in_transaction_information_et3.getText().toString(),FinalContents.getUserID(),FinalContents.getProjectID(),FinalContents.getEconomicCircleID(),project_time.getText().toString());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<TradeSaveBean>() {

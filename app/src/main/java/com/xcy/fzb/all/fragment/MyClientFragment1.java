@@ -114,15 +114,24 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                     public void onNext(ClientBean clientBean) {
                         data = clientBean.getData();
                         Log.i("MyCL", "数据长度：" + data.size());
-                        for (int i = 0; i < data.size(); ++i) {
-                            ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
-                            mContactModels.add(contactModel);
+                        if (data.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            mRecyclerView.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < data.size(); ++i) {
+                                ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
+                                mContactModels.add(contactModel);
+                            }
+                            initDatas();
+                        }else {
+                            mRecyclerView.setVisibility(View.GONE);
+                            all_no_information.setVisibility(View.VISIBLE);
                         }
-                        initDatas();
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        mRecyclerView.setVisibility(View.GONE);
+                        all_no_information.setVisibility(View.VISIBLE);
                         Log.i("MyCL", "客户列表错误信息：" + e.getMessage());
                     }
 

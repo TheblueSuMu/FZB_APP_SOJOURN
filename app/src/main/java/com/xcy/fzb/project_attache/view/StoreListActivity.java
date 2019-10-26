@@ -68,6 +68,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
     private List<StoreListData> listData;
     private List<StoreListBean.DataBean.RowsBean> rows;
     private Intent intent;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
     private void initView() {
         StatusBar.makeStatusBarTransparent(this);
+        all_no_information = findViewById(R.id.all_no_information);
+
         store_list_return = findViewById(R.id.store_list_return);
         store_list_add = findViewById(R.id.store_list_add);
         store_list_et = findViewById(R.id.store_list_et);
@@ -196,37 +199,47 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                         listData.clear();
                         mContactModels.clear();
                         rows = storeListBean.getData().getRows();
-                        for (int i = 0; i < rows.size(); ++i) {
-                            if (rows.get(i).getCompanyName().equals("")) {
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            store_list_rv.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < rows.size(); ++i) {
+                                if (rows.get(i).getCompanyName().equals("")) {
 
-                            } else {
-                                ContactModel contactModel = new ContactModel(rows.get(i).getCompanyName() + "" + rows.get(i).getStoreName());
-                                StoreListData storeListData = new StoreListData();
+                                } else {
+                                    ContactModel contactModel = new ContactModel(rows.get(i).getCompanyName() + "" + rows.get(i).getStoreName());
+                                    StoreListData storeListData = new StoreListData();
 
-                                storeListData.setStoreName(rows.get(i).getStoreName());
-                                storeListData.setStoreId(rows.get(i).getStoreId());
-                                storeListData.setShopownerName(rows.get(i).getShopownerName());
-                                storeListData.setShopownerPhone(rows.get(i).getShopownerPhone());
-                                storeListData.setAgentNum(rows.get(i).getAgentNum());
-                                storeListData.setStatus(rows.get(i).getStatus());
-                                storeListData.setCompanyId(rows.get(i).getCompanyId());
-                                storeListData.setCompanyName(rows.get(i).getCompanyName());
-                                storeListData.setStoreIdCode(rows.get(i).getStoreIdCode());
-                                storeListData.setCompanyAddress(rows.get(i).getCompanyAddress());
-                                storeListData.setStoreNum(rows.get(i).getStoreNum());
+                                    storeListData.setStoreName(rows.get(i).getStoreName());
+                                    storeListData.setStoreId(rows.get(i).getStoreId());
+                                    storeListData.setShopownerName(rows.get(i).getShopownerName());
+                                    storeListData.setShopownerPhone(rows.get(i).getShopownerPhone());
+                                    storeListData.setAgentNum(rows.get(i).getAgentNum());
+                                    storeListData.setStatus(rows.get(i).getStatus());
+                                    storeListData.setCompanyId(rows.get(i).getCompanyId());
+                                    storeListData.setCompanyName(rows.get(i).getCompanyName());
+                                    storeListData.setStoreIdCode(rows.get(i).getStoreIdCode());
+                                    storeListData.setCompanyAddress(rows.get(i).getCompanyAddress());
+                                    storeListData.setStoreNum(rows.get(i).getStoreNum());
 
-                                mContactModels.add(contactModel);
-                                listData.add(storeListData);
-                                Log.i("MyCL", "请求成功数据：" + rows.get(i).getCompanyName());
-                                Log.i("MyCL", "请求成功数据：" + listData.size());
+                                    mContactModels.add(contactModel);
+                                    listData.add(storeListData);
+                                    Log.i("MyCL", "请求成功数据：" + rows.get(i).getCompanyName());
+                                    Log.i("MyCL", "请求成功数据：" + listData.size());
+                                }
                             }
+                            initDatas();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            store_list_rv.setVisibility(View.GONE);
                         }
-                        initDatas();
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        all_no_information.setVisibility(View.VISIBLE);
+                        store_list_rv.setVisibility(View.GONE);
+                        Log.i("专员门店或公司列表", "错误信息：" + e.getMessage());
                     }
 
                     @Override
@@ -353,37 +366,47 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                         listData.clear();
                         mContactModels.clear();
                         rows = storeListBean.getData().getRows();
-                        for (int i = 0; i < StoreListActivity.this.rows.size(); ++i) {
-                            if (rows.get(i).getCompanyName().equals("")) {
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            store_list_rv.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < StoreListActivity.this.rows.size(); ++i) {
+                                if (rows.get(i).getCompanyName().equals("")) {
 
-                            } else {
-                                Log.i("专员", "进入公司2");
-                                ContactModel contactModel = new ContactModel(StoreListActivity.this.rows.get(i).getCompanyName() + rows.get(i).getStoreName());
-                                StoreListData storeListData = new StoreListData();
+                                } else {
+                                    Log.i("专员", "进入公司2");
+                                    ContactModel contactModel = new ContactModel(StoreListActivity.this.rows.get(i).getCompanyName() + rows.get(i).getStoreName());
+                                    StoreListData storeListData = new StoreListData();
 
-                                storeListData.setStoreName(StoreListActivity.this.rows.get(i).getStoreName());
-                                storeListData.setStoreId(StoreListActivity.this.rows.get(i).getStoreId());
-                                storeListData.setShopownerName(StoreListActivity.this.rows.get(i).getShopownerName());
-                                storeListData.setShopownerPhone(StoreListActivity.this.rows.get(i).getShopownerPhone());
-                                storeListData.setAgentNum(StoreListActivity.this.rows.get(i).getAgentNum());
-                                storeListData.setStatus(StoreListActivity.this.rows.get(i).getStatus());
-                                storeListData.setCompanyId(StoreListActivity.this.rows.get(i).getCompanyId());
-                                storeListData.setCompanyName(rows.get(i).getCompanyName());
-                                storeListData.setStoreIdCode(rows.get(i).getStoreIdCode());
-                                storeListData.setCompanyAddress(rows.get(i).getCompanyAddress());
-                                storeListData.setStoreNum(rows.get(i).getStoreNum());
+                                    storeListData.setStoreName(StoreListActivity.this.rows.get(i).getStoreName());
+                                    storeListData.setStoreId(StoreListActivity.this.rows.get(i).getStoreId());
+                                    storeListData.setShopownerName(StoreListActivity.this.rows.get(i).getShopownerName());
+                                    storeListData.setShopownerPhone(StoreListActivity.this.rows.get(i).getShopownerPhone());
+                                    storeListData.setAgentNum(StoreListActivity.this.rows.get(i).getAgentNum());
+                                    storeListData.setStatus(StoreListActivity.this.rows.get(i).getStatus());
+                                    storeListData.setCompanyId(StoreListActivity.this.rows.get(i).getCompanyId());
+                                    storeListData.setCompanyName(rows.get(i).getCompanyName());
+                                    storeListData.setStoreIdCode(rows.get(i).getStoreIdCode());
+                                    storeListData.setCompanyAddress(rows.get(i).getCompanyAddress());
+                                    storeListData.setStoreNum(rows.get(i).getStoreNum());
 
-                                mContactModels.add(contactModel);
-                                listData.add(storeListData);
+                                    mContactModels.add(contactModel);
+                                    listData.add(storeListData);
+                                }
+
                             }
-
+                            initDatas();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            store_list_rv.setVisibility(View.GONE);
                         }
-                        initDatas();
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        all_no_information.setVisibility(View.VISIBLE);
+                        store_list_rv.setVisibility(View.GONE);
+                        Log.i("专员公司列表", "错误信息：" + e.getMessage());
                     }
 
                     @Override

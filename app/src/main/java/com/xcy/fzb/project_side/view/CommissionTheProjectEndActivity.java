@@ -401,24 +401,35 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
                             if (receivableBean.getData() != null) {
                                 ReceivableBean.DataBean receivableBeanData = receivableBean.getData();
                                 List<ReceivableBean.DataBean.RowsBean> rowsBeanList = receivableBeanData.getRows();
-                                //在此处修改布局排列方向
-                                commission_the_project_end_rv.setVisibility(View.VISIBLE);
-                                MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(CommissionTheProjectEndActivity.this);
-                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                                commission_the_project_end_rv.setLayoutManager(layoutManager);
-                                TheProjectEndCommissionAdapter recyclerAdapter = new TheProjectEndCommissionAdapter(rowsBeanList);
-                                commission_the_project_end_rv.setAdapter(recyclerAdapter);
-                                recyclerAdapter.notifyDataSetChanged();
+                                if (rowsBeanList.size() != 0) {
+                                    commission_the_project_end_rl.setVisibility(View.GONE);
+                                    //在此处修改布局排列方向
+                                    commission_the_project_end_rv.setVisibility(View.VISIBLE);
+                                    MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(CommissionTheProjectEndActivity.this);
+                                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                    commission_the_project_end_rv.setLayoutManager(layoutManager);
+                                    TheProjectEndCommissionAdapter recyclerAdapter = new TheProjectEndCommissionAdapter(rowsBeanList);
+                                    commission_the_project_end_rv.setAdapter(recyclerAdapter);
+                                    recyclerAdapter.notifyDataSetChanged();
+                                }else {
+                                    commission_the_project_end_rl.setVisibility(View.VISIBLE);
+                                    commission_the_project_end_rv.setVisibility(View.GONE);
+                                }
+
                             }else {
                                 commission_the_project_end_rv.setVisibility(View.GONE);
+                                commission_the_project_end_rl.setVisibility(View.VISIBLE);
                             }
                         }else {
                             commission_the_project_end_rv.setVisibility(View.GONE);
+                            commission_the_project_end_rl.setVisibility(View.VISIBLE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        commission_the_project_end_rv.setVisibility(View.GONE);
+                        commission_the_project_end_rl.setVisibility(View.VISIBLE);
                         Log.i("列表数据获取错误","错误"+e);
                     }
 

@@ -55,6 +55,7 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
     CheckPendingTheProjectEndAdapter adapter;
     private List<CheckPendingBean.DataBean.RowsBean> rows;
     private Intent intent;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,7 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
         StatusBar.makeStatusBarTransparent(this);
 
         mPtrClassicFrameLayout = findViewById(R.id.store_house_ptr_frame_1);
-
+        all_no_information = findViewById(R.id.all_no_information);
         check_pending_the_project_end_return = findViewById(R.id.check_pending_the_project_end_return);
         check_pending_the_project_end_tv = findViewById(R.id.check_pending_the_project_end_tv);
         check_pending_the_project_end_ll1 = findViewById(R.id.check_pending_the_project_end_ll1);
@@ -212,44 +213,54 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
                     @Override
                     public void onNext(CheckPendingBean checkPendingBean) {
                         rows = checkPendingBean.getData().getRows();
-                        adapter.setRows(rows);
-                        adapter.setOnItemClick(new CheckPendingTheProjectEndAdapter.OnItemClick() {
-                            @Override
-                            public void itemItem(int position) {
-                                intent = new Intent(CheckPendingTheProjectEndActivity.this, CheckPendingActivity.class);
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            check_pending_the_project_end_rv.setVisibility(View.VISIBLE);
+                            adapter.setRows(rows);
+                            adapter.setOnItemClick(new CheckPendingTheProjectEndAdapter.OnItemClick() {
+                                @Override
+                                public void itemItem(int position) {
+                                    intent = new Intent(CheckPendingTheProjectEndActivity.this, CheckPendingActivity.class);
 
-                                if (rows.get(position).getRelatedData().equals("认筹") || rows.get(position).getRelatedData().equals("成功")) {
-                                    intent.putExtra("Mycheck", "2");
-                                } else {
-                                    intent.putExtra("Mycheck", "1");
-                                }
-                                if (check_pending_the_project_end_ll2.getVisibility() == View.VISIBLE) {
-                                    intent.putExtra("name", "报备");
-                                    FinalContents.setNumS(1);
-                                } else if (check_pending_the_project_end_ll4.getVisibility() == View.VISIBLE) {
-                                    FinalContents.setNumS(2);
-                                    intent.putExtra("name", "到访");
-                                } else if (check_pending_the_project_end_ll6.getVisibility() == View.VISIBLE) {
-                                    FinalContents.setNumS(3);
-                                    intent.putExtra("name", "认筹");
-                                } else if (check_pending_the_project_end_ll8.getVisibility() == View.VISIBLE) {
-                                    FinalContents.setNumS(4);
-                                    intent.putExtra("name", "失效");
-                                }
+                                    if (rows.get(position).getRelatedData().equals("认筹") || rows.get(position).getRelatedData().equals("成功")) {
+                                        intent.putExtra("Mycheck", "2");
+                                    } else {
+                                        intent.putExtra("Mycheck", "1");
+                                    }
+                                    if (check_pending_the_project_end_ll2.getVisibility() == View.VISIBLE) {
+                                        intent.putExtra("name", "报备");
+                                        FinalContents.setNumS(1);
+                                    } else if (check_pending_the_project_end_ll4.getVisibility() == View.VISIBLE) {
+                                        FinalContents.setNumS(2);
+                                        intent.putExtra("name", "到访");
+                                    } else if (check_pending_the_project_end_ll6.getVisibility() == View.VISIBLE) {
+                                        FinalContents.setNumS(3);
+                                        intent.putExtra("name", "认筹");
+                                    } else if (check_pending_the_project_end_ll8.getVisibility() == View.VISIBLE) {
+                                        FinalContents.setNumS(4);
+                                        intent.putExtra("name", "成交");
+                                    }
 
-                                FinalContents.setPreparationId(rows.get(position).getPreparationId());
-                                FinalContents.setCustomerID(rows.get(position).getCustomerId());
-                                FinalContents.setStatus(rows.get(position).getStatus());
-                                Log.i("MyCL", "getPreparationId：" + rows.get(position).getPreparationId());
-                                Log.i("MyCL", "getCustomerId：" + rows.get(position).getCustomerId());
-                                startActivity(intent);
-                            }
-                        });
-                        check_pending_the_project_end_rv.setAdapter(adapter);
+                                    FinalContents.setPreparationId(rows.get(position).getPreparationId());
+                                    FinalContents.setCustomerID(rows.get(position).getCustomerId());
+                                    FinalContents.setStatus(rows.get(position).getStatus());
+                                    Log.i("MyCL", "getPreparationId：" + rows.get(position).getPreparationId());
+                                    Log.i("MyCL", "getCustomerId：" + rows.get(position).getCustomerId());
+                                    startActivity(intent);
+                                }
+                            });
+                            check_pending_the_project_end_rv.setAdapter(adapter);
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            check_pending_the_project_end_rv.setVisibility(View.GONE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        check_pending_the_project_end_rv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误","错误"+e);
                     }
 

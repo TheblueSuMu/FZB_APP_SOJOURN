@@ -40,8 +40,10 @@ public class ReviewTheSuccessAdapter extends RecyclerView.Adapter<ReviewTheSucce
         if (list.get(position).getRecordName().equals("登岛")) {
             MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(context);
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            layoutManager.setScrollEnabled(false);
             holder.item_review_the_success_rv.setLayoutManager(layoutManager);
             JourneyAdapter recyclerAdapter = new JourneyAdapter(list.get(position).getJsonDatas());
+            holder.item_review_the_success_rv.setNestedScrollingEnabled(false);
             holder.item_review_the_success_rv.setAdapter(recyclerAdapter);
             recyclerAdapter.notifyDataSetChanged();
         }else {

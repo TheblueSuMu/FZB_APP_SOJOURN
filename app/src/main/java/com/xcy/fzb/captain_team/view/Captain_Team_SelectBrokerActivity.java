@@ -3,6 +3,7 @@ package com.xcy.fzb.captain_team.view;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ public class Captain_Team_SelectBrokerActivity extends AllActivity {
     RelativeLayout select_broker_img;
     RecyclerView select_broker_rv;
     Captain_Team_SelectBrokerAdapter adapter;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class Captain_Team_SelectBrokerActivity extends AllActivity {
     private void initView() {
 		
 		StatusBar.makeStatusBarTransparent(this);
-		
+        all_no_information = findViewById(R.id.all_no_information);
         select_broker_img = findViewById(R.id.select_broker_img);
         select_broker_rv = findViewById(R.id.select_broker_rv);
 
@@ -52,9 +54,6 @@ public class Captain_Team_SelectBrokerActivity extends AllActivity {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         select_broker_rv.setLayoutManager(manager);
         adapter = new Captain_Team_SelectBrokerAdapter();
-
-
-
         select_broker_rv.setAdapter(adapter);
 
     }

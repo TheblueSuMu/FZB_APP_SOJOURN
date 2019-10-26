@@ -61,6 +61,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
 
     private PopupWindow popupWindow;
     private View inflate;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
     private void initView() {
 
         StatusBar.makeStatusBarTransparent(this);
+        all_no_information = findViewById(R.id.all_no_information);
         brokers_list_return = findViewById(R.id.brokers_list_return);
         brokers_list_add = findViewById(R.id.brokers_list_add);
         brokers_list_et = findViewById(R.id.brokers_list_et);
@@ -140,25 +142,34 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                         listData.clear();
                         mContactModels.clear();
                         rows = brokersListBean.getData().getRows();
-                        for (int i = 0; i < rows.size(); ++i) {
-                            ContactModel contactModel = new ContactModel(rows.get(i).getAgentName());
-                            BrokersListData brokersListData = new BrokersListData();
-                            brokersListData.setAgentPhone(rows.get(i).getAgentPhone());
-                            brokersListData.setAgentName(rows.get(i).getAgentName());
-                            brokersListData.setCompanyName(rows.get(i).getCompanyName());
-                            brokersListData.setStoreName(rows.get(i).getStoreName());
-                            brokersListData.setStatus(rows.get(i).getStatus());
-                            brokersListData.setAgentId(rows.get(i).getAgentId());
-                            mContactModels.add(contactModel);
-                            listData.add(brokersListData);
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            brokers_list_rv.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < rows.size(); ++i) {
+                                ContactModel contactModel = new ContactModel(rows.get(i).getAgentName());
+                                BrokersListData brokersListData = new BrokersListData();
+                                brokersListData.setAgentPhone(rows.get(i).getAgentPhone());
+                                brokersListData.setAgentName(rows.get(i).getAgentName());
+                                brokersListData.setCompanyName(rows.get(i).getCompanyName());
+                                brokersListData.setStoreName(rows.get(i).getStoreName());
+                                brokersListData.setStatus(rows.get(i).getStatus());
+                                brokersListData.setAgentId(rows.get(i).getAgentId());
+                                mContactModels.add(contactModel);
+                                listData.add(brokersListData);
+
+                            }
+                            initDatas();
+                        }else {
 
                         }
-                        initDatas();
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.i("经纪人列表","错误信息:"+e.getMessage());
+                        brokers_list_rv.setVisibility(View.GONE);
+                        all_no_information.setVisibility(View.VISIBLE);
                     }
 
                     @Override

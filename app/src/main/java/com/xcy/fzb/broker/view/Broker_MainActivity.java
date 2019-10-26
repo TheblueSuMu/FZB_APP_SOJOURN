@@ -1,7 +1,10 @@
 package com.xcy.fzb.broker.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -9,6 +12,7 @@ import android.widget.RadioButton;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.github.androidprogresslayout.ProgressLayout;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.HomeFragment;
@@ -28,6 +32,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
     private RadioButton button_economics;
     private RadioButton button_me;
     private ImageView img_backup;
+    private ProgressLayout progressLayout;
 
 
     @Override
@@ -115,10 +120,12 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         FragmentTransaction transaction = manager.beginTransaction();
         switch (view.getId()) {
             case R.id.button_home:
+                initProgressLayout();
                 HomeFragment home_fragment = new HomeFragment();
                 transaction.replace(R.id.main_framelayout, home_fragment);
                 break;
             case R.id.button_message:
+                initProgressLayout();
                 MessageFragment message_fragment = new MessageFragment();
                 transaction.replace(R.id.main_framelayout, message_fragment);
                 break;
@@ -127,10 +134,12 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.button_economics:
+                initProgressLayout();
                 DFragment dFragment = new DFragment();
                 transaction.replace(R.id.main_framelayout, dFragment);
                 break;
             case R.id.button_me:
+                initProgressLayout();
                 EFragment eFragment = new EFragment();
                 transaction.replace(R.id.main_framelayout, eFragment);
                 break;
@@ -145,5 +154,24 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private void initProgressLayout(){
+        progressLayout = findViewById(R.id.progress_layout);
+
+        @SuppressLint("HandlerLeak") Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                // 切换回正常显示页面
+                progressLayout.showContent();
+            }
+        };
+
+        // 开始加载... 假设从这里开始一个耗时的操作将开始启动，在此启动过程中，开发者希望用户稍事休息，等待。。。
+        progressLayout.showProgress();
+
+        // 假设有一个耗时的加载业务逻辑，需要5秒完成。
+        handler.sendEmptyMessageDelayed(0, 300);
+
     }
 }

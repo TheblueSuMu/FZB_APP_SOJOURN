@@ -42,265 +42,281 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <RelativeLayout
+            android:id="@+id/lien"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="55dp">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_marginBottom="55dp">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="15dp">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/review_the_success_img1"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:scaleType="fitXY"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="75dp"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginRight="15dp">
 
-                        <TextView
-                            android:id="@+id/review_the_success_tv1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/review_the_success_tv2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:layout_marginTop="5dp"
-                            android:textColor="#ff666666"
-                            android:textSize="13sp" />
+                        <ImageView
+                            android:id="@+id/review_the_success_img1"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:scaleType="fitXY"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:orientation="horizontal">
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="75dp"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/review_the_success_tv3"
+                                android:id="@+id/review_the_success_tv1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="top"
                                 android:text=""
+                                android:textColor="#ff111111"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/review_the_success_tv2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="5dp"
                                 android:textColor="#ff666666"
                                 android:textSize="13sp" />
 
-                            <RelativeLayout
-                                android:layout_gravity="top"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:orientation="horizontal">
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/review_the_success_NameRv"
+                                <TextView
+                                    android:id="@+id/review_the_success_tv3"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="top"
+                                    android:text=""
+                                    android:textColor="#ff666666"
+                                    android:textSize="13sp" />
 
-                            </RelativeLayout>
+                                <RelativeLayout
+                                    android:layout_gravity="top"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
 
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/review_the_success_NameRv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
-                </RelativeLayout>
+                    </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/review_the_success_rv"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="15dp">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/review_the_success_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp">
 
-                    </androidx.recyclerview.widget.RecyclerView>
+                        </androidx.recyclerview.widget.RecyclerView>
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
+                </LinearLayout>
+
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/review_the_success_bt1"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="失效"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt2"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="申请登岛"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt3"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="申请到访"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt4"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="认筹"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt5"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="成交"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt6"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="未成交"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt7"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="修改信息"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt8"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="退筹"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt9"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="调单"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt10"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="退单"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt11"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="通过"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt12"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="拒绝"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/review_the_success_bt13"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="补全信息"
+                    android:visibility="gone"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
-        </ScrollView>
+        </RelativeLayout>
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/all_no_information"
+            android:background="#fff"
+            android:visibility="gone"
+            android:src="@mipmap/no_information"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"/>
 
-            <Button
-                android:id="@+id/review_the_success_bt1"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:visibility="gone"
-                android:background="@drawable/points_dialog_but"
-                android:text="失效"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt2"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:visibility="gone"
-                android:background="@drawable/points_dialog_but"
-                android:text="申请登岛"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt3"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:visibility="gone"
-                android:background="@drawable/points_dialog_but"
-                android:text="申请到访"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt4"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="认筹"
-                android:visibility="gone"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt5"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="成交"
-                android:visibility="gone"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt6"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="未成交"
-                android:visibility="gone"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt7"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="修改信息"
-                android:visibility="gone"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt8"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="退筹"
-                android:visibility="gone"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt9"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="调单"
-                android:visibility="gone"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt10"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="退单"
-                android:visibility="gone"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt11"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="通过"
-                android:visibility="gone"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt12"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="拒绝"
-                android:visibility="gone"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt13"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="补全信息"
-                android:visibility="gone"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
     </RelativeLayout>
 
 

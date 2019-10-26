@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -57,19 +56,23 @@ public class TheReasonForRefusalActivity extends AllActivity {
             public void onClick(View view) {
 
                 message = the_reason_for_refusal_et.getText().toString();
-                url = FinalContents.getBaseUrl() + "specialUpdate/reportAndVisitAudit?preparationId=" + FinalContents.getPreparationId() + "&maxStatus=" + FinalContents.getStatus() + "&minStatus=2&userId=" + FinalContents.getUserID() + "&reason=" + message;
-                OkHttpPost okHttpPost = new OkHttpPost(url);
-                String data = okHttpPost.post();
-                Gson gson = new Gson();
-                CBean cBean = gson.fromJson(data, CBean.class);
-                if (cBean.getMsg().equals("成功")) {
-                    Toast.makeText(TheReasonForRefusalActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(TheReasonForRefusalActivity.this, CheckPendingTheProjectActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(TheReasonForRefusalActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                    finish();
+                if (message.equals("")) {
+
+                }else {
+                    url = FinalContents.getBaseUrl() + "specialUpdate/reportAndVisitAudit?preparationId=" + FinalContents.getPreparationId() + "&maxStatus=" + FinalContents.getStatus() + "&minStatus=2&userId=" + FinalContents.getUserID() + "&reason=" + message;
+                    OkHttpPost okHttpPost = new OkHttpPost(url);
+                    String data = okHttpPost.post();
+                    Gson gson = new Gson();
+                    CBean cBean = gson.fromJson(data, CBean.class);
+                    if (cBean.getMsg().equals("成功")) {
+                        Toast.makeText(TheReasonForRefusalActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(TheReasonForRefusalActivity.this, CheckPendingTheProjectActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(TheReasonForRefusalActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 }
 
             }

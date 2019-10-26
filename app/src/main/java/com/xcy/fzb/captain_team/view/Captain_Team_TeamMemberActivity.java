@@ -75,6 +75,8 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
     private String string1 = "添加销售";
     private String string2 = "批量修改销售级别";
     int isnum = 0;
+    private ImageView all_no_information;
+    private RelativeLayout team_member_rl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,8 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
 
         StatusBar.makeStatusBarTransparent(this);
 
+        all_no_information = findViewById(R.id.all_no_information);
+        team_member_rl = findViewById(R.id.team_member_rl);
         team_member_img1 = findViewById(R.id.team_member_img1);
         team_member_img2 = findViewById(R.id.team_member_img2);
 
@@ -389,20 +393,31 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                     @Override
                     public void onNext(TeamMemberBean teamMemberBean) {
                         rows = teamMemberBean.getData().getRows();
-                        for (int i = 0; i < rows.size(); ++i) {
-                            if (rows.get(i).getName().equals("")){
 
-                            }else {
-                                ContactModel contactModel = new ContactModel(rows.get(i).getName() + "@" + rows.get(i).getId());
-                                mContactModels.add(contactModel);
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            team_member_rv.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < rows.size(); ++i) {
+                                if (rows.get(i).getName().equals("")){
+
+                                }else {
+                                    ContactModel contactModel = new ContactModel(rows.get(i).getName() + "@" + rows.get(i).getId());
+                                    mContactModels.add(contactModel);
+                                }
                             }
+                            initDatas();
+                            flag = 0;
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            team_member_rv.setVisibility(View.GONE);
                         }
-                        initDatas();
-                        flag = 0;
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        team_member_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "TeamMemberActivity错误信息：" + e.getMessage());
                     }
 

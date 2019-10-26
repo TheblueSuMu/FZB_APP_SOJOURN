@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,6 +38,7 @@ public class RecyclerViewActivity extends AllActivity {
     private List<HotBean.DataBean.RowsBean> hotlist = new ArrayList<>();
     private String hotUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?";
     private String nation = "";
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class RecyclerViewActivity extends AllActivity {
     private void initfvb() {
 
         StatusBar.makeStatusBarTransparent(this);
-
+        all_no_information = findViewById(R.id.all_no_information);
         title = findViewById(R.id.recycler_title);
         back = findViewById(R.id.recycler_back);
         recyclerView = findViewById(R.id.recycler_rv);
@@ -92,8 +92,10 @@ public class RecyclerViewActivity extends AllActivity {
 
                         if (hotlist.size() == 0) {
                             recyclerView.setVisibility(View.GONE);
+                            all_no_information.setVisibility(View.VISIBLE);
                         } else {
                             //在此处修改布局排列方向
+                            all_no_information.setVisibility(View.GONE);
                             recyclerView.setVisibility(View.VISIBLE);
                             MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(RecyclerViewActivity.this);
                             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -106,6 +108,8 @@ public class RecyclerViewActivity extends AllActivity {
 
                     @Override
                     public void onError(Throwable e) {
+                        recyclerView.setVisibility(View.GONE);
+                        all_no_information.setVisibility(View.VISIBLE);
                         Log.i("MyCL","RecyclerViewActivity错误信息：" + e.getMessage());
                     }
 

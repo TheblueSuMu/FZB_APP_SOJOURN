@@ -1,11 +1,14 @@
 package com.xcy.fzb.project_attache.view;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -19,6 +22,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.github.androidprogresslayout.ProgressLayout;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.MessageFragment;
@@ -54,6 +58,7 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
 
     // private ImageView welcomeImg = null;
     private static final int PERMISSION_REQUEST = 1;
+    private ProgressLayout progressLayout;
 
 
     @Override
@@ -104,7 +109,7 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
         StatusBar.makeStatusBarTransparent(this);
 
         VirturlUtil.assistActivity(findViewById(android.R.id.content));
-
+        initProgressLayout();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         HomeFragment home_fragment = new HomeFragment();
@@ -150,10 +155,12 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
         FragmentTransaction transaction = manager.beginTransaction();
         switch (view.getId()) {
             case R.id.button_home:
+                initProgressLayout();
                 HomeFragment home_fragment = new HomeFragment();
                 transaction.replace(R.id.main_framelayout,home_fragment);
                 break;
             case R.id.button_message:
+                initProgressLayout();
                 DFragment dFragment = new DFragment();
                 transaction.replace(R.id.main_framelayout,dFragment);
                 break;
@@ -166,10 +173,12 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
                 startActivity(intent);
                 break;
             case R.id.button_economics:
+                initProgressLayout();
                 MessageFragment message_fragment = new MessageFragment();
                 transaction.replace(R.id.main_framelayout,message_fragment);
                 break;
             case R.id.button_me:
+                initProgressLayout();
                 EFragment eFragment = new EFragment();
                 transaction.replace(R.id.main_framelayout,eFragment);
                 break;
@@ -274,5 +283,24 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 break;
         }
+    }
+
+    private void initProgressLayout(){
+        progressLayout = findViewById(R.id.progress_layout);
+
+        @SuppressLint("HandlerLeak") Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                // 切换回正常显示页面
+                progressLayout.showContent();
+            }
+        };
+
+        // 开始加载... 假设从这里开始一个耗时的操作将开始启动，在此启动过程中，开发者希望用户稍事休息，等待。。。
+        progressLayout.showProgress();
+
+        // 假设有一个耗时的加载业务逻辑，需要5秒完成。
+        handler.sendEmptyMessageDelayed(0, 300);
+
     }
 }
