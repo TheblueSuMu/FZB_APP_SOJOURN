@@ -84,7 +84,13 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                     holder.store_tv.setText("-" + listData.get(i).getStoreName());
                     holder.store_id.setText(listData.get(i).getStoreIdCode());
                     holder.store_num.setText("经纪人：" + listData.get(i).getAgentNum());
-                    holder.contacts_name.setText("店长：" + listData.get(i).getShopownerName() + " " + listData.get(i).getShopownerPhone());
+
+                    if (listData.get(i).getShopownerName().equals("")) {
+                        holder.contacts_name.setVisibility(View.GONE);
+                    } else {
+                        holder.contacts_name.setText("店长：" + listData.get(i).getShopownerName() + " " + listData.get(i).getShopownerPhone());
+                    }
+
 
                     holder.contacts_name.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -107,7 +113,6 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                     holder.store_id.setText("公司地址：" + listData.get(i).getCompanyAddress());
                     holder.store_num.setText("门店：" + listData.get(i).getStoreNum());
                     holder.contacts_name.setText("公司负责人：" + listData.get(i).getShopownerName() + " " + listData.get(i).getShopownerPhone());
-
 
 
                     holder.contacts_name.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +145,6 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
             }
 
         }
-
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

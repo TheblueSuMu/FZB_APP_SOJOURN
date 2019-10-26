@@ -86,8 +86,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     private SharedPreferences pref;
     private List<UserSaveBean> list = new ArrayList<>();
 
-    private String LoginUrl = FinalContents.getBaseUrl()+"commonSelect/login?";
-    private String sendUrl = FinalContents.getBaseUrl()+"commonSelect/sendCode?";
+    private String LoginUrl = FinalContents.getBaseUrl() + "commonSelect/login?";
+    private String sendUrl = FinalContents.getBaseUrl() + "commonSelect/sendCode?";
 
     private String type = "";
 
@@ -373,7 +373,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     ccc();
                     type = "1";
                 }
-                Log.i("数据","登录："+type);
+                Log.i("数据", "登录：" + type);
                 break;
             case R.id.cb_is_save_user:
 
@@ -398,20 +398,23 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
                 break;
             case R.id.tv_wechat:
-                Platform plat = ShareSDK.getPlatform(Wechat.NAME);
-                plat.removeAccount(true); //移除授权状态和本地缓存，下次授权会重新授权
-                plat.SSOSetting(false); //SSO授权，传false默认是客户端授权，没有客户端授权或者不支持客户端授权会跳web授权
-                plat.setPlatformActionListener(this);//授权回调监听，监听oncomplete，onerror，oncancel三种状态
-                if (plat.isClientValid()) {
-                    //判断是否存在授权凭条的客户端，true是有客户端，false是无
-                }
-                if (plat.isAuthValid()) {
-                    //判断是否已经存在授权状态，可以根据自己的登录逻辑设置
-                    Toast.makeText(this, "已经授权过了", 0).show();
-                    return;
-                }
-                ShareSDK.setActivity(this);//抖音登录适配安卓9.0
-                plat.showUser(null);    //要数据不要功能，主要体现在不会重复出现授权界面
+
+                Toast.makeText(LoginActivity.this, "敬请期待", Toast.LENGTH_SHORT).show();
+
+//                Platform plat = ShareSDK.getPlatform(Wechat.NAME);
+//                plat.removeAccount(true); //移除授权状态和本地缓存，下次授权会重新授权
+//                plat.SSOSetting(false); //SSO授权，传false默认是客户端授权，没有客户端授权或者不支持客户端授权会跳web授权
+//                plat.setPlatformActionListener(this);//授权回调监听，监听oncomplete，onerror，oncancel三种状态
+//                if (plat.isClientValid()) {
+//                    //判断是否存在授权凭条的客户端，true是有客户端，false是无
+//                }
+//                if (plat.isAuthValid()) {
+//                    //判断是否已经存在授权状态，可以根据自己的登录逻辑设置
+//                    Toast.makeText(this, "已经授权过了", 0).show();
+//                    return;
+//                }
+//                ShareSDK.setActivity(this);//抖音登录适配安卓9.0
+//                plat.showUser(null);    //要数据不要功能，主要体现在不会重复出现授权界面
                 break;
             case R.id.iv_user_state:
                 PopWindow();
@@ -430,7 +433,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     ccc();
                     type = "1";
                 }
-                Log.i("数据","登录："+type);
+                Log.i("数据", "登录：" + type);
                 break;
         }
     }
@@ -781,7 +784,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 editor.commit();
                                 startActivity(intent);
                                 finish();
-                            }else if (userBean.getData().getIdentity().equals("63")) {
+                            } else if (userBean.getData().getIdentity().equals("63")) {
                                 //  TODO 圈层端登录 团助
                                 Intent intent = new Intent(LoginActivity.this, Captain_Assistant_MainActivity.class);
                                 FinalContents.setUserID(userBean.getData().getId());

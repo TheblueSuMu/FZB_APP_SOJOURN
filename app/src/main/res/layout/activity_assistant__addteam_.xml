@@ -243,7 +243,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
                         android:background="#FFFFFF"
-                        android:inputType="number"
                         android:imeOptions="actionDone"
                         android:singleLine="true"
                         android:gravity="right"

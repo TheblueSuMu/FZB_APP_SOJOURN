@@ -333,54 +333,12 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 //TODO Uri图片转换成file类型的 start
                         files = uri2File(photoUri);
 
-                        if(isPhoto == 0){
+                        if (isPhoto == 0) {
                             isPhoto = 1;
                         }
 
                         Log.i("MyCL", "Uri图片转换成file类型的：" + files);
 
-//                        new Thread() {
-//                            @Override
-//                            public void run() {
-//
-//                                Retrofit.Builder builder = new Retrofit.Builder();
-//                                builder.baseUrl(FinalContents.getBaseUrl());
-//                                builder.addConverterFactory(GsonConverterFactory.create());
-//                                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-//                                Retrofit build = builder.build();
-//                                MyService fzbInterface = build.create(MyService.class);
-//
-//                                RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
-//
-//                                MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-//
-//                                Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "经济圈图片", part);
-//                                Log.i("MyCL", "addPhoto：" + addPhoto.toString());
-//                                addPhoto.subscribeOn(Schedulers.io())
-//                                        .observeOn(AndroidSchedulers.mainThread())
-//                                        .subscribe(new Observer<AddPhotoBean>() {
-//                                            @Override
-//                                            public void onSubscribe(Disposable d) {
-//
-//                                            }
-//
-//                                            @Override
-//                                            public void onNext(AddPhotoBean addPhotoBean) {
-//                                                url2 = addPhotoBean.getData().getUrl();
-//                                            }
-//
-//                                            @Override
-//                                            public void onError(Throwable e) {
-//                                                Log.i("MyCL", "经济圈发布图片上传错误信息：" + e.getMessage());
-//                                            }
-//
-//                                            @Override
-//                                            public void onComplete() {
-//
-//                                            }
-//                                        });
-//                            }
-//                        }.start();
 
 //TODO Uri图片转换成file类型的 end
                         Log.i("MyCL", "图片路径：" + photoUri);
@@ -415,6 +373,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             String s2 = add_broker_et3.getText().toString();
             String s3 = add_broker_et4.getText().toString();
             String s = add_broker_tv1.getText().toString();
+            String s4 = add_broker_tv2.getText().toString();
             if (add_broker_rb1.isChecked()) {
                 flag = 1;
             }
@@ -425,48 +384,56 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                 flag = 2;
             }
 
-            Retrofit.Builder builder = new Retrofit.Builder();
-            builder.baseUrl(FinalContents.getBaseUrl());
-            builder.addConverterFactory(GsonConverterFactory.create());
-            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-            Retrofit build = builder.build();
-            MyService fzbInterface = build.create(MyService.class);
-            Observable<AddStoreBean> addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, "", url1, url2, flag + "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
-            addStoreBean.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<AddStoreBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
+            if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
+                Toast.makeText(AddStoreActivity.this,"带*号的数据请填写完整",Toast.LENGTH_SHORT).show();
+            } else {
 
-                        }
 
-                        @Override
-                        public void onNext(AddStoreBean addStoreBean) {
-                            if (addStoreBean.getData().getMessage().equals("保存成功")) {
-                                Toast.makeText(AddStoreActivity.this, addStoreBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
-                            } else {
-                                Toast.makeText(AddStoreActivity.this, addStoreBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
+                Retrofit.Builder builder = new Retrofit.Builder();
+                builder.baseUrl(FinalContents.getBaseUrl());
+                builder.addConverterFactory(GsonConverterFactory.create());
+                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                Retrofit build = builder.build();
+                MyService fzbInterface = build.create(MyService.class);
+                Observable<AddStoreBean> addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, "", url1, url2, flag + "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
+                addStoreBean.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<AddStoreBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+
                             }
-                        }
 
-                        @Override
-                        public void onError(Throwable e) {
+                            @Override
+                            public void onNext(AddStoreBean addStoreBean) {
+                                if (addStoreBean.getData().getMessage().equals("保存成功")) {
+                                    Toast.makeText(AddStoreActivity.this, addStoreBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    finish();
+                                    FinalContents.setStoreChange("");
+                                } else {
+                                    Toast.makeText(AddStoreActivity.this, addStoreBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            }
 
-                        }
+                            @Override
+                            public void onError(Throwable e) {
 
-                        @Override
-                        public void onComplete() {
+                            }
 
-                        }
-                    });
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
+            }
         } else if (FinalContents.getStoreChange().equals("修改")) {
 
             String s1 = add_broker_et2.getText().toString();
             String s2 = add_broker_et3.getText().toString();
             String s3 = add_broker_et4.getText().toString();
             String s = add_broker_tv1.getText().toString();
+            String s4 = add_broker_tv2.getText().toString();
             if (add_broker_rb1.isChecked()) {
                 flag = 1;
             }
@@ -476,45 +443,48 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             if (add_broker_rb3.isChecked()) {
                 flag = 2;
             }
+            if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
+                Toast.makeText(AddStoreActivity.this,"带*号的数据请填写完整",Toast.LENGTH_SHORT).show();
+            } else {
+                Retrofit.Builder builder = new Retrofit.Builder();
+                builder.baseUrl(FinalContents.getBaseUrl());
+                builder.addConverterFactory(GsonConverterFactory.create());
+                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                Retrofit build = builder.build();
+                MyService fzbInterface = build.create(MyService.class);
+                Observable<AddStoreBean> addStoreBean = fzbInterface.getAddStoreBean(storeManage.getId(), s, s1, s2, s3, "", url1, url2, flag + "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
+                addStoreBean.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<AddStoreBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
 
-            Retrofit.Builder builder = new Retrofit.Builder();
-            builder.baseUrl(FinalContents.getBaseUrl());
-            builder.addConverterFactory(GsonConverterFactory.create());
-            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-            Retrofit build = builder.build();
-            MyService fzbInterface = build.create(MyService.class);
-            Observable<AddStoreBean> addStoreBean = fzbInterface.getAddStoreBean(storeManage.getId(), s, s1, s2, s3, "", url1, url2, flag + "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
-            addStoreBean.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<AddStoreBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
-
-                        }
-
-                        @Override
-                        public void onNext(AddStoreBean addStoreBean) {
-                            if (addStoreBean.getData().getMessage().equals("保存成功")) {
-                                Toast.makeText(AddStoreActivity.this, addStoreBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
-                            } else {
-                                Toast.makeText(AddStoreActivity.this, addStoreBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
                             }
-                        }
 
-                        @Override
-                        public void onError(Throwable e) {
+                            @Override
+                            public void onNext(AddStoreBean addStoreBean) {
+                                if (addStoreBean.getData().getMessage().equals("保存成功")) {
+                                    Toast.makeText(AddStoreActivity.this, addStoreBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    finish();
+                                    FinalContents.setStoreChange("");
+                                } else {
+                                    Toast.makeText(AddStoreActivity.this, addStoreBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            }
 
-                        }
+                            @Override
+                            public void onError(Throwable e) {
 
-                        @Override
-                        public void onComplete() {
+                            }
 
-                        }
-                    });
+                            @Override
+                            public void onComplete() {
 
-            FinalContents.setStoreChange("");
+                            }
+                        });
+            }
+
         }
 
 

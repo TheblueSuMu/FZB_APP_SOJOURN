@@ -169,11 +169,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
 
     private void initView() {
 
-        //TODO 设置导航栏、标题栏透明
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-
         particulars_xiao_size = findViewById(R.id.particulars_xiao_size);
 
         particulars_buddha = findViewById(R.id.particulars_buddha);
@@ -213,8 +208,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     }
 
     private void initData() {
-
-        Glide.with(EconomicCircleParticularsActivity.this).load(R.mipmap.z4).into(particulars_xiao_img);
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());

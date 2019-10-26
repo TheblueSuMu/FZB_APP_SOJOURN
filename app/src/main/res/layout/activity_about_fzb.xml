@@ -137,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="免责声明"
+            android:text="房坐标用户服务条款"
             android:textColor="#ff111111"
             android:textSize="15sp" />
 

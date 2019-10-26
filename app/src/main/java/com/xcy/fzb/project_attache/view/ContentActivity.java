@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.view.AllActivity;
 
@@ -59,6 +60,7 @@ public class ContentActivity extends AllActivity {
             @Override
             public void onClick(View view) {
                 intent = new Intent(ContentActivity.this, AddStoreActivity.class);
+                FinalContents.setStoreChange("");
                 startActivity(intent);
                 finish();
             }

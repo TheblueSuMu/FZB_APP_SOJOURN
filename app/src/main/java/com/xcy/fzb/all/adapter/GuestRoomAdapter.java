@@ -8,12 +8,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.modle.MessageBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GuestRoomAdapter extends RecyclerView.Adapter<GuestRoomAdapter.GuestRoomViewHolder> {
@@ -21,6 +23,13 @@ public class GuestRoomAdapter extends RecyclerView.Adapter<GuestRoomAdapter.Gues
 
     Click click;
     FZClick fzClick;
+    private ArrayList arraylist;
+
+    MyImage myImage;
+
+    public void setMyImage(MyImage myImage) {
+        this.myImage = myImage;
+    }
 
     public void setFzClick(FZClick fzClick) {
         this.fzClick = fzClick;
@@ -60,7 +69,21 @@ public class GuestRoomAdapter extends RecyclerView.Adapter<GuestRoomAdapter.Gues
             holder.room_img.setVisibility(View.GONE);
         } else {
             holder.room_img.setVisibility(View.VISIBLE);
-            Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + rows.get(position).getImgPath()).into(holder.room_img);
+//            Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + rows.get(position).getImgPath()).into(holder.room_img);
+
+            arraylist = new ArrayList<>();
+            String[] a  = rows.get(position).getImgPath().split("[|]");
+            for (int i = 0; i < a.length; i++){
+                arraylist.add(a[i]);
+            }
+            GridLayoutManager layoutManager = new GridLayoutManager(holder.itemView.getContext(),3);
+            layoutManager.setOrientation(GridLayoutManager.VERTICAL);
+            holder.room_img.setLayoutManager(layoutManager);
+            ImageAdapter imageAdapter = new ImageAdapter(arraylist);
+            imageAdapter.setImageUrl(rows.get(position).getImgPath());
+            holder.room_img.setAdapter(imageAdapter);
+            imageAdapter.notifyDataSetChanged();
+
         }
 
         holder.room_title.setText(rows.get(position).getTitle());
@@ -73,6 +96,13 @@ public class GuestRoomAdapter extends RecyclerView.Adapter<GuestRoomAdapter.Gues
         }else {
             holder.room_phone.setText(rows.get(position).getPhone());
         }
+
+        holder.room_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myImage.MyImage(position);
+            }
+        });
 
         holder.room_ll_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +126,7 @@ public class GuestRoomAdapter extends RecyclerView.Adapter<GuestRoomAdapter.Gues
     class GuestRoomViewHolder extends RecyclerView.ViewHolder {
 
         ImageView room_title_img;
-        ImageView room_img;
+        RecyclerView room_img;
 
         TextView room_title;
         TextView room_time;
@@ -112,7 +142,7 @@ public class GuestRoomAdapter extends RecyclerView.Adapter<GuestRoomAdapter.Gues
 
 
             room_title_img = itemView.findViewById(R.id.room_title_img);
-            room_img = itemView.findViewById(R.id.room_img);
+            room_img = itemView.findViewById(R.id.good_img_rv);
             room_title = itemView.findViewById(R.id.room_title);
             room_time = itemView.findViewById(R.id.room_time);
             room_message = itemView.findViewById(R.id.room_message);
@@ -131,6 +161,10 @@ public class GuestRoomAdapter extends RecyclerView.Adapter<GuestRoomAdapter.Gues
 
     public interface FZClick {
         void ItemFZOnClick(int position);
+    }
+
+    public interface MyImage {
+        void MyImage(int position);
     }
 
 }

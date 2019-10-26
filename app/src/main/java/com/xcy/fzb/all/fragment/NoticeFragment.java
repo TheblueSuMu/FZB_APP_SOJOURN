@@ -32,6 +32,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.MessageBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.view.BigPhotoActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -60,7 +61,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * A simple {@link Fragment} subclass.
  */
 //TODO 消息通知
-public class NoticeFragment extends Fragment{
+public class NoticeFragment extends Fragment {
     PtrClassicFrameLayout ptrClassicFrameLayout;
     private int j;
     private int num;
@@ -150,7 +151,7 @@ public class NoticeFragment extends Fragment{
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<MessageBean> userMessage = fzbInterface.getMessageBeanList(FinalContents.getUserID(),FinalContents.getCityID(),"0","1000");
+        Observable<MessageBean> userMessage = fzbInterface.getMessageBeanList(FinalContents.getUserID(), FinalContents.getCityID(), "0", "1000");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MessageBean>() {
@@ -181,6 +182,17 @@ public class NoticeFragment extends Fragment{
                                 }
                             }
                         });
+
+                        adapter.setMyImage(new NoticeAdapter.MyImage() {
+                            @Override
+                            public void MyImage(int position) {
+                                Intent intent = new Intent(getContext(), BigPhotoActivity.class);
+                                intent.putExtra("index", position);
+                                intent.putExtra("bigPhotoimg", rows.get(position).getImgPath());
+                                startActivity(intent);
+                            }
+                        });
+
                         adapter.setFzClick(new NoticeAdapter.FZClick() {
                             @Override
                             public void ItemFZOnClick(int position) {
@@ -220,9 +232,8 @@ public class NoticeFragment extends Fragment{
                                                 saveImageToPhotos(getContext(), bp);
                                             }
                                         }).start();
-                                    }
-                                    else {
-                                        for (int i = 0; i < list.size(); ++i){
+                                    } else {
+                                        for (int i = 0; i < list.size(); ++i) {
                                             imgURl = "http://39.98.173.250:8080" + list.get(i);
                                             new Thread(new Runnable() {
                                                 @Override
@@ -247,7 +258,7 @@ public class NoticeFragment extends Fragment{
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override

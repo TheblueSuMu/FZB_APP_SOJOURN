@@ -194,42 +194,49 @@ public class FeedbackActivity extends AllActivity {
             @Override
             public void onClick(View view) {
                 message = feedback_editText.getText().toString();
-                Retrofit.Builder builder = new Retrofit.Builder();
-                builder.baseUrl(FinalContents.getBaseUrl());
-                builder.addConverterFactory(GsonConverterFactory.create());
-                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                Retrofit build = builder.build();
-                MyService fzbInterface = build.create(MyService.class);
-                final Observable<FeedBackBean> feedBack = fzbInterface.getFeedBack(message, stringBuffer.toString(), FinalContents.getUserID());
-                feedBack.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<FeedBackBean>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
-                                Log.i("MyCL", "意见反馈错误信息");
-                            }
 
-                            @Override
-                            public void onNext(FeedBackBean feedBackBean) {
-                                String msg = feedBackBean.getMsg();
-                                if (msg.equals("成功")) {
-                                    Toast.makeText(FeedbackActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                } else {
-                                    Toast.makeText(FeedbackActivity.this, "提交失败，请重新提交", Toast.LENGTH_SHORT).show();
+                if(message.equals("")){
+                    Toast.makeText(FeedbackActivity.this,"原因不能为空",Toast.LENGTH_SHORT).show();
+                }else {
+                    Retrofit.Builder builder = new Retrofit.Builder();
+                    builder.baseUrl(FinalContents.getBaseUrl());
+                    builder.addConverterFactory(GsonConverterFactory.create());
+                    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                    Retrofit build = builder.build();
+                    MyService fzbInterface = build.create(MyService.class);
+                    final Observable<FeedBackBean> feedBack = fzbInterface.getFeedBack(message, stringBuffer.toString(), FinalContents.getUserID());
+                    feedBack.subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<FeedBackBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+                                    Log.i("MyCL", "意见反馈错误信息");
                                 }
-                            }
 
-                            @Override
-                            public void onError(Throwable e) {
-                                Log.i("MyCL", "意见反馈错误信息" + e.getMessage());
-                            }
+                                @Override
+                                public void onNext(FeedBackBean feedBackBean) {
+                                    String msg = feedBackBean.getMsg();
+                                    if (msg.equals("成功")) {
+                                        Toast.makeText(FeedbackActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    } else {
+                                        Toast.makeText(FeedbackActivity.this, "提交失败，请重新提交", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
 
-                            @Override
-                            public void onComplete() {
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.i("MyCL", "意见反馈错误信息" + e.getMessage());
+                                }
 
-                            }
-                        });
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+                }
+
+
             }
         });
     }

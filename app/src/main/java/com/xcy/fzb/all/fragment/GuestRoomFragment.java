@@ -31,6 +31,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.MessageBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.view.BigPhotoActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -179,6 +180,17 @@ public class GuestRoomFragment extends Fragment{
                                 }
                             }
                         });
+
+                        adapter.setMyImage(new GuestRoomAdapter.MyImage() {
+                            @Override
+                            public void MyImage(int position) {
+                                Intent intent = new Intent(getContext(), BigPhotoActivity.class);
+                                intent.putExtra("index", position);
+                                intent.putExtra("bigPhotoimg", rows.get(position).getImgPath());
+                                startActivity(intent);
+                            }
+                        });
+
                         adapter.setFzClick(new GuestRoomAdapter.FZClick() {
                             @Override
                             public void ItemFZOnClick(int position) {
