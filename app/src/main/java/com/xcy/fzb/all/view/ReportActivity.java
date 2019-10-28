@@ -655,13 +655,13 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
                 Log.i("楼盘特色","数据："+ffProjectTrait);
 
-                if (IDcard.getText().length() == 18) {
-                    initReport();
-                } else if (IDcard.getText().length() == 0){
-                    Toast.makeText(ReportActivity.this, "请输入身份证号码", Toast.LENGTH_SHORT).show();
-                } else if (IDcard.getText().length() < 18) {
-                    Toast.makeText(ReportActivity.this, "请输入正确的身份证号码", Toast.LENGTH_SHORT).show();
-                }
+//                if (IDcard.getText().length() == 18) {
+//                    initReport();
+//                } else if (IDcard.getText().length() == 0){
+//                    Toast.makeText(ReportActivity.this, "请输入身份证号码", Toast.LENGTH_SHORT).show();
+//                } else if (IDcard.getText().length() < 18) {
+//                    Toast.makeText(ReportActivity.this, "请输入正确的身份证号码", Toast.LENGTH_SHORT).show();
+//                }
 
                 areaSection = "";
                 ffProjectTrait = "";
