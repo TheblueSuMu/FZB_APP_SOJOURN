@@ -38,7 +38,7 @@
                     android:id="@+id/member_name_s"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="客户1"
+                    android:text=""
                     android:textColor="#333333"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="13800000000"
+                android:text=""
                 android:textColor="#ff666666"
                 android:textSize="12sp" />
 
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="顾问：21人"
+                android:text=""
                 android:textColor="#ff666666"
                 android:textSize="12sp" />
 
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="最后上线时间2019-03-03 15：50"
+                android:text=""
                 android:textColor="#ff666666"
                 android:textSize="12sp" />
         </LinearLayout>

@@ -67,44 +67,46 @@ public class ListOfBackActivity extends AllActivity {
                 if (message.equals("")) {
                     Toast.makeText(ListOfBackActivity.this, "请填写退单说明内容", Toast.LENGTH_SHORT).show();
                     return;
+                }else {
+                    Retrofit.Builder builder = new Retrofit.Builder();
+                    builder.baseUrl(FinalContents.getBaseUrl());
+                    builder.addConverterFactory(GsonConverterFactory.create());
+                    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                    Retrofit build = builder.build();
+                    MyService fzbInterface = build.create(MyService.class);
+                    Observable<ListOfBean> userMessage = fzbInterface.getChargebackApply(FinalContents.getUserID(),FinalContents.getPreparationId(),message);
+                    userMessage.subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<ListOfBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+
+                                }
+
+                                @SuppressLint("WrongConstant")
+                                @Override
+                                public void onNext(ListOfBean listOfBean) {
+                                    if(listOfBean.getMsg().equals("成功")){
+                                        Toast.makeText(ListOfBackActivity.this,listOfBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }else {
+                                        Toast.makeText(ListOfBackActivity.this,listOfBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.i("填写退单说明","错误"+e);
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
                 }
 
-                Retrofit.Builder builder = new Retrofit.Builder();
-                builder.baseUrl(FinalContents.getBaseUrl());
-                builder.addConverterFactory(GsonConverterFactory.create());
-                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                Retrofit build = builder.build();
-                MyService fzbInterface = build.create(MyService.class);
-                Observable<ListOfBean> userMessage = fzbInterface.getChargebackApply(FinalContents.getUserID(),FinalContents.getPreparationId(),message);
-                userMessage.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<ListOfBean>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
 
-                            }
-
-                            @SuppressLint("WrongConstant")
-                            @Override
-                            public void onNext(ListOfBean listOfBean) {
-                                if(listOfBean.getMsg().equals("成功")){
-                                    Toast.makeText(ListOfBackActivity.this,listOfBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }else {
-                                    Toast.makeText(ListOfBackActivity.this,listOfBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
-                                }
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                Log.i("填写退单说明","错误"+e);
-                            }
-
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        });
 
             }
         });

@@ -72,7 +72,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="报备项目名称"
+                        android:text=""
                         android:textColor="#ff666666"
                         android:textSize="13sp" />
 
@@ -85,14 +85,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="项目负责人:"
+                            android:text=""
                             android:textColor="#ff666666"
                             android:textSize="13sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="刘喆"
+                            android:text=""
                             android:textColor="#ff666666"
                             android:textSize="13sp" />
 
@@ -107,7 +107,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="13dp"
-                            android:text="张三"
+                            android:text=""
                             android:textColor="#ff666666"
                             android:textSize="13sp" />
 
@@ -150,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="第1次到访时间"
+                    android:text=""
                     android:textColor="#ff666666"
                     android:textSize="15sp" />
 
@@ -159,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="2019-03-06 10:20:00"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -177,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
-                android:text="第1次到访确认照片"
+                android:text=""
                 android:textColor="#ff666666"
                 android:textSize="15sp" />
 
@@ -197,7 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="第3次到访时间"
+                    android:text=""
                     android:textColor="#ff666666"
                     android:textSize="15sp" />
 
@@ -206,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="2019-03-06 10:20:00"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -224,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
-                android:text="第3次到访确认照片"
+                android:text=""
                 android:textColor="#ff666666"
                 android:textSize="15sp" />
 
@@ -252,7 +252,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="到访保护期倒计时"
+                    android:text=""
                     android:textColor="#ff666666"
                     android:textSize="15sp" />
 
@@ -261,7 +261,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="20天"
+                    android:text=""
                     android:textColor="#AC1E26"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -294,7 +294,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="刘喆 1380000000"
+                    android:text=""
                     android:textColor="#111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -335,7 +335,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="2019-03-03 12:12:12"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -368,7 +368,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="20天"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -401,7 +401,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="23天"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -442,7 +442,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="经纪人"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -475,7 +475,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="刘喆"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -516,7 +516,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="13800000000"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -623,7 +623,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="刘喆"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -656,7 +656,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="13800000000"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -689,7 +689,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="乐谷项目"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -722,7 +722,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="否"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -755,7 +755,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="2019-03-15 至 2019-03-16"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -788,7 +788,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="经纪人报备的自动反显"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -821,7 +821,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="系统自动显示"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
             </RelativeLayout>

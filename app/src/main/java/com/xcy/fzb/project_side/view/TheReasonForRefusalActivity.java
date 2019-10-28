@@ -57,7 +57,7 @@ public class TheReasonForRefusalActivity extends AllActivity {
 
                 message = the_reason_for_refusal_et.getText().toString();
                 if (message.equals("")) {
-
+                    Toast.makeText(TheReasonForRefusalActivity.this, "请填写拒绝原因", Toast.LENGTH_SHORT).show();
                 }else {
                     url = FinalContents.getBaseUrl() + "specialUpdate/reportAndVisitAudit?preparationId=" + FinalContents.getPreparationId() + "&maxStatus=" + FinalContents.getStatus() + "&minStatus=2&userId=" + FinalContents.getUserID() + "&reason=" + message;
                     OkHttpPost okHttpPost = new OkHttpPost(url);

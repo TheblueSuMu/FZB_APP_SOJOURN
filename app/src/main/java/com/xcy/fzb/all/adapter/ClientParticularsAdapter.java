@@ -58,13 +58,18 @@ public class ClientParticularsAdapter extends RecyclerView.Adapter<ClientParticu
         final List<ClientParticularsBean.DataBean.ListDataBean.ListMapBean> listMap = listData.get(position).getListMap();
         for (int j = 0; j < listMap.size(); ++j) {
             String value = listMap.get(j).getValue();
-            StringBuffer stringBuffer = new StringBuffer();
-            stringBuffer.append(value);
-            if (stringBuffer.substring(0, 1).equals("2")) {
-                a = 1;
-            } else {
-                bhq = value;
+            if(value.equals("")){
+
+            }else {
+                StringBuffer stringBuffer = new StringBuffer();
+                stringBuffer.append(value);
+                if (stringBuffer.substring(0, 1).equals("2")) {
+                    a = 1;
+                } else {
+                    bhq = value;
+                }
             }
+
         }
 
         holder.item_client_ll.setOnClickListener(new View.OnClickListener() {

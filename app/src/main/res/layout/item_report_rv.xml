@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/project_details_report_key"
-        android:text="报备有效期"
+        android:text=""
         android:textSize="14sp"
         android:textColor="#666666"
         android:layout_alignParentLeft="true"
@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/project_details_report_value"
-        android:text="1天"
+        android:text=""
         android:textSize="14sp"
         android:textColor="#121212"
         android:gravity="right"

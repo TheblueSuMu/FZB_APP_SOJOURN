@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:text="客户1"
+            android:text=""
             android:textColor="#333333"
             android:textSize="15sp" />
     </RelativeLayout>

@@ -222,23 +222,27 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
                                 public void itemItem(int position) {
                                     intent = new Intent(CheckPendingTheProjectEndActivity.this, CheckPendingActivity.class);
 
-                                    if (rows.get(position).getRelatedData().equals("认筹") || rows.get(position).getRelatedData().equals("成功")) {
-                                        intent.putExtra("Mycheck", "2");
-                                    } else {
-                                        intent.putExtra("Mycheck", "1");
-                                    }
+//                                    if (rows.get(position).getRelatedData().equals("认筹") || rows.get(position).getRelatedData().equals("成功")) {
+//                                        intent.putExtra("Mycheck", "2");
+//                                    } else {
+//                                        intent.putExtra("Mycheck", "1");
+//                                    }
                                     if (check_pending_the_project_end_ll2.getVisibility() == View.VISIBLE) {
-                                        intent.putExtra("name", "报备");
                                         FinalContents.setNumS(1);
+                                        intent.putExtra("name", "报备");
+                                        intent.putExtra("Mycheck", "1");
                                     } else if (check_pending_the_project_end_ll4.getVisibility() == View.VISIBLE) {
                                         FinalContents.setNumS(2);
                                         intent.putExtra("name", "到访");
+                                        intent.putExtra("Mycheck", "1");
                                     } else if (check_pending_the_project_end_ll6.getVisibility() == View.VISIBLE) {
                                         FinalContents.setNumS(3);
                                         intent.putExtra("name", "认筹");
+                                        intent.putExtra("Mycheck", "2");
                                     } else if (check_pending_the_project_end_ll8.getVisibility() == View.VISIBLE) {
                                         FinalContents.setNumS(4);
                                         intent.putExtra("name", "成交");
+                                        intent.putExtra("Mycheck", "2");
                                     }
 
                                     FinalContents.setPreparationId(rows.get(position).getPreparationId());

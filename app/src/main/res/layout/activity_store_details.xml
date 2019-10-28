@@ -34,7 +34,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
-            android:text="门店名称"
+            android:text=""
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="25dp"
-                    android:text="经纪公司-门店名称"
+                    android:text=""
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
 
@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
-                    android:text="门店ID"
+                    android:text=""
                     android:textColor="#ff666666"
                     android:textSize="13sp" />
 
@@ -94,7 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="店长：姓名 13800000000"
+                        android:text=""
                         android:textColor="#ff666666"
                         android:textSize="13sp" />
 
@@ -251,7 +251,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="68"
+                            android:text=""
                             android:textColor="#ffac8f5c"
                             android:textSize="20sp" />
 
@@ -280,7 +280,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="857"
+                            android:text=""
                             android:textColor="#ffac8f5c"
                             android:textSize="20sp" />
 
@@ -450,7 +450,7 @@
                                 android:layout_gravity="center"
                                 android:gravity="center_horizontal"
                                 android:lines="1"
-                                android:text="7"
+                                android:text=""
                                 android:textColor="#334485"
                                 android:textSize="24sp" />
 
@@ -493,7 +493,7 @@
                                 android:layout_gravity="center"
                                 android:gravity="center_horizontal"
                                 android:lines="1"
-                                android:text="10"
+                                android:text=""
                                 android:textColor="#334485"
                                 android:textSize="24sp" />
 
@@ -536,7 +536,7 @@
                                 android:layout_gravity="center"
                                 android:gravity="center_horizontal"
                                 android:lines="1"
-                                android:text="33"
+                                android:text=""
                                 android:textColor="#334485"
                                 android:textSize="24sp" />
 
