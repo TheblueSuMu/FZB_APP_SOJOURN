@@ -13,8 +13,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +32,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.Dynamic2Bean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.CommonUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -92,10 +95,27 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building_dynamic);
+        init_No_Network();
+    }
 
+    private void init_No_Network(){
+        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+        if (networkAvailable) {
+            initView();
+        } else {
+            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
+            Button all_no_reload = findViewById(R.id.all_no_reload);
 
-        initView();
-
+            all_no_network.setVisibility(View.VISIBLE);
+            all_no_reload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initView() {

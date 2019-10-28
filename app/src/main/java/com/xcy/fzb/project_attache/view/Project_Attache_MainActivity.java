@@ -1,20 +1,20 @@
 package com.xcy.fzb.project_attache.view;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -27,6 +27,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.MessageFragment;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.VirturlUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_attache.fragment.DFragment;
@@ -72,6 +73,27 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
 
     }
 
+    private void init_No_Network(){
+        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+        if (networkAvailable) {
+
+        } else {
+            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
+            Button all_no_reload = findViewById(R.id.all_no_reload);
+
+            all_no_network.setVisibility(View.VISIBLE);
+            all_no_reload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     // 3.2 +实现接口，实现回调
     @Override
     public void process(String str) {
@@ -105,11 +127,10 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
     }
 
     private void init() {
-
+        init_No_Network();
         StatusBar.makeStatusBarTransparent(this);
 
         VirturlUtil.assistActivity(findViewById(android.R.id.content));
-        initProgressLayout();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         HomeFragment home_fragment = new HomeFragment();
@@ -155,12 +176,12 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
         FragmentTransaction transaction = manager.beginTransaction();
         switch (view.getId()) {
             case R.id.button_home:
-                initProgressLayout();
+                init_No_Network();
                 HomeFragment home_fragment = new HomeFragment();
                 transaction.replace(R.id.main_framelayout,home_fragment);
                 break;
             case R.id.button_message:
-                initProgressLayout();
+                init_No_Network();
                 DFragment dFragment = new DFragment();
                 transaction.replace(R.id.main_framelayout,dFragment);
                 break;
@@ -173,12 +194,12 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
                 startActivity(intent);
                 break;
             case R.id.button_economics:
-                initProgressLayout();
+                init_No_Network();
                 MessageFragment message_fragment = new MessageFragment();
                 transaction.replace(R.id.main_framelayout,message_fragment);
                 break;
             case R.id.button_me:
-                initProgressLayout();
+                init_No_Network();
                 EFragment eFragment = new EFragment();
                 transaction.replace(R.id.main_framelayout,eFragment);
                 break;
@@ -285,22 +306,5 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
         }
     }
 
-    private void initProgressLayout(){
-        progressLayout = findViewById(R.id.progress_layout);
 
-        @SuppressLint("HandlerLeak") Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                // 切换回正常显示页面
-                progressLayout.showContent();
-            }
-        };
-
-        // 开始加载... 假设从这里开始一个耗时的操作将开始启动，在此启动过程中，开发者希望用户稍事休息，等待。。。
-        progressLayout.showProgress();
-
-        // 假设有一个耗时的加载业务逻辑，需要5秒完成。
-        handler.sendEmptyMessageDelayed(0, 300);
-
-    }
 }

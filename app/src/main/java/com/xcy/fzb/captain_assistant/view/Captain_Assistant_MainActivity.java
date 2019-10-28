@@ -1,11 +1,11 @@
 package com.xcy.fzb.captain_assistant.view;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,6 +14,7 @@ import com.github.androidprogresslayout.ProgressLayout;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.fragment.MessageFragment;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_assistant.fragment.AssistantHomeFragment;
 import com.xcy.fzb.captain_assistant.fragment.AssistantMeFragment;
@@ -37,13 +38,32 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
                 .getExternalAdaptManager()
                 .addCancelAdaptOfActivity(Captain_Assistant_MainActivity.class);
         setContentView(R.layout.activity_captain__assistant__main);
-
         initfvb();
 
     }
 
-    private void initfvb() {
+    private void init_No_Network(){
+        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+        if (networkAvailable) {
 
+        } else {
+            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
+            Button all_no_reload = findViewById(R.id.all_no_reload);
+
+            all_no_network.setVisibility(View.VISIBLE);
+            all_no_reload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void initfvb() {
+        init_No_Network();
         StatusBar.makeStatusBarTransparent(this);
 
         home = findViewById(R.id.team_main_home);
@@ -68,6 +88,7 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
     public void process(String str) {
         if (str != null) {
             if (str.equals("0")) {
+                init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
@@ -76,6 +97,7 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
                 transaction.commit();
                 message.setChecked(true);
             } else if (str.equals("2")) {
+                init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
@@ -84,6 +106,7 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
                 transaction.commit();
                 message.setChecked(true);
             } else if (str.equals("5")) {
+                init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
@@ -92,6 +115,7 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
                 transaction.commit();
                 message.setChecked(true);
             } else if (str.equals("63")) {
+                init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 TeamFragment teamFragment = new TeamFragment();
@@ -109,22 +133,22 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
         FragmentTransaction transaction = manager.beginTransaction();
         switch (view.getId()) {
             case R.id.team_main_home:
-                initProgressLayout();
+                init_No_Network();
                 AssistantHomeFragment projectFragment = new AssistantHomeFragment();
                 transaction.replace(R.id.team_main_framelayout, projectFragment);
                 break;
             case R.id.team_main_project:
-                initProgressLayout();
+                init_No_Network();
                 TeamFragment teamFragment = new TeamFragment();
                 transaction.replace(R.id.team_main_framelayout, teamFragment);
                 break;
             case R.id.team_main_message:
-                initProgressLayout();
+                init_No_Network();
                 MessageFragment messageFragment = new MessageFragment();
                 transaction.replace(R.id.team_main_framelayout, messageFragment);
                 break;
             case R.id.team_main_me:
-                initProgressLayout();
+                init_No_Network();
                 AssistantMeFragment meFragment = new AssistantMeFragment();
                 transaction.replace(R.id.team_main_framelayout, meFragment);
                 break;
@@ -142,22 +166,4 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
         return 667;
     }
 
-    private void initProgressLayout(){
-        progressLayout = findViewById(R.id.progress_layout);
-
-        @SuppressLint("HandlerLeak") Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                // 切换回正常显示页面
-                progressLayout.showContent();
-            }
-        };
-
-        // 开始加载... 假设从这里开始一个耗时的操作将开始启动，在此启动过程中，开发者希望用户稍事休息，等待。。。
-        progressLayout.showProgress();
-
-        // 假设有一个耗时的加载业务逻辑，需要5秒完成。
-        handler.sendEmptyMessageDelayed(0, 300);
-
-    }
 }

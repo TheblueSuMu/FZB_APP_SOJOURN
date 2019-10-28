@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.utils.CommonUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -32,10 +34,27 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_fzb);
+        init_No_Network();
+    }
 
+    private void init_No_Network(){
+        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+        if (networkAvailable) {
+            initView();
+        } else {
+            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
+            Button all_no_reload = findViewById(R.id.all_no_reload);
 
-        initView();
-
+            all_no_network.setVisibility(View.VISIBLE);
+            all_no_reload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initView() {

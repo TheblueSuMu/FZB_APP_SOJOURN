@@ -1,16 +1,16 @@
 package com.xcy.fzb.all.view;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +24,7 @@ import com.xcy.fzb.all.database.BorkerageDownBean;
 import com.xcy.fzb.all.database.BorkerageUpBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.CommonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,21 +62,32 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
     private List<BorkerageDownBean.DataBean.RowsBean> rows;
     private String s;
     int isnum = 0;
-//    FragmentManager fragmentManager;
-//    FragmentTransaction transaction;
-
-//    OverseasFragment overseasFragment = new OverseasFragment();
-//    SojournFragment sojournFragment = new SojournFragment();
-//    BrokerageCityFragment brokerageCityFragment = new BrokerageCityFragment();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_brokerage);
+        init_No_Network();
+    }
 
+    private void init_No_Network(){
+        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+        if (networkAvailable) {
+            initView();
+        } else {
+            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
+            Button all_no_reload = findViewById(R.id.all_no_reload);
 
-        initView();
-
+            all_no_network.setVisibility(View.VISIBLE);
+            all_no_reload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void initView() {

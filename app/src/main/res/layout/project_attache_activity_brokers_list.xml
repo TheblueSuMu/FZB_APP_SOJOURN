@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,116 +7,147 @@
     android:background="#FFFFFF"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#334485"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:id="@+id/brokers_list_return"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="10dp"
-                android:src="@mipmap/return2" />
-
-        </RelativeLayout>
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="7dp"
-            android:text="经纪人列表"
-            android:textColor="#FFFEFE"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/brokers_list_add"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="6dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/my_client_add" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#334485">
-
-        <EditText
-            android:id="@+id/brokers_list_et"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="150dp"
-            android:background="@drawable/comment"
-            android:gravity="center"
-            android:hint="搜索"
-            android:textColor="#333333"
-            android:textSize="12sp" />
-
-        <RelativeLayout
-            android:id="@+id/brokers_tv_rl"
-            android:layout_width="125dp"
-            android:layout_height="30dp"
-            android:background="@drawable/check_type"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:layout_centerVertical="true">
-
-            <TextView
-                android:id="@+id/brokers_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:drawableRight="@mipmap/xq"
-                android:gravity="center"
-                android:text="全部  "
-                android:textColor="#ff333333"
-                android:textSize="13sp" />
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/brokers_list_rv"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"/>
+            android:layout_height="70dp"
+            android:background="#334485"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/brokers_list_return"
+                android:layout_width="50dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@mipmap/return2" />
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="7dp"
+                android:text="经纪人列表"
+                android:textColor="#FFFEFE"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/brokers_list_add"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="6dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/my_client_add" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#334485">
+
+            <EditText
+                android:id="@+id/brokers_list_et"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="150dp"
+                android:background="@drawable/comment"
+                android:gravity="center"
+                android:hint="搜索"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:id="@+id/brokers_tv_rl"
+                android:layout_width="125dp"
+                android:layout_height="30dp"
+                android:background="@drawable/check_type"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/brokers_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:drawableRight="@mipmap/xq"
+                    android:gravity="center"
+                    android:text="全部  "
+                    android:textColor="#ff333333"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/brokers_list_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"/>
+
+            <ImageView
+                android:id="@+id/all_no_information"
+                android:background="#fff"
+                android:visibility="gone"
+                android:src="@mipmap/no_information"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/all_no_network"
+        android:background="#fff"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/all_no_information"
-            android:background="#fff"
-            android:visibility="gone"
-            android:src="@mipmap/no_information"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:id="@+id/imageimage"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_below="@id/imageimage"
+            android:id="@+id/all_no_reload"
+            android:layout_marginTop="-40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_back"
+            android:text="重新加载"
+            android:textSize="12sp"
+            android:textColor="#334485"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 
-
-
-
-
-</LinearLayout>
+</RelativeLayout>

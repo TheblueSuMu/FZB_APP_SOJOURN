@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,309 +7,343 @@
     android:background="#FFFFFF"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:background="@drawable/the_project_end_brokerage">
-
-        <RelativeLayout
-            android:id="@+id/to_apply_for_an_island2_return"
-            android:layout_width="50dp"
-            android:layout_height="70dp">
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="18dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginBottom="14dp"
-                android:src="@mipmap/return2" />
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="11dp"
-            android:text="申请登岛"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="80dp">
+            android:layout_height="65dp"
+            android:background="@drawable/the_project_end_brokerage">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:id="@+id/to_apply_for_an_island2_return"
+                android:layout_width="50dp"
+                android:layout_height="70dp">
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginBottom="14dp"
+                    android:src="@mipmap/return2" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="11dp"
+                android:text="申请登岛"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/to_apply_for_an_island2_rl1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="登岛路线："
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/getlandLine"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:gravity="right"
-                        android:layout_marginRight="20dp"
-                        android:background="#FFFFFF"
-                        android:text="选择路线"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:layout_width="6dp"
-                        android:layout_height="9dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:src="@mipmap/nexts" />
-
-                </RelativeLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="80dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#EEEEEE"></LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/to_apply_for_an_island2_rl2"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="登岛时间："
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/getlandLinetime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"
-                        android:background="#FFFFFF"
-                        android:gravity="right"
-                        android:text="选择时间"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:layout_width="6dp"
-                        android:layout_height="9dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:src="@mipmap/nexts" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#EEEEEE"></LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="团费金额："
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/to_apply_for_an_island2_tv1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:background="#FFFFFF"
-                        android:gravity="right"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/to_apply_for_an_island2_ll1"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/to_apply_for_an_island2_rv"
+                    <RelativeLayout
+                        android:id="@+id/to_apply_for_an_island2_rl1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="登岛路线："
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/getlandLine"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:gravity="right"
+                            android:layout_marginRight="20dp"
+                            android:background="#FFFFFF"
+                            android:text="选择路线"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="9dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/nexts" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#EEEEEE"></LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/to_apply_for_an_island2_rl2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="登岛时间："
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/getlandLinetime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="20dp"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
+                            android:text="选择时间"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:layout_height="9dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/nexts" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#EEEEEE"></LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="团费金额："
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/to_apply_for_an_island2_tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/to_apply_for_an_island2_ll1"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/to_apply_for_an_island2_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/to_apply_for_an_island2_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#EEEEEE"
+                        android:orientation="horizontal" />
+
+                    <RelativeLayout
+                        android:id="@+id/to_apply_for_an_island2_rl4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="添加同行人员："
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:id="@+id/to_apply_for_an_island2_img2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/colleague_add" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#EEEEEE"></LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="合计总费用："
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/to_apply_for_an_island2_tv3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#EEEEEE"></LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="缴纳团费凭证："
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/to_apply_for_an_island2_rl3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp">
+
+                        <ImageView
+                            android:id="@+id/to_apply_for_an_island2_img3"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@mipmap/wx_tp"
+                            android:background="#999999" />
+
+                        <TextView
+                            android:id="@+id/to_apply_for_an_island2_tv4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            android:text="上传图片" />
+                    </RelativeLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/to_apply_for_an_island2_linear"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#EEEEEE"
-                    android:orientation="horizontal" />
+            </ScrollView>
 
-                <RelativeLayout
-                    android:id="@+id/to_apply_for_an_island2_rl4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp">
+            <Button
+                android:id="@+id/to_apply_for_an_island2_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="38dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/points_dialog_but"
+                android:text="完成"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="添加同行人员："
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
+    </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/to_apply_for_an_island2_img2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:src="@mipmap/colleague_add" />
+    <RelativeLayout
+        android:id="@+id/all_no_network"
+        android:background="#fff"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#EEEEEE"></LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="合计总费用："
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/to_apply_for_an_island2_tv3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:background="#FFFFFF"
-                        android:gravity="right"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#EEEEEE"></LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="缴纳团费凭证："
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/to_apply_for_an_island2_rl3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp">
-
-                    <ImageView
-                        android:id="@+id/to_apply_for_an_island2_img3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@mipmap/wx_tp"
-                        android:background="#999999" />
-
-                    <TextView
-                        android:id="@+id/to_apply_for_an_island2_tv4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:visibility="gone"
-                        android:text="上传图片" />
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </ScrollView>
+        <ImageView
+            android:id="@+id/imageimage"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/to_apply_for_an_island2_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="38dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="38dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/points_dialog_but"
-            android:text="完成"
-            android:textColor="#FFFFFF" />
+            android:layout_below="@id/imageimage"
+            android:id="@+id/all_no_reload"
+            android:layout_marginTop="-40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_back"
+            android:text="重新加载"
+            android:textSize="12sp"
+            android:textColor="#334485"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

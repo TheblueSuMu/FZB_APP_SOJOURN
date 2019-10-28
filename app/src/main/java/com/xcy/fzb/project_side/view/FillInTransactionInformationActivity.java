@@ -34,6 +34,7 @@ import com.xcy.fzb.all.modle.TradeSaveBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.KeyUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.view.AllActivity;
@@ -114,10 +115,28 @@ public class FillInTransactionInformationActivity extends AllActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_side_activity_fill_in_transaction_information);
-        StatusBar.makeStatusBarTransparent(this);
-        initView();
+        init_No_Network();
+    }
 
+    private void init_No_Network(){
+        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+        if (networkAvailable) {
+            StatusBar.makeStatusBarTransparent(this);
+            initView();
+        } else {
+            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
+            Button all_no_reload = findViewById(R.id.all_no_reload);
 
+            all_no_network.setVisibility(View.VISIBLE);
+            all_no_reload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initView() {
@@ -810,6 +829,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                         fill_in_transaction_information_et5.setText(findTradeBean.getData().getFfServerTrade().getPrice());
                         fill_in_transaction_information_et6.setText(findTradeBean.getData().getFfServerTrade().getTotalPrice()+"元");
                         sum = Double.parseDouble(findTradeBean.getData().getFfServerTrade().getTotalPrice());
+                        str = findTradeBean.getData().getFfServerTrade().getTotalPrice();
                         payment_way.setText(findTradeBean.getData().getFfServerTrade().getPaymentMethod());
                         project_time.setText(findTradeBean.getData().getFfServerTrade().getTradeDate());
 

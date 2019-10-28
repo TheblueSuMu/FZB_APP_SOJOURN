@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,45 +8,80 @@
     android:orientation="vertical"
     tools:context=".all.view.PhotoActivity">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@drawable/my_brokerage">
+        android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/photo_img"
-            android:layout_width="50dp"
-            android:layout_height="70dp">
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@drawable/my_brokerage">
 
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="18dp"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="33dp"
-                android:src="@mipmap/return2" />
+            <RelativeLayout
+                android:id="@+id/photo_img"
+                android:layout_width="50dp"
+                android:layout_height="70dp">
 
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="33dp"
+                    android:src="@mipmap/return2" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="相册"
+                android:textColor="#ffffffff"
+                android:textSize="18sp" />
         </RelativeLayout>
 
-        <TextView
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/photo_tab_layout"
+            android:layout_width="match_parent"
+            app:tabIndicatorColor="#3B82D2"
+            app:tabSelectedTextColor="#3B82D2"
+            app:tabTextColor="#FFFFFF"
+            android:layout_height="wrap_content"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/photo_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/all_no_network"
+        android:background="#fff"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageimage"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_below="@id/imageimage"
+            android:id="@+id/all_no_reload"
+            android:layout_marginTop="-40dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:text="相册"
-            android:textColor="#ffffffff"
-            android:textSize="18sp" />
+            android:background="@drawable/button_back"
+            android:text="重新加载"
+            android:textSize="12sp"
+            android:textColor="#334485"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </RelativeLayout>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/photo_tab_layout"
-        android:layout_width="match_parent"
-        app:tabIndicatorColor="#3B82D2"
-        app:tabSelectedTextColor="#3B82D2"
-        app:tabTextColor="#FFFFFF"
-        android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/photo_view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></androidx.viewpager.widget.ViewPager>
-</LinearLayout>
+</RelativeLayout>

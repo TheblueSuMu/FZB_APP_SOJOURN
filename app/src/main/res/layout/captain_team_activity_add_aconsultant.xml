@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:slideswitch="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,457 +7,492 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:background="@drawable/my_brokerage">
+        android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/add_aconsultant_img1"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/my_brokerage">
 
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="20dp"
+            <RelativeLayout
+                android:id="@+id/add_aconsultant_img1"
+                android:layout_width="50dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="12dp"
+                    android:src="@mipmap/return2" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/add_aconsultant_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="12dp"
-                android:src="@mipmap/return2" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="11dp"
+                android:text="添加顾问"
+                android:textColor="#ffffffff"
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
-
-        <TextView
-            android:id="@+id/add_aconsultant_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="11dp"
-            android:text="添加顾问"
-            android:textColor="#ffffffff"
-            android:textSize="18sp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#EEEEED">
-
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:background="#FFFFFF">
+            android:layout_height="match_parent"
+            android:background="#EEEEED">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:background="#FFFFFF">
 
-                <RelativeLayout
-                    android:id="@+id/add_acon_rl_s"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="团队长姓名"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/add_aconsultant_tv1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="30dp"
-                        android:text=""
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:layout_width="10dp"
-                        android:layout_height="15dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
-                        android:src="@mipmap/nexts"
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/add_aconsultant_rl1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="选择销售"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:layout_width="10dp"
-                        android:layout_height="15dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
-                        android:src="@mipmap/nexts"
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/add_aconsultant_tv2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="30dp"
-                        android:text=""
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/add_aconsultant_rl2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="级别"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:layout_width="10dp"
-                        android:layout_height="15dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
-                        android:src="@mipmap/nexts"
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/add_aconsultant_tv3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="30dp"
-                        android:text=""
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="姓名"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <EditText
-                        android:id="@+id/add_aconsultant_et1"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:background="#FFFFFF"
-                        android:gravity="right"
-                        android:hint="请输入姓名"
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="所在行业"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <EditText
-                        android:id="@+id/add_aconsultant_et2"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:background="#FFFFFF"
-                        android:gravity="right"
-                        android:hint="请输入所在行业"
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="手机号"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <EditText
-                        android:id="@+id/add_aconsultant_et3"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
-                        android:inputType="number"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:background="#FFFFFF"
-                        android:gravity="right"
-                        android:hint="请输入手机号"
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="登录账号"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <EditText
-                        android:id="@+id/add_aconsultant_et4"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
-                        android:imeOptions="actionDone"
-                        android:singleLine="true"
-                        android:background="#FFFFFF"
-                        android:gravity="right"
-                        android:hint="请输入登录账号"
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="登录密码"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
-
-                    <EditText
-                        android:id="@+id/add_aconsultant_et5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
-                        android:background="#FFFFFF"
-                        android:gravity="right"
-                        android:hint="123456"
-                        android:textColor="#ff666666"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:text="是否禁用"
-                        android:textColor="#ff111111"
-                        android:textSize="15sp" />
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp">
-                        s
-
-                        <com.xcy.fzb.all.persente.SlideSwitch
-                            android:id="@+id/ssswit"
-                            android:layout_width="70dp"
-                            android:layout_height="25dp"
-                            slideswitch:isOpen="true"
-                            slideswitch:shape="circle"
-                            slideswitch:themeColor="#0FBF62">
-
-                        </com.xcy.fzb.all.persente.SlideSwitch>
+                        android:id="@+id/add_acon_rl_s"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/sstxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:text="已启用"
-                            android:textColor="#ffffffff"
-                            android:textSize="11sp"
-                            android:visibility="gone" />
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:text="团队长姓名"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
 
                         <TextView
-                            android:id="@+id/sstxt1"
+                            android:id="@+id/add_aconsultant_tv1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="25dp"
-                            android:text="未启用"
-                            android:textColor="#ffffffff"
-                            android:textSize="11sp" />
+                            android:layout_marginRight="30dp"
+                            android:text=""
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="15dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:src="@mipmap/nexts"
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#EEEEEE"></LinearLayout>
                     </RelativeLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
+                        android:id="@+id/add_aconsultant_rl1"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
-                </RelativeLayout>
+                        android:layout_height="wrap_content">
 
-                <!--TODO LinearLayout-->
-            </LinearLayout>
-        </ScrollView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:text="选择销售"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="15dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:src="@mipmap/nexts"
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/add_aconsultant_tv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="30dp"
+                            android:text=""
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#EEEEEE"></LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/add_aconsultant_rl2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:text="级别"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="15dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:src="@mipmap/nexts"
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/add_aconsultant_tv3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="30dp"
+                            android:text=""
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#EEEEEE"></LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:text="姓名"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/add_aconsultant_et1"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
+                            android:hint="请输入姓名"
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#EEEEEE"></LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:text="所在行业"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/add_aconsultant_et2"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
+                            android:hint="请输入所在行业"
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#EEEEEE"></LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:text="手机号"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/add_aconsultant_et3"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:inputType="number"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
+                            android:hint="请输入手机号"
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#EEEEEE"></LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:text="登录账号"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/add_aconsultant_et4"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
+                            android:hint="请输入登录账号"
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#EEEEEE"></LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:text="登录密码"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/add_aconsultant_et5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
+                            android:hint="123456"
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#EEEEEE"></LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:text="是否禁用"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp">
+                            s
+
+                            <com.xcy.fzb.all.persente.SlideSwitch
+                                android:id="@+id/ssswit"
+                                android:layout_width="70dp"
+                                android:layout_height="25dp"
+                                slideswitch:isOpen="true"
+                                slideswitch:shape="circle"
+                                slideswitch:themeColor="#0FBF62">
+
+                            </com.xcy.fzb.all.persente.SlideSwitch>
+
+                            <TextView
+                                android:id="@+id/sstxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="10dp"
+                                android:text="已启用"
+                                android:textColor="#ffffffff"
+                                android:textSize="11sp"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/sstxt1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="25dp"
+                                android:text="未启用"
+                                android:textColor="#ffffffff"
+                                android:textSize="11sp" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#EEEEEE"></LinearLayout>
+                    </RelativeLayout>
+
+                    <!--TODO LinearLayout-->
+                </LinearLayout>
+            </ScrollView>
+
+            <Button
+                android:id="@+id/add_aconsultant_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/points_dialog_but"
+                android:text="确定"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/all_no_network"
+        android:background="#fff"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageimage"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/add_aconsultant_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/points_dialog_but"
-            android:text="确定"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
+            android:layout_below="@id/imageimage"
+            android:id="@+id/all_no_reload"
+            android:layout_marginTop="-40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_back"
+            android:text="重新加载"
+            android:textSize="12sp"
+            android:textColor="#334485"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

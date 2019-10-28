@@ -60,8 +60,6 @@ import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.wechat.friends.Wechat;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -211,6 +209,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     FinalContents.setCityID(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
+                    finish();
                 } else {
                     editor.putString("login", "1");
                     editor.commit();
@@ -228,6 +227,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     FinalContents.setCityID(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
+                    finish();
                 } else {
                     editor.putString("login", "1");
                     editor.commit();
@@ -245,6 +245,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     FinalContents.setCityID(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
+                    finish();
                 } else {
                     editor.putString("login", "1");
                     editor.commit();
@@ -262,6 +263,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     FinalContents.setCityID(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
+                    finish();
                 } else {
                     editor.putString("login", "1");
                     editor.commit();
@@ -279,6 +281,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     FinalContents.setCityID(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
+                    finish();
                 } else {
                     editor.putString("login", "1");
                     editor.commit();
@@ -297,6 +300,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     FinalContents.setCityName(pref.getString("cityname", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
+                    finish();
                 } else {
                     editor.putString("login", "1");
                     editor.commit();
@@ -314,6 +318,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     FinalContents.setCityID(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
+                    finish();
                 } else {
                     editor.putString("login", "1");
                     editor.commit();
@@ -331,6 +336,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     FinalContents.setCityID(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
+                    finish();
                 } else {
                     editor.putString("login", "1");
                     editor.commit();

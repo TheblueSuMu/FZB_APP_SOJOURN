@@ -1,82 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:background="@drawable/the_project_end_brokerage">
-
+        android:layout_height="match_parent">
         <RelativeLayout
-            android:id="@+id/back_to_raise_that_return"
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/the_project_end_brokerage">
 
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="18dp"
+            <RelativeLayout
+                android:id="@+id/back_to_raise_that_return"
+                android:layout_width="50dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginBottom="14dp"
+                    android:src="@mipmap/return2" />
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginBottom="14dp"
-                android:src="@mipmap/return2" />
-
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="11dp"
+                android:text="填写退筹说明"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
         </RelativeLayout>
-
-
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="11dp"
             android:text="填写退筹说明"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
-    </RelativeLayout>
+            android:textColor="#000000"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="填写退筹说明"
-        android:textColor="#000000"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/back_to_raise_that_et"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/my_fine_fram"
+                android:gravity="top"
+                android:paddingLeft="13dp"
+                android:paddingTop="23dp"
+                android:paddingRight="13dp"
+                android:lineSpacingExtra="3dp"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/back_to_raise_that_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="38dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/points_dialog_but"
+                android:text="提交"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/all_no_network"
+        android:background="#fff"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <EditText
-            android:id="@+id/back_to_raise_that_et"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/my_fine_fram"
-            android:gravity="top"
-            android:paddingLeft="13dp"
-            android:paddingTop="23dp"
-            android:paddingRight="13dp"
-            android:lineSpacingExtra="3dp"
-            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/imageimage"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/back_to_raise_that_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="38dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="38dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/points_dialog_but"
-            android:text="提交"
-            android:textColor="#FFFFFF" />
+            android:layout_below="@id/imageimage"
+            android:id="@+id/all_no_reload"
+            android:layout_marginTop="-40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_back"
+            android:text="重新加载"
+            android:textSize="12sp"
+            android:textColor="#334485"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>
