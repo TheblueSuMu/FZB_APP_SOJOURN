@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/family_item_pic"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/logo_square"
         android:scaleType="fitXY"
         android:layout_width="140dp"
         android:layout_height="100dp" />
@@ -20,7 +20,7 @@
         <TextView
             android:id="@+id/family_item_room"
             android:layout_alignParentLeft="true"
-            android:text="两室"
+            android:text=""
             android:textSize="12sp"
             android:textColor="#111"
             android:layout_width="wrap_content"
@@ -34,14 +34,14 @@
             android:layout_marginRight="40dp"
             android:gravity="center"
             android:background="@drawable/sales_background"
-            android:text="待售"
+            android:text=""
             android:textColor="#FA514B"
             android:textSize="9sp" />
 
         <TextView
             android:layout_alignParentRight="true"
             android:id="@+id/family_item_type"
-            android:text="公寓"
+            android:text=""
             android:textSize="9sp"
             android:textColor="#49B752"
             android:layout_marginRight="10dp"
@@ -61,7 +61,7 @@
         <TextView
             android:id="@+id/family_item_area"
             android:layout_alignParentLeft="true"
-            android:text="面积约：120m²"
+            android:text=""
             android:textSize="9sp"
             android:textColor="#999999"
             android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
         <TextView
             android:layout_alignParentRight="true"
             android:id="@+id/family_item_orientation"
-            android:text="朝向：南，北"
+            android:text=""
             android:textSize="9sp"
             android:textColor="#999999"
             android:layout_marginRight="10dp"

@@ -35,8 +35,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="41dp"
                 android:layout_marginRight="15dp"
-                android:text="切尔西水畔 泰晤士河北岸伦敦西区
-第五大道第三大街"
+                android:text=""
                 android:textColor="#ff666666"
                 android:textSize="15sp" />
 
@@ -73,8 +72,7 @@
                 android:layout_marginLeft="41dp"
                 android:paddingRight="30dp"
                 android:layout_marginRight="15dp"
-                android:text="永久产权,准现房,学区房,公寓,精装
-修"
+                android:text=""
                 android:textColor="#ff666666"
                 android:textSize="15sp" />
 
@@ -116,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingRight="30dp"
-                    android:text="第五大道第三大街"
+                    android:text=""
                     android:textColor="#ff666666"
                     android:textSize="15sp" />
 
@@ -167,7 +165,7 @@
                     android:id="@+id/more_information_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="长春市保和大厦"
+                    android:text=""
                     android:paddingRight="30dp"
                     android:textColor="#ff666666"
                     android:textSize="15sp" />
@@ -214,7 +212,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="27dp"
                 android:layout_marginRight="15dp"
-                android:text="SFFGHF开发有限公司"
+                android:text=""
                 android:paddingRight="30dp"
                 android:textColor="#ff666666"
                 android:textSize="15sp" />
@@ -251,7 +249,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="27dp"
                 android:layout_marginRight="15dp"
-                android:text="伯克利集团"
+                android:text=""
                 android:paddingRight="30dp"
                 android:textColor="#ff666666"
                 android:textSize="15sp" />
@@ -288,7 +286,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="41dp"
                 android:layout_marginRight="15dp"
-                android:text="写字间"
+                android:text=""
                 android:paddingRight="30dp"
                 android:textColor="#ff666666"
                 android:textSize="15sp" />

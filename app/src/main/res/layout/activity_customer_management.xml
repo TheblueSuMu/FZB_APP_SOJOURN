@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
-            android:text="项目名称"
+            android:text=""
             android:textColor="#ff111111"
             android:textSize="15sp" />
 
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
-            android:text="[项目负责人]"
+            android:text=""
             android:textColor="#ff666666"
             android:textSize="13sp" />
 
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="87dp"
             android:layout_marginTop="44dp"
-            android:text="刘喆"
+            android:text=""
             android:textColor="#ff333333"
             android:textSize="13sp" />
 
@@ -120,7 +120,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="21dp"
             android:layout_marginRight="26dp"
-            android:text="报备成功"
+            android:text=""
             android:textColor="#ff43987c"
             android:textSize="13sp" />
 
@@ -130,7 +130,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="42dp"
             android:layout_marginRight="26dp"
-            android:text="保护期剩余2天"
+            android:text=""
             android:textColor="#ffc3555b"
             android:textSize="13sp" />
     </RelativeLayout>
@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
-            android:text="项目名称"
+            android:text=""
             android:textColor="#ff111111"
             android:textSize="15sp" />
 
@@ -160,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
-            android:text="[项目负责人]"
+            android:text=""
             android:textColor="#ff666666"
             android:textSize="13sp" />
 
@@ -169,7 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="86dp"
             android:layout_marginTop="44dp"
-            android:text="刘喆"
+            android:text=""
             android:textColor="#ff333333"
             android:textSize="13sp" />
 
@@ -178,7 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="117dp"
             android:layout_marginTop="44dp"
-            android:text="刘喆"
+            android:text=""
             android:textColor="#ff333333"
             android:textSize="13sp" />
 
@@ -195,7 +195,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="21dp"
             android:layout_marginRight="26dp"
-            android:text="到访"
+            android:text=""
             android:textColor="#D08068"
             android:textSize="13sp" />
 
@@ -205,7 +205,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="42dp"
             android:layout_marginRight="26dp"
-            android:text="保护期剩余2天"
+            android:text=""
             android:textColor="#ffc3555b"
             android:textSize="13sp" />
     </RelativeLayout>
@@ -227,7 +227,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
-            android:text="项目名称"
+            android:text=""
             android:textColor="#ff111111"
             android:textSize="15sp" />
 
@@ -235,7 +235,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
-            android:text="[项目负责人]"
+            android:text=""
             android:textColor="#ff666666"
             android:textSize="13sp" />
 
@@ -244,7 +244,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="87dp"
             android:layout_marginTop="44dp"
-            android:text="刘喆"
+            android:text=""
             android:textColor="#ff333333"
             android:textSize="13sp" />
 
@@ -261,7 +261,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="27dp"
-            android:text="失效"
+            android:text=""
             android:textColor="#ff999999"
             android:textSize="13sp" />
     </RelativeLayout>

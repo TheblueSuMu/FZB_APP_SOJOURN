@@ -74,7 +74,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
-                android:text="到达机场"
+                android:text=""
                 android:textColor="#ff111111"
                 android:textSize="14sp" />
 
@@ -86,7 +86,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="5dp"
-                android:text="客户性名"
+                android:text=""
                 android:visibility="gone"
                 android:textColor="#999999"
                 android:textSize="12sp" />
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="5dp"
-                android:text="客户性别"
+                android:text=""
                 android:visibility="gone"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="15dp"

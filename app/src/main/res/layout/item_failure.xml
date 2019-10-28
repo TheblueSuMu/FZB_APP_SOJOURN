@@ -66,7 +66,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
-            android:text="到达机场"
+            android:text=""
             android:textColor="#ff111111"
             android:textSize="14sp" />
 
@@ -77,7 +77,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
-            android:text="到达机场"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -88,7 +88,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
-            android:text="到达机场"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -99,7 +99,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
-            android:text="到达机场"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -110,7 +110,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
-            android:text="到达机场"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 

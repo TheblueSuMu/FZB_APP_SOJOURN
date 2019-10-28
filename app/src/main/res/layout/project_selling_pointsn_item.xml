@@ -24,7 +24,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_marginTop="15dp"
-           android:text="泰国华欣三百峰皇家旅游度假区"
+           android:text=""
            android:textColor="#111111"
            android:textSize="15sp" />
 
@@ -34,7 +34,7 @@
            android:layout_marginLeft="15dp"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="2019-05-30 09:52:54"
+           android:text=""
            android:layout_below="@id/selling_title"
            android:layout_marginBottom="15dp"/>
    </RelativeLayout>

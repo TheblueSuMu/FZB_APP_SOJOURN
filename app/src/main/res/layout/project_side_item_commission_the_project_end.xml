@@ -21,7 +21,7 @@
                 android:id="@+id/the_project_end_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="泰国华欣三百峰皇家旅游度假区"
+                android:text=""
                 android:textColor="#111111"
                 android:textSize="15sp" />
 
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="小小（13800000000）"
+                android:text=""
                 android:textColor="#333333"
                 android:textSize="12sp" />
 
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
-                android:text="7-1-1002"
+                android:text=""
                 android:textColor="#333333"
                 android:textSize="12sp" />
 
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
-                android:text="成交时间：2019-03-11"
+                android:text=""
                 android:textColor="#333333"
                 android:textSize="12sp" />
 
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="团队长-下级人员姓名(身份)"
+                android:text=""
                 android:textColor="#333333"
                 android:textSize="12sp" />
 
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
-                android:text="应收：￥10000"
+                android:text=""
                 android:textColor="#ff333333"
                 android:textSize="12sp" />
 
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
-                android:text="已结：￥1000"
+                android:text=""
                 android:textColor="#ff43987c"
                 android:textSize="12sp" />
 
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
-                android:text="待结：￥9000"
+                android:text=""
                 android:textColor="#ff334485"
                 android:textSize="12sp" />
 
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
-                android:text="未结：￥9000"
+                android:text=""
                 android:textColor="#ffc3555b"
                 android:textSize="12sp" />
 

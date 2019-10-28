@@ -66,7 +66,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
-            android:text="到达机场"
+            android:text=""
             android:textColor="#ff111111"
             android:textSize="14sp" />
 
@@ -78,7 +78,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
-            android:text="客户性名"
+            android:text=""
             android:visibility="gone"
             android:textColor="#999999"
             android:textSize="12sp" />
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:text="客户性别"
+            android:text=""
             android:layout_marginLeft="8dp"
             android:visibility="gone"
             android:textColor="#999999"
@@ -105,7 +105,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
             android:visibility="gone"
-            android:text="客户电话"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -118,7 +118,7 @@
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
             android:visibility="gone"
-            android:text="身份证号"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -130,7 +130,7 @@
             android:layout_centerVertical="true"
             android:visibility="gone"
             android:layout_marginLeft="8dp"
-            android:text="成交房号"
+            android:text=""
             android:layout_marginRight="15dp"
             android:textColor="#999999"
             android:textSize="12sp" />
@@ -143,7 +143,7 @@
             android:layout_marginLeft="8dp"
             android:visibility="gone"
             android:layout_centerVertical="true"
-            android:text="成交户型"
+            android:text=""
             android:layout_marginRight="15dp"
             android:textColor="#999999"
             android:textSize="12sp" />
@@ -156,7 +156,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             android:visibility="gone"
-            android:text="成交面积"
+            android:text=""
             android:layout_marginRight="15dp"
             android:textColor="#999999"
             android:textSize="12sp" />
@@ -170,7 +170,7 @@
             android:visibility="gone"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
-            android:text="成交单价"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -183,7 +183,7 @@
             android:visibility="gone"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
-            android:text="成交总价"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -196,7 +196,7 @@
             android:layout_centerVertical="true"
             android:visibility="gone"
             android:layout_marginRight="15dp"
-            android:text="付款方式"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -209,7 +209,7 @@
             android:visibility="gone"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
-            android:text="成交时间"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -221,7 +221,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
             android:visibility="gone"
-            android:text="佣金名称"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -233,7 +233,7 @@
             android:visibility="gone"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="15dp"
-            android:text="佣金"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -246,7 +246,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
             android:layout_centerVertical="true"
-            android:text="操作人员"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -259,7 +259,7 @@
             android:visibility="gone"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="15dp"
-            android:text="操作时间"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp" />
 
@@ -271,7 +271,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="5dp"
-            android:text="其余"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp"
             android:visibility="gone" />
@@ -284,7 +284,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="5dp"
-            android:text="其余"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp"
             android:visibility="gone" />
@@ -297,7 +297,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="5dp"
-            android:text="其余"
+            android:text=""
             android:textColor="#999999"
             android:textSize="12sp"
             android:visibility="gone" />

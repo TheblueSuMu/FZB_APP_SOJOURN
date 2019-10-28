@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -76,7 +77,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     private TextView login_tv_select_type;
     private TextView login_tv_login;
     private TextView login_tv_forget_password;
-    private TextView login_tv_wechat;
+    private LinearLayout login_tv_wechat;
     private EditText login_et_username;
     private EditText login_et_password;
     private CheckBox login_save_user;

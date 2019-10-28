@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="刘喆"
+                android:text=""
                 android:textColor="#ff999999"
                 android:textSize="12sp" />
 
@@ -41,7 +41,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:text="2分钟前"
+                android:text=""
                 android:textColor="#ff999999"
                 android:textSize="11sp" />
         </RelativeLayout>
@@ -51,8 +51,7 @@
             android:layout_width="match_parent"
             android:layout_marginRight="15dp"
             android:layout_height="wrap_content"
-            android:text="中交海河公馆位于南开区老城厢北城街与城厢东路交口东侧，项目开盘时间待定，预计开盘4号楼，户中交海河公馆位于南开区老城厢北城街与开盘4号楼城厢东路型建面约52-128㎡.
-    楼盘新闻中交海河公馆开盘时间待定2019年2月26日讯：中交海河公馆开盘时间待定，预计开盘4号楼，户型建面约52-128㎡，预计均价52000元/㎡，项目预计2021年底交房。项目位于..."
+            android:text=""
             android:textColor="#ff666666"
             android:textSize="12sp" />
 

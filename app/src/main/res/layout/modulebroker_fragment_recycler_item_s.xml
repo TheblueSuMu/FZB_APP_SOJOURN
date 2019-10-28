@@ -51,7 +51,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="15dp"
                 android:layout_weight="1"
-                android:text="[河东区]书香蓝郡-住宅"
+                android:text=""
                 android:textColor="#ff111111"
                 android:textSize="15sp" />
             <RelativeLayout
@@ -97,7 +97,7 @@
                     android:id="@+id/chickS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="报备"
+                    android:text=""
                     android:textColor="#666666"
                     android:textSize="10sp" />
 
@@ -106,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="关注"
+                    android:text=""
                     android:textColor="#666666"
                     android:textSize="10sp" />
 
@@ -115,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="收藏"
+                    android:text=""
                     android:textColor="#666666"
                     android:textSize="10sp" />
 
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:singleLine="true"
-                    android:text="转发"
+                    android:text=""
                     android:textColor="#666666"
                     android:textSize="10sp" />
 
@@ -145,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:text="价格"
+                    android:text=""
                     android:textColor="#AC1E26"
                     android:textSize="14sp" />
 
@@ -154,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:text="价格"
+                    android:text=""
                     android:textColor="#AC1E26"
                     android:textSize="9sp" />
 
@@ -169,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="平方"
+                    android:text=""
                     android:textColor="#ff666666"
                     android:textSize="10sp" />
 
@@ -203,7 +203,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="31dp"
             android:paddingRight="5dp"
-            android:text="  佣金：10000元/套"
+            android:text="  "
             android:textColor="#ff666666"
             android:textSize="10sp" />
 
@@ -222,7 +222,7 @@
             android:drawableLeft="@mipmap/timet"
             android:gravity="center_vertical"
             android:paddingLeft="45dp"
-            android:text="  秒结：10000元"
+            android:text="  "
             android:textColor="#ff666666"
             android:textSize="10sp" />
     </LinearLayout>

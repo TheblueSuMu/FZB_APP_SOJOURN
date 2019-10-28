@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
-            android:text="刘喆"
+            android:text=""
             android:textColor="#666666"
             android:textSize="10sp" />
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
-            android:text="138000000"
+            android:text=""
             android:textColor="#666666"
             android:textSize="10sp" />
     </LinearLayout>

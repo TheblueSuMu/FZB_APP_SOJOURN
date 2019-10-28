@@ -16,7 +16,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
-            android:src="@mipmap/my_project"
+            android:src="@mipmap/logo_garden"
             app:riv_oval="true" />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/item_client_icon"
-            android:text="小小"
+            android:text=""
             android:textColor="#ff334485"
             android:textSize="15sp" />
 
@@ -39,7 +39,7 @@
             android:drawableRight="@mipmap/icon_you"
             android:drawablePadding="16dp"
             android:gravity="right"
-            android:text="未成功"
+            android:text=""
             android:textColor="#ffac1e26"
             android:textSize="13sp" />
 

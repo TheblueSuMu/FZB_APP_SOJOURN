@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="小小（7-1-1002）"
+                android:text=""
                 android:textColor="#ff333333"
                 android:textSize="15sp" />
 
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
-                android:text="泰国华欣三百峰皇家旅游度假区"
+                android:text=""
                 android:textColor="#ff333333"
                 android:textSize="12sp" />
 
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="经纪公司名称"
+                android:text=""
                 android:textColor="#ff333333"
                 android:textSize="12sp" />
 
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="经纪公司名称"
+                android:text=""
                 android:textColor="#ff333333"
                 android:textSize="12sp" />
 
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="经纪人名称"
+                android:text=""
                 android:textColor="#ff333333"
                 android:textSize="12sp" />
         </LinearLayout>

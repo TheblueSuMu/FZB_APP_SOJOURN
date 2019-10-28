@@ -35,7 +35,7 @@
                     android:id="@+id/room_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="曼谷中央豪庭"
+                    android:text=""
                     android:textColor="#ff334485"
                     android:textSize="15sp" />
 
@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="2分钟前"
+                    android:text=""
                     android:textColor="#ff999999"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dp"
-                    android:text="刘喆"
+                    android:text=""
                     android:textColor="#ff999999"
                     android:textSize="12sp" />
 
@@ -108,7 +108,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="9dp"
-                    android:text="13800000000"
+                    android:text=""
                     android:textColor="#334485"
                     android:background="@drawable/x_color"
                     android:textSize="12sp" />
