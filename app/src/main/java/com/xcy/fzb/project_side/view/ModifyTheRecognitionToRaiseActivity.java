@@ -303,6 +303,8 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+        Log.i("MyCL","FinalContents.getUserID()：" + FinalContents.getUserID());
+        Log.i("MyCL","FinalContents.getPreparationId()：" + FinalContents.getPreparationId());
         Observable<EarnestMoneyAuditBean> userMessage = fzbInterface.getEarnestMoneyAuditBean(FinalContents.getUserID(),FinalContents.getPreparationId(),"1");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

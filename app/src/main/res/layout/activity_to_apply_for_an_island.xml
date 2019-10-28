@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,88 +7,210 @@
     android:background="#fff"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@drawable/the_project_end_brokerage">
+
+        <RelativeLayout
+            android:id="@+id/to_apply_for_an_island_return"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="18dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="14dp"
+                android:src="@mipmap/return2" />
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp"
+            android:text="申请登岛"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/the_project_end_brokerage">
-
-            <RelativeLayout
-                android:id="@+id/to_apply_for_an_island_return"
-                android:layout_width="50dp"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="18dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginBottom="14dp"
-                    android:src="@mipmap/return2" />
-
-            </RelativeLayout>
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="11dp"
-                android:text="申请登岛"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_marginBottom="80dp"
             android:layout_height="match_parent">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_marginBottom="80dp"
-                android:layout_height="match_parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="用户姓名："
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/to_apply_for_an_island_tv1"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="right"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:hint="回显数据"
+                        android:textColor="#111111"
+                        android:textSize="15sp" />
+
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#EEEEEE"></LinearLayout>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                <RelativeLayout
+                    android:id="@+id/to_apply_for_an_island_rl1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp">
+                        android:layout_centerVertical="true"
+                        android:text="性别："
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="用户姓名："
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/to_apply_for_an_island_tv2"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="35dp"
+                        android:gravity="right"
+                        android:hint="请选择性别"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
-                        <TextView
-                            android:id="@+id/to_apply_for_an_island_tv1"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:gravity="right"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="20dp"
-                            android:hint="回显数据"
-                            android:textColor="#111111"
-                            android:textSize="15sp" />
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:src="@mipmap/nexts"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_height="9dp"></ImageView>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="身份证号："
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/to_apply_for_an_island_et1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:inputType="number"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:digits="1234567890zZXY"
+                        android:background="#FFFFFF"
+                        android:gravity="right"
+                        android:maxLength="18"
+                        android:hint="请输入身份证号码"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
 
-                    </RelativeLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="年龄："
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/to_apply_for_an_island_tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:hint="输入身份证号码自定回显年龄"
+                        android:gravity="right"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/to_apply_for_an_island_ll2"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -97,7 +219,6 @@
                         android:background="#EEEEEE"></LinearLayout>
 
                     <RelativeLayout
-                        android:id="@+id/to_apply_for_an_island_rl1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -108,264 +229,108 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="性别："
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/to_apply_for_an_island_tv2"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="35dp"
-                            android:gravity="right"
-                            android:hint="请选择性别"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <ImageView
-                            android:layout_width="6dp"
-                            android:src="@mipmap/nexts"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerInParent="true"
-                            android:layout_marginRight="20dp"
-                            android:layout_height="9dp"></ImageView>
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="#EEEEEE"></LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="身份证号："
+                            android:text="护照编号："
                             android:textColor="#ff111111"
                             android:textSize="15sp" />
 
                         <EditText
-                            android:id="@+id/to_apply_for_an_island_et1"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/to_apply_for_an_island_et2"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="20dp"
-                            android:inputType="number"
-                            android:imeOptions="actionNext"
-                            android:singleLine="true"
-                            android:digits="1234567890zZXY"
                             android:background="#FFFFFF"
-                            android:gravity="right"
-                            android:maxLength="18"
-                            android:hint="请输入身份证号码"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="#EEEEEE"></LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="年龄："
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/to_apply_for_an_island_tv3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="20dp"
-                            android:hint="输入身份证号码自定回显年龄"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:hint="请输入护照编号"
                             android:gravity="right"
                             android:textColor="#ff111111"
                             android:textSize="15sp" />
-
                     </RelativeLayout>
 
-                    <LinearLayout
-                        android:id="@+id/to_apply_for_an_island_ll2"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="15dp"
-                            android:background="#EEEEEE"></LinearLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginRight="15dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:text="护照编号："
-                                android:textColor="#ff111111"
-                                android:textSize="15sp" />
-
-                            <EditText
-                                android:id="@+id/to_apply_for_an_island_et2"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginRight="20dp"
-                                android:background="#FFFFFF"
-                                android:imeOptions="actionDone"
-                                android:singleLine="true"
-                                android:maxLength="9"
-                                android:hint="请输入护照编号"
-                                android:gravity="right"
-                                android:textColor="#ff111111"
-                                android:textSize="15sp" />
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="#EEEEEE"/>
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp">
-
-                        <ImageView
-                            android:id="@+id/to_apply_for_an_island_img"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:background="#999999" />
-
-                        <TextView
-                            android:id="@+id/to_apply_for_an_island_tv4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:text="上传\n护照" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="#EEEEEE"></LinearLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/to_apply_for_an_island_rl2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="15dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="客户基本信息描摹"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <ImageView
-                            android:layout_width="6dp"
-                            android:layout_height="9dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:src="@mipmap/nexts" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="#EEEEEE"></LinearLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#EEEEEE"/>
 
-            </ScrollView>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp">
 
-            <Button
-                android:id="@+id/to_apply_for_an_island_btn"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="38dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="38dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/points_dialog_but"
-                android:text="下一步"
-                android:textColor="#FFFFFF" />
-        </RelativeLayout>
-    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/to_apply_for_an_island_img"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="#999999" />
 
-    <RelativeLayout
-        android:id="@+id/all_no_network"
-        android:background="#fff"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/to_apply_for_an_island_tv4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="上传\n护照" />
+                </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/imageimage"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/to_apply_for_an_island_rl2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="客户基本信息描摹"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="9dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/nexts" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#EEEEEE"></LinearLayout>
+            </LinearLayout>
+
+
+        </ScrollView>
 
         <Button
-            android:layout_below="@id/imageimage"
-            android:id="@+id/all_no_reload"
-            android:layout_marginTop="-40dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/button_back"
-            android:text="重新加载"
-            android:textSize="12sp"
-            android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
+            android:id="@+id/to_apply_for_an_island_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="38dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/points_dialog_but"
+            android:text="下一步"
+            android:textColor="#FFFFFF" />
     </RelativeLayout>
-
-</RelativeLayout>
+</LinearLayout>

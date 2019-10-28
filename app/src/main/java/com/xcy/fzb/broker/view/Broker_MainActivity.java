@@ -1,13 +1,13 @@
 package com.xcy.fzb.broker.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,14 +18,13 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.HomeFragment;
 import com.xcy.fzb.all.fragment.MessageFragment;
 import com.xcy.fzb.all.persente.StatusBar;
-import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.VirturlUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.ReportActivity;
 import com.xcy.fzb.broker.fragment.DFragment;
 import com.xcy.fzb.broker.fragment.EFragment;
 
-public class Broker_MainActivity extends AllActivity implements View.OnClickListener, HomeFragment.FragmentInteraction {
+public class Broker_MainActivity extends AllActivity implements View.OnClickListener,HomeFragment.FragmentInteraction {
 
     private RadioButton button_home;
     private RadioButton button_message;
@@ -34,13 +33,6 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
     private RadioButton button_me;
     private ImageView img_backup;
     private ProgressLayout progressLayout;
-
-    FragmentManager manager;
-    FragmentTransaction transaction;
-    private HomeFragment home_fragment = new HomeFragment();
-    private MessageFragment message_fragment = new MessageFragment();
-    private DFragment dFragment = new DFragment();
-    private EFragment eFragment = new EFragment();
 
 
     @Override
@@ -51,39 +43,15 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         FinalContents.setZhuanAn("0");
         init();
         initfvb();
-
     }
 
-    private void init_No_Network() {
-        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
-        if (networkAvailable) {
-
-        } else {
-            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
-            Button all_no_reload = findViewById(R.id.all_no_reload);
-
-            all_no_network.setVisibility(View.VISIBLE);
-            all_no_reload.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    finish();
-                    startActivity(getIntent());
-                }
-            });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void init() {
+    private void init(){
         VirturlUtil.assistActivity(findViewById(android.R.id.content));
-        init_No_Network();
-        manager = getSupportFragmentManager();
-        transaction = manager.beginTransaction();
-        transaction.add(R.id.main_framelayout, home_fragment);
-        transaction.add(R.id.main_framelayout, message_fragment);
-        transaction.add(R.id.main_framelayout, dFragment);
-        transaction.add(R.id.main_framelayout, eFragment);
-        transaction.show(home_fragment);
+
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        HomeFragment home_fragment = new HomeFragment();
+        transaction.replace(R.id.main_framelayout, home_fragment);
         transaction.commit();
     }
 
@@ -96,7 +64,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("2");
-                transaction.add(R.id.main_framelayout, messageFragment);
+                transaction.replace(R.id.main_framelayout,messageFragment);
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("2")) {
@@ -104,7 +72,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("3");
-                transaction.replace(R.id.main_framelayout, messageFragment);
+                transaction.replace(R.id.main_framelayout,messageFragment);
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("5")) {
@@ -112,7 +80,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("4");
-                transaction.replace(R.id.main_framelayout, messageFragment);
+                transaction.replace(R.id.main_framelayout,messageFragment);
                 transaction.commit();
                 button_message.setChecked(true);
             }
@@ -148,44 +116,62 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        manager = getSupportFragmentManager();
-        transaction = manager.beginTransaction();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
         switch (view.getId()) {
             case R.id.button_home:
-                init_No_Network();
-                transaction.show(home_fragment);
-                transaction.hide(message_fragment);
-                transaction.hide(dFragment);
-                transaction.hide(eFragment);
+                initProgressLayout();
+                HomeFragment home_fragment = new HomeFragment();
+                transaction.replace(R.id.main_framelayout, home_fragment);
                 break;
             case R.id.button_message:
-                init_No_Network();
-                transaction.show(message_fragment);
-                transaction.hide(home_fragment);
-                transaction.hide(dFragment);
-                transaction.hide(eFragment);
+                initProgressLayout();
+                MessageFragment message_fragment = new MessageFragment();
+                transaction.replace(R.id.main_framelayout, message_fragment);
                 break;
             case R.id.button_backup:
                 Intent intent = new Intent(Broker_MainActivity.this, ReportActivity.class);
                 startActivity(intent);
                 break;
             case R.id.button_economics:
-                init_No_Network();
-                transaction.show(dFragment);
-                transaction.hide(message_fragment);
-                transaction.hide(home_fragment);
-                transaction.hide(eFragment);
+                initProgressLayout();
+                DFragment dFragment = new DFragment();
+                transaction.replace(R.id.main_framelayout, dFragment);
                 break;
             case R.id.button_me:
-                init_No_Network();
-                transaction.show(eFragment);
-                transaction.hide(message_fragment);
-                transaction.hide(dFragment);
-                transaction.hide(home_fragment);
+                initProgressLayout();
+                EFragment eFragment = new EFragment();
+                transaction.replace(R.id.main_framelayout, eFragment);
                 break;
         }
+        initSeleep();
         transaction.commit();
     }
 
+    private void initSeleep(){
+        try {
+            Thread.sleep(150);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void initProgressLayout(){
+        progressLayout = findViewById(R.id.progress_layout);
+
+        @SuppressLint("HandlerLeak") Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                // 切换回正常显示页面
+                progressLayout.showContent();
+            }
+        };
+
+        // 开始加载... 假设从这里开始一个耗时的操作将开始启动，在此启动过程中，开发者希望用户稍事休息，等待。。。
+        progressLayout.showProgress();
+
+        // 假设有一个耗时的加载业务逻辑，需要5秒完成。
+        handler.sendEmptyMessageDelayed(0, 300);
+
+    }
 }

@@ -469,8 +469,14 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         getLatitude = data.getStringExtra("getLatitude");
         getLongitude = data.getStringExtra("getLongitude");
 
-        Log.i("地图","地图坐标getLongitude：" + getLongitude);
-        Log.i("地图","地图坐标getLatitude：" + getLatitude);
+        Log.i("经纬度转坐标","地图坐标getLongitude：" + getLongitude);
+        Log.i("经纬度转坐标","地图坐标getLatitude：" + getLatitude);
+
+        StringBuffer stringBuffer1 = new StringBuffer();
+        StringBuffer stringBuffer2 = new StringBuffer();
+
+        StringBuffer append1 = stringBuffer1.append(getLatitude);
+        StringBuffer append2 = stringBuffer2.append(getLongitude);
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -478,7 +484,9 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
+        Log.i("经纬度转坐标","地图坐标append2：" + append2.substring(0,10));
+        Log.i("经纬度转坐标","地图坐标append1：" + append1.substring(0,10));
+        Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(append2.substring(0,8), append1.substring(0,8));
         changeAddress.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ChangeAddress>() {

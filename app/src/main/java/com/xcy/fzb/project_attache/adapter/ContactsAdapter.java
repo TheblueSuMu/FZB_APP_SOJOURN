@@ -97,7 +97,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
             }
 
         }
-
         holder.contacts_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,8 +110,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
                         }
                     }
                 }
-
-
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {

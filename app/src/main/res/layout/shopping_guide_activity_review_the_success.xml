@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,221 +7,188 @@
     android:background="#fff"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@drawable/the_project_end_brokerage">
+
+        <RelativeLayout
+            android:id="@+id/review_the_success_return"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="18dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="14dp"
+                android:src="@mipmap/return2" />
+
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp"
+            android:text="项目进度"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@drawable/the_project_end_brokerage">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="55dp">
 
-            <RelativeLayout
-                android:id="@+id/review_the_success_return"
-                android:layout_width="50dp"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="18dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginBottom="14dp"
-                    android:src="@mipmap/return2" />
-
-            </RelativeLayout>
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="11dp"
-                android:text="项目进度"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="55dp">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="15dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/review_the_success_img1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="fitXY"
+                        app:riv_oval="true"
+                        android:src="@mipmap/logo_garden" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginRight="15dp">
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="75dp"
+                        android:orientation="vertical">
 
-                        <com.makeramen.roundedimageview.RoundedImageView
-                            android:id="@+id/review_the_success_img1"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:scaleType="fitXY"
-                            app:riv_oval="true"
-                            android:src="@mipmap/logo_garden" />
+                        <TextView
+                            android:id="@+id/review_the_success_tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/review_the_success_tv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text=""
+                            android:textColor="#ff666666"
+                            android:textSize="13sp" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="75dp"
-                            android:orientation="vertical">
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/review_the_success_tv1"
+                                android:id="@+id/review_the_success_tv3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=""
-                                android:textColor="#ff111111"
-                                android:textSize="15sp" />
-
-                            <TextView
-                                android:id="@+id/review_the_success_tv2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
+                                android:layout_gravity="center_vertical"
                                 android:text=""
                                 android:textColor="#ff666666"
                                 android:textSize="13sp" />
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/review_the_success_tv3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:text=""
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
-
-                                <ImageView
-                                    android:id="@+id/review_the_success_img2"
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginLeft="5dp"
-                                    android:src="@mipmap/icon_mine_call" />
-                            </LinearLayout>
+                            <ImageView
+                                android:id="@+id/review_the_success_img2"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="5dp"
+                                android:src="@mipmap/icon_mine_call" />
                         </LinearLayout>
-                    </RelativeLayout>
+                    </LinearLayout>
+                </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/review_the_success_rv"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="55dp"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/review_the_success_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="55dp"/>
 
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </ScrollView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/review_the_success_bt1"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/points_dialog_but"
-                    android:text="补全信息"
-                    android:textColor="#FFFFFF" />
-
-                <Button
-                    android:id="@+id/review_the_success_bt4"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/points_dialog_but"
-                    android:text="申请认筹"
-                    android:textColor="#FFFFFF" />
-
-                <Button
-                    android:id="@+id/review_the_success_bt5"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/points_dialog_but"
-                    android:text="申请成交"
-                    android:textColor="#FFFFFF" />
-
-                <Button
-                    android:id="@+id/review_the_success_bt3"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/points_dialog_but"
-                    android:text="未成交"
-                    android:textColor="#FFFFFF" />
+                </RelativeLayout>
 
             </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/all_no_network"
-        android:background="#fff"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        </ScrollView>
 
-        <ImageView
-            android:id="@+id/imageimage"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:layout_below="@id/imageimage"
-            android:id="@+id/all_no_reload"
-            android:layout_marginTop="-40dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/button_back"
-            android:text="重新加载"
-            android:textSize="12sp"
-            android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/review_the_success_bt1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/points_dialog_but"
+                android:text="补全信息"
+                android:textColor="#FFFFFF" />
 
+            <Button
+                android:id="@+id/review_the_success_bt4"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/points_dialog_but"
+                android:text="申请认筹"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/review_the_success_bt5"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/points_dialog_but"
+                android:text="申请成交"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/review_the_success_bt3"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/points_dialog_but"
+                android:text="未成交"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
     </RelativeLayout>
 
-</RelativeLayout>
+
+</LinearLayout>

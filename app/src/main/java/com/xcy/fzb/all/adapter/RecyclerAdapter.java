@@ -68,7 +68,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         Glide.with(context).load("http://39.98.173.250:8080" + beanList.get(position).getProjectImg()).into(holder.imageAvatar);
         holder.nameText.setText("[" + beanList.get(position).getArea() + "]" + beanList.get(position).getProjectName());
 
-
         String ids = beanList.get(position).getProductFeature();//从pd里取出字符串
         List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
 
@@ -95,19 +94,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         if(beanList.get(position).getProjectType().equals("2")){
             holder.price.setText(beanList.get(position).getReferenceToatlPrice());
-            holder.price_money.setVisibility(View.GONE);
+            holder.price_money.setText(beanList.get(position).getReferenceToatlUnit());
         }else if(beanList.get(position).getProjectType().equals("3")){
             holder.price.setText(beanList.get(position).getProductUnitPrice());
             holder.price_money.setText(beanList.get(position).getMonetaryUnit());
         }
 
-//        if (beanList.get(position).getReferenceToatlPrice().equals("")) {
-//            holder.price.setText(beanList.get(position).getProductUnitPrice());
-//            holder.price_money.setText(beanList.get(position).getMonetaryUnit());
-//        }else {
-//            holder.price.setText(beanList.get(position).getProductTotalPrice());
-//            holder.price_money.setText(beanList.get(position).getMonetaryUnit());
-//        }
         holder.square.setText(beanList.get(position).getAreaInterval());
         holder.commission.setText("佣金："+beanList.get(position).getCommission());
         holder.second.setText("秒结："+beanList.get(position).getSecondPay());
