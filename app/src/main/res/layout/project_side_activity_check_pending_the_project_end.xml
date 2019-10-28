@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,193 +7,226 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/my_brokerage">
-
-        <RelativeLayout
-            android:id="@+id/check_pending_the_project_end_return"
-            android:layout_width="50dp"
-            android:layout_height="70dp">
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="18dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="35dp"
-                android:src="@mipmap/return2" />
-
-        </RelativeLayout>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
-            android:text="待我审核"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/check_pending_the_project_end_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="35dp"
-            android:layout_marginRight="15dp"
-            android:text="拒绝记录"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="85dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/check_pending_the_project_end_ll1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="报备"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:id="@+id/check_pending_the_project_end_ll2"
-                    android:layout_width="30dp"
-                    android:layout_height="3dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/the_project_end_underline"
-                    android:orientation="horizontal"></LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/check_pending_the_project_end_ll3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="到访"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:id="@+id/check_pending_the_project_end_ll4"
-                    android:layout_width="30dp"
-                    android:layout_height="3dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/the_project_end_underline"
-                    android:orientation="horizontal"
-                    android:visibility="gone"></LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/check_pending_the_project_end_ll5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="认筹"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:id="@+id/check_pending_the_project_end_ll6"
-                    android:layout_width="30dp"
-                    android:layout_height="3dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/the_project_end_underline"
-                    android:orientation="horizontal"
-                    android:visibility="gone"></LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/check_pending_the_project_end_ll7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="成交"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:id="@+id/check_pending_the_project_end_ll8"
-                    android:layout_width="30dp"
-                    android:layout_height="3dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/the_project_end_underline"
-                    android:orientation="horizontal"
-                    android:visibility="gone"></LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            cube_ptr:ptr_duration_to_close="300"
-            cube_ptr:ptr_duration_to_close_header="800"
-            cube_ptr:ptr_keep_header_when_refresh="true"
-            cube_ptr:ptr_pull_to_fresh="false"
-            android:id="@+id/store_house_ptr_frame_1"
-            cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
-            cube_ptr:ptr_resistance="1.7">
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_brokerage">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/check_pending_the_project_end_rv"
+            <RelativeLayout
+                android:id="@+id/check_pending_the_project_end_return"
+                android:layout_width="50dp"
+                android:layout_height="70dp">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="35dp"
+                    android:src="@mipmap/return2" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                android:text="待我审核"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/check_pending_the_project_end_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="35dp"
+                android:layout_marginRight="15dp"
+                android:text="拒绝记录"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="85dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/check_pending_the_project_end_ll1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="报备"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/check_pending_the_project_end_ll2"
+                        android:layout_width="30dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/the_project_end_underline"
+                        android:orientation="horizontal"></LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/check_pending_the_project_end_ll3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="到访"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/check_pending_the_project_end_ll4"
+                        android:layout_width="30dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/the_project_end_underline"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/check_pending_the_project_end_ll5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="认筹"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/check_pending_the_project_end_ll6"
+                        android:layout_width="30dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/the_project_end_underline"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/check_pending_the_project_end_ll7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="成交"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/check_pending_the_project_end_ll8"
+                        android:layout_width="30dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/the_project_end_underline"
+                        android:orientation="horizontal"
+                        android:visibility="gone"></LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <in.srain.cube.views.ptr.PtrClassicFrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FFFFFF"/>
-        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+                cube_ptr:ptr_duration_to_close="300"
+                cube_ptr:ptr_duration_to_close_header="800"
+                cube_ptr:ptr_keep_header_when_refresh="true"
+                cube_ptr:ptr_pull_to_fresh="false"
+                android:id="@+id/store_house_ptr_frame_1"
+                cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+                cube_ptr:ptr_resistance="1.7">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/check_pending_the_project_end_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"/>
+            </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+            <ImageView
+                android:id="@+id/all_no_information"
+                android:background="#fff"
+                android:visibility="gone"
+                android:src="@mipmap/no_information"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/all_no_network"
+        android:background="#fff"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/all_no_information"
-            android:background="#fff"
-            android:visibility="gone"
-            android:src="@mipmap/no_information"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:id="@+id/imageimage"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_below="@id/imageimage"
+            android:id="@+id/all_no_reload"
+            android:layout_marginTop="-40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_back"
+            android:text="重新加载"
+            android:textSize="12sp"
+            android:textColor="#334485"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 
 
-
-
-</LinearLayout>
+</RelativeLayout>

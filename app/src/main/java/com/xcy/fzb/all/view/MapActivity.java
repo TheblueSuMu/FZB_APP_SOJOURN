@@ -6,8 +6,10 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,6 +49,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.overlayutil.OverlayManager;
 
 import java.util.ArrayList;
@@ -80,26 +83,44 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        init_No_Network();
+    }
 
 
-        Intent intent = getIntent();
-        String office = ""+intent.getStringExtra("office");
-        Log.i("经纬度","查看地图经纬度"+FinalContents.getO1()+"---"+FinalContents.getD1());
-        if (office.equals("1")) {
-            d = FinalContents.getD();
-            o = FinalContents.getO();
-        }else if (office.equals("0")){
-            d = FinalContents.getD1();
-            o = FinalContents.getO1();
-        }else {
-            d = FinalContents.getD();
-            o = FinalContents.getO();
+
+    private void init_No_Network(){
+        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+        if (networkAvailable) {
+            Intent intent = getIntent();
+            String office = ""+intent.getStringExtra("office");
+            Log.i("经纬度","查看地图经纬度"+FinalContents.getO1()+"---"+FinalContents.getD1());
+            if (office.equals("1")) {
+                d = FinalContents.getD();
+                o = FinalContents.getO();
+            }else if (office.equals("0")){
+                d = FinalContents.getD1();
+                o = FinalContents.getO1();
+            }else {
+                d = FinalContents.getD();
+                o = FinalContents.getO();
+            }
+
+
+            initView();
+            initMap();
+        } else {
+            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
+            Button all_no_reload = findViewById(R.id.all_no_reload);
+
+            all_no_network.setVisibility(View.VISIBLE);
+            all_no_reload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    init_No_Network();
+                }
+            });
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
-
-
-        initView();
-        initMap();
-
     }
 
     private void initView() {

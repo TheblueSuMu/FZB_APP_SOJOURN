@@ -64,31 +64,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="团队长姓名"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
+                        android:text="团队长姓名"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/add_aconsultant_tv1"
@@ -123,31 +108,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="选择销售"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
+                        android:text="选择销售"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="10dp"
@@ -182,31 +152,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="级别"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
-                    </LinearLayout>
+                        android:text="级别"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="10dp"
@@ -241,31 +196,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="姓名"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
-                    </LinearLayout>
+                        android:text="姓名"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
                     <EditText
                         android:id="@+id/add_aconsultant_et1"
@@ -274,11 +214,11 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:background="#FFFFFF"
                         android:gravity="right"
                         android:hint="请输入姓名"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
 
@@ -294,31 +234,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="所在行业"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
+                        android:text="所在行业"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
                     <EditText
                         android:id="@+id/add_aconsultant_et2"
@@ -327,11 +252,11 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:background="#FFFFFF"
                         android:gravity="right"
                         android:hint="请输入所在行业"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
 
@@ -347,31 +272,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="手机号"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
+                        android:text="手机号"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
                     <EditText
                         android:id="@+id/add_aconsultant_et3"
@@ -380,12 +290,12 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
+                        android:inputType="number"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:background="#FFFFFF"
                         android:gravity="right"
                         android:hint="请输入手机号"
-                        android:imeOptions="actionNext"
-                        android:inputType="number"
-                        android:singleLine="true"
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
 
@@ -401,31 +311,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="登录账号"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
+                        android:text="登录账号"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
                     <EditText
                         android:id="@+id/add_aconsultant_et4"
@@ -434,11 +329,11 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
+                        android:imeOptions="actionDone"
+                        android:singleLine="true"
                         android:background="#FFFFFF"
                         android:gravity="right"
                         android:hint="请输入登录账号"
-                        android:imeOptions="actionDone"
-                        android:singleLine="true"
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
 
@@ -454,31 +349,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="登录密码"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
+                        android:text="登录密码"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
                     <EditText
                         android:id="@+id/add_aconsultant_et5"
@@ -504,31 +384,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="是否禁用"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
+                        android:text="是否禁用"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"

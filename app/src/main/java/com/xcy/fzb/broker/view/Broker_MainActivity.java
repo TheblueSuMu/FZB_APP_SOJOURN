@@ -1,13 +1,13 @@
 package com.xcy.fzb.broker.view;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,13 +18,14 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.HomeFragment;
 import com.xcy.fzb.all.fragment.MessageFragment;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.VirturlUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.ReportActivity;
 import com.xcy.fzb.broker.fragment.DFragment;
 import com.xcy.fzb.broker.fragment.EFragment;
 
-public class Broker_MainActivity extends AllActivity implements View.OnClickListener, HomeFragment.FragmentInteraction {
+public class Broker_MainActivity extends AllActivity implements View.OnClickListener,HomeFragment.FragmentInteraction {
 
     private RadioButton button_home;
     private RadioButton button_message;
@@ -33,6 +34,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
     private RadioButton button_me;
     private ImageView img_backup;
     private ProgressLayout progressLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,20 +46,13 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         initfvb();
     }
 
-    private void init() {
+    private void init(){
         VirturlUtil.assistActivity(findViewById(android.R.id.content));
-
+        init_No_Network();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         HomeFragment home_fragment = new HomeFragment();
-
-        MessageFragment message_fragment = new MessageFragment();
-        DFragment dFragment = new DFragment();
-        EFragment eFragment = new EFragment();
-
         transaction.replace(R.id.main_framelayout, home_fragment);
-
-
         transaction.commit();
     }
 
@@ -70,7 +65,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("2");
-                transaction.replace(R.id.main_framelayout, messageFragment);
+                transaction.replace(R.id.main_framelayout,messageFragment);
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("2")) {
@@ -78,7 +73,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("3");
-                transaction.replace(R.id.main_framelayout, messageFragment);
+                transaction.replace(R.id.main_framelayout,messageFragment);
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("5")) {
@@ -86,7 +81,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("4");
-                transaction.replace(R.id.main_framelayout, messageFragment);
+                transaction.replace(R.id.main_framelayout,messageFragment);
                 transaction.commit();
                 button_message.setChecked(true);
             }
@@ -126,41 +121,35 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         FragmentTransaction transaction = manager.beginTransaction();
         switch (view.getId()) {
             case R.id.button_home:
-                initProgressLayout();
+                init_No_Network();
                 HomeFragment home_fragment = new HomeFragment();
                 transaction.replace(R.id.main_framelayout, home_fragment);
                 break;
             case R.id.button_message:
-                initProgressLayout();
+                init_No_Network();
                 MessageFragment message_fragment = new MessageFragment();
                 transaction.replace(R.id.main_framelayout, message_fragment);
-
-
                 break;
             case R.id.button_backup:
                 Intent intent = new Intent(Broker_MainActivity.this, ReportActivity.class);
                 startActivity(intent);
                 break;
             case R.id.button_economics:
-                initProgressLayout();
+                init_No_Network();
                 DFragment dFragment = new DFragment();
                 transaction.replace(R.id.main_framelayout, dFragment);
-
-
                 break;
             case R.id.button_me:
-                initProgressLayout();
+                init_No_Network();
                 EFragment eFragment = new EFragment();
                 transaction.replace(R.id.main_framelayout, eFragment);
-
-
                 break;
         }
         initSeleep();
         transaction.commit();
     }
 
-    private void initSeleep() {
+    private void initSeleep(){
         try {
             Thread.sleep(150);
         } catch (InterruptedException e) {
@@ -168,22 +157,23 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         }
     }
 
-    private void initProgressLayout() {
-        progressLayout = findViewById(R.id.progress_layout);
+    private void init_No_Network() {
+        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+        if (networkAvailable) {
 
-        @SuppressLint("HandlerLeak") Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                // 切换回正常显示页面
-                progressLayout.showContent();
-            }
-        };
+        } else {
+            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
+            Button all_no_reload = findViewById(R.id.all_no_reload);
 
-        // 开始加载... 假设从这里开始一个耗时的操作将开始启动，在此启动过程中，开发者希望用户稍事休息，等待。。。
-        progressLayout.showProgress();
-
-        // 假设有一个耗时的加载业务逻辑，需要5秒完成。
-        handler.sendEmptyMessageDelayed(0, 300);
-
+            all_no_network.setVisibility(View.VISIBLE);
+            all_no_reload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+        }
     }
 }

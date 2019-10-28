@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -7,81 +7,215 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_light">
 
-    <RelativeLayout
-        android:background="@drawable/my_brokerage"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/task_details_tool_layout"
-            android:layout_width="50dp"
-            android:layout_height="80dp">
-            <ImageView
-                android:src="@mipmap/return2"
+            android:background="@drawable/my_brokerage"
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
+
+            <RelativeLayout
+                android:id="@+id/task_details_tool_layout"
+                android:layout_width="50dp"
+                android:layout_height="80dp">
+                <ImageView
+                    android:src="@mipmap/return2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="13dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/task_details_tool_title"
+                android:text=""
+                android:textSize="18sp"
+                android:textColor="#FFF"
+                android:gravity="center"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="13dp"
-                android:layout_marginLeft="14dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/task_details_tool_title"
-            android:text=""
-            android:textSize="18sp"
-            android:textColor="#FFF"
-            android:gravity="center"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="13dp"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </RelativeLayout>
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_light"
-        android:fitsSystemWindows="true"
-        >
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/mainappbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light"
             android:fitsSystemWindows="true"
-            android:orientation="vertical"
-            android:background="#FFF"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            >
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/main.collapsing"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/mainappbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                android:orientation="vertical"
+                android:background="#FFF"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-                <LinearLayout
-                    android:orientation="vertical"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/main.collapsing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:ignore="MissingConstraints">
+                    android:fitsSystemWindows="true"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="MissingConstraints">
+
+                        <RelativeLayout
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/task_details_constraintlayout_img"
+                                android:layout_width="25dp"
+                                android:layout_height="20dp"
+                                android:src="@mipmap/eye" />
+
+                            <TextView
+                                android:id="@+id/task_details_constraintlayout_title"
+                                android:layout_toRightOf="@id/task_details_constraintlayout_img"
+                                android:layout_marginLeft="8dp"
+                                android:text=""
+                                android:textColor="#ff333333"
+                                android:textSize="18sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:id="@+id/task_details_constraintlayout_status"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="16dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="已结束"
+                                android:visibility="gone"
+                                android:textColor="#ff999999"
+                                android:textSize="15sp"
+                                />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/task_details_constraintlayout_time"
+                            android:layout_marginTop="10dp"
+                            android:text=""
+                            android:textSize="13sp"
+                            android:gravity="center_vertical"
+                            android:textColor="#666666"
+                            android:layout_marginLeft="14dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="14dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:text="随行客户："
+                                android:textSize="13sp"
+                                android:textColor="#666666"
+                                android:gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:id="@+id/task_details_constraintlayout_client"
+                                android:text=""
+                                android:textSize="13sp"
+                                android:textColor="#354687"
+                                android:gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:text="人"
+                                android:textSize="13sp"
+                                android:textColor="#666666"
+                                android:layout_width="wrap_content"
+                                android:gravity="center_vertical"
+                                android:layout_height="wrap_content"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/task_details_constraintlayout_layout"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="14dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/task_details_constraintlayout_project_name"
+                                    android:text=""
+                                    android:textColor="#ff666666"
+                                    android:textSize="13sp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/task_details_constraintlayout_listview"
+                                    android:layout_gravity="left"
+                                    android:layout_width="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_height="wrap_content"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_marginTop="26dp"
+                            android:background="#EEEEEE"
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"/>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/rl_title"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <RelativeLayout
+                        android:layout_marginTop="26dp"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginRight="15dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:id="@+id/task_details_constraintlayout_img"
+                            android:id="@+id/task_details_img"
+                            android:src="@mipmap/eye"
                             android:layout_width="25dp"
-                            android:layout_height="20dp"
-                            android:src="@mipmap/eye" />
+                            android:layout_height="20dp"/>
 
                         <TextView
-                            android:id="@+id/task_details_constraintlayout_title"
-                            android:layout_toRightOf="@id/task_details_constraintlayout_img"
+                            android:id="@+id/task_details_title"
+                            android:layout_toRightOf="@id/task_details_img"
                             android:layout_marginLeft="8dp"
                             android:text=""
                             android:textColor="#ff333333"
@@ -90,13 +224,12 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
-                            android:id="@+id/task_details_constraintlayout_status"
+                            android:id="@+id/task_details_status"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="16dp"
+                            android:layout_marginRight="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="已结束"
-                            android:visibility="gone"
+                            android:text=""
                             android:textColor="#ff999999"
                             android:textSize="15sp"
                             />
@@ -104,81 +237,14 @@
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/task_details_constraintlayout_time"
+                        android:id="@+id/task_details_time"
                         android:layout_marginTop="10dp"
                         android:text=""
                         android:textSize="13sp"
-                        android:gravity="center_vertical"
                         android:textColor="#666666"
                         android:layout_marginLeft="14dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="14dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:text="随行客户："
-                            android:textSize="13sp"
-                            android:textColor="#666666"
-                            android:gravity="center_vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:id="@+id/task_details_constraintlayout_client"
-                            android:text=""
-                            android:textSize="13sp"
-                            android:textColor="#354687"
-                            android:gravity="center_vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
-                        <TextView
-                            android:text="人"
-                            android:textSize="13sp"
-                            android:textColor="#666666"
-                            android:layout_width="wrap_content"
-                            android:gravity="center_vertical"
-                            android:layout_height="wrap_content"/>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/task_details_constraintlayout_layout"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginLeft="14dp"
-                            android:layout_marginRight="15dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:id="@+id/task_details_constraintlayout_project_name"
-                                android:text=""
-                                android:textColor="#ff666666"
-                                android:textSize="13sp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/task_details_constraintlayout_listview"
-                                android:layout_gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_height="wrap_content"/>
-
-                        </LinearLayout>
-                    </LinearLayout>
 
                     <View
                         android:layout_marginTop="26dp"
@@ -188,90 +254,59 @@
 
                 </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:id="@+id/rl_title"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:layout_marginTop="26dp"
-                    android:layout_marginLeft="16dp"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#fff"
+                    app:tabIndicatorColor="#354687"
+                    app:tabIndicatorHeight="4dp"
+                    app:tabSelectedTextColor="#354687"
+                    app:tabTextColor="#333333"/>
 
-                    <ImageView
-                        android:id="@+id/task_details_img"
-                        android:src="@mipmap/eye"
-                        android:layout_width="25dp"
-                        android:layout_height="20dp"/>
+            </com.google.android.material.appbar.AppBarLayout>
 
-                    <TextView
-                        android:id="@+id/task_details_title"
-                        android:layout_toRightOf="@id/task_details_img"
-                        android:layout_marginLeft="8dp"
-                        android:text=""
-                        android:textColor="#ff333333"
-                        android:textSize="18sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/task_details_status"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="#ff999999"
-                        android:textSize="15sp"
-                        />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/task_details_time"
-                    android:layout_marginTop="10dp"
-                    android:text=""
-                    android:textSize="13sp"
-                    android:textColor="#666666"
-                    android:layout_marginLeft="14dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <View
-                    android:layout_marginTop="26dp"
-                    android:background="#EEEEEE"
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"/>
-
-            </LinearLayout>
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="#fff"
-                app:tabIndicatorColor="#354687"
-                app:tabIndicatorHeight="4dp"
-                app:tabSelectedTextColor="#354687"
-                app:tabTextColor="#333333"/>
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        </androidx.viewpager.widget.ViewPager>
+            </androidx.viewpager.widget.ViewPager>
 
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/all_no_network"
+        android:background="#fff"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageimage"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_below="@id/imageimage"
+            android:id="@+id/all_no_reload"
+            android:layout_marginTop="-40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_back"
+            android:text="重新加载"
+            android:textSize="12sp"
+            android:textColor="#334485"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
     
 
-</LinearLayout>
+</RelativeLayout>

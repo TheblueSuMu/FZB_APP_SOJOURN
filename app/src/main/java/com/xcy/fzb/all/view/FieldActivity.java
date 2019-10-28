@@ -40,6 +40,7 @@ import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.modle.LandSaveBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
 
 import java.io.BufferedOutputStream;
@@ -107,22 +108,42 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_field);
-        initView();
-        if (ProjectProgressApi.getComplemented().equals("1")) {
-            initData();
-        } else if (ProjectProgressApi.getComplemented().equals("0")){
-            field_et1.setText(ProjectProgressApi.getFieldBean().getFullName());
-            if (ProjectProgressApi.getFieldBean().getGender() != null) {
-                if (ProjectProgressApi.getFieldBean().getGender().equals("")) {
-                    field_tv1.setText("请选择性别");
-                }else {
-                    field_tv1.setText(ProjectProgressApi.getFieldBean().getGender());
+        init_No_Network();
+    }
+
+    private void init_No_Network(){
+        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+        if (networkAvailable) {
+            initView();
+            if (ProjectProgressApi.getComplemented().equals("1")) {
+                initData();
+            } else if (ProjectProgressApi.getComplemented().equals("0")){
+                field_et1.setText(ProjectProgressApi.getFieldBean().getFullName());
+                if (ProjectProgressApi.getFieldBean().getGender() != null) {
+                    if (ProjectProgressApi.getFieldBean().getGender().equals("")) {
+                        field_tv1.setText("请选择性别");
+                    }else {
+                        field_tv1.setText(ProjectProgressApi.getFieldBean().getGender());
+                    }
                 }
+                field_et2.setText(ProjectProgressApi.getFieldBean().getRelation());
+                field_et3.setText(ProjectProgressApi.getFieldBean().getPhone());
+                field_et4.setText(ProjectProgressApi.getFieldBean().getIdNumber());
+                field_et5.setText(ProjectProgressApi.getFieldBean().getPassportNumber());
             }
-            field_et2.setText(ProjectProgressApi.getFieldBean().getRelation());
-            field_et3.setText(ProjectProgressApi.getFieldBean().getPhone());
-            field_et4.setText(ProjectProgressApi.getFieldBean().getIdNumber());
-            field_et5.setText(ProjectProgressApi.getFieldBean().getPassportNumber());
+        } else {
+            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
+            Button all_no_reload = findViewById(R.id.all_no_reload);
+
+            all_no_network.setVisibility(View.VISIBLE);
+            all_no_reload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 

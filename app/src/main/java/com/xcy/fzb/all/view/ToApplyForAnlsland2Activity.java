@@ -47,6 +47,7 @@ import com.xcy.fzb.all.modle.LandSaveBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.CommonUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -122,14 +123,32 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_apply_for_anlsland2);
+        init_No_Network();
+    }
 
-        if (ProjectProgressApi.getComplemented().equals("0")) {
+    private void init_No_Network(){
+        boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
+        if (networkAvailable) {
+            if (ProjectProgressApi.getComplemented().equals("0")) {
 
-        } else if (ProjectProgressApi.getComplemented().equals("1")) {
-            initComplemented();
+            } else if (ProjectProgressApi.getComplemented().equals("1")) {
+                initComplemented();
+            }
+            initView();
+        } else {
+            RelativeLayout all_no_network = findViewById(R.id.all_no_network);
+            Button all_no_reload = findViewById(R.id.all_no_reload);
+
+            all_no_network.setVisibility(View.VISIBLE);
+            all_no_reload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            });
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
-        initView();
-
     }
 
     private void initView() {
