@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -104,6 +105,7 @@ public class DynamicFragment extends Fragment {
     };
     private View view;
     private String url;
+    private ImageView all_no_information;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -111,6 +113,7 @@ public class DynamicFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_dynamic, container, false);
         recyclerView = view.findViewById(R.id.dynamic_rv);
+        all_no_information = view.findViewById(R.id.all_no_information);
         textView = view.findViewById(R.id.dynamic_text);
 
         return view;
@@ -165,163 +168,172 @@ public class DynamicFragment extends Fragment {
                         Dynamic2Bean.DataBean dynamicBeanData = dynamicBean.getData();
                         list = dynamicBeanData.getRows();
 
-                        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        recyclerView.setLayoutManager(layoutManager);
-                        recyclerAdapter = new Dynamic2Adapter();
-                        recyclerAdapter.setList(list);
-                        //    TODO 联系
-                        recyclerAdapter.setDynamicClick(new Dynamic2Adapter.LianxiClick() {
-                            @Override
-                            public void Click(final int position) {
-                                String phone = list.get(position).getAttaches().get(0).getPhone();
-                                if (phone.equals("")) {
-                                    Toast.makeText(getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    final List<String> arrayList = new ArrayList<>();
-                                    for (int i = 0; i < list.get(position).getAttaches().size(); i++) {
-                                        arrayList.add(list.get(position).getAttaches().get(i).getName());
-                                    }
-                                    //      监听选中
-                                    OptionsPickerView pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
-                                        @Override
-                                        public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                                            //               返回的分别是三个级别的选中位置
-                                            //              展示选中数据
-                                            Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + list.get(position).getAttaches().get(options1).getPhone()));//跳转到拨号界面，同时传递电话号码
-                                            startActivity(dialIntent);
+                        if (list.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            recyclerView.setLayoutManager(layoutManager);
+                            recyclerAdapter = new Dynamic2Adapter();
+                            recyclerAdapter.setList(list);
+                            //    TODO 联系
+                            recyclerAdapter.setDynamicClick(new Dynamic2Adapter.LianxiClick() {
+                                @Override
+                                public void Click(final int position) {
+                                    String phone = list.get(position).getAttaches().get(0).getPhone();
+                                    if (phone.equals("")) {
+                                        Toast.makeText(getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        final List<String> arrayList = new ArrayList<>();
+                                        for (int i = 0; i < list.get(position).getAttaches().size(); i++) {
+                                            arrayList.add(list.get(position).getAttaches().get(i).getName());
                                         }
-                                    })
-                                            .setSelectOptions(0)//设置选择第一个
-                                            .setOutSideCancelable(false)//点击背的地方不消失
-                                            .build();//创建
-                                    //      把数据绑定到控件上面
-                                    pvOptions.setPicker(arrayList);
-                                    //      展示
-                                    pvOptions.show();
-                                }
-                            }
-                        });
-
-                        //    TODO 评论
-                        recyclerAdapter.setPingLun(new Dynamic2Adapter.PingLun() {
-                            @Override
-                            public void pingClick(int position) {
-                                FinalContents.setTargetId(list.get(position).getId());
-                                Log.i("MyCL", "ID：" + list.get(position).getId());
-                                Intent intent = new Intent(getContext(), MessageCommentActivity.class);
-                                intent.putExtra("headPortrait", list.get(position).getCreateBy().getPhoto());
-                                intent.putExtra("title", list.get(position).getCreateBy().getName());
-                                intent.putExtra("message", list.get(position).getContent());
-                                intent.putExtra("img", list.get(position).getImgUrl());
-                                intent.putExtra("isLike", list.get(position).getIsLike());
-                                startActivity(intent);
-                            }
-                        });
-
-                        //    TODO 一键复制
-                        recyclerAdapter.setFuZhi(new Dynamic2Adapter.FuZhi() {
-                            @Override
-                            public void FuZhi(int position) {
-                                lists = new ArrayList<>();
-                                //        TODO 文本复制
-                                ClipboardManager clip = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                                clip.setText(list.get(position).getContent() + "");
-                                //        String imagename = list.get(position).getContent();
-                                //        TODO 图片保存到本地
-
-                                Log.i("打印图片","图片："+list.get(position).getImgUrl());
-                                if (list.get(position).getImgUrl().equals("")) {
-
-                                }else {
-                                    String UrlImage = list.get(position).getImgUrl();
-                                    final String[] a  = list.get(position).getImgUrl().split("[|]");
-                                    for (int i = 0; i < a.length; i++){
-                                        Log.i("分割图片","图片："+ a[i]);
-                                        final  int finalI = i;
-                                        Log.i("分割图片","图片151："+imgURl);
-                                        new Thread(new Runnable() {
+                                        //      监听选中
+                                        OptionsPickerView pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
                                             @Override
-                                            public void run() {
-                                                url = a[finalI];
-                                                imgURl = "http://39.98.173.250:8080" + url;
-                                                mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
-                                                Bitmap bp = returnBitMap(imgURl);
-                                                Log.i("MyCL", "bp：" + bp);
-                                                saveImageToPhotos(getContext(), bp);
+                                            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                                                //               返回的分别是三个级别的选中位置
+                                                //              展示选中数据
+                                                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + list.get(position).getAttaches().get(options1).getPhone()));//跳转到拨号界面，同时传递电话号码
+                                                startActivity(dialIntent);
                                             }
-                                        }).start();
+                                        })
+                                                .setSelectOptions(0)//设置选择第一个
+                                                .setOutSideCancelable(false)//点击背的地方不消失
+                                                .build();//创建
+                                        //      把数据绑定到控件上面
+                                        pvOptions.setPicker(arrayList);
+                                        //      展示
+                                        pvOptions.show();
                                     }
+                                }
+                            });
+
+                            //    TODO 评论
+                            recyclerAdapter.setPingLun(new Dynamic2Adapter.PingLun() {
+                                @Override
+                                public void pingClick(int position) {
+                                    FinalContents.setTargetId(list.get(position).getId());
+                                    Log.i("MyCL", "ID：" + list.get(position).getId());
+                                    Intent intent = new Intent(getContext(), MessageCommentActivity.class);
+                                    intent.putExtra("headPortrait", list.get(position).getCreateBy().getPhoto());
+                                    intent.putExtra("title", list.get(position).getCreateBy().getName());
+                                    intent.putExtra("message", list.get(position).getContent());
+                                    intent.putExtra("img", list.get(position).getImgUrl());
+                                    intent.putExtra("isLike", list.get(position).getIsLike());
+                                    startActivity(intent);
+                                }
+                            });
+
+                            //    TODO 一键复制
+                            recyclerAdapter.setFuZhi(new Dynamic2Adapter.FuZhi() {
+                                @Override
+                                public void FuZhi(int position) {
+                                    lists = new ArrayList<>();
+                                    //        TODO 文本复制
+                                    ClipboardManager clip = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                                    clip.setText(list.get(position).getContent() + "");
+                                    //        String imagename = list.get(position).getContent();
+                                    //        TODO 图片保存到本地
+
+                                    Log.i("打印图片","图片："+list.get(position).getImgUrl());
+                                    if (list.get(position).getImgUrl().equals("")) {
+
+                                    }else {
+                                        String UrlImage = list.get(position).getImgUrl();
+                                        final String[] a  = list.get(position).getImgUrl().split("[|]");
+                                        for (int i = 0; i < a.length; i++){
+                                            Log.i("分割图片","图片："+ a[i]);
+                                            final  int finalI = i;
+                                            Log.i("分割图片","图片151："+imgURl);
+                                            new Thread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    url = a[finalI];
+                                                    imgURl = "http://39.98.173.250:8080" + url;
+                                                    mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
+                                                    Bitmap bp = returnBitMap(imgURl);
+                                                    Log.i("MyCL", "bp：" + bp);
+                                                    saveImageToPhotos(getContext(), bp);
+                                                }
+                                            }).start();
+                                        }
 //        String imagename = list.get(position).getContent();
 ////        TODO 图片保存到本地
-                                }
-                                Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                        //  TODO 项目跳转
-                        recyclerAdapter.setXiangMu(new Dynamic2Adapter.XiangMu() {
-                            @Override
-                            public void xm(int position) {
-                                FinalContents.setProjectID(list.get(position).getProject().getId());
-                                Intent intent = new Intent(getContext(), ProjectDetails.class);
-                                startActivity(intent);
-                            }
-                        });
-
-                        //  TODO 图片查看
-                        recyclerAdapter.setTuPian(new Dynamic2Adapter.TuPian() {
-                            @Override
-                            public void tp(int position) {
-                                Intent intent = new Intent(getContext(), BigPhotoActivity.class);
-                                intent.putExtra("index",position);
-                                intent.putExtra("bigPhotoimg", list.get(position).getImg());
-                                startActivity(intent);
-                            }
-                        });
-                        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-                            //用来标记是否正在向最后一个滑动
-                            boolean isSlidingToLast = false;
-
-                            @Override
-                            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                                super.onScrollStateChanged(recyclerView, newState);
-                                LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                                // 当不滚动时
-                                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                                    //获取最后一个完全显示的ItemPosition
-                                    int lastVisibleItem = manager.findLastCompletelyVisibleItemPosition();
-                                    int totalItemCount = manager.getItemCount();
-
-                                    // 判断是否滚动到底部，并且是向右滚动
-                                    if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast) {
-                                        //加载更多功能的代码
-                                        textView.setVisibility(View.VISIBLE);
                                     }
-                                } else {
-                                    textView.setVisibility(View.GONE);
+                                    Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
                                 }
-                            }
+                            });
 
-                            @Override
-                            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                                super.onScrolled(recyclerView, dx, dy);
-                                //dx用来判断横向滑动方向，dy用来判断纵向滑动方向
-                                if (dx > 0) {
-                                    //大于0表示正在向右滚动
-                                    isSlidingToLast = true;
-                                } else {
-                                    //小于等于0表示停止或向左滚动
-                                    isSlidingToLast = false;
+                            //  TODO 项目跳转
+                            recyclerAdapter.setXiangMu(new Dynamic2Adapter.XiangMu() {
+                                @Override
+                                public void xm(int position) {
+                                    FinalContents.setProjectID(list.get(position).getProject().getId());
+                                    Intent intent = new Intent(getContext(), ProjectDetails.class);
+                                    startActivity(intent);
                                 }
-                            }
-                        });
-                        recyclerView.setAdapter(recyclerAdapter);
-                        recyclerAdapter.notifyDataSetChanged();
+                            });
+
+                            //  TODO 图片查看
+                            recyclerAdapter.setTuPian(new Dynamic2Adapter.TuPian() {
+                                @Override
+                                public void tp(int position) {
+                                    Intent intent = new Intent(getContext(), BigPhotoActivity.class);
+                                    intent.putExtra("index",position);
+                                    intent.putExtra("bigPhotoimg", list.get(position).getImg());
+                                    startActivity(intent);
+                                }
+                            });
+                            recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                                //用来标记是否正在向最后一个滑动
+                                boolean isSlidingToLast = false;
+
+                                @Override
+                                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                                    super.onScrollStateChanged(recyclerView, newState);
+                                    LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                                    // 当不滚动时
+                                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                                        //获取最后一个完全显示的ItemPosition
+                                        int lastVisibleItem = manager.findLastCompletelyVisibleItemPosition();
+                                        int totalItemCount = manager.getItemCount();
+
+                                        // 判断是否滚动到底部，并且是向右滚动
+                                        if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast) {
+                                            //加载更多功能的代码
+                                            textView.setVisibility(View.VISIBLE);
+                                        }
+                                    } else {
+                                        textView.setVisibility(View.GONE);
+                                    }
+                                }
+
+                                @Override
+                                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                                    super.onScrolled(recyclerView, dx, dy);
+                                    //dx用来判断横向滑动方向，dy用来判断纵向滑动方向
+                                    if (dx > 0) {
+                                        //大于0表示正在向右滚动
+                                        isSlidingToLast = true;
+                                    } else {
+                                        //小于等于0表示停止或向左滚动
+                                        isSlidingToLast = false;
+                                    }
+                                }
+                            });
+                            recyclerView.setAdapter(recyclerAdapter);
+                            recyclerAdapter.notifyDataSetChanged();
+                        }else {
+                            recyclerView.setVisibility(View.GONE);
+                            all_no_information.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        recyclerView.setVisibility(View.GONE);
+                        all_no_information.setVisibility(View.VISIBLE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

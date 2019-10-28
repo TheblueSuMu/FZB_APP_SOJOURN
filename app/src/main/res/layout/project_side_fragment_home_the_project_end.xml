@@ -872,7 +872,7 @@
                             android:textColor="#ff111111"
                             android:textSize="18sp" />
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:orientation="vertical"
                             android:layout_height="wrap_content">
@@ -880,19 +880,24 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_home_the_project_end"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                            </androidx.recyclerview.widget.RecyclerView>
+                                android:layout_height="match_parent"/>
 
                             <TextView
+                                android:layout_below="@id/rv_home_the_project_end"
                                 android:layout_width="wrap_content"
+                                android:layout_centerHorizontal="true"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="没有更多数据">
+                                android:text="没有更多数据"/>
 
-                            </TextView>
+                            <ImageView
+                                android:id="@+id/all_no_information"
+                                android:background="#fff"
+                                android:visibility="gone"
+                                android:src="@mipmap/no_information"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
 
-                        </LinearLayout>
+                        </RelativeLayout>
 
                     </LinearLayout>
 

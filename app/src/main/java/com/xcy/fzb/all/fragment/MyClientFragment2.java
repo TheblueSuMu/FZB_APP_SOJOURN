@@ -97,9 +97,11 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
                         mPtrClassicFrameLayout.refreshComplete();
                         mPtrClassicFrameLayout.setLastUpdateTimeKey("2017-2-10");
 
-                        if (FinalContents.getQuanceng().equals("1")) {
+                        if (FinalContents.getZhuanyuan().equals("1")) {
                             initData2();
-                        } else{
+                        }else if (FinalContents.getQuanceng().equals("1")) {
+                            initData2();
+                        }else {
                             initData();
                         }
 
@@ -226,9 +228,11 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
     public void onResume() {
         super.onResume();
 
-        if (FinalContents.getQuanceng().equals("1")) {
+        if (FinalContents.getZhuanyuan().equals("1")) {
             initData2();
-        } else{
+        }else if (FinalContents.getQuanceng().equals("1")) {
+            initData2();
+        }else {
             initData();
         }
 

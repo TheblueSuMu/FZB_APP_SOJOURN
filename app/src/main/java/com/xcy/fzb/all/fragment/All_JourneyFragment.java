@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,12 +31,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class All_JourneyFragment extends AllFragment {
     private RecyclerView journey_rv;
     private View view;
+    private ImageView all_no_information;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.shopping_guide_fragment_journey, null);
         journey_rv = view.findViewById(R.id.journey_rv);
+        all_no_information = view.findViewById(R.id.all_no_information);
+
         initData();
         return view;
     }
@@ -59,18 +63,27 @@ public class All_JourneyFragment extends AllFragment {
 
                     @Override
                     public void onNext(SpellingDataBean spellingDataBean) {
-                        journey_rv.setVisibility(View.VISIBLE);
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        journey_rv.setLayoutManager(layoutManager);
-                        SpellingMassAdapter recyclerAdapter = new SpellingMassAdapter();
-                        recyclerAdapter.setPlanning(spellingDataBean.getData().getPlanning());
-                        journey_rv.setAdapter(recyclerAdapter);
-                        recyclerAdapter.notifyDataSetChanged();
+                        if (spellingDataBean.getData().getPlanning().size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            journey_rv.setVisibility(View.VISIBLE);
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            journey_rv.setLayoutManager(layoutManager);
+                            SpellingMassAdapter recyclerAdapter = new SpellingMassAdapter();
+                            recyclerAdapter.setPlanning(spellingDataBean.getData().getPlanning());
+                            journey_rv.setAdapter(recyclerAdapter);
+                            recyclerAdapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            journey_rv.setVisibility(View.GONE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        journey_rv.setVisibility(View.GONE);
                         Log.i("打印拼团详情数据", "错误" + e);
                     }
 

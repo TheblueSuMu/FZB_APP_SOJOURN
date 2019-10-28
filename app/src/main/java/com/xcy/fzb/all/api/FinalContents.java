@@ -147,6 +147,16 @@ public class FinalContents {
 
     static String NewID = "";
 
+    static String DengDao = "";
+
+    public static String getDengDao() {
+        return DengDao;
+    }
+
+    public static void setDengDao(String dengDao) {
+        DengDao = dengDao;
+    }
+
     public static String getNewID() {
         return NewID;
     }

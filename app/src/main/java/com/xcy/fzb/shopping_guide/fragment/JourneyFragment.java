@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,12 +33,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class JourneyFragment extends AllFragment {
     private RecyclerView journey_rv;
     private View view;
+    private ImageView all_no_information;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.shopping_guide_fragment_journey, null);
         journey_rv = view.findViewById(R.id.journey_rv);
+        all_no_information = view.findViewById(R.id.all_no_information);
         initData();
         return view;
     }
@@ -62,16 +65,26 @@ public class JourneyFragment extends AllFragment {
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(TaskDetailsBean taskDetailsBean) {
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        journey_rv.setLayoutManager(layoutManager);
-                        JourneyAdapter recyclerAdapter = new JourneyAdapter(taskDetailsBean.getData().getRouteInfo());
-                        journey_rv.setAdapter(recyclerAdapter);
-                        recyclerAdapter.notifyDataSetChanged();
+                        if (taskDetailsBean.getData().getRouteInfo().size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            journey_rv.setVisibility(View.VISIBLE);
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            journey_rv.setLayoutManager(layoutManager);
+                            JourneyAdapter recyclerAdapter = new JourneyAdapter(taskDetailsBean.getData().getRouteInfo());
+                            journey_rv.setAdapter(recyclerAdapter);
+                            recyclerAdapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            journey_rv.setVisibility(View.GONE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        journey_rv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误","错误"+e);
                     }
 

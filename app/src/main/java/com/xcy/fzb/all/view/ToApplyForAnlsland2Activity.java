@@ -445,6 +445,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     public void onNext(LandSaveBean landSaveBean) {
                         Toast.makeText(ToApplyForAnlsland2Activity.this, landSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                         FinalContents.setTiaozhuang("登岛成功");
+                        FinalContents.setDengDao("1");
                         finish();
                     }
 
@@ -482,6 +483,8 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     @Override
                     public void onNext(LandSaveBean landSaveBean) {
                         Toast.makeText(ToApplyForAnlsland2Activity.this, landSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        FinalContents.setTiaozhuang("登岛成功");
+                        FinalContents.setDengDao("1");
                         finish();
                     }
 

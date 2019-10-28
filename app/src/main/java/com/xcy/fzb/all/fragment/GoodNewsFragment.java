@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -44,6 +45,7 @@ public class GoodNewsFragment extends Fragment {
     RecyclerView good_news_rv;
     String url;
     GoodNewsAdapter adapter;
+    private ImageView all_no_information;
 
     public GoodNewsFragment() {
         // Required empty public constructor
@@ -63,6 +65,7 @@ public class GoodNewsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
 
         good_news_rv = getActivity().findViewById(R.id.good_news_rv);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -111,15 +114,25 @@ public class GoodNewsFragment extends Fragment {
                     public void onNext(GoodNewsBean goodNewsBean) {
                         GoodNewsBean.DataBean data1 = goodNewsBean.getData();
                         List<GoodNewsBean.DataBean.RowsBean> rows = data1.getRows();
-                        adapter = new GoodNewsAdapter();
-                        adapter.setRows(rows);
-                        good_news_rv.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            good_news_rv.setVisibility(View.VISIBLE);
+                            adapter = new GoodNewsAdapter();
+                            adapter.setRows(rows);
+                            good_news_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            good_news_rv.setVisibility(View.GONE);
+                        }
+
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        good_news_rv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误","错误"+e);
                     }
 

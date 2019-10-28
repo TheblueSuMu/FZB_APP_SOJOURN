@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -90,6 +91,7 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
     private int num;
     List<String> list;
     private String url;
+    private ImageView all_no_information;
 
     @Nullable
     @Override
@@ -101,6 +103,7 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
 
     private void initfvb() {
         totalRv = view.findViewById(R.id.total_rv);
+        all_no_information = view.findViewById(R.id.all_no_information);
         initView();
     }
 
@@ -130,18 +133,26 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
                     public void onNext(TotalBean totalBean) {
                         TotalBean.DataBean hotBeanData = totalBean.getData();
                         hotlist = hotBeanData.getRows();
+                        if (hotlist.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            totalRv.setVisibility(View.VISIBLE);
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            totalRv.setLayoutManager(layoutManager);
+                            recyclerAdapter1.setList(hotlist);
+                            totalRv.setAdapter(recyclerAdapter1);
+                            recyclerAdapter1.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            totalRv.setVisibility(View.GONE);
+                        }
 
-                        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        totalRv.setLayoutManager(layoutManager);
-                        recyclerAdapter1.setList(hotlist);
-                        recyclerAdapter1.notifyDataSetChanged();
-                        totalRv.setAdapter(recyclerAdapter1);
-                        recyclerAdapter1.notifyDataSetChanged();
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        totalRv.setVisibility(View.GONE);
                         Log.i("MyCL", "TotalFragment错误信息：" + e.getMessage());
                     }
 

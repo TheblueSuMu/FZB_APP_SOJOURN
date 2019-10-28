@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -37,6 +38,7 @@ public class SojournFragment extends Fragment {
 
     RecyclerView sojourn_rv;
     BrokerageAdapter adapter;
+    private ImageView all_no_information;
 
     public SojournFragment() {
         // Required empty public constructor
@@ -55,6 +57,7 @@ public class SojournFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         sojourn_rv = getActivity().findViewById(R.id.sojourn_rv);
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         sojourn_rv.setLayoutManager(linearLayoutManager);
         initData();
@@ -81,13 +84,25 @@ public class SojournFragment extends Fragment {
                     @Override
                     public void onNext(BorkerageDownBean borkerageDownBean) {
                         List<BorkerageDownBean.DataBean.RowsBean> rows = borkerageDownBean.getData().getRows();
-                        adapter = new BrokerageAdapter();
-                        adapter.setRows(rows);
-                        sojourn_rv.setAdapter(adapter);
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            sojourn_rv.setVisibility(View.VISIBLE);
+                            adapter = new BrokerageAdapter();
+                            adapter.setRows(rows);
+                            sojourn_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            sojourn_rv.setVisibility(View.GONE);
+                        }
+
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        sojourn_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "我的佣金下半部（旅居）" + e.getMessage());
                     }
 

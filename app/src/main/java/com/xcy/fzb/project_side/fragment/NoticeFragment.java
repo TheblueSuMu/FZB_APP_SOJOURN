@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -87,6 +88,7 @@ public class NoticeFragment extends Fragment {
     private String url;
     private List<MessageBean.DataBean.RowsBean> rows;
     Bitmap bitmap;
+    private ImageView all_no_information;
 
     public NoticeFragment() {
         // Required empty public constructor
@@ -108,6 +110,7 @@ public class NoticeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         notice_rv = getActivity().findViewById(R.id.notice_rv);
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         notice_rv.setLayoutManager(manager);
@@ -137,66 +140,57 @@ public class NoticeFragment extends Fragment {
                     public void onNext(MessageBean messageBean) {
                         MessageBean.DataBean data1 = messageBean.getData();
                         rows = data1.getRows();
-                        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        NoticeAdapter adapter = new NoticeAdapter();
-                        adapter.setRows(rows);
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            notice_rv.setVisibility(View.VISIBLE);
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            NoticeAdapter adapter = new NoticeAdapter();
+                            adapter.setRows(rows);
 
-                        adapter.setClick(new NoticeAdapter.Click() {
-                            @Override
-                            public void ItemOnClick(int position) {
-                                String phone = rows.get(position).getPhone();
-                                if (phone.equals("")) {
-                                    Toast.makeText(getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));//跳转到拨号界面，同时传递电话号码
-                                    startActivity(dialIntent);
-                                }
-                            }
-                        });
-                        adapter.setFzClick(new NoticeAdapter.FZClick() {
-                            @Override
-                            public void ItemFZOnClick(int position) {
-                                //        TODO 文本复制
-                                ClipboardManager clip = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                                clip.setText(rows.get(position).getContent());
-
-
-                                list = new ArrayList<>();
-                                String UrlImage = rows.get(position).getImgPath();
-                                StringBuffer stringBuffer = new StringBuffer();
-                                stringBuffer.append(UrlImage);
-                                j = 0;
-                                num = 0;
-                                for (int i = 0; i < stringBuffer.length(); ++i) {
-                                    if (stringBuffer.substring(i, i + 1).equals("|")) {
-                                        list.add(stringBuffer.substring(j, i));
-                                        j = i + 1;
-                                        num = 1;
+                            adapter.setClick(new NoticeAdapter.Click() {
+                                @Override
+                                public void ItemOnClick(int position) {
+                                    String phone = rows.get(position).getPhone();
+                                    if (phone.equals("")) {
+                                        Toast.makeText(getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));//跳转到拨号界面，同时传递电话号码
+                                        startActivity(dialIntent);
                                     }
                                 }
-                                if (num == 1) {
-                                    list.add(stringBuffer.substring(j));
-                                }
+                            });
+                            adapter.setFzClick(new NoticeAdapter.FZClick() {
+                                @Override
+                                public void ItemFZOnClick(int position) {
+                                    //        TODO 文本复制
+                                    ClipboardManager clip = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                                    clip.setText(rows.get(position).getContent());
+
+
+                                    list = new ArrayList<>();
+                                    String UrlImage = rows.get(position).getImgPath();
+                                    StringBuffer stringBuffer = new StringBuffer();
+                                    stringBuffer.append(UrlImage);
+                                    j = 0;
+                                    num = 0;
+                                    for (int i = 0; i < stringBuffer.length(); ++i) {
+                                        if (stringBuffer.substring(i, i + 1).equals("|")) {
+                                            list.add(stringBuffer.substring(j, i));
+                                            j = i + 1;
+                                            num = 1;
+                                        }
+                                    }
+                                    if (num == 1) {
+                                        list.add(stringBuffer.substring(j));
+                                    }
 //        String imagename = list.get(position).getContent();
 ////        TODO 图片保存到本地
-                                if (rows.get(position).getImgPath().equals("")) {
+                                    if (rows.get(position).getImgPath().equals("")) {
 
-                                } else {
-                                    if (num == 0) {
-                                        imgURl = "http://39.98.173.250:8080" + rows.get(position).getImgPath();
-                                        new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
-                                                Bitmap bp = returnBitMap(imgURl);
-                                                Log.i("MyCL", "bp：" + bp);
-                                                saveImageToPhotos(getContext(), bp);
-                                            }
-                                        }).start();
                                     } else {
-                                        for (int i = 0; i < list.size(); ++i) {
-                                            imgURl = "http://39.98.173.250:8080" + list.get(i);
+                                        if (num == 0) {
+                                            imgURl = "http://39.98.173.250:8080" + rows.get(position).getImgPath();
                                             new Thread(new Runnable() {
                                                 @Override
                                                 public void run() {
@@ -206,20 +200,40 @@ public class NoticeFragment extends Fragment {
                                                     saveImageToPhotos(getContext(), bp);
                                                 }
                                             }).start();
+                                        } else {
+                                            for (int i = 0; i < list.size(); ++i) {
+                                                imgURl = "http://39.98.173.250:8080" + list.get(i);
+                                                new Thread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
+                                                        Bitmap bp = returnBitMap(imgURl);
+                                                        Log.i("MyCL", "bp：" + bp);
+                                                        saveImageToPhotos(getContext(), bp);
+                                                    }
+                                                }).start();
+                                            }
                                         }
                                     }
+                                    Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
+                                    num = 0;
+
                                 }
-                                Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
-                                num = 0;
+                            });
 
-                            }
-                        });
+                            notice_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            notice_rv.setVisibility(View.GONE);
+                        }
 
-                        notice_rv.setAdapter(adapter);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        notice_rv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

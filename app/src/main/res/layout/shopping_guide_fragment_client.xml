@@ -1,34 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:background="#fff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/client_search"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:hint="按客户姓名/手机号搜索"
-            android:gravity="center"
-            android:drawableLeft="@mipmap/search"
-            android:drawablePadding="10dp"
-            android:background="@drawable/dg_edittext_shape"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/client_rv"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <RelativeLayout
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</LinearLayout>
+            <EditText
+                android:id="@+id/client_search"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:hint="按客户姓名/手机号搜索"
+                android:gravity="center"
+                android:drawableLeft="@mipmap/search"
+                android:drawablePadding="10dp"
+                android:background="@drawable/dg_edittext_shape"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/client_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/all_no_information"
+        android:background="#fff"
+        android:visibility="gone"
+        android:src="@mipmap/no_information"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

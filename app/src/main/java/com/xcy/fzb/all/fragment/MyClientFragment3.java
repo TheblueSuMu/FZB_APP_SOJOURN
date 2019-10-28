@@ -98,6 +98,8 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
 
                         if (FinalContents.getZhuanyuan().equals("1")) {
                             initData2();
+                        }else if (FinalContents.getQuanceng().equals("1")) {
+                            initData2();
                         }else {
                             initData();
                         }
@@ -221,9 +223,11 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
     public void onResume() {
         super.onResume();
 
-        if (FinalContents.getQuanceng().equals("1")) {
+        if (FinalContents.getZhuanyuan().equals("1")) {
             initData2();
-        } else{
+        }else if (FinalContents.getQuanceng().equals("1")) {
+            initData2();
+        }else {
             initData();
         }
 

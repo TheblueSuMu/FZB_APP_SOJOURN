@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,12 +39,14 @@ public class ClientFragment extends AllFragment {
     private EditText client_search;
     private String search;
     int isnum = 0;
+    private ImageView all_no_information;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.shopping_guide_fragment_client, null);
         client_rv = view.findViewById(R.id.client_rv);
+        all_no_information = view.findViewById(R.id.all_no_information);
         client_search = view.findViewById(R.id.client_search);
         initData();
         client_search.setOnKeyListener(new View.OnKeyListener() {
@@ -88,17 +91,27 @@ public class ClientFragment extends AllFragment {
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(CustomerListBean customerListBean) {
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(view.getContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        client_rv.setLayoutManager(layoutManager);
-                        ClientAdapter recyclerAdapter = new ClientAdapter(customerListBean.getData().getRows());
-                        client_rv.setAdapter(recyclerAdapter);
-                        recyclerAdapter.notifyDataSetChanged();
-                        isnum = 0;
+                        if (customerListBean.getData().getRows().size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            client_rv.setVisibility(View.VISIBLE);
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(view.getContext());
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            client_rv.setLayoutManager(layoutManager);
+                            ClientAdapter recyclerAdapter = new ClientAdapter(customerListBean.getData().getRows());
+                            client_rv.setAdapter(recyclerAdapter);
+                            recyclerAdapter.notifyDataSetChanged();
+                            isnum = 0;
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            client_rv.setVisibility(View.GONE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        client_rv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

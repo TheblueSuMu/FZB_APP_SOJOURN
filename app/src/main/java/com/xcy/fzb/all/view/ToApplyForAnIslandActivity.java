@@ -578,4 +578,19 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
             }.start();
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (FinalContents.getDengDao().equals("1")) {
+            finish();
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FinalContents.setDengDao("0");
+    }
 }

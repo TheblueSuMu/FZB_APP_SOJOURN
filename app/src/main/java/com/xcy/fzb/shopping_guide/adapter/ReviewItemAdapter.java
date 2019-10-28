@@ -9,12 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ReviewAdapterItemAdapter;
+import com.xcy.fzb.all.persente.MyGridLayoutManager;
 import com.xcy.fzb.shopping_guide.MyClientFragmentBean;
 
 import java.util.ArrayList;
@@ -56,8 +55,8 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
                     for (int i = 0;i < a.length;i++){
                         arraylist.add(a[i]);
                     }
-                    GridLayoutManager layoutManager = new GridLayoutManager(context,5);
-                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    MyGridLayoutManager layoutManager = new MyGridLayoutManager(context,5);
+                    layoutManager.setOrientation(MyGridLayoutManager.VERTICAL);
                     holder.item_reivew_adapter_item.setLayoutManager(layoutManager);
                     ReviewAdapterItemAdapter recyclerAdapter = new ReviewAdapterItemAdapter(arraylist);
                     holder.item_reivew_adapter_item.setAdapter(recyclerAdapter);

@@ -52,6 +52,7 @@ public class MoreTypeFragment extends Fragment {
 
         if (list.size() != 0) {
             all_no_information.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(layoutManager);
@@ -59,6 +60,7 @@ public class MoreTypeFragment extends Fragment {
             recyclerView.setAdapter(recyclerAdapter);
         }else {
             all_no_information.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
         }
         return view;
     }

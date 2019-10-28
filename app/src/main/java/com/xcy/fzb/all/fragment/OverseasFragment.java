@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,12 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.BrokerageAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.BorkerageDownBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
-import com.xcy.fzb.R;
 
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class OverseasFragment extends Fragment {
     RecyclerView overseas_rv;
     BrokerageAdapter adapter;
     private ProgressDialog progressDialog;
+    private ImageView all_no_information;
 
     public OverseasFragment() {
         // Required empty public constructor
@@ -60,6 +62,7 @@ public class OverseasFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         overseas_rv = getActivity().findViewById(R.id.overseas_rv);
+        all_no_information = getActivity().findViewById(R.id.all_no_information);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         overseas_rv.setLayoutManager(manager);
@@ -88,13 +91,25 @@ public class OverseasFragment extends Fragment {
                     @Override
                     public void onNext(BorkerageDownBean borkerageDownBean) {
                         List<BorkerageDownBean.DataBean.RowsBean> rows = borkerageDownBean.getData().getRows();
-                        adapter = new BrokerageAdapter();
-                        adapter.setRows(rows);
-                        overseas_rv.setAdapter(adapter);
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            overseas_rv.setVisibility(View.VISIBLE);
+                            adapter = new BrokerageAdapter();
+                            adapter.setRows(rows);
+                            overseas_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            overseas_rv.setVisibility(View.GONE);
+                        }
+
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        overseas_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "我的佣金下半部（海外）" + e.getMessage());
                     }
 

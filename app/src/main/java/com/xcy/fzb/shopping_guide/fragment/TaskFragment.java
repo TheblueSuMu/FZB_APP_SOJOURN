@@ -39,6 +39,7 @@ public class TaskFragment extends AllFragment {
     private View view;
     private ImageView task_history_img;
     private RecyclerView task_rv;
+    private ImageView all_no_information;
 
     @Nullable
     @Override
@@ -50,6 +51,7 @@ public class TaskFragment extends AllFragment {
 
     private void initView(){
         task_history_img = view.findViewById(R.id.task_history_img);
+        all_no_information = view.findViewById(R.id.all_no_information);
         task_rv = view.findViewById(R.id.task_rv);
         task_history_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,22 +85,30 @@ public class TaskFragment extends AllFragment {
                         if (taskListBean.getCode().equals("1")) {
                             TaskListBean.DataBean dataBean = taskListBean.getData();
                             List<TaskListBean.DataBean.RowsBean> rows = dataBean.getRows();
-                            //在此处修改布局排列方向
-                            task_rv.setVisibility(View.VISIBLE);
-                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(view.getContext());
-                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                            task_rv.setLayoutManager(layoutManager);
-                            TaskListAdapter recyclerAdapter = new TaskListAdapter(rows);
-                            task_rv.setAdapter(recyclerAdapter);
-                            recyclerAdapter.notifyDataSetChanged();
-
+                            if (rows.size() != 0) {
+                                all_no_information.setVisibility(View.GONE);
+                                //在此处修改布局排列方向
+                                task_rv.setVisibility(View.VISIBLE);
+                                MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(view.getContext());
+                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                task_rv.setLayoutManager(layoutManager);
+                                TaskListAdapter recyclerAdapter = new TaskListAdapter(rows);
+                                task_rv.setAdapter(recyclerAdapter);
+                                recyclerAdapter.notifyDataSetChanged();
+                            }else {
+                                all_no_information.setVisibility(View.VISIBLE);
+                                task_rv.setVisibility(View.GONE);
+                            }
                         }else {
+                            all_no_information.setVisibility(View.VISIBLE);
                             task_rv.setVisibility(View.GONE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        task_rv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误","错误"+e);
                     }
 

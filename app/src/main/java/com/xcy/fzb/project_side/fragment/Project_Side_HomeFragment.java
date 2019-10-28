@@ -120,6 +120,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
     private String type = "";
     private String beforeDate = "";
     private String afterDate = "";
+    private ImageView all_no_information;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -137,7 +138,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         mPtrClassicFrameLayout = view.findViewById(R.id.store_house_ptr_frame);
 
         FinalContents.setTiaozhuang("");
-
+        all_no_information = view.findViewById(R.id.all_no_information);
         img_home_the_project_end = view.findViewById(R.id.img_home_the_project_end);
         name_home_the_project_end = view.findViewById(R.id.name_home_the_project_end);
         city_home_the_project_end = view.findViewById(R.id.city_home_the_project_end);
@@ -426,23 +427,33 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                         if (homeListBean.getCode().equals("1")) {
                             SideHomeBean.DataBean homeListBeanData = homeListBean.getData();
                             List<SideHomeBean.DataBean.RowsBean> homeListBeanDataRows = homeListBeanData.getRows();
-                            //在此处修改布局排列方向
-                            rv_home_the_project_end.setVisibility(View.VISIBLE);
-                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(view.getContext());
-                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                            layoutManager.setScrollEnabled(false);
-                            rv_home_the_project_end.setLayoutManager(layoutManager);
-                            Project_Side_HomeRecyclerAdapter recyclerAdapter = new Project_Side_HomeRecyclerAdapter(homeListBeanDataRows);
-                            rv_home_the_project_end.setNestedScrollingEnabled(false);
-                            rv_home_the_project_end.setAdapter(recyclerAdapter);
-                            recyclerAdapter.notifyDataSetChanged();
+                            if (homeListBeanDataRows.size() != 0) {
+                                all_no_information.setVisibility(View.GONE);
+                                //在此处修改布局排列方向
+                                rv_home_the_project_end.setVisibility(View.VISIBLE);
+                                MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(view.getContext());
+                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                layoutManager.setScrollEnabled(false);
+                                rv_home_the_project_end.setLayoutManager(layoutManager);
+                                Project_Side_HomeRecyclerAdapter recyclerAdapter = new Project_Side_HomeRecyclerAdapter(homeListBeanDataRows);
+                                rv_home_the_project_end.setNestedScrollingEnabled(false);
+                                rv_home_the_project_end.setAdapter(recyclerAdapter);
+                                recyclerAdapter.notifyDataSetChanged();
+                            }else {
+                                all_no_information.setVisibility(View.VISIBLE);
+                                rv_home_the_project_end.setVisibility(View.GONE);
+                            }
+
                         } else {
                             rv_home_the_project_end.setVisibility(View.GONE);
+                            all_no_information.setVisibility(View.VISIBLE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        rv_home_the_project_end.setVisibility(View.GONE);
+                        all_no_information.setVisibility(View.VISIBLE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

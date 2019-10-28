@@ -393,7 +393,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
         Log.i("调单数据","调单佣金："+FinalContents.getCommissionId());
         Log.i("调单数据","调单用户："+FinalContents.getUserID());
         Log.i("调单数据","调单项目："+FinalContents.getProjectID());
-        Log.i("成交123","添加调单");
+        Log.i("成交123","添加调单"+FinalContents.getEconomicCircleID());
 
         Log.i("成交123","调单："+sum);
 

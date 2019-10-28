@@ -118,6 +118,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     private Vibrator vibrator;
     private DemoApplication application;
     private TextView home_item_yongjin;
+    private ImageView all_no_information;
 
     @Nullable
     @Override
@@ -203,6 +204,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 
         home_item_yongjin = view.findViewById(R.id.home_item_yongjin);
         recyclerView = view.findViewById(R.id.home_recycler_vertical);
+
+        all_no_information = view.findViewById(R.id.all_no_information);
 
         banner = view.findViewById(R.id.home_banner);
 
@@ -384,25 +387,36 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                         if (hotBean.getCode().equals("1")) {
                             HotBean.DataBean hotBeanData = hotBean.getData();
                             hotlist = hotBeanData.getRows();
-                            //在此处修改布局排列方向
-                            recyclerView.setVisibility(View.VISIBLE);
-                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(view.getContext());
-                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                            layoutManager.setScrollEnabled(false);
-                            recyclerView.setLayoutManager(layoutManager);
-                            FinalContents.setZyHome("0");
-                            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(hotlist);
-                            recyclerView.setNestedScrollingEnabled(false);
-                            recyclerView.setAdapter(recyclerAdapter);
-                            recyclerAdapter.notifyDataSetChanged();
+                            if (hotlist.size() != 0) {
+                                all_no_information.setVisibility(View.GONE);
+                                //在此处修改布局排列方向
+                                recyclerView.setVisibility(View.VISIBLE);
+                                MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(view.getContext());
+                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                layoutManager.setScrollEnabled(false);
+                                recyclerView.setLayoutManager(layoutManager);
+                                FinalContents.setZyHome("0");
+                                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(hotlist);
+                                recyclerView.setNestedScrollingEnabled(false);
+                                recyclerView.setAdapter(recyclerAdapter);
+                                recyclerAdapter.notifyDataSetChanged();
+
+                            }else {
+                                all_no_information.setVisibility(View.VISIBLE);
+                                recyclerView.setVisibility(View.GONE);
+                            }
+
 
                         } else {
                             recyclerView.setVisibility(View.GONE);
+                            all_no_information.setVisibility(View.VISIBLE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        recyclerView.setVisibility(View.GONE);
+                        all_no_information.setVisibility(View.VISIBLE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

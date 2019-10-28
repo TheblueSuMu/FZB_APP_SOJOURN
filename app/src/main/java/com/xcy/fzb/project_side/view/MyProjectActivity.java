@@ -164,24 +164,31 @@ public class MyProjectActivity extends AllActivity implements View.OnClickListen
                             all_no_information.setVisibility(View.GONE);
                             SideHomeBean.DataBean homeListBeanData = homeListBean.getData();
                             final List<SideHomeBean.DataBean.RowsBean> homeListBeanDataRows = homeListBeanData.getRows();
-                            //在此处修改布局排列方向
-                            my_project_recyler.setVisibility(View.VISIBLE);
-                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(MyProjectActivity.this);
-                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                            my_project_recyler.setLayoutManager(layoutManager);
-                            final HomeRecyclerAdapter recyclerAdapter = new HomeRecyclerAdapter(homeListBeanDataRows);
-                            my_project_recyler.setAdapter(recyclerAdapter);
-                            recyclerAdapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickLisenter() {
-                                @Override
-                                public void onItemClick(int postion) {
-                                    if (FinalContents.getMessageIssueNum().equals("1")) {
-                                        FinalContents.setProjectID(homeListBeanDataRows.get(postion).getProjectId());
-                                        FinalContents.setProjectName(homeListBeanDataRows.get(postion).getProjectName());
-                                        finish();
+                            if (homeListBeanDataRows.size() != 0) {
+                                all_no_information.setVisibility(View.GONE);
+                                //在此处修改布局排列方向
+                                my_project_recyler.setVisibility(View.VISIBLE);
+                                MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(MyProjectActivity.this);
+                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                my_project_recyler.setLayoutManager(layoutManager);
+                                final HomeRecyclerAdapter recyclerAdapter = new HomeRecyclerAdapter(homeListBeanDataRows);
+                                my_project_recyler.setAdapter(recyclerAdapter);
+                                recyclerAdapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickLisenter() {
+                                    @Override
+                                    public void onItemClick(int postion) {
+                                        if (FinalContents.getMessageIssueNum().equals("1")) {
+                                            FinalContents.setProjectID(homeListBeanDataRows.get(postion).getProjectId());
+                                            FinalContents.setProjectName(homeListBeanDataRows.get(postion).getProjectName());
+                                            finish();
+                                        }
                                     }
-                                }
-                            });
-                            recyclerAdapter.notifyDataSetChanged();
+                                });
+                                recyclerAdapter.notifyDataSetChanged();
+                            }else {
+                                all_no_information.setVisibility(View.VISIBLE);
+                                my_project_recyler.setVisibility(View.GONE);
+                            }
+
                         }else {
                             my_project_recyler.setVisibility(View.GONE);
                             all_no_information.setVisibility(View.VISIBLE);
