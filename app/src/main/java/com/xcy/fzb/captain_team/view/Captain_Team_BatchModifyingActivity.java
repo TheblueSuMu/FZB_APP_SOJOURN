@@ -282,6 +282,9 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+        Log.i("MyCL","FinalContents.getUserID()：" + FinalContents.getUserID());
+        Log.i("MyCL","FinalContents.getRatioId()：" + FinalContents.getRatioId());
+        Log.i("MyCL","IDS：" + IDS);
         Observable<LevelBean> teamMemberBeane = fzbInterface.getLevelBean(FinalContents.getUserID(), FinalContents.getRatioId(),IDS);
         teamMemberBeane.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -80,47 +80,99 @@
 
                     </RelativeLayout>
 
+
                     <RelativeLayout
                         android:id="@+id/team_rl1"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginLeft="15dp"
                         android:layout_marginBottom="10dp"
                         android:layout_weight="1"
-                        android:background="@mipmap/qcxs">
+                        android:layout_marginLeft="10dp"
+                        android:background="@mipmap/xs001">
 
                         <TextView
                             android:id="@+id/team_tv11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginLeft="20dp"
                             android:layout_marginTop="20dp"
                             android:text=""
                             android:textColor="#ff333333"
                             android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="15dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="17dp"
+                            android:text="销售"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp"
+                            />
+
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/team_rl2"
                         android:layout_width="0dp"
                         android:layout_height="85dp"
-                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:background="@mipmap/qcw">
+                        android:background="@mipmap/xs002">
 
                         <TextView
                             android:id="@+id/team_tv1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginLeft="20dp"
                             android:layout_marginTop="20dp"
                             android:text=""
                             android:textColor="#ff333333"
                             android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="15dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="17dp"
+                            android:text="顾问"
+                            android:textColor="#ff333333"
+                            android:textSize="15sp"
+                            />
+
                     </RelativeLayout>
+
+<!--                    <RelativeLayout-->
+<!--                        android:id="@+id/team_rl2"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="85dp"-->
+<!--                        android:layout_marginLeft="15dp"-->
+<!--                        android:layout_marginTop="15dp"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@mipmap/qcw">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/team_tv1"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="30dp"-->
+<!--                            android:layout_marginTop="20dp"-->
+<!--                            android:text=""-->
+<!--                            android:textColor="#ff333333"-->
+<!--                            android:textSize="16sp" />-->
+<!--                    </RelativeLayout>-->
+
+
+
+
                 </LinearLayout>
 
                 <LinearLayout

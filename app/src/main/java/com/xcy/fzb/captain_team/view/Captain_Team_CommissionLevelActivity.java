@@ -168,8 +168,6 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
 
                     }
                 });
-
-
     }
 
     private void initDataAdd(String ID, String YongJin) {

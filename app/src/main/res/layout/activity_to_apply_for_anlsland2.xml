@@ -16,6 +16,7 @@
             android:id="@+id/to_apply_for_an_island2_return"
             android:layout_width="50dp"
             android:layout_height="70dp">
+
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="18dp"
@@ -72,9 +73,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:gravity="right"
                         android:layout_marginRight="20dp"
                         android:background="#FFFFFF"
+                        android:gravity="right"
                         android:text="选择路线"
                         android:textColor="#ff111111"
                         android:textSize="15sp" />
@@ -168,15 +169,15 @@
 
                 <LinearLayout
                     android:id="@+id/to_apply_for_an_island2_ll1"
-                    android:orientation="vertical"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/to_apply_for_an_island2_rv"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -281,8 +282,9 @@
                         android:id="@+id/to_apply_for_an_island2_img3"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@mipmap/wx_tp"
-                        android:background="#999999" />
+                        android:background="#999999"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/wx_tp" />
 
                     <TextView
                         android:id="@+id/to_apply_for_an_island2_tv4"
@@ -290,8 +292,8 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        android:visibility="gone"
-                        android:text="上传图片" />
+                        android:text="上传图片"
+                        android:visibility="gone" />
                 </RelativeLayout>
 
             </LinearLayout>

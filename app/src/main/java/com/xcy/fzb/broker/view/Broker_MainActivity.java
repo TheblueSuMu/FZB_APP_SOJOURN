@@ -24,7 +24,7 @@ import com.xcy.fzb.all.view.ReportActivity;
 import com.xcy.fzb.broker.fragment.DFragment;
 import com.xcy.fzb.broker.fragment.EFragment;
 
-public class Broker_MainActivity extends AllActivity implements View.OnClickListener,HomeFragment.FragmentInteraction {
+public class Broker_MainActivity extends AllActivity implements View.OnClickListener, HomeFragment.FragmentInteraction {
 
     private RadioButton button_home;
     private RadioButton button_message;
@@ -33,7 +33,6 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
     private RadioButton button_me;
     private ImageView img_backup;
     private ProgressLayout progressLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +44,20 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         initfvb();
     }
 
-    private void init(){
+    private void init() {
         VirturlUtil.assistActivity(findViewById(android.R.id.content));
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         HomeFragment home_fragment = new HomeFragment();
+
+        MessageFragment message_fragment = new MessageFragment();
+        DFragment dFragment = new DFragment();
+        EFragment eFragment = new EFragment();
+
         transaction.replace(R.id.main_framelayout, home_fragment);
+
+
         transaction.commit();
     }
 
@@ -64,7 +70,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("2");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+                transaction.replace(R.id.main_framelayout, messageFragment);
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("2")) {
@@ -72,7 +78,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("3");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+                transaction.replace(R.id.main_framelayout, messageFragment);
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("5")) {
@@ -80,7 +86,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("4");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+                transaction.replace(R.id.main_framelayout, messageFragment);
                 transaction.commit();
                 button_message.setChecked(true);
             }
@@ -128,6 +134,8 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 initProgressLayout();
                 MessageFragment message_fragment = new MessageFragment();
                 transaction.replace(R.id.main_framelayout, message_fragment);
+
+
                 break;
             case R.id.button_backup:
                 Intent intent = new Intent(Broker_MainActivity.this, ReportActivity.class);
@@ -137,18 +145,22 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 initProgressLayout();
                 DFragment dFragment = new DFragment();
                 transaction.replace(R.id.main_framelayout, dFragment);
+
+
                 break;
             case R.id.button_me:
                 initProgressLayout();
                 EFragment eFragment = new EFragment();
                 transaction.replace(R.id.main_framelayout, eFragment);
+
+
                 break;
         }
         initSeleep();
         transaction.commit();
     }
 
-    private void initSeleep(){
+    private void initSeleep() {
         try {
             Thread.sleep(150);
         } catch (InterruptedException e) {
@@ -156,7 +168,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         }
     }
 
-    private void initProgressLayout(){
+    private void initProgressLayout() {
         progressLayout = findViewById(R.id.progress_layout);
 
         @SuppressLint("HandlerLeak") Handler handler = new Handler() {

@@ -281,6 +281,13 @@ public class ConfirmTheVisitActivity extends AllActivity {
             getLatitude = data.getStringExtra("getLatitude");
             getLongitude = data.getStringExtra("getLongitude");
 
+
+            StringBuffer stringBuffer1 = new StringBuffer();
+            StringBuffer stringBuffer2 = new StringBuffer();
+
+            StringBuffer append1 = stringBuffer1.append(getLatitude);
+            StringBuffer append2 = stringBuffer2.append(getLongitude);
+
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
             builder.addConverterFactory(GsonConverterFactory.create());
@@ -288,7 +295,7 @@ public class ConfirmTheVisitActivity extends AllActivity {
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
 
-            Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
+            Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(append2.substring(0,10), append1.substring(0,10));
             changeAddress.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<ChangeAddress>() {

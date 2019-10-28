@@ -39,7 +39,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "(" + rowsBeanList.get(position).getCustomerPhone() + ")");
         holder.the_project_end_name.setText(rowsBeanList.get(position).getRoomNumber());
         holder.the_project_end_time.setText(rowsBeanList.get(position).getProjectName());
-        holder.the_project_end_dong.setText(rowsBeanList.get(position).getClosingTime());
+        holder.the_project_end_dong.setText(rowsBeanList.get(position).getTradeDate());
 
         if (rowsBeanList.get(position).getStatus().equals("1")) {
             holder.the_project_end_img1.setVisibility(View.VISIBLE);

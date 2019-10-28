@@ -77,6 +77,8 @@ public class WCJActivity extends AllActivity {
             "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.WRITE_EXTERNAL_STORAGE"};
     private TextView feedback_title;
+    int ifimg = 0;
+    private File file;
     //
 
     @Override
@@ -116,122 +118,75 @@ public class WCJActivity extends AllActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if(mDatas.size() == 9){
-                    Toast.makeText(WCJActivity.this,"图片最多九张",Toast.LENGTH_SHORT).show();
-                }else {
+                if (mDatas.size() == 9) {
+                    Toast.makeText(WCJActivity.this, "图片最多九张", Toast.LENGTH_SHORT).show();
+                } else {
 
-                if (position == parent.getChildCount() - 1) {
+                    if (position == parent.getChildCount() - 1) {
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(WCJActivity.this);
-                    builder.setTitle("请选择图片来源");
-                    builder.setItems(new String[]{"相机", "相册"}, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            if (i == 0) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(WCJActivity.this);
+                        builder.setTitle("请选择图片来源");
+                        builder.setItems(new String[]{"相机", "相册"}, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if (i == 0) {
 
-                                try {
-                                    //检测是否有写的权限
-                                    int permission = ActivityCompat.checkSelfPermission(WCJActivity.this,
-                                            "android.permission.WRITE_EXTERNAL_STORAGE");
-                                    if (permission != PackageManager.PERMISSION_GRANTED) {
-                                        // 没有写的权限，去申请写的权限，
-                                        ActivityCompat.requestPermissions(WCJActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+                                    try {
+                                        //检测是否有写的权限
+                                        int permission = ActivityCompat.checkSelfPermission(WCJActivity.this,
+                                                "android.permission.WRITE_EXTERNAL_STORAGE");
+                                        if (permission != PackageManager.PERMISSION_GRANTED) {
+                                            // 没有写的权限，去申请写的权限，
+                                            ActivityCompat.requestPermissions(WCJActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
                                     }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                String SDState = Environment.getExternalStorageState();
-                                if (SDState.equals(Environment.MEDIA_MOUNTED)) {
-                                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// "android.media.action.IMAGE_CAPTURE"
-                                    /***
-                                     * 需要说明一下，以下操作使用照相机拍照，拍照后的图片会存放在相册中的 这里使用的这种方式有一个好处就是获取的图片是拍照后的原图
-                                     * 如果不实用ContentValues存放照片路径的话，拍照后获取的图片为缩略图不清晰
-                                     */
-                                    ContentValues values = new ContentValues();
-                                    Uri photoUri = WCJActivity.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                                    String SDState = Environment.getExternalStorageState();
+                                    if (SDState.equals(Environment.MEDIA_MOUNTED)) {
+                                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// "android.media.action.IMAGE_CAPTURE"
+                                        /***
+                                         * 需要说明一下，以下操作使用照相机拍照，拍照后的图片会存放在相册中的 这里使用的这种方式有一个好处就是获取的图片是拍照后的原图
+                                         * 如果不实用ContentValues存放照片路径的话，拍照后获取的图片为缩略图不清晰
+                                         */
+                                        ContentValues values = new ContentValues();
+                                        Uri photoUri = WCJActivity.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
 
 //TODO Uri图片转换成file类型的 start
-                                    final File file = uri2File(photoUri);
-                                    Log.i("MyCL", "Uri图片转换成file类型的：" + file);
-
-                                    new Thread() {
-                                        @Override
-                                        public void run() {
-
-                                            Retrofit.Builder builder = new Retrofit.Builder();
-                                            builder.baseUrl(FinalContents.getBaseUrl());
-                                            builder.addConverterFactory(GsonConverterFactory.create());
-                                            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                                            Retrofit build = builder.build();
-                                            MyService fzbInterface = build.create(MyService.class);
-
-                                            RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
-
-                                            MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-
-                                            Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "经济圈图片", part);
-                                            Log.i("MyCL", "addPhoto：" + addPhoto.toString());
-                                            addPhoto.subscribeOn(Schedulers.io())
-                                                    .observeOn(AndroidSchedulers.mainThread())
-                                                    .subscribe(new Observer<AddPhotoBean>() {
-                                                        @Override
-                                                        public void onSubscribe(Disposable d) {
-
-                                                        }
-
-                                                        @Override
-                                                        public void onNext(AddPhotoBean addPhotoBean) {
-                                                            if (stringBuffer.length() == 0) {
-                                                                stringBuffer.append(addPhotoBean.getData().getUrl());
-                                                            } else {
-                                                                stringBuffer.append("|" + addPhotoBean.getData().getUrl());
-                                                            }
-                                                            Log.i("MyCL", "解析完成后图片路径：" + stringBuffer.toString());
-
-                                                        }
-
-                                                        @Override
-                                                        public void onError(Throwable e) {
-                                                            Log.i("MyCL", "经济圈发布图片上传错误信息：" + e.getMessage());
-                                                        }
-
-                                                        @Override
-                                                        public void onComplete() {
-
-                                                        }
-                                                    });
-                                        }
-                                    }.start();
-                                    mDatas.add(file);
-                                    adapter.notifyDataSetChanged();
+                                        file = uri2File(photoUri);
+                                        Log.i("MyCL", "Uri图片转换成file类型的：" + file);
+                                            if(ifimg == 0){
+                                                ifimg = 1;
+                                            }
 //TODO Uri图片转换成file类型的 end
-                                    Log.i("MyCL", "图片路径：" + photoUri);
-                                    intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                                    startActivityForResult(intent, 1);
-                                } else {
+                                        Log.i("MyCL", "图片路径：" + photoUri);
+                                        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                                        startActivityForResult(intent, 1);
+                                    } else {
 
+                                    }
+                                } else if (i == 1) {
+                                    Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
+                                    getAlbum.setType(IMAGE_TYPE);
+                                    startActivityForResult(getAlbum, IMAGE_CODE);
                                 }
-                            } else if (i == 1) {
-                                Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
-                                getAlbum.setType(IMAGE_TYPE);
-                                startActivityForResult(getAlbum, IMAGE_CODE);
                             }
-                        }
-                    });
-                    builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+                        });
+                        builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                        }
-                    });
-                    builder.show();
-                    adapter = new GridViewAdapter(WCJActivity.this, mDatas);
-                    mGridView.setAdapter(adapter);
+                            }
+                        });
+                        builder.show();
+                        adapter = new GridViewAdapter(WCJActivity.this, mDatas);
+                        mGridView.setAdapter(adapter);
+
+                    }
 
                 }
-
-            }                }
+            }
 
         });
 
@@ -240,44 +195,109 @@ public class WCJActivity extends AllActivity {
             @Override
             public void onClick(View view) {
                 message = feedback_editText.getText().toString();
-                Retrofit.Builder builder = new Retrofit.Builder();
-                builder.baseUrl(FinalContents.getBaseUrl());
-                builder.addConverterFactory(GsonConverterFactory.create());
-                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                Retrofit build = builder.build();
-                MyService fzbInterface = build.create(MyService.class);
-                final Observable<FeedBackBean> feedBack = fzbInterface.getNoTrade(FinalContents.getUserID(),message,FinalContents.getLandingId(),FinalContents.getPreparationId());
-                feedBack.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<FeedBackBean>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
-                                Log.i("MyCL", "未成交错误信息");
-                            }
+                if (message.equals("")) {
+                    Toast.makeText(WCJActivity.this, "未成交原因必须填写", Toast.LENGTH_SHORT).show();
+                } else {
 
-                            @Override
-                            public void onNext(FeedBackBean feedBackBean) {
-                                String msg = feedBackBean.getMsg();
-                                if (msg.equals("成功")) {
-                                    Toast.makeText(WCJActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                } else {
-                                    Toast.makeText(WCJActivity.this, "提交失败，请重新提交", Toast.LENGTH_SHORT).show();
+
+                    Retrofit.Builder builder = new Retrofit.Builder();
+                    builder.baseUrl(FinalContents.getBaseUrl());
+                    builder.addConverterFactory(GsonConverterFactory.create());
+                    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                    Retrofit build = builder.build();
+                    MyService fzbInterface = build.create(MyService.class);
+                    final Observable<FeedBackBean> feedBack = fzbInterface.getNoTrade(FinalContents.getUserID(), message, FinalContents.getLandingId(), FinalContents.getPreparationId());
+                    feedBack.subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<FeedBackBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+
                                 }
-                            }
 
-                            @Override
-                            public void onError(Throwable e) {
-                                Log.i("MyCL", "未成交错误信息" + e.getMessage());
-                            }
+                                @Override
+                                public void onNext(FeedBackBean feedBackBean) {
+                                    String msg = feedBackBean.getMsg();
+                                    if (msg.equals("成功")) {
+                                        Toast.makeText(WCJActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    } else {
+                                        Toast.makeText(WCJActivity.this, "提交失败，请重新提交", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
 
-                            @Override
-                            public void onComplete() {
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.i("MyCL", "未成交错误信息" + e.getMessage());
+                                }
 
-                            }
-                        });
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+                }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(ifimg == 1){
+            new Thread() {
+                @Override
+                public void run() {
+
+                    Retrofit.Builder builder = new Retrofit.Builder();
+                    builder.baseUrl(FinalContents.getBaseUrl());
+                    builder.addConverterFactory(GsonConverterFactory.create());
+                    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                    Retrofit build = builder.build();
+                    MyService fzbInterface = build.create(MyService.class);
+
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+
+                    MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+
+                    Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "经济圈图片", part);
+                    Log.i("MyCL", "addPhoto：" + addPhoto.toString());
+                    addPhoto.subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<AddPhotoBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+
+                                }
+
+                                @Override
+                                public void onNext(AddPhotoBean addPhotoBean) {
+                                    if (stringBuffer.length() == 0) {
+                                        stringBuffer.append(addPhotoBean.getData().getUrl());
+                                    } else {
+                                        stringBuffer.append("|" + addPhotoBean.getData().getUrl());
+                                    }
+                                    Log.i("MyCL", "解析完成后图片路径：" + stringBuffer.toString());
+                                    mDatas.add(addPhotoBean.getData().getUrl());
+                                    adapter.notifyDataSetChanged();
+                                    ifimg = 0;
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.i("MyCL", "经济圈发布图片上传错误信息：" + e.getMessage());
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+                }
+            }.start();
+        }
+
     }
 
     //TODO 从相册获取图片
@@ -343,7 +363,9 @@ public class WCJActivity extends AllActivity {
                                             stringBuffer.append("|" + addPhotoBean.getData().getUrl());
                                         }
                                         Log.i("MyCL", "解析完成后图片路径：" + stringBuffer.toString());
+                                        mDatas.add(addPhotoBean.getData().getUrl());
 
+                                        adapter.notifyDataSetChanged();
                                     }
 
                                     @Override
@@ -359,9 +381,7 @@ public class WCJActivity extends AllActivity {
                     }
                 }.start();
 ////TODO bitmap图片转换成file类型的 end
-                mDatas.add(san);
 
-                adapter.notifyDataSetChanged();
                 String[] proj = {MediaStore.Images.Media.DATA};
 
 

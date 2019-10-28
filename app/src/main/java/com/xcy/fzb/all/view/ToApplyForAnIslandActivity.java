@@ -135,8 +135,6 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
         to_apply_for_an_island_ll2 = findViewById(R.id.to_apply_for_an_island_ll2);
 
         to_apply_for_an_island_btn = findViewById(R.id.to_apply_for_an_island_btn);
-        to_apply_for_an_island_et1.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-        to_apply_for_an_island_et2.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         to_apply_for_an_island_return.setOnClickListener(this);
         to_apply_for_an_island_img.setOnClickListener(this);
         to_apply_for_an_island_rl1.setOnClickListener(this);
