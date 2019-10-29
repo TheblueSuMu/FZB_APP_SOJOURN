@@ -178,8 +178,8 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                 if (rowsBeanList.get(position).getIsMy().equals("1")) {
                     holder.the_project_end_company.setText("自己");
                 } else {
-                    substring = rowsBeanList.get(position).getAgentName().substring(rowsBeanList.get(position).getAgentName().indexOf("销售"));
-                    holder.the_project_end_company.setText(substring);
+//                    substring = rowsBeanList.get(position).getAgentName().substring(rowsBeanList.get(position).getAgentName().indexOf("销售"));
+                    holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName());
                 }
 
                 holder.the_project_end_tv1.setVisibility(View.VISIBLE);
