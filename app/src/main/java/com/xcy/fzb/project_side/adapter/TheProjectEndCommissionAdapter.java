@@ -54,29 +54,21 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         }
 
         holder.the_project_end_tv1.setText("应收：¥" + rowsBeanList.get(position).getTotalAmount());
-        if (rowsBeanList.get(position).getMoneyStatus() == 0) {
-            holder.the_project_end_img.setVisibility(View.GONE);
-        } else if (rowsBeanList.get(position).getMoneyStatus() == 1) {
-            holder.the_project_end_img.setVisibility(View.VISIBLE);
-            holder.the_project_end_img.setBackgroundResource(R.mipmap.tdg);
-        } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {
-            holder.the_project_end_img.setVisibility(View.VISIBLE);
-            holder.the_project_end_img.setBackgroundResource(R.mipmap.tdr);
-        }
-        if (rowsBeanList.get(position).getAlreadyAmount().equals("")) {
+
+        if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
             holder.the_project_end_tv2.setVisibility(View.GONE);
         } else {
             holder.the_project_end_tv2.setVisibility(View.VISIBLE);
             holder.the_project_end_tv2.setText("已结：¥" + rowsBeanList.get(position).getAlreadyAmount());
         }
 
-        if (rowsBeanList.get(position).getInvoiceMoney().equals("")) {
+        if (rowsBeanList.get(position).getInvoiceMoney().equals("") || rowsBeanList.get(position).getInvoiceMoney().equals("0") || rowsBeanList.get(position).getInvoiceMoney().equals("0.00")) {
             holder.the_project_end_tv3.setVisibility(View.GONE);
         } else {
             holder.the_project_end_tv3.setVisibility(View.VISIBLE);
             holder.the_project_end_tv3.setText("待结：¥" + rowsBeanList.get(position).getInvoiceMoney());
         }
-        if (rowsBeanList.get(position).getNotAmount().equals("")) {
+        if (rowsBeanList.get(position).getNotAmount().equals("")  || rowsBeanList.get(position).getNotAmount().equals("0") || rowsBeanList.get(position).getNotAmount().equals("0.00")) {
             holder.the_project_end_tv4.setVisibility(View.GONE);
         } else {
             holder.the_project_end_tv4.setVisibility(View.VISIBLE);
@@ -93,6 +85,28 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
             holder.the_project_end_tv6.setVisibility(View.VISIBLE);
             holder.the_project_end_tv7.setVisibility(View.VISIBLE);
             holder.the_project_end_tv7.setText(rowsBeanList.get(position).getClosingTime());
+        }
+
+        if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00") ) {
+            holder.the_project_end_tv8.setVisibility(View.GONE);
+        }else {
+            holder.the_project_end_tv8.setVisibility(View.VISIBLE);
+            holder.the_project_end_tv8.setText("需退还："+rowsBeanList.get(position).getReturnedMoney());
+        }
+
+        if (rowsBeanList.get(position).getMoneyStatus() == 0) {
+            holder.the_project_end_img.setVisibility(View.GONE);
+        } else if (rowsBeanList.get(position).getMoneyStatus() == 1) {
+            holder.the_project_end_img.setVisibility(View.VISIBLE);
+            holder.the_project_end_img.setBackgroundResource(R.mipmap.tdg);
+        } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {
+            holder.the_project_end_img.setVisibility(View.VISIBLE);
+            holder.the_project_end_img.setBackgroundResource(R.mipmap.tdr);
+            holder.the_project_end_tv1.setVisibility(View.GONE);
+            holder.the_project_end_tv2.setVisibility(View.GONE);
+            holder.the_project_end_tv3.setVisibility(View.GONE);
+            holder.the_project_end_tv4.setVisibility(View.GONE);
+
         }
     }
 
@@ -117,6 +131,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         TextView the_project_end_tv5;
         TextView the_project_end_tv6;
         TextView the_project_end_tv7;
+        TextView the_project_end_tv8;
 
         public TheProjectEndCommissionViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -134,6 +149,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
             the_project_end_tv5 = itemView.findViewById(R.id.the_project_end_tv5);
             the_project_end_tv6 = itemView.findViewById(R.id.the_project_end_tv6);
             the_project_end_tv7 = itemView.findViewById(R.id.the_project_end_tv7);
+            the_project_end_tv8 = itemView.findViewById(R.id.the_project_end_tv8);
 
         }
     }

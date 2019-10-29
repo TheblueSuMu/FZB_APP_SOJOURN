@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.database.CommissionListBean;
 
@@ -38,30 +37,35 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
         holder.item_commission_list_tv4.setText(rows.get(position).getStoreName());
         holder.item_commission_list_tv5.setText(rows.get(position).getAgentName());
 
+
+
         if (rows.get(position).getStatus().equals("0")) {
 
             if (rows.get(position).getMoneyStatus() == 0) {
-                if (rows.get(position).getTotalAmount().equals("")) {
-                    holder.item_commission_list_tv6.setText("总佣金：￥0");
+                if (rows.get(position).getTotalAmount().equals("") || rows.get(position).getTotalAmount().equals("0") || rows.get(position).getTotalAmount().equals("0.00")) {
+                    holder.item_commission_list_tv6.setVisibility(View.GONE);
                 }else {
+                    holder.item_commission_list_tv6.setVisibility(View.VISIBLE);
                     holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
                 }
 
-                if (rows.get(position).getSecondsAmount().equals("") || rows.get(position).getSecondsAmount().equals("0")) {
+                if (rows.get(position).getSecondsAmount().equals("") || rows.get(position).getSecondsAmount().equals("0") || rows.get(position).getSecondsAmount().equals("0.00")) {
                     holder.item_commission_list_tv7.setText("无秒结");
                 }else {
                     holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
                 }
 
-                if (rows.get(position).getAlreadyAmount().equals("")) {
-                    holder.item_commission_list_tv8.setText("已结：￥0");
+                if (rows.get(position).getAlreadyAmount().equals("") || rows.get(position).getAlreadyAmount().equals("0") || rows.get(position).getAlreadyAmount().equals("0.00")) {
+                    holder.item_commission_list_tv8.setVisibility(View.GONE);
                 }else {
+                    holder.item_commission_list_tv8.setVisibility(View.VISIBLE);
                     holder.item_commission_list_tv8.setText("已结：￥" + rows.get(position).getAlreadyAmount() + "");
                 }
 
-                if (rows.get(position).getNotAmount().equals("")) {
-                    holder.item_commission_list_tv9.setText("未结：￥0");
+                if (rows.get(position).getNotAmount().equals("") || rows.get(position).getNotAmount().equals("0") || rows.get(position).getNotAmount().equals("0.00")) {
+                    holder.item_commission_list_tv9.setVisibility(View.GONE);
                 }else {
+                    holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
                     holder.item_commission_list_tv9.setText("未结：￥" + rows.get(position).getNotAmount() + "");
                 }
 
@@ -79,37 +83,39 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
                 holder.item_commission_list_tv8.setVisibility(View.VISIBLE);
                 holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
 
-                if (rows.get(position).getTotalAmount().equals("")) {
-                    holder.item_commission_list_tv6.setText("总佣金：￥0");
+                if (rows.get(position).getTotalAmount().equals("") || rows.get(position).getTotalAmount().equals("0") || rows.get(position).getTotalAmount().equals("0.00")) {
+                    holder.item_commission_list_tv6.setVisibility(View.GONE);
                 }else {
+                    holder.item_commission_list_tv6.setVisibility(View.VISIBLE);
                     holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
                 }
 
-                if (rows.get(position).getSecondsAmount().equals("")) {
-                    holder.item_commission_list_tv7.setText("秒结：￥0");
+                if (rows.get(position).getSecondsAmount().equals("")  || rows.get(position).getSecondsAmount().equals("0") || rows.get(position).getSecondsAmount().equals("0.00")) {
+                    holder.item_commission_list_tv7.setText("无秒结");
                 }else {
                     holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
                 }
 
-                if (rows.get(position).getAlreadyAmount().equals("")) {
-                    holder.item_commission_list_tv8.setText("已结：￥0");
+                if (rows.get(position).getAlreadyAmount().equals("") || rows.get(position).getAlreadyAmount().equals("0") || rows.get(position).getAlreadyAmount().equals("0.00")) {
+                    holder.item_commission_list_tv8.setVisibility(View.GONE);
                 }else {
+                    holder.item_commission_list_tv8.setVisibility(View.VISIBLE);
                     holder.item_commission_list_tv8.setText("已结：￥" + rows.get(position).getAlreadyAmount() + "");
                 }
 
-                if (rows.get(position).getNotAmount().equals("")) {
-                    holder.item_commission_list_tv9.setText("未结：￥0");
+                if (rows.get(position).getNotAmount().equals("") || rows.get(position).getNotAmount().equals("0") || rows.get(position).getNotAmount().equals("0.00")) {
+                    holder.item_commission_list_tv9.setVisibility(View.GONE);
                 }else {
+                    holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
                     holder.item_commission_list_tv9.setText("未结：￥" + rows.get(position).getNotAmount() + "");
                 }
-
-                Glide.with(holder.itemView.getContext()).load(R.mipmap.tdg).into(holder.item_commission_list_img);
+                holder.item_commission_list_img.setImageResource(R.mipmap.tdg);
             } else if (rows.get(position).getMoneyStatus() == 2) {
 
-                holder.item_commission_list_tv6.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv6.setVisibility(View.GONE);
                 holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
 
-                Glide.with(holder.itemView.getContext()).load(R.mipmap.tdr).into(holder.item_commission_list_img);
+                holder.item_commission_list_img.setImageResource(R.mipmap.tdr);
                 holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
                 holder.item_commission_list_tv9.setText("需退还：￥" + rows.get(position).getReturnedMoney() + "");
             }
@@ -119,8 +125,8 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
             holder.item_commission_list_tv7.setVisibility(View.VISIBLE);
             holder.item_commission_list_tv11.setVisibility(View.VISIBLE);
 
-            if (rows.get(position).getSecondsAmount().equals("")) {
-                holder.item_commission_list_tv7.setText("秒结：￥0");
+            if (rows.get(position).getSecondsAmount().equals("")  || rows.get(position).getSecondsAmount().equals("0") || rows.get(position).getSecondsAmount().equals("0.00")) {
+                holder.item_commission_list_tv7.setText("无秒结");
             }else {
                 holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
             }

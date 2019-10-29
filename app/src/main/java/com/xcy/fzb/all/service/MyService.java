@@ -4,6 +4,7 @@ import com.xcy.fzb.all.database.AddBrokerBean;
 import com.xcy.fzb.all.database.AddCompanyBean;
 import com.xcy.fzb.all.database.AgentDetailsBean;
 import com.xcy.fzb.all.database.AgentListBean;
+import com.xcy.fzb.all.database.AppPackageBean;
 import com.xcy.fzb.all.database.BorkerageDownBean;
 import com.xcy.fzb.all.database.BorkerageUpBean;
 import com.xcy.fzb.all.database.BrokerChangeBean;
@@ -51,7 +52,7 @@ public interface MyService {
 
     //关于房坐标 版本更新
     @POST("commonSelect/appPackage")
-    Observable<HotBean> getAppPackage(@Query("appType") String appType, @Query("appPackage") String appPackage, @Query("appVeriosn") String appVeriosn);
+    Observable<AppPackageBean> getAppPackage(@Query("appType") String appType, @Query("appPackage") String appPackage, @Query("appVeriosn") String appVeriosn);
 
     //顾问/销售用户Id获取用户信息
     @POST("layersSelect/getSysUser")

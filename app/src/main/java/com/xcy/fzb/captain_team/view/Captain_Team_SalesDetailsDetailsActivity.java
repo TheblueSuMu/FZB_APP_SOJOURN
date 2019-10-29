@@ -228,7 +228,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     sales_details_details_amend.setVisibility(View.VISIBLE);
                 }
             }
-
         }
 
         initData();

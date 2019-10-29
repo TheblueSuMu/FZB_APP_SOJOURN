@@ -127,9 +127,7 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
         mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
-        initView();
 
-        tvBanner();
 
         return view;
     }
@@ -179,6 +177,7 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
     @Override
     public void onResume() {
         super.onResume();
+        initView();
 
         initHotList();
 
@@ -590,14 +589,15 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
         listterner = null;
     }
 
-//    @Override
-//    public void onHiddenChanged(boolean hidden) {
-//        super.onHiddenChanged(hidden);
-//        if(hidden){
-//            //TODO now visible to user
-//        } else {
-//            //TODO now invisible to user
-//        }
-//    }
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            onResume();
+            //TODO now invisible to user 显示fragment
+        }
+    }
 
 }

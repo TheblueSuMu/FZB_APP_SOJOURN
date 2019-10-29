@@ -14,10 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.xcy.fzb.R;
 import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.view.ReleaseActivity;
-import com.xcy.fzb.R;
 
 
 public class DFragment extends AllFragment implements View.OnClickListener {
@@ -28,7 +28,7 @@ public class DFragment extends AllFragment implements View.OnClickListener {
     private LinearLayout d_all_l;
     private LinearLayout d_my;
     private LinearLayout d_my_l;
-    TotalFragment totalFragment;
+    TotalFragment totalFragment = new TotalFragment();
     MineFragment mineFragment = new MineFragment();
     private FrameLayout d_fl;
 
@@ -97,5 +97,16 @@ public class DFragment extends AllFragment implements View.OnClickListener {
         }
 
 
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            totalFragment.onResume();
+            //TODO now invisible to user 显示fragment
+        }
     }
 }

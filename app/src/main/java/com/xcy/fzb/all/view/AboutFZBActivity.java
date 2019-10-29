@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.all.modle.HotBean;
+import com.xcy.fzb.all.database.AppPackageBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -118,18 +118,18 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<HotBean> hotList = fzbInterface.getAppPackage("","", "");
-        hotList.subscribeOn(Schedulers.io())
+        final Observable<AppPackageBean> appPackage = fzbInterface.getAppPackage("android","com.xcy.fzb", "v1.0.0");
+        appPackage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<HotBean>() {
+                .subscribe(new Observer<AppPackageBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(HotBean hotBean) {
-
+                    public void onNext(AppPackageBean appPackageBean) {
+                        Toast.makeText(AboutFZBActivity.this, appPackageBean.getData().getComment(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

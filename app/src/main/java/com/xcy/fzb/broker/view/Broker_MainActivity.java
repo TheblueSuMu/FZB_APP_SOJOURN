@@ -37,6 +37,12 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
     FragmentManager manager = getSupportFragmentManager();
     FragmentTransaction transaction = manager.beginTransaction();
 
+    HomeFragment home_fragment = new HomeFragment();
+    MessageFragment message_fragment = new MessageFragment();
+    DFragment dFragment = new DFragment();
+    EFragment eFragment = new EFragment();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +58,17 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         init_No_Network();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        HomeFragment home_fragment = new HomeFragment();
-        transaction.replace(R.id.main_framelayout, home_fragment);
+
+        transaction.add(R.id.main_framelayout,home_fragment);
+        transaction.add(R.id.main_framelayout,message_fragment);
+        transaction.add(R.id.main_framelayout,dFragment);
+        transaction.add(R.id.main_framelayout,eFragment);
+
+
+        transaction.show(home_fragment);
+        transaction.hide(message_fragment);
+        transaction.hide(dFragment);
+        transaction.hide(eFragment);
         transaction.commit();
     }
 
@@ -123,13 +138,21 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.button_home:
                 init_No_Network();
-                HomeFragment home_fragment = new HomeFragment();
-                transaction.replace(R.id.main_framelayout, home_fragment);
+//                HomeFragment home_fragment = new HomeFragment();
+//                transaction.replace(R.id.main_framelayout, home_fragment);
+                transaction.show(home_fragment);
+                transaction.hide(message_fragment);
+                transaction.hide(dFragment);
+                transaction.hide(eFragment);
                 break;
             case R.id.button_message:
                 init_No_Network();
-                MessageFragment message_fragment = new MessageFragment();
-                transaction.replace(R.id.main_framelayout, message_fragment);
+
+//                transaction.replace(R.id.main_framelayout, message_fragment);
+                transaction.hide(home_fragment);
+                transaction.show(message_fragment);
+                transaction.hide(dFragment);
+                transaction.hide(eFragment);
                 break;
             case R.id.button_backup:
                 Intent intent = new Intent(Broker_MainActivity.this, ReportActivity.class);
@@ -137,13 +160,21 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 break;
             case R.id.button_economics:
                 init_No_Network();
-                DFragment dFragment = new DFragment();
-                transaction.replace(R.id.main_framelayout, dFragment);
+
+//                transaction.replace(R.id.main_framelayout, dFragment);
+                transaction.hide(home_fragment);
+                transaction.hide(message_fragment);
+                transaction.show(dFragment);
+                transaction.hide(eFragment);
                 break;
             case R.id.button_me:
                 init_No_Network();
-                EFragment eFragment = new EFragment();
-                transaction.replace(R.id.main_framelayout, eFragment);
+
+//                transaction.replace(R.id.main_framelayout, eFragment);
+                transaction.hide(home_fragment);
+                transaction.hide(message_fragment);
+                transaction.hide(dFragment);
+                transaction.show(eFragment);
                 break;
         }
         transaction.commit();
