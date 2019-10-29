@@ -127,6 +127,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         FinalContents.setZhuanyuan("");
         FinalContents.setZhuanAn("1");
         FinalContents.setCityName("长春市");
+        FinalContents.setLuo(true);
 
         editor = getSharedPreferences("data", MODE_PRIVATE).edit();
         pref = getSharedPreferences("data", MODE_PRIVATE);

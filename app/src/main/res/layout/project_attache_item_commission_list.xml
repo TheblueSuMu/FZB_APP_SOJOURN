@@ -23,7 +23,6 @@
                 android:id="@+id/item_commission_list_tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text=""
                 android:textColor="#ff333333"
                 android:textSize="15sp" />
@@ -33,6 +32,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
+                android:text=""
+                android:textColor="#ff333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/item_commission_list_tv0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text=""
                 android:textColor="#ff333333"
                 android:textSize="12sp" />

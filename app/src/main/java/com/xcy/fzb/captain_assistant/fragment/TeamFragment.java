@@ -151,9 +151,6 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        initView();
-
     }
     //  TODO 声明
     private void initView() {
@@ -778,5 +775,22 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
 
                     }
                 });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initView();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            onResume();
+            //TODO now invisible to user 显示fragment
+        }
     }
 }

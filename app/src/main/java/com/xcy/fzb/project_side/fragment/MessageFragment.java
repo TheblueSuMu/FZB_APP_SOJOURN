@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.DynamicFragment;
 import com.xcy.fzb.all.fragment.GoodNewsFragment;
 import com.xcy.fzb.all.fragment.GuestRoomFragment;
@@ -57,16 +58,24 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
 
         view = inflater.inflate(R.layout.project_side_modulebroker_fragment_message, null);
         initView();
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         manager = getActivity().getSupportFragmentManager();
         transaction = manager.beginTransaction();
-        transaction.add(R.id.information_fl, dynamicFragment);
-        transaction.add(R.id.information_fl, noticeFragment);
-        transaction.add(R.id.information_fl, guestRoomFragment);
-        transaction.add(R.id.information_fl, goodNewsFragment);
-
-        transaction.hide(noticeFragment);
-        transaction.hide(guestRoomFragment);
-        transaction.hide(goodNewsFragment);
+        if (FinalContents.isLuo()) {
+            transaction.add(R.id.information_fl, dynamicFragment);
+            transaction.add(R.id.information_fl, noticeFragment);
+            transaction.add(R.id.information_fl, guestRoomFragment);
+            transaction.add(R.id.information_fl, goodNewsFragment);
+            transaction.hide(noticeFragment);
+            transaction.hide(guestRoomFragment);
+            transaction.hide(goodNewsFragment);
+            FinalContents.setLuo(false);
+        }
         if (type.equals("1")) {
             information_ll_5.setVisibility(View.VISIBLE);
             information_ll_6.setVisibility(View.INVISIBLE);
@@ -104,9 +113,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
             transaction.hide(guestRoomFragment);
             transaction.hide(noticeFragment);
         }
-
         transaction.commit();
-        return view;
     }
 
     private void initView() {
@@ -186,4 +193,14 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
         transaction.commit();
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            onResume();
+            //TODO now invisible to user 显示fragment
+        }
+    }
 }

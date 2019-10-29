@@ -45,14 +45,18 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         if(rowsBeanList.get(position).getTradeDate().equals("")){
             holder.the_project_end_bargain_time.setVisibility(View.GONE);
         }else {
-            holder.the_project_end_bargain_time.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
+            holder.the_project_end_bargain_time.setText("结清时间：" + rowsBeanList.get(position).getTradeDate());
         }
         if (rowsBeanList.get(position).getCompanyName().equals("") && rowsBeanList.get(position).getStoreName().equals("")) {
             holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName());
         } else {
             holder.the_project_end_company.setText(rowsBeanList.get(position).getCompanyName() + "-" + rowsBeanList.get(position).getStoreName() + "-" + rowsBeanList.get(position).getAgentName());
         }
-
+        if (rowsBeanList.get(position).getSecondsAmount().equals("") || rowsBeanList.get(position).getSecondsAmount().equals("0") || rowsBeanList.get(position).getSecondsAmount().equals("0.00")) {
+            holder.the_project_end_tv5.setText("无秒结");
+        }else {
+            holder.the_project_end_tv5.setText("秒结：￥" + rowsBeanList.get(position).getSecondsAmount() + "");
+        }
 
         if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
             holder.the_project_end_tv2.setVisibility(View.GONE);
@@ -83,7 +87,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
             holder.the_project_end_tv5.setVisibility(View.GONE);
             holder.the_project_end_tv6.setVisibility(View.VISIBLE);
             holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv7.setText("成交时间："+rowsBeanList.get(position).getClosingTime());
+            holder.the_project_end_tv7.setText("结清时间："+rowsBeanList.get(position).getClosingTime());
         }
 
         if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00") ) {

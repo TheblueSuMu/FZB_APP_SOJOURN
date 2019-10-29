@@ -105,6 +105,13 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                 holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
             }
 
+            if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0")) {
+                holder.the_project_end_tv2.setVisibility(View.GONE);
+            } else {
+                holder.the_project_end_tv2.setVisibility(View.VISIBLE);
+                holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getCommission());
+            }
+
             if (rowsBeanList.get(position).getMoneyStatus() == 0) {
                 holder.the_project_end_img.setVisibility(View.GONE);
             } else if (rowsBeanList.get(position).getMoneyStatus() == 1) {

@@ -122,13 +122,9 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
         fvbId(view);
         mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-
-
-        initView();
-
         tvBanner();
 
-        initHotList();
+
 
         return view;
     }
@@ -174,14 +170,17 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
 //    }
 ////    TODO 摇一摇end
 //
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        tvBanner2.startFlipping();
+    @Override
+    public void onResume() {
+        super.onResume();
+        initView();
+
+        initHotList();
+        tvBanner2.startFlipping();
 //        //TODO 获取加速传感器
 //        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 //                SensorManager.SENSOR_DELAY_NORMAL);
-//    }
+    }
 //
 //
 //    @Override
@@ -585,5 +584,16 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
     public void onDetach() {
         super.onDetach();
         listterner = null;
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            onResume();
+            //TODO now invisible to user 显示fragment
+        }
     }
 }

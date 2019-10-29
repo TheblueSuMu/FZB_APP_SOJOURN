@@ -1,5 +1,6 @@
 package com.xcy.fzb.project_attache.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
 
     @Override
     public void onBindViewHolder(@NonNull CommissionListViewHolder holder, int position) {
+        Log.i("length","length："+position);
+        Log.i("length","getCustomerName："+rows.get(position).getCustomerName());
 
         holder.item_commission_list_tv1.setText(rows.get(position).getCustomerName());
         holder.item_commission_list_tv2.setText(rows.get(position).getProjectName());
@@ -37,10 +40,15 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
         holder.item_commission_list_tv4.setText(rows.get(position).getStoreName());
         holder.item_commission_list_tv5.setText(rows.get(position).getAgentName());
 
-
+        if(rows.get(position).getRoomNumber().equals("")){
+            holder.item_commission_list_tv0.setVisibility(View.GONE);
+        }else {
+            holder.item_commission_list_tv0.setText(rows.get(position).getRoomNumber());
+        }
 
         if (rows.get(position).getStatus().equals("0")) {
-
+            holder.item_commission_list_tv10.setVisibility(View.GONE);
+            holder.item_commission_list_tv11.setVisibility(View.GONE);
             if (rows.get(position).getMoneyStatus() == 0) {
                 if (rows.get(position).getTotalAmount().equals("") || rows.get(position).getTotalAmount().equals("0") || rows.get(position).getTotalAmount().equals("0.00")) {
                     holder.item_commission_list_tv6.setVisibility(View.GONE);
@@ -105,15 +113,6 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
                     holder.item_commission_list_tv12.setText("需退还："+rows.get(position).getReturnedMoney());
                 }
 
-                if (rows.get(position).getStatus().equals("0")) {
-                    holder.item_commission_list_tv10.setVisibility(View.GONE);
-                    holder.item_commission_list_tv11.setVisibility(View.GONE);
-                } else if (rows.get(position).getStatus().equals("1")) {
-                    holder.item_commission_list_tv10.setVisibility(View.VISIBLE);
-                    holder.item_commission_list_tv11.setVisibility(View.VISIBLE);
-                    holder.item_commission_list_tv11.setText("结清时间："+rows.get(position).getClosingTime());
-                }
-
             } else if (rows.get(position).getMoneyStatus() == 2) {
 
                 holder.item_commission_list_tv6.setVisibility(View.GONE);
@@ -129,16 +128,39 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
             holder.item_commission_list_tv7.setVisibility(View.VISIBLE);
             holder.item_commission_list_tv11.setVisibility(View.VISIBLE);
 
+            if (rows.get(position).getTotalAmount().equals("") || rows.get(position).getTotalAmount().equals("0") || rows.get(position).getTotalAmount().equals("0.00")) {
+                holder.item_commission_list_tv6.setVisibility(View.GONE);
+            }else {
+                holder.item_commission_list_tv6.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
+            }
+
             if (rows.get(position).getSecondsAmount().equals("")  || rows.get(position).getSecondsAmount().equals("0") || rows.get(position).getSecondsAmount().equals("0.00")) {
                 holder.item_commission_list_tv7.setText("无秒结");
             }else {
                 holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
             }
 
+            holder.item_commission_list_tv8.setVisibility(View.GONE);
+
+
+            if (rows.get(position).getNotAmount().equals("") || rows.get(position).getNotAmount().equals("0") || rows.get(position).getNotAmount().equals("0.00")) {
+                holder.item_commission_list_tv9.setVisibility(View.GONE);
+            }else {
+                holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv9.setText("未结：￥" + rows.get(position).getNotAmount() + "");
+            }
+            if (rows.get(position).getReturnedMoney().equals("") || rows.get(position).getReturnedMoney().equals("0") || rows.get(position).getReturnedMoney().equals("0.00") ) {
+                holder.item_commission_list_tv12.setVisibility(View.GONE);
+            }else {
+                holder.item_commission_list_tv12.setVisibility(View.VISIBLE);
+                holder.item_commission_list_tv12.setText("需退还："+rows.get(position).getReturnedMoney());
+            }
+
             holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
-            holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
             holder.item_commission_list_tv10.setVisibility(View.VISIBLE);
             holder.item_commission_list_tv11.setText("结清时间：" + rows.get(position).getClosingTime() + "");
+
         }
 
         if (rows.get(position).getMoneyStatus() == 0) {
@@ -160,7 +182,7 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
     }
 
     class CommissionListViewHolder extends RecyclerView.ViewHolder {
-
+        TextView item_commission_list_tv0;
         TextView item_commission_list_tv1;
         TextView item_commission_list_tv2;
         TextView item_commission_list_tv3;
@@ -177,7 +199,7 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
 
         public CommissionListViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            item_commission_list_tv0 = itemView.findViewById(R.id.item_commission_list_tv0);
             item_commission_list_tv1 = itemView.findViewById(R.id.item_commission_list_tv1);
             item_commission_list_tv2 = itemView.findViewById(R.id.item_commission_list_tv2);
             item_commission_list_tv3 = itemView.findViewById(R.id.item_commission_list_tv3);

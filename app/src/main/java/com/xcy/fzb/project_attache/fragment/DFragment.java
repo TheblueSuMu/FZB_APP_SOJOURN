@@ -130,6 +130,9 @@ public class DFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+    }
+
+    private void initView(){
         ptrClassicFrameLayout = getActivity().findViewById(R.id.PtrClassic_modulebroke);
 
         ll1_modulebroker = getActivity().findViewById(R.id.ll1_modulebroke);
@@ -712,6 +715,17 @@ public class DFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+        initView();
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            onResume();
+            //TODO now invisible to user 显示fragment
+        }
+    }
 }

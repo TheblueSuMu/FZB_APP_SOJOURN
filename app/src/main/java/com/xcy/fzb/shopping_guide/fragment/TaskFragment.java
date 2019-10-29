@@ -45,7 +45,6 @@ public class TaskFragment extends AllFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.shopping_guide_fragment_task, null);
-        initView();
         return view;
     }
 
@@ -119,4 +118,20 @@ public class TaskFragment extends AllFragment {
                 });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initView();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            onResume();
+            //TODO now invisible to user 显示fragment
+        }
+    }
 }
