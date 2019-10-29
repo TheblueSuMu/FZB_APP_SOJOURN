@@ -44,7 +44,7 @@ public class SpellingMassTimeAdaptewr extends RecyclerView.Adapter<SpellingMassT
         holder.item_task_routeName.setText(rows.get(position).getRoute().getRouteName());
         holder.item_task_tv1.setText("截至：" + rows.get(position).getEndCloseTime() + "");
         holder.item_task_tv2.setText(rows.get(position).getExpenses());
-        holder.item_task_tv3.setText("已报" + rows.get(position).getNumberPeople() + "人");
+        holder.item_task_tv3.setText("已报" + rows.get(position).getEnrollNumber() + "人");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

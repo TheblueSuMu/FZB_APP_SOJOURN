@@ -170,6 +170,10 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
             transaction.replace(R.id.my_client_fl, myClientFragment1);
             transaction.commit();
         } else if (client.equals("1")) {
+
+            my_client_ss.setVisibility(View.GONE);
+            my_client_tv.setVisibility(View.VISIBLE);
+
             my_client_11_8.setVisibility(View.INVISIBLE);
             my_client_11_9.setVisibility(View.VISIBLE);
             my_client_11_10.setVisibility(View.INVISIBLE);
@@ -182,6 +186,9 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
             transaction.replace(R.id.my_client_fl, myClientFragment2);
             transaction.commit();
         }else if (client.equals("2")) {
+            my_client_ss.setVisibility(View.GONE);
+            my_client_tv.setVisibility(View.VISIBLE);
+
             my_client_11_8.setVisibility(View.INVISIBLE);
             my_client_11_9.setVisibility(View.INVISIBLE);
             my_client_11_10.setVisibility(View.VISIBLE);
@@ -195,6 +202,9 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
             transaction.replace(R.id.my_client_fl, myClientFragment3);
             transaction.commit();
         }else if (client.equals("3")) {
+            my_client_ss.setVisibility(View.GONE);
+            my_client_tv.setVisibility(View.VISIBLE);
+
             my_client_11_8.setVisibility(View.INVISIBLE);
             my_client_11_9.setVisibility(View.INVISIBLE);
             my_client_11_10.setVisibility(View.INVISIBLE);
@@ -208,6 +218,9 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
             transaction.replace(R.id.my_client_fl, myClientFragment4);
             transaction.commit();
         }else if (client.equals("4")) {
+            my_client_ss.setVisibility(View.GONE);
+            my_client_tv.setVisibility(View.VISIBLE);
+
             my_client_11_8.setVisibility(View.INVISIBLE);
             my_client_11_9.setVisibility(View.INVISIBLE);
             my_client_11_10.setVisibility(View.INVISIBLE);
@@ -221,6 +234,9 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
             transaction.replace(R.id.my_client_fl, myClientFragment5);
             transaction.commit();
         }else if (client.equals("5")) {
+            my_client_ss.setVisibility(View.GONE);
+            my_client_tv.setVisibility(View.VISIBLE);
+
             my_client_11_8.setVisibility(View.INVISIBLE);
             my_client_11_9.setVisibility(View.INVISIBLE);
             my_client_11_10.setVisibility(View.INVISIBLE);
@@ -234,6 +250,9 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
             transaction.replace(R.id.my_client_fl, myClientFragment6);
             transaction.commit();
         }else if (client.equals("6")) {
+            my_client_ss.setVisibility(View.GONE);
+            my_client_tv.setVisibility(View.VISIBLE);
+
             my_client_11_8.setVisibility(View.INVISIBLE);
             my_client_11_9.setVisibility(View.INVISIBLE);
             my_client_11_10.setVisibility(View.INVISIBLE);

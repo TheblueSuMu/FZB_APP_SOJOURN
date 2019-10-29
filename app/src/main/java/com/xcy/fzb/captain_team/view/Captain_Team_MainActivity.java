@@ -33,6 +33,12 @@ public class Captain_Team_MainActivity extends AllActivity implements View.OnCli
     private ImageView img_backup;
     private ProgressLayout progressLayout;
 
+
+    ProjectFragment projectFragment = new ProjectFragment();
+    Captain_Team_MyClientFragment captain_team_myClientFragment = new Captain_Team_MyClientFragment();
+    MessageFragment messageFragment = new MessageFragment();
+    Captain_Team_MeFragment captain_team_meFragment = new Captain_Team_MeFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,27 +81,45 @@ public class Captain_Team_MainActivity extends AllActivity implements View.OnCli
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("2");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(captain_team_myClientFragment);
+                transaction.show(messageFragment);
+                transaction.hide(captain_team_meFragment);
+
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("2")) {
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("3");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(captain_team_myClientFragment);
+                transaction.show(messageFragment);
+                transaction.hide(captain_team_meFragment);
+
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("5")) {
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("4");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(captain_team_myClientFragment);
+                transaction.show(messageFragment);
+                transaction.hide(captain_team_meFragment);
+
                 transaction.commit();
                 button_message.setChecked(true);
             }
@@ -129,8 +153,18 @@ public class Captain_Team_MainActivity extends AllActivity implements View.OnCli
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        ProjectFragment projectFragment = new ProjectFragment();
+
         transaction.add(R.id.main_framelayout,projectFragment);
+        transaction.add(R.id.main_framelayout,captain_team_myClientFragment);
+        transaction.add(R.id.main_framelayout,messageFragment);
+        transaction.add(R.id.main_framelayout,captain_team_meFragment);
+
+
+        transaction.show(projectFragment);
+        transaction.hide(captain_team_myClientFragment);
+        transaction.hide(messageFragment);
+        transaction.hide(captain_team_meFragment);
+
         transaction.commit();
     }
 
@@ -144,23 +178,35 @@ public class Captain_Team_MainActivity extends AllActivity implements View.OnCli
                 FinalContents.setQuanceng("1");
                 FinalContents.setAgentId(FinalContents.getUserID());
                 init_No_Network();
-                Captain_Team_MyClientFragment captain_team_myClientFragment = new Captain_Team_MyClientFragment();
-                transaction.replace(R.id.main_framelayout,captain_team_myClientFragment);
+                transaction.hide(projectFragment);
+                transaction.show(captain_team_myClientFragment);
+                transaction.hide(messageFragment);
+                transaction.hide(captain_team_meFragment);
+//                transaction.replace(R.id.main_framelayout,captain_team_myClientFragment);
                 break;
             case R.id.button_home:
                 init_No_Network();
-                ProjectFragment projectFragment = new ProjectFragment();
-                transaction.replace(R.id.main_framelayout,projectFragment);
+                transaction.show(projectFragment);
+                transaction.hide(captain_team_myClientFragment);
+                transaction.hide(messageFragment);
+                transaction.hide(captain_team_meFragment);
+//                transaction.replace(R.id.main_framelayout,projectFragment);
                 break;
             case R.id.button_message:
                 init_No_Network();
-                MessageFragment messageFragment = new MessageFragment();
-                transaction.replace(R.id.main_framelayout,messageFragment);
+                transaction.hide(projectFragment);
+                transaction.hide(captain_team_myClientFragment);
+                transaction.show(messageFragment);
+                transaction.hide(captain_team_meFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
                 break;
             case R.id.button_me:
                 init_No_Network();
-                Captain_Team_MeFragment captain_team_meFragment = new Captain_Team_MeFragment();
-                transaction.replace(R.id.main_framelayout,captain_team_meFragment);
+                transaction.hide(projectFragment);
+                transaction.hide(captain_team_myClientFragment);
+                transaction.hide(messageFragment);
+                transaction.show(captain_team_meFragment);
+//                transaction.replace(R.id.main_framelayout,captain_team_meFragment);
                 break;
         }
         transaction.commit();
