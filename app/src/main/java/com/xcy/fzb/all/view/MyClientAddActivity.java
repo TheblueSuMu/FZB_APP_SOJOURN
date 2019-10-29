@@ -225,7 +225,6 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                                  */
                                 ContentValues values = new ContentValues();
                                 Uri photoUri = MyClientAddActivity.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                                Log.i("MyCL", "图片路径：" + photoUri);
                                 file = uri2File(photoUri);
 
                                 if (ifimg == 0) {
@@ -349,7 +348,6 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
 
                 Uri originalUri = data.getData();        //获得图片的uri
 
-                Log.i("MyCL", "图片uri" + originalUri);
                 bm = MediaStore.Images.Media.getBitmap(resolver, originalUri);        //显得到bitmap图片
                 final File san = saveFile(bm, "tx.png");
 
@@ -369,7 +367,6 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                         MultipartBody.Part part = MultipartBody.Part.createFormData("file", san.getName(), requestBody);
 
                         Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "myClient", part);
-                        Log.i("MyCL", "addPhoto：" + addPhoto.toString());
                         addPhoto.subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(new Observer<AddPhotoBean>() {
@@ -382,7 +379,6 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         imgUrl = addPhotoBean.getData().getUrl();
                                         Glide.with(MyClientAddActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(client_add_img);
-                                        Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
 
                                     }
 
@@ -418,7 +414,6 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                 //最后根据索引值获取图片路径
 
                 String path = cursor.getString(column_index);
-                Log.i("MyCL", "图片路径：" + path);
             } catch (IOException e) {
 
                 Log.e("MyCL", e.toString());
@@ -615,7 +610,6 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                     MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
 
                     Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "myClient", part);
-                    Log.i("MyCL", "addPhoto：" + addPhoto.toString());
                     addPhoto.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(new Observer<AddPhotoBean>() {
@@ -627,7 +621,6 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                                 @Override
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     imgUrl = addPhotoBean.getData().getUrl();
-                                    Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
                                     Glide.with(MyClientAddActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(client_add_img);
                                     ifimg = 0;
                                 }

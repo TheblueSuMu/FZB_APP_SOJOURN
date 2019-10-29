@@ -192,7 +192,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("公共个人信息详情", "FinalContents.getUserID()：" + FinalContents.getUserID());
         if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
             Observable<UserMessageBean> userMessage = fzbInterface.getUserMessage(FinalContents.getUserID());
             userMessage.subscribeOn(Schedulers.io())
@@ -320,7 +319,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("团助", "FinalContents.getUserID()：" + FinalContents.getUserID());
         if (FinalContents.getIdentity().equals("60")) {
             Observable<ZhangBingDataBean> userMessage = fzbInterface.getZhangBingBean(FinalContents.getUserID(), FinalContents.getUserID());
             userMessage.subscribeOn(Schedulers.io())
@@ -509,7 +507,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                  */
                                 ContentValues values = new ContentValues();
                                 Uri photoUri = PersonalInformationActivity.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                                Log.i("MyCL", "图片路径：" + photoUri);
                                 file = uri2File(photoUri);
 //                                TODO 提交头像
 
@@ -595,7 +592,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                 final AlertDialog.Builder builder1 = new AlertDialog.Builder(PersonalInformationActivity.this);
                 builder1.setTitle("性别");
                 final String[] items = {"男", "女"};
-                Log.i("性别", "男女：" + items[0]);
                 if (s2.equals("男")) {
                     builder1.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
 
@@ -633,7 +629,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 //                        修改性别成功
                         OkHttpPost okHttpPost = new OkHttpPost(url);
                         String data = okHttpPost.post();
-                        Log.i("MyCL", "参数：" + data);
                         Gson gson = new Gson();
                         ChangeSexBean changeSexBean = gson.fromJson(data, ChangeSexBean.class);
                         ChangeSexBean.DataBean data1 = changeSexBean.getData();
@@ -702,7 +697,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 
                 Uri originalUri = data.getData();        //获得图片的uri
 
-                Log.i("MyCL", "图片uri" + originalUri);
                 bm = MediaStore.Images.Media.getBitmap(resolver, originalUri);        //显得到bitmap图片
 
                 final File san = saveFile(bm, "tx.png");
@@ -723,7 +717,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         MultipartBody.Part part = MultipartBody.Part.createFormData("file", san.getName(), requestBody);
 
                         Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "p", part);
-                        Log.i("MyCL", "addPhoto：" + addPhoto.toString());
                         addPhoto.subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(new Observer<AddPhotoBean>() {
@@ -735,7 +728,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                     @Override
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         imgStr = addPhotoBean.getData().getUrl();
-                                        Log.i("MyCL", "解析完成后图片路径：" + imgStr);
                                         Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + imgStr).into(personal_photo);
                                         Retrofit.Builder builder = new Retrofit.Builder();
                                         builder.baseUrl(FinalContents.getBaseUrl());
@@ -807,7 +799,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                 //最后根据索引值获取图片路径
 
                 String path = cursor.getString(column_index);
-                Log.i("MyCL", "图片路径：" + path);
             } catch (IOException e) {
 
                 Log.e("MyCL", e.toString());
@@ -873,7 +864,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                     MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
 
                     Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "p", part);
-                    Log.i("MyCL", "addPhoto：" + addPhoto.toString());
                     addPhoto.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(new Observer<AddPhotoBean>() {
@@ -885,7 +875,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                 @Override
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     imgStr = addPhotoBean.getData().getUrl();
-                                    Log.i("MyCL", "解析完成后图片路径：" + imgStr);
                                     Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + imgStr).into(personal_photo);
                                     Retrofit.Builder builder = new Retrofit.Builder();
                                     builder.baseUrl(FinalContents.getBaseUrl());

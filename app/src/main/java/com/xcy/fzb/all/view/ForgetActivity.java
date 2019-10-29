@@ -141,11 +141,9 @@ public class ForgetActivity extends AllActivity implements View.OnClickListener 
             return;
         }
         if (!MatcherUtils.isMobile(phone.getText().toString())) {
-            Log.i("aaa","走一下");
             Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
             return;
         }else {
-            Log.i("aaa","不走");
         }
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());

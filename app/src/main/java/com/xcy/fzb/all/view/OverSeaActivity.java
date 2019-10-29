@@ -206,7 +206,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                         SharItOff.setShar("隐");
                         Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
                     }
-                    Log.i("MyCL", "摇一摇");
                     inithot();
 
                     vibrator.vibrate(100);
@@ -666,9 +665,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                                     public void onBannerClick(int position) {
                                         FinalContents.setProjectID(imglist.get(position).getProject().getId());
                                         FinalContents.setNewID(imglist.get(position).getId());
-                                        Log.i("详情","项目ID"+FinalContents.getProjectID());
-                                        Log.i("详情","用户ID"+FinalContents.getUserID());
-                                        Log.i("详情","用户ID"+FinalContents.getNewID());
                                         //点击item
                                         Intent intent = new Intent(OverSeaActivity.this, WebViewActivity.class);
                                         intent.putExtra("title", "新闻详情");
@@ -797,7 +793,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
     @Subscribe(threadMode = ThreadMode.MAIN, priority = 100, sticky = false) //在ui线程执行，优先级为100
     public void onEvent(String url) {
-        Log.i("event", "打印：" + url);
         if (FinalContents.getComprehensiveSorting().equals("10")) {
             sort.setText("默认排序");
         } else if (FinalContents.getComprehensiveSorting().equals("20")) {

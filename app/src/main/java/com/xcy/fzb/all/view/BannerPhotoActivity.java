@@ -65,8 +65,6 @@ public class BannerPhotoActivity extends AllActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             index = getIntent().getIntExtra("index", 0);
 
-            Log.i("下标", "index：" + index);
-
             viewpager = findViewById(R.id.viewpager);
             photo_message = findViewById(R.id.photo_message);
             banner_photo_tab_layout = findViewById(R.id.banner_photo_tab_layout);

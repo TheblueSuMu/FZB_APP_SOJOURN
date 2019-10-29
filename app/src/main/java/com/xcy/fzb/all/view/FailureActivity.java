@@ -92,8 +92,6 @@ public class FailureActivity extends AllActivity implements View.OnClickListener
 
     private void initData() {
 
-        Log.i("MyCL", "getCustomerId：" + FinalContents.getCustomerID());
-        Log.i("MyCL", "userID：" + FinalContents.getUserID());
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -147,35 +145,6 @@ public class FailureActivity extends AllActivity implements View.OnClickListener
                     }
                 });
 
-//        String url = FinalContents.getBaseUrl()+"commonSelect/customerDetails?userId=" + FinalContents.getUserID() + "&customerId=" + FinalContents.getCustomerID();
-//
-//        OkHttpPost okHttpPost = new OkHttpPost(url);
-//        String data = okHttpPost.post();
-//
-//        Gson gson = new Gson();
-//        FailureBean failureBean = gson.fromJson(data, FailureBean.class);
-//        infoData = failureBean.getData().getInfoData();
-//
-//        Glide.with(this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(failure_img1);
-//        failure_tv1.setText(infoData.getCustomerName());
-//        listData = failureBean.getData().getListData();
-//        failure_tv2.setText(listData.get(0).getProjectName());
-//        failure_tv3.setText(listData.get(0).getAttacheList().get(0).getName() + "[" + listData.get(0).getAttacheList().get(0).getPhone() + "]");
-//
-//        if(listData.size() == 1){
-//            failure_tv4.setText("");
-//            failure_tv5.setText("");
-//            failure_tv6.setText("");
-//            failure_tv7.setText("");
-//        }else {
-//            //        failure_tv4.setText();
-//            failure_tv5.setText(listData.get(1).getAttacheList().get(0).getName());
-//            failure_tv6.setText(listData.get(1).getAttacheList().get(0).getPhone());
-////        failure_tv7.setText("");
-//        }
-//
-//
-//        initRV();
 
     }
 
@@ -190,16 +159,6 @@ public class FailureActivity extends AllActivity implements View.OnClickListener
         adapter.setListData(listData);
 
 
-//        for (int i = 0; i < listData.size(); ++i) {
-//            List<FailureBean.DataBean.ListDataBean.ListMapBean> listMap = listData.get(i).getListMap();
-//            Log.i("MyCL", listData.get(i).getStatusName());
-//            list.add(listData.get(i).getStatusName());
-////            for (int j = 0; j < listMap.size(); ++j){
-////                Log.i("MyCL",listMap.get(j).getValue());
-////            }
-//
-//        }
-//        adapter.setList(list);
         failure_rv.setAdapter(adapter);
     }
 

@@ -440,7 +440,6 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 //TODO  获取相册图片地址
         if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
-            Log.e("MyCL", "ActivityResult resultCode error");
             return;
         }
         bm = null;
@@ -457,7 +456,6 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
 
                 Uri originalUri = data.getData();        //获得图片的uri
 
-                Log.i("MyCL", "图片uri" + originalUri);
                 bm = MediaStore.Images.Media.getBitmap(resolver, originalUri);        //显得到bitmap图片
                 final File san = saveFile(bm, "tx.png");
 
@@ -477,7 +475,6 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                         MultipartBody.Part part = MultipartBody.Part.createFormData("file", san.getName(), requestBody);
 
                         Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "myClient", part);
-                        Log.i("MyCL", "addPhoto：" + addPhoto.toString());
                         addPhoto.subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(new Observer<AddPhotoBean>() {
@@ -491,7 +488,6 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                                         imgUrl = addPhotoBean.getData().getUrl();
                                         Glide.with(FieldActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(field_img);
                                         field_tv2.setVisibility(View.GONE);
-                                        Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
 
                                     }
 
@@ -527,7 +523,6 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                 //最后根据索引值获取图片路径
 
                 String path = cursor.getString(column_index);
-                Log.i("MyCL", "图片路径：" + path);
             } catch (IOException e) {
 
                 Log.e("MyCL", e.toString());
@@ -592,7 +587,6 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                     MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
 
                     Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "myClient", part);
-                    Log.i("MyCL", "addPhoto：" + addPhoto.toString());
                     addPhoto.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(new Observer<AddPhotoBean>() {
@@ -604,7 +598,6 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                                 @Override
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     imgUrl = addPhotoBean.getData().getUrl();
-                                    Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
                                     Glide.with(FieldActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(field_img);
                                     field_tv2.setVisibility(View.GONE);
                                     isPhoto = 0;
@@ -637,7 +630,6 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
         fieldBean.setIdNumber(field_et4.getText().toString());      //  TODO    身份证号码
         fieldBean.setPassportNumber(field_et5.getText().toString());      //  TODO    护照号码
         fieldBean.setPassportImg(imgUrl);      //  TODO    照片地址
-        Log.i("西安市","数据加载："+fieldBean.getCity());
 
         if (fieldBean.getCity() != null) {
             if (fieldBean.getCity().equals("")) {

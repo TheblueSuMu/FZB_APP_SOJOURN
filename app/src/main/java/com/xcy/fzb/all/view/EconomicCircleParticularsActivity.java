@@ -115,17 +115,14 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (KeyEvent.KEYCODE_ENTER == i && KeyEvent.ACTION_DOWN == keyEvent.getAction()) {
-//                    Log.i("MyCL", "重复打印");
                     //处理事件
                     if (flag == 0) {
                         String s = particulars_et_comment.getText().toString();
                         if (s.equals("")) {
-                            Log.i("MyCL", "空");
                             Toast.makeText(EconomicCircleParticularsActivity.this, "评论不能为空", Toast.LENGTH_SHORT).show();
                             flag = 0;
                         } else {
                             if (whehter) {
-                                Log.i("MyCL", "不为空");
                                 Retrofit.Builder builder = new Retrofit.Builder();
                                 builder.baseUrl(FinalContents.getBaseUrl());
                                 builder.addConverterFactory(GsonConverterFactory.create());
@@ -155,8 +152,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                                                     particulars_et_comment.setText("");
                                                 }
                                                 initData();
-
-
                                             }
 
                                             @Override
@@ -280,10 +275,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                         }
 
 
-                        Log.i("MyCL", "点赞数");
 //        TODO 点赞数
-                        Log.i("经济圈点赞", "是否点赞" + circle.getIsLike());
-                        Log.i("经济圈点赞", "点赞数量" + circle.getLikeNum());
                         if (circle.getIsLike().equals("0")) {
                             particulars_zan.setImageResource(zan[0]);
                             particulars_like.setText(circle.getLikeNum());
@@ -323,7 +315,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                         List<EconomicCircleBean.DataBean.GiveListBean> giveList = economicCircleBean.getData().getGiveList();
                         int num = 0;
                         if (giveList.size() == 0) {
-                            Log.i("经济圈点赞", "进入头像赋值区域1：" + giveList.size());
                             particulars_img_2.setVisibility(View.GONE);
                         } else if (giveList.size() > 0) {
                             particulars_img_2.setVisibility(View.GONE);
@@ -334,8 +325,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
 
                             for (int i = 0; i < giveList.size(); ++i) {
                                 num++;
-                                Log.i("经济圈点赞", "进入头像赋值区域2：" + num);
-                                Log.i("经济圈点赞", "头像地址：" + "http://39.98.173.250:8080" + giveList.get(num - 1).getUser().getPhoto());
                                 if (num == 1) {
                                     particulars_img_2.setVisibility(View.VISIBLE);
                                     Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + giveList.get(i).getUser().getPhoto()).into(particulars_img_2);
@@ -433,25 +422,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
 
                             }
                         });
-
-//                Log.i("MyCL", "particulars_zan_img");
-//                String s1 = particulars_et_comment.getText().toString();
-//                String url = "http://39.98.173.250:8080/fangfang/app/v1/ordinaryUpdate/economicCircleCommentLike?" + "type=" + "1" + "&targetId=" +  FinalContents.getTargetId()+ "&userId=" + FinalContents.getUserID();
-//                OkHttpPost okHttpPost = new OkHttpPost(url);
-//                String data = okHttpPost.post();
-//                Gson gson = new Gson();
-//                TotalZanBean totalZanBean = gson.fromJson(data, TotalZanBean.class);
-//                TotalZanBean.DataBean data2 = totalZanBean.getData();
-//
-//                if (data2.getStatus().equals("0")) {
-//                    particulars_like.setText(data2.getLikeNum() + "");
-//                    particulars_zan.setImageResource(zan[1]);
-//                } else {
-//                    particulars_zan.setImageResource(zan[0]);
-//                    particulars_like.setText(data2.getLikeNum() + "");
-//                }
-//
-//                initData();
 
                 break;
 //              TODO 评论

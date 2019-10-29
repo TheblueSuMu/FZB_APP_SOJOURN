@@ -73,7 +73,6 @@ public class EssentialInformationActivity extends AllActivity {
             initView();
             if (ProjectProgressApi.getComplemented().equals("0")) {
                 if (ProjectProgressApi.getField().equals("1")) {
-                    Log.i("太吓人","进入方法");
                     initSQDDTXR();
                 }else if (ProjectProgressApi.getField().equals("0")){
                     initSQDD();
@@ -160,7 +159,6 @@ public class EssentialInformationActivity extends AllActivity {
                         fieldBean.setResistance(essential_information_et6.getText().toString());
                         fieldBean.setObjective(essential_information_et7.getText().toString());
                         fieldBean.setIdealArea(essential_information_et8.getText().toString());
-                        Log.i("西安市","数据加载："+fieldBean.getCity());
                         ProjectProgressApi.setFieldBean(fieldBean);
                     }else if (ProjectProgressApi.getField().equals("0")){
                         ProjectProgressApi.setCustomerCity(essential_information_et1.getText().toString());
@@ -313,7 +311,6 @@ public class EssentialInformationActivity extends AllActivity {
     }
 
     private void initSQDDTXR(){
-        Log.i("西安市","数据加载zhong："+ProjectProgressApi.getFieldBean().getCity());
         essential_information_et1.setText(ProjectProgressApi.getFieldBean().getCity());
         essential_information_et2.setText(ProjectProgressApi.getFieldBean().getOccupation());
         essential_information_et3.setText(ProjectProgressApi.getFieldBean().getFocus());
