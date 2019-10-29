@@ -15,7 +15,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true//是否启动混淆true:打开;false:关闭
+            shrinkResources true//打开资源压缩。
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

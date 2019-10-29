@@ -370,7 +370,7 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
         pickerView.setStartDate(new GregorianCalendar(year-2, 01, 01));
         // 注意：月份是从0开始计数的
         pickerView.setSelectedDate(new GregorianCalendar(2019, 01, 01));
-        pickerView.setEndDate(new GregorianCalendar(year+2, month-1, dayOfMonth));
+        pickerView.setEndDate(new GregorianCalendar(year, month-1, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override

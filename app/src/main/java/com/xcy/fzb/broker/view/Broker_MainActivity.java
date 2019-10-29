@@ -34,7 +34,8 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
     private RadioButton button_me;
     private ImageView img_backup;
     private ProgressLayout progressLayout;
-
+    FragmentManager manager = getSupportFragmentManager();
+    FragmentTransaction transaction = manager.beginTransaction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
