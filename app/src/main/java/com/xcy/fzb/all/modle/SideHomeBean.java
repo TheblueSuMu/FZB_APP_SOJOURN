@@ -7,7 +7,7 @@ public class SideHomeBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"total":1,"rows":[{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"603e127528f747b68bee14d37b3f6239","projectName":"西港云上","listPageCover":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(2).jpg","projectImg":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg","detailAddress":"柬埔寨西哈努克友谊三区（索卡海滩旁）","browseNum":"1961","forwardingAmount":"4","reportAmount":"153","collectionNum":"2","awardRules":"","commissionRules":"","productFeature":"永久产权,托管,公寓,海景房","buildingArea":"200000","saleStatus":"3","location":"103.575622,10.547139","amountIncentiveId":"","guideRuleId":"24f86ba3024f4df3abf3657898902770","isPhone":"1","digit":"4,5,6,7","isPapers":"0","projectType":"2","type":"0","percent":"","amount":"10000","contractAmount":"","contractPercent":"","secondsAmount":"","isSeconds":"0","area":"柬埔寨","isgroup":"0","groupNum":"0","salesOfficeLocation":"","onlineState":"1","productTypeSize":1,"productUnitPrice":"13000","productTotalPrice":"40","referenceToatlPrice":"40.00万元/套","areaIntervalStart":"40","areaIntervalEnd":"90","areaInterval":"40-90㎡","monetaryUnit":"万元/套","commission":"10000元/套","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"","ffAttacheList":"","brokerUserPhone":"","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""}]}
+     * data : {"total":2,"rows":[{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"b429811609db4462bd2d7f7fc36b6e8a","projectName":"恒大城市之光","listPageCover":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/10/微信图片_20191023190633.png","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/10/微信图片_20191023190633.png","detailAddress":"柬埔寨吉林省长春市长春市","browseNum":"309","forwardingAmount":"0","reportAmount":"48","collectionNum":"4","awardRules":"","commissionRules":"","productFeature":"学区房","buildingArea":"200000","saleStatus":"3","location":"125.330606,43.821954","amountIncentiveId":"","guideRuleId":"3644e2f8b6914b73a82405279fa5a0ee","isPhone":"0","digit":"","isPapers":"0","projectType":"2","agentPercent":"8.88","agentUnitPrice":"1000.00","agentAmount":"10000.00","leaderPercent":"9.99","leaderUnitPrice":"1000.00","leaderAmount":"10000.00","isSeconds":"0","secondsAmount":"1000","area":"长春","isgroup":"1","groupNum":"1","salesOfficeLocation":"","onlineState":"1","remindstatus1":"","remindstatus2":"","productTypeSize":1,"productUnitPrice":"1000","productTotalPrice":"9000","referenceToatlPrice":"40.00","referenceToatlUnit":"万元/套","areaIntervalStart":"100","areaIntervalEnd":"120","areaInterval":"100-120㎡","monetaryUnit":"元/套","commission":"总房款8.88%+0.10万元/㎡+1.00万元","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"","ffAttacheList":"","brokerUserPhone":"","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"603e127528f747b68bee14d37b3f6239","projectName":"西港云上","listPageCover":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(2).jpg","projectImg":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg","detailAddress":"柬埔寨西哈努克友谊三区（索卡海滩旁）","browseNum":"2147","forwardingAmount":"4","reportAmount":"176","collectionNum":"3","awardRules":"","commissionRules":"","productFeature":"永久产权,托管,公寓,海景房","buildingArea":"200000","saleStatus":"3","location":"103.575622,10.547139","amountIncentiveId":"","guideRuleId":"24f86ba3024f4df3abf3657898902770","isPhone":"1","digit":"4,5,6,7","isPapers":"0","projectType":"2","agentPercent":"","agentUnitPrice":"8000.00","agentAmount":"5000.00","leaderPercent":"","leaderUnitPrice":"8000.00","leaderAmount":"5000.00","isSeconds":"0","secondsAmount":"1000","area":"柬埔寨","isgroup":"0","groupNum":"0","salesOfficeLocation":"","onlineState":"1","remindstatus1":"","remindstatus2":"","productTypeSize":1,"productUnitPrice":"13000","productTotalPrice":"40","referenceToatlPrice":"40.00","referenceToatlUnit":"万元/套","areaIntervalStart":"40","areaIntervalEnd":"90","areaInterval":"40-90㎡","monetaryUnit":"万元/套","commission":"0.80万元/㎡+0.50万元","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"","ffAttacheList":"","brokerUserPhone":"","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""}]}
      */
 
     private String code;
@@ -40,8 +40,8 @@ public class SideHomeBean {
 
     public static class DataBean {
         /**
-         * total : 1
-         * rows : [{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"603e127528f747b68bee14d37b3f6239","projectName":"西港云上","listPageCover":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(2).jpg","projectImg":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg","detailAddress":"柬埔寨西哈努克友谊三区（索卡海滩旁）","browseNum":"1961","forwardingAmount":"4","reportAmount":"153","collectionNum":"2","awardRules":"","commissionRules":"","productFeature":"永久产权,托管,公寓,海景房","buildingArea":"200000","saleStatus":"3","location":"103.575622,10.547139","amountIncentiveId":"","guideRuleId":"24f86ba3024f4df3abf3657898902770","isPhone":"1","digit":"4,5,6,7","isPapers":"0","projectType":"2","type":"0","percent":"","amount":"10000","contractAmount":"","contractPercent":"","secondsAmount":"","isSeconds":"0","area":"柬埔寨","isgroup":"0","groupNum":"0","salesOfficeLocation":"","onlineState":"1","productTypeSize":1,"productUnitPrice":"13000","productTotalPrice":"40","referenceToatlPrice":"40.00万元/套","areaIntervalStart":"40","areaIntervalEnd":"90","areaInterval":"40-90㎡","monetaryUnit":"万元/套","commission":"10000元/套","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"","ffAttacheList":"","brokerUserPhone":"","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""}]
+         * total : 2
+         * rows : [{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"b429811609db4462bd2d7f7fc36b6e8a","projectName":"恒大城市之光","listPageCover":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/10/微信图片_20191023190633.png","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/10/微信图片_20191023190633.png","detailAddress":"柬埔寨吉林省长春市长春市","browseNum":"309","forwardingAmount":"0","reportAmount":"48","collectionNum":"4","awardRules":"","commissionRules":"","productFeature":"学区房","buildingArea":"200000","saleStatus":"3","location":"125.330606,43.821954","amountIncentiveId":"","guideRuleId":"3644e2f8b6914b73a82405279fa5a0ee","isPhone":"0","digit":"","isPapers":"0","projectType":"2","agentPercent":"8.88","agentUnitPrice":"1000.00","agentAmount":"10000.00","leaderPercent":"9.99","leaderUnitPrice":"1000.00","leaderAmount":"10000.00","isSeconds":"0","secondsAmount":"1000","area":"长春","isgroup":"1","groupNum":"1","salesOfficeLocation":"","onlineState":"1","remindstatus1":"","remindstatus2":"","productTypeSize":1,"productUnitPrice":"1000","productTotalPrice":"9000","referenceToatlPrice":"40.00","referenceToatlUnit":"万元/套","areaIntervalStart":"100","areaIntervalEnd":"120","areaInterval":"100-120㎡","monetaryUnit":"元/套","commission":"总房款8.88%+0.10万元/㎡+1.00万元","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"","ffAttacheList":"","brokerUserPhone":"","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"603e127528f747b68bee14d37b3f6239","projectName":"西港云上","listPageCover":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(2).jpg","projectImg":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg","detailAddress":"柬埔寨西哈努克友谊三区（索卡海滩旁）","browseNum":"2147","forwardingAmount":"4","reportAmount":"176","collectionNum":"3","awardRules":"","commissionRules":"","productFeature":"永久产权,托管,公寓,海景房","buildingArea":"200000","saleStatus":"3","location":"103.575622,10.547139","amountIncentiveId":"","guideRuleId":"24f86ba3024f4df3abf3657898902770","isPhone":"1","digit":"4,5,6,7","isPapers":"0","projectType":"2","agentPercent":"","agentUnitPrice":"8000.00","agentAmount":"5000.00","leaderPercent":"","leaderUnitPrice":"8000.00","leaderAmount":"5000.00","isSeconds":"0","secondsAmount":"1000","area":"柬埔寨","isgroup":"0","groupNum":"0","salesOfficeLocation":"","onlineState":"1","remindstatus1":"","remindstatus2":"","productTypeSize":1,"productUnitPrice":"13000","productTotalPrice":"40","referenceToatlPrice":"40.00","referenceToatlUnit":"万元/套","areaIntervalStart":"40","areaIntervalEnd":"90","areaInterval":"40-90㎡","monetaryUnit":"万元/套","commission":"0.80万元/㎡+0.50万元","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"","ffAttacheList":"","brokerUserPhone":"","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""}]
          */
 
         private int total;
@@ -71,48 +71,52 @@ public class SideHomeBean {
              * createDate :
              * updateBy :
              * updateDate :
-             * projectId : 603e127528f747b68bee14d37b3f6239
-             * projectName : 西港云上
-             * listPageCover : /fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(2).jpg
-             * projectImg : /fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg
-             * detailAddress : 柬埔寨西哈努克友谊三区（索卡海滩旁）
-             * browseNum : 1961
-             * forwardingAmount : 4
-             * reportAmount : 153
-             * collectionNum : 2
+             * projectId : b429811609db4462bd2d7f7fc36b6e8a
+             * projectName : 恒大城市之光
+             * listPageCover : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/10/微信图片_20191023190633.png
+             * projectImg : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerHousesPhoto/2019/10/微信图片_20191023190633.png
+             * detailAddress : 柬埔寨吉林省长春市长春市
+             * browseNum : 309
+             * forwardingAmount : 0
+             * reportAmount : 48
+             * collectionNum : 4
              * awardRules :
              * commissionRules :
-             * productFeature : 永久产权,托管,公寓,海景房
+             * productFeature : 学区房
              * buildingArea : 200000
              * saleStatus : 3
-             * location : 103.575622,10.547139
+             * location : 125.330606,43.821954
              * amountIncentiveId :
-             * guideRuleId : 24f86ba3024f4df3abf3657898902770
-             * isPhone : 1
-             * digit : 4,5,6,7
+             * guideRuleId : 3644e2f8b6914b73a82405279fa5a0ee
+             * isPhone : 0
+             * digit :
              * isPapers : 0
              * projectType : 2
-             * type : 0
-             * percent :
-             * amount : 10000
-             * contractAmount :
-             * contractPercent :
-             * secondsAmount :
+             * agentPercent : 8.88
+             * agentUnitPrice : 1000.00
+             * agentAmount : 10000.00
+             * leaderPercent : 9.99
+             * leaderUnitPrice : 1000.00
+             * leaderAmount : 10000.00
              * isSeconds : 0
-             * area : 柬埔寨
-             * isgroup : 0
-             * groupNum : 0
+             * secondsAmount : 1000
+             * area : 长春
+             * isgroup : 1
+             * groupNum : 1
              * salesOfficeLocation :
              * onlineState : 1
+             * remindstatus1 :
+             * remindstatus2 :
              * productTypeSize : 1
-             * productUnitPrice : 13000
-             * productTotalPrice : 40
-             * referenceToatlPrice : 40.00万元/套
-             * areaIntervalStart : 40
-             * areaIntervalEnd : 90
-             * areaInterval : 40-90㎡
-             * monetaryUnit : 万元/套
-             * commission : 10000元/套
+             * productUnitPrice : 1000
+             * productTotalPrice : 9000
+             * referenceToatlPrice : 40.00
+             * referenceToatlUnit : 万元/套
+             * areaIntervalStart : 100
+             * areaIntervalEnd : 120
+             * areaInterval : 100-120㎡
+             * monetaryUnit : 元/套
+             * commission : 总房款8.88%+0.10万元/㎡+1.00万元
              * secondPay : 无秒结
              * hot :
              * city :
@@ -165,22 +169,26 @@ public class SideHomeBean {
             private String digit;
             private String isPapers;
             private String projectType;
-            private String type;
-            private String percent;
-            private String amount;
-            private String contractAmount;
-            private String contractPercent;
-            private String secondsAmount;
+            private String agentPercent;
+            private String agentUnitPrice;
+            private String agentAmount;
+            private String leaderPercent;
+            private String leaderUnitPrice;
+            private String leaderAmount;
             private String isSeconds;
+            private String secondsAmount;
             private String area;
             private String isgroup;
             private String groupNum;
             private String salesOfficeLocation;
             private String onlineState;
+            private String remindstatus1;
+            private String remindstatus2;
             private int productTypeSize;
             private String productUnitPrice;
             private String productTotalPrice;
             private String referenceToatlPrice;
+            private String referenceToatlUnit;
             private String areaIntervalStart;
             private String areaIntervalEnd;
             private String areaInterval;
@@ -426,52 +434,52 @@ public class SideHomeBean {
                 this.projectType = projectType;
             }
 
-            public String getType() {
-                return type;
+            public String getAgentPercent() {
+                return agentPercent;
             }
 
-            public void setType(String type) {
-                this.type = type;
+            public void setAgentPercent(String agentPercent) {
+                this.agentPercent = agentPercent;
             }
 
-            public String getPercent() {
-                return percent;
+            public String getAgentUnitPrice() {
+                return agentUnitPrice;
             }
 
-            public void setPercent(String percent) {
-                this.percent = percent;
+            public void setAgentUnitPrice(String agentUnitPrice) {
+                this.agentUnitPrice = agentUnitPrice;
             }
 
-            public String getAmount() {
-                return amount;
+            public String getAgentAmount() {
+                return agentAmount;
             }
 
-            public void setAmount(String amount) {
-                this.amount = amount;
+            public void setAgentAmount(String agentAmount) {
+                this.agentAmount = agentAmount;
             }
 
-            public String getContractAmount() {
-                return contractAmount;
+            public String getLeaderPercent() {
+                return leaderPercent;
             }
 
-            public void setContractAmount(String contractAmount) {
-                this.contractAmount = contractAmount;
+            public void setLeaderPercent(String leaderPercent) {
+                this.leaderPercent = leaderPercent;
             }
 
-            public String getContractPercent() {
-                return contractPercent;
+            public String getLeaderUnitPrice() {
+                return leaderUnitPrice;
             }
 
-            public void setContractPercent(String contractPercent) {
-                this.contractPercent = contractPercent;
+            public void setLeaderUnitPrice(String leaderUnitPrice) {
+                this.leaderUnitPrice = leaderUnitPrice;
             }
 
-            public String getSecondsAmount() {
-                return secondsAmount;
+            public String getLeaderAmount() {
+                return leaderAmount;
             }
 
-            public void setSecondsAmount(String secondsAmount) {
-                this.secondsAmount = secondsAmount;
+            public void setLeaderAmount(String leaderAmount) {
+                this.leaderAmount = leaderAmount;
             }
 
             public String getIsSeconds() {
@@ -480,6 +488,14 @@ public class SideHomeBean {
 
             public void setIsSeconds(String isSeconds) {
                 this.isSeconds = isSeconds;
+            }
+
+            public String getSecondsAmount() {
+                return secondsAmount;
+            }
+
+            public void setSecondsAmount(String secondsAmount) {
+                this.secondsAmount = secondsAmount;
             }
 
             public String getArea() {
@@ -522,6 +538,22 @@ public class SideHomeBean {
                 this.onlineState = onlineState;
             }
 
+            public String getRemindstatus1() {
+                return remindstatus1;
+            }
+
+            public void setRemindstatus1(String remindstatus1) {
+                this.remindstatus1 = remindstatus1;
+            }
+
+            public String getRemindstatus2() {
+                return remindstatus2;
+            }
+
+            public void setRemindstatus2(String remindstatus2) {
+                this.remindstatus2 = remindstatus2;
+            }
+
             public int getProductTypeSize() {
                 return productTypeSize;
             }
@@ -552,6 +584,14 @@ public class SideHomeBean {
 
             public void setReferenceToatlPrice(String referenceToatlPrice) {
                 this.referenceToatlPrice = referenceToatlPrice;
+            }
+
+            public String getReferenceToatlUnit() {
+                return referenceToatlUnit;
+            }
+
+            public void setReferenceToatlUnit(String referenceToatlUnit) {
+                this.referenceToatlUnit = referenceToatlUnit;
             }
 
             public String getAreaIntervalStart() {

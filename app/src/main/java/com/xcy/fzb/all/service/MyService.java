@@ -28,6 +28,7 @@ import com.xcy.fzb.all.database.StoreListBean;
 import com.xcy.fzb.all.database.TeamCommissionsBean;
 import com.xcy.fzb.all.database.TeamLeaderLevelBean;
 import com.xcy.fzb.all.database.TeamMemberBean;
+import com.xcy.fzb.all.database.TradeAuditBean;
 import com.xcy.fzb.all.modle.*;
 import com.xcy.fzb.all.persente.LevelBean;
 
@@ -153,7 +154,7 @@ public interface MyService {
 
     //专案端 认筹添加的数据
     @POST("nodeUpdate/earnestMoneySave")
-    Observable<ConfessBean> getEarnestMoneySave(@Query("preparationId") String preparationId, @Query("customerId") String customerId, @Query("projectId") String projectId, @Query("fullName") String fullName, @Query("phone") String phone, @Query("idNumber") String idNumber, @Query("intentionPier") String intentionPier, @Query("apartment") String apartment, @Query("intentionalArea") String intentionalArea, @Query("recognizeTime") String recognizeTime, @Query("relation") String relation, @Query("userId") String userId);
+    Observable<ConfessBean> getEarnestMoneySave(@Query("id") String id,@Query("preparationId") String preparationId, @Query("customerId") String customerId, @Query("projectId") String projectId, @Query("fullName") String fullName, @Query("phone") String phone, @Query("idNumber") String idNumber, @Query("intentionPier") String intentionPier, @Query("apartment") String apartment, @Query("intentionalArea") String intentionalArea, @Query("recognizeTime") String recognizeTime, @Query("relation") String relation, @Query("userId") String userId);
 
     //专案端 调单添加的数据
     @POST("specialUpdate/adjustApplySave")
@@ -520,6 +521,10 @@ public interface MyService {
     //待我审核 成交数据
     @POST("specialUpdate/tradeAudit")
     Observable<CheckBean> getTradeAudit(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("isUpdate") String isUpdate);
+
+    //待我审核 成交成交数据
+    @POST("specialUpdate/tradeAudit")
+    Observable<TradeAuditBean> getTradeAuditBean(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("isUpdate") String isUpdate);
 
     //圈层端我的界面数据
     @POST("layersSelect/myData")

@@ -47,7 +47,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-
         holder.jzVideoPlayerStandard.TOOL_BAR_EXIST = false;
         holder.jzVideoPlayerStandard.setUp(rows.get(position).getVideo()
                 , JZVideoPlayerStandard.SCROLL_AXIS_HORIZONTAL, rows.get(position).getTitle());

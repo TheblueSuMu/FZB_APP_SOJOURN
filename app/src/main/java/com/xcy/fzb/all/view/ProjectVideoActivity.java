@@ -24,6 +24,7 @@ import com.xcy.fzb.all.utils.CommonUtil;
 
 import java.util.List;
 
+import cn.jzvd.JZVideoPlayer;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -34,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 //TODO 项目视频
-public class ProjectVideoActivity extends AllActivity implements View.OnClickListener {
+public class ProjectVideoActivity extends AllActivity {
 
     RecyclerView video_rv;
     LinearLayout video_return;
@@ -126,10 +127,9 @@ public class ProjectVideoActivity extends AllActivity implements View.OnClickLis
 
     }
 
-
     @Override
-    public void onClick(View view) {
-
+    protected void onDestroy() {
+        super.onDestroy();
+        JZVideoPlayer.releaseAllVideos();
     }
-
 }

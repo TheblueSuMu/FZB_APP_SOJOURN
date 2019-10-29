@@ -145,17 +145,9 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 transaction.replace(R.id.main_framelayout, eFragment);
                 break;
         }
-        initSeleep();
         transaction.commit();
     }
 
-    private void initSeleep(){
-        try {
-            Thread.sleep(150);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
