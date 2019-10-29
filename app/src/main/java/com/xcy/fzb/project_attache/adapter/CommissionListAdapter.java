@@ -76,7 +76,6 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
                     holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
                     holder.item_commission_list_tv9.setText("未结：￥" + rows.get(position).getNotAmount() + "");
                 }
-
             } else if (rows.get(position).getMoneyStatus() == 1) {
 
                 if (rows.get(position).getTotalAmount().equals("") || rows.get(position).getTotalAmount().equals("0") || rows.get(position).getTotalAmount().equals("0.00")) {

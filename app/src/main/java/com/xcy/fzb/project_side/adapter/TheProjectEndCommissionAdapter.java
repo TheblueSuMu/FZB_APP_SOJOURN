@@ -35,8 +35,8 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
 
     @Override
     public void onBindViewHolder(@NonNull TheProjectEndCommissionViewHolder holder, int position) {
-        holder.the_project_end_title.setText(rowsBeanList.get(position).getProjectName());
-        holder.the_project_end_name.setText(rowsBeanList.get(position).getCustomerName() + "  (" + rowsBeanList.get(position).getCustomerPhone() + ")");
+        holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "  (" + rowsBeanList.get(position).getCustomerPhone() + ")");
+        holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
         if(rowsBeanList.get(position).getRoomNumber().equals("")){
             holder.the_project_end_time.setVisibility(View.GONE);
         }else {

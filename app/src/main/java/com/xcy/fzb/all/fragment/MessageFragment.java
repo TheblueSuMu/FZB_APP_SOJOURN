@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.xcy.fzb.R;
-import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.persente.StatusBar;
 
 //TODO 消息界面
@@ -50,25 +49,15 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
         StatusBar.makeStatusBarTransparent(getActivity());
         view = inflater.inflate(R.layout.modulebroker_fragment_message, null);
         initView();
-
-        return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         manager = getActivity().getSupportFragmentManager();
         transaction = manager.beginTransaction();
-        if (FinalContents.isLuo()) {
-            transaction.add(R.id.information_fl, dynamicFragment);
-            transaction.add(R.id.information_fl, noticeFragment);
-            transaction.add(R.id.information_fl, guestRoomFragment);
-            transaction.add(R.id.information_fl, goodNewsFragment);
-            transaction.hide(noticeFragment);
-            transaction.hide(guestRoomFragment);
-            transaction.hide(goodNewsFragment);
-            FinalContents.setLuo(false);
-        }
+        transaction.add(R.id.information_fl, dynamicFragment);
+        transaction.add(R.id.information_fl, noticeFragment);
+        transaction.add(R.id.information_fl, guestRoomFragment);
+        transaction.add(R.id.information_fl, goodNewsFragment);
+        transaction.hide(noticeFragment);
+        transaction.hide(guestRoomFragment);
+        transaction.hide(goodNewsFragment);
         if (type.equals("1")) {
             information_ll_5.setVisibility(View.VISIBLE);
             information_ll_6.setVisibility(View.INVISIBLE);
@@ -107,6 +96,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
             transaction.hide(noticeFragment);
         }
         transaction.commit();
+        return view;
     }
 
     private void initView() {
@@ -185,7 +175,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
         if(hidden){
             //TODO now visible to user 不显示fragment
         } else {
-            onResume();
+            dynamicFragment.onResume();
             //TODO now invisible to user 显示fragment
         }
     }
