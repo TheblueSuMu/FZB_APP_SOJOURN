@@ -102,8 +102,11 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
             "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.WRITE_EXTERNAL_STORAGE"};
 
+    int ifimg = 0;
+
     Uri saveUri;
     private static final String FILE_PATH = "/sdcard/syscamera.jpg";
+    private File file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +116,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
 
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -223,54 +226,14 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                                 ContentValues values = new ContentValues();
                                 Uri photoUri = MyClientAddActivity.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                                 Log.i("MyCL", "图片路径：" + photoUri);
-                                final File file = uri2File(photoUri);
+                                file = uri2File(photoUri);
 
-                                new Thread() {
-                                    @Override
-                                    public void run() {
+                                if (ifimg == 0) {
+                                    ifimg = 1;
+                                }
 
-                                        Retrofit.Builder builder = new Retrofit.Builder();
-                                        builder.baseUrl(FinalContents.getBaseUrl());
-                                        builder.addConverterFactory(GsonConverterFactory.create());
-                                        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                                        Retrofit build = builder.build();
-                                        MyService fzbInterface = build.create(MyService.class);
 
-                                        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
-
-                                        MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-
-                                        Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "myClient", part);
-                                        Log.i("MyCL", "addPhoto：" + addPhoto.toString());
-                                        addPhoto.subscribeOn(Schedulers.io())
-                                                .observeOn(AndroidSchedulers.mainThread())
-                                                .subscribe(new Observer<AddPhotoBean>() {
-                                                    @Override
-                                                    public void onSubscribe(Disposable d) {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onNext(AddPhotoBean addPhotoBean) {
-                                                        imgUrl = addPhotoBean.getData().getUrl();
-                                                        Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
-                                                        Glide.with(MyClientAddActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(client_add_img);
-                                                    }
-
-                                                    @Override
-                                                    public void onError(Throwable e) {
-                                                        Log.i("MyCL", "经济圈发布图片上传错误信息：" + e.getMessage());
-                                                    }
-
-                                                    @Override
-                                                    public void onComplete() {
-
-                                                    }
-                                                });
-                                    }
-                                }.start();
-
-                                Glide.with(MyClientAddActivity.this).load(photoUri).into(client_add_img);
+//                                Glide.with(MyClientAddActivity.this).load(photoUri).into(client_add_img);
                                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                                 startActivityForResult(intent, 1);
                             } else {
@@ -298,10 +261,11 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                     return;
                 } else {
                     if (client_add_name_et.getText().toString().equals("")) {
-                    }else {
-                        if(addNum == 0){
-                            initData();
+                        Toast.makeText(MyClientAddActivity.this, "手机号至少填一个", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (addNum == 0) {
                             addNum = 1;
+                            initData();
                         }
                     }
                 }
@@ -465,44 +429,133 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
     }
 
     private void initData() {
+        if (client_add_rl_1.getVisibility() == View.VISIBLE && client_add_rl_2.getVisibility() == View.GONE) {
+            if (client_add_photo_et_1.getText().length() != 11 || client_add_photo_et_2.getText().length() != 11) {
+                Toast.makeText(MyClientAddActivity.this, "请检查手机号是否是11位", Toast.LENGTH_SHORT).show();
+                addNum = 0;
+            } else {
+                Retrofit.Builder builder = new Retrofit.Builder();
+                builder.baseUrl(FinalContents.getBaseUrl());
+                builder.addConverterFactory(GsonConverterFactory.create());
+                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                Retrofit build = builder.build();
+                MyService fzbInterface = build.create(MyService.class);
+                Observable<AddClientBean> addClient = fzbInterface.getAddClient(client_add_name_et.getText().toString(), imgUrl, name1, client_add_photo_et_1.getText().toString(), name2, client_add_photo_et_2.getText().toString(), name3, client_add_photo_et_3.getText().toString(), FinalContents.getUserID());
+                addClient.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<AddClientBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
 
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
-        Observable<AddClientBean> addClient = fzbInterface.getAddClient(client_add_name_et.getText().toString(), imgUrl, name1, client_add_photo_et_1.getText().toString(), name2, client_add_photo_et_2.getText().toString(), name3, client_add_photo_et_3.getText().toString(), FinalContents.getUserID());
-        addClient.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<AddClientBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+                            }
 
-                    }
+                            @Override
+                            public void onNext(AddClientBean addClientBean) {
+                                String msg = addClientBean.getMsg();
+                                if (msg.equals("成功")) {
+                                    Toast.makeText(MyClientAddActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(MyClientAddActivity.this, "添加客户失败", Toast.LENGTH_SHORT).show();
+                                }
+                            }
 
-                    @Override
-                    public void onNext(AddClientBean addClientBean) {
-                        String msg = addClientBean.getMsg();
-                        if (msg.equals("成功")) {
-                            Toast.makeText(MyClientAddActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
-                            finish();
-                        } else {
-                            Toast.makeText(MyClientAddActivity.this, "添加客户失败", Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                            @Override
+                            public void onError(Throwable e) {
+                                Log.i("MyCL", "我的客户添加客户错误信息：" + e.getMessage());
+                            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("MyCL", "我的客户添加客户错误信息：" + e.getMessage());
-                    }
+                            @Override
+                            public void onComplete() {
 
-                    @Override
-                    public void onComplete() {
+                            }
+                        });
+            }
+        } else if (client_add_rl_1.getVisibility() == View.VISIBLE && client_add_rl_2.getVisibility() == View.VISIBLE) {
+            if (client_add_photo_et_1.getText().length() != 11 || client_add_photo_et_2.getText().length() != 11 || client_add_photo_et_3.getText().length() != 11) {
+                Toast.makeText(MyClientAddActivity.this, "请检查手机号是否是11位", Toast.LENGTH_SHORT).show();
+                addNum = 0;
+            } else {
+                Retrofit.Builder builder = new Retrofit.Builder();
+                builder.baseUrl(FinalContents.getBaseUrl());
+                builder.addConverterFactory(GsonConverterFactory.create());
+                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                Retrofit build = builder.build();
+                MyService fzbInterface = build.create(MyService.class);
+                Observable<AddClientBean> addClient = fzbInterface.getAddClient(client_add_name_et.getText().toString(), imgUrl, name1, client_add_photo_et_1.getText().toString(), name2, client_add_photo_et_2.getText().toString(), name3, client_add_photo_et_3.getText().toString(), FinalContents.getUserID());
+                addClient.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<AddClientBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
 
-                    }
-                });
+                            }
 
+                            @Override
+                            public void onNext(AddClientBean addClientBean) {
+                                String msg = addClientBean.getMsg();
+                                if (msg.equals("成功")) {
+                                    Toast.makeText(MyClientAddActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(MyClientAddActivity.this, "添加客户失败", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Log.i("MyCL", "我的客户添加客户错误信息：" + e.getMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
+            }
+        } else {
+            if (client_add_photo_et_1.getText().length() != 11) {
+                Toast.makeText(MyClientAddActivity.this, "请检查手机号是否是11位", Toast.LENGTH_SHORT).show();
+                addNum = 0;
+            } else {
+                Retrofit.Builder builder = new Retrofit.Builder();
+                builder.baseUrl(FinalContents.getBaseUrl());
+                builder.addConverterFactory(GsonConverterFactory.create());
+                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                Retrofit build = builder.build();
+                MyService fzbInterface = build.create(MyService.class);
+                Observable<AddClientBean> addClient = fzbInterface.getAddClient(client_add_name_et.getText().toString(), imgUrl, name1, client_add_photo_et_1.getText().toString(), name2, client_add_photo_et_2.getText().toString(), name3, client_add_photo_et_3.getText().toString(), FinalContents.getUserID());
+                addClient.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<AddClientBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+
+                            }
+
+                            @Override
+                            public void onNext(AddClientBean addClientBean) {
+                                String msg = addClientBean.getMsg();
+                                if (msg.equals("成功")) {
+                                    Toast.makeText(MyClientAddActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(MyClientAddActivity.this, "添加客户失败", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Log.i("MyCL", "我的客户添加客户错误信息：" + e.getMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
+            }
+        }
 
     }
 
@@ -538,6 +591,60 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
         bos.flush();
         bos.close();
         return myCaptureFile;
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (ifimg == 1) {
+            new Thread() {
+                @Override
+                public void run() {
+
+                    Retrofit.Builder builder = new Retrofit.Builder();
+                    builder.baseUrl(FinalContents.getBaseUrl());
+                    builder.addConverterFactory(GsonConverterFactory.create());
+                    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                    Retrofit build = builder.build();
+                    MyService fzbInterface = build.create(MyService.class);
+
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+
+                    MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+
+                    Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "myClient", part);
+                    Log.i("MyCL", "addPhoto：" + addPhoto.toString());
+                    addPhoto.subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<AddPhotoBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+
+                                }
+
+                                @Override
+                                public void onNext(AddPhotoBean addPhotoBean) {
+                                    imgUrl = addPhotoBean.getData().getUrl();
+                                    Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
+                                    Glide.with(MyClientAddActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(client_add_img);
+                                    ifimg = 0;
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.i("MyCL", "经济圈发布图片上传错误信息：" + e.getMessage());
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+                }
+            }.start();
+        }
 
     }
 }

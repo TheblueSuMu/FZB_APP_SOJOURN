@@ -442,7 +442,7 @@ public class DFragment extends Fragment implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-//                        Log.i("专员","专员门店列表错误信息：" + e.getMessage());
+                        Log.i("专员","专员门店列表错误信息：" + e.getMessage());
                     }
 
                     @Override
