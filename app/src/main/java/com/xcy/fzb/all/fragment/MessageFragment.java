@@ -38,7 +38,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
     GuestRoomFragment guestRoomFragment = new GuestRoomFragment();
     GoodNewsFragment goodNewsFragment = new GoodNewsFragment();
 
-    private String type = "";
+    private String type = "1";
 
     public void setType(String type) {
         this.type = type;
@@ -182,6 +182,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if(hidden){
+            type = "1";
             //TODO now visible to user 不显示fragment
         } else {
             onResume();

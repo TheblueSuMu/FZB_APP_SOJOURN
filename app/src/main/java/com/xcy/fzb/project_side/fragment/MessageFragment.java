@@ -197,6 +197,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if(hidden){
+            type = "1";
             //TODO now visible to user 不显示fragment
         } else {
             onResume();
