@@ -75,7 +75,7 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
     private String phone;
     private List<String> list;
     private OptionsPickerView pvOptions;
-    private String sex;
+    private String sex = "";
     private String s;
     private String s1;
     private String s2;
@@ -311,47 +311,51 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
                     return;
                 }
 
-                Retrofit.Builder builder = new Retrofit.Builder();
-                builder.baseUrl(FinalContents.getBaseUrl());
-                builder.addConverterFactory(GsonConverterFactory.create());
-                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                Retrofit build = builder.build();
-                MyService fzbInterface = build.create(MyService.class);
-                Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave(FinalContents.getPreparationId(),FinalContents.getCustomerID(),FinalContents.getProjectID(),s,s1,s2, s3,s8,s4,s7,s5,FinalContents.getUserID());
-                userMessage.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<ConfessBean>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
-
-                            }
-
-                            @SuppressLint("WrongConstant")
-                            @Override
-                            public void onNext(ConfessBean confessBean) {
-                                if (confessBean.getMsg().equals("成功")) {
-                                    Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                    FinalContents.setTiaozhuang("认筹成功");
-                                    finish();
-                                } else {
-                                    Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                Log.i("认筹信息","错误"+e);
-                            }
-
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        });
+                init();
                 break;
 
         }
 
+    }
+
+    private void init(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave(FinalContents.getPreparationId(),FinalContents.getCustomerID(),FinalContents.getProjectID(),s,s1,s2, s3,s8,s4,s7,s5,FinalContents.getUserID());
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ConfessBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @SuppressLint("WrongConstant")
+                    @Override
+                    public void onNext(ConfessBean confessBean) {
+                        if (confessBean.getMsg().equals("成功")) {
+                            Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            FinalContents.setTiaozhuang("认筹成功");
+                            finish();
+                        } else {
+                            Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("认筹信息","错误"+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 
@@ -366,7 +370,7 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
         pickerView.setStartDate(new GregorianCalendar(year-2, 01, 01));
         // 注意：月份是从0开始计数的
         pickerView.setSelectedDate(new GregorianCalendar(2019, 01, 01));
-        pickerView.setEndDate(new GregorianCalendar(year, month-1, dayOfMonth));
+        pickerView.setEndDate(new GregorianCalendar(year+2, month-1, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override

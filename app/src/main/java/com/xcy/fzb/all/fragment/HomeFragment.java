@@ -590,4 +590,14 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
         listterner = null;
     }
 
+//    @Override
+//    public void onHiddenChanged(boolean hidden) {
+//        super.onHiddenChanged(hidden);
+//        if(hidden){
+//            //TODO now visible to user
+//        } else {
+//            //TODO now invisible to user
+//        }
+//    }
+
 }

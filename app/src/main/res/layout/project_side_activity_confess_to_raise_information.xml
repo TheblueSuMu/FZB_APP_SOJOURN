@@ -298,6 +298,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginRight="20dp"
                             android:background="#FFFFFF"
+                            android:maxLength="11"
                             android:gravity="right"
                             android:hint="请输入认筹客户电话"
                             android:imeOptions="actionDone"

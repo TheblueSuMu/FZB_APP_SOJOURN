@@ -109,7 +109,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
     private RecyclerView fill_in_transaction_information_rv;
     private TextView fill_in_transaction_information_tishi;
     private boolean whethe = false;
-    private String str;
+    private String str = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -517,7 +517,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                         return;
                     }
 
-                    if (fill_in_transaction_information_tishi.getText().toString().equals("")) {
+                    if (str.equals("")) {
                         Toast.makeText(this, "请填写成交单价并确认", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -603,7 +603,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
         dateTimePickerView.setStartDate(new GregorianCalendar(year-2, 01, 01));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(2019, 01, 01));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month-1, dayOfMonth));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year+2, month-1, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override

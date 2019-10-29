@@ -59,6 +59,7 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
                     layoutManager.setOrientation(MyGridLayoutManager.VERTICAL);
                     holder.item_reivew_adapter_item.setLayoutManager(layoutManager);
                     ReviewAdapterItemAdapter recyclerAdapter = new ReviewAdapterItemAdapter(arraylist);
+                    recyclerAdapter.setImgUrl(list.get(position).getValue());
                     holder.item_reivew_adapter_item.setAdapter(recyclerAdapter);
                     recyclerAdapter.notifyDataSetChanged();
                 }else {

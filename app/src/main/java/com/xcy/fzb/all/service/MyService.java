@@ -48,6 +48,9 @@ public interface MyService {
     //@Field用来标注post请求参数名
     //@FormUrlEncoded与@Post配合使用，要求对post的参数进行网络编码
 
+    //关于房坐标 版本更新
+    @POST("commonSelect/appPackage")
+    Observable<HotBean> getAppPackage(@Query("appType") String appType, @Query("appPackage") String appPackage, @Query("appVeriosn") String appVeriosn);
 
     //顾问/销售用户Id获取用户信息
     @POST("layersSelect/getSysUser")

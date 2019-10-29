@@ -132,6 +132,8 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
             check_pending_bt2.setText("拒绝");
         } else if (mycheck.equals("2")) {
             check_pending_bt2.setText("修改认筹信息");
+        } else if (mycheck.equals("3")) {
+            check_pending_bt2.setText("修改成交信息");
         }
 
         Log.i("MyCL", "getCustomerId：" + FinalContents.getCustomerID());
@@ -163,7 +165,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         processData = reportProcessDetailsBean.getData().getProcessData();
                         check_pending_tv2.setText(infoData.getProjectName());
                         check_pending_tv3.setText(infoData.getCustomerName() + "[" + infoData.getCustomerPhone() + "]");
-
+                        FinalContents.setJJrID(infoData.getAgentId());
                         initRV();
                     }
 
@@ -211,6 +213,9 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                     intent = new Intent(CheckPendingActivity.this, TheReasonForRefusalActivity.class);
                 } else if (s.equals("修改认筹信息")) {
                     intent = new Intent(CheckPendingActivity.this, ModifyTheRecognitionToRaiseActivity.class);
+                } else if (s.equals("修改成交信息")) {
+                    intent = new Intent(CheckPendingActivity.this, FillInTransactionInformationActivity.class);
+                    FinalContents.setTiaodan("调单");
                 }
                 startActivity(intent);
                 finish();

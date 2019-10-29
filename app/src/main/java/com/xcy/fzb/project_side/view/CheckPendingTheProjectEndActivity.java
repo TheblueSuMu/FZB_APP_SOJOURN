@@ -264,7 +264,7 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
                                     } else if (check_pending_the_project_end_ll8.getVisibility() == View.VISIBLE) {
                                         FinalContents.setNumS(4);
                                         intent.putExtra("name", "成交");
-                                        intent.putExtra("Mycheck", "2");
+                                        intent.putExtra("Mycheck", "3");
                                     }
 
                                     FinalContents.setPreparationId(rows.get(position).getPreparationId());

@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.modle.HotBean;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -21,6 +25,14 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AboutFZBActivity extends AllActivity implements View.OnClickListener {
 
@@ -88,6 +100,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
 //                TODO 检测版本
             case R.id.fzb_jc:
                 Toast.makeText(AboutFZBActivity.this, "已是最新版本", Toast.LENGTH_SHORT).show();
+
                 break;
 //                TODO 免责声明
             case R.id.fzb_mz:
@@ -96,6 +109,39 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
                 break;
         }
 
+    }
+
+    private void initDaown(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<HotBean> hotList = fzbInterface.getAppPackage("","", "");
+        hotList.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<HotBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(HotBean hotBean) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("版本更新","错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     /**
