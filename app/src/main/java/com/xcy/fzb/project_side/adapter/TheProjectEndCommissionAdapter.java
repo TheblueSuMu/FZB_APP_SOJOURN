@@ -36,43 +36,56 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
     @Override
     public void onBindViewHolder(@NonNull TheProjectEndCommissionViewHolder holder, int position) {
         holder.the_project_end_title.setText(rowsBeanList.get(position).getProjectName());
-        holder.the_project_end_name.setText(rowsBeanList.get(position).getCustomerName()+"  ("+rowsBeanList.get(position).getCustomerPhone()+")");
-        holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
-        holder.the_project_end_bargain_time.setText("成交时间："+rowsBeanList.get(position).getTradeDate());
-        holder.the_project_end_company.setText(rowsBeanList.get(position).getCompanyName()+"-"+rowsBeanList.get(position).getStoreName()+"-"+rowsBeanList.get(position).getAgentName());
-        holder.the_project_end_tv1.setText("应收：¥"+rowsBeanList.get(position).getTotalAmount());
+        holder.the_project_end_name.setText(rowsBeanList.get(position).getCustomerName() + "  (" + rowsBeanList.get(position).getCustomerPhone() + ")");
+        if(rowsBeanList.get(position).getRoomNumber().equals("")){
+            holder.the_project_end_time.setVisibility(View.GONE);
+        }else {
+            holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
+        }
+        if(rowsBeanList.get(position).getTradeDate().equals("")){
+            holder.the_project_end_bargain_time.setVisibility(View.GONE);
+        }else {
+            holder.the_project_end_bargain_time.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
+        }
+        if (rowsBeanList.get(position).getCompanyName().equals("") && rowsBeanList.get(position).getStoreName().equals("")) {
+            holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName());
+        } else {
+            holder.the_project_end_company.setText(rowsBeanList.get(position).getCompanyName() + "-" + rowsBeanList.get(position).getStoreName() + "-" + rowsBeanList.get(position).getAgentName());
+        }
+
+        holder.the_project_end_tv1.setText("应收：¥" + rowsBeanList.get(position).getTotalAmount());
         if (rowsBeanList.get(position).getMoneyStatus() == 0) {
             holder.the_project_end_img.setVisibility(View.GONE);
-        }else if (rowsBeanList.get(position).getMoneyStatus() == 1){
+        } else if (rowsBeanList.get(position).getMoneyStatus() == 1) {
             holder.the_project_end_img.setVisibility(View.VISIBLE);
             holder.the_project_end_img.setBackgroundResource(R.mipmap.tdg);
-        }else if (rowsBeanList.get(position).getMoneyStatus() == 2){
+        } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {
             holder.the_project_end_img.setVisibility(View.VISIBLE);
             holder.the_project_end_img.setBackgroundResource(R.mipmap.tdr);
         }
         if (rowsBeanList.get(position).getAlreadyAmount().equals("")) {
             holder.the_project_end_tv2.setVisibility(View.GONE);
-        }else {
+        } else {
             holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv2.setText("已结：¥"+rowsBeanList.get(position).getAlreadyAmount());
+            holder.the_project_end_tv2.setText("已结：¥" + rowsBeanList.get(position).getAlreadyAmount());
         }
 
         if (rowsBeanList.get(position).getInvoiceMoney().equals("")) {
             holder.the_project_end_tv3.setVisibility(View.GONE);
-        }else {
+        } else {
             holder.the_project_end_tv3.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv3.setText("待结：¥"+rowsBeanList.get(position).getInvoiceMoney());
+            holder.the_project_end_tv3.setText("待结：¥" + rowsBeanList.get(position).getInvoiceMoney());
         }
         if (rowsBeanList.get(position).getNotAmount().equals("")) {
             holder.the_project_end_tv4.setVisibility(View.GONE);
-        }else {
+        } else {
             holder.the_project_end_tv4.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv4.setText("未结：¥"+rowsBeanList.get(position).getNotAmount());
+            holder.the_project_end_tv4.setText("未结：¥" + rowsBeanList.get(position).getNotAmount());
         }
         if (rowsBeanList.get(position).getStatus().equals("0")) {
             holder.the_project_end_tv6.setVisibility(View.GONE);
             holder.the_project_end_tv7.setVisibility(View.GONE);
-        }else if (rowsBeanList.get(position).getStatus().equals("1")){
+        } else if (rowsBeanList.get(position).getStatus().equals("1")) {
             holder.the_project_end_tv2.setVisibility(View.GONE);
             holder.the_project_end_tv3.setVisibility(View.GONE);
             holder.the_project_end_tv4.setVisibility(View.GONE);
@@ -88,7 +101,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         return rowsBeanList.size();
     }
 
-    class TheProjectEndCommissionViewHolder extends RecyclerView.ViewHolder{
+    class TheProjectEndCommissionViewHolder extends RecyclerView.ViewHolder {
 
         ImageView the_project_end_img;
 

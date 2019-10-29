@@ -181,7 +181,7 @@ public class MyClientFragment7 extends Fragment implements ClientFragmentAdapter
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ProcessDataBean> clientFragment = fzbInterface.getProcessData(FinalContents.getStoreId(), "0", name + "", FinalContents.getUserID());
+        Observable<ProcessDataBean> clientFragment = fzbInterface.getProcessData(FinalContents.getStoreId(), "0", name + "", FinalContents.getUserID(),"1000");
         clientFragment.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ProcessDataBean>() {

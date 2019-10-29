@@ -638,7 +638,7 @@ public interface MyService {
 
     // 专员端报备流程数据请求
     @POST("commissionerSelect/processData")
-    Observable<ProcessDataBean> getProcessData(@Query("storeId") String storeId, @Query("status") String status, @Query("search") String search, @Query("userId") String userId);
+    Observable<ProcessDataBean> getProcessData(@Query("storeId") String storeId, @Query("status") String status, @Query("search") String search, @Query("userId") String userId, @Query("pageSize") String pageSize);
 
 //    //专员用户Id获取用户信息
 //    @POST("commonSelect/getUserInfo")

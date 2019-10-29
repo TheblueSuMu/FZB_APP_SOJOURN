@@ -235,6 +235,8 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
 
     private void initTeamLeaderLevel() {
 
+        Log.i("MyCL","loginFlag：" + loginFlag);
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -397,23 +399,21 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
     }
 
     private void initData() {
-        name = add_sales_et1.getText().toString();
-        industry = add_sales_et2.getText().toString();
-        phone = add_sales_et3.getText().toString();
-        loginName = add_sales_et4.getText().toString();
-        password = add_sales_et5.getText().toString();
-
-
-
 
         if (add_sales_et1.getText().toString().equals("") || add_sales_et2.getText().toString().equals("") || add_sales_et3.getText().toString().equals("") || add_sales_et4.getText().toString().equals("") || add_sales_tv1.getText().toString().equals("") || add_sales_tv2.getText().toString().equals("")) {
             Toast.makeText(Captain_Team_AddSalesActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
         } else {
 
+            name = add_sales_et1.getText().toString();
+            industry = add_sales_et2.getText().toString();
+            phone = add_sales_et3.getText().toString();
+            loginName = add_sales_et4.getText().toString();
+            password = add_sales_et5.getText().toString();
+
             if (txt.getVisibility() == View.VISIBLE) {
-                loginFlag = "1";
-            } else {
                 loginFlag = "0";
+            } else {
+                loginFlag = "1";
             }
 
             Retrofit.Builder builder = new Retrofit.Builder();

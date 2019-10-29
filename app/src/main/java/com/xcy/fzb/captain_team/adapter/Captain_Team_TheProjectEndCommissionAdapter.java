@@ -61,7 +61,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                     }
                 }
             });
-            holder.the_project_end_time.setOnClickListener(new View.OnClickListener() {
+            holder.the_project_end_bargain_time.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(rowsBeanList.get(position).getAgentPhone().equals("")){

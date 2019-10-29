@@ -75,6 +75,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
     private TextView add_aconsultant_title;
     private String id = "";
     private Observable<BrokerSaveBean> userMessage;
+    private Observable<RatioByOwnerIdBean> userMessage1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -153,8 +154,13 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
             if (FinalContents.getIdentity().equals("63")) {
                 Log.i("顾问", "63");
             } else {
-                add_aconsultant_tv2.setText(FinalContents.getUserName());
-                add_aconsultant_tv1.setText(FinalContents.getParentName());
+                if (FinalContents.getIdentity().equals("60")) {
+                    add_aconsultant_tv1.setText(FinalContents.getUserName());
+                    FinalContents.setOwnerId002(FinalContents.getUserID());
+                } else {
+                    add_aconsultant_tv2.setText(FinalContents.getUserName());
+                    add_aconsultant_tv1.setText(FinalContents.getParentName());
+                }
             }
         }
     }
@@ -177,7 +183,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                 break;
 //            TODO 选择销售
             case R.id.add_aconsultant_rl1:
-                if (FinalContents.getIdentity().equals("63")) {
+                if (FinalContents.getIdentity().equals("63") || (FinalContents.getXiuGai().equals("添加顾问") && FinalContents.getIdentity().equals("60"))) {
                     initmarket();
                 }
                 break;
@@ -385,8 +391,12 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<RatioByOwnerIdBean> userMessage = fzbInterface.getRatioByOwnerId(FinalContents.getUserID(), FinalContents.getUserID());
-            userMessage.subscribeOn(Schedulers.io())
+            if(FinalContents.getOwnerId001().equals("")){
+                userMessage1 = fzbInterface.getRatioByOwnerId(FinalContents.getUserID(), FinalContents.getUserID());
+            }else {
+                userMessage1 = fzbInterface.getRatioByOwnerId(FinalContents.getUserID(), FinalContents.getOwnerId001());
+            }
+            userMessage1.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<RatioByOwnerIdBean>() {
                         @Override
@@ -468,9 +478,9 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                     Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
                 } else {
                     if (txt.getVisibility() == View.VISIBLE) {
-                        loginFlag = "1";
-                    } else {
                         loginFlag = "0";
+                    } else {
+                        loginFlag = "1";
                     }
                     userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getOwnerId001(), type, "");
                     userMessage.subscribeOn(Schedulers.io())
@@ -490,7 +500,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                                         FinalContents.setOwnerId001("");
                                         FinalContents.setOwnerId002("");
                                         finish();
-                                    }else {
+                                    } else {
 
                                     }
                                 }
@@ -516,7 +526,11 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                 } else {
                     loginFlag = "0";
                 }
-                userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getUserID(), type, "");
+                if(FinalContents.getIdentity().equals("60")){
+                    userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getOwnerId001(), type, "");
+                }else {
+                    userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getUserID(), type, "");
+                }
                 userMessage.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Observer<BrokerSaveBean>() {
@@ -534,7 +548,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                                     FinalContents.setOwnerId001("");
                                     FinalContents.setOwnerId002("");
                                     finish();
-                                }else {
+                                } else {
 
                                 }
                             }
