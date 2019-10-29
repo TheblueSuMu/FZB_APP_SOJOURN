@@ -149,6 +149,16 @@ public class FinalContents {
 
     static String DengDao = "";
 
+    static String VersionNumBer = "v1.0.0";
+
+    public static String getVersionNumBer() {
+        return VersionNumBer;
+    }
+
+    public static void setVersionNumBer(String versionNumBer) {
+        VersionNumBer = versionNumBer;
+    }
+
     static boolean luo = true;
 
     public static boolean isLuo() {
