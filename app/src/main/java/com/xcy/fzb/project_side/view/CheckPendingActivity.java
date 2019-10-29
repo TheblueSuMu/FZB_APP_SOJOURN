@@ -214,7 +214,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                 } else if (s.equals("修改认筹信息")) {
                     intent = new Intent(CheckPendingActivity.this, ModifyTheRecognitionToRaiseActivity.class);
                 } else if (s.equals("修改成交信息")) {
-                    intent = new Intent(CheckPendingActivity.this, FillInTransactionInformationActivity.class);
+                    intent = new Intent(CheckPendingActivity.this, VisitingScheduleActivity.class);
                     FinalContents.setTiaodan("调单");
                 }
                 startActivity(intent);

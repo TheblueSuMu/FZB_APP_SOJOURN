@@ -99,21 +99,11 @@ public class Project_Side_HomeRecyclerAdapter extends RecyclerView.Adapter<Proje
 
         if(beanList.get(position).getProjectType().equals("2")){
             holder.price.setText(beanList.get(position).getReferenceToatlPrice());
-            holder.price_money.setVisibility(View.GONE);
+            holder.price_money.setText(beanList.get(position).getReferenceToatlUnit());
         }else if(beanList.get(position).getProjectType().equals("3")){
             holder.price.setText(beanList.get(position).getProductUnitPrice());
             holder.price_money.setText(beanList.get(position).getMonetaryUnit());
         }
-
-
-//        if (beanList.get(position).getReferenceToatlPrice().equals("")) {
-//            holder.price.setText(beanList.get(position).getProductUnitPrice());
-//            holder.price_money.setText(beanList.get(position).getMonetaryUnit());
-//        }else {
-//            holder.price.setText(beanList.get(position).getProductTotalPrice());
-//            holder.price_money.setText(beanList.get(position).getMonetaryUnit());
-//        }
-
 
 
         holder.square.setText(beanList.get(position).getAreaInterval());

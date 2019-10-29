@@ -235,6 +235,7 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
                     @Override
                     public void onNext(DiscussBean discussBean) {
                         Toast.makeText(ReleaseActivity.this, discussBean.getMsg(), Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                     @Override
@@ -247,13 +248,6 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
 
                     }
                 });
-
-
-//        if (substring.equals("1")) {
-//            Toast.makeText(this, "发布成功", Toast.LENGTH_SHORT).show();
-//        } else {
-//            Toast.makeText(this, "没有获取到数据", Toast.LENGTH_SHORT).show();
-//        }
     }
 
     @Override
@@ -265,7 +259,6 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
                 break;
             case R.id.release_fb:
                 initData();
-                finish();
                 break;
         }
     }

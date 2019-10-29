@@ -94,14 +94,14 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
         holder.collect.setText(Html.fromHtml("收藏(" + "<font color='#A52A2A'>" + beanList.get(position).getCollectionNum() + "</font>"+")"));
         holder.transmit.setText(Html.fromHtml("转发(" + "<font color='#A52A2A'>" + beanList.get(position).getForwardingAmount() + "</font>"+")"));
 
-
-        if (beanList.get(position).getReferenceToatlPrice().equals("")) {
+        if(beanList.get(position).getProjectType().equals("2")){
+            holder.price.setText(beanList.get(position).getReferenceToatlPrice());
+            holder.price_money.setText(beanList.get(position).getReferenceToatlUnit());
+        }else if(beanList.get(position).getProjectType().equals("3")){
             holder.price.setText(beanList.get(position).getProductUnitPrice());
             holder.price_money.setText(beanList.get(position).getMonetaryUnit());
-        }else {
-            holder.price.setText(beanList.get(position).getProductTotalPrice());
-            holder.price_money.setText(beanList.get(position).getMonetaryUnit());
         }
+
         holder.square.setText(beanList.get(position).getAreaInterval());
         holder.commission.setText("佣金："+beanList.get(position).getCommission());
         holder.second.setText("秒结："+beanList.get(position).getSecondPay());

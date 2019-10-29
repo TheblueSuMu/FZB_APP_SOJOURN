@@ -98,6 +98,7 @@
             <LinearLayout
                 android:id="@+id/the_project_end_ll5"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -126,6 +127,7 @@
                 android:id="@+id/the_project_end_ll7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
