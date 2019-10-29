@@ -149,6 +149,16 @@ public class FinalContents {
 
     static String DengDao = "";
 
+    static boolean luo = true;
+
+    public static boolean isLuo() {
+        return luo;
+    }
+
+    public static void setLuo(boolean luo) {
+        FinalContents.luo = luo;
+    }
+
     public static String getDengDao() {
         return DengDao;
     }

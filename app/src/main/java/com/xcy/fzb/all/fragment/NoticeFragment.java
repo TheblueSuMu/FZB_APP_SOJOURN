@@ -120,6 +120,12 @@ public class NoticeFragment extends Fragment {
         notice_rv = getActivity().findViewById(R.id.notice_rv);
         all_no_information = getActivity().findViewById(R.id.all_no_information);
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         notice_rv.setLayoutManager(manager);
