@@ -145,7 +145,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
 
         initDataUp();
         s = my_brokerage_et.getText().toString();
-        initDataDown("1", s);
+        initDataDown("3", s);
 
     }
 
