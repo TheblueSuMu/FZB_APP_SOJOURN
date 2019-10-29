@@ -149,6 +149,18 @@
                 android:textColor="#ff999999"
                 android:textSize="12sp"
                 android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/item_commission_list_tv12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="right"
+                android:text=""
+                android:lines="1"
+                android:textColor="#ffc3555b"
+                android:textSize="12sp"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 
