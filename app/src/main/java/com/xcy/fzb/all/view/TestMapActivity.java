@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -60,6 +61,8 @@ public class TestMapActivity extends AppCompatActivity {
     private LatLng ll;
     private MyLocationData locData;
 
+    Button map_sendmap_btn;
+
     RelativeLayout text_map_rl;
     ImageView text_map_img;
 
@@ -104,6 +107,15 @@ public class TestMapActivity extends AppCompatActivity {
             public void onClick(View v) {
                 text_map_rl.setVisibility(View.GONE);
                 text_map_img.setVisibility(View.GONE);
+            }
+        });
+
+        map_sendmap_btn = findViewById(R.id.map_sendmap_btn);
+
+        map_sendmap_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendMessage();
             }
         });
 
@@ -257,7 +269,7 @@ public class TestMapActivity extends AppCompatActivity {
     /**
      * 发送按钮的点击事件
      */
-    public void sendMessage(View v) {
+    public void sendMessage() {
 
         if (mlocation == null || mMapView == null) {
             Toast.makeText(TestMapActivity.this, "点击了发送按钮", Toast.LENGTH_SHORT).show();
