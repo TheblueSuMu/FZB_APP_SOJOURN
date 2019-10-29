@@ -86,39 +86,40 @@ public class BackToRaiseThatActivity extends AllActivity {
                 if (message.equals("")) {
                     Toast.makeText(BackToRaiseThatActivity.this, "请填写退筹说明内容", Toast.LENGTH_SHORT).show();
                     return;
+                }else {
+                    Retrofit.Builder builder = new Retrofit.Builder();
+                    builder.baseUrl(FinalContents.getBaseUrl());
+                    builder.addConverterFactory(GsonConverterFactory.create());
+                    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                    Retrofit build = builder.build();
+                    MyService fzbInterface = build.create(MyService.class);
+                    Observable<BackToBean> teamMemberBeane = fzbInterface.getRefundMoneyApply(FinalContents.getPreparationId(),message,FinalContents.getUserID());
+                    teamMemberBeane.subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<BackToBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+
+                                }
+
+                                @Override
+                                public void onNext(BackToBean backToBean) {
+                                    Toast.makeText(BackToRaiseThatActivity.this,backToBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.i("MyCL", "TeamMemberActivity错误信息：" + e.getMessage());
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
                 }
 
-                Retrofit.Builder builder = new Retrofit.Builder();
-                builder.baseUrl(FinalContents.getBaseUrl());
-                builder.addConverterFactory(GsonConverterFactory.create());
-                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                Retrofit build = builder.build();
-                MyService fzbInterface = build.create(MyService.class);
-                Observable<BackToBean> teamMemberBeane = fzbInterface.getRefundMoneyApply(FinalContents.getPreparationId(),message,FinalContents.getUserID());
-                teamMemberBeane.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<BackToBean>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
-
-                            }
-
-                            @Override
-                            public void onNext(BackToBean backToBean) {
-                                Toast.makeText(BackToRaiseThatActivity.this,backToBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                Log.i("MyCL", "TeamMemberActivity错误信息：" + e.getMessage());
-                            }
-
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        });
             }
         });
     }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,12 +44,6 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
     public void onBindViewHolder(@NonNull final TheProjectEndCommissionViewHolder holder, final int position) {
 
         if (FinalContents.getIdentity().equals("63")) {
-
-            /**
-             * the_project_end_title   the_project_end_name   the_project_end_time   the_project_end_bargain_time    the_project_end_company
-             *  1 3 4
-             *  totalAmount  alreadyAmount  notAmount
-             */
 
             holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "[" + rowsBeanList.get(position).getCustomerPhone() + "]");
             holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
