@@ -145,20 +145,19 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
             if(tdz.equals("1")){
                 team_member_ll2.setVisibility(View.VISIBLE);
                 team_member_ll4.setVisibility(View.GONE);
+                string1 = "添加销售";
+                string2 = "批量修改销售级别";
                 initData("", "2", "");
             }else if(tdz.equals("2")){
                 team_member_ll2.setVisibility(View.GONE);
                 team_member_ll4.setVisibility(View.VISIBLE);
+                string1 = "添加顾问";
+                string2 = "";
                 initData("", "3", "");
             }
         }else {
             initData("", "2", "");
         }
-
-
-
-
-
 
         team_member_et.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -239,6 +238,9 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                 if (FinalContents.getIdentity().equals("61")) {
                     string1 = "添加顾问";
                     string2 = "批量修改顾问级别";
+                }else if(FinalContents.getIdentity().equals("60")){
+                    string1 = "添加顾问";
+                    string2 = "";
                 }
                 FinalContents.setXiaoShou("不");
                 team_member_ll2.setVisibility(View.GONE);
@@ -254,7 +256,6 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                 }
                 break;
         }
-
     }
 
     //TODO 弹窗
@@ -360,7 +361,11 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
 
         final List<String> list = new ArrayList<>();
         list.add(string1);
-        list.add(string2);
+        if (string2.equals("")) {
+
+        }else {
+            list.add(string2);
+        }
 
         Captain_Team_PopAdapter popAdapter = new Captain_Team_PopAdapter(list);
         recyclerView.setAdapter(popAdapter);

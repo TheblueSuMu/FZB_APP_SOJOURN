@@ -239,17 +239,7 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
         loginName = add_aconsultant_et4.getText().toString();
         password = add_aconsultant_et5.getText().toString();
 
-        if (add_team_rb1.isChecked()) {
-            manageFlag = "1";
-        } else if (add_team_rb2.isChecked()) {
-            manageFlag = "0";
-        }
 
-        if (txt.getVisibility() == View.VISIBLE) {
-            loginFlag = "1";
-        } else {
-            loginFlag = "0";
-        }
         Log.i("修改团队长", "ID++:" + FinalContents.getRatioId());
 
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -275,6 +265,19 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
         if (add_aconsultant_et1.getText().equals("") || add_aconsultant_et2.getText().equals("") || add_aconsultant_et3.getText().equals("") || loginName.equals("") || add_aconsultant_tv3.getText().equals("")) {
             Toast.makeText(Assistant_Addteam_Activity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
         } else {
+
+            if (add_team_rb1.isChecked()) {
+                manageFlag = "1";
+            } else if (add_team_rb2.isChecked()) {
+                manageFlag = "0";
+            }
+
+            if (txt.getVisibility() == View.VISIBLE) {
+                loginFlag = "0";
+            } else {
+                loginFlag = "1";
+            }
+
             Observable<BrokerSaveBean> userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), "", FinalContents.getUserID(), type, FinalContents.getRatioId());
             userMessage.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
