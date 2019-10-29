@@ -37,12 +37,24 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
     public void onBindViewHolder(@NonNull TheProjectEndCommissionViewHolder holder, int position) {
 
         holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "(" + rowsBeanList.get(position).getCustomerPhone() + ")");
-        holder.the_project_end_name.setText(rowsBeanList.get(position).getRoomNumber());
-        holder.the_project_end_time.setText(rowsBeanList.get(position).getProjectName());
-        holder.the_project_end_dong.setText(rowsBeanList.get(position).getTradeDate());
+        holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
+        holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
+        holder.the_project_end_dong.setText("成交时间："+rowsBeanList.get(position).getTradeDate());
+        holder.the_project_end_people.setText(rowsBeanList.get(position).getAgentName() + "(" + rowsBeanList.get(position).getAgentPhone() + ")");
 
         holder.the_project_end_tv1.setVisibility(View.VISIBLE);
         holder.the_project_end_tv1.setText("总佣金：" + rowsBeanList.get(position).getTotalAmount());
+
+
+        if (rowsBeanList.get(position).getMoneyStatus() == 0) {
+            holder.the_project_end_img.setVisibility(View.GONE);
+        } else if (rowsBeanList.get(position).getMoneyStatus() == 1) {
+            holder.the_project_end_img.setVisibility(View.VISIBLE);
+            holder.the_project_end_img.setBackgroundResource(R.mipmap.tdg);
+        } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {
+            holder.the_project_end_img.setVisibility(View.VISIBLE);
+            holder.the_project_end_img.setBackgroundResource(R.mipmap.tdr);
+        }
 
 //        if (rowsBeanList.get(position).getStatus().equals("1")) {
 //            holder.the_project_end_img1.setVisibility(View.VISIBLE);
@@ -85,6 +97,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         TextView the_project_end_tv6;
         TextView the_project_end_tv7;
         TextView the_project_end_dong;
+        TextView the_project_end_people;
 
         public TheProjectEndCommissionViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,6 +111,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
             the_project_end_tv6 = itemView.findViewById(R.id.the_project_end_tv6);
             the_project_end_tv7 = itemView.findViewById(R.id.the_project_end_tv7);
             the_project_end_dong = itemView.findViewById(R.id.the_project_end_dong);
+            the_project_end_people = itemView.findViewById(R.id.the_project_end_people);
 
         }
     }

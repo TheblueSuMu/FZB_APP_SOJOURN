@@ -45,7 +45,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         if(rowsBeanList.get(position).getTradeDate().equals("")){
             holder.the_project_end_bargain_time.setVisibility(View.GONE);
         }else {
-            holder.the_project_end_bargain_time.setText("结清时间：" + rowsBeanList.get(position).getTradeDate());
+            holder.the_project_end_bargain_time.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
         }
         if (rowsBeanList.get(position).getCompanyName().equals("") && rowsBeanList.get(position).getStoreName().equals("")) {
             holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName());
@@ -64,6 +64,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
             holder.the_project_end_tv2.setVisibility(View.VISIBLE);
             holder.the_project_end_tv2.setText("已结：¥" + rowsBeanList.get(position).getAlreadyAmount());
         }
+
 
         if (rowsBeanList.get(position).getInvoiceMoney().equals("") || rowsBeanList.get(position).getInvoiceMoney().equals("0") || rowsBeanList.get(position).getInvoiceMoney().equals("0.00")) {
             holder.the_project_end_tv3.setVisibility(View.GONE);
@@ -133,6 +134,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         TextView the_project_end_time;
         TextView the_project_end_bargain_time;
         TextView the_project_end_company;
+        TextView the_project_end_tv0;
         TextView the_project_end_tv1;
         TextView the_project_end_tv2;
         TextView the_project_end_tv3;
@@ -151,6 +153,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
             the_project_end_time = itemView.findViewById(R.id.the_project_end_time);
             the_project_end_bargain_time = itemView.findViewById(R.id.the_project_end_bargain_time);
             the_project_end_company = itemView.findViewById(R.id.the_project_end_company);
+            the_project_end_tv0 = itemView.findViewById(R.id.the_project_end_tv0);
             the_project_end_tv1 = itemView.findViewById(R.id.the_project_end_tv1);
             the_project_end_tv2 = itemView.findViewById(R.id.the_project_end_tv2);
             the_project_end_tv3 = itemView.findViewById(R.id.the_project_end_tv3);
