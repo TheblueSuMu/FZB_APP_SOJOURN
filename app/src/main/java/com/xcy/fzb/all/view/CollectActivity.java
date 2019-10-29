@@ -147,10 +147,6 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
     @SuppressLint("WrongConstant")
     private void recyclerViewData(String projectType ) {
 
-        Log.i("bbb", "用户名ID：" + FinalContents.getUserID());
-        Log.i("bbb", "城市ID：" + FinalContents.getCityID());
-        Log.i("bbb", "城市公司ID：" + FinalContents.getCityID());
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -256,7 +252,6 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
                         SharItOff.setShar("隐");
                         Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
                     }
-                    Log.i("MyCL", "摇一摇");
                     if(collect_ll1.getVisibility() == View.VISIBLE){
                         recyclerViewData("3");
                     }else if(collect_ll2.getVisibility() == View.VISIBLE){

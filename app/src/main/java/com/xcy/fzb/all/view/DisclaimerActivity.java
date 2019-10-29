@@ -114,7 +114,6 @@ public class DisclaimerActivity extends AllActivity implements View.OnClickListe
                                 stringBuffer.replace(i-4, i, "\n");
                             }
                         }
-                        Log.i("MyCL", "免责声明：" + content.toLowerCase());
                         disclaimer_message.setText("\t\t\t\t" + stringBuffer.toString());
 
                     }

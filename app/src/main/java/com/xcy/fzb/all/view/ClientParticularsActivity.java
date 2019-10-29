@@ -222,8 +222,6 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
                                 FinalContents.setClientName(clientParticularsBean.getData().getInfoData().getCustomerName());
                                 FinalContents.setCustomerID(clientParticularsBean.getData().getInfoData().getId());
                                 FinalContents.setChecked(true);
-                                Log.i("报备跳转","数据1："+FinalContents.getClientName());
-                                Log.i("报备跳转","数据2："+FinalContents.getCustomerID());
                                 Intent intent = new Intent(ClientParticularsActivity.this, ReportActivity.class);
                                 startActivity(intent);
                             }

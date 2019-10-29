@@ -93,7 +93,6 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
         if (networkAvailable) {
             Intent intent = getIntent();
             String office = ""+intent.getStringExtra("office");
-            Log.i("经纬度","查看地图经纬度"+FinalContents.getO1()+"---"+FinalContents.getD1());
             if (office.equals("1")) {
                 d = FinalContents.getD();
                 o = FinalContents.getO();
@@ -161,17 +160,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-//                if (tab.getText().equals("交通出行")) {
-//                    initTestBtn("交通出行");
-//                } else if (tab.getText().equals("教育教学")) {
-//                    initTestBtn("教育教学");
-//                } else if (tab.getText().equals("医疗健康")) {
-//                    initTestBtn("医疗健康");
-//                } else if (tab.getText().equals("商场购物")) {
-//                    initTestBtn("商场购物");
-//                } else if (tab.getText().equals("生活娱乐")) {
-//                    initTestBtn("生活娱乐");
-//                }
+
             }
         });
 
@@ -215,9 +204,6 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
         new Thread(new Runnable() {
             @Override
             public void run() {
-//                Log.i("Map","o：" + o);
-//                Log.i("Map","d：" + d);
-//                Log.i("Map","RetrieveName：" + RetrieveName);
                 mPoiSearch.searchNearby(new PoiNearbySearchOption()
                         .location(new LatLng(o, d))
                         .radius(10000)

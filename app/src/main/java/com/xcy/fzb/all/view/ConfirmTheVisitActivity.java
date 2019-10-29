@@ -350,7 +350,6 @@ public class ConfirmTheVisitActivity extends AllActivity {
         //TODO  获取相册图片地址
         sum++;
         if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
-            Log.e("MyCL", "ActivityResult resultCode error");
             return;
         }
         bm = null;
@@ -367,12 +366,10 @@ public class ConfirmTheVisitActivity extends AllActivity {
 
                 Uri originalUri = data.getData();        //获得图片的uri
 
-                Log.i("MyCL", "图片uri" + originalUri);
                 bm = MediaStore.Images.Media.getBitmap(resolver, originalUri);        //显得到bitmap图片
                 long l = System.currentTimeMillis();
 //TODO bitmap图片转换成file类型的 start
                 final File san = saveFile(bm, "" + l + ".png");
-                Log.i("MyCL", "Uri图片转换成file类型的：" + san);
 
                 new Thread() {
                     @Override
@@ -390,7 +387,6 @@ public class ConfirmTheVisitActivity extends AllActivity {
                         MultipartBody.Part part = MultipartBody.Part.createFormData("file", san.getName(), requestBody);
 
                         Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "feed", part);
-                        Log.i("MyCL", "addPhoto：" + addPhoto.toString());
                         addPhoto.subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(new Observer<AddPhotoBean>() {
@@ -406,7 +402,6 @@ public class ConfirmTheVisitActivity extends AllActivity {
                                         } else {
                                             stringBuffer.append("|" + addPhotoBean.getData().getUrl());
                                         }
-                                        Log.i("MyCL", "解析完成后图片路径：" + stringBuffer.toString());
                                         mDatas.add(addPhotoBean.getData().getUrl());
 
                                         adapter.notifyDataSetChanged();
@@ -445,7 +440,6 @@ public class ConfirmTheVisitActivity extends AllActivity {
 
                 String path = cursor.getString(column_index);
             } catch (IOException e) {
-                Log.e("MyCL", e.toString());
             }
 
         }
@@ -507,7 +501,6 @@ public class ConfirmTheVisitActivity extends AllActivity {
                     MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
 
                     Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "feed", part);
-                    Log.i("MyCL", "addPhoto：" + addPhoto.toString());
                     addPhoto.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(new Observer<AddPhotoBean>() {
@@ -523,7 +516,6 @@ public class ConfirmTheVisitActivity extends AllActivity {
                                     } else {
                                         stringBuffer.append("|" + addPhotoBean.getData().getUrl());
                                     }
-                                    Log.i("MyCL", "解析完成后图片路径：" + stringBuffer.toString());
                                     mDatas.add(addPhotoBean.getData().getUrl());
                                     adapter.notifyDataSetChanged();
                                 }

@@ -258,8 +258,6 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("返回的信息","数据："+ FinalContents.getChengJao());
-        Log.i("返回的信息","数据2："+FinalContents.getTiaozhuang());
 
         if (FinalContents.getTiaozhuang().equals("登岛成功")) {
             myClientFragment4 = new MyClientFragment4();
@@ -314,13 +312,11 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
             my_client_11_13.setVisibility(View.INVISIBLE);
             my_client_11_14.setVisibility(View.VISIBLE);
         } else if (FinalContents.getTiaozhuang().equals("成交")){
-            Log.i("成交123","跳转到成交页");
             myClientFragment6 = new MyClientFragment6();
             manager = getSupportFragmentManager();
             transaction = manager.beginTransaction();
             transaction.replace(R.id.my_client_fl, myClientFragment6);
             transaction.commit();
-            Log.i("成交123","跳转到成交");
 
             my_client_11_9.setVisibility(View.INVISIBLE);
             my_client_11_10.setVisibility(View.INVISIBLE);
@@ -334,7 +330,6 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
             transaction = manager.beginTransaction();
             transaction.replace(R.id.my_client_fl, myClientFragment6);
             transaction.commit();
-            Log.i("成交123","跳转到调单");
 
             my_client_11_9.setVisibility(View.INVISIBLE);
             my_client_11_10.setVisibility(View.INVISIBLE);

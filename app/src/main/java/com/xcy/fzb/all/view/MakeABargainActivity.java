@@ -101,8 +101,6 @@ public class MakeABargainActivity extends AllActivity implements View.OnClickLis
 
     private void initData() {
 
-        Log.i("MyCL", "getCustomerId：" + FinalContents.getCustomerID());
-        Log.i("MyCL", "userID：" + FinalContents.getUserID());
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -155,35 +153,6 @@ public class MakeABargainActivity extends AllActivity implements View.OnClickLis
                     }
                 });
 
-//        String url = FinalContents.getBaseUrl()+"commonSelect/customerDetails?userId=" + FinalContents.getUserID() + "&customerId=" + FinalContents.getCustomerID();
-//
-//        OkHttpPost okHttpPost = new OkHttpPost(url);
-//        String data = okHttpPost.post();
-//
-//        Gson gson = new Gson();
-//        MakeABargainBean makeABargainBean = gson.fromJson(data, MakeABargainBean.class);
-//        infoData = makeABargainBean.getData().getInfoData();
-//
-//        Glide.with(this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(make_a_bargain_img1);
-//        make_a_bargain_tv1.setText(infoData.getCustomerName());
-//        listData = makeABargainBean.getData().getListData();
-//        make_a_bargain_tv2.setText(listData.get(0).getProjectName());
-//        make_a_bargain_tv3.setText(listData.get(0).getAttacheList().get(0).getName() + "[" + listData.get(0).getAttacheList().get(0).getPhone() + "]");
-//
-//        if(listData.size() == 1){
-//            make_a_bargain_tv4.setText("");
-//            make_a_bargain_tv5.setText("");
-//            make_a_bargain_tv6.setText("");
-//            make_a_bargain_tv7.setText("");
-//        }else {
-//            //        make_a_bargain.setText();
-//            make_a_bargain_tv5.setText(listData.get(1).getAttacheList().get(0).getName());
-//            make_a_bargain_tv6.setText(listData.get(1).getAttacheList().get(0).getPhone());
-////        make_a_bargain.setText("");
-//        }
-//
-//        initRV();
-
     }
 
     @SuppressLint("WrongConstant")
@@ -196,17 +165,6 @@ public class MakeABargainActivity extends AllActivity implements View.OnClickLis
         adapter = new MakeABargainAdapter();
         adapter.setListData(listData);
 
-
-//        for (int i = 0; i < listData.size(); ++i) {
-//            List<FailureBean.DataBean.ListDataBean.ListMapBean> listMap = listData.get(i).getListMap();
-//            Log.i("MyCL", listData.get(i).getStatusName());
-//            list.add(listData.get(i).getStatusName());
-////            for (int j = 0; j < listMap.size(); ++j){
-////                Log.i("MyCL",listMap.get(j).getValue());
-////            }
-//
-//        }
-//        adapter.setList(list);
         make_a_bargain_rv.setAdapter(adapter);
     }
 

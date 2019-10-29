@@ -386,6 +386,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:singleLine="true"
+                        android:maxLength="11"
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
 

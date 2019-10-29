@@ -208,7 +208,6 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
     @Override
     public void pingClick(int position) {
         FinalContents.setTargetId(list.get(position).getId());
-        Log.i("MyCL", "ID：" + list.get(position).getId());
         Intent intent = new Intent(BuildingDynamicActivity.this, MessageCommentActivity.class);
         intent.putExtra("headPortrait", list.get(position).getCreateBy().getPhoto());
         intent.putExtra("title", list.get(position).getCreateBy().getName());
@@ -232,9 +231,7 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
             String UrlImage = list.get(position).getImgUrl();
             final String[] a  = list.get(position).getImgUrl().split("[|]");
             for (int i = 0; i < a.length; i++){
-                Log.i("分割图片","图片："+ a[i]);
                 final  int finalI = i;
-                Log.i("分割图片","图片151："+imgURl);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -242,7 +239,6 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
                         imgURl = "http://39.98.173.250:8080" + url;
                         mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
                         Bitmap bp = returnBitMap(imgURl);
-                        Log.i("MyCL", "bp：" + bp);
                         saveImageToPhotos(BuildingDynamicActivity.this, bp);
                     }
                 }).start();
@@ -332,30 +328,19 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
     public final static Bitmap returnBitMap(String url) {
         URL myFileUrl;
         Bitmap bitmap = null;
-        Log.i("MyCL", "1");
         try {
             myFileUrl = new URL(url);
-            Log.i("MyCL", "2");
             HttpURLConnection conn;
-            Log.i("MyCL", "3");
             conn = (HttpURLConnection) myFileUrl.openConnection();
-            Log.i("MyCL", "4");
             conn.setDoInput(true);
-            Log.i("MyCL", "5");
             conn.connect();
-            Log.i("MyCL", "6");
             InputStream is = conn.getInputStream();
-            Log.i("MyCL", "7");
             bitmap = BitmapFactory.decodeStream(is);
-            Log.i("MyCL", "8");
         } catch (MalformedURLException e) {
-            Log.i("MyCL", "9");
             e.printStackTrace();
         } catch (IOException e) {
-            Log.i("MyCL", "10");
             e.printStackTrace();
         }
-        Log.i("MyCL", "11");
         return bitmap;
     }
 }
