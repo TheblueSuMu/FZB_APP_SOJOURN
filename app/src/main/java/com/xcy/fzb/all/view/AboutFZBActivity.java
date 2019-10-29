@@ -150,7 +150,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        final Observable<AppPackageBean> appPackage = fzbInterface.getAppPackage("android","com.xcy.fzb", "v1.0.0");
+        final Observable<AppPackageBean> appPackage = fzbInterface.getAppPackage("android","com.xcy.fzb",  FinalContents.getVersionNumBer());
         appPackage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<AppPackageBean>() {
