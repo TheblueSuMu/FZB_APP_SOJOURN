@@ -305,5 +305,15 @@ public class EFragment extends AllFragment implements View.OnClickListener {
         initUserMessage();
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            onResume();
+            //TODO now invisible to user 显示fragment
+        }
+    }
 
 }

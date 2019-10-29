@@ -168,4 +168,5 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
         }
         transaction.commit();
     }
+
 }
