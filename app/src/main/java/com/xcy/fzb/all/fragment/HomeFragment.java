@@ -126,9 +126,7 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
         fvbId(view);
         mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-
-
-
+        tvBanner();
         return view;
     }
 

@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.persente.StatusBar;
 
 //TODO 消息界面
 public class MessageFragment extends Fragment implements View.OnClickListener {
@@ -169,4 +169,14 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
         transaction.commit();
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            dynamicFragment.onResume();
+            //TODO now invisible to user 显示fragment
+        }
+    }
 }

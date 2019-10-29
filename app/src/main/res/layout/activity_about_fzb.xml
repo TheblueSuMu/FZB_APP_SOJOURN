@@ -71,14 +71,14 @@
             android:layout_marginTop="21dp"
             android:src="@mipmap/fzb_down_s"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="当前版本号：V1.0.0"
-            android:textColor="#ff111111"
-            android:textSize="13sp" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="当前版本号：V1.0.0"-->
+<!--            android:textColor="#ff111111"-->
+<!--            android:textSize="13sp" />-->
 
         <LinearLayout
             android:layout_marginTop="28dp"
@@ -117,7 +117,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="已是最新版本V1.0.0"
+                android:text="当前版本V1.0.0"
                 android:textColor="#ff999999"
                 android:textSize="13sp" />
         </RelativeLayout>

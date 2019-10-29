@@ -77,27 +77,48 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
     public void process(String str) {
         if (str != null) {
             if (str.equals("0")) {
+                init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
-                messageFragment.setType("2");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                MessageFragment messageFragment = new MessageFragment();
+                message_fragment.setType("2");
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(home_fragment);
+                transaction.hide(dFragment);
+                transaction.show(message_fragment);
+                transaction.hide(eFragment);
+
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("2")) {
+                init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
-                messageFragment.setType("3");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                MessageFragment messageFragment = new MessageFragment();
+                message_fragment.setType("3");
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(home_fragment);
+                transaction.hide(dFragment);
+                transaction.show(message_fragment);
+                transaction.hide(eFragment);
+
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("5")) {
+                init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
-                messageFragment.setType("4");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                MessageFragment messageFragment = new MessageFragment();
+                message_fragment.setType("4");
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(home_fragment);
+                transaction.hide(dFragment);
+                transaction.show(message_fragment);
+                transaction.hide(eFragment);
+
                 transaction.commit();
                 button_message.setChecked(true);
             }

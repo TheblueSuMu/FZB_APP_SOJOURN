@@ -68,20 +68,7 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
                     holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
                     holder.item_commission_list_tv9.setText("未结：￥" + rows.get(position).getNotAmount() + "");
                 }
-
-                holder.item_commission_list_tv6.setVisibility(View.VISIBLE);
-                holder.item_commission_list_tv7.setVisibility(View.VISIBLE);
-                holder.item_commission_list_tv8.setVisibility(View.VISIBLE);
-                holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
-
-
-
             } else if (rows.get(position).getMoneyStatus() == 1) {
-
-                holder.item_commission_list_tv6.setVisibility(View.VISIBLE);
-                holder.item_commission_list_tv7.setVisibility(View.VISIBLE);
-                holder.item_commission_list_tv8.setVisibility(View.VISIBLE);
-                holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
 
                 if (rows.get(position).getTotalAmount().equals("") || rows.get(position).getTotalAmount().equals("0") || rows.get(position).getTotalAmount().equals("0.00")) {
                     holder.item_commission_list_tv6.setVisibility(View.GONE);
@@ -110,6 +97,22 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
                     holder.item_commission_list_tv9.setText("未结：￥" + rows.get(position).getNotAmount() + "");
                 }
                 holder.item_commission_list_img.setImageResource(R.mipmap.tdg);
+                if (rows.get(position).getReturnedMoney().equals("") || rows.get(position).getReturnedMoney().equals("0") || rows.get(position).getReturnedMoney().equals("0.00") ) {
+                    holder.item_commission_list_tv12.setVisibility(View.GONE);
+                }else {
+                    holder.item_commission_list_tv12.setVisibility(View.VISIBLE);
+                    holder.item_commission_list_tv12.setText("需退还："+rows.get(position).getReturnedMoney());
+                }
+
+                if (rows.get(position).getStatus().equals("0")) {
+                    holder.item_commission_list_tv10.setVisibility(View.GONE);
+                    holder.item_commission_list_tv11.setVisibility(View.GONE);
+                } else if (rows.get(position).getStatus().equals("1")) {
+                    holder.item_commission_list_tv10.setVisibility(View.VISIBLE);
+                    holder.item_commission_list_tv11.setVisibility(View.VISIBLE);
+                    holder.item_commission_list_tv11.setText("结清时间："+rows.get(position).getClosingTime());
+                }
+
             } else if (rows.get(position).getMoneyStatus() == 2) {
 
                 holder.item_commission_list_tv6.setVisibility(View.GONE);
@@ -137,6 +140,17 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
             holder.item_commission_list_tv11.setText("结清时间：" + rows.get(position).getClosingTime() + "");
         }
 
+        if (rows.get(position).getMoneyStatus() == 0) {
+            holder.item_commission_list_img.setVisibility(View.GONE);
+        } else if (rows.get(position).getMoneyStatus() == 1) {
+            holder.item_commission_list_img.setVisibility(View.VISIBLE);
+            holder.item_commission_list_img.setBackgroundResource(R.mipmap.tdg);
+        } else if (rows.get(position).getMoneyStatus() == 2) {
+            holder.item_commission_list_img.setVisibility(View.VISIBLE);
+            holder.item_commission_list_img.setBackgroundResource(R.mipmap.tdr);
+
+        }
+
     }
 
     @Override
@@ -157,7 +171,7 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
         TextView item_commission_list_tv9;
         TextView item_commission_list_tv10;
         TextView item_commission_list_tv11;
-
+        TextView item_commission_list_tv12;
         ImageView item_commission_list_img;
 
         public CommissionListViewHolder(@NonNull View itemView) {
@@ -174,6 +188,7 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
             item_commission_list_tv9 = itemView.findViewById(R.id.item_commission_list_tv9);
             item_commission_list_tv10 = itemView.findViewById(R.id.item_commission_list_tv10);
             item_commission_list_tv11 = itemView.findViewById(R.id.item_commission_list_tv11);
+            item_commission_list_tv12 = itemView.findViewById(R.id.item_commission_list_tv12);
 
             item_commission_list_img = itemView.findViewById(R.id.item_commission_list_img);
         }

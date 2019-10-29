@@ -58,9 +58,13 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
         holder.brokerage_item_projectName.setText(rows.get(position).getProjectName());
         holder.brokerage_item_ziji.setText("自己");
         holder.brokerage_item_tradeDat.setText(rows.get(position).getTradeDate() + "");
-        holder.brokerage_item_totalAmount.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
 
-
+        if (rows.get(position).getTotalAmount().equals("") || rows.get(position).getTotalAmount().equals("0") || rows.get(position).getTotalAmount().equals("0.00")) {
+            holder.brokerage_item_totalAmount.setVisibility(View.GONE);
+        }else {
+            holder.brokerage_item_totalAmount.setVisibility(View.VISIBLE);
+            holder.brokerage_item_totalAmount.setText("总佣金：￥" + rows.get(position).getTotalAmount());
+        }
 
         if (rows.get(position).getSecondsAmount().equals("")  || rows.get(position).getSecondsAmount().equals("0") || rows.get(position).getSecondsAmount().equals("0.00")) {
             holder.brokerage_item_secondsAmount.setVisibility(View.VISIBLE);
@@ -108,7 +112,7 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
             holder.brokerage_item_notAmount.setVisibility(View.GONE);
             holder.the_project_end_tv6.setVisibility(View.VISIBLE);
             holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv7.setText(rows.get(position).getClosingTime());
+            holder.the_project_end_tv7.setText("结清时间："+rows.get(position).getClosingTime());
         }
 
         if (rows.get(position).getMoneyStatus() == 0) {
@@ -119,7 +123,6 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
         }else if (rows.get(position).getMoneyStatus() == 2){
             holder.brokerage_item_img.setVisibility(View.VISIBLE);
             holder.brokerage_item_img.setBackgroundResource(R.mipmap.tdr);
-            holder.brokerage_item_totalAmount.setVisibility(View.GONE);
             holder.brokerage_item_alreadyAmount.setVisibility(View.GONE);
             holder.brokerage_item_notAmount.setVisibility(View.GONE);
         }

@@ -112,9 +112,7 @@ public class DynamicFragment extends Fragment {
         StatusBar.makeStatusBarTransparent(getActivity());
 
         view = inflater.inflate(R.layout.fragment_dynamic, container, false);
-        recyclerView = view.findViewById(R.id.dynamic_rv);
-        all_no_information = view.findViewById(R.id.all_no_information);
-        textView = view.findViewById(R.id.dynamic_text);
+
 
         return view;
     }
@@ -122,7 +120,9 @@ public class DynamicFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        recyclerView = view.findViewById(R.id.dynamic_rv);
+        all_no_information = view.findViewById(R.id.all_no_information);
+        textView = view.findViewById(R.id.dynamic_text);
         ptrClassicFrameLayout = (PtrClassicFrameLayout) getActivity().findViewById(R.id.store_house_ptr_frame_11);
         ptrClassicFrameLayout.setPtrHandler(new PtrHandler() {
             @Override

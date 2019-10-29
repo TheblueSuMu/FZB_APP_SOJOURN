@@ -52,7 +52,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     LinearLayout commission_ll4;
 
     CheckBox commission_cb;
-    String ifCheckBox = "0";
+    String ifCheckBox = "";
 
     EditText commission_et;
     private List<CommissionListBean.DataBean.RowsBean> rows;
