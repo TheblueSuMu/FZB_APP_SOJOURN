@@ -33,6 +33,12 @@ public class Captain_Market_MainActivity extends AllActivity implements View.OnC
     private ImageView img_backup;
     private ProgressLayout progressLayout;
 
+
+    ProjectFragment projectFragment = new ProjectFragment();
+    Captain_Team_MyClientFragment myClientFragment = new Captain_Team_MyClientFragment();
+    MessageFragment messageFragment = new MessageFragment();
+    MeFragment meFragment = new MeFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,25 +78,43 @@ public class Captain_Market_MainActivity extends AllActivity implements View.OnC
             if (str.equals("0")) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("2");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(myClientFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("2")) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("3");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(myClientFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("5")) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("4");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(myClientFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
                 transaction.commit();
                 button_message.setChecked(true);
             }
@@ -124,8 +148,17 @@ public class Captain_Market_MainActivity extends AllActivity implements View.OnC
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        ProjectFragment projectFragment = new ProjectFragment();
+
         transaction.add(R.id.main_framelayout,projectFragment);
+        transaction.add(R.id.main_framelayout,myClientFragment);
+        transaction.add(R.id.main_framelayout,messageFragment);
+        transaction.add(R.id.main_framelayout,meFragment);
+
+        transaction.show(projectFragment);
+        transaction.hide(myClientFragment);
+        transaction.hide(messageFragment);
+        transaction.hide(meFragment);
+
         transaction.commit();
     }
 
@@ -139,23 +172,39 @@ public class Captain_Market_MainActivity extends AllActivity implements View.OnC
                 FinalContents.setMySelf("1");
                 FinalContents.setQuanceng("1");
                 FinalContents.setAgentId(FinalContents.getUserID());
-                Captain_Team_MyClientFragment myClientFragment = new Captain_Team_MyClientFragment();
-                transaction.replace(R.id.main_framelayout,myClientFragment);
+
+                transaction.hide(projectFragment);
+                transaction.show(myClientFragment);
+                transaction.hide(messageFragment);
+                transaction.hide(meFragment);
+//                transaction.replace(R.id.main_framelayout,myClientFragment);
                 break;
             case R.id.button_home:
                 init_No_Network();
-                ProjectFragment projectFragment = new ProjectFragment();
-                transaction.replace(R.id.main_framelayout,projectFragment);
+
+                transaction.show(projectFragment);
+                transaction.hide(myClientFragment);
+                transaction.hide(messageFragment);
+                transaction.hide(meFragment);
+//                transaction.replace(R.id.main_framelayout,projectFragment);
                 break;
             case R.id.button_message:
                 init_No_Network();
-                MessageFragment messageFragment = new MessageFragment();
-                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(myClientFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
                 break;
             case R.id.button_me:
                 init_No_Network();
-                MeFragment meFragment = new MeFragment();
-                transaction.replace(R.id.main_framelayout,meFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(myClientFragment);
+                transaction.hide(messageFragment);
+                transaction.show(meFragment);
+//                transaction.replace(R.id.main_framelayout,meFragment);
                 break;
         }
         transaction.commit();

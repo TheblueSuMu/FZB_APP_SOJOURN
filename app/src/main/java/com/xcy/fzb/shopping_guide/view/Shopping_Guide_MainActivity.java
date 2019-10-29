@@ -27,6 +27,11 @@ public class Shopping_Guide_MainActivity extends AllActivity implements View.OnC
     private RadioButton me;
     private ProgressLayout progressLayout;
 
+    ProjectFragment projectFragment = new ProjectFragment();
+    TaskFragment taskFragment = new TaskFragment();
+    MessageFragment messageFragment = new MessageFragment();
+    MeFragment meFragment = new MeFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,35 +70,56 @@ public class Shopping_Guide_MainActivity extends AllActivity implements View.OnC
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                TaskFragment taskFragment = new TaskFragment();
-                transaction.replace(R.id.main_framelayout,taskFragment);
+//                TaskFragment taskFragment = new TaskFragment();
+//                transaction.replace(R.id.main_framelayout,taskFragment);
+
+                transaction.hide(projectFragment);
+                transaction.show(taskFragment);
+                transaction.hide(messageFragment);
+                transaction.hide(meFragment);
+
                 transaction.commit();
                 task.setChecked(true);
             } else if (str.equals("0")) {
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("2");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+                transaction.hide(projectFragment);
+                transaction.hide(taskFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
                 transaction.commit();
                 message.setChecked(true);
             } else if (str.equals("2")) {
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("3");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+                transaction.hide(projectFragment);
+                transaction.hide(taskFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
                 transaction.commit();
                 message.setChecked(true);
             } else if (str.equals("5")) {
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("4");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+                transaction.hide(projectFragment);
+                transaction.hide(taskFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
                 transaction.commit();
                 message.setChecked(true);
             }
@@ -114,8 +140,17 @@ public class Shopping_Guide_MainActivity extends AllActivity implements View.OnC
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        ProjectFragment projectFragment = new ProjectFragment();
+
         transaction.add(R.id.main_framelayout,projectFragment);
+        transaction.add(R.id.main_framelayout,taskFragment);
+        transaction.add(R.id.main_framelayout,messageFragment);
+        transaction.add(R.id.main_framelayout,meFragment);
+
+        transaction.show(projectFragment);
+        transaction.hide(taskFragment);
+        transaction.hide(messageFragment);
+        transaction.hide(meFragment);
+
         transaction.commit();
     }
 
@@ -126,23 +161,36 @@ public class Shopping_Guide_MainActivity extends AllActivity implements View.OnC
         switch (view.getId()) {
             case R.id.main_task:
                 init_No_Network();
-                TaskFragment taskFragment = new TaskFragment();
-                transaction.replace(R.id.main_framelayout,taskFragment);
+
+//                transaction.replace(R.id.main_framelayout,taskFragment);
+                transaction.hide(projectFragment);
+                transaction.show(taskFragment);
+                transaction.hide(messageFragment);
+                transaction.hide(meFragment);
                 break;
             case R.id.main_project:
                 init_No_Network();
-                ProjectFragment projectFragment = new ProjectFragment();
-                transaction.replace(R.id.main_framelayout,projectFragment);
+                transaction.show(projectFragment);
+                transaction.hide(taskFragment);
+                transaction.hide(messageFragment);
+                transaction.hide(meFragment);
+//                transaction.replace(R.id.main_framelayout,projectFragment);
                 break;
             case R.id.main_message:
                 init_No_Network();
-                MessageFragment messageFragment = new MessageFragment();
-                transaction.replace(R.id.main_framelayout,messageFragment);
+                transaction.hide(projectFragment);
+                transaction.hide(taskFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
                 break;
             case R.id.main_me:
                 init_No_Network();
-                MeFragment meFragment = new MeFragment();
-                transaction.replace(R.id.main_framelayout,meFragment);
+                transaction.hide(projectFragment);
+                transaction.hide(taskFragment);
+                transaction.hide(messageFragment);
+                transaction.show(meFragment);
+//                transaction.replace(R.id.main_framelayout,meFragment);
                 break;
         }
         transaction.commit();

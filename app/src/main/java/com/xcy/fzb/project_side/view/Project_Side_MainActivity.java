@@ -31,6 +31,11 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
     private RadioButton me;
     private ProgressLayout progressLayout;
 
+    Project_Side_HomeFragment homeFragment = new Project_Side_HomeFragment();
+    ProjectFragment projectFragment = new ProjectFragment();
+    MessageFragment messageFragment = new MessageFragment();
+    MeFragment meFragment = new MeFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,27 +76,45 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("2");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(homeFragment);
+                transaction.hide(projectFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
                 transaction.commit();
                 message.setChecked(true);
             } else if (str.equals("2")) {
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("3");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(homeFragment);
+                transaction.hide(projectFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
                 transaction.commit();
                 message.setChecked(true);
             } else if (str.equals("5")) {
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
+//                MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("4");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(homeFragment);
+                transaction.hide(projectFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
                 transaction.commit();
                 message.setChecked(true);
             }
@@ -114,8 +137,17 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        Project_Side_HomeFragment homeFragment = new Project_Side_HomeFragment();
+
         transaction.add(R.id.main_framelayout,homeFragment);
+        transaction.add(R.id.main_framelayout,projectFragment);
+        transaction.add(R.id.main_framelayout,messageFragment);
+        transaction.add(R.id.main_framelayout,meFragment);
+
+        transaction.show(homeFragment);
+        transaction.hide(projectFragment);
+        transaction.hide(messageFragment);
+        transaction.hide(meFragment);
+
         transaction.commit();
     }
 
@@ -126,23 +158,35 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
         switch (view.getId()) {
             case R.id.main_home:
                 init_No_Network();
-                Project_Side_HomeFragment homeFragment = new Project_Side_HomeFragment();
-                transaction.replace(R.id.main_framelayout,homeFragment);
+                transaction.show(homeFragment);
+                transaction.hide(projectFragment);
+                transaction.hide(messageFragment);
+                transaction.hide(meFragment);
+//                transaction.replace(R.id.main_framelayout,homeFragment);
                 break;
             case R.id.main_project:
                 init_No_Network();
-                ProjectFragment projectFragment = new ProjectFragment();
-                transaction.replace(R.id.main_framelayout,projectFragment);
+                transaction.hide(homeFragment);
+                transaction.show(projectFragment);
+                transaction.hide(messageFragment);
+                transaction.hide(meFragment);
+//                transaction.replace(R.id.main_framelayout,projectFragment);
                 break;
             case R.id.main_message:
                 init_No_Network();
-                MessageFragment messageFragment = new MessageFragment();
-                transaction.replace(R.id.main_framelayout,messageFragment);
+                transaction.hide(homeFragment);
+                transaction.hide(projectFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
                 break;
             case R.id.main_me:
                 init_No_Network();
-                MeFragment meFragment = new MeFragment();
-                transaction.replace(R.id.main_framelayout,meFragment);
+                transaction.hide(homeFragment);
+                transaction.hide(projectFragment);
+                transaction.hide(messageFragment);
+                transaction.show(meFragment);
+//                transaction.replace(R.id.main_framelayout,meFragment);
                 break;
         }
         transaction.commit();

@@ -61,6 +61,10 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
     private static final int PERMISSION_REQUEST = 1;
     private ProgressLayout progressLayout;
 
+    HomeFragment home_fragment = new HomeFragment();
+    DFragment dFragment = new DFragment();
+    MessageFragment message_fragment = new MessageFragment();
+    EFragment eFragment = new EFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +97,6 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
         }
     }
 
-
     // 3.2 +实现接口，实现回调
     @Override
     public void process(String str) {
@@ -103,7 +106,13 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("2");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(home_fragment);
+                transaction.hide(dFragment);
+                transaction.show(message_fragment);
+                transaction.hide(eFragment);
+
                 transaction.commit();
                 button_economics.setChecked(true);
             } else if (str.equals("2")) {
@@ -111,7 +120,13 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("3");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(home_fragment);
+                transaction.hide(dFragment);
+                transaction.show(message_fragment);
+                transaction.hide(eFragment);
+
                 transaction.commit();
                 button_economics.setChecked(true);
             } else if (str.equals("5")) {
@@ -119,7 +134,13 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
                 FragmentTransaction transaction = manager.beginTransaction();
                 MessageFragment messageFragment = new MessageFragment();
                 messageFragment.setType("4");
-                transaction.replace(R.id.main_framelayout,messageFragment);
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(home_fragment);
+                transaction.hide(dFragment);
+                transaction.show(message_fragment);
+                transaction.hide(eFragment);
+
                 transaction.commit();
                 button_economics.setChecked(true);
             }
@@ -133,8 +154,17 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
         VirturlUtil.assistActivity(findViewById(android.R.id.content));
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        HomeFragment home_fragment = new HomeFragment();
-        transaction.replace(R.id.main_framelayout,home_fragment);
+
+        transaction.add(R.id.main_framelayout,home_fragment);
+        transaction.add(R.id.main_framelayout,dFragment);
+        transaction.add(R.id.main_framelayout,message_fragment);
+        transaction.add(R.id.main_framelayout,eFragment);
+
+        transaction.show(home_fragment);
+        transaction.hide(dFragment);
+        transaction.hide(message_fragment);
+        transaction.hide(eFragment);
+
         transaction.commit();
     }
 
@@ -177,13 +207,19 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
         switch (view.getId()) {
             case R.id.button_home:
                 init_No_Network();
-                HomeFragment home_fragment = new HomeFragment();
-                transaction.replace(R.id.main_framelayout,home_fragment);
+                transaction.show(home_fragment);
+                transaction.hide(dFragment);
+                transaction.hide(message_fragment);
+                transaction.hide(eFragment);
+//                transaction.replace(R.id.main_framelayout,home_fragment);
                 break;
             case R.id.button_message:
                 init_No_Network();
-                DFragment dFragment = new DFragment();
-                transaction.replace(R.id.main_framelayout,dFragment);
+                transaction.hide(home_fragment);
+                transaction.show(dFragment);
+                transaction.hide(message_fragment);
+                transaction.hide(eFragment);
+//                transaction.replace(R.id.main_framelayout,dFragment);
                 break;
             case R.id.button_backup:
                 GetandSaveCurrentImage();
@@ -195,13 +231,19 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
                 break;
             case R.id.button_economics:
                 init_No_Network();
-                MessageFragment message_fragment = new MessageFragment();
-                transaction.replace(R.id.main_framelayout,message_fragment);
+                transaction.hide(home_fragment);
+                transaction.hide(dFragment);
+                transaction.show(message_fragment);
+                transaction.hide(eFragment);
+//                transaction.replace(R.id.main_framelayout,message_fragment);
                 break;
             case R.id.button_me:
                 init_No_Network();
-                EFragment eFragment = new EFragment();
-                transaction.replace(R.id.main_framelayout,eFragment);
+                transaction.hide(home_fragment);
+                transaction.hide(dFragment);
+                transaction.hide(message_fragment);
+                transaction.show(eFragment);
+//                transaction.replace(R.id.main_framelayout,eFragment);
                 break;
         }
         transaction.commit();
