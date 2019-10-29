@@ -100,7 +100,6 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
 //                TODO 检测版本
             case R.id.fzb_jc:
                 Toast.makeText(AboutFZBActivity.this, "已是最新版本", Toast.LENGTH_SHORT).show();
-
                 break;
 //                TODO 免责声明
             case R.id.fzb_mz:
