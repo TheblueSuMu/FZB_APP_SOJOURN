@@ -38,7 +38,7 @@
                     android:layout_marginRight="30dp"
                     android:background="@drawable/project_details_background"
                     android:gravity="center"
-                    android:text="120张"
+                    android:text=""
                     android:textColor="#fff" />
 
                 <LinearLayout
@@ -238,7 +238,7 @@
                         android:paddingLeft="15dp"
                         android:text="拼团"
                         android:textColor="#fff"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"/>
 
                 </RelativeLayout>
 
@@ -248,7 +248,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
                     android:paddingLeft="15dp"
-                    android:text="标题"
+                    android:text=""
                     android:textColor="#000"
                     android:textSize="21sp"
                     android:textStyle="bold" />
@@ -264,7 +264,7 @@
                     android:textScaleX="1.1"
                     android:drawablePadding="10dp"
                     android:paddingLeft="15dp"
-                    android:text="地址"
+                    android:text=""
                     android:textColor="#111"
                     android:textSize="14sp" />
 
@@ -294,7 +294,7 @@
                                 android:id="@+id/project_details_toatl"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="价格"
+                                android:text=""
                                 android:textColor="#ffac1e26"
                                 android:textSize="16sp" />
 
@@ -302,7 +302,7 @@
                                 android:id="@+id/project_details_tary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="单位 "
+                                android:text=" "
                                 android:textColor="#ffac1e26"
                                 android:textSize="12sp" />
 
@@ -346,7 +346,7 @@
                                 android:id="@+id/project_details_unit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="单价"
+                                android:text=""
                                 android:textColor="#ffac1e26"
                                 android:textSize="16sp" />
 
@@ -391,7 +391,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="面积单位 "
+                            android:text=" "
                             android:textColor="#ffac1e26"
                             android:textSize="16sp" />
 
@@ -711,7 +711,7 @@
                         android:layout_height="160dp"
                         android:layout_marginTop="20dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@mipmap/logo_garden" />
 
                     <View
                         android:layout_width="match_parent"

@@ -149,7 +149,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initfvb();
@@ -234,11 +234,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         business_content = findViewById(R.id.project_details_business_content);
 
 
-
         project_details_all = findViewById(R.id.project_details_all);
         project_details_share_all = findViewById(R.id.project_details_share_all);
         project_details_collect_all = findViewById(R.id.project_details_collect_all);
-
 
 
         linear0 = findViewById(R.id.linear0);
@@ -265,8 +263,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         backimg.setOnClickListener(this);
         more.setOnClickListener(this);
         transmit_house.setOnClickListener(this);
-
-
 
 
         location.setOnClickListener(this);
@@ -297,7 +293,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                 pvOptions.show();
             }
         });
-
 
 
         if (FinalContents.getZhuanAn().equals("1")) {
@@ -337,7 +332,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                             @Override
                             public void onError(Throwable e) {
-
+                                Log.i("MyCL", "项目详情错误信息：" + e.getMessage());
                             }
 
                             @Override
@@ -382,7 +377,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                             @Override
                             public void onError(Throwable e) {
-
+                                Log.i("MyCL", "项目详情错误信息：" + e.getMessage());
                             }
 
                             @Override
@@ -536,11 +531,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                     @Override
                     public void onNext(final RemindBean remindBean) {
 
-                        if(remindBean.getMsg().equals("成功")){
+                        if (remindBean.getMsg().equals("成功")) {
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(ProjectDetails.this);
-                            if(i == 1){
+                            if (i == 1) {
                                 builder1.setTitle("变价提醒");
-                            }else {
+                            } else {
                                 builder1.setTitle("开盘提醒");
                             }
                             builder1.setMessage(remindBean.getData().getMessage());
@@ -548,31 +543,31 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 @SuppressLint("ResourceAsColor")
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int posotion) {
-                                    if(i == 1){
+                                    if (i == 1) {
                                         if (remindBean.getData().getMessage().equals("取消订阅")) {
                                             project_details_ding.setTextColor(R.color.colorAppBar);
-                                        } else if (remindBean.getData().getMessage().equals("订阅成功")){
+                                        } else if (remindBean.getData().getMessage().equals("订阅成功")) {
                                             project_details_ding.setTextColor(R.color.textcolor3);
                                         }
-                                    }else {
+                                    } else {
                                         if (remindBean.getData().getMessage().equals("取消订阅")) {
                                             project_details_kai.setTextColor(R.color.colorAppBar);
-                                        } else if (remindBean.getData().getMessage().equals("订阅成功")){
+                                        } else if (remindBean.getData().getMessage().equals("订阅成功")) {
                                             project_details_kai.setTextColor(R.color.textcolor3);
                                         }
                                     }
                                 }
                             });
                             builder1.show();
-                        }else {
-                            Toast.makeText(ProjectDetails.this,remindBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(ProjectDetails.this, remindBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("MyCL","提醒通知错误信息：" + e.getMessage());
+                        Log.i("MyCL", "提醒通知错误信息：" + e.getMessage());
                     }
 
                     @Override
@@ -670,14 +665,14 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         share.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(),"http://test.fangzuobiao.com:88/?userId="+FinalContents.getUserID()+"&id="+FinalContents.getProjectID(),projectDetailsBean.getData().getProjectListVo().getProductFeature(),"http://39.98.173.250:8080"+projectDetailsBean.getData().getProjectListVo().getProjectImg(),"http://test.fangzuobiao.com:88/?userId="+FinalContents.getUserID()+"&id="+FinalContents.getProjectID(),ProjectDetails.this);
+                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), "http://test.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), projectDetailsBean.getData().getProjectListVo().getProductFeature(), "http://39.98.173.250:8080" + projectDetailsBean.getData().getProjectListVo().getProjectImg(), "http://test.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), ProjectDetails.this);
                             }
                         });
 
                         project_details_share_all.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(),"http://test.fangzuobiao.com:88/?userId="+FinalContents.getUserID()+"&id="+FinalContents.getProjectID(),projectDetailsBean.getData().getProjectListVo().getProductFeature(),"http://39.98.173.250:8080"+projectDetailsBean.getData().getProjectListVo().getProjectImg(),"http://test.fangzuobiao.com:88/?userId="+FinalContents.getUserID()+"&id="+FinalContents.getProjectID(),ProjectDetails.this);
+                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), "http://test.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), projectDetailsBean.getData().getProjectListVo().getProductFeature(), "http://39.98.173.250:8080" + projectDetailsBean.getData().getProjectListVo().getProjectImg(), "http://test.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), ProjectDetails.this);
                             }
                         });
 
@@ -694,11 +689,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                             double o1 = Double.parseDouble(tags1.get(1).toString());
                             FinalContents.setO1(o1);
                             FinalContents.setD1(d1);
-                            Log.i("经纬度","查看经纬度"+FinalContents.getO1()+"---"+FinalContents.getD1());
+                            Log.i("经纬度", "查看经纬度" + FinalContents.getO1() + "---" + FinalContents.getD1());
                         }
                         FinalContents.setO(o);
                         FinalContents.setD(d);
-                        Log.i("经纬度","查看项目详情经纬度"+FinalContents.getO()+"---"+FinalContents.getD());
+                        Log.i("经纬度", "查看项目详情经纬度" + FinalContents.getO() + "---" + FinalContents.getD());
 
                         //报备规则
                         if (projectDetailsBeanData.getGuideRules().size() == 0) {
@@ -728,7 +723,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                         if (FinalContents.getIdentity().equals("63")) {
                             linear2.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             //佣金规则
                             if (projectDetailsBeanData.getAmountIncentiveList().size() == 0) {
                                 linear2.setVisibility(View.GONE);
@@ -755,7 +750,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                         if (FinalContents.getIdentity().equals("63")) {
                             linear3.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             if (projectDetailsBeanData.getHousesDynamics().size() == 0) {
                                 linear3.setVisibility(View.GONE);
                             } else {
@@ -823,7 +818,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                         if (projectDetailsBeanData.getBuildingInfoStatus().equals("0")) {
                             linear5.setVisibility(View.GONE);
-                        } else if (projectDetailsBeanData.getBuildingInfoStatus().equals("1")){
+                        } else if (projectDetailsBeanData.getBuildingInfoStatus().equals("1")) {
                             linear5.setVisibility(View.VISIBLE);
                             Glide.with(ProjectDetails.this).load("http://39.98.173.250:8080" + projectDetailsBeanData.getBuildingImg()).into(building);
                             building.setOnClickListener(new View.OnClickListener() {
@@ -839,7 +834,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("error","项目详情内数据错误信息："+e.getMessage());
+                        Log.i("error", "项目详情内数据错误信息：" + e.getMessage());
                     }
 
                     @Override
@@ -854,7 +849,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         builder1.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build1 = builder1.build();
         MyService fzbInterface1 = build1.create(MyService.class);
-        Observable<HouseBean> houseBean = fzbInterface1.getHouseBean(FinalContents.getUserID(), FinalContents.getProjectID(), "0","1000");
+        Observable<HouseBean> houseBean = fzbInterface1.getHouseBean(FinalContents.getUserID(), FinalContents.getProjectID(), "0", "1000");
         houseBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HouseBean>() {
@@ -965,7 +960,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.i("MyCL", "项目详情错误信息：" + e.getMessage());
                     }
 
                     @Override
