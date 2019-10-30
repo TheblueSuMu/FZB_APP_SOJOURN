@@ -301,8 +301,10 @@ public class EFragment extends AllFragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        initClientCommissions();
+//        根据用户Id获取用户信息
         initUserMessage();
+//        我的佣金和客户数量
+        initClientCommissions();
     }
 
     @Override
