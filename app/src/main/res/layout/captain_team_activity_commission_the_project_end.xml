@@ -275,21 +275,14 @@
                android:layout_width="match_parent"
                android:layout_height="match_parent"/>
 
-           <RelativeLayout
-               android:id="@+id/commission_the_project_end_rl"
+           <ImageView
+               android:id="@+id/all_no_information"
+               android:background="#fff"
+               android:visibility="gone"
+               android:src="@mipmap/no_information"
                android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:visibility="gone">
+               android:layout_height="match_parent"/>
 
-               <ImageView
-                   android:id="@+id/all_no_information"
-                   android:background="#fff"
-                   android:visibility="visible"
-                   android:src="@mipmap/no_information"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"/>
-
-           </RelativeLayout>
        </RelativeLayout>
 
    </LinearLayout>

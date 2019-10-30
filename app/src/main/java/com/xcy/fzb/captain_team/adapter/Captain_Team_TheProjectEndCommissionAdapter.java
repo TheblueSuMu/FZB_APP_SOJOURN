@@ -231,7 +231,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                     holder.the_project_end_tv1.setVisibility(View.GONE);
                 }else {
                     holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv1.setText("佣金：￥ " + rowsBeanList.get(position).getTotalAmount());
+                    holder.the_project_end_tv1.setText("总佣金：￥ " + rowsBeanList.get(position).getTotalAmount());
                 }
 
 

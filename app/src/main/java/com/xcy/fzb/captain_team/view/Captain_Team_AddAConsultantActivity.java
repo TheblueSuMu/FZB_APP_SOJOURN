@@ -252,6 +252,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                                 add_aconsultant_tv1.setText(teamMemberBean.getData().getRows().get(options1).getName() + "");
                                 FinalContents.setOwnerId002(teamMemberBean.getData().getRows().get(options1).getId());
                                 add_aconsultant_tv2.setText("");
+                                add_aconsultant_tv3.setText("");
                             }
                         })
                                 .setSelectOptions(0)//设置选择第一个
@@ -314,6 +315,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                                     //              展示选中数据
                                     add_aconsultant_tv2.setText(teamMemberBean.getData().getRows().get(options1).getName() + "");
                                     FinalContents.setOwnerId001(teamMemberBean.getData().getRows().get(options1).getId());
+                                    add_aconsultant_tv3.setText("");
                                 }
                             })
                                     .setSelectOptions(0)//设置选择第一个

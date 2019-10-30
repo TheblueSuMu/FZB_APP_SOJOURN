@@ -266,6 +266,7 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
                                 //              展示选中数据
                                 add_sales_tv1.setText(teamMemberBean.getData().getRows().get(options1).getName() + "");
                                 FinalContents.setOwnerId001(teamMemberBean.getData().getRows().get(options1).getId());
+                                add_sales_tv2.setText("");
                             }
                         })
                                 .setSelectOptions(0)//设置选择第一个
