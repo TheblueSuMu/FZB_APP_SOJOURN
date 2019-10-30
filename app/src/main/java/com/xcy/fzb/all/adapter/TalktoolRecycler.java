@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ProjectDetailsBean;
 import com.xcy.fzb.all.view.ProjectPointsActivity;
 import com.xcy.fzb.all.view.ProjectSellingPointsnActivity;
@@ -41,7 +42,7 @@ public class TalktoolRecycler extends RecyclerView.Adapter<TalktoolRecycler.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(context).load("http://39.98.173.250:8080"+commissionlist.get(position).getImg()).into(holder.imagepic);
+        Glide.with(context).load(FinalContents.getImageUrl()+commissionlist.get(position).getImg()).into(holder.imagepic);
         holder.nameText.setText(commissionlist.get(position).getTypeName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

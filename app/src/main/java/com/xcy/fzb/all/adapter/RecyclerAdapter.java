@@ -65,7 +65,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(context).load("http://39.98.173.250:8080" + beanList.get(position).getProjectImg()).into(holder.imageAvatar);
+        Glide.with(context).load(FinalContents.getImageUrl() + beanList.get(position).getProjectImg()).into(holder.imageAvatar);
         holder.nameText.setText("[" + beanList.get(position).getArea() + "]" + beanList.get(position).getProjectName());
 
         String ids = beanList.get(position).getProductFeature();//从pd里取出字符串

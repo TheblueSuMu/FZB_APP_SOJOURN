@@ -40,7 +40,7 @@ public class IssueAdapter extends RecyclerView.Adapter<IssueAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(context).load("http://39.98.173.250:8080"+beanList.get(position).getCoverImg()).into(holder.imageAvatar);
+        Glide.with(context).load(FinalContents.getImageUrl()+beanList.get(position).getCoverImg()).into(holder.imageAvatar);
         holder.nameText.setText(beanList.get(position).getTitle());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

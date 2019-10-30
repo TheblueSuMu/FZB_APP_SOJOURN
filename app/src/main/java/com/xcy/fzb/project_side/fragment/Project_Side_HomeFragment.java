@@ -267,7 +267,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(UserBean userBean) {
-                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + userBean.getData().getPhoto()).into(img_home_the_project_end);
+                        Glide.with(getActivity()).load(FinalContents.getImageUrl() + userBean.getData().getPhoto()).into(img_home_the_project_end);
                         name_home_the_project_end.setText(userBean.getData().getName());
                         city_home_the_project_end.setText(userBean.getData().getCity());
                         shop_home_the_project_end.setText(userBean.getData().getCityName());

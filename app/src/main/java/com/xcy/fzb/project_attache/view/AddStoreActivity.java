@@ -610,10 +610,10 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         if (FinalContents.getImage1().equals("0")) {
                                             url1 = addPhotoBean.getData().getUrl();
-                                            Glide.with(AddStoreActivity.this).load("http://39.98.173.250:8080" + url1).into(add_broker_img1);
+                                            Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + url1).into(add_broker_img1);
                                         } else if (FinalContents.getImage1().equals("1")) {
                                             url2 = addPhotoBean.getData().getUrl();
-                                            Glide.with(AddStoreActivity.this).load("http://39.98.173.250:8080" + url2).into(add_broker_img2);
+                                            Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + url2).into(add_broker_img2);
                                         }
                                     }
 
@@ -727,10 +727,10 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     if (FinalContents.getImage1().equals("0")) {
                                         url1 = addPhotoBean.getData().getUrl();
-                                        Glide.with(AddStoreActivity.this).load("http://39.98.173.250:8080" + url1).into(add_broker_img1);
+                                        Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + url1).into(add_broker_img1);
                                     } else if (FinalContents.getImage1().equals("1")) {
                                         url2 = addPhotoBean.getData().getUrl();
-                                        Glide.with(AddStoreActivity.this).load("http://39.98.173.250:8080" + url2).into(add_broker_img2);
+                                        Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + url2).into(add_broker_img2);
                                     }
                                     isPhoto = 0;
                                 }

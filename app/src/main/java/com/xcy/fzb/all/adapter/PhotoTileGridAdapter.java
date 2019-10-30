@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.PhotoBean;
 import com.xcy.fzb.all.view.BannerPhotoActivity;
 
@@ -48,12 +49,12 @@ public class PhotoTileGridAdapter extends RecyclerView.Adapter<PhotoTileGridAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
-        Glide.with(context).load("http://39.98.173.250:8080" + list.get(i).getImgPath()).into(viewHolder.imageAvatar);
+        Glide.with(context).load(FinalContents.getImageUrl() + list.get(i).getImgPath()).into(viewHolder.imageAvatar);
         viewHolder.imageAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("下标","图片地址中http://39.98.173.250:8080" + list.get(i).getImgPath());
-                url = "http://39.98.173.250:8080" + list.get(i).getImgPath();
+                url = FinalContents.getImageUrl() + list.get(i).getImgPath();
                 for (int posotion = 0;posotion < array.size();posotion++){
                     if (array.get(posotion).equals(url)) {
                         index = posotion;

@@ -155,9 +155,9 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
                         stringBuffer.append(s);
 
                         if(data.getSysUser().getPhoto().equals("")){
-                            Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getManager().getPhoto()).into(me_photo);
+                            Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getSysUser().getManager().getPhoto()).into(me_photo);
                         }else {
-                            Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getSysUser().getPhoto()).into(me_photo);
+                            Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getSysUser().getPhoto()).into(me_photo);
                         }
 
 

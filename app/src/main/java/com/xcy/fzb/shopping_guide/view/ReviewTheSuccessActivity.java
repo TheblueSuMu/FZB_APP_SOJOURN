@@ -160,7 +160,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
 
                         infoData = myClientFragmentBean.getData().getInfoData();
-                        Glide.with(ReviewTheSuccessActivity.this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(review_the_success_img1);
+                        Glide.with(ReviewTheSuccessActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(review_the_success_img1);
                         review_the_success_tv1.setText(infoData.getCustomerName());
                         processData = myClientFragmentBean.getData().getListData();
                         FinalContents.setJJrID(FinalContents.getUserID());

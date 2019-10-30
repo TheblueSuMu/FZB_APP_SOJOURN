@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.view.BigPhotoActivity;
 
 import java.util.List;
@@ -40,8 +41,8 @@ public class WebAdapter extends RecyclerView.Adapter<WebAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(context).load("http://39.98.173.250:8080" + list.get(position)).into(holder.item_web_adapter_img);
-        Log.i("图片加载","http://39.98.173.250:8080"+ list.get(position));
+        Glide.with(context).load(FinalContents.getImageUrl() + list.get(position)).into(holder.item_web_adapter_img);
+        Log.i("图片加载",FinalContents.getImageUrl()+ list.get(position));
         if (ImageUrl.equals("")) {
         }else {
             holder.item_web_adapter_img.setOnClickListener(new View.OnClickListener() {

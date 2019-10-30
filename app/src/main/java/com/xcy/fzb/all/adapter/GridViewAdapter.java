@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class GridViewAdapter extends BaseAdapter {
         convertView = layoutInflater.inflate(R.layout.grid_item, null);
         mImageView = (ImageView) convertView.findViewById(R.id.item);
         if (position < list.size()) {
-            Glide.with(context).load("http://39.98.173.250:8080" + list.get(position)).into(mImageView);
+            Glide.with(context).load(FinalContents.getImageUrl() + list.get(position)).into(mImageView);
 //            mImageView.setBackgroundResource(list.get(position));
         } else {
             mImageView.setBackgroundResource(R.mipmap.jiatu);//最后一个显示加号图片

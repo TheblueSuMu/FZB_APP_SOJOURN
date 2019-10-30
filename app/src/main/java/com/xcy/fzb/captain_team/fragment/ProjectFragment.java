@@ -204,7 +204,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         home_item_yongjin = view.findViewById(R.id.home_item_yongjin);
         recyclerView = view.findViewById(R.id.home_recycler_vertical);
 
-        all_no_information = view.findViewById(R.id.all_no_information);
+        all_no_information = view.findViewById(R.id.all_no_information_p);
 
         banner = view.findViewById(R.id.home_banner);
 

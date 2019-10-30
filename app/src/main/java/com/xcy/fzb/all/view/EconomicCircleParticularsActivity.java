@@ -255,22 +255,22 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                         for (int i = 0; i < stringBuffer.length(); ++i) {
                             if (stringBuffer.substring(i, i + 1).equals("|")) {
                                 if (sum == 0) {
-                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(0, i)).into(particulars_img_s1);
+                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(0, i)).into(particulars_img_s1);
                                     sum++;
                                 } else if (sum == 1) {
-                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(j, i)).into(particulars_img_s2);
+                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(j, i)).into(particulars_img_s2);
                                     sum++;
                                 } else if (sum == 2) {
-                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(j, i)).into(particulars_img_s3);
+                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(j, i)).into(particulars_img_s3);
                                     sum++;
                                 }
                                 j = i + 1;
                             } else if (sum == 0 && i == stringBuffer.length() - 1) {
-                                Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(0)).into(particulars_img_s1);
+                                Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(0)).into(particulars_img_s1);
                             } else if (sum == 1 && i == stringBuffer.length() - 1) {
-                                Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(j)).into(particulars_img_s2);
+                                Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(j)).into(particulars_img_s2);
                             } else if (sum == 2 && i == stringBuffer.length() - 1) {
-                                Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + stringBuffer.substring(j)).into(particulars_img_s3);
+                                Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(j)).into(particulars_img_s3);
                             }
                         }
 
@@ -293,7 +293,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
 
                         FinalContents.setTargetId(circle.getId());
 //        TODO 头图像
-                        Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + circle.getCreateByPhoto()).into(particulars_buddha);
+                        Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + circle.getCreateByPhoto()).into(particulars_buddha);
 //        TODO 姓名
                         particulars_title.setText(circle.getCreateByName());
                         particulars_time.setText(circle.getCreateDate());
@@ -327,19 +327,19 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                                 num++;
                                 if (num == 1) {
                                     particulars_img_2.setVisibility(View.VISIBLE);
-                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + giveList.get(i).getUser().getPhoto()).into(particulars_img_2);
+                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + giveList.get(i).getUser().getPhoto()).into(particulars_img_2);
                                 } else if (num == 2) {
                                     particulars_img_3.setVisibility(View.VISIBLE);
-                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + giveList.get(i).getUser().getPhoto()).into(particulars_img_3);
+                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + giveList.get(i).getUser().getPhoto()).into(particulars_img_3);
                                 } else if (num == 3) {
                                     particulars_img_4.setVisibility(View.VISIBLE);
-                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + giveList.get(i).getUser().getPhoto()).into(particulars_img_4);
+                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + giveList.get(i).getUser().getPhoto()).into(particulars_img_4);
                                 } else if (num == 4) {
                                     particulars_img_5.setVisibility(View.VISIBLE);
-                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + giveList.get(i).getUser().getPhoto()).into(particulars_img_5);
+                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + giveList.get(i).getUser().getPhoto()).into(particulars_img_5);
                                 } else if (num == 5) {
                                     particulars_img_6.setVisibility(View.VISIBLE);
-                                    Glide.with(EconomicCircleParticularsActivity.this).load("http://39.98.173.250:8080" + giveList.get(i).getUser().getPhoto()).into(particulars_img_6);
+                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + giveList.get(i).getUser().getPhoto()).into(particulars_img_6);
                                 } else if (num >= 6) {
                                     particulars_img_1.setVisibility(View.VISIBLE);
                                 }

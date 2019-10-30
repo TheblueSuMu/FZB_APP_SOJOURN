@@ -105,7 +105,7 @@ public class PhotoTileActivity extends AllActivity {
                     @Override
                     public void onNext(PhotoBean photoBean) {
                         for (int i = 0;i < photoBean.getSlideImgList().size();i++){
-                            array.add("http://39.98.173.250:8080" + photoBean.getSlideImgList().get(i));
+                            array.add(FinalContents.getImageUrl() + photoBean.getSlideImgList().get(i));
                         }
                         List<PhotoBean.DataBean> list = photoBean.getData();
                         LinearLayoutManager layoutManager = new LinearLayoutManager(PhotoTileActivity.this);

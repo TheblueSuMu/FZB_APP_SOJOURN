@@ -80,7 +80,7 @@ public class NickNameActivity extends AllActivity implements View.OnClickListene
                 break;
             case R.id.nick_wc:
                 text = nick_change_name.getText().toString();
-                String url = "http://39.98.173.250:8080/fangfang/app/v1/commonUpdate/updateUser?" + "userId=" + FinalContents.getUserID() + "&name=" + text + "&sex="+ xb + "&photo=" + "&industry=";
+                String url = FinalContents.getImageUrl()+"/fangfang/app/v1/commonUpdate/updateUser?" + "userId=" + FinalContents.getUserID() + "&name=" + text + "&sex="+ xb + "&photo=" + "&industry=";
 
                 OkHttpPost okHttpPost = new OkHttpPost(url);
                 String data = okHttpPost.post();

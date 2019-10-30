@@ -650,7 +650,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                         imglist = imgData.getData();
 
                         for (int i = 0; i < imglist.size(); i++) {
-                            list_img.add("http://39.98.173.250:8080" + imglist.get(i).getCoverImg());
+                            list_img.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                         }
 
                         banner.initBanner(list_img, false)//关闭3D画廊效果

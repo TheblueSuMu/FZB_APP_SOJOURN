@@ -280,7 +280,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
 
                         infoData = reportProcessDetailsBean.getData().getInfoData();
-                        Glide.with(ReviewTheSuccessActivity.this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(review_the_success_img1);
+                        Glide.with(ReviewTheSuccessActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(review_the_success_img1);
                         review_the_success_tv1.setText(infoData.getCustomerName()+"("+infoData.getCustomerPhone()+")");
                         processData = reportProcessDetailsBean.getData().getProcessData();
 
@@ -498,7 +498,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String s = "http://39.98.173.250:8080/fangfang/app/v1/specialUpdate/failureSave?userId=" + FinalContents.getUserID() + "&preparationId=" + infoData.getPreparationId();
+                String s = FinalContents.getImageUrl()+"/fangfang/app/v1/specialUpdate/failureSave?userId=" + FinalContents.getUserID() + "&preparationId=" + infoData.getPreparationId();
                 OkHttpPost okHttpPost = new OkHttpPost(s);
                 String post = okHttpPost.post();
                 Gson gson = new Gson();

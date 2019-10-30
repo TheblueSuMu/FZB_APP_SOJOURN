@@ -486,7 +486,7 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                                     @Override
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         imgUrl = addPhotoBean.getData().getUrl();
-                                        Glide.with(FieldActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(field_img);
+                                        Glide.with(FieldActivity.this).load(FinalContents.getImageUrl() + imgUrl).into(field_img);
                                         field_tv2.setVisibility(View.GONE);
 
                                     }
@@ -598,7 +598,7 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                                 @Override
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     imgUrl = addPhotoBean.getData().getUrl();
-                                    Glide.with(FieldActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(field_img);
+                                    Glide.with(FieldActivity.this).load(FinalContents.getImageUrl() + imgUrl).into(field_img);
                                     field_tv2.setVisibility(View.GONE);
                                     isPhoto = 0;
                                 }

@@ -78,7 +78,7 @@ public class TotalAdapter extends RecyclerView.Adapter<TotalAdapter.ViewHolder> 
             Glide.with(holder.itemView.getContext()).load(R.mipmap.icon_like).into(holder.item_circle_like);
         }
         FinalContents.setTargetId(list.get(position).getId());
-        Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getCreateByPhoto()).into(holder.all_img);
+        Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getCreateByPhoto()).into(holder.all_img);
         Log.i("MyCL", "圖片網址：" + list.get(position).getImgUrl());
         if (list.get(position).getImgUrl().equals("")) {
             holder.circle_ll.setVisibility(View.GONE);

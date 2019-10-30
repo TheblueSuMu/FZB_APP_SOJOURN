@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.PhotoFragment;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -72,7 +73,7 @@ public class BigPhotoActivity extends AllActivity {
 
         String[] a  = bigPhotoimg.split("[|]");
         for (int i = 0; i < a.length; i++){
-            listImage.add("http://39.98.173.250:8080"+a[i]);
+            listImage.add(FinalContents.getImageUrl()+a[i]);
         }
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);

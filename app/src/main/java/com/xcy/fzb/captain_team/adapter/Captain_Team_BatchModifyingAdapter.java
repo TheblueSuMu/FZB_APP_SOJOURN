@@ -43,7 +43,7 @@ public class Captain_Team_BatchModifyingAdapter extends RecyclerView.Adapter<Cap
 
     @Override
     public void onBindViewHolder(@NonNull BatchModifyingViewHolder holder, final int position) {
-        Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + list.get(position).getPhoto()).into(holder.item_batch_modifying_img);
+        Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + list.get(position).getPhoto()).into(holder.item_batch_modifying_img);
         if(FinalContents.getIdentity().equals("63")){
             holder.item_batch_modifying_tv1.setText(list.get(position).getName()+"("+list.get(position).getLevelName()+")");
         }else {

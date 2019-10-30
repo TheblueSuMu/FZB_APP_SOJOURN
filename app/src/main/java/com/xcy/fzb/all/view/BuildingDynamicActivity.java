@@ -236,7 +236,7 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
                     @Override
                     public void run() {
                         url = a[finalI];
-                        imgURl = "http://39.98.173.250:8080" + url;
+                        imgURl =FinalContents.getImageUrl() + url;
                         mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
                         Bitmap bp = returnBitMap(imgURl);
                         saveImageToPhotos(BuildingDynamicActivity.this, bp);

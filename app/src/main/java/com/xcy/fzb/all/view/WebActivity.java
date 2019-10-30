@@ -154,7 +154,7 @@ public class WebActivity extends AllActivity {
                         share.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectTalkToolShareBean.getData().getTalkToolInfo().getTitle(),webUrl,titleUrl,"http://39.98.173.250:8080"+projectTalkToolShareBean.getData().getTalkToolInfo().getShareIcon(),webUrl,WebActivity.this);
+                                FinalContents.showShare(projectTalkToolShareBean.getData().getTalkToolInfo().getTitle(),webUrl,titleUrl,FinalContents.getImageUrl()+projectTalkToolShareBean.getData().getTalkToolInfo().getShareIcon(),webUrl,WebActivity.this);
                             }
                         });
                     }

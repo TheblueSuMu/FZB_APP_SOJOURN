@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CheckPendingBean;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class CheckPendingTheProjectEndAdapter extends RecyclerView.Adapter<Check
         holder.item_refuse_the_project_end_tv2.setText(rows.get(position).getProjectName());
         holder.item_refuse_the_project_end_tv1.setText(rows.get(position).getCustomerName());
         holder.item_refuse_the_project_end_tv3.setText(rows.get(position).getDate());
-        Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + rows.get(position).getCustomerImg()).into(holder.item_refuse_the_project_end_img);
+        Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + rows.get(position).getCustomerImg()).into(holder.item_refuse_the_project_end_img);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

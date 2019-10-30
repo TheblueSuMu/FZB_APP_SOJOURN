@@ -43,21 +43,21 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
-        Glide.with(context).load("http://39.98.173.250:8080"+rows.get(position).getImg()).into(holder.project_points_img);
+        Glide.with(context).load(FinalContents.getImageUrl()+rows.get(position).getImg()).into(holder.project_points_img);
         holder.project_points_title.setText(rows.get(position).getTitle());
         holder.project_points_message.setText(rows.get(position).getContent());
         Log.i("xxcl","我从这里走过"+rows.get(position).getTitle());
         holder.project_points_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FinalContents.showShare(rows.get(position).getTitle(),"http://test.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),rows.get(position).getContent(),"http://39.98.173.250:8080"+rows.get(position).getImg(),"http://test.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),context);
+                FinalContents.showShare(rows.get(position).getTitle(),"http://yanshi.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),rows.get(position).getContent(),FinalContents.getImageUrl()+rows.get(position).getImg(),"http://yanshi.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),context);
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, WebActivity.class);
-                intent.putExtra("webUrl","http://test.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId());
+                intent.putExtra("webUrl","http://yanshi.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId());
                 intent.putExtra("title","海报详情");
                 FinalContents.setTalkToolId(rows.get(position).getId());
                 context.startActivity(intent);

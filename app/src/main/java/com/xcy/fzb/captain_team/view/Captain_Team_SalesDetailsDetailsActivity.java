@@ -265,7 +265,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
 
                         sales_details_details_name.setText(agentDetailsBean.getData().getAgentInfo().getName());
                         sales_details_details_tv2.setText(agentDetailsBean.getData().getAgentInfo().getPhone());
-                        Glide.with(Captain_Team_SalesDetailsDetailsActivity.this).load("http://39.98.173.250:8080" + agentDetailsBean.getData().getAgentInfo().getPhoto()).into(sales_details_details_img);
+                        Glide.with(Captain_Team_SalesDetailsDetailsActivity.this).load(FinalContents.getImageUrl() + agentDetailsBean.getData().getAgentInfo().getPhoto()).into(sales_details_details_img);
 
                         FinalContents.setAgentId(agentDetailsBean.getData().getAgentInfo().getId());
                         if (FinalContents.getIdentity().equals("60")) {

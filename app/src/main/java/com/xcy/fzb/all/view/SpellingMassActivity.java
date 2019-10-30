@@ -128,7 +128,7 @@ public class SpellingMassActivity extends AllActivity {
                     public void onNext(SpellingDataBean spellingDataBean) {
                         data = spellingDataBean.getData();
 
-                        Glide.with(SpellingMassActivity.this).load("http://39.98.173.250:8080" + data.getTravelWayImg()).into(item_task_icon);
+                        Glide.with(SpellingMassActivity.this).load(FinalContents.getImageUrl() + data.getTravelWayImg()).into(item_task_icon);
                         Log.i("MyCL", "拼团测试：" + data.getIslandTime() + "-" + data.getEndTime());
                         item_task_islandTime.setText(data.getIslandTime() + "-" + data.getEndTime());
                         item_task_routeName.setText(data.getRoute().getRouteName());

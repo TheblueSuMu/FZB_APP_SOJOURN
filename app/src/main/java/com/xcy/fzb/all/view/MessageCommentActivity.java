@@ -146,7 +146,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
 //            Glide.with(MessageCommentActivity.this).load(R.mipmap.icon_like).into(comment_zan_img);
 //        }
 
-        Glide.with(MessageCommentActivity.this).load("http://39.98.173.250:8080" + headPortrait).into(comment_buddha);
+        Glide.with(MessageCommentActivity.this).load(FinalContents.getImageUrl() + headPortrait).into(comment_buddha);
         if (message.equals("")) {
             comment_message.setVisibility(View.GONE);
         } else {
@@ -159,7 +159,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
             comment_img.setVisibility(View.GONE);
         } else {
             comment_img.setVisibility(View.VISIBLE);
-            Glide.with(MessageCommentActivity.this).load("http://39.98.173.250:8080" + img).into(comment_img);
+            Glide.with(MessageCommentActivity.this).load(FinalContents.getImageUrl() + img).into(comment_img);
         }
 
         initData();

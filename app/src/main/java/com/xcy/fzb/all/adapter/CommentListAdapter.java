@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.EconomicCircleBean;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     @Override
     public void onBindViewHolder(@NonNull CommentListViewHolder holder, int position) {
 
-        Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + commentList.get(position).getUser().getPhoto()).into(holder.item_economic_img);
+        Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + commentList.get(position).getUser().getPhoto()).into(holder.item_economic_img);
         holder.item_economic_name.setText(commentList.get(position).getUser().getName());
         holder.item_economic_time.setText(commentList.get(position).getCreateDate());
         holder.item_economic_message.setText(commentList.get(position).getComment());

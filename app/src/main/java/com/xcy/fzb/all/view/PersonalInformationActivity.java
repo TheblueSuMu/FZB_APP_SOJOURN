@@ -208,7 +208,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             information_rl.setVisibility(View.VISIBLE);
                             information_ll.setVisibility(View.VISIBLE);
                             UserMessageBean.DataBean data = userMessageBean.getData();
-                            Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).into(personal_photo);
+                            Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + data.getPhoto()).into(personal_photo);
                             personal_name.setText(data.getName());
                             personal_identity.setText("经纪人");
                             personal_city.setText(data.getCity());
@@ -245,7 +245,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 //                            information_rl.setVisibility(View.GONE);
 //                            information_ll.setVisibility(View.GONE);
                             XSDataBean.DataBean data = userMessageBean.getData();
-                            Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).into(personal_photo);
+                            Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + data.getPhoto()).into(personal_photo);
                             personal_name.setText(data.getName());
                             personal_identity.setText("专案");
                             personal_city.setText(data.getCity());
@@ -282,7 +282,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 //                            information_rl.setVisibility(View.GONE);
 //                            information_ll.setVisibility(View.GONE);
                             ZYDataBean.DataBean data = userMessageBean.getData();
-                            Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + data.getPhoto()).into(personal_photo);
+                            Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + data.getPhoto()).into(personal_photo);
                             personal_name.setText(data.getName());
                             if (data.getIdentity().equals("5")) {
                                 personal_identity.setText("专员");
@@ -333,9 +333,9 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         public void onNext(ZhangBingDataBean userMessageBean) {
 
                             if (userMessageBean.getData().getSysUser().getPhoto().equals("")) {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
                             } else {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
                             }
 
                             personal_name.setText(userMessageBean.getData().getSysUser().getName());
@@ -380,9 +380,9 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         public void onNext(GWDataBean userMessageBean) {
 
                             if (userMessageBean.getData().getSysUser().getPhoto().equals("")) {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
                             } else {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
                             }
 
 
@@ -428,9 +428,9 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         public void onNext(UserBean userMessageBean) {
 
                             if (userMessageBean.getData().getPhoto().equals("")) {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getPhoto()).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getPhoto()).into(personal_photo);
                             } else {
-                                Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + userMessageBean.getData().getPhoto()).into(personal_photo);
+                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getPhoto()).into(personal_photo);
                             }
 
 
@@ -559,7 +559,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             //TODO 处理事件
                             String s = personal_et_name.getText().toString();
 
-                            String url = "http://39.98.173.250:8080/fangfang/app/v1/commonUpdate/updateName?" + "userId=" + FinalContents.getUserID() + "&name=" + s;
+                            String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonUpdate/updateName?" + "userId=" + FinalContents.getUserID() + "&name=" + s;
 
                             OkHttpPost okHttpPost = new OkHttpPost(url);
                             String data = okHttpPost.post();
@@ -625,7 +625,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        String url = "http://39.98.173.250:8080/fangfang/app/v1/commonUpdate/updateSex?" + "userId=" + FinalContents.getUserID() + "&sex=" + s;
+                        String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonUpdate/updateSex?" + "userId=" + FinalContents.getUserID() + "&sex=" + s;
 //                        修改性别成功
                         OkHttpPost okHttpPost = new OkHttpPost(url);
                         String data = okHttpPost.post();
@@ -728,7 +728,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                     @Override
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         imgStr = addPhotoBean.getData().getUrl();
-                                        Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + imgStr).into(personal_photo);
+                                        Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + imgStr).into(personal_photo);
                                         Retrofit.Builder builder = new Retrofit.Builder();
                                         builder.baseUrl(FinalContents.getBaseUrl());
                                         builder.addConverterFactory(GsonConverterFactory.create());
@@ -875,7 +875,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                 @Override
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     imgStr = addPhotoBean.getData().getUrl();
-                                    Glide.with(PersonalInformationActivity.this).load("http://39.98.173.250:8080" + imgStr).into(personal_photo);
+                                    Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + imgStr).into(personal_photo);
                                     Retrofit.Builder builder = new Retrofit.Builder();
                                     builder.baseUrl(FinalContents.getBaseUrl());
                                     builder.addConverterFactory(GsonConverterFactory.create());

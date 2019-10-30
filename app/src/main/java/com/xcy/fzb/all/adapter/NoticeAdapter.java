@@ -1,6 +1,5 @@
 package com.xcy.fzb.all.adapter;
 
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +67,7 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
             holder.room_img.setVisibility(View.GONE);
         } else {
             holder.room_img.setVisibility(View.VISIBLE);
-//            Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + rows.get(position).getImgPath()).into(holder.room_img);
+//            Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + rows.get(position).getImgPath()).into(holder.room_img);
 
             arraylist = new ArrayList<>();
             String[] a  = rows.get(position).getImgPath().split("[|]");

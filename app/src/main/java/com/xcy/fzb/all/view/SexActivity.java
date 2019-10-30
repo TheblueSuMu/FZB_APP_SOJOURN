@@ -91,7 +91,7 @@ public class SexActivity extends AllActivity implements View.OnClickListener {
             case R.id.sex_wc:
                 nc = getIntent().getStringExtra("nc");
                 Log.i("MyCL", "接收参数：" + nc);
-                String url = "http://39.98.173.250:8080/fangfang/app/v1/commonUpdate/updateUser?" + "userId=" + FinalContents.getUserID() + "&name=" + nc + "&sex=" + sex + "&photo=" + "&industry=";
+                String url = FinalContents.getImageUrl()+"/fangfang/app/v1/commonUpdate/updateUser?" + "userId=" + FinalContents.getUserID() + "&name=" + nc + "&sex=" + sex + "&photo=" + "&industry=";
 
                 OkHttpPost okHttpPost = new OkHttpPost(url);
                 String data = okHttpPost.post();

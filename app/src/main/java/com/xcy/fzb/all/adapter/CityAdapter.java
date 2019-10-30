@@ -38,6 +38,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        Log.i("拼音数据","拼音"+list.get(position).getPinyin());
         holder.item_city_adapter_name.setText(list.get(position).getNationName());
         holder.item_city_adapter_pingying.setText(list.get(position).getPinyin());
         num = getNum(4);

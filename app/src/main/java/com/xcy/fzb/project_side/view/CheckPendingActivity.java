@@ -159,7 +159,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                     @Override
                     public void onNext(ReportProcessDetailsBean reportProcessDetailsBean) {
                         infoData = reportProcessDetailsBean.getData().getInfoData();
-                        Glide.with(CheckPendingActivity.this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(check_pending_img1);
+                        Glide.with(CheckPendingActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(check_pending_img1);
                         check_pending_tv1.setText(infoData.getCustomerName());
 
                         processData = reportProcessDetailsBean.getData().getProcessData();

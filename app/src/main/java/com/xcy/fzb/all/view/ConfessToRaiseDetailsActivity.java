@@ -122,7 +122,7 @@ public class ConfessToRaiseDetailsActivity extends AllActivity implements View.O
                     public void onNext(MakeABargainBean makeABargainBean) {
                         infoData = makeABargainBean.getData().getInfoData();
 //
-                        Glide.with(ConfessToRaiseDetailsActivity.this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(confess_to_raise_details_img1);
+                        Glide.with(ConfessToRaiseDetailsActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(confess_to_raise_details_img1);
                         confess_to_raise_details_tv1.setText(infoData.getCustomerName());
                         listData = makeABargainBean.getData().getListData();
                         confess_to_raise_details_tv2.setText(listData.get(0).getProjectName());

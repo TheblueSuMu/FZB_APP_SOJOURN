@@ -40,7 +40,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getTravelWayImg()).into(holder.item_task_icon);
+        Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getTravelWayImg()).into(holder.item_task_icon);
         if (list.get(position).getTravelWay().equals("0")) {
             holder.item_task_back.setBackgroundResource(R.drawable.item_task_list_back1);
             holder.item_task_layout.setBackgroundResource(R.mipmap.task1);

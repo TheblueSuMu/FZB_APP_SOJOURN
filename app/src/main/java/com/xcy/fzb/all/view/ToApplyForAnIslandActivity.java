@@ -389,7 +389,7 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                         to_apply_for_an_island_et1.setText(landBean.getData().getIdNumber());
                         to_apply_for_an_island_tv3.setText(landBean.getData().getAge());
                         to_apply_for_an_island_et2.setText(landBean.getData().getPassportNumber());
-                        Glide.with(ToApplyForAnIslandActivity.this).load("http://39.98.173.250:8080" + landBean.getData().getPassportImg()).into(to_apply_for_an_island_img);
+                        Glide.with(ToApplyForAnIslandActivity.this).load(FinalContents.getImageUrl() + landBean.getData().getPassportImg()).into(to_apply_for_an_island_img);
                     }
 
                     @Override
@@ -459,7 +459,7 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                                     @Override
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         imgUrl = addPhotoBean.getData().getUrl();
-                                        Glide.with(ToApplyForAnIslandActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(to_apply_for_an_island_img);
+                                        Glide.with(ToApplyForAnIslandActivity.this).load(FinalContents.getImageUrl() + imgUrl).into(to_apply_for_an_island_img);
                                         to_apply_for_an_island_tv4.setVisibility(View.GONE);
                                         Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
 
@@ -575,7 +575,7 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     imgUrl = addPhotoBean.getData().getUrl();
                                     Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
-                                    Glide.with(ToApplyForAnIslandActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(to_apply_for_an_island_img);
+                                    Glide.with(ToApplyForAnIslandActivity.this).load(FinalContents.getImageUrl() + imgUrl).into(to_apply_for_an_island_img);
                                     to_apply_for_an_island_tv4.setVisibility(View.GONE);
                                     isPhoto = 0;
                                 }

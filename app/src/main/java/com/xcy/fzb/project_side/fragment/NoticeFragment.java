@@ -190,7 +190,7 @@ public class NoticeFragment extends Fragment {
 
                                     } else {
                                         if (num == 0) {
-                                            imgURl = "http://39.98.173.250:8080" + rows.get(position).getImgPath();
+                                            imgURl = FinalContents.getImageUrl() + rows.get(position).getImgPath();
                                             new Thread(new Runnable() {
                                                 @Override
                                                 public void run() {
@@ -202,7 +202,7 @@ public class NoticeFragment extends Fragment {
                                             }).start();
                                         } else {
                                             for (int i = 0; i < list.size(); ++i) {
-                                                imgURl = "http://39.98.173.250:8080" + list.get(i);
+                                                imgURl = FinalContents.getImageUrl() + list.get(i);
                                                 new Thread(new Runnable() {
                                                     @Override
                                                     public void run() {

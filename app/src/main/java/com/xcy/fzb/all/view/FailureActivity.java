@@ -112,7 +112,7 @@ public class FailureActivity extends AllActivity implements View.OnClickListener
                     public void onNext(FailureBean failureBean) {
                         infoData = failureBean.getData().getInfoData();
 //
-                        Glide.with(FailureActivity.this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(failure_img1);
+                        Glide.with(FailureActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(failure_img1);
                         failure_tv1.setText(infoData.getCustomerName());
                         listData = failureBean.getData().getListData();
                         failure_tv2.setText(listData.get(0).getProjectName());

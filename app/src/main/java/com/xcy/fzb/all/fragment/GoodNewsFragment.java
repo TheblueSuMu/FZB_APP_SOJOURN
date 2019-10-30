@@ -65,7 +65,7 @@ public class GoodNewsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        all_no_information = getActivity().findViewById(R.id.all_no_information);
+        all_no_information = getActivity().findViewById(R.id.all_no_information_S);
 
         good_news_rv = getActivity().findViewById(R.id.good_news_rv);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -90,7 +90,7 @@ public class GoodNewsFragment extends Fragment {
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
             }
         });
-        initData();
+
 
     }
     private void initData() {
@@ -106,7 +106,7 @@ public class GoodNewsFragment extends Fragment {
                 .subscribe(new Observer<GoodNewsBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        Log.i("喜报获取错误","错误+");
                     }
 
                     @SuppressLint("WrongConstant")
@@ -121,25 +121,37 @@ public class GoodNewsFragment extends Fragment {
                             adapter.setRows(rows);
                             good_news_rv.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
-                        }else {
+                            Log.i("喜报获取","数据1"+rows.size());
+                        }else if (rows.size() == 0) {
+                            Log.i("喜报获取","数据2"+rows.size());
                             all_no_information.setVisibility(View.VISIBLE);
                             good_news_rv.setVisibility(View.GONE);
                         }
-
-
+                        Log.i("喜报获取","数据"+rows.size());
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         all_no_information.setVisibility(View.VISIBLE);
                         good_news_rv.setVisibility(View.GONE);
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("喜报获取错误","错误"+e);
                     }
 
                     @Override
                     public void onComplete() {
-
+                        Log.i("喜报获取错误","错误-");
                     }
                 });
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            initData();
+            //TODO now invisible to user 显示fragment
+        }
     }
 }

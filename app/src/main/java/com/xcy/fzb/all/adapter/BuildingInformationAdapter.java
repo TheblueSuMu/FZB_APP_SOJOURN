@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.BuildingBean;
 import com.xcy.fzb.all.view.BigPhotoActivity;
 
@@ -44,7 +45,7 @@ public class BuildingInformationAdapter extends RecyclerView.Adapter<BuildingInf
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(context).load("http://39.98.173.250:8080"+list.get(position).getFloorPlan()).into(holder.imageAvatar);
+        Glide.with(context).load(FinalContents.getImageUrl() +list.get(position).getFloorPlan()).into(holder.imageAvatar);
 
         if(position == 0){
             s.append(list.get(position).getFloorPlan());

@@ -120,7 +120,7 @@ public class UnderReviewActivity extends AllActivity implements View.OnClickList
                     public void onNext(MakeABargainBean makeABargainBean) {
                         infoData = makeABargainBean.getData().getInfoData();
 //
-                        Glide.with(UnderReviewActivity.this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(under_review_img1);
+                        Glide.with(UnderReviewActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(under_review_img1);
                         under_review_tv1.setText(infoData.getCustomerName());
                         listData = makeABargainBean.getData().getListData();
                         under_review_tv2.setText(listData.get(0).getProjectName());

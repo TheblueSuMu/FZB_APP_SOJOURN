@@ -128,7 +128,7 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
                     public void onNext(final ClientParticularsBean clientParticularsBean) {
                         infoData = clientParticularsBean.getData().getInfoData();
 //
-                        Glide.with(ClientParticularsActivity.this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(client_particulars_img);
+                        Glide.with(ClientParticularsActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(client_particulars_img);
                         client_particulars_name.setText(infoData.getCustomerName() + "");
                         client_particulars_phone.setText(infoData.getContactsPhone1() + "");
 

@@ -69,7 +69,7 @@ public class GuestRoomAdapter extends RecyclerView.Adapter<GuestRoomAdapter.Gues
             holder.room_img.setVisibility(View.GONE);
         } else {
             holder.room_img.setVisibility(View.VISIBLE);
-//            Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + rows.get(position).getImgPath()).into(holder.room_img);
+//            Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + rows.get(position).getImgPath()).into(holder.room_img);
 
             arraylist = new ArrayList<>();
             String[] a  = rows.get(position).getImgPath().split("[|]");

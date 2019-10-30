@@ -159,7 +159,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
                     public void onNext(UserBean userMessageBean) {
                         data = userMessageBean.getData();
 
-                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getPhoto()).into(me_photo);
+                        Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getPhoto()).into(me_photo);
 
                         me_name.setText(data.getName());
                         if (data.getIdentity().equals("61")) {

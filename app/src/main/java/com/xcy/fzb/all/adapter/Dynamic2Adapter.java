@@ -91,7 +91,7 @@ public class Dynamic2Adapter extends RecyclerView.Adapter<Dynamic2Adapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
-        Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getCreateBy().getPhoto()).into(holder.circle_img);
+        Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getCreateBy().getPhoto()).into(holder.circle_img);
 
         if (list.get(position).getImg().equals("")) {
             holder.item_dynamic_ll.setVisibility(View.GONE);
@@ -120,7 +120,7 @@ public class Dynamic2Adapter extends RecyclerView.Adapter<Dynamic2Adapter.ViewHo
         holder.circle_like.setText(list.get(position).getLikeNum() + "");
 
 
-        Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getProject().getProjectImg()).placeholder(R.mipmap.logo_square).into(holder.circle_img_1);
+        Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getProject().getProjectImg()).placeholder(R.mipmap.logo_square).into(holder.circle_img_1);
         holder.circle_title.setText(list.get(position).getProject().getProjectName());
         holder.circle_message.setText(list.get(position).getContent());
         holder.circle_time.setText(list.get(position).getCreateDate());

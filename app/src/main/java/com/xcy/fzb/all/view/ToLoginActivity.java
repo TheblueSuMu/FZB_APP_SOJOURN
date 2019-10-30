@@ -277,7 +277,7 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
 
     private void initData(String s, String s1, String s2) {
 
-        String url = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/wechatBinding?" + "userPhone=" + s + "&captcha=" + s1;
+        String url =  FinalContents.getImageUrl()+"/fangfang/app/v1/commonSelect/wechatBinding?" + "userPhone=" + s + "&captcha=" + s1;
 
         OkHttpPost okHttpPost = new OkHttpPost(url);
         String data = okHttpPost.post();

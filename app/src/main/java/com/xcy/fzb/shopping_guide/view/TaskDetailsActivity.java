@@ -177,8 +177,8 @@ public class TaskDetailsActivity extends AllActivity {
                     public void onNext(TaskDetailsBean taskDetailsBean) {
                         task_details_constraintlayout_title.setText(taskDetailsBean.getData().getRouteTimeInfo().getRoute().getRouteName());
                         task_details_title.setText(taskDetailsBean.getData().getRouteTimeInfo().getRoute().getRouteName());
-                        Glide.with(TaskDetailsActivity.this).load("http://39.98.173.250:8080" + taskDetailsBean.getData().getRouteTimeInfo().getTravelWayImg()).into(task_details_constraintlayout_img);
-                        Glide.with(TaskDetailsActivity.this).load("http://39.98.173.250:8080" + taskDetailsBean.getData().getRouteTimeInfo().getTravelWayImg()).into(task_details_img);
+                        Glide.with(TaskDetailsActivity.this).load(FinalContents.getImageUrl() + taskDetailsBean.getData().getRouteTimeInfo().getTravelWayImg()).into(task_details_constraintlayout_img);
+                        Glide.with(TaskDetailsActivity.this).load(FinalContents.getImageUrl() + taskDetailsBean.getData().getRouteTimeInfo().getTravelWayImg()).into(task_details_img);
 
                         task_details_constraintlayout_time.setText(taskDetailsBean.getData().getRouteTimeInfo().getIslandTime()+"-"+taskDetailsBean.getData().getRouteTimeInfo().getEndTime());
                         task_details_time.setText(taskDetailsBean.getData().getRouteTimeInfo().getIslandTime()+"-"+taskDetailsBean.getData().getRouteTimeInfo().getEndTime());

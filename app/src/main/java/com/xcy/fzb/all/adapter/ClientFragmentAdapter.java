@@ -51,7 +51,7 @@ public class ClientFragmentAdapter extends RecyclerView.Adapter<ClientFragmentAd
     @Override
     public void onBindViewHolder(@NonNull ClientFragmentViewHolder holder, final int position) {
 
-        Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + rows.get(position).getCustomerImg()).into(holder.client_item_img);
+        Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + rows.get(position).getCustomerImg()).into(holder.client_item_img);
         FinalContents.setPreparationId(rows.get(position).getPreparationId());
         holder.client_item_name.setText(rows.get(position).getCustomerName());
         holder.client_item_photo.setText("(" + rows.get(position).getCustomerPhone() + ")");

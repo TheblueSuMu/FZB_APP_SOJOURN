@@ -37,7 +37,7 @@ public class SpellingMassTimeAdaptewr extends RecyclerView.Adapter<SpellingMassT
 
     @Override
     public void onBindViewHolder(@NonNull final SpellingMassTimeViewHolder holder, final int position) {
-        Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + rows.get(position).getTravelWayImg()).into(holder.item_task_icon);
+        Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + rows.get(position).getTravelWayImg()).into(holder.item_task_icon);
 
         Log.i("MyCL", "拼团测试：" + rows.get(position).getIslandTime() + "-" + rows.get(position).getEndTime());
         holder.item_task_islandTime.setText(rows.get(position).getIslandTime() + "-" + rows.get(position).getEndTime());

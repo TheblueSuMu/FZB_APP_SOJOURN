@@ -155,7 +155,7 @@ public class EFragment extends AllFragment implements View.OnClickListener {
                         StringBuffer stringBuffer = new StringBuffer();
                         stringBuffer.append(s);
 
-                        Glide.with(getActivity()).load("http://39.98.173.250:8080" + data.getPhoto()).into(me_photo);
+                        Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getPhoto()).into(me_photo);
 
                         me_name.setText(data.getName());
                         if (data.getIdentity().equals("1")) {

@@ -41,7 +41,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.item_client_name.setText(list.get(position).getCustomerName());
-        Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getCustomerImg()).into(holder.item_client_icon);
+        Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getCustomerImg()).into(holder.item_client_icon);
         holder.item_client_status.setText(list.get(position).getStatusStr());
 
         Log.i("yyy","用户ID："+ FinalContents.getUserID());

@@ -24,8 +24,17 @@ public class FinalContents {
     public static final String SP_FILE_NAME = "fzb";
     public static final String SP_LOGIN_NAME = "fzbLogin";
 
+    static String ImageUrl = "http://yanshi.fangzuobiao.com:88";
 
-    static String BaseUrl = "http://39.98.173.250:8080/fangfang/app/v1/";
+    public static String getImageUrl() {
+        return ImageUrl;
+    }
+
+    public static void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
+    }
+
+    static String BaseUrl = "http://yanshi.fangzuobiao.com:88/fangfang/app/v1/";
     static String userID = "";
     static String projectID = "";
     static String cityID = "";

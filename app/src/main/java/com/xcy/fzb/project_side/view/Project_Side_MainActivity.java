@@ -30,7 +30,6 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
-import com.xcy.fzb.broker.view.Broker_MainActivity;
 import com.xcy.fzb.project_side.fragment.MeFragment;
 import com.xcy.fzb.project_side.fragment.MessageFragment;
 import com.xcy.fzb.project_side.fragment.ProjectFragment;
@@ -132,7 +131,7 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
                 transaction.hide(projectFragment);
                 transaction.show(messageFragment);
                 transaction.hide(meFragment);
-
+                Log.i("消息跳转","type2："+str);
                 transaction.commit();
                 message.setChecked(true);
             } else if (str.equals("2")) {
@@ -147,6 +146,7 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
                 transaction.hide(projectFragment);
                 transaction.show(messageFragment);
                 transaction.hide(meFragment);
+                Log.i("消息跳转","type3："+str);
 
                 transaction.commit();
                 message.setChecked(true);
@@ -162,6 +162,7 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
                 transaction.hide(projectFragment);
                 transaction.show(messageFragment);
                 transaction.hide(meFragment);
+                Log.i("消息跳转","type5："+str);
 
                 transaction.commit();
                 message.setChecked(true);

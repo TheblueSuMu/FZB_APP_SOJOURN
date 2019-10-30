@@ -58,6 +58,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     private List<CommissionListBean.DataBean.RowsBean> rows;
     CommissionListAdapter adapter;
     private String s = "";
+    private RelativeLayout myBrokerage_rl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +101,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         commission_ll4 = findViewById(R.id.commission_ll4);
         commission_et = findViewById(R.id.commission_et);
         commission_cb = findViewById(R.id.commission_cb);
+        myBrokerage_rl = findViewById(R.id.myBrokerage_rl);
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -226,13 +228,21 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                     public void onNext(CommissionListBean commissionListBean) {
                         rows = commissionListBean.getData().getRows();
                         Log.i("长度","长度："+rows.size());
-                        adapter.setRows(rows);
-                        commission_rv.setAdapter(adapter);
+                        if (rows.size() != 0) {
+                            myBrokerage_rl.setVisibility(View.GONE);
+                            commission_rv.setVisibility(View.VISIBLE);
+                            adapter.setRows(rows);
+                            commission_rv.setAdapter(adapter);
+                        }else {
+                            commission_rv.setVisibility(View.GONE);
+                            myBrokerage_rl.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        commission_rv.setVisibility(View.GONE);
+                        myBrokerage_rl.setVisibility(View.VISIBLE);
                     }
 
                     @Override

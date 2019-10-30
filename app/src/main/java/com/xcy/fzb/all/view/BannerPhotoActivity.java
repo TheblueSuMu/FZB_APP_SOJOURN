@@ -122,7 +122,7 @@ public class BannerPhotoActivity extends AllActivity {
                             name.add(photoBean.getData().get(i).getTypeName());
                         }
                         for (int k = 0;k < photoBean.getSlideImgList().size();k++){
-                            list.add("http://39.98.173.250:8080" + photoBean.getSlideImgList().get(k));
+                            list.add(FinalContents.getImageUrl() + photoBean.getSlideImgList().get(k));
                         }
                         initView();
                     }
@@ -188,7 +188,7 @@ public class BannerPhotoActivity extends AllActivity {
                 for(int i = 0;i < data.size();i++){
                     if (tab.getText().toString().equals(data.get(i).getTypeName())){
                         boolean whever = true;
-                        String url = "http://39.98.173.250:8080"+data.get(i).getDataList().get(0).getImgPath();
+                        String url = FinalContents.getImageUrl()+data.get(i).getDataList().get(0).getImgPath();
                         for (int k = 0;k < list.size(); k++){
                             if (list.get(k).equals(url)) {
                                 if (whever) {

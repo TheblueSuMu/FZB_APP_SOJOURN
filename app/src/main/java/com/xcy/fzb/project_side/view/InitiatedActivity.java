@@ -109,7 +109,7 @@ public class InitiatedActivity extends AllActivity {
                     @Override
                     public void onNext(ReportProcessDetailsBean reportProcessDetailsBean) {
                         infoData = reportProcessDetailsBean.getData().getInfoData();
-                        Glide.with(InitiatedActivity.this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(initiated_img1);
+                        Glide.with(InitiatedActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(initiated_img1);
                         initiated_tv1.setText(infoData.getCustomerName());
                         processData = reportProcessDetailsBean.getData().getProcessData();
 

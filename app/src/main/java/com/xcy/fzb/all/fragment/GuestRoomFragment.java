@@ -225,7 +225,7 @@ public class GuestRoomFragment extends Fragment{
 
                                     } else {
                                         if (num == 0) {
-                                            imgURl = "http://39.98.173.250:8080" + rows.get(position).getImgPath();
+                                            imgURl = FinalContents.getImageUrl() + rows.get(position).getImgPath();
                                             Log.i("MyCL", "imgURl：" + imgURl);
                                             new Thread(new Runnable() {
                                                 @Override
@@ -243,7 +243,7 @@ public class GuestRoomFragment extends Fragment{
                                                 new Thread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        imgURl = "http://39.98.173.250:8080" + list.get(finI);
+                                                        imgURl = FinalContents.getImageUrl() + list.get(finI);
                                                         mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
                                                         Bitmap bp = returnBitMap(imgURl);
                                                         Log.i("MyCL", "bp：" + bp);

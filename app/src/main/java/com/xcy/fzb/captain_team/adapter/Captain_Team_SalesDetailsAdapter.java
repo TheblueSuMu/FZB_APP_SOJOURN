@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.TeamMemberBean;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class Captain_Team_SalesDetailsAdapter extends RecyclerView.Adapter<Capta
     @Override
     public void onBindViewHolder(@NonNull final SalesDetailsViewHolder holder, final int position) {
 
-        Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + list.get(position).getPhoto()).into(holder.item_sales_details_img);
+        Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + list.get(position).getPhoto()).into(holder.item_sales_details_img);
         if (identy.equals("顾问")) {
             holder.item_sales_details_tv1.setText(list.get(position).getName()+"(顾问)");
             holder.item_sales_details_tv3.setText("销售："+list.get(position).getSaleName());

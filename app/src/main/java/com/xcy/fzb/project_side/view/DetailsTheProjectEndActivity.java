@@ -499,7 +499,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                     @Override
                     public void onNext(DetailsBean detailsBean) {
                         FinalContents.setProjectID(detailsBean.getData().getProject().getId());
-                        Glide.with(DetailsTheProjectEndActivity.this).load("http://39.98.173.250:8080" +detailsBean.getData().getProject().getProjectImg()).into(details_the_project_end_img);
+                        Glide.with(DetailsTheProjectEndActivity.this).load(FinalContents.getImageUrl() +detailsBean.getData().getProject().getProjectImg()).into(details_the_project_end_img);
                         details_the_project_end_tv1.setText("["+detailsBean.getData().getProject().getCityName()+"]"+detailsBean.getData().getProject().getProjectName());
                         details_the_project_end_tv2.setText("项目地址："+detailsBean.getData().getProject().getAddress());
                         details_the_project_end_tv3.setText(Html.fromHtml("报备(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getReportAmount() + "</font>"+")  "+"关注(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getBrowseNum() + "</font>"+")  "+"收藏(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getCollectionNum() + "</font>"+")  "+"转发(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getForwardingAmount() + "</font>"+")  "));

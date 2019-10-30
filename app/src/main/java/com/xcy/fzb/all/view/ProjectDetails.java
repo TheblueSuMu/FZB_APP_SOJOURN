@@ -600,7 +600,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                     public void onNext(final ProjectDetailsBean projectDetailsBean) {
                         projectDetailsBeanData = projectDetailsBean.getData();
                         Log.i("wsm", "fdsafd:" + projectDetailsBeanData.getProjectListVo().getProjectImg());
-                        Glide.with(ProjectDetails.this).load("http://39.98.173.250:8080" + projectDetailsBean.getData().getProjectListVo().getProjectImg()).into(backimg);
+                        Glide.with(ProjectDetails.this).load(FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg()).into(backimg);
                         if (projectDetailsBeanData.getProjectListVo().getReferenceToatlPrice().equals("")) {
                             guowai1.setVisibility(View.GONE);
                             guowai2.setVisibility(View.GONE);
@@ -665,14 +665,14 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         share.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), "http://test.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), projectDetailsBean.getData().getProjectListVo().getProductFeature(), "http://39.98.173.250:8080" + projectDetailsBean.getData().getProjectListVo().getProjectImg(), "http://test.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), ProjectDetails.this);
+                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), "http://yanshi.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), "http://yanshi.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), ProjectDetails.this);
                             }
                         });
 
                         project_details_share_all.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), "http://test.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), projectDetailsBean.getData().getProjectListVo().getProductFeature(), "http://39.98.173.250:8080" + projectDetailsBean.getData().getProjectListVo().getProjectImg(), "http://test.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), ProjectDetails.this);
+                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), "http://yanshi.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), "http://yanshi.fangzuobiao.com:88/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), ProjectDetails.this);
                             }
                         });
 
@@ -820,12 +820,12 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                             linear5.setVisibility(View.GONE);
                         } else if (projectDetailsBeanData.getBuildingInfoStatus().equals("1")) {
                             linear5.setVisibility(View.VISIBLE);
-                            Glide.with(ProjectDetails.this).load("http://39.98.173.250:8080" + projectDetailsBeanData.getBuildingImg()).into(building);
+                            Glide.with(ProjectDetails.this).load(FinalContents.getImageUrl() + projectDetailsBeanData.getBuildingImg()).into(building);
                             building.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     Intent buildingInformationintent = new Intent(ProjectDetails.this, BuildingInformationActivity.class);
-                                    buildingInformationintent.putExtra("pic", "http://39.98.173.250:8080" + projectDetailsBeanData.getBuildingImg());
+                                    buildingInformationintent.putExtra("pic", FinalContents.getImageUrl() + projectDetailsBeanData.getBuildingImg());
                                     startActivity(buildingInformationintent);
                                 }
                             });

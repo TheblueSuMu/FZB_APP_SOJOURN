@@ -121,7 +121,7 @@ public class MakeABargainActivity extends AllActivity implements View.OnClickLis
                     public void onNext(MakeABargainBean makeABargainBean) {
                         infoData = makeABargainBean.getData().getInfoData();
 //
-                        Glide.with(MakeABargainActivity.this).load("http://39.98.173.250:8080" + infoData.getCustomerImg()).into(make_a_bargain_img1);
+                        Glide.with(MakeABargainActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(make_a_bargain_img1);
                         make_a_bargain_tv1.setText(infoData.getCustomerName());
                         listData = makeABargainBean.getData().getListData();
                         make_a_bargain_tv2.setText(listData.get(0).getProjectName());

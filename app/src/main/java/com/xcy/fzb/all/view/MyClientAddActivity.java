@@ -378,7 +378,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                                     @Override
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         imgUrl = addPhotoBean.getData().getUrl();
-                                        Glide.with(MyClientAddActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(client_add_img);
+                                        Glide.with(MyClientAddActivity.this).load(FinalContents.getImageUrl() + imgUrl).into(client_add_img);
 
                                     }
 
@@ -621,7 +621,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                                 @Override
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     imgUrl = addPhotoBean.getData().getUrl();
-                                    Glide.with(MyClientAddActivity.this).load("http://39.98.173.250:8080" + imgUrl).into(client_add_img);
+                                    Glide.with(MyClientAddActivity.this).load(FinalContents.getImageUrl() + imgUrl).into(client_add_img);
                                     ifimg = 0;
                                 }
 

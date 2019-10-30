@@ -202,7 +202,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
         application = (DemoApplication) getActivity().getApplication();
 
         recyclerView = view.findViewById(R.id.home_recycler_vertical);
-        all_no_information = view.findViewById(R.id.all_no_information);
+        all_no_information = view.findViewById(R.id.all_no_information_l);
 
         banner = view.findViewById(R.id.home_banner);
 
@@ -482,7 +482,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                         imglist = imgData.getData();
                         if (imglist.size() != 0) {
                             for (int i = 0; i < imglist.size(); i++) {
-                                list_path.add("http://39.98.173.250:8080" + imglist.get(i).getCoverImg());
+                                list_path.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                                 list_title.add(imglist.get(i).getTitle());
                             }
 

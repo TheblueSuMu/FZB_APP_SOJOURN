@@ -556,11 +556,11 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                         getlandLinetime.setText(landBean.getData().getIslandTime());
                         to_apply_for_an_island2_tv1.setText(landBean.getData().getRoutetime().getExpenses());
                         to_apply_for_an_island2_tv3.setText(landBean.getData().getSumCost());
-                        Log.i("图片", "http://39.98.173.250:8080" + landBean.getData().getLandingImg());
+                        Log.i("图片", FinalContents.getImageUrl() + landBean.getData().getLandingImg());
                         if (landBean.getData().getLandingImg().equals("")) {
 
                         } else {
-                            Glide.with(ToApplyForAnlsland2Activity.this).load("http://39.98.173.250:8080" + landBean.getData().getLandingImg()).into(to_apply_for_an_island2_img3);
+                            Glide.with(ToApplyForAnlsland2Activity.this).load(FinalContents.getImageUrl() + landBean.getData().getLandingImg()).into(to_apply_for_an_island2_img3);
                         }
                         colleagueUserNum = Integer.parseInt(to_apply_for_an_island2_tv1.getText().toString());
                         landBean.getData().getColleagues();
@@ -689,7 +689,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                                     @Override
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         imgUrl = addPhotoBean.getData().getUrl();
-                                        Glide.with(ToApplyForAnlsland2Activity.this).load("http://39.98.173.250:8080" + imgUrl).into(to_apply_for_an_island2_img3);
+                                        Glide.with(ToApplyForAnlsland2Activity.this).load(FinalContents.getImageUrl() + imgUrl).into(to_apply_for_an_island2_img3);
                                         to_apply_for_an_island2_tv4.setVisibility(View.GONE);
                                         Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
 
@@ -805,7 +805,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     imgUrl = addPhotoBean.getData().getUrl();
                                     Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
-                                    Glide.with(ToApplyForAnlsland2Activity.this).load("http://39.98.173.250:8080" + imgUrl).into(to_apply_for_an_island2_img3);
+                                    Glide.with(ToApplyForAnlsland2Activity.this).load(FinalContents.getImageUrl()+ imgUrl).into(to_apply_for_an_island2_img3);
                                     to_apply_for_an_island2_tv4.setVisibility(View.GONE);
                                     isPhoto = 0;
                                 }

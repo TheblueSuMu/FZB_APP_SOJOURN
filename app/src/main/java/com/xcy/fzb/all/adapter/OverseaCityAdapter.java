@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.NationBean;
 import com.xcy.fzb.all.view.RecyclerViewActivity;
 
@@ -41,7 +42,7 @@ public class OverseaCityAdapter extends RecyclerView.Adapter<OverseaCityAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.i("wds","这里有数据"+beanList.get(position).getNationImg());
-        Glide.with(context).load("http://39.98.173.250:8080"+beanList.get(position).getNationImg()).into(holder.imageAvatar);
+        Glide.with(context).load(FinalContents.getImageUrl()+beanList.get(position).getNationImg()).into(holder.imageAvatar);
         holder.nameText.setText(beanList.get(position).getNationName());
         holder.nameText.setGravity(Gravity.CENTER);
         holder.itemView.setOnClickListener(new View.OnClickListener() {

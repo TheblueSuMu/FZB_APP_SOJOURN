@@ -86,13 +86,13 @@ public class DynamicAdapter extends RecyclerView.Adapter<DynamicAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
-        Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getCreateBy().getPhoto()).into(holder.circle_img);
+        Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getCreateBy().getPhoto()).into(holder.circle_img);
 
         if (list.get(position).getImg().equals("")) {
             holder.item_dynamic_ll.setVisibility(View.GONE);
         } else {
             holder.item_dynamic_ll.setVisibility(View.VISIBLE);
-            Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getImg()).into(holder.circle_img_rv);
+            Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getImg()).into(holder.circle_img_rv);
         }
 
         if (list.get(position).getIsLike().equals("0")) {
@@ -103,7 +103,7 @@ public class DynamicAdapter extends RecyclerView.Adapter<DynamicAdapter.ViewHold
         holder.circle_like.setText(list.get(position).getLikeNum());
 
 
-        Glide.with(context).load("http://39.98.173.250:8080" + list.get(position).getProject().getProjectImg()).into(holder.circle_img_1);
+        Glide.with(context).load(FinalContents.getImageUrl()+ list.get(position).getProject().getProjectImg()).into(holder.circle_img_1);
         holder.circle_title.setText(list.get(position).getTitle());
         holder.circle_message.setText(list.get(position).getContent());
         holder.circle_time.setText(list.get(position).getCreateDate());

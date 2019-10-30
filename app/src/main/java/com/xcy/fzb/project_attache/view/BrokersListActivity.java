@@ -96,7 +96,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
     private void initView() {
 
         StatusBar.makeStatusBarTransparent(this);
-        all_no_information = findViewById(R.id.all_no_information);
+        all_no_information = findViewById(R.id.all_no_information_j);
         brokers_list_return = findViewById(R.id.brokers_list_return);
         brokers_list_add = findViewById(R.id.brokers_list_add);
         brokers_list_et = findViewById(R.id.brokers_list_et);

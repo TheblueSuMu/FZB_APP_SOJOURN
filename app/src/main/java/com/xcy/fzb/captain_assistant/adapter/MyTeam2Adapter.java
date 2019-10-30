@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.MyTeam2Bean;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class MyTeam2Adapter extends RecyclerView.Adapter<MyTeam2Adapter.MyTeamVi
 
     @Override
     public void onBindViewHolder(@NonNull MyTeamViewHolder holder, int position) {
-        Glide.with(context).load("http://192.168.0.118:8080" + list.get(position).getPhoto()).into(holder.item_market_img2);
+        Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getPhoto()).into(holder.item_market_img2);
         holder.item_market_tv1.setText(list.get(position).getName());
         holder.item_market_tv2.setText(list.get(position).getNum()+"");
 

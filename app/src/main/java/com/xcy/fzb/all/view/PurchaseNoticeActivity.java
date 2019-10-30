@@ -218,7 +218,7 @@ public class PurchaseNoticeActivity extends AllActivity implements View.OnClickL
             }
 
         } else if (id == R.id.notice_btn) {
-            FinalContents.showShare(title.getText().toString(), "http://test.fangzuobiao.com:88/sellingPoint?" + "&userId=" + FinalContents.getUserID() + "&talkToolId=" + talkToolId, content.getText().toString(), "http://39.98.173.250:8080" + houseDataData.getPropertyHouseList().get(0).getShareIcon(), "http://test.fangzuobiao.com:88/sellingPoint?" + "&userId=" + FinalContents.getUserID() + "&talkToolId=" + talkToolId, this);
+            FinalContents.showShare(title.getText().toString(), "http://test.fangzuobiao.com:88/sellingPoint?" + "&userId=" + FinalContents.getUserID() + "&talkToolId=" + talkToolId, content.getText().toString(), FinalContents.getImageUrl() + houseDataData.getPropertyHouseList().get(0).getShareIcon(), "http://test.fangzuobiao.com:88/sellingPoint?" + "&userId=" + FinalContents.getUserID() + "&talkToolId=" + talkToolId, this);
         }
     }
 
