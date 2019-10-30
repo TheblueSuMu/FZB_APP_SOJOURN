@@ -322,7 +322,8 @@
 
                     <EditText
                         android:id="@+id/add_aconsultant_et2"
-                        android:layout_width="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="100dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
@@ -331,7 +332,6 @@
                         android:gravity="right"
                         android:hint="请输入所在行业"
                         android:imeOptions="actionNext"
-                        android:singleLine="true"
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
 

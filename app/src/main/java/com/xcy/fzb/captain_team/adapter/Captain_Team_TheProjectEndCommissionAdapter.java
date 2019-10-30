@@ -74,26 +74,39 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
             if (rowsBeanList.get(position).getTradeDate().equals("")) {
                 holder.the_project_end_bargain_time.setVisibility(View.GONE);
             } else {
+                holder.the_project_end_bargain_time.setVisibility(View.VISIBLE);
                 holder.the_project_end_bargain_time.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
             }
 
-            holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
-            if (rowsBeanList.get(position).getAlreadyAmount().equals("")) {
+            if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
+                holder.the_project_end_tv1.setVisibility(View.GONE);
+            }else {
+                holder.the_project_end_tv1.setVisibility(View.VISIBLE);
+                holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
+            }
+
+            if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
                 holder.the_project_end_tv3.setVisibility(View.GONE);
             } else {
                 holder.the_project_end_tv3.setVisibility(View.VISIBLE);
                 holder.the_project_end_tv3.setText("已结：￥" + rowsBeanList.get(position).getAlreadyAmount());
             }
-            holder.the_project_end_tv4.setText("未结：￥" + rowsBeanList.get(position).getNotAmount());
 
-            if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0")) {
+            if (rowsBeanList.get(position).getNotAmount().equals("") || rowsBeanList.get(position).getNotAmount().equals("0") || rowsBeanList.get(position).getNotAmount().equals("0.00")) {
+                holder.the_project_end_tv4.setVisibility(View.GONE);
+            }else {
+                holder.the_project_end_tv4.setVisibility(View.VISIBLE);
+                holder.the_project_end_tv4.setText("未结：￥" + rowsBeanList.get(position).getNotAmount());
+            }
+
+            if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
                 holder.the_project_end_tv5.setVisibility(View.GONE);
             } else {
                 holder.the_project_end_tv5.setVisibility(View.VISIBLE);
                 holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
             }
 
-            if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0")) {
+            if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0") || rowsBeanList.get(position).getCommission().equals("0.00")) {
                 holder.the_project_end_tv2.setVisibility(View.GONE);
             } else {
                 holder.the_project_end_tv2.setVisibility(View.VISIBLE);
