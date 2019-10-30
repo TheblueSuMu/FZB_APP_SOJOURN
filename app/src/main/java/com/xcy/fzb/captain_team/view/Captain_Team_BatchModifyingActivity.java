@@ -131,7 +131,6 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
 
         if (FinalContents.getXiuGai().equals("批量修改团队长级别")) {
 
-
             Observable<RatioByOwnerId2Bean> userMessage = fzbInterface.getRatioByOwnerId2(FinalContents.getUserID());
             userMessage.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -156,6 +155,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
                                     //              展示选中数据
                                     batch_modifying_btn.setText(ratioByOwnerIdBean.getData().get(options1).getName()+"");
                                     FinalContents.setRatioId(ratioByOwnerIdBean.getData().get(options1).getId());
+                                    initViewData();
                                 }
                             })
                                     .setSelectOptions(0)//设置选择第一个
@@ -206,6 +206,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
                                     //              展示选中数据
                                     batch_modifying_btn.setText(list.get(options1));
                                     FinalContents.setRatioId(commissionLevelSelectBean.getData().get(options1).getId());
+                                    Log.i("MyCL","initViewData()：");
                                     initViewData();
                                 }
                             })
