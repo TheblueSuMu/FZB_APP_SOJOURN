@@ -347,7 +347,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                                 if (agentDetailsBean.getData().getAgentInfo().getLeaderName().equals("")) {
                                     sales_details_details_tv3.setText("团队长：暂无  顾问：0人");
                                 }else {
-                                    sales_details_details_tv3.setText("团队长：" + agentDetailsBean.getData().getAgentInfo().getLeaderName() + "  顾问0人");
+                                    sales_details_details_tv3.setText("团队长：" + agentDetailsBean.getData().getAgentInfo().getLeaderName() + "  顾问：0人");
                                 }
                             } else {
                                 if (agentDetailsBean.getData().getAgentInfo().getLeaderName().equals("")) {

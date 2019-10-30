@@ -1,6 +1,7 @@
 package com.xcy.fzb.all.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.modle.BuildingBean;
+import com.xcy.fzb.all.view.BigPhotoActivity;
 
 import java.util.List;
 
 public class BuildingInformationAdapter extends RecyclerView.Adapter<BuildingInformationAdapter.ViewHolder>{
-
-
     private List<BuildingBean.DataBean.HouseInfoListBean> list;
     private Context context;
+    private String imageUrl = "";
+    StringBuffer s = new StringBuffer();
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public BuildingInformationAdapter(List<BuildingBean.DataBean.HouseInfoListBean> list) {
         this.list = list;
@@ -37,11 +43,28 @@ public class BuildingInformationAdapter extends RecyclerView.Adapter<BuildingInf
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(context).load("http://39.98.173.250:8080"+list.get(position).getFloorPlan()).into(holder.imageAvatar);
+
+        if(position == 0){
+            s.append(list.get(position).getFloorPlan());
+        }else {
+            s.append("|" + list.get(position).getFloorPlan());
+        }
+
         holder.room.setText(list.get(position).getModel());
         holder.area.setText("面积约："+list.get(position).getArea());
         holder.orientation.setText("朝向："+list.get(position).getOrientation());
+
+        holder.imageAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, BigPhotoActivity.class);
+                intent.putExtra("index",position);
+                intent.putExtra("bigPhotoimg",s.toString());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.xcy.fzb.captain_team.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,18 +77,6 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                 holder.the_project_end_bargain_time.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
             }
 
-            holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv3.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv4.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv2.setVisibility(View.GONE);
-            holder.the_project_end_tv5.setVisibility(View.GONE);
-            holder.the_project_end_tv6.setVisibility(View.GONE);
-            holder.the_project_end_tv7.setVisibility(View.GONE);
-
-            holder.the_project_end_tv1.setTextColor(Color.parseColor("#999999"));
-            holder.the_project_end_tv3.setTextColor(Color.parseColor("#999999"));
-            holder.the_project_end_tv4.setTextColor(Color.parseColor("#C25157"));
-
             holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
             if (rowsBeanList.get(position).getAlreadyAmount().equals("")) {
                 holder.the_project_end_tv3.setVisibility(View.GONE);
@@ -137,7 +124,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                 holder.the_project_end_tv5.setVisibility(View.GONE);
                 holder.the_project_end_tv6.setVisibility(View.VISIBLE);
                 holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                holder.the_project_end_tv7.setText("结清时间：" +rowsBeanList.get(position).getClosingTime());
+                holder.the_project_end_tv7.setText("结清时间：" +rowsBeanList.get(position).getUpdateDate());
             }
 
         } else {
@@ -201,7 +188,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                     holder.the_project_end_tv5.setVisibility(View.GONE);
                     holder.the_project_end_tv6.setVisibility(View.VISIBLE);
                     holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setText("结清时间："+rowsBeanList.get(position).getClosingTime());
+                    holder.the_project_end_tv7.setText("结清时间："+rowsBeanList.get(position).getUpdateDate());
                 }
 
                 if (rowsBeanList.get(position).getMoneyStatus() == 0) {
@@ -232,12 +219,12 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                     }
                 }
 
-                if (rowsBeanList.get(position).getNotAmount().equals("") || rowsBeanList.get(position).getNotAmount().equals("0") || rowsBeanList.get(position).getNotAmount().equals("0.00")) {
+//                if (rowsBeanList.get(position).getNotAmount().equals("") || rowsBeanList.get(position).getNotAmount().equals("0") || rowsBeanList.get(position).getNotAmount().equals("0.00")) {
                     holder.the_project_end_tv4.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv4.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv4.setText("未结：￥ " + rowsBeanList.get(position).getNotAmount());
-                }
+//                } else {
+//                    holder.the_project_end_tv4.setVisibility(View.VISIBLE);
+//                    holder.the_project_end_tv4.setText("未结：￥ " + rowsBeanList.get(position).getNotAmount());
+//                }
 
 
                 if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
@@ -254,18 +241,18 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                     holder.the_project_end_tv5.setVisibility(View.VISIBLE);
                     holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
                 }
-                if (rowsBeanList.get(position).getStatus().equals("0")) {
-                    holder.the_project_end_tv6.setVisibility(View.GONE);
-                    holder.the_project_end_tv7.setVisibility(View.GONE);
-                } else if (rowsBeanList.get(position).getStatus().equals("1")) {
-                    holder.the_project_end_tv2.setVisibility(View.GONE);
-                    holder.the_project_end_tv3.setVisibility(View.GONE);
-                    holder.the_project_end_tv4.setVisibility(View.GONE);
-                    holder.the_project_end_tv5.setVisibility(View.GONE);
-                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setText("结清时间："+rowsBeanList.get(position).getClosingTime());
-                }
+//                if (rowsBeanList.get(position).getStatus().equals("0")) {
+//                    holder.the_project_end_tv6.setVisibility(View.GONE);
+//                    holder.the_project_end_tv7.setVisibility(View.GONE);
+//                } else if (rowsBeanList.get(position).getStatus().equals("1")) {
+//                    holder.the_project_end_tv2.setVisibility(View.GONE);
+//                    holder.the_project_end_tv3.setVisibility(View.GONE);
+//                    holder.the_project_end_tv4.setVisibility(View.GONE);
+//                    holder.the_project_end_tv5.setVisibility(View.GONE);
+//                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
+//                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
+//                    holder.the_project_end_tv7.setText("结清时间："+rowsBeanList.get(position).getClosingTime());
+//                }
 
                 if (rowsBeanList.get(position).getMoneyStatus() == 0) {
                     holder.the_project_end_img.setVisibility(View.GONE);

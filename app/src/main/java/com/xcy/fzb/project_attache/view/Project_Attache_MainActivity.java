@@ -29,13 +29,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.github.androidprogresslayout.ProgressLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -48,7 +41,6 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.VirturlUtil;
 import com.xcy.fzb.all.view.AllActivity;
-import com.xcy.fzb.broker.view.Broker_MainActivity;
 import com.xcy.fzb.project_attache.fragment.DFragment;
 import com.xcy.fzb.project_attache.fragment.EFragment;
 import com.xcy.fzb.project_attache.fragment.HomeFragment;
@@ -60,6 +52,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Project_Attache_MainActivity extends AllActivity implements View.OnClickListener ,HomeFragment.FragmentInteraction {
     private RadioButton button_home;
@@ -146,8 +146,8 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
             if (str.equals("0")) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
-                messageFragment.setType("2");
+//                MessageFragment messageFragment = new MessageFragment();
+                message_fragment.setType("2");
 //                transaction.replace(R.id.main_framelayout,messageFragment);
 
                 transaction.hide(home_fragment);
@@ -160,8 +160,8 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
             } else if (str.equals("2")) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
-                messageFragment.setType("3");
+//                MessageFragment messageFragment = new MessageFragment();
+                message_fragment.setType("3");
 //                transaction.replace(R.id.main_framelayout,messageFragment);
 
                 transaction.hide(home_fragment);
@@ -174,8 +174,8 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
             } else if (str.equals("5")) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                MessageFragment messageFragment = new MessageFragment();
-                messageFragment.setType("4");
+//                MessageFragment messageFragment = new MessageFragment();
+                message_fragment.setType("4");
 //                transaction.replace(R.id.main_framelayout,messageFragment);
 
                 transaction.hide(home_fragment);

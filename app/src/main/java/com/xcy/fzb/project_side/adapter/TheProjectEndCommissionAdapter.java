@@ -37,21 +37,28 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
     public void onBindViewHolder(@NonNull TheProjectEndCommissionViewHolder holder, int position) {
         holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "  (" + rowsBeanList.get(position).getCustomerPhone() + ")");
         holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
+
         if(rowsBeanList.get(position).getRoomNumber().equals("")){
             holder.the_project_end_time.setVisibility(View.GONE);
         }else {
+            holder.the_project_end_time.setVisibility(View.VISIBLE);
             holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
         }
+
         if(rowsBeanList.get(position).getTradeDate().equals("")){
             holder.the_project_end_bargain_time.setVisibility(View.GONE);
         }else {
+            holder.the_project_end_time.setVisibility(View.VISIBLE);
             holder.the_project_end_bargain_time.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
         }
+
         if (rowsBeanList.get(position).getCompanyName().equals("") && rowsBeanList.get(position).getStoreName().equals("")) {
             holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName());
         } else {
+            holder.the_project_end_time.setVisibility(View.VISIBLE);
             holder.the_project_end_company.setText(rowsBeanList.get(position).getCompanyName() + "-" + rowsBeanList.get(position).getStoreName() + "-" + rowsBeanList.get(position).getAgentName());
         }
+
         if (rowsBeanList.get(position).getSecondsAmount().equals("") || rowsBeanList.get(position).getSecondsAmount().equals("0") || rowsBeanList.get(position).getSecondsAmount().equals("0.00")) {
             holder.the_project_end_tv5.setText("无秒结");
         }else {

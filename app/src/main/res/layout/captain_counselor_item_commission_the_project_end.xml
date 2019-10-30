@@ -55,7 +55,7 @@
 
             <TextView
                 android:id="@+id/the_project_end_people"
-                android:layout_width="wrap_content"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:text=""
@@ -76,16 +76,15 @@
                 android:layout_height="41dp"
                 android:layout_gravity="right"
                 android:visibility="gone"
-                android:layout_marginRight="2dp"
-                android:src="@mipmap/tdg" />
+                android:layout_marginRight="2dp"/>
+
             <ImageView
                 android:id="@+id/the_project_end_img1"
                 android:layout_width="48dp"
                 android:layout_height="41dp"
                 android:layout_gravity="right"
                 android:visibility="gone"
-                android:layout_marginRight="2dp"
-                android:src="@mipmap/tdr" />
+                android:layout_marginRight="2dp"/>
             <TextView
                 android:id="@+id/the_project_end_tv1"
                 android:layout_width="wrap_content"

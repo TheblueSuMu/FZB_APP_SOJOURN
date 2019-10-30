@@ -120,7 +120,7 @@ public class BuildingInformationActivity extends AllActivity {
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
+        final Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
         Observable<BuildingBean> buildingBean = fzbInterface.getBuildingBean(FinalContents.getUserID(), FinalContents.getProjectID());
         buildingBean.subscribeOn(Schedulers.io())
@@ -156,6 +156,9 @@ public class BuildingInformationActivity extends AllActivity {
                             buildingCase.setText(list.get(0).getFitmentState());
                             standard.setText(list.get(0).getFitmentStandardStr());
                             buildingInformationAdapter = new BuildingInformationAdapter(list.get(0).getHouseInfoList());
+
+                            String imageUrl = "";
+                            buildingInformationAdapter.setImageUrl(list.get(0).getHouseInfoList().get(0).getFloorPlan());
                             recyclerView.setAdapter(buildingInformationAdapter);
                             buildingInformationAdapter.notifyDataSetChanged();
                             for (int i = 0; i < list.size(); i++) {

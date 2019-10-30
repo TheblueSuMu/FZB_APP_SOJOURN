@@ -15,7 +15,11 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false//是否启动混淆true:打开;false:关闭
+            minifyEnabled false //是否启动混淆true:打开;false:关闭
+            // 不显示Log
+//            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //Zipalign优化
+//            zipAlignEnabled true
 //            shrinkResources true//打开资源压缩。
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

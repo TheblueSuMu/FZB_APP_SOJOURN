@@ -27,9 +27,42 @@
   public *;
 }
 
-# for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+#-------------------------------------MobShareSDK-----------------------------------------------------------------
+# MobShareSDK 混淆配置
+-keep class cn.sharesdk.**{*;}
+-keep class com.sina.**{*;}
+-keep class com.mob.**{*;}
+-keep class com.bytedance.**{*;}
+-dontwarn cn.sharesdk.**
+-dontwarn com.sina.**
+-dontwarn com.mob.**
 
+#-------------------------------------百度地图-----------------------------------------------------------------
+# 百度地图 混淆配置
+-libraryjars libs/BaiduLBS_Android.jar
+-keep class com.baidu.** {*;}
+-keep class vi.com.** {*;}
+-keep class com.sinovoice.** {*;}
+-keep class pvi.com.** {*;}
+-dontwarn com.baidu.**
+-dontwarn vi.com.**
+-dontwarn pvi.com.**
+
+#-------------------------------------GSON-----------------------------------------------------------------
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.stream.** { *; }
+# Application classes that will be serialized/deserialized over Gson
+-keep class com.google.gson.examples.android.model.** { *; }
+-keep class com.google.gson.** { *;}
+#这句非常重要，主要是滤掉 com.demo.demo.bean包下的所有.class文件不进行混淆编译,com.demo.demo是你的包名
+-keep class com.demo.demo.bean.** {*;}
+
+#-------------------------------------SlidingMenu -----------------------------------------------------------------
+-dontwarn com.jeremyfeinstein.slidingmenu.lib.**
+-keep class com.jeremyfeinstein.slidingmenu.lib.**{*;}
 
 #-------------------------------------Retrofit2-----------------------------------------------------------------
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
