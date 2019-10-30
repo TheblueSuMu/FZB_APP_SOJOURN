@@ -93,6 +93,10 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
     private DateTimePickerView pickerView;
     private LinearLayout picker;
 
+    int ifnum1 = 0;
+    int ifnum2 = 0;
+    int ifnum3 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +104,7 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -178,57 +182,71 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
                 break;
             //            TODO 报备客户与认筹客户关系
             case R.id.confess_to_raise_information_rl1:
-                list = new ArrayList<>();
-                list.add("本人");
-                list.add("父母");
-                list.add("子女");
-                list.add("配偶");
-                list.add("其他");
-                pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
-                    @Override
-                    public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                        //               返回的分别是三个级别的选中位置
-                        //              展示选中数据
-                        confess_to_raise_information_tv4.setText(list.get(options1));
-                    }
-                })
-                        .setSelectOptions(0)//设置选择第一个
-                        .setOutSideCancelable(false)//点击背的地方不消失
-                        .build();//创建
-                //      把数据绑定到控件上面
-                pvOptions.setPicker(list);
-                //      展示
-                pvOptions.show();
+                if (ifnum1 == 0) {
+                    ifnum1 = 1;
+                    list = new ArrayList<>();
+                    list.add("本人");
+                    list.add("父母");
+                    list.add("子女");
+                    list.add("配偶");
+                    list.add("其他");
+                    pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
+                        @Override
+                        public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                            //               返回的分别是三个级别的选中位置
+                            //              展示选中数据
+                            confess_to_raise_information_tv4.setText(list.get(options1));
+                        }
+                    })
+                            .setSelectOptions(0)//设置选择第一个
+                            .setOutSideCancelable(false)//点击背的地方不消失
+                            .build();//创建
+                    //      把数据绑定到控件上面
+                    pvOptions.setPicker(list);
+                    //      展示
+                    pvOptions.show();
+                    ifnum1 = 0;
+                }
+
                 break;
             //            TODO 意向户型
             case R.id.confess_to_raise_information_rl2:
-                list = new ArrayList<>();
-                list.add("一室");
-                list.add("二室");
-                list.add("三室");
-                list.add("四室");
-                list.add("五室");
-                //创建
-                pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
-                    @Override
-                    public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                        //               返回的分别是三个级别的选中位置
-                        //              展示选中数据
-                        confess_to_raise_information_tv5.setText(list.get(options1));
-                    }
-                })
-                        .setSelectOptions(0)//设置选择第一个
-                        .setOutSideCancelable(false)//点击背的地方不消失
-                        .build();
-                //      把数据绑定到控件上面
-                pvOptions.setPicker(list);
-                //      展示
-                pvOptions.show();
+                if (ifnum2 == 0) {
+                    ifnum2 = 1;
+                    list = new ArrayList<>();
+                    list.add("一室");
+                    list.add("二室");
+                    list.add("三室");
+                    list.add("四室");
+                    list.add("五室");
+                    //创建
+                    pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
+                        @Override
+                        public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                            //               返回的分别是三个级别的选中位置
+                            //              展示选中数据
+                            confess_to_raise_information_tv5.setText(list.get(options1));
+                        }
+                    })
+                            .setSelectOptions(0)//设置选择第一个
+                            .setOutSideCancelable(false)//点击背的地方不消失
+                            .build();
+                    //      把数据绑定到控件上面
+                    pvOptions.setPicker(list);
+                    //      展示
+                    pvOptions.show();
+                    ifnum2 = 0;
+                }
+
 
                 break;
             //            TODO 认筹时间
             case R.id.confess_to_raise_information_rl3:
-                initDate();
+                if (ifnum3 == 0) {
+                    ifnum3 = 1;
+                    initDate();
+                    ifnum3 = 0;
+                }
                 break;
             //            TODO 提交
             case R.id.confess_to_raise_information_btn:
@@ -248,15 +266,15 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
                     return;
                 }
 
-                if(s6.equals("一室")){
+                if (s6.equals("一室")) {
                     s8 = "1";
-                }else if(s6.equals("二室")){
+                } else if (s6.equals("二室")) {
                     s8 = "2";
-                }else if(s6.equals("三室")){
+                } else if (s6.equals("三室")) {
                     s8 = "3";
-                }else if(s6.equals("四室")){
+                } else if (s6.equals("四室")) {
                     s8 = "4";
-                }else if(s6.equals("五室")){
+                } else if (s6.equals("五室")) {
                     s8 = "5";
                 }
 
@@ -318,14 +336,14 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
 
     }
 
-    private void init(){
+    private void init() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave("",FinalContents.getPreparationId(),FinalContents.getCustomerID(),FinalContents.getProjectID(),s,s1,s2, s3,s8,s4,s7,s5,FinalContents.getUserID());
+        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave("", FinalContents.getPreparationId(), FinalContents.getCustomerID(), FinalContents.getProjectID(), s, s1, s2, s3, s8, s4, s7, s5, FinalContents.getUserID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ConfessBean>() {
@@ -348,7 +366,7 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("认筹信息","错误"+e);
+                        Log.i("认筹信息", "错误" + e);
                     }
 
                     @Override
@@ -360,17 +378,17 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
 
 
     //TODO 认筹时间赋值
-    private void initDate(){
+    private void initDate() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
+        int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
         confess_to_raise_information_tv6.setText(dateString);
-        pickerView.setStartDate(new GregorianCalendar(year-2, 01, 01));
+        pickerView.setStartDate(new GregorianCalendar(year - 2, 01, 01));
         // 注意：月份是从0开始计数的
         pickerView.setSelectedDate(new GregorianCalendar(2019, 01, 01));
-        pickerView.setEndDate(new GregorianCalendar(year, month-1, dayOfMonth));
+        pickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override

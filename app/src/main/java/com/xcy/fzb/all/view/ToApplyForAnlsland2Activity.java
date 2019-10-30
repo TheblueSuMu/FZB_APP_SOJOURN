@@ -119,6 +119,9 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     private List<FieldBean> list = new ArrayList<>();
     private LinearLayout to_apply_for_an_island2_linear;
 
+    int ifnum1 = 0;
+    int ifnum2 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,7 +129,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             if (ProjectProgressApi.getComplemented().equals("0")) {
@@ -198,16 +201,24 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 ProjectProgressApi.setIndex(999999);
                 ProjectProgressApi.setFieldBean(new FieldBean());
                 ProjectProgressApi.setChongfu("重复");
-                Intent intent = new Intent(ToApplyForAnlsland2Activity.this,FieldActivity.class);
+                Intent intent = new Intent(ToApplyForAnlsland2Activity.this, FieldActivity.class);
                 startActivity(intent);
                 break;
             //            TODO 选择路线
             case R.id.to_apply_for_an_island2_rl1:
-                initGetLandLine();
+                if (ifnum1 == 0) {
+                    ifnum1 = 1;
+                    initGetLandLine();
+                    ifnum1 = 0;
+                }
                 break;
             //            TODO 登岛时间
             case R.id.to_apply_for_an_island2_rl2:
-                initGetLandLineTime();
+                if(ifnum2 == 0){
+                    ifnum2 = 1;
+                    initGetLandLineTime();
+                    ifnum2 = 0;
+                }
                 break;
             //            TODO 添加图片
             case R.id.to_apply_for_an_island2_rl3:
@@ -220,7 +231,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 if (ProjectProgressApi.getComplemented().equals("0")) {
                     if (!to_apply_for_an_island2_tv1.getText().toString().equals("")) {
                         initPostReport();
-                    }else {
+                    } else {
                         Toast.makeText(ToApplyForAnlsland2Activity.this, "请选择登岛路线时间，如果没有请及时联系管理员", Toast.LENGTH_SHORT).show();
                     }
                 } else if (ProjectProgressApi.getComplemented().equals("1")) {
@@ -231,8 +242,8 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
             case R.id.to_apply_for_an_island2_rl4:
                 ProjectProgressApi.setIndex(999999);
                 ProjectProgressApi.setFieldBean(new FieldBean());
-                Log.i("我们不一样","差不多");
-                Intent intent2 = new Intent(ToApplyForAnlsland2Activity.this,FieldActivity.class);
+                Log.i("我们不一样", "差不多");
+                Intent intent2 = new Intent(ToApplyForAnlsland2Activity.this, FieldActivity.class);
                 startActivity(intent2);
                 break;
         }
@@ -296,8 +307,8 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     }
 
     //            TODO 查询登岛路线
-    private void initGetLandLine(){
-        Log.i("项目路线","项目ID1："+ FinalContents.getProjectID());
+    private void initGetLandLine() {
+        Log.i("项目路线", "项目ID1：" + FinalContents.getProjectID());
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -318,7 +329,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     public void onNext(GetLandLineBean getLandLineBean) {
                         List<GetLandLineBean.DataBean> list = getLandLineBean.getData();
 
-                        initSelect(list,getlandLine);
+                        initSelect(list, getlandLine);
                     }
 
                     @Override
@@ -334,7 +345,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     }
 
     //查询登岛路线选择器
-    private void initSelect(final List<GetLandLineBean.DataBean> list, final TextView textView){
+    private void initSelect(final List<GetLandLineBean.DataBean> list, final TextView textView) {
         //      监听选中
         OptionsPickerView pvOptions = new OptionsPickerBuilder(ToApplyForAnlsland2Activity.this, new OnOptionsSelectListener() {
             @Override
@@ -351,7 +362,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 .build();//创建
 
         List<String> stringList = new ArrayList<>();
-        for (int i = 0;i < list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             stringList.add(list.get(i).getRouteName());
         }
 
@@ -362,7 +373,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     }
 
     //            TODO 登岛路线时间
-    private void initGetLandLineTime(){
+    private void initGetLandLineTime() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -382,7 +393,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     @Override
                     public void onNext(GetLandLineTimeBean getLandLineTimeBean) {
                         List<GetLandLineTimeBean.DataBean> list = getLandLineTimeBean.getData();
-                        initSelect2(list,getlandLinetime);
+                        initSelect2(list, getlandLinetime);
                     }
 
                     @Override
@@ -398,7 +409,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     }
 
     //登岛路线时间选择器
-    private void initSelect2(final List<GetLandLineTimeBean.DataBean> list, final TextView textView){
+    private void initSelect2(final List<GetLandLineTimeBean.DataBean> list, final TextView textView) {
         //      监听选中
         OptionsPickerView pvOptions = new OptionsPickerBuilder(ToApplyForAnlsland2Activity.this, new OnOptionsSelectListener() {
             @Override
@@ -417,7 +428,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 .build();//创建
         //      把数据绑定到控件上面
         List<String> stringList = new ArrayList<>();
-        for (int i = 0;i < list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             stringList.add(list.get(i).getStartEndTime());
         }
         pvOptions.setPicker(stringList);
@@ -426,14 +437,14 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     }
 
     //            TODO 请求登岛报备
-    private void initPostReport(){
+    private void initPostReport() {
 
-        Log.i("成交数据","1："+FinalContents.getProjectID());
-        Log.i("成交数据","2："+FinalContents.getPreparationId());
-        Log.i("成交数据","3："+FinalContents.getCustomerID());
-        Log.i("成交数据","4："+FinalContents.getCommissionId());
-        Log.i("成交数据","5："+FinalContents.getUserID());
-        Log.i("成交数据","6："+routeid);
+        Log.i("成交数据", "1：" + FinalContents.getProjectID());
+        Log.i("成交数据", "2：" + FinalContents.getPreparationId());
+        Log.i("成交数据", "3：" + FinalContents.getCustomerID());
+        Log.i("成交数据", "4：" + FinalContents.getCommissionId());
+        Log.i("成交数据", "5：" + FinalContents.getUserID());
+        Log.i("成交数据", "6：" + routeid);
 
         ProjectProgressApi.setFieldBeanList(list);
 
@@ -450,7 +461,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<LandSaveBean> userMessage = fzbInterface.getIslandSave(FinalContents.getPreparationId(),routeid,FinalContents.getProjectType(), isColleague, list.size()+"", ProjectProgressApi.getIdNumber(),ProjectProgressApi.getAge(),ProjectProgressApi.getGender(),ProjectProgressApi.getPassportNumber(), ProjectProgressApi.getPassportimg(), route, isLandTime, isPay, to_apply_for_an_island2_tv3.getText().toString(), imgUrl, occupation, focus,FinalContents.getUserID(),fieldbeanlist ,ProjectProgressApi.getCustomerName());
+        Observable<LandSaveBean> userMessage = fzbInterface.getIslandSave(FinalContents.getPreparationId(), routeid, FinalContents.getProjectType(), isColleague, list.size() + "", ProjectProgressApi.getIdNumber(), ProjectProgressApi.getAge(), ProjectProgressApi.getGender(), ProjectProgressApi.getPassportNumber(), ProjectProgressApi.getPassportimg(), route, isLandTime, isPay, to_apply_for_an_island2_tv3.getText().toString(), imgUrl, occupation, focus, FinalContents.getUserID(), fieldbeanlist, ProjectProgressApi.getCustomerName());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LandSaveBean>() {
@@ -471,7 +482,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     @Override
                     public void onError(Throwable e) {
                         Toast.makeText(ToApplyForAnlsland2Activity.this, "请确定您的输入信息是否完整", Toast.LENGTH_SHORT).show();
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -482,14 +493,14 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     }
 
     //            TODO 补全信息 请求登岛报备
-    private void initlandUpdate(){
+    private void initlandUpdate() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<LandSaveBean> userMessage = fzbInterface.getlandUpdate(ProjectProgressApi.getID(),FinalContents.getPreparationId(),ProjectProgressApi.getGender(),ProjectProgressApi.getIdNumber(),ProjectProgressApi.getAge(),ProjectProgressApi.getPassportNumber(),ProjectProgressApi.getPassportimg(),route,routeid,colleagueUserNum,sumCost,landingImg,ProjectProgressApi.getCustomerCity(),ProjectProgressApi.getCustomerOccupation(),ProjectProgressApi.getCustomerFocus(),ProjectProgressApi.getCustomerIntentionalBuilding(),ProjectProgressApi.getCustomerPaymentMethod(),ProjectProgressApi.getCustomerHasDecision(),ProjectProgressApi.getCustomerResistance(),ProjectProgressApi.getCustomerObjective(),ProjectProgressApi.getCustomerAuditStatus(),FinalContents.getUserID());
+        Observable<LandSaveBean> userMessage = fzbInterface.getlandUpdate(ProjectProgressApi.getID(), FinalContents.getPreparationId(), ProjectProgressApi.getGender(), ProjectProgressApi.getIdNumber(), ProjectProgressApi.getAge(), ProjectProgressApi.getPassportNumber(), ProjectProgressApi.getPassportimg(), route, routeid, colleagueUserNum, sumCost, landingImg, ProjectProgressApi.getCustomerCity(), ProjectProgressApi.getCustomerOccupation(), ProjectProgressApi.getCustomerFocus(), ProjectProgressApi.getCustomerIntentionalBuilding(), ProjectProgressApi.getCustomerPaymentMethod(), ProjectProgressApi.getCustomerHasDecision(), ProjectProgressApi.getCustomerResistance(), ProjectProgressApi.getCustomerObjective(), ProjectProgressApi.getCustomerAuditStatus(), FinalContents.getUserID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LandSaveBean>() {
@@ -510,7 +521,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     @Override
                     public void onError(Throwable e) {
                         Toast.makeText(ToApplyForAnlsland2Activity.this, "请确定您的输入信息是否完整", Toast.LENGTH_SHORT).show();
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -521,7 +532,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     }
 
     //            TODO 补全信息 数据请求
-    private void initComplemented(){
+    private void initComplemented() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -545,10 +556,10 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                         getlandLinetime.setText(landBean.getData().getIslandTime());
                         to_apply_for_an_island2_tv1.setText(landBean.getData().getRoutetime().getExpenses());
                         to_apply_for_an_island2_tv3.setText(landBean.getData().getSumCost());
-                        Log.i("图片","http://39.98.173.250:8080" + landBean.getData().getLandingImg());
+                        Log.i("图片", "http://39.98.173.250:8080" + landBean.getData().getLandingImg());
                         if (landBean.getData().getLandingImg().equals("")) {
 
-                        }else {
+                        } else {
                             Glide.with(ToApplyForAnlsland2Activity.this).load("http://39.98.173.250:8080" + landBean.getData().getLandingImg()).into(to_apply_for_an_island2_img3);
                         }
                         colleagueUserNum = Integer.parseInt(to_apply_for_an_island2_tv1.getText().toString());
@@ -557,7 +568,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                             to_apply_for_an_island2_ll1.setVisibility(View.GONE);
                             to_apply_for_an_island2_rl4.setVisibility(View.GONE);
                             to_apply_for_an_island2_linear.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             to_apply_for_an_island2_ll1.setVisibility(View.VISIBLE);
                             to_apply_for_an_island2_rl4.setVisibility(View.GONE);
                             MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(ToApplyForAnlsland2Activity.this);
@@ -590,17 +601,17 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
 
                 if (ProjectProgressApi.getIndex() != 999999) {
                     index = ProjectProgressApi.getIndex();
-                    list.set(index,ProjectProgressApi.getFieldBean());
-                }else {
+                    list.set(index, ProjectProgressApi.getFieldBean());
+                } else {
                     if (ProjectProgressApi.getChongfu().equals("不重复")) {
                         list.add(ProjectProgressApi.getFieldBean());
                     }
                 }
 
                 if (to_apply_for_an_island2_tv1.getText().toString().equals("")) {
-                }else {
+                } else {
                     int expenses = Integer.parseInt(to_apply_for_an_island2_tv1.getText().toString());
-                    sumCost = ""+expenses*(list.size()+1);
+                    sumCost = "" + expenses * (list.size() + 1);
                     to_apply_for_an_island2_tv3.setText(sumCost);
                 }
                 MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(ToApplyForAnlsland2Activity.this);

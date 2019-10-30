@@ -81,6 +81,10 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
     private String s7;
     private String id = "";
 
+    int ifnum1 = 0;
+    int ifnum2 = 0;
+    int ifnum3 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +92,7 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -151,27 +155,42 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
         modify_the_recognition_to_raise_rl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<String> relation = new ArrayList<>();
-                relation.add("本人");
-                relation.add("父母");
-                relation.add("子女");
-                relation.add("配偶");
-                relation.add("其他");
-                initSelect(relation,modify_the_recognition_to_raise_tv4);
+
+                if (ifnum1 == 0) {
+                    ifnum1 = 1;
+                    List<String> relation = new ArrayList<>();
+                    relation.add("本人");
+                    relation.add("父母");
+                    relation.add("子女");
+                    relation.add("配偶");
+                    relation.add("其他");
+                    initSelect(relation, modify_the_recognition_to_raise_tv4);
+                    ifnum1 = 0;
+                }
+
+
             }
         });
 
         modify_the_recognition_to_raise_rl2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initSelect(modify_the_recognition_to_raise_tv6);
+                if (ifnum2 == 0) {
+                    ifnum2 = 1;
+                    initSelect(modify_the_recognition_to_raise_tv6);
+                    ifnum2 = 0;
+                }
             }
         });
 
         modify_the_recognition_to_raise_rl3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initDate();
+                if (ifnum3 == 0) {
+                    ifnum3 = 1;
+                    initDate();
+                    ifnum3 = 0;
+                }
             }
         });
 
@@ -179,7 +198,7 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
 
     }
 
-    private void init(){
+    private void init() {
         s = modify_the_recognition_to_raise_tv1.getText().toString();
         s1 = modify_the_recognition_to_raise_tv2.getText().toString();
         s2 = modify_the_recognition_to_raise_tv3.getText().toString();
@@ -195,15 +214,15 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
             return;
         }
 
-        if(s6.equals("一室")){
+        if (s6.equals("一室")) {
             s8 = "1";
-        }else if(s6.equals("二室")){
+        } else if (s6.equals("二室")) {
             s8 = "2";
-        }else if(s6.equals("三室")){
+        } else if (s6.equals("三室")) {
             s8 = "3";
-        }else if(s6.equals("四室")){
+        } else if (s6.equals("四室")) {
             s8 = "4";
-        }else if(s6.equals("五室")){
+        } else if (s6.equals("五室")) {
             s8 = "5";
         }
 
@@ -264,7 +283,7 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave(id,FinalContents.getPreparationId(),FinalContents.getCustomerID(),FinalContents.getProjectID(), s, s1, s2, s3, s8, s4, s7, s5,FinalContents.getUserID());
+        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave(id, FinalContents.getPreparationId(), FinalContents.getCustomerID(), FinalContents.getProjectID(), s, s1, s2, s3, s8, s4, s7, s5, FinalContents.getUserID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ConfessBean>() {
@@ -287,7 +306,7 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("认筹信息","错误"+e);
+                        Log.i("认筹信息", "错误" + e);
                     }
 
                     @Override
@@ -304,9 +323,9 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("MyCL","FinalContents.getUserID()：" + FinalContents.getUserID());
-        Log.i("MyCL","FinalContents.getPreparationId()：" + FinalContents.getPreparationId());
-        Observable<EarnestMoneyAuditBean> userMessage = fzbInterface.getEarnestMoneyAuditBean(FinalContents.getUserID(),FinalContents.getPreparationId(),"1");
+        Log.i("MyCL", "FinalContents.getUserID()：" + FinalContents.getUserID());
+        Log.i("MyCL", "FinalContents.getPreparationId()：" + FinalContents.getPreparationId());
+        Observable<EarnestMoneyAuditBean> userMessage = fzbInterface.getEarnestMoneyAuditBean(FinalContents.getUserID(), FinalContents.getPreparationId(), "1");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<EarnestMoneyAuditBean>() {
@@ -327,19 +346,19 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
                         modify_the_recognition_to_raise_tv3.setText(earnestMoneyAuditBean.getData().getIdNumber());
                         modify_the_recognition_to_raise_tv4.setText(earnestMoneyAuditBean.getData().getRelation());
                         modify_the_recognition_to_raise_tv5.setText(earnestMoneyAuditBean.getData().getIntentionPier());
-                        if(earnestMoneyAuditBean.getData().getApartment().equals("1")){
+                        if (earnestMoneyAuditBean.getData().getApartment().equals("1")) {
                             modify_the_recognition_to_raise_tv6.setText("一室");
-                        } else if(earnestMoneyAuditBean.getData().getApartment().equals("2")){
+                        } else if (earnestMoneyAuditBean.getData().getApartment().equals("2")) {
                             modify_the_recognition_to_raise_tv6.setText("二室");
-                        } else if(earnestMoneyAuditBean.getData().getApartment().equals("3")){
+                        } else if (earnestMoneyAuditBean.getData().getApartment().equals("3")) {
                             modify_the_recognition_to_raise_tv6.setText("三室");
-                        } else if(earnestMoneyAuditBean.getData().getApartment().equals("4")){
+                        } else if (earnestMoneyAuditBean.getData().getApartment().equals("4")) {
                             modify_the_recognition_to_raise_tv6.setText("四室");
-                        } else if(earnestMoneyAuditBean.getData().getApartment().equals("5")){
+                        } else if (earnestMoneyAuditBean.getData().getApartment().equals("5")) {
                             modify_the_recognition_to_raise_tv6.setText("五室");
-                        } else if(earnestMoneyAuditBean.getData().getApartment().equals("6")){
+                        } else if (earnestMoneyAuditBean.getData().getApartment().equals("6")) {
                             modify_the_recognition_to_raise_tv6.setText("五室以上");
-                        } else if(earnestMoneyAuditBean.getData().getApartment().equals("0")){
+                        } else if (earnestMoneyAuditBean.getData().getApartment().equals("0")) {
                             modify_the_recognition_to_raise_tv6.setText("不限");
                         }
                         modify_the_recognition_to_raise_tv7.setText(earnestMoneyAuditBean.getData().getIntentionalArea());
@@ -349,7 +368,7 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("wsw","返回的数据"+e.getMessage());
+                        Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
                     @Override
@@ -360,7 +379,7 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
     }
 
     //选择器
-    private void initSelect(final List<String> list, final TextView textView){
+    private void initSelect(final List<String> list, final TextView textView) {
         //      监听选中
         OptionsPickerView pvOptions = new OptionsPickerBuilder(ModifyTheRecognitionToRaiseActivity.this, new OnOptionsSelectListener() {
             @Override
@@ -379,14 +398,14 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
         pvOptions.show();
     }
 
-    private void initSelect(final TextView textView){
+    private void initSelect(final TextView textView) {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DictListBean> userMessage = fzbInterface.getDictList(FinalContents.getUserID(),"apartment");
+        Observable<DictListBean> userMessage = fzbInterface.getDictList(FinalContents.getUserID(), "apartment");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DictListBean>() {
@@ -400,15 +419,15 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
                     public void onNext(DictListBean dictListBean) {
                         List<String> list = new ArrayList<>();
                         List<DictListBean.DataBean> dictListBeanList = dictListBean.getData();
-                        for (int i = 0; i < dictListBeanList.size();i++ ){
+                        for (int i = 0; i < dictListBeanList.size(); i++) {
                             list.add(dictListBeanList.get(i).getName());
                         }
-                        initSelect(list,textView);
+                        initSelect(list, textView);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -419,17 +438,17 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
     }
 
     //TODO 认筹时间赋值
-    private void initDate(){
+    private void initDate() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
+        int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
         modify_the_recognition_to_raise_tv8.setText(dateString);
-        pickerView.setStartDate(new GregorianCalendar(year-2, 01, 01));
+        pickerView.setStartDate(new GregorianCalendar(year - 2, 01, 01));
         // 注意：月份是从0开始计数的
         pickerView.setSelectedDate(new GregorianCalendar(2019, 01, 01));
-        pickerView.setEndDate(new GregorianCalendar(year, month-1, dayOfMonth));
+        pickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
