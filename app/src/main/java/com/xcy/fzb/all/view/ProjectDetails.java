@@ -414,7 +414,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                 pvOptions.show();
             }
         });
-        tabLayout.addTab(tabLayout.newTab().setText("交通出行"), true);
+         tabLayout.addTab(tabLayout.newTab().setText("交通出行"), true);
         tabLayout.addTab(tabLayout.newTab().setText("教育教学"));
         tabLayout.addTab(tabLayout.newTab().setText("医疗健康"));
         tabLayout.addTab(tabLayout.newTab().setText("商场购物"));
