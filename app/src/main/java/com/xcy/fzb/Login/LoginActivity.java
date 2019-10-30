@@ -131,6 +131,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
         editor = getSharedPreferences("data", MODE_PRIVATE).edit();
         pref = getSharedPreferences("data", MODE_PRIVATE);
+
         initfvb();
 
     }

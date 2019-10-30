@@ -1,6 +1,7 @@
 package com.xcy.fzb;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,13 +17,34 @@ public class BaseUrl extends AppCompatActivity {
     private TextView ensure;
     private TextView cancle;
     private EditText baseUrl;
+    private SharedPreferences.Editor editor;
+    private SharedPreferences pref;
 
+    private  final int SPLASH_DISPLAY_LENGHT = 2000;//两秒后进入系统，时间可自行调整
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.baseurl);
-        init();
+
+        editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+        pref = getSharedPreferences("data", MODE_PRIVATE);
+
+
+        if (pref.getString("introduction", "").equals("")) {
+            Intent mainIntent = new Intent(BaseUrl.this,Introduction.class);
+            BaseUrl.this.startActivity(mainIntent);
+            BaseUrl.this.finish();
+            editor.putString("introduction", "1");
+            editor.commit();
+        } else if (pref.getString("introduction", "").equals("1")) {
+            initLogin();
+        }
+
+
+//        init();
+
+
     }
 
     private void init(){
@@ -46,5 +68,16 @@ public class BaseUrl extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void initLogin(){
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent mainIntent = new Intent(BaseUrl.this,LoginActivity.class);
+                BaseUrl.this.startActivity(mainIntent);
+                BaseUrl.this.finish();
+            }
+        },SPLASH_DISPLAY_LENGHT);
     }
 }

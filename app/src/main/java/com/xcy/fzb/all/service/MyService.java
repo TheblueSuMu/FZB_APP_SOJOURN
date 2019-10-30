@@ -155,7 +155,7 @@ public interface MyService {
 
     //专案端 认筹添加的数据
     @POST("nodeUpdate/earnestMoneySave")
-    Observable<ConfessBean> getEarnestMoneySave(@Query("id") String id,@Query("preparationId") String preparationId, @Query("customerId") String customerId, @Query("projectId") String projectId, @Query("fullName") String fullName, @Query("phone") String phone, @Query("idNumber") String idNumber, @Query("intentionPier") String intentionPier, @Query("apartment") String apartment, @Query("intentionalArea") String intentionalArea, @Query("recognizeTime") String recognizeTime, @Query("relation") String relation, @Query("userId") String userId);
+    Observable<ConfessBean> getEarnestMoneySave(@Query("id") String id,@Query("preparationId") String preparationId, @Query("customerId") String customerId, @Query("projectId") String projectId, @Query("fullName") String fullName, @Query("phone") String phone, @Query("idNumber") String idNumber, @Query("intentionPier") String intentionPier, @Query("apartment") String apartment, @Query("intentionalArea") String intentionalArea, @Query("recognizeTime") String recognizeTime, @Query("relation") String relation, @Query("gender") String gender, @Query("userId") String userId);
 
     //专案端 调单添加的数据
     @POST("specialUpdate/adjustApplySave")

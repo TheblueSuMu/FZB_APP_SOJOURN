@@ -70,15 +70,6 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
     private DateTimePickerView pickerView;
     private LinearLayout picker;
     private String sex;
-    private String s;
-    private String s1;
-    private String s8;
-    private String s2;
-    private String s3;
-    private String s4;
-    private String s5;
-    private String s6;
-    private String s7;
     private String id = "";
 
     int ifnum1 = 0;
@@ -199,31 +190,21 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
     }
 
     private void init() {
-        s = modify_the_recognition_to_raise_tv1.getText().toString();
-        s1 = modify_the_recognition_to_raise_tv2.getText().toString();
-        s2 = modify_the_recognition_to_raise_tv3.getText().toString();
-        s3 = modify_the_recognition_to_raise_tv4.getText().toString();
-        s4 = modify_the_recognition_to_raise_tv5.getText().toString();
-
-        s5 = modify_the_recognition_to_raise_tv6.getText().toString();
-        s6 = modify_the_recognition_to_raise_tv7.getText().toString();
-        s7 = modify_the_recognition_to_raise_tv8.getText().toString();
-
         if (!MatcherUtils.isMobile(modify_the_recognition_to_raise_tv2.getText().toString())) {
             Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (s6.equals("一室")) {
-            s8 = "1";
-        } else if (s6.equals("二室")) {
-            s8 = "2";
-        } else if (s6.equals("三室")) {
-            s8 = "3";
-        } else if (s6.equals("四室")) {
-            s8 = "4";
-        } else if (s6.equals("五室")) {
-            s8 = "5";
+        if (modify_the_recognition_to_raise_tv6.getText().toString().equals("一室")) {
+            modify_the_recognition_to_raise_tv6.setText("1");
+        } else if (modify_the_recognition_to_raise_tv6.getText().toString().equals("二室")) {
+            modify_the_recognition_to_raise_tv6.setText("2");
+        } else if (modify_the_recognition_to_raise_tv6.getText().toString().equals("三室")) {
+            modify_the_recognition_to_raise_tv6.setText("3");
+        } else if (modify_the_recognition_to_raise_tv6.getText().toString().equals("四室")) {
+            modify_the_recognition_to_raise_tv6.setText("4");
+        } else if (modify_the_recognition_to_raise_tv6.getText().toString().equals("五室")) {
+            modify_the_recognition_to_raise_tv6.setText("5");
         }
 
         if (modify_the_recognition_to_raise_rb1.isChecked()) {
@@ -283,7 +264,10 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave(id, FinalContents.getPreparationId(), FinalContents.getCustomerID(), FinalContents.getProjectID(), s, s1, s2, s3, s8, s4, s7, s5, FinalContents.getUserID());
+        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave(id, FinalContents.getPreparationId(), FinalContents.getCustomerID(), FinalContents.getProjectID(),
+                modify_the_recognition_to_raise_tv1.getText().toString()+"",modify_the_recognition_to_raise_tv2.getText().toString()+"",modify_the_recognition_to_raise_tv3.getText().toString()+"",
+                modify_the_recognition_to_raise_tv5.getText().toString()+"",modify_the_recognition_to_raise_tv6.getText().toString()+"",modify_the_recognition_to_raise_tv7.getText().toString()+"",
+                modify_the_recognition_to_raise_tv8.getText().toString()+"",modify_the_recognition_to_raise_tv4.getText().toString()+"",sex, FinalContents.getUserID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ConfessBean>() {
