@@ -112,12 +112,13 @@
                 android:src="@mipmap/icon_you" />
 
             <TextView
+                android:id="@+id/About_Version_NumBer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="当前版本V1.0.0"
+                android:text=""
                 android:textColor="#ff999999"
                 android:textSize="13sp" />
         </RelativeLayout>

@@ -267,13 +267,9 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
     @Override
     protected void onResume() {
         super.onResume();
-
         Log.i("MyCL","进入了Broker_MainActivity中onResume方法中");
-
         initDaown();
-
     }
-
 
     private void initDaown(){
         Retrofit.Builder builder = new Retrofit.Builder();

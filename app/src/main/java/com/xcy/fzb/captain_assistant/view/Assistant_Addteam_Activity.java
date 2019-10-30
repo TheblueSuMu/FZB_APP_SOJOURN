@@ -75,6 +75,8 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
     private TextView add_aconsultant_title;
     private String id = "";
 
+    int ifnum = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,7 +165,10 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
                 break;
 //                TODO 级别
             case R.id.add_team_rl2:
-                initRatioByOwnerId();
+                if(ifnum == 0){
+                    initRatioByOwnerId();
+                    ifnum = 1;
+                }
                 break;
 //                TODO 确定
             case R.id.add_team_btn:
@@ -218,6 +223,7 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
                         pvOptions.setPicker(list);
                         //      展示
                         pvOptions.show();
+                        ifnum = 0;
                     }
 
                     @Override
@@ -340,9 +346,9 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
                         add_aconsultant_et3.setText(sysUser2Bean.getData().getSysUser().getPhone());
                         add_aconsultant_et4.setText(sysUser2Bean.getData().getSysUser().getLoginName());
 
-                        if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("1")) {
+                        if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
                             slide.setState(true);
-                        } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
+                        } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("1")) {
                             slide.setState(false);
                         }
                         if (sysUser2Bean.getData().getSysUser().getManageFlag().equals("1")) {

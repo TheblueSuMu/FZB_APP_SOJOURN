@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -53,6 +54,9 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
     private RelativeLayout fzb_jc;
     private RelativeLayout fzb_mz;
     private Intent intent;
+
+    TextView About_Version_NumBer;
+
     /**
      * 版本下载数据
      */
@@ -108,6 +112,9 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
         fzb_fx = findViewById(R.id.fzb_fx);
         fzb_jc = findViewById(R.id.fzb_jc);
         fzb_mz = findViewById(R.id.fzb_mz);
+        About_Version_NumBer = findViewById(R.id.About_Version_NumBer);
+
+        About_Version_NumBer.setText("当前版本" + FinalContents.getVersionNumBer());
 
         fzb_return.setOnClickListener(this);
         fzb_fx.setOnClickListener(this);

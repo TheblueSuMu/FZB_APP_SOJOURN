@@ -110,6 +110,12 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
     private boolean whethe = false;
     private String str = "";
 
+    int ifnum1 = 0;
+    int ifnum2 = 0;
+    int ifnum3 = 0;
+    int ifnum4 = 0;
+    int ifnum5 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,7 +123,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             StatusBar.makeStatusBarTransparent(this);
@@ -219,14 +225,14 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                     String s1 = fill_in_transaction_information_et4.getText().toString();
                     String s2 = fill_in_transaction_information_et5.getText().toString();
                     if (s1.equals("") && s2.equals("")) {
-                    }else {
+                    } else {
                         double area = Double.parseDouble(s1);
                         double price = Double.parseDouble(s2);
-                        sum = (area*price);
-                        java.text.DecimalFormat myformat=new java.text.DecimalFormat("0.00");
+                        sum = (area * price);
+                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
                         str = myformat.format(sum);
-                        Log.i("计算价格","sum:"+sum);
-                        fill_in_transaction_information_et6.setText(str +"元");
+                        Log.i("计算价格", "sum:" + sum);
+                        fill_in_transaction_information_et6.setText(str + "元");
                         fill_in_transaction_information_tishi.setVisibility(View.GONE);
                         return true;
                     }
@@ -241,7 +247,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (fill_in_transaction_information_et5.getText().toString().equals("")) {
-                }else {
+                } else {
                     //当actionId == XX_SEND 或者 XX_DONE时都触发
                     //或者event.getKeyCode == ENTER 且 event.getAction == ACTION_DOWN时也触发
                     //注意，这是一定要判断event != null。因为在某些输入法上会返回null。
@@ -251,14 +257,14 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                         String s1 = fill_in_transaction_information_et4.getText().toString();
                         String s2 = fill_in_transaction_information_et5.getText().toString();
                         if (s1.equals("") && s2.equals("")) {
-                        }else {
+                        } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
-                            sum = (area*price);
-                            java.text.DecimalFormat myformat=new java.text.DecimalFormat("0.00");
+                            sum = (area * price);
+                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
                             str = myformat.format(sum);
-                            Log.i("计算价格","sum:"+sum);
-                            fill_in_transaction_information_et6.setText(str+"元");
+                            Log.i("计算价格", "sum:" + sum);
+                            fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
                         }
@@ -267,7 +273,6 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                 return false;
             }
         });
-
 
 
         if (FinalContents.getTiaodan().equals("调单")) {
@@ -285,14 +290,14 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                         String s1 = fill_in_transaction_information_et4.getText().toString();
                         String s2 = fill_in_transaction_information_et5.getText().toString();
                         if (s1.equals("") && s2.equals("")) {
-                        }else {
+                        } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
-                            sum = (area*price);
-                            java.text.DecimalFormat myformat=new java.text.DecimalFormat("0.00");
+                            sum = (area * price);
+                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
                             str = myformat.format(sum);
-                            Log.i("计算价格","sum:"+sum);
-                            fill_in_transaction_information_et6.setText(str+"元");
+                            Log.i("计算价格", "sum:" + sum);
+                            fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
                         }
@@ -305,12 +310,12 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
         }
 
         if (fill_in_transaction_information_et6.getText().toString().equals("")) {
-        }else {
+        } else {
             fill_in_transaction_information_tishi.setVisibility(View.GONE);
         }
     }
 
-    private void initselect(){
+    private void initselect() {
         if (house_type.getText().toString().equals("不限")) {
             apartment = "0";
         } else if (house_type.getText().toString().equals("一室")) {
@@ -329,7 +334,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
 
         if (fill_in_transaction_information_rb1.isChecked()) {
             gender = "男";
-        }else if (fill_in_transaction_information_rb2.isChecked()){
+        } else if (fill_in_transaction_information_rb2.isChecked()) {
             gender = "女";
         }
         if (project_type.getText().toString().equals("住宅")) {
@@ -346,15 +351,15 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
     }
 
     // TODO 添加成交信息数据
-    private void initTradeSave(){
+    private void initTradeSave() {
         initselect();
-        Log.i("成交信息","项目ID："+ FinalContents.getProjectID());
-        Log.i("成交信息","报备ID："+ FinalContents.getPreparationId());
-        Log.i("成交信息","客户ID："+ FinalContents.getCustomerID());
-        Log.i("成交信息","佣金ID："+ FinalContents.getCommissionId());
-        Log.i("成交信息","用户ID："+ FinalContents.getUserID());
+        Log.i("成交信息", "项目ID：" + FinalContents.getProjectID());
+        Log.i("成交信息", "报备ID：" + FinalContents.getPreparationId());
+        Log.i("成交信息", "客户ID：" + FinalContents.getCustomerID());
+        Log.i("成交信息", "佣金ID：" + FinalContents.getCommissionId());
+        Log.i("成交信息", "用户ID：" + FinalContents.getUserID());
 
-        Log.i("成交123","添加成交");
+        Log.i("成交123", "添加成交");
         if (whethe) {
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
@@ -362,7 +367,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<TradeSaveBean> userMessage = fzbInterface.getTradeSave("",FinalContents.getProjectID(),"",FinalContents.getPreparationId(),FinalContents.getCustomerID(),fang_hao_et1.getText().toString()+"栋"+fang_hao_et2.getText().toString()+"单元"+fang_hao_et3.getText().toString()+"室", apartment,fill_in_transaction_information_et4.getText().toString(),fill_in_transaction_information_et5.getText().toString(),str,payment_way.getText().toString(),FinalContents.getCommissionId(),projecttype, gender,project_relation.getText().toString(),fill_in_transaction_information_et1.getText().toString(),fill_in_transaction_information_et2.getText().toString(),fill_in_transaction_information_et3.getText().toString(),FinalContents.getUserID(),project_time.getText().toString());
+            Observable<TradeSaveBean> userMessage = fzbInterface.getTradeSave("", FinalContents.getProjectID(), "", FinalContents.getPreparationId(), FinalContents.getCustomerID(), fang_hao_et1.getText().toString() + "栋" + fang_hao_et2.getText().toString() + "单元" + fang_hao_et3.getText().toString() + "室", apartment, fill_in_transaction_information_et4.getText().toString(), fill_in_transaction_information_et5.getText().toString(), str, payment_way.getText().toString(), FinalContents.getCommissionId(), projecttype, gender, project_relation.getText().toString(), fill_in_transaction_information_et1.getText().toString(), fill_in_transaction_information_et2.getText().toString(), fill_in_transaction_information_et3.getText().toString(), FinalContents.getUserID(), project_time.getText().toString());
             userMessage.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<TradeSaveBean>() {
@@ -374,9 +379,9 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                         @SuppressLint("WrongConstant")
                         @Override
                         public void onNext(TradeSaveBean tradeSaveBean) {
-                            if (FinalContents.getCommissionId().equals("")){
+                            if (FinalContents.getCommissionId().equals("")) {
                                 Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
-                            }else {
+                            } else {
                                 Toast.makeText(VisitingScheduleActivity.this, tradeSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                 finish();
                             }
@@ -384,7 +389,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
 
                         @Override
                         public void onError(Throwable e) {
-                            Log.i("成交信息","错误"+e);
+                            Log.i("成交信息", "错误" + e);
                         }
 
                         @Override
@@ -392,13 +397,13 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
 
                         }
                     });
-            if (FinalContents.getCommissionId().equals("")){
+            if (FinalContents.getCommissionId().equals("")) {
                 Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 FinalContents.setTiaozhuang("成交");
-                Log.i("返回的数据：","成交内的："+FinalContents.getTiaozhuang());
+                Log.i("返回的数据：", "成交内的：" + FinalContents.getTiaozhuang());
             }
-        }else {
+        } else {
             Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
         }
     }
@@ -485,36 +490,69 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                 break;
             //            TODO 产品类型
             case R.id.fill_in_transaction_information_rl1:
-                type = "procuct_type";
-                initData(project_type);
+                if (ifnum1 == 0) {
+                    ifnum1 = 1;
+                    type = "procuct_type";
+                    initData(project_type);
+                    ifnum1 = 0;
+                }
+
                 break;
             //            TODO 成交客户与报备客户关系
             case R.id.fill_in_transaction_information_rl2:
-                List<String> relation = new ArrayList<>();
-                relation.add("本人");
-                relation.add("父母");
-                relation.add("子女");
-                relation.add("配偶");
-                relation.add("其他");
-                initSelect(relation,project_relation);
+
+                if (ifnum2 == 0) {
+                    ifnum2 = 1;
+                    List<String> relation = new ArrayList<>();
+                    relation.add("本人");
+                    relation.add("父母");
+                    relation.add("子女");
+                    relation.add("配偶");
+                    relation.add("其他");
+                    initSelect(relation, project_relation);
+                    ifnum2 = 0;
+                }
+
+
                 break;
             //            TODO 成交户型
             case R.id.fill_in_transaction_information_rl3:
-                type = "apartment";
-                initData(house_type);
+
+                if (ifnum3 == 0) {
+                    ifnum3 = 1;
+                    type = "apartment";
+                    initData(house_type);
+                    ifnum3 = 0;
+                }
+
+
                 break;
             //            TODO 付款方式
             case R.id.fill_in_transaction_information_rl4:
-                List<String> payment = new ArrayList<>();
-                payment.add("一次性");
-                payment.add("按揭");
-                payment.add("分期");
-                initSelect(payment,payment_way);
+
+                if (ifnum4 == 0) {
+                    ifnum4 = 1;
+                    List<String> payment = new ArrayList<>();
+                    payment.add("一次性");
+                    payment.add("按揭");
+                    payment.add("分期");
+                    initSelect(payment, payment_way);
+                    ifnum4 = 0;
+                }
+
+
                 break;
             //            TODO 成交时间
             case R.id.fill_in_transaction_information_rl5:
-                picker.setVisibility(View.VISIBLE);
-                initDate();
+
+                if (ifnum5 == 0) {
+                    ifnum5 = 1;
+                    picker.setVisibility(View.VISIBLE);
+                    initDate();
+                    ifnum5 = 0;
+                }
+
+
                 break;
             //            TODO 佣金
             case R.id.fill_in_transaction_information_rl6:
@@ -522,7 +560,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                     transition_layout.setVisibility(View.VISIBLE);
                     initTimeData();
                     whether = false;
-                }else {
+                } else {
                     transition_layout.setVisibility(View.GONE);
                     whether = true;
                 }
@@ -536,17 +574,17 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
     }
 
     //TODO 成交时间赋值
-    private void initDate(){
+    private void initDate() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
+        int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
         project_time.setText(dateString);
-        dateTimePickerView.setStartDate(new GregorianCalendar(year-2, 01, 01));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year - 2, 01, 01));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(2019, 01, 01));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year+2, month-1, dayOfMonth));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year + 2, month - 1, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -582,14 +620,14 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
 
     }
 
-    private void initTimeData(){
+    private void initTimeData() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<BrokerBean> userMessage = fzbInterface.getTimeRange(project_time.getText().toString(),FinalContents.getProjectID(),FinalContents.getJJrID());
+        Observable<BrokerBean> userMessage = fzbInterface.getTimeRange(project_time.getText().toString(), FinalContents.getProjectID(), FinalContents.getJJrID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BrokerBean>() {
@@ -612,20 +650,20 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                             @Override
                             public void onItemClick(int postion) {
                                 project_brokerage.setText(brokerBean.getData().get(postion).getCommissionFormat());
-                                Log.i("佣金","佣金ID："+brokerBean.getData().get(postion).getId());
+                                Log.i("佣金", "佣金ID：" + brokerBean.getData().get(postion).getId());
                                 FinalContents.setCommissionId(brokerBean.getData().get(postion).getId());
                                 transition_layout.setVisibility(View.GONE);
                                 whethe = true;
                             }
                         });
                         timeRangeAdapter.notifyDataSetChanged();
-                        Log.i("获取到数据","获取到了并显示");
+                        Log.i("获取到数据", "获取到了并显示");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
-                        Log.i("获取到数据","获取到了不显示");
+                        Log.i("列表数据获取错误", "错误" + e);
+                        Log.i("获取到数据", "获取到了不显示");
                     }
 
                     @Override
@@ -635,8 +673,8 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                 });
     }
 
-    private void initFindTrade(){
-        Log.i("返回的数据：","getPreparationId："+FinalContents.getPreparationId());
+    private void initFindTrade() {
+        Log.i("返回的数据：", "getPreparationId：" + FinalContents.getPreparationId());
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -662,7 +700,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                         ConfessAdapter confessAdapter = new ConfessAdapter(findTradeBean.getData().getShowData());
                         fill_in_transaction_information_rv.setNestedScrollingEnabled(false);
                         fill_in_transaction_information_rv.setAdapter(confessAdapter);
-                        Log.i("返回的数据：","getValue："+findTradeBean.getData().getShowData().get(0).getValue());
+                        Log.i("返回的数据：", "getValue：" + findTradeBean.getData().getShowData().get(0).getValue());
                         fill_in_transaction_information_et1.setText(findTradeBean.getData().getFfServerEarnestMoney().getFullName());
                         fill_in_transaction_information_et2.setText(findTradeBean.getData().getFfServerEarnestMoney().getPhone());
                         fill_in_transaction_information_et3.setText(findTradeBean.getData().getFfServerEarnestMoney().getIdNumber());
@@ -677,7 +715,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -687,16 +725,16 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                 });
     }
 
-    private void initFindAdjustApply(){
-        Log.i("调单信息","调单："+FinalContents.getPreparationId());
-        Log.i("调单信息","调单："+FinalContents.getUserID());
+    private void initFindAdjustApply() {
+        Log.i("调单信息", "调单：" + FinalContents.getPreparationId());
+        Log.i("调单信息", "调单：" + FinalContents.getUserID());
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<TradeAuditBean> userMessage = fzbInterface.getTradeAuditBean(FinalContents.getUserID(), FinalContents.getPreparationId(),"1");
+        Observable<TradeAuditBean> userMessage = fzbInterface.getTradeAuditBean(FinalContents.getUserID(), FinalContents.getPreparationId(), "1");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<TradeAuditBean>() {
@@ -720,11 +758,11 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                         }
 
                         if (tradeAuditBean.getData().getRoomNumber().equals("")) {
-                        }else {
+                        } else {
                             String roomNumber = tradeAuditBean.getData().getRoomNumber();
-                            String substring1 = roomNumber.substring(0,roomNumber.indexOf("栋"));
-                            String substring2 = roomNumber.substring(roomNumber.indexOf("栋")+1,roomNumber.indexOf("单"));
-                            String substring3 = roomNumber.substring(roomNumber.indexOf("元")+1,roomNumber.indexOf("室"));
+                            String substring1 = roomNumber.substring(0, roomNumber.indexOf("栋"));
+                            String substring2 = roomNumber.substring(roomNumber.indexOf("栋") + 1, roomNumber.indexOf("单"));
+                            String substring3 = roomNumber.substring(roomNumber.indexOf("元") + 1, roomNumber.indexOf("室"));
 
                             fang_hao_et1.setText(substring1);
                             fang_hao_et2.setText(substring2);
@@ -744,32 +782,32 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                             project_type.setText("别墅");
                         }
 
-                        if(tradeAuditBean.getData().getApartment().equals("1")){
+                        if (tradeAuditBean.getData().getApartment().equals("1")) {
                             house_type.setText("一室");
-                        } else if(tradeAuditBean.getData().getApartment().equals("2")){
+                        } else if (tradeAuditBean.getData().getApartment().equals("2")) {
                             house_type.setText("二室");
-                        } else if(tradeAuditBean.getData().getApartment().equals("3")){
+                        } else if (tradeAuditBean.getData().getApartment().equals("3")) {
                             house_type.setText("三室");
-                        } else if(tradeAuditBean.getData().getApartment().equals("4")){
+                        } else if (tradeAuditBean.getData().getApartment().equals("4")) {
                             house_type.setText("四室");
-                        } else if(tradeAuditBean.getData().getApartment().equals("5")){
+                        } else if (tradeAuditBean.getData().getApartment().equals("5")) {
                             house_type.setText("五室");
-                        } else if(tradeAuditBean.getData().getApartment().equals("6")){
+                        } else if (tradeAuditBean.getData().getApartment().equals("6")) {
                             house_type.setText("五室以上");
-                        } else if(tradeAuditBean.getData().getApartment().equals("0")){
+                        } else if (tradeAuditBean.getData().getApartment().equals("0")) {
                             house_type.setText("不限");
                         }
 
                         fill_in_transaction_information_et4.setText(tradeAuditBean.getData().getArea());
                         fill_in_transaction_information_et5.setText(tradeAuditBean.getData().getPrice());
-                        fill_in_transaction_information_et6.setText(tradeAuditBean.getData().getTotalPrice()+"元");
+                        fill_in_transaction_information_et6.setText(tradeAuditBean.getData().getTotalPrice() + "元");
                         sum = Double.parseDouble(tradeAuditBean.getData().getTotalPrice());
                         str = tradeAuditBean.getData().getTotalPrice();
                         payment_way.setText(tradeAuditBean.getData().getPaymentMethod());
                         project_time.setText(tradeAuditBean.getData().getTradeDate());
 
                         if (tradeAuditBean.getData().getTotalPrice().equals("")) {
-                        }else {
+                        } else {
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                         }
 
@@ -784,7 +822,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -794,14 +832,14 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                 });
     }
 
-    private void initData(final TextView textView){
+    private void initData(final TextView textView) {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DictListBean> userMessage = fzbInterface.getDictList(FinalContents.getUserID(),type);
+        Observable<DictListBean> userMessage = fzbInterface.getDictList(FinalContents.getUserID(), type);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DictListBean>() {
@@ -815,15 +853,15 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                     public void onNext(DictListBean dictListBean) {
                         List<String> list = new ArrayList<>();
                         List<DictListBean.DataBean> dictListBeanList = dictListBean.getData();
-                        for (int i = 0; i < dictListBeanList.size();i++ ){
+                        for (int i = 0; i < dictListBeanList.size(); i++) {
                             list.add(dictListBeanList.get(i).getName());
                         }
-                        initSelect(list,textView);
+                        initSelect(list, textView);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -834,7 +872,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
     }
 
     //选择器
-    private void initSelect(final List<String> list, final TextView textView){
+    private void initSelect(final List<String> list, final TextView textView) {
         //      监听选中
         OptionsPickerView pvOptions = new OptionsPickerBuilder(VisitingScheduleActivity.this, new OnOptionsSelectListener() {
             @Override

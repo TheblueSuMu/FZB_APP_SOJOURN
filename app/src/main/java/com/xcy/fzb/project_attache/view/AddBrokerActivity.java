@@ -71,6 +71,8 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
     private BrokerChangeBean.DataBean data;
     private TextView add_title;
 
+    int ifnum = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -213,25 +215,30 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 break;
             case R.id.add_rl3:
                 Log.i("MyCL", "点击了");
-                list = new ArrayList<>();
-                list.add("经纪公司管理者");
-                list.add("经纪门店管理者");
-                list.add("普通经纪人");
-                pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
-                    @Override
-                    public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                        //               返回的分别是三个级别的选中位置
-                        //              展示选中数据
-                        add_store_tv3.setText(list.get(options1));
-                    }
-                })
-                        .setSelectOptions(0)//设置选择第一个
-                        .setOutSideCancelable(false)//点击背的地方不消失
-                        .build();//创建
-                //      把数据绑定到控件上面
-                pvOptions.setPicker(list);
-                //      展示
-                pvOptions.show();
+                if(ifnum == 0){
+                    ifnum = 1;
+                    list = new ArrayList<>();
+                    list.add("经纪公司管理者");
+                    list.add("经纪门店管理者");
+                    list.add("普通经纪人");
+                    pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
+                        @Override
+                        public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                            //               返回的分别是三个级别的选中位置
+                            //              展示选中数据
+                            add_store_tv3.setText(list.get(options1));
+                        }
+                    })
+                            .setSelectOptions(0)//设置选择第一个
+                            .setOutSideCancelable(false)//点击背的地方不消失
+                            .build();//创建
+                    //      把数据绑定到控件上面
+                    pvOptions.setPicker(list);
+                    //      展示
+                    pvOptions.show();
+                    ifnum = 0;
+                }
+
                 break;
             case R.id.add_btn:
                 if (!MatcherUtils.isMobile(add_store_et2.getText().toString())) {

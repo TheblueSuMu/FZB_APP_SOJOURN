@@ -84,7 +84,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="15dp"
-                            android:text="数据自动回显"
+                            android:text=""
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
 
