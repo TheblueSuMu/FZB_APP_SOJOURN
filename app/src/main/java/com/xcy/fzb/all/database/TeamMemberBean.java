@@ -4,10 +4,11 @@ import java.util.List;
 
 public class TeamMemberBean {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"total":11,"rows":[{"id":"be31913f8a434d13aa0f84246103098d","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"gw2","phone":"18235195023","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"62","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6,7dc90605967c44489e0f8b160d2bc2d6,e8c0c21b41ec448ab02ca8da9667996c","user":"","leaderName":"测试团长1","saleName":"测试团长1","saleNum":"","counselorNum":"","ratioName":"顾问一级"},{"id":"8d4a3db6bf99486cb4f451c0d5c1ce31","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"gw1","phone":"18235195900","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"62","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6,7dc90605967c44489e0f8b160d2bc2d6,ca77d0b221844266a07dd60fb4ffd36f","user":"","leaderName":"测试团长1","saleName":"测试团长1","saleNum":"","counselorNum":"","ratioName":"顾问一级"},{"id":"b99979c0d13e40e993a7ae8a98864e1f","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"飞飞哥","phone":"1760103003","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"1463077da2584dd9ab227d2792c45381","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"顾问a","phone":"14836542985","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"174b3b88e3b54c7db1f50372e6ff4008","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈16","phone":"14698887569","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"19684396ce02415ca2903d42fd3fcddd","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈层测试6","phone":"234565465255","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"5306e8b81ffc4166879f35834c9f1cb5","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈层测试5","phone":"234565465222","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"2019-05-30 15:22:34","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"0cae78b3637c48b79bcb60402b50cfb1","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈层测试3","phone":"23456546533","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"c8d66eab81504f9ca73256818dabfd44","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈层测试3","phone":"23456546548","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"2019-05-22 19:48:34","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"fa6b11bb9bcc4bbfb2f396a7b4396ac5","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈层测试2","phone":"23456546543","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"2019-06-15 22:38:49","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""}]}
+     * data : {"total":4,"rows":[{"id":"1821c475de6442dba0df19a9961eba1d","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"陈思宇","phone":"13910983649","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"60","loginDate":"","loginFlag":"1","type":"1","searcName":"","parentId":"","parentIds":"","user":"","leaderName":"","saleName":"","saleNum":"0","counselorNum":"0","ratioName":"","levelName":"旅长"},{"id":"a2afae9c0c2b47f6aeb82bdfed1d1eca","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"马佳","phone":"15004079651","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"60","loginDate":"2019-10-30 11:16:50","loginFlag":"1","type":"1","searcName":"","parentId":"","parentIds":"","user":"","leaderName":"","saleName":"","saleNum":"0","counselorNum":"0","ratioName":"","levelName":"师长"},{"id":"c07585a03f0a437e8188418c3a087f47","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"王楠","phone":"15633336699","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"60","loginDate":"2019-10-30 09:45:42","loginFlag":"1","type":"1","searcName":"","parentId":"","parentIds":"","user":"","leaderName":"","saleName":"","saleNum":"2","counselorNum":"2","ratioName":"","levelName":"营长"},{"id":"f8f5c64032784e5d914e83ef345750f5","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"刘喆","phone":"15623235588","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"60","loginDate":"2019-10-30 09:20:30","loginFlag":"1","type":"1","searcName":"","parentId":"","parentIds":"","user":"","leaderName":"","saleName":"","saleNum":"0","counselorNum":"0","ratioName":"","levelName":"排长"}]}
      */
 
     private String code;
@@ -40,8 +41,8 @@ public class TeamMemberBean {
 
     public static class DataBean {
         /**
-         * total : 11
-         * rows : [{"id":"be31913f8a434d13aa0f84246103098d","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"gw2","phone":"18235195023","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"62","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6,7dc90605967c44489e0f8b160d2bc2d6,e8c0c21b41ec448ab02ca8da9667996c","user":"","leaderName":"测试团长1","saleName":"测试团长1","saleNum":"","counselorNum":"","ratioName":"顾问一级"},{"id":"8d4a3db6bf99486cb4f451c0d5c1ce31","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"gw1","phone":"18235195900","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"62","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6,7dc90605967c44489e0f8b160d2bc2d6,ca77d0b221844266a07dd60fb4ffd36f","user":"","leaderName":"测试团长1","saleName":"测试团长1","saleNum":"","counselorNum":"","ratioName":"顾问一级"},{"id":"b99979c0d13e40e993a7ae8a98864e1f","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"飞飞哥","phone":"1760103003","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"1463077da2584dd9ab227d2792c45381","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"顾问a","phone":"14836542985","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"174b3b88e3b54c7db1f50372e6ff4008","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈16","phone":"14698887569","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"19684396ce02415ca2903d42fd3fcddd","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈层测试6","phone":"234565465255","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"5306e8b81ffc4166879f35834c9f1cb5","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈层测试5","phone":"234565465222","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"2019-05-30 15:22:34","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"0cae78b3637c48b79bcb60402b50cfb1","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈层测试3","phone":"23456546533","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"c8d66eab81504f9ca73256818dabfd44","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈层测试3","phone":"23456546548","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"2019-05-22 19:48:34","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""},{"id":"fa6b11bb9bcc4bbfb2f396a7b4396ac5","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"圈层测试2","phone":"23456546543","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"6","loginDate":"2019-06-15 22:38:49","loginFlag":"1","type":"3","searcName":"","parentId":"","parentIds":"7dc90605967c44489e0f8b160d2bc2d6","user":"","leaderName":"","saleName":"","saleNum":"","counselorNum":"","ratioName":""}]
+         * total : 4
+         * rows : [{"id":"1821c475de6442dba0df19a9961eba1d","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"陈思宇","phone":"13910983649","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"60","loginDate":"","loginFlag":"1","type":"1","searcName":"","parentId":"","parentIds":"","user":"","leaderName":"","saleName":"","saleNum":"0","counselorNum":"0","ratioName":"","levelName":"旅长"},{"id":"a2afae9c0c2b47f6aeb82bdfed1d1eca","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"马佳","phone":"15004079651","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"60","loginDate":"2019-10-30 11:16:50","loginFlag":"1","type":"1","searcName":"","parentId":"","parentIds":"","user":"","leaderName":"","saleName":"","saleNum":"0","counselorNum":"0","ratioName":"","levelName":"师长"},{"id":"c07585a03f0a437e8188418c3a087f47","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"王楠","phone":"15633336699","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"60","loginDate":"2019-10-30 09:45:42","loginFlag":"1","type":"1","searcName":"","parentId":"","parentIds":"","user":"","leaderName":"","saleName":"","saleNum":"2","counselorNum":"2","ratioName":"","levelName":"营长"},{"id":"f8f5c64032784e5d914e83ef345750f5","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"刘喆","phone":"15623235588","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"60","loginDate":"2019-10-30 09:20:30","loginFlag":"1","type":"1","searcName":"","parentId":"","parentIds":"","user":"","leaderName":"","saleName":"","saleNum":"0","counselorNum":"0","ratioName":"","levelName":"排长"}]
          */
 
         private int total;
@@ -65,28 +66,29 @@ public class TeamMemberBean {
 
         public static class RowsBean {
             /**
-             * id : be31913f8a434d13aa0f84246103098d
+             * id : 1821c475de6442dba0df19a9961eba1d
              * remarks :
              * createBy :
              * createDate :
              * updateBy :
              * updateDate :
-             * name : gw2
-             * phone : 18235195023
+             * name : 陈思宇
+             * phone : 13910983649
              * photo : /fangfang/static/common/images/flat-avatar.png
-             * identity : 62
+             * identity : 60
              * loginDate :
              * loginFlag : 1
-             * type : 3
+             * type : 1
              * searcName :
              * parentId :
-             * parentIds : 7dc90605967c44489e0f8b160d2bc2d6,7dc90605967c44489e0f8b160d2bc2d6,e8c0c21b41ec448ab02ca8da9667996c
+             * parentIds :
              * user :
-             * leaderName : 测试团长1
-             * saleName : 测试团长1
-             * saleNum :
-             * counselorNum :
-             * ratioName : 顾问一级
+             * leaderName :
+             * saleName :
+             * saleNum : 0
+             * counselorNum : 0
+             * ratioName :
+             * levelName : 旅长
              */
 
             private String id;
@@ -111,6 +113,7 @@ public class TeamMemberBean {
             private String saleNum;
             private String counselorNum;
             private String ratioName;
+            private String levelName;
 
             public String getId() {
                 return id;
@@ -286,6 +289,14 @@ public class TeamMemberBean {
 
             public void setRatioName(String ratioName) {
                 this.ratioName = ratioName;
+            }
+
+            public String getLevelName() {
+                return levelName;
+            }
+
+            public void setLevelName(String levelName) {
+                this.levelName = levelName;
             }
         }
     }

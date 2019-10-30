@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.TeamMemberBean;
 
 import java.util.List;
@@ -43,7 +44,11 @@ public class Captain_Team_BatchModifyingAdapter extends RecyclerView.Adapter<Cap
     @Override
     public void onBindViewHolder(@NonNull BatchModifyingViewHolder holder, final int position) {
         Glide.with(holder.itemView.getContext()).load("http://39.98.173.250:8080" + list.get(position).getPhoto()).into(holder.item_batch_modifying_img);
-        holder.item_batch_modifying_tv1.setText(list.get(position).getName()+"("+list.get(position).getRatioName()+")");
+        if(FinalContents.getIdentity().equals("63")){
+            holder.item_batch_modifying_tv1.setText(list.get(position).getName()+"("+list.get(position).getLevelName()+")");
+        }else {
+            holder.item_batch_modifying_tv1.setText(list.get(position).getName()+"("+list.get(position).getRatioName()+")");
+        }
         holder.item_batch_modifying_tv2.setText(list.get(position).getPhone());
         if(list.get(position).getLoginDate().equals("")){
             holder.item_batch_modifying_tv3.setVisibility(View.GONE);
