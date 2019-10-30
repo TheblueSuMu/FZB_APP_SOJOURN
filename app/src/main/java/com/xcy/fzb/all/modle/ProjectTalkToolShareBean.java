@@ -1,11 +1,13 @@
 package com.xcy.fzb.all.modle;
 
+import java.util.List;
+
 public class ProjectTalkToolShareBean {
 
     /**
      * code : 1
      * msg : 成功
-     * data : {"projectInfo":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"ef3f647c7e3643bc882c9fc365634a1a","projectName":"丽江时光","listPageCover":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerProjectManage/2019/6/鸟瞰图(1).jpg","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerProjectManage/2019/6/4.jpg","detailAddress":"云南省丽江市云南省丽江市古城区金山北路","browseNum":"899","forwardingAmount":"43","reportAmount":"37","collectionNum":"2","awardRules":"到访奖励：50元/组\r\n奖励规则：经纪人到访有效客户到达销售案场后，奖励50元每组到访奖励。\r\n\r\n成交奖励：2000元\r\n奖励规则：客户成交现场奖励经纪人2000元现金。","commissionRules":"开发商结款后24小时内发放佣金。","productFeature":"民宿,精装修","buildingArea":"570000","saleStatus":"3","location":"100.281021,26.884087","amountIncentiveId":"6bf6ce6e1b384828b7f4c56219e5f8f9","guideRuleId":"75edea361e3d4a7896dc762adfc60218","isPhone":"1","digit":"4,5,6,7","isPapers":"0","projectType":"3","agentPercent":"10","agentUnitPrice":"","agentAmount":"","leaderPercent":"10","leaderUnitPrice":"","leaderAmount":"","isSeconds":"0","secondsAmount":"","area":"丽江","isgroup":"0","groupNum":"0","salesOfficeLocation":"100.2809,26.884071","onlineState":"","remindstatus1":"","remindstatus2":"","productTypeSize":1,"productUnitPrice":"12000","productTotalPrice":"","referenceToatlPrice":"","areaIntervalStart":"35","areaIntervalEnd":"70","areaInterval":"35-70㎡","monetaryUnit":"元/㎡","commission":"","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"","ffAttacheList":"","brokerUserPhone":"","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""},"talkToolInfo":{"id":"9ccdd0acbe854a58adc455e2e275b3a6","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"createDate":"2019-06-16 11:23:13","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"updateDate":"2019-06-16 11:23:13","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"project":{"id":"ef3f647c7e3643bc882c9fc365634a1a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"丽江时光","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerProjectManage/2019/6/4.jpg","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":""},"title":"云南丽江时光项目简介","content":"<p><span style=\"color: rgb(68, 68, 68); font-family: \"Microsoft YaHei\", Helvetica, arial, sans-serif; text-indent: 28px;\">云南丽江时光项目位于金山北路和团山北路中间，距离大研古城2公里，项目是丽江首个按酒店式度假的标准进行规划的旅游度假综合体，也是丽江首个人高层建筑集群。整个项目占地面积155333.3平方米，总建筑面积57万平方米，分为南北两区打造，由40个单元的高层住宅和55个单元的低层商业组团组成，建筑造型为新亚洲风格，规划地上停车位5000个。<\/span><br><\/p>","img":"","video":"","type":"0","state":"1","shareIcon":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerTalkTool/2019/6/4.jpg","content1":"","content2":""},"identityName":"项目专案","phone":"15204414455","name":"李洋"}
+     * data : {"projectInfo":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"603e127528f747b68bee14d37b3f6239","projectName":"西港云上","listPageCover":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(2).jpg","projectImg":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg","detailAddress":"柬埔寨西哈努克友谊三区（索卡海滩旁）","browseNum":"2185","forwardingAmount":"4","reportAmount":"178","collectionNum":"6","awardRules":"","commissionRules":"","productFeature":"永久产权,托管,公寓,海景房","buildingArea":"200000","saleStatus":"3","location":"103.575622,10.547139","amountIncentiveId":"b69623de99874c2b9c5708d65b1eb426","guideRuleId":"24f86ba3024f4df3abf3657898902770","isPhone":"1","digit":"4,5,6,7","isPapers":"0","projectType":"2","agentPercent":"","agentUnitPrice":"8000.00","agentAmount":"5000.00","leaderPercent":"","leaderUnitPrice":"8000.00","leaderAmount":"5000.00","isSeconds":"0","secondsAmount":"1000","area":"柬埔寨","isgroup":"0","groupNum":"0","salesOfficeLocation":"116.088371,40.016972","onlineState":"","remindstatus1":"","remindstatus2":"","productTypeSize":1,"productUnitPrice":"13000","productTotalPrice":"40","referenceToatlPrice":"40.00","referenceToatlUnit":"万元/套","areaIntervalStart":"40","areaIntervalEnd":"90","areaInterval":"40-90㎡","monetaryUnit":"万元/套","commission":"","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"","ffAttacheList":"","brokerUserPhone":"","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""},"talkToolInfo":{"id":"ac3a8fba7bef491699db81450b7d915b","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2019-08-16 14:55:44","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"2019-08-16 14:55:44","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"project":{"id":"603e127528f747b68bee14d37b3f6239","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"西港云上","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"title":"卖点卖点","content":"<p>哒哒哒哒哒哒多多多多多多多多多多多多多多多多多多多<\/p>\n<p>ddddddddddddddddddddddddddd哒哒哒哒哒哒多多多多多多<\/p>\n<p>哒哒哒哒哒哒多多多多多多多多多多多多<\/p>\n<p>哒哒哒哒哒哒多付付付发所多付阿斯蒂芬<\/p>","img":"","video":"","type":"0","state":"1","shareIcon":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerTalkTool/2019/8/5d354a8a644ea.jpg","content1":"","content2":""},"attList":[{"identityName":"项目专案","phone":"15204414455","name":"李洋"},{"identityName":"项目专案","phone":"19856581879","name":"王ss"}]}
      */
 
     private String code;
@@ -38,18 +40,14 @@ public class ProjectTalkToolShareBean {
 
     public static class DataBean {
         /**
-         * projectInfo : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"ef3f647c7e3643bc882c9fc365634a1a","projectName":"丽江时光","listPageCover":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerProjectManage/2019/6/鸟瞰图(1).jpg","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerProjectManage/2019/6/4.jpg","detailAddress":"云南省丽江市云南省丽江市古城区金山北路","browseNum":"899","forwardingAmount":"43","reportAmount":"37","collectionNum":"2","awardRules":"到访奖励：50元/组\r\n奖励规则：经纪人到访有效客户到达销售案场后，奖励50元每组到访奖励。\r\n\r\n成交奖励：2000元\r\n奖励规则：客户成交现场奖励经纪人2000元现金。","commissionRules":"开发商结款后24小时内发放佣金。","productFeature":"民宿,精装修","buildingArea":"570000","saleStatus":"3","location":"100.281021,26.884087","amountIncentiveId":"6bf6ce6e1b384828b7f4c56219e5f8f9","guideRuleId":"75edea361e3d4a7896dc762adfc60218","isPhone":"1","digit":"4,5,6,7","isPapers":"0","projectType":"3","agentPercent":"10","agentUnitPrice":"","agentAmount":"","leaderPercent":"10","leaderUnitPrice":"","leaderAmount":"","isSeconds":"0","secondsAmount":"","area":"丽江","isgroup":"0","groupNum":"0","salesOfficeLocation":"100.2809,26.884071","onlineState":"","remindstatus1":"","remindstatus2":"","productTypeSize":1,"productUnitPrice":"12000","productTotalPrice":"","referenceToatlPrice":"","areaIntervalStart":"35","areaIntervalEnd":"70","areaInterval":"35-70㎡","monetaryUnit":"元/㎡","commission":"","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"","ffAttacheList":"","brokerUserPhone":"","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""}
-         * talkToolInfo : {"id":"9ccdd0acbe854a58adc455e2e275b3a6","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"createDate":"2019-06-16 11:23:13","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"updateDate":"2019-06-16 11:23:13","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"project":{"id":"ef3f647c7e3643bc882c9fc365634a1a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"丽江时光","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerProjectManage/2019/6/4.jpg","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":""},"title":"云南丽江时光项目简介","content":"<p><span style=\"color: rgb(68, 68, 68); font-family: \"Microsoft YaHei\", Helvetica, arial, sans-serif; text-indent: 28px;\">云南丽江时光项目位于金山北路和团山北路中间，距离大研古城2公里，项目是丽江首个按酒店式度假的标准进行规划的旅游度假综合体，也是丽江首个人高层建筑集群。整个项目占地面积155333.3平方米，总建筑面积57万平方米，分为南北两区打造，由40个单元的高层住宅和55个单元的低层商业组团组成，建筑造型为新亚洲风格，规划地上停车位5000个。<\/span><br><\/p>","img":"","video":"","type":"0","state":"1","shareIcon":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerTalkTool/2019/6/4.jpg","content1":"","content2":""}
-         * identityName : 项目专案
-         * phone : 15204414455
-         * name : 李洋
+         * projectInfo : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectId":"603e127528f747b68bee14d37b3f6239","projectName":"西港云上","listPageCover":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(2).jpg","projectImg":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg","detailAddress":"柬埔寨西哈努克友谊三区（索卡海滩旁）","browseNum":"2185","forwardingAmount":"4","reportAmount":"178","collectionNum":"6","awardRules":"","commissionRules":"","productFeature":"永久产权,托管,公寓,海景房","buildingArea":"200000","saleStatus":"3","location":"103.575622,10.547139","amountIncentiveId":"b69623de99874c2b9c5708d65b1eb426","guideRuleId":"24f86ba3024f4df3abf3657898902770","isPhone":"1","digit":"4,5,6,7","isPapers":"0","projectType":"2","agentPercent":"","agentUnitPrice":"8000.00","agentAmount":"5000.00","leaderPercent":"","leaderUnitPrice":"8000.00","leaderAmount":"5000.00","isSeconds":"0","secondsAmount":"1000","area":"柬埔寨","isgroup":"0","groupNum":"0","salesOfficeLocation":"116.088371,40.016972","onlineState":"","remindstatus1":"","remindstatus2":"","productTypeSize":1,"productUnitPrice":"13000","productTotalPrice":"40","referenceToatlPrice":"40.00","referenceToatlUnit":"万元/套","areaIntervalStart":"40","areaIntervalEnd":"90","areaInterval":"40-90㎡","monetaryUnit":"万元/套","commission":"","secondPay":"无秒结","hot":"","city":"","nation":"","searchContent":"","searchName":"","attacheId":"","businessType":"","collectionId":"","isCollection":"","ffAttacheList":"","brokerUserPhone":"","projectLabel":"","projectLabelStr":"","comprehensiveSorting":"","comprehensiveSortingStr":"pm.create_date DESC","apartment":"","projectPriceStart":"","projectPriceEnd":"","areaSection":"","ffProjectTrait":"","procuctType":"","fitmentState":""}
+         * talkToolInfo : {"id":"ac3a8fba7bef491699db81450b7d915b","remarks":"","createBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2019-08-16 14:55:44","updateBy":{"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"2019-08-16 14:55:44","company":{"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"},"project":{"id":"603e127528f747b68bee14d37b3f6239","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"西港云上","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"title":"卖点卖点","content":"<p>哒哒哒哒哒哒多多多多多多多多多多多多多多多多多多多<\/p>\n<p>ddddddddddddddddddddddddddd哒哒哒哒哒哒多多多多多多<\/p>\n<p>哒哒哒哒哒哒多多多多多多多多多多多多<\/p>\n<p>哒哒哒哒哒哒多付付付发所多付阿斯蒂芬<\/p>","img":"","video":"","type":"0","state":"1","shareIcon":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerTalkTool/2019/8/5d354a8a644ea.jpg","content1":"","content2":""}
+         * attList : [{"identityName":"项目专案","phone":"15204414455","name":"李洋"},{"identityName":"项目专案","phone":"19856581879","name":"王ss"}]
          */
 
         private ProjectInfoBean projectInfo;
         private TalkToolInfoBean talkToolInfo;
-        private String identityName;
-        private String phone;
-        private String name;
+        private List<AttListBean> attList;
 
         public ProjectInfoBean getProjectInfo() {
             return projectInfo;
@@ -67,28 +65,12 @@ public class ProjectTalkToolShareBean {
             this.talkToolInfo = talkToolInfo;
         }
 
-        public String getIdentityName() {
-            return identityName;
+        public List<AttListBean> getAttList() {
+            return attList;
         }
 
-        public void setIdentityName(String identityName) {
-            this.identityName = identityName;
-        }
-
-        public String getPhone() {
-            return phone;
-        }
-
-        public void setPhone(String phone) {
-            this.phone = phone;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
+        public void setAttList(List<AttListBean> attList) {
+            this.attList = attList;
         }
 
         public static class ProjectInfoBean {
@@ -99,54 +81,51 @@ public class ProjectTalkToolShareBean {
              * createDate :
              * updateBy :
              * updateDate :
-             * projectId : ef3f647c7e3643bc882c9fc365634a1a
-             * projectName : 丽江时光
-             * listPageCover : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerProjectManage/2019/6/鸟瞰图(1).jpg
-             * projectImg : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerProjectManage/2019/6/4.jpg
-             * detailAddress : 云南省丽江市云南省丽江市古城区金山北路
-             * browseNum : 899
-             * forwardingAmount : 43
-             * reportAmount : 37
-             * collectionNum : 2
-             * awardRules : 到访奖励：50元/组
-             奖励规则：经纪人到访有效客户到达销售案场后，奖励50元每组到访奖励。
-
-             成交奖励：2000元
-             奖励规则：客户成交现场奖励经纪人2000元现金。
-             * commissionRules : 开发商结款后24小时内发放佣金。
-             * productFeature : 民宿,精装修
-             * buildingArea : 570000
+             * projectId : 603e127528f747b68bee14d37b3f6239
+             * projectName : 西港云上
+             * listPageCover : /fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(2).jpg
+             * projectImg : /fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg
+             * detailAddress : 柬埔寨西哈努克友谊三区（索卡海滩旁）
+             * browseNum : 2185
+             * forwardingAmount : 4
+             * reportAmount : 178
+             * collectionNum : 6
+             * awardRules :
+             * commissionRules :
+             * productFeature : 永久产权,托管,公寓,海景房
+             * buildingArea : 200000
              * saleStatus : 3
-             * location : 100.281021,26.884087
-             * amountIncentiveId : 6bf6ce6e1b384828b7f4c56219e5f8f9
-             * guideRuleId : 75edea361e3d4a7896dc762adfc60218
+             * location : 103.575622,10.547139
+             * amountIncentiveId : b69623de99874c2b9c5708d65b1eb426
+             * guideRuleId : 24f86ba3024f4df3abf3657898902770
              * isPhone : 1
              * digit : 4,5,6,7
              * isPapers : 0
-             * projectType : 3
-             * agentPercent : 10
-             * agentUnitPrice :
-             * agentAmount :
-             * leaderPercent : 10
-             * leaderUnitPrice :
-             * leaderAmount :
+             * projectType : 2
+             * agentPercent :
+             * agentUnitPrice : 8000.00
+             * agentAmount : 5000.00
+             * leaderPercent :
+             * leaderUnitPrice : 8000.00
+             * leaderAmount : 5000.00
              * isSeconds : 0
-             * secondsAmount :
-             * area : 丽江
+             * secondsAmount : 1000
+             * area : 柬埔寨
              * isgroup : 0
              * groupNum : 0
-             * salesOfficeLocation : 100.2809,26.884071
+             * salesOfficeLocation : 116.088371,40.016972
              * onlineState :
              * remindstatus1 :
              * remindstatus2 :
              * productTypeSize : 1
-             * productUnitPrice : 12000
-             * productTotalPrice :
-             * referenceToatlPrice :
-             * areaIntervalStart : 35
-             * areaIntervalEnd : 70
-             * areaInterval : 35-70㎡
-             * monetaryUnit : 元/㎡
+             * productUnitPrice : 13000
+             * productTotalPrice : 40
+             * referenceToatlPrice : 40.00
+             * referenceToatlUnit : 万元/套
+             * areaIntervalStart : 40
+             * areaIntervalEnd : 90
+             * areaInterval : 40-90㎡
+             * monetaryUnit : 万元/套
              * commission :
              * secondPay : 无秒结
              * hot :
@@ -219,6 +198,7 @@ public class ProjectTalkToolShareBean {
             private String productUnitPrice;
             private String productTotalPrice;
             private String referenceToatlPrice;
+            private String referenceToatlUnit;
             private String areaIntervalStart;
             private String areaIntervalEnd;
             private String areaInterval;
@@ -616,6 +596,14 @@ public class ProjectTalkToolShareBean {
                 this.referenceToatlPrice = referenceToatlPrice;
             }
 
+            public String getReferenceToatlUnit() {
+                return referenceToatlUnit;
+            }
+
+            public void setReferenceToatlUnit(String referenceToatlUnit) {
+                this.referenceToatlUnit = referenceToatlUnit;
+            }
+
             public String getAreaIntervalStart() {
                 return areaIntervalStart;
             }
@@ -843,21 +831,24 @@ public class ProjectTalkToolShareBean {
 
         public static class TalkToolInfoBean {
             /**
-             * id : 9ccdd0acbe854a58adc455e2e275b3a6
+             * id : ac3a8fba7bef491699db81450b7d915b
              * remarks :
-             * createBy : {"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""}
-             * createDate : 2019-06-16 11:23:13
-             * updateBy : {"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""}
-             * updateDate : 2019-06-16 11:23:13
+             * createBy : {"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""}
+             * createDate : 2019-08-16 14:55:44
+             * updateBy : {"id":"3c37d25396a940f9b784b4c180f7db37","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""}
+             * updateDate : 2019-08-16 14:55:44
              * company : {"id":"c241db93cbd247f5a8aadf501806b56a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","parentIds":"","name":"长春房坐标（吉海优房）","sort":30,"hasChildren":false,"area":"","code":"","type":"2","grade":"","address":"","zipCode":"","master":"","phone":"","fax":"","email":"","useable":"","primaryPerson":"","deputyPerson":"","childDeptList":"","province":"","city":"","county":"","areas":"","parentId":"0"}
-             * project : {"id":"ef3f647c7e3643bc882c9fc365634a1a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"丽江时光","developer":"","houseCompany":"","cityCompany":"","projectType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerProjectManage/2019/6/4.jpg","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":""}
-             * title : 云南丽江时光项目简介
-             * content : <p><span style="color: rgb(68, 68, 68); font-family: "Microsoft YaHei", Helvetica, arial, sans-serif; text-indent: 28px;">云南丽江时光项目位于金山北路和团山北路中间，距离大研古城2公里，项目是丽江首个按酒店式度假的标准进行规划的旅游度假综合体，也是丽江首个人高层建筑集群。整个项目占地面积155333.3平方米，总建筑面积57万平方米，分为南北两区打造，由40个单元的高层住宅和55个单元的低层商业组团组成，建筑造型为新亚洲风格，规划地上停车位5000个。</span><br></p>
+             * project : {"id":"603e127528f747b68bee14d37b3f6239","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"西港云上","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"/fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""}
+             * title : 卖点卖点
+             * content : <p>哒哒哒哒哒哒多多多多多多多多多多多多多多多多多多多</p>
+             <p>ddddddddddddddddddddddddddd哒哒哒哒哒哒多多多多多多</p>
+             <p>哒哒哒哒哒哒多多多多多多多多多多多多</p>
+             <p>哒哒哒哒哒哒多付付付发所多付阿斯蒂芬</p>
              * img :
              * video :
              * type : 0
              * state : 1
-             * shareIcon : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerTalkTool/2019/6/4.jpg
+             * shareIcon : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerTalkTool/2019/8/5d354a8a644ea.jpg
              * content1 :
              * content2 :
              */
@@ -1061,6 +1052,9 @@ public class ProjectTalkToolShareBean {
                  * classics : 0
                  * team :
                  * layerTeamVo :
+                 * teamParentId :
+                 * commissionLevelId :
+                 * identityStr :
                  * admin : false
                  * roleNames :
                  */
@@ -1108,6 +1102,9 @@ public class ProjectTalkToolShareBean {
                 private int classics;
                 private String team;
                 private String layerTeamVo;
+                private String teamParentId;
+                private String commissionLevelId;
+                private String identityStr;
                 private boolean admin;
                 private String roleNames;
 
@@ -1453,6 +1450,30 @@ public class ProjectTalkToolShareBean {
 
                 public void setLayerTeamVo(String layerTeamVo) {
                     this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getTeamParentId() {
+                    return teamParentId;
+                }
+
+                public void setTeamParentId(String teamParentId) {
+                    this.teamParentId = teamParentId;
+                }
+
+                public String getCommissionLevelId() {
+                    return commissionLevelId;
+                }
+
+                public void setCommissionLevelId(String commissionLevelId) {
+                    this.commissionLevelId = commissionLevelId;
+                }
+
+                public String getIdentityStr() {
+                    return identityStr;
+                }
+
+                public void setIdentityStr(String identityStr) {
+                    this.identityStr = identityStr;
                 }
 
                 public boolean isAdmin() {
@@ -1517,6 +1538,9 @@ public class ProjectTalkToolShareBean {
                  * classics : 0
                  * team :
                  * layerTeamVo :
+                 * teamParentId :
+                 * commissionLevelId :
+                 * identityStr :
                  * admin : false
                  * roleNames :
                  */
@@ -1564,6 +1588,9 @@ public class ProjectTalkToolShareBean {
                 private int classics;
                 private String team;
                 private String layerTeamVo;
+                private String teamParentId;
+                private String commissionLevelId;
+                private String identityStr;
                 private boolean admin;
                 private String roleNames;
 
@@ -1909,6 +1936,30 @@ public class ProjectTalkToolShareBean {
 
                 public void setLayerTeamVo(String layerTeamVo) {
                     this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getTeamParentId() {
+                    return teamParentId;
+                }
+
+                public void setTeamParentId(String teamParentId) {
+                    this.teamParentId = teamParentId;
+                }
+
+                public String getCommissionLevelId() {
+                    return commissionLevelId;
+                }
+
+                public void setCommissionLevelId(String commissionLevelId) {
+                    this.commissionLevelId = commissionLevelId;
+                }
+
+                public String getIdentityStr() {
+                    return identityStr;
+                }
+
+                public void setIdentityStr(String identityStr) {
+                    this.identityStr = identityStr;
                 }
 
                 public boolean isAdmin() {
@@ -2226,17 +2277,18 @@ public class ProjectTalkToolShareBean {
 
             public static class ProjectBean {
                 /**
-                 * id : ef3f647c7e3643bc882c9fc365634a1a
+                 * id : 603e127528f747b68bee14d37b3f6239
                  * remarks :
                  * createBy :
                  * createDate :
                  * updateBy :
                  * updateDate :
-                 * projectName : 丽江时光
+                 * projectName : 西港云上
                  * developer :
                  * houseCompany :
                  * cityCompany :
                  * projectType :
+                 * cityType :
                  * attache :
                  * cooperationState :
                  * onlineState :
@@ -2254,7 +2306,7 @@ public class ProjectTalkToolShareBean {
                  * reportAmount :
                  * nation :
                  * hotSort :
-                 * projectImg : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerProjectManage/2019/6/4.jpg
+                 * projectImg : /fangfang/userfiles/1/attachment//ff/server/ffServerProjectManage/2019/5/(1)(1).jpg
                  * projectListImg :
                  * buildingImg :
                  * browseNum :
@@ -2271,6 +2323,12 @@ public class ProjectTalkToolShareBean {
                  * isgroup :
                  * groupNum :
                  * developerId :
+                 * onlineAuditState :
+                 * applyBy :
+                 * applyDate :
+                 * auditBy :
+                 * auditDate :
+                 * reason :
                  */
 
                 private String id;
@@ -2284,6 +2342,7 @@ public class ProjectTalkToolShareBean {
                 private String houseCompany;
                 private String cityCompany;
                 private String projectType;
+                private String cityType;
                 private String attache;
                 private String cooperationState;
                 private String onlineState;
@@ -2318,6 +2377,12 @@ public class ProjectTalkToolShareBean {
                 private String isgroup;
                 private String groupNum;
                 private String developerId;
+                private String onlineAuditState;
+                private String applyBy;
+                private String applyDate;
+                private String auditBy;
+                private String auditDate;
+                private String reason;
 
                 public String getId() {
                     return id;
@@ -2405,6 +2470,14 @@ public class ProjectTalkToolShareBean {
 
                 public void setProjectType(String projectType) {
                     this.projectType = projectType;
+                }
+
+                public String getCityType() {
+                    return cityType;
+                }
+
+                public void setCityType(String cityType) {
+                    this.cityType = cityType;
                 }
 
                 public String getAttache() {
@@ -2678,6 +2751,90 @@ public class ProjectTalkToolShareBean {
                 public void setDeveloperId(String developerId) {
                     this.developerId = developerId;
                 }
+
+                public String getOnlineAuditState() {
+                    return onlineAuditState;
+                }
+
+                public void setOnlineAuditState(String onlineAuditState) {
+                    this.onlineAuditState = onlineAuditState;
+                }
+
+                public String getApplyBy() {
+                    return applyBy;
+                }
+
+                public void setApplyBy(String applyBy) {
+                    this.applyBy = applyBy;
+                }
+
+                public String getApplyDate() {
+                    return applyDate;
+                }
+
+                public void setApplyDate(String applyDate) {
+                    this.applyDate = applyDate;
+                }
+
+                public String getAuditBy() {
+                    return auditBy;
+                }
+
+                public void setAuditBy(String auditBy) {
+                    this.auditBy = auditBy;
+                }
+
+                public String getAuditDate() {
+                    return auditDate;
+                }
+
+                public void setAuditDate(String auditDate) {
+                    this.auditDate = auditDate;
+                }
+
+                public String getReason() {
+                    return reason;
+                }
+
+                public void setReason(String reason) {
+                    this.reason = reason;
+                }
+            }
+        }
+
+        public static class AttListBean {
+            /**
+             * identityName : 项目专案
+             * phone : 15204414455
+             * name : 李洋
+             */
+
+            private String identityName;
+            private String phone;
+            private String name;
+
+            public String getIdentityName() {
+                return identityName;
+            }
+
+            public void setIdentityName(String identityName) {
+                this.identityName = identityName;
+            }
+
+            public String getPhone() {
+                return phone;
+            }
+
+            public void setPhone(String phone) {
+                this.phone = phone;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
             }
         }
     }
