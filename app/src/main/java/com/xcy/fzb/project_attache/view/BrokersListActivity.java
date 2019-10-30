@@ -167,7 +167,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                             all_no_information.setVisibility(View.GONE);
                             brokers_list_rv.setVisibility(View.VISIBLE);
                             for (int i = 0; i < rows.size(); ++i) {
-                                ContactModel contactModel = new ContactModel(rows.get(i).getAgentName());
+                                ContactModel contactModel = new ContactModel(rows.get(i).getAgentName() + "@" + rows.get(i).getAgentId());
                                 BrokersListData brokersListData = new BrokersListData();
                                 brokersListData.setAgentPhone(rows.get(i).getAgentPhone());
                                 brokersListData.setAgentName(rows.get(i).getAgentName());

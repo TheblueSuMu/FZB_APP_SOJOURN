@@ -73,35 +73,40 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         }
 
         for (int i = 0; i < listData.size(); ++i) {
-
-            if (contact.getName().equals(listData.get(i).getAgentName())) {
-
-                holder.tvName.setText(contact.getName());
-
-                holder.contacts_phone.setText(listData.get(i).getAgentPhone());
-                if(listData.get(i).getStoreName().equals("")){
-                    holder.contacts_name.setText(listData.get(i).getCompanyName());
-                }else {
-                    holder.contacts_name.setText(listData.get(i).getCompanyName() + "-" + listData.get(i).getStoreName());
-                }
-                Log.i("MyCL", "listData.get(i).getStatus()：" + listData.get(i).getStatus());
-                if (listData.get(i).getStatus().equals("1") || listData.get(i).getStatus().equals("0")) {
-                    holder.contacts_img.setVisibility(View.GONE);
-                    Log.i("MyCL", "FinalContents.getYiChang()1:" + FinalContents.getYiChang());
-                } else {
-                    holder.contacts_img.setVisibility(View.VISIBLE);
-                    Log.i("MyCL", "FinalContents.getStatus()3:" + listData.get(i).getStatus());
-                    Log.i("MyCL", "FinalContents.getYiChang()3:" + FinalContents.getYiChang());
+            Log.i("MyCL","contact.getName()：" + contact.getName());
+            Log.i("MyCL","listData.get(i).getAgentName() + listData.get(i).getAgentId()：" + listData.get(i).getAgentName() + listData.get(i).getAgentId());
+            if (contact.getName().equals((listData.get(i).getAgentName() + "@" + listData.get(i).getAgentId()))) {
+                StringBuffer stringBuffer = new StringBuffer();
+                StringBuffer append = stringBuffer.append(contact.getName());
+                for (int j = 0; j < append.length(); ++j) {
+                    if (stringBuffer.substring(j, j + 1).equals("@")) {
+                        Log.i("MyCL","找到了对应数据");
+                        holder.tvName.setText(append.substring(0, j));
+                        holder.contacts_phone.setText(listData.get(i).getAgentPhone());
+                        if (listData.get(i).getStoreName().equals("")) {
+                            holder.contacts_name.setText(listData.get(i).getCompanyName());
+                        } else {
+                            holder.contacts_name.setText(listData.get(i).getCompanyName() + "-" + listData.get(i).getStoreName());
+                        }
+                        Log.i("MyCL", "listData.get(i).getStatus()：" + listData.get(i).getStatus());
+                        if (listData.get(i).getStatus().equals("1") || listData.get(i).getStatus().equals("0")) {
+                            holder.contacts_img.setVisibility(View.GONE);
+                            Log.i("MyCL", "FinalContents.getYiChang()1:" + FinalContents.getYiChang());
+                        } else {
+                            holder.contacts_img.setVisibility(View.VISIBLE);
+                            Log.i("MyCL", "FinalContents.getStatus()3:" + listData.get(i).getStatus());
+                            Log.i("MyCL", "FinalContents.getYiChang()3:" + FinalContents.getYiChang());
+                        }
+                    }
                 }
 
             }
-
         }
         holder.contacts_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0; i < listData.size(); ++i){
-                    if(listData.get(i).getAgentName().equals(contacts.get(position).getName())){
+                for (int i = 0; i < listData.size(); ++i) {
+                    if ((listData.get(i).getAgentName() + "@" + listData.get(i).getAgentId()).equals(contacts.get(position).getName())) {
                         if (listData.get(position).getAgentPhone().equals("")) {
                             Toast.makeText(holder.itemView.getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
                         } else {
@@ -115,8 +120,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0; i < listData.size(); ++i){
-                    if(listData.get(i).getAgentName().equals(contacts.get(position).getName())){
+                for (int i = 0; i < listData.size(); ++i) {
+                    if ((listData.get(i).getAgentName() + "@" + listData.get(i).getAgentId()).equals(contacts.get(position).getName())) {
                         Intent intent = new Intent(holder.itemView.getContext(), BrokerActivity.class);
                         FinalContents.setAgentId(listData.get(i).getAgentId());
                         Log.i("MyCL", "FinalContents.getYiChang()2:" + FinalContents.getYiChang());
