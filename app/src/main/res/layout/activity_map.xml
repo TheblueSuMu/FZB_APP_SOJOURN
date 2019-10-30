@@ -44,6 +44,7 @@
             <ImageView
                 android:id="@+id/map_navigation"
                 android:layout_width="17dp"
+                android:visibility="gone"
                 android:layout_height="19sp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="34dp"
@@ -59,7 +60,6 @@
             android:clickable="true" />
 
         <com.google.android.material.tabs.TabLayout
-            android:visibility="gone"
             android:id="@+id/map_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="53dp"

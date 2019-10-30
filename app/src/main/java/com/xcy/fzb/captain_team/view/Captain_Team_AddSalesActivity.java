@@ -74,6 +74,9 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
     private Observable<TeamMemberBean> teamMemberBeane;
     private Observable<RatioByOwnerIdBean> userMessage1;
 
+    int ifnum1 = 0;
+    int ifnum2 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +84,7 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -164,14 +167,25 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
 //            TODO 选择团队长
             case R.id.add_sales_rl1:
                 if (FinalContents.getIdentity().equals("63")) {
-                    initTeamLeaderLevel();
+                    if (ifnum1 == 0) {
+                        ifnum1 = 1;
+                        initTeamLeaderLevel();
+                        ifnum1 = 0;
+                    }
                 } else {
 
                 }
                 break;
 //                TODO 级别
             case R.id.add_sales_rl2:
-                initRatioByOwnerId();
+
+                if (ifnum2 == 0) {
+                    ifnum2 = 1;
+                    initRatioByOwnerId();
+                    ifnum2 = 0;
+                }
+
+
                 break;
 //                TODO 确定
             case R.id.add_sales_btn:
@@ -235,7 +249,7 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
 
     private void initTeamLeaderLevel() {
 
-        Log.i("MyCL","loginFlag：" + loginFlag);
+        Log.i("MyCL", "loginFlag：" + loginFlag);
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -443,7 +457,7 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
                             if (brokerSaveBean.getData().getMessage().equals("保存成功")) {
                                 FinalContents.setOwnerId001("");
                                 finish();
-                            }else {
+                            } else {
 
                             }
                         }

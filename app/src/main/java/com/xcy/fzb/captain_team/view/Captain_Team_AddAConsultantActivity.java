@@ -183,8 +183,8 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
             case R.id.add_acon_rl_s:
                 if (FinalContents.getIdentity().equals("63")) {
                     if (ifnum1 == 0) {
-                        initAssistant();
                         ifnum1 = 1;
+                        initAssistant();
                     }
                 }
                 break;
@@ -192,16 +192,20 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
             case R.id.add_aconsultant_rl1:
                 if (FinalContents.getIdentity().equals("63") || (FinalContents.getXiuGai().equals("添加顾问") && FinalContents.getIdentity().equals("60"))) {
                     if (ifnum2 == 0) {
-                        initmarket();
                         ifnum2 = 1;
+                        initmarket();
                     }
                 }
                 break;
 //                TODO 级别
             case R.id.add_aconsultant_rl2:
                 if(ifnum3 == 0){
-                    initRatioByOwnerId();
                     ifnum3 = 1;
+                    if(add_aconsultant_tv2.getText().toString().equals("")){
+
+                    }else {
+                        initRatioByOwnerId();
+                    }
                 }
                 break;
 //                TODO 确定
@@ -291,7 +295,8 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<TeamMemberBean> teamMemberBeane = fzbInterface.getTeamMemberBeane("", "2", "", FinalContents.getUserID(), FinalContents.getOwnerId002(), "1000");
+            Log.i("销售","FinalContents.getOwnerId002()：" + FinalContents.getOwnerId002());
+            Observable<TeamMemberBean> teamMemberBeane = fzbInterface.getTeamMemberBeane("", "2", "", FinalContents.getOwnerId002(), FinalContents.getOwnerId002(), "1000");
             teamMemberBeane.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<TeamMemberBean>() {
