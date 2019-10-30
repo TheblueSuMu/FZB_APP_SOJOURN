@@ -77,6 +77,10 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
     private Observable<BrokerSaveBean> userMessage;
     private Observable<RatioByOwnerIdBean> userMessage1;
 
+    int ifnum1 = 0;
+    int ifnum2 = 0;
+    int ifnum3 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -178,18 +182,27 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
 //            TODO 选择团队长
             case R.id.add_acon_rl_s:
                 if (FinalContents.getIdentity().equals("63")) {
-                    initAssistant();
+                    if (ifnum1 == 0) {
+                        initAssistant();
+                        ifnum1 = 1;
+                    }
                 }
                 break;
 //            TODO 选择销售
             case R.id.add_aconsultant_rl1:
                 if (FinalContents.getIdentity().equals("63") || (FinalContents.getXiuGai().equals("添加顾问") && FinalContents.getIdentity().equals("60"))) {
-                    initmarket();
+                    if (ifnum2 == 0) {
+                        initmarket();
+                        ifnum2 = 1;
+                    }
                 }
                 break;
 //                TODO 级别
             case R.id.add_aconsultant_rl2:
-                initRatioByOwnerId();
+                if(ifnum3 == 0){
+                    initRatioByOwnerId();
+                    ifnum3 = 1;
+                }
                 break;
 //                TODO 确定
             case R.id.add_aconsultant_btn:
@@ -247,6 +260,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                         pvOptions.setPicker(list1);
                         //      展示
                         pvOptions.show();
+                        ifnum1 = 0;
                     }
 
                     @Override
@@ -308,7 +322,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                             pvOptions.setPicker(list1);
                             //      展示
                             pvOptions.show();
-
+                            ifnum2 = 0;
                         }
 
                         @Override
@@ -370,6 +384,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                                 pvOptions.setPicker(list1);
                                 //      展示
                                 pvOptions.show();
+                                ifnum3 = 0;
                             }
 
                             @Override
@@ -391,9 +406,9 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            if(FinalContents.getOwnerId001().equals("")){
+            if (FinalContents.getOwnerId001().equals("")) {
                 userMessage1 = fzbInterface.getRatioByOwnerId(FinalContents.getUserID(), FinalContents.getUserID());
-            }else {
+            } else {
                 userMessage1 = fzbInterface.getRatioByOwnerId(FinalContents.getUserID(), FinalContents.getOwnerId001());
             }
             userMessage1.subscribeOn(Schedulers.io())
@@ -526,9 +541,9 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                 } else {
                     loginFlag = "0";
                 }
-                if(FinalContents.getIdentity().equals("60")){
+                if (FinalContents.getIdentity().equals("60")) {
                     userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getOwnerId001(), type, "");
-                }else {
+                } else {
                     userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getUserID(), type, "");
                 }
                 userMessage.subscribeOn(Schedulers.io())
@@ -611,9 +626,9 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                                     @Override
                                     public void onNext(final SysUser2Bean sysUser2Bean) {
                                         add_aconsultant_tv1.setText(sysUser2Bean.getData().getSysUser().getParent().getName());
-                                        if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("1")) {
+                                        if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
                                             slide.setState(true);
-                                        } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
+                                        } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("1")) {
                                             slide.setState(false);
                                         }
 
