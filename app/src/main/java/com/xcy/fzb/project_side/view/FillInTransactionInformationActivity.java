@@ -117,6 +117,8 @@ public class FillInTransactionInformationActivity extends AllActivity implements
     int ifnum4 = 0;
     int ifnum5 = 0;
 
+    int ifnum6 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -471,76 +473,81 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                 break;
             //            TODO 提交
             case R.id.fill_in_transaction_information_btn:
-                if (!MatcherUtils.isMobile(fill_in_transaction_information_et2.getText().toString())) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
+                if (ifnum6 == 0) {
 
-                    if (project_type.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择产品类型", Toast.LENGTH_SHORT).show();
+                    ifnum6 = 1;
+                    if (!MatcherUtils.isMobile(fill_in_transaction_information_et2.getText().toString())) {
+                        Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
                         return;
-                    }
+                    } else {
 
-                    if (fill_in_transaction_information_et1.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户姓名", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (project_type.getText().toString().equals("")) {
+                            Toast.makeText(this, "请选择产品类型", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (fill_in_transaction_information_et2.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户电话", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (fill_in_transaction_information_et1.getText().toString().equals("")) {
+                            Toast.makeText(this, "请输入成交客户姓名", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (fill_in_transaction_information_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户身份证号", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (fill_in_transaction_information_et2.getText().toString().equals("")) {
+                            Toast.makeText(this, "请输入成交客户电话", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (project_relation.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交客户与报备客户关系", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (fill_in_transaction_information_et3.getText().toString().equals("")) {
+                            Toast.makeText(this, "请输入成交客户身份证号", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (fang_hao_et1.getText().toString().equals("") || fang_hao_et2.getText().toString().equals("") || fang_hao_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交房号", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (project_relation.getText().toString().equals("")) {
+                            Toast.makeText(this, "请选择成交客户与报备客户关系", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (house_type.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交户型", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (fang_hao_et1.getText().toString().equals("") || fang_hao_et2.getText().toString().equals("") || fang_hao_et3.getText().toString().equals("")) {
+                            Toast.makeText(this, "请输入成交房号", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (fill_in_transaction_information_et4.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交面积", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (house_type.getText().toString().equals("")) {
+                            Toast.makeText(this, "请选择成交户型", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (fill_in_transaction_information_et5.getText().toString().equals("")) {
-                        Toast.makeText(this, "请填写成交单价", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (fill_in_transaction_information_et4.getText().toString().equals("")) {
+                            Toast.makeText(this, "请输入成交面积", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (str.equals("")) {
-                        Toast.makeText(this, "请填写成交单价并确认", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (fill_in_transaction_information_et5.getText().toString().equals("")) {
+                            Toast.makeText(this, "请填写成交单价", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (payment_way.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择付款方式", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (str.equals("")) {
+                            Toast.makeText(this, "请填写成交单价并确认", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (project_time.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交时间", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                        if (payment_way.getText().toString().equals("")) {
+                            Toast.makeText(this, "请选择付款方式", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    if (FinalContents.getTiaodan().equals("调单")) {
-                        initAdjustApplySave();
-                    } else if (FinalContents.getTiaodan().equals("成交")) {
-                        initTradeSave();
+                        if (project_time.getText().toString().equals("")) {
+                            Toast.makeText(this, "请选择成交时间", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (FinalContents.getTiaodan().equals("调单")) {
+                            initAdjustApplySave();
+                        } else if (FinalContents.getTiaodan().equals("成交")) {
+                            initTradeSave();
+                        }
                     }
+                    ifnum6 = 0;
                 }
 
                 break;

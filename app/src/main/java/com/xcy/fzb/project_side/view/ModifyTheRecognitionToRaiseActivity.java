@@ -76,6 +76,8 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
     int ifnum2 = 0;
     int ifnum3 = 0;
 
+    int isnum1 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,7 +141,11 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
         modify_the_recognition_to_raise_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                init();
+                if (isnum1 == 0){
+                    isnum1 = 1;
+                    init();
+                    isnum1 = 0;
+                }
             }
         });
 

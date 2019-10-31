@@ -37,6 +37,8 @@ public class BackToRaiseThatActivity extends AllActivity {
     private String message;
     private String url;
 
+    int ifnum1 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,7 @@ public class BackToRaiseThatActivity extends AllActivity {
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -73,52 +75,58 @@ public class BackToRaiseThatActivity extends AllActivity {
         back_to_raise_that_et = findViewById(R.id.back_to_raise_that_et);
         back_to_raise_that_btn = findViewById(R.id.back_to_raise_that_btn);
         back_to_raise_that_return.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        finish();
-                    }
-                });
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         back_to_raise_that_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("退筹","："+FinalContents.getPreparationId()+"：中间："+FinalContents.getUserID());
-                message = back_to_raise_that_et.getText().toString();
-                if (message.equals("")) {
-                    Toast.makeText(BackToRaiseThatActivity.this, "请填写退筹说明内容", Toast.LENGTH_SHORT).show();
-                    return;
-                }else {
-                    Retrofit.Builder builder = new Retrofit.Builder();
-                    builder.baseUrl(FinalContents.getBaseUrl());
-                    builder.addConverterFactory(GsonConverterFactory.create());
-                    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                    Retrofit build = builder.build();
-                    MyService fzbInterface = build.create(MyService.class);
-                    Observable<BackToBean> teamMemberBeane = fzbInterface.getRefundMoneyApply(FinalContents.getPreparationId(),message,FinalContents.getUserID());
-                    teamMemberBeane.subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(new Observer<BackToBean>() {
-                                @Override
-                                public void onSubscribe(Disposable d) {
 
-                                }
+                if (ifnum1 == 0) {
+                    ifnum1 = 1;
+                    Log.i("退筹", "：" + FinalContents.getPreparationId() + "：中间：" + FinalContents.getUserID());
+                    message = back_to_raise_that_et.getText().toString();
+                    if (message.equals("")) {
+                        Toast.makeText(BackToRaiseThatActivity.this, "请填写退筹说明内容", Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+                        Retrofit.Builder builder = new Retrofit.Builder();
+                        builder.baseUrl(FinalContents.getBaseUrl());
+                        builder.addConverterFactory(GsonConverterFactory.create());
+                        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                        Retrofit build = builder.build();
+                        MyService fzbInterface = build.create(MyService.class);
+                        Observable<BackToBean> teamMemberBeane = fzbInterface.getRefundMoneyApply(FinalContents.getPreparationId(), message, FinalContents.getUserID());
+                        teamMemberBeane.subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Observer<BackToBean>() {
+                                    @Override
+                                    public void onSubscribe(Disposable d) {
 
-                                @Override
-                                public void onNext(BackToBean backToBean) {
-                                    Toast.makeText(BackToRaiseThatActivity.this,backToBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
+                                    }
 
-                                @Override
-                                public void onError(Throwable e) {
-                                    Log.i("MyCL", "TeamMemberActivity错误信息：" + e.getMessage());
-                                }
+                                    @Override
+                                    public void onNext(BackToBean backToBean) {
+                                        Toast.makeText(BackToRaiseThatActivity.this, backToBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
 
-                                @Override
-                                public void onComplete() {
+                                    @Override
+                                    public void onError(Throwable e) {
+                                        Log.i("MyCL", "TeamMemberActivity错误信息：" + e.getMessage());
+                                    }
 
-                                }
-                            });
+                                    @Override
+                                    public void onComplete() {
+
+                                    }
+                                });
+                    }
+                    ifnum1 = 0;
                 }
+
 
             }
         });

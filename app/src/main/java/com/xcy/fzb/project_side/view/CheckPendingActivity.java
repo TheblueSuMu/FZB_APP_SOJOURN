@@ -67,6 +67,9 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
     private String url;
     private LinearLayout check_pending_ll;
 
+    int isnum1 = 0;
+    int isnum2 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +77,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -113,7 +116,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
 
         if (FinalContents.getJuJue().equals("拒绝记录")) {
             check_pending_ll.setVisibility(View.GONE);
-        } else if (FinalContents.getJuJue().equals("待我审核")){
+        } else if (FinalContents.getJuJue().equals("待我审核")) {
             check_pending_ll.setVisibility(View.VISIBLE);
         }
 
@@ -204,21 +207,30 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                 break;
             //            TODO 通过
             case R.id.check_pending_bt1:
-                initBTN();
+                if (isnum1 == 0) {
+                    isnum1 = 1;
+                    initBTN();
+                    isnum1 = 0;
+                }
                 break;
             //            TODO 拒绝
             case R.id.check_pending_bt2:
-                String s = check_pending_bt2.getText().toString();
-                if (s.equals("拒绝")) {
-                    intent = new Intent(CheckPendingActivity.this, TheReasonForRefusalActivity.class);
-                } else if (s.equals("修改认筹信息")) {
-                    intent = new Intent(CheckPendingActivity.this, ModifyTheRecognitionToRaiseActivity.class);
-                } else if (s.equals("修改成交信息")) {
-                    intent = new Intent(CheckPendingActivity.this, VisitingScheduleActivity.class);
-                    FinalContents.setTiaodan("调单");
+                if (isnum2 == 0) {
+                    isnum2 = 1;
+                    String s = check_pending_bt2.getText().toString();
+                    if (s.equals("拒绝")) {
+                        intent = new Intent(CheckPendingActivity.this, TheReasonForRefusalActivity.class);
+                    } else if (s.equals("修改认筹信息")) {
+                        intent = new Intent(CheckPendingActivity.this, ModifyTheRecognitionToRaiseActivity.class);
+                    } else if (s.equals("修改成交信息")) {
+                        intent = new Intent(CheckPendingActivity.this, VisitingScheduleActivity.class);
+                        FinalContents.setTiaodan("调单");
+                    }
+                    startActivity(intent);
+                    finish();
+                    isnum2 = 0;
                 }
-                startActivity(intent);
-                finish();
+
                 break;
             //            TODO 项目负责人电话
             case R.id.check_pending_img2:
@@ -237,7 +249,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
     private void initBTN() {
         Log.i("MyCL", "getUserID：" + FinalContents.getUserID());
         Log.i("MyCL", "getPreparationId：" + FinalContents.getPreparationId());
-        Log.i("MyCL","Name：" + name);
+        Log.i("MyCL", "Name：" + name);
         if (name.equals("报备") || name.equals("到访")) {
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
@@ -245,7 +257,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<CBean> clientFragmentBean = fzbInterface.getReportAndVisitAudit(FinalContents.getUserID(), FinalContents.getPreparationId(),FinalContents.getStatus(),"1");
+            Observable<CBean> clientFragmentBean = fzbInterface.getReportAndVisitAudit(FinalContents.getUserID(), FinalContents.getPreparationId(), FinalContents.getStatus(), "1");
             clientFragmentBean.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<CBean>() {
@@ -284,7 +296,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<CheckBean> clientFragmentBean = fzbInterface.getEarnestMoneyAudit(FinalContents.getUserID(), FinalContents.getPreparationId(),"0");
+            Observable<CheckBean> clientFragmentBean = fzbInterface.getEarnestMoneyAudit(FinalContents.getUserID(), FinalContents.getPreparationId(), "0");
             clientFragmentBean.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<CheckBean>() {
@@ -315,8 +327,8 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         }
                     });
         } else if (name.equals("成交")) {
-            Log.i("成交","用户名："+FinalContents.getUserID());
-            Log.i("成交","报备："+FinalContents.getPreparationId());
+            Log.i("成交", "用户名：" + FinalContents.getUserID());
+            Log.i("成交", "报备：" + FinalContents.getPreparationId());
 
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
@@ -324,7 +336,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<CheckBean> clientFragmentBean = fzbInterface.getTradeAudit(FinalContents.getUserID(), FinalContents.getPreparationId(),"0");
+            Observable<CheckBean> clientFragmentBean = fzbInterface.getTradeAudit(FinalContents.getUserID(), FinalContents.getPreparationId(), "0");
             clientFragmentBean.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<CheckBean>() {

@@ -121,6 +121,8 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
 
     int ifnum1 = 0;
     int ifnum2 = 0;
+    int ifnum3 = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,7 +216,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 break;
             //            TODO 登岛时间
             case R.id.to_apply_for_an_island2_rl2:
-                if(ifnum2 == 0){
+                if (ifnum2 == 0) {
                     ifnum2 = 1;
                     initGetLandLineTime();
                     ifnum2 = 0;
@@ -227,15 +229,19 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 break;
             //            TODO 完成
             case R.id.to_apply_for_an_island2_btn:
-                ProjectProgressApi.setChongfu("重复");
-                if (ProjectProgressApi.getComplemented().equals("0")) {
-                    if (!to_apply_for_an_island2_tv1.getText().toString().equals("")) {
-                        initPostReport();
-                    } else {
-                        Toast.makeText(ToApplyForAnlsland2Activity.this, "请选择登岛路线时间，如果没有请及时联系管理员", Toast.LENGTH_SHORT).show();
+                if (ifnum3 == 0) {
+                    ifnum3 = 1;
+                    ProjectProgressApi.setChongfu("重复");
+                    if (ProjectProgressApi.getComplemented().equals("0")) {
+                        if (!to_apply_for_an_island2_tv1.getText().toString().equals("")) {
+                            initPostReport();
+                        } else {
+                            Toast.makeText(ToApplyForAnlsland2Activity.this, "请选择登岛路线时间，如果没有请及时联系管理员", Toast.LENGTH_SHORT).show();
+                        }
+                    } else if (ProjectProgressApi.getComplemented().equals("1")) {
+                        initlandUpdate();
                     }
-                } else if (ProjectProgressApi.getComplemented().equals("1")) {
-                    initlandUpdate();
+                    ifnum3 = 0;
                 }
                 break;
             //            TODO 编辑
@@ -805,7 +811,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                                 public void onNext(AddPhotoBean addPhotoBean) {
                                     imgUrl = addPhotoBean.getData().getUrl();
                                     Log.i("MyCL", "解析完成后图片路径：" + imgUrl);
-                                    Glide.with(ToApplyForAnlsland2Activity.this).load(FinalContents.getImageUrl()+ imgUrl).into(to_apply_for_an_island2_img3);
+                                    Glide.with(ToApplyForAnlsland2Activity.this).load(FinalContents.getImageUrl() + imgUrl).into(to_apply_for_an_island2_img3);
                                     to_apply_for_an_island2_tv4.setVisibility(View.GONE);
                                     isPhoto = 0;
                                 }

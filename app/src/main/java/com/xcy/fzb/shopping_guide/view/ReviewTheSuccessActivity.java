@@ -66,6 +66,11 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     private MyClientFragmentBean.DataBean.InfoDataBean infoData;
     private List<MyClientFragmentBean.DataBean.ListDataBean> processData;
 
+    int isnum1 = 0;
+    int isnum2 = 0;
+    int isnum3 = 0;
+    int isnum4 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +78,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -135,7 +140,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<MyClientFragmentBean> clientFragmentBean = fzbInterface.getClientFragmentBeanDao(FinalContents.getUserID(),FinalContents.getCustomerID(),FinalContents.getLandingId(), FinalContents.getPreparationId());
+        Observable<MyClientFragmentBean> clientFragmentBean = fzbInterface.getClientFragmentBeanDao(FinalContents.getUserID(), FinalContents.getCustomerID(), FinalContents.getLandingId(), FinalContents.getPreparationId());
         clientFragmentBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MyClientFragmentBean>() {
@@ -146,7 +151,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
                     @Override
                     public void onNext(MyClientFragmentBean myClientFragmentBean) {
-                        for (int i = 0;i < myClientFragmentBean.getData().getMenuData().size();i++){
+                        for (int i = 0; i < myClientFragmentBean.getData().getMenuData().size(); i++) {
                             if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("60")) {
                                 review_the_success_bt5.setVisibility(View.VISIBLE);//申请成交
                             } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("50")) {
@@ -205,37 +210,57 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 break;
             //            TODO 补全信息
             case R.id.review_the_success_bt1:
-                finish();
-                intent = new Intent(ReviewTheSuccessActivity.this, ToApplyForAnIslandActivity.class);
-                intent.putExtra("name",infoData.getCustomerName());
-                startActivity(intent);
+                if (isnum1 == 0) {
+                    isnum1 = 1;
+                    finish();
+                    intent = new Intent(ReviewTheSuccessActivity.this, ToApplyForAnIslandActivity.class);
+                    intent.putExtra("name", infoData.getCustomerName());
+                    startActivity(intent);
+                    isnum1 = 0;
+                }
+
                 break;
             //            TODO 未成交
             case R.id.review_the_success_bt3:
-                finish();
-                intent = new Intent(ReviewTheSuccessActivity.this, WCJActivity.class);
-                startActivity(intent);
+                if (isnum2 == 0) {
+                    isnum2 = 1;
+                    finish();
+                    intent = new Intent(ReviewTheSuccessActivity.this, WCJActivity.class);
+                    startActivity(intent);
+                    isnum2 = 0;
+                }
+
                 break;
             //            TODO 申请认筹
             case R.id.review_the_success_bt4:
-                finish();
-                Log.i("MyCL", "getProjectName：" + infoData.getProjectName());
-                Log.i("MyCL", "getCustomerName：" + infoData.getCustomerName());
-                Log.i("MyCL", "getCustomerPhone：" + infoData.getCustomerPhone());
-                intent = new Intent(ReviewTheSuccessActivity.this, ConfessToRaiseInformationActivity.class);
-                ProjectProgressApi.setCustomerName(infoData.getCustomerName());
-                ProjectProgressApi.setProjectName(infoData.getProjectName());
-                ProjectProgressApi.setCustomerPhone(infoData.getCustomerPhone());
-                startActivity(intent);
+                if (isnum3 == 0) {
+                    isnum3 = 1;
+                    finish();
+                    Log.i("MyCL", "getProjectName：" + infoData.getProjectName());
+                    Log.i("MyCL", "getCustomerName：" + infoData.getCustomerName());
+                    Log.i("MyCL", "getCustomerPhone：" + infoData.getCustomerPhone());
+                    intent = new Intent(ReviewTheSuccessActivity.this, ConfessToRaiseInformationActivity.class);
+                    ProjectProgressApi.setCustomerName(infoData.getCustomerName());
+                    ProjectProgressApi.setProjectName(infoData.getProjectName());
+                    ProjectProgressApi.setCustomerPhone(infoData.getCustomerPhone());
+                    startActivity(intent);
+                    isnum3 = 0;
+                }
+
                 break;
             //            TODO 申请成交
             case R.id.review_the_success_bt5:
-                finish();
-                Log.i("MyCL", "getPreparationId：" + infoData.getPreparationId());
-                intent = new Intent(ReviewTheSuccessActivity.this, FillInTransactionInformationActivity.class);
-                FinalContents.setPreparationId(infoData.getPreparationId());
-                FinalContents.setTiaodan("成交");
-                startActivity(intent);
+                if (isnum4 == 0) {
+                    isnum4 = 1;
+                    finish();
+                    Log.i("MyCL", "getPreparationId：" + infoData.getPreparationId());
+                    intent = new Intent(ReviewTheSuccessActivity.this, FillInTransactionInformationActivity.class);
+                    FinalContents.setPreparationId(infoData.getPreparationId());
+                    FinalContents.setTiaodan("成交");
+                    startActivity(intent);
+                    isnum4 = 0;
+                }
+
                 break;
             //            TODO 项目负责人电话
             case R.id.review_the_success_img2:

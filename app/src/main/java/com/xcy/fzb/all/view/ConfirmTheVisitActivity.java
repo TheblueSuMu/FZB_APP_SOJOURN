@@ -85,6 +85,8 @@ public class ConfirmTheVisitActivity extends AllActivity {
     private String getLongitude = "";
     private String getLatitude = "";
 
+    int ifnum1 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,7 +137,11 @@ public class ConfirmTheVisitActivity extends AllActivity {
 
             @Override
             public void onClick(View view) {
-                initVisitSave();
+                if(ifnum1 == 0){
+                    ifnum1 = 1;
+                    initVisitSave();
+                    ifnum1 = 0;
+                }
             }
         });
 

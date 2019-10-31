@@ -111,7 +111,7 @@
         <activity android:name=".all.view.ReleaseActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 经济圈发布-->
         <activity android:name=".all.view.SellingPointsDetailsActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 卖点详情 没有用到-->
         <activity android:name=".all.view.SetPasswordActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 设置或修改密码-->
-        <activity android:name=".all.view.SexActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 性别-->
+        <activity android:name=".all.view.SexActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 性别 没有用到-->
         <activity android:name=".all.view.ToLoginActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 第三方账号登录-->
         <activity android:name=".all.view.ProjectDetails" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 项目详情-->
         <activity android:name=".all.view.SpellingMassTimeActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 拼团-->

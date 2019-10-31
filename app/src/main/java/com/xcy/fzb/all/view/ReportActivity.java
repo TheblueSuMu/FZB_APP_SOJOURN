@@ -126,6 +126,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private LinearLayout report_ll_start_sq1;
     private LinearLayout report_ll_start_sq2;
 
+    int ifnum1 = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
