@@ -60,6 +60,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
     private String img;
     private TextView particulars_xiao_pinglun;
     private String isLike;
+    int num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,12 +96,12 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
         comment_et.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                int num = 0;
+
                 if (KeyEvent.KEYCODE_ENTER == i && KeyEvent.ACTION_DOWN == keyEvent.getAction()) {
                     Log.i("MyCL", "重复打印");
                     //处理事件
                     if (num == 0) {
-                        num++;
+                        num = 1;
                         initDataEt();
                     }
                     return true;
@@ -191,11 +192,13 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
                             if (commentBean.getData().getStatus().equals("2")) {
                                 Toast.makeText(MessageCommentActivity.this, commentBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                 comment_et.setText("");
+                                num = 0;
                             } else {
                                 Toast.makeText(MessageCommentActivity.this, "发布失败", Toast.LENGTH_SHORT).show();
                                 comment_et.setText("");
                             }
                             initData();
+
                         }
 
                         @Override

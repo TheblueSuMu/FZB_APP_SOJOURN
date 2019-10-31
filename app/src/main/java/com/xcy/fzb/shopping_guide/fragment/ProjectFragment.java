@@ -286,6 +286,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                         if (taskListBean.getData().getRows().size() == 0) {
                             Toast.makeText(view.getContext(), "当前没有正在执行的任务", Toast.LENGTH_SHORT).show();
                         }else {
+                            FinalContents.setDaoGou("1");
                             FinalContents.setRouteTimeId(taskListBean.getData().getRows().get(0).getId());
                             Intent intent = new Intent(view.getContext(), TaskDetailsActivity.class);
                             startActivity(intent);

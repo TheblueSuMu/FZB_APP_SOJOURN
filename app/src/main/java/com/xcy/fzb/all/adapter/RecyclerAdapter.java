@@ -71,9 +71,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         String ids = beanList.get(position).getProductFeature();//从pd里取出字符串
         List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
 
-        holder.tagView.setTheme(ColorFactory.NONE);
-        holder.tagView.setTags(tags);
+        Log.i("2222","标签"+beanList.get(position).getProductFeature());
 
+        if (beanList.get(position).getProductFeature().equals("")) {
+            holder.tagView.setVisibility(View.GONE);
+        }else {
+            holder.tagView.setVisibility(View.VISIBLE);
+            holder.tagView.setTheme(ColorFactory.NONE);
+            holder.tagView.setTags(tags);
+        }
 
         if(FinalContents.getZyHome().equals("1")){
             holder.group_booking.setVisibility(View.GONE);

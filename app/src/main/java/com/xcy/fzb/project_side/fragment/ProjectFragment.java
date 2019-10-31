@@ -447,7 +447,7 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("文字轮播列表数据获取错误","错误"+e);
                     }
 
                     @Override

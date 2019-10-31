@@ -7,7 +7,7 @@ public class BrokerBean {
     /**
      * code : 1
      * msg : 成功
-     * data : [{"id":"d817efb88cf64a0bbdad21a1f34a5ecc","remarks":"","createBy":"","createDate":"2019-08-01 09:47:50","updateBy":"","updateDate":"2019-09-24 15:25:28","datePicker":"","startDate":"2019-01-01","endDate":"2020-01-01","mainTitle":"住宅产品","type":"1","percent":4.5,"amount":"","contractPercent":"","contractAmount":"","isSeconds":"0","secondsAmount":"","executeState":"","project":"","onlineState":"1","isProjectShow":1,"percentStr":"4.5","contractPercentStr":"","currentDate":"","commissionFormat":"总房款的4.5%","secondsFormat":"无秒结","teams":"","teamNames":""}]
+     * data : [{"id":"9aa7ac2e4755498689b8c21327b5b648","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","datePicker":"","startDate":"","endDate":"","mainTitle":"高层产品","onlineState":"","contractPercent":"","contractUnitPrice":"","contractAmount":"","isSeconds":"0","secondsAmount":"","agentPercent":"","agentUnitPrice":"","agentAmount":"","leaderPercent":"","leaderUnitPrice":"","leaderAmount":"","project":"","isProjectShow":0,"contractFormat":"","agentFormat":"","leaderFormat":"","currentDate":"","commissionFormat":"5万元","secondsFormat":"无秒结","teamLeaders":"","incentiveTeamIds":""},{"id":"c1cafff3322d47838db2dad77ea88d5d","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","datePicker":"","startDate":"","endDate":"","mainTitle":"叠拼产品","onlineState":"","contractPercent":"","contractUnitPrice":"","contractAmount":"","isSeconds":"0","secondsAmount":"","agentPercent":"","agentUnitPrice":"","agentAmount":"","leaderPercent":"","leaderUnitPrice":"","leaderAmount":"","project":"","isProjectShow":0,"contractFormat":"","agentFormat":"","leaderFormat":"","currentDate":"","commissionFormat":"9.5万元","secondsFormat":"无秒结","teamLeaders":"","incentiveTeamIds":""}]
      */
 
     private String code;
@@ -40,34 +40,38 @@ public class BrokerBean {
 
     public static class DataBean {
         /**
-         * id : d817efb88cf64a0bbdad21a1f34a5ecc
+         * id : 9aa7ac2e4755498689b8c21327b5b648
          * remarks :
          * createBy :
-         * createDate : 2019-08-01 09:47:50
+         * createDate :
          * updateBy :
-         * updateDate : 2019-09-24 15:25:28
+         * updateDate :
          * datePicker :
-         * startDate : 2019-01-01
-         * endDate : 2020-01-01
-         * mainTitle : 住宅产品
-         * type : 1
-         * percent : 4.5
-         * amount :
+         * startDate :
+         * endDate :
+         * mainTitle : 高层产品
+         * onlineState :
          * contractPercent :
+         * contractUnitPrice :
          * contractAmount :
          * isSeconds : 0
          * secondsAmount :
-         * executeState :
+         * agentPercent :
+         * agentUnitPrice :
+         * agentAmount :
+         * leaderPercent :
+         * leaderUnitPrice :
+         * leaderAmount :
          * project :
-         * onlineState : 1
-         * isProjectShow : 1
-         * percentStr : 4.5
-         * contractPercentStr :
+         * isProjectShow : 0
+         * contractFormat :
+         * agentFormat :
+         * leaderFormat :
          * currentDate :
-         * commissionFormat : 总房款的4.5%
+         * commissionFormat : 5万元
          * secondsFormat : 无秒结
-         * teams :
-         * teamNames :
+         * teamLeaders :
+         * incentiveTeamIds :
          */
 
         private String id;
@@ -80,24 +84,28 @@ public class BrokerBean {
         private String startDate;
         private String endDate;
         private String mainTitle;
-        private String type;
-        private double percent;
-        private String amount;
+        private String onlineState;
         private String contractPercent;
+        private String contractUnitPrice;
         private String contractAmount;
         private String isSeconds;
         private String secondsAmount;
-        private String executeState;
+        private String agentPercent;
+        private String agentUnitPrice;
+        private String agentAmount;
+        private String leaderPercent;
+        private String leaderUnitPrice;
+        private String leaderAmount;
         private String project;
-        private String onlineState;
         private int isProjectShow;
-        private String percentStr;
-        private String contractPercentStr;
+        private String contractFormat;
+        private String agentFormat;
+        private String leaderFormat;
         private String currentDate;
         private String commissionFormat;
         private String secondsFormat;
-        private String teams;
-        private String teamNames;
+        private String teamLeaders;
+        private String incentiveTeamIds;
 
         public String getId() {
             return id;
@@ -179,28 +187,12 @@ public class BrokerBean {
             this.mainTitle = mainTitle;
         }
 
-        public String getType() {
-            return type;
+        public String getOnlineState() {
+            return onlineState;
         }
 
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public double getPercent() {
-            return percent;
-        }
-
-        public void setPercent(double percent) {
-            this.percent = percent;
-        }
-
-        public String getAmount() {
-            return amount;
-        }
-
-        public void setAmount(String amount) {
-            this.amount = amount;
+        public void setOnlineState(String onlineState) {
+            this.onlineState = onlineState;
         }
 
         public String getContractPercent() {
@@ -209,6 +201,14 @@ public class BrokerBean {
 
         public void setContractPercent(String contractPercent) {
             this.contractPercent = contractPercent;
+        }
+
+        public String getContractUnitPrice() {
+            return contractUnitPrice;
+        }
+
+        public void setContractUnitPrice(String contractUnitPrice) {
+            this.contractUnitPrice = contractUnitPrice;
         }
 
         public String getContractAmount() {
@@ -235,12 +235,52 @@ public class BrokerBean {
             this.secondsAmount = secondsAmount;
         }
 
-        public String getExecuteState() {
-            return executeState;
+        public String getAgentPercent() {
+            return agentPercent;
         }
 
-        public void setExecuteState(String executeState) {
-            this.executeState = executeState;
+        public void setAgentPercent(String agentPercent) {
+            this.agentPercent = agentPercent;
+        }
+
+        public String getAgentUnitPrice() {
+            return agentUnitPrice;
+        }
+
+        public void setAgentUnitPrice(String agentUnitPrice) {
+            this.agentUnitPrice = agentUnitPrice;
+        }
+
+        public String getAgentAmount() {
+            return agentAmount;
+        }
+
+        public void setAgentAmount(String agentAmount) {
+            this.agentAmount = agentAmount;
+        }
+
+        public String getLeaderPercent() {
+            return leaderPercent;
+        }
+
+        public void setLeaderPercent(String leaderPercent) {
+            this.leaderPercent = leaderPercent;
+        }
+
+        public String getLeaderUnitPrice() {
+            return leaderUnitPrice;
+        }
+
+        public void setLeaderUnitPrice(String leaderUnitPrice) {
+            this.leaderUnitPrice = leaderUnitPrice;
+        }
+
+        public String getLeaderAmount() {
+            return leaderAmount;
+        }
+
+        public void setLeaderAmount(String leaderAmount) {
+            this.leaderAmount = leaderAmount;
         }
 
         public String getProject() {
@@ -251,14 +291,6 @@ public class BrokerBean {
             this.project = project;
         }
 
-        public String getOnlineState() {
-            return onlineState;
-        }
-
-        public void setOnlineState(String onlineState) {
-            this.onlineState = onlineState;
-        }
-
         public int getIsProjectShow() {
             return isProjectShow;
         }
@@ -267,20 +299,28 @@ public class BrokerBean {
             this.isProjectShow = isProjectShow;
         }
 
-        public String getPercentStr() {
-            return percentStr;
+        public String getContractFormat() {
+            return contractFormat;
         }
 
-        public void setPercentStr(String percentStr) {
-            this.percentStr = percentStr;
+        public void setContractFormat(String contractFormat) {
+            this.contractFormat = contractFormat;
         }
 
-        public String getContractPercentStr() {
-            return contractPercentStr;
+        public String getAgentFormat() {
+            return agentFormat;
         }
 
-        public void setContractPercentStr(String contractPercentStr) {
-            this.contractPercentStr = contractPercentStr;
+        public void setAgentFormat(String agentFormat) {
+            this.agentFormat = agentFormat;
+        }
+
+        public String getLeaderFormat() {
+            return leaderFormat;
+        }
+
+        public void setLeaderFormat(String leaderFormat) {
+            this.leaderFormat = leaderFormat;
         }
 
         public String getCurrentDate() {
@@ -307,20 +347,20 @@ public class BrokerBean {
             this.secondsFormat = secondsFormat;
         }
 
-        public String getTeams() {
-            return teams;
+        public String getTeamLeaders() {
+            return teamLeaders;
         }
 
-        public void setTeams(String teams) {
-            this.teams = teams;
+        public void setTeamLeaders(String teamLeaders) {
+            this.teamLeaders = teamLeaders;
         }
 
-        public String getTeamNames() {
-            return teamNames;
+        public String getIncentiveTeamIds() {
+            return incentiveTeamIds;
         }
 
-        public void setTeamNames(String teamNames) {
-            this.teamNames = teamNames;
+        public void setIncentiveTeamIds(String incentiveTeamIds) {
+            this.incentiveTeamIds = incentiveTeamIds;
         }
     }
 }

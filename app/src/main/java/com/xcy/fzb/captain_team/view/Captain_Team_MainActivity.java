@@ -21,13 +21,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.github.androidprogresslayout.ProgressLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -40,7 +33,6 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.ReportActivity;
-import com.xcy.fzb.broker.view.Broker_MainActivity;
 import com.xcy.fzb.captain_team.fragment.Captain_Team_MeFragment;
 import com.xcy.fzb.captain_team.fragment.Captain_Team_MyClientFragment;
 import com.xcy.fzb.captain_team.fragment.ProjectFragment;
@@ -50,6 +42,14 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Captain_Team_MainActivity extends AllActivity implements View.OnClickListener ,ProjectFragment.FragmentInteraction{
     private RadioButton button_home;
@@ -136,7 +136,7 @@ public class Captain_Team_MainActivity extends AllActivity implements View.OnCli
                 transaction.hide(captain_team_myClientFragment);
                 transaction.show(messageFragment);
                 transaction.hide(captain_team_meFragment);
-
+                Log.i("消息跳转","type2："+str);
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("2")) {
@@ -151,7 +151,7 @@ public class Captain_Team_MainActivity extends AllActivity implements View.OnCli
                 transaction.hide(captain_team_myClientFragment);
                 transaction.show(messageFragment);
                 transaction.hide(captain_team_meFragment);
-
+                Log.i("消息跳转","type3："+str);
                 transaction.commit();
                 button_message.setChecked(true);
             } else if (str.equals("5")) {
@@ -166,7 +166,7 @@ public class Captain_Team_MainActivity extends AllActivity implements View.OnCli
                 transaction.hide(captain_team_myClientFragment);
                 transaction.show(messageFragment);
                 transaction.hide(captain_team_meFragment);
-
+                Log.i("消息跳转","type5："+str);
                 transaction.commit();
                 button_message.setChecked(true);
             }

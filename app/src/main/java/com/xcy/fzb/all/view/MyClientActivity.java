@@ -2,7 +2,6 @@ package com.xcy.fzb.all.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -345,5 +344,6 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        FinalContents.setTiaozhuang("");
     }
 }

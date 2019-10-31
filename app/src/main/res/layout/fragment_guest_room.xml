@@ -27,7 +27,7 @@
     </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
     <ImageView
-        android:id="@+id/all_no_information"
+        android:id="@+id/all_no_information_guestroom"
         android:background="#fff"
         android:visibility="gone"
         android:src="@mipmap/no_information"

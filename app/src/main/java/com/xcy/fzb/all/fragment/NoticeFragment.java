@@ -118,7 +118,7 @@ public class NoticeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         notice_rv = getActivity().findViewById(R.id.notice_rv);
-        all_no_information = getActivity().findViewById(R.id.all_no_information);
+        all_no_information = getActivity().findViewById(R.id.all_no_information_notice);
 
 
     }

@@ -279,15 +279,20 @@ public class TestMapActivity extends AppCompatActivity {
 //        Log.i("地图", "latitude：" + latitude);
 //        Log.i("地图", "longitude：" + longitude);
 
-        Intent intent = new Intent();
-        //纬度
-        intent.putExtra("getLatitude", latitude + "");
-        //经度
-        intent.putExtra("getLongitude", longitude + "");
+        if(latitude == 0 || longitude == 0){
+            Toast.makeText(TestMapActivity.this, "请选择定位", Toast.LENGTH_SHORT).show();
+        }else {
+            Intent intent = new Intent();
+            //纬度
+            intent.putExtra("getLatitude", latitude + "");
+            //经度
+            intent.putExtra("getLongitude", longitude + "");
 //        //地址
 //        intent.putExtra("getAddress", mlocation.getAddrStr());
-        setResult(RESULT_OK, intent);
-        finish();
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+
 
 
         //        Intent intent = new Intent();

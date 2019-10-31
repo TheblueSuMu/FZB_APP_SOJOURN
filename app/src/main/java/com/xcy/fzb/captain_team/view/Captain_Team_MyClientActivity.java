@@ -471,5 +471,6 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        FinalContents.setTiaozhuang("");
     }
 }

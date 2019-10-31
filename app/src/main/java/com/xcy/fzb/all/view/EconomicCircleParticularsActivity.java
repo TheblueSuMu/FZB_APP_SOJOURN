@@ -122,6 +122,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                             Toast.makeText(EconomicCircleParticularsActivity.this, "评论不能为空", Toast.LENGTH_SHORT).show();
                             flag = 0;
                         } else {
+                            flag = 1;
                             if (whehter) {
                                 Retrofit.Builder builder = new Retrofit.Builder();
                                 builder.baseUrl(FinalContents.getBaseUrl());
@@ -145,7 +146,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                                                     Toast.makeText(EconomicCircleParticularsActivity.this, circleBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                                     particulars_et_comment.setText("");
                                                     initData();
-                                                    flag = 1;
+                                                    flag = 0;
 
                                                 } else {
                                                     Toast.makeText(EconomicCircleParticularsActivity.this, "评论失败", Toast.LENGTH_SHORT).show();

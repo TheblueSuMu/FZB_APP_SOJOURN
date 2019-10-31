@@ -710,8 +710,14 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                         String ids2 = projectDetailsBeanData.getProjectListVo().getProductFeature();//从pd里取出字符串
                         List tags2 = Arrays.asList(ids2.split(","));//根据逗号分隔转化为list
-                        productfeature.setTheme(ColorFactory.NONE);
-                        productfeature.setTags(tags2);
+                        if (projectDetailsBeanData.getProjectListVo().getProductFeature().equals("")) {
+                            productfeature.setVisibility(View.GONE);
+                        }else {
+                            productfeature.setVisibility(View.VISIBLE);
+                            productfeature.setTheme(ColorFactory.NONE);
+                            productfeature.setTags(tags2);
+                        }
+
                         name.setText(projectDetailsBeanData.getProjectListVo().getProjectName());
                         location.setText(projectDetailsBeanData.getProjectListVo().getDetailAddress());
                         toatl.setText(projectDetailsBeanData.getProjectListVo().getProductTotalPrice());

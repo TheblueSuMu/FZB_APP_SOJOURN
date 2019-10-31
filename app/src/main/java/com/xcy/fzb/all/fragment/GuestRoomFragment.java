@@ -115,7 +115,7 @@ public class GuestRoomFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        all_no_information = getActivity().findViewById(R.id.all_no_information);
+        all_no_information = getActivity().findViewById(R.id.all_no_information_guestroom);
         guest_room_rv = getActivity().findViewById(R.id.guest_room_rv);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
