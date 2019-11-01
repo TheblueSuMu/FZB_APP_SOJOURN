@@ -63,9 +63,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
     public void onBindViewHolder(final ContactsViewHolder holder, final int position) {
 
 
-        Log.i("MyCL", "集合长度：" + contacts.size());
         contact = contacts.get(position);
-        Log.e("MyCL", "onBindViewHolder: index:" + contact.getIndex());
         if (position == 0 || !contacts.get(position - 1).getIndex().equals(contact.getIndex())) {
             holder.tvIndex.setVisibility(View.VISIBLE);
             holder.tvIndex.setText(contact.getIndex());

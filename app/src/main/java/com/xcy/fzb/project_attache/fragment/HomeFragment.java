@@ -305,7 +305,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                                 //              展示选中数据
                                 city.setText(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
-                                Log.i("city",FinalContents.getCityID());
                                 initHotList();
                             }
                         })
@@ -349,7 +348,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(HotBean hotBean) {
-                        Log.i("hotBean",hotBean.getMsg());
                         if (hotBean.getCode().equals("1")) {
                             HotBean.DataBean hotBeanData = hotBean.getData();
                             hotlist = hotBeanData.getRows();
@@ -510,9 +508,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                                 public void OnBannerClick(int position) {
                                     FinalContents.setProjectID(imglist.get(position).getProject().getId());
                                     FinalContents.setNewID(imglist.get(position).getId());
-                                    Log.i("详情", "项目ID" + FinalContents.getProjectID());
-                                    Log.i("详情", "用户ID" + FinalContents.getUserID());
-                                    Log.i("详情", "用户ID" + FinalContents.getNewID());
                                     Intent intent = new Intent(view.getContext(), WebViewActivity.class);
                                     intent.putExtra("title", "新闻详情");
                                     intent.putExtra("webview", imglist.get(position).getContent());

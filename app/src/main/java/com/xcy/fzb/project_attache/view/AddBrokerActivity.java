@@ -195,7 +195,6 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.add_rl1:
-                Log.i("MyCL", "点击了");
                 add_store_tv2.setText("");
                 FinalContents.setAddtype1("");
                 intent = new Intent(AddBrokerActivity.this, StoreListActivity.class);
@@ -203,7 +202,6 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.add_rl2:
-                Log.i("MyCL", "点击了");
                 if (add_store_tv1.getText().equals("")) {
                     Toast.makeText(AddBrokerActivity.this, "请先选择公司", Toast.LENGTH_SHORT).show();
                 } else {
@@ -214,7 +212,6 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
                 break;
             case R.id.add_rl3:
-                Log.i("MyCL", "点击了");
                 if(ifnum == 0){
                     ifnum = 1;
                     list = new ArrayList<>();
@@ -369,9 +366,6 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
     @Override
     protected void onRestart() {
         super.onRestart();
-
-        Log.i("专员","FinalContents.getAddtype2()：" + FinalContents.getAddtype2());
-        Log.i("专员","FinalContents.getAddtype1()：" + FinalContents.getAddtype1());
 
         add_store_tv1.setText(FinalContents.getAddtype2());
         add_store_tv2.setText(FinalContents.getAddtype1());

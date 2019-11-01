@@ -257,8 +257,6 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("公司詳情", FinalContents.getUserID());
-        Log.i("公司詳情", "**********" + FinalContents.getCompanyId());
         final Observable<CompanyBean> companyDetails = fzbInterface.getCompanyDetails(FinalContents.getUserID(), FinalContents.getCompanyId());
         companyDetails.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -327,12 +325,11 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                 .subscribe(new Observer<com.xcy.fzb.all.database.FinanceBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.i("MyCL", "4");
+
                     }
 
                     @Override
                     public void onNext(com.xcy.fzb.all.database.FinanceBean financeBean) {
-                        Log.i("MyCL", "3");
                         store_details_tv10.setText(financeBean.getData().getTotalAmount() + "");
                         store_details_tv11.setText(financeBean.getData().getAlreadyAmount() + "");
                         store_details_tv12.setText(financeBean.getData().getNotAmount() + "");
@@ -360,11 +357,6 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("专员时间","FinalContents.getUserID()：" + FinalContents.getUserID());
-        Log.i("专员时间","FinalContents.getCompanyId()：" + FinalContents.getCompanyId());
-        Log.i("专员时间","s：" + s);
-        Log.i("专员时间","s1：" + s1);
-        Log.i("专员时间","s11：" + s11);
         Observable<CompanyDataBean> companyData = fzbInterface.getCompanyData(FinalContents.getUserID(), FinalContents.getCompanyId(), s, s1, s11);
         companyData.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -411,7 +403,6 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                 finish();
                 intent = new Intent(StoreDetailsActivity.this, AddCompanyActivity.class);
                 FinalContents.setCompanyId(companyInfo.getCompanyId());
-                Log.i("专员", "companyInfo.getCompanyId()：" + companyInfo.getCompanyId());
                 FinalContents.setStoreChange("修改");
                 startActivity(intent);
                 finish();
@@ -442,7 +433,6 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         store_details_tv5.setText(dateString);
-                        Log.d("wsw", "new date: " + dateString);
                         String s = store_details_tv4.getText().toString();
                         String s1 = store_details_tv5.getText().toString();
                         initDataNum("3", s, s1);
@@ -451,7 +441,6 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                 break;
             case R.id.store_details_rl1:
                 intent = new Intent(StoreDetailsActivity.this, StoreListActivity.class);
-                Log.i("专员", "FinalContents.getCompanyId()：" + companyInfo.getCompanyId());
                 FinalContents.setMyAddType("");
                 FinalContents.setCompanyId(companyInfo.getCompanyId());
                 startActivity(intent);

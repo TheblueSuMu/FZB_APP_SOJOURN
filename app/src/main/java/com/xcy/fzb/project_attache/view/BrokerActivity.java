@@ -297,7 +297,6 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         broker_tv5.setText(dateString);
-                        Log.d("wsw", "new date: " + dateString);
                         String s = broker_tv4.getText().toString();
                         String s1 = broker_tv5.getText().toString();
                         initDataNum("3", s, s1);
@@ -337,7 +336,6 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         broker_tv14.setText(dateString);
-                        Log.d("wsw", "new date: " + dateString);
                         String s = broker_tv13.getText().toString();
                         String s1 = broker_tv14.getText().toString();
                         initDataNum("3", s, s1);
@@ -402,12 +400,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                 .subscribe(new Observer<FinanceBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.i("MyCL", "4");
+
                     }
 
                     @Override
                     public void onNext(FinanceBean financeBean) {
-                        Log.i("MyCL", "3");
                         broker_tv15.setText(financeBean.getData().getTotalAmount() + "");
                         broker_tv16.setText(financeBean.getData().getAlreadyAmount() + "");
                         broker_tv17.setText(financeBean.getData().getNotAmount() + "");
@@ -441,12 +438,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                 .subscribe(new Observer<DataNumBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.i("MyCL", "1");
+
                     }
 
                     @Override
                     public void onNext(DataNumBean dataNumBean) {
-                        Log.i("MyCL", "2");
                         broker_tv6.setText(dataNumBean.getData().getReportNumber() + "");
                         broker_tv7.setText(dataNumBean.getData().getAccessingNumber() + "");
                         broker_tv8.setText(dataNumBean.getData().getIsIslandNumber() + "");
@@ -561,7 +557,6 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                 break;
             case R.id.broker_ll2:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
-                Log.i("专员", "agentInfo.getStoreId()：" + agentInfo.getStoreId());
                 FinalContents.setStoreId(agentInfo.getStoreId());
                 intent.putExtra("client", "1");
                 startActivity(intent);

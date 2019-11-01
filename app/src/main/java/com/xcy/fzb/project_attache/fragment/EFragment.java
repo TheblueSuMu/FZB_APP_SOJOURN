@@ -160,19 +160,16 @@ public class EFragment extends Fragment implements View.OnClickListener {
         int id = view.getId();
         if (id == R.id.my_collect) {
 //            TODO 我的收藏
-            Log.i("MyCL", "我的收藏");
             intent = new Intent(getContext(), CollectActivity.class);
 
             startActivity(intent);
         } else if (id == R.id.my_rl_1) {
 //            TODO 个人信息
-            Log.i("MyCL", "个人信息");
             intent = new Intent(getContext(), PersonalInformationActivity.class);
 
             startActivity(intent);
         } else if (id == R.id.my_comment) {
 //            TODO 意见反馈
-//            Log.i("MyCL", "意见反馈");
             intent = new Intent(getContext(), FeedbackActivity.class);
             startActivity(intent);
         } else if (id == R.id.my_about) {

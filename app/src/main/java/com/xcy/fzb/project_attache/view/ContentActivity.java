@@ -32,7 +32,6 @@ public class ContentActivity extends AllActivity {
         StatusBar.makeStatusBarTransparent(this);
 
         String img = getIntent().getStringExtra("img");
-        Log.i("MyCL", "Img：" + img);
         imageView = findViewById(R.id.img);
 
         content_img = findViewById(R.id.content_img);

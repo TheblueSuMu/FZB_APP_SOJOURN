@@ -170,10 +170,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             store_list_ll2.setVisibility(View.GONE);
             initDatam("", "");
             FinalContents.setStoreList("2");
-            Log.i("专员", "进入公司");
         } else if (FinalContents.getMyAddType().equals("门店")) {
-            Log.i("专员", "进入门店");
-            Log.i("专员", "FinalContents.getCompanyId()：" + FinalContents.getCompanyManageId());
             store_list_tv1.setTextColor(Color.parseColor("#334485"));
             store_list_tv2.setTextColor(Color.parseColor("#ff333333"));
             store_list_ll2.setVisibility(View.VISIBLE);
@@ -181,8 +178,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             initData(FinalContents.getCompanyManageId(), "", "");
             FinalContents.setStoreList("1");
         } else {
-            Log.i("专员", "else");
-            Log.i("专员", "FinalContents.getCompanyId()：" + FinalContents.getCompanyId());
             initData(FinalContents.getCompanyId(), "", "");
             FinalContents.setStoreList("1");
         }
@@ -243,8 +238,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                                     mContactModels.add(contactModel);
                                     listData.add(storeListData);
-                                    Log.i("MyCL", "请求成功数据：" + rows.get(i).getCompanyName());
-                                    Log.i("MyCL", "请求成功数据：" + listData.size());
                                 }
                             }
                             initDatas();
@@ -340,7 +333,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                 if(FinalContents.getMyAddType().equals("公司")){
                     initDatam("", "");
                     FinalContents.setStoreList("2");
-                    Log.i("专员", "进入公司");
                 }else {
                     FinalContents.setStoreList("2");
                     if (store_list_cb.isChecked()) {
@@ -357,8 +349,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
     }
 
     private void initDatam(String search, String status) {
-
-        Log.i("专员", "进入公司1");
 
         context = StoreListActivity.this;
         mContactModels = new ArrayList<>();
@@ -393,7 +383,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                 if (rows.get(i).getCompanyName().equals("")) {
 
                                 } else {
-                                    Log.i("专员", "进入公司2");
                                     ContactModel contactModel = new ContactModel(StoreListActivity.this.rows.get(i).getCompanyName() + rows.get(i).getStoreName());
                                     StoreListData storeListData = new StoreListData();
 
@@ -440,10 +429,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
     @Override
     public void itemClick(String itemName) {
 
-        Log.i("专员门店", "itemName：" + itemName);
-        Log.i("MyCL", "FinalContents.getStoreList()：" + FinalContents.getStoreList());
         if (FinalContents.getStoreList().equals("1") && FinalContents.getMyAddType().equals("")) {
-            Log.i("专员门店", "1");
 //          TODO 门店详情
             for (int i = 0; i < listData.size(); ++i) {
                 if (listData.get(i).getStoreId().equals(itemName)) {
@@ -453,20 +439,17 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                             FinalContents.setMyAddType("门店");
                             Intent intent = new Intent(StoreListActivity.this, CompanyDetailsActivity.class);
                             startActivity(intent);
-                            Log.i("专员门店", "点击事件");
                         }
                     }
                 }
             }
         } else if (FinalContents.getStoreList().equals("1") && FinalContents.getMyAddType().equals("门店")) {
-            Log.i("专员门店", "2");
             for (int i = 0; i < listData.size(); ++i) {
                 if (listData.get(i).getStoreId().equals(itemName)) {
                     for (int j = 0; j < listData.size(); ++j) {
                         if (mContactModels.get(i).getName().equals((listData.get(j).getCompanyName() + listData.get(j).getStoreName()))) {
                             FinalContents.setAddtype1(listData.get(j).getStoreName());
                             FinalContents.setStoreManageId(listData.get(j).getStoreId());
-                            Log.i("添加经纪人", "setStoreManageId()：" + FinalContents.getStoreManageId());
                             FinalContents.setMyAddType("");
                             finish();
                         }
@@ -475,15 +458,11 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                 }
             }
         } else if (FinalContents.getStoreList().equals("2") && FinalContents.getMyAddType().equals("")) {
-            Log.i("专员门店", "3");
 //            TODO 公司详情
             for (int i = 0; i < listData.size(); ++i) {
                 if (listData.get(i).getCompanyId().equals(itemName)) {
-                    Log.i("专员门店", "ss1");
                     for (int j = 0; j < listData.size(); ++j) {
-                        Log.i("专员门店", "ss2");
                         if (mContactModels.get(i).getName().equals(listData.get(j).getCompanyName())) {
-                            Log.i("公司修改", "listData.get(j).getCompanyId()：" + listData.get(j).getCompanyId());
                             FinalContents.setStoreId(listData.get(j).getStoreId());
                             FinalContents.setCompanyId(listData.get(j).getCompanyId());
                             Intent intent = new Intent(StoreListActivity.this, StoreDetailsActivity.class);
@@ -494,7 +473,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                 }
             }
         } else if (FinalContents.getStoreList().equals("2") && FinalContents.getMyAddType().equals("公司")) {
-            Log.i("专员门店", "4");
 //          TODO 选择公司
             for (int i = 0; i < listData.size(); ++i) {
                 if (listData.get(i).getCompanyId().equals(itemName)) {
@@ -516,10 +494,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
     protected void onRestart() {
         super.onRestart();
 
-        Log.i("MyCL", "FinalContents.getMyAddType()：" + FinalContents.getMyAddType());
 
         if (FinalContents.getMyAddType().equals("公司")) {
-            Log.i("专员", "公司");
             store_list_tv2.setTextColor(Color.parseColor("#334485"));
             store_list_tv1.setTextColor(Color.parseColor("#ff333333"));
             store_list_ll4.setVisibility(View.VISIBLE);
@@ -528,7 +504,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             initDatam("", "");
             FinalContents.setMyAddType("");
         } else if (FinalContents.getMyAddType().equals("门店")) {
-            Log.i("专员", "门店");
             store_list_tv1.setTextColor(Color.parseColor("#334485"));
             store_list_tv2.setTextColor(Color.parseColor("#ff333333"));
             store_list_ll4.setVisibility(View.GONE);
@@ -537,7 +512,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             FinalContents.setMyAddType("");
             initData("", "", "");
         } else {
-            Log.i("专员", "else");
             initData("", "", "");
             FinalContents.setStoreList("1");
         }
