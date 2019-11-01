@@ -674,6 +674,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
     }
 
     private void initTimeData() {
+        Log.i("成交佣金","成交佣金："+project_time.getText().toString()+" ,  "+FinalContents.getProjectID()+" ,  "+FinalContents.getJJrID());
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());

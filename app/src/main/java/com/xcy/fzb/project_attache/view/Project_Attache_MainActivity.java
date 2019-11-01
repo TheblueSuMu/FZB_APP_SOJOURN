@@ -396,7 +396,7 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
 
         Log.i("MyCL","进入了Broker_MainActivity中onResume方法中");
 
-        initDaown();
+//        initDaown();
 
     }
 

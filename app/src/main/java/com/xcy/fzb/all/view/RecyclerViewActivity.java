@@ -40,7 +40,6 @@ public class RecyclerViewActivity extends AllActivity {
     private LinearLayout back;
     private RecyclerView recyclerView;
     private List<HotBean.DataBean.RowsBean> hotlist = new ArrayList<>();
-    private String hotUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?";
     private String nation = "";
     private ImageView all_no_information;
 

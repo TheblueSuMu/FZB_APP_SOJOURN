@@ -2,11 +2,20 @@ package com.xcy.fzb.Login;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.provider.Settings;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -18,12 +27,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +43,9 @@ import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.PopAdapter;
+import com.xcy.fzb.all.api.APKVersionCodeUtils;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.database.AppPackageBean;
 import com.xcy.fzb.all.database.CaptainBean;
 import com.xcy.fzb.all.database.ExemplaryUserBean;
 import com.xcy.fzb.all.modle.CodeBean;
@@ -54,6 +68,11 @@ import com.xcy.fzb.project_attache.view.Project_Attache_MainActivity;
 import com.xcy.fzb.project_side.view.Project_Side_MainActivity;
 import com.xcy.fzb.shopping_guide.view.Shopping_Guide_MainActivity;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -100,6 +119,25 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     private String string;
     private String title;
 
+    /**
+     * 版本下载数据
+     */
+    //  上下文
+//    private Context mContext;
+    //  进度条
+    private ProgressBar mProgressBar;
+    //  对话框
+    private Dialog mDownloadDialog;
+    //  判断是否停止
+    private boolean mIsCancel = false;
+    //  进度
+    private int mProgress;
+    //  文件保存路径
+    private String mSavePath;
+    //  版本名称
+    private String mVersion_name= FinalContents.getVersionNumBer();
+    //  请求链接
+    private String url ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +145,10 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         setContentView(R.layout.activity_login);
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
-
+            if (FinalContents.getDengLu().equals("")) {
+                initDaown();
+            }else {
+            }
         } else {
             Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
@@ -119,7 +160,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 //            initMap();
 //            Toast.makeText(LoginActivity.this, "已开启定位权限", Toast.LENGTH_LONG).show();
         }
-
         AdministrationAuthority administrationAuthority = new AdministrationAuthority();
         administrationAuthority.CameraPermissions(LoginActivity.this);
 
@@ -132,7 +172,12 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         editor = getSharedPreferences("data", MODE_PRIVATE).edit();
         pref = getSharedPreferences("data", MODE_PRIVATE);
 
-        initfvb();
+
+        if (FinalContents.getDengLu().equals("")) {
+
+        }else {
+            initfvb();
+        }
 
     }
 
@@ -1062,5 +1107,253 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     @Override
     public void onCancel(Platform platform, int i) {
         Toast.makeText(LoginActivity.this, "您已取消微信授权登录", Toast.LENGTH_SHORT).show();
+    }
+
+    private void initDaown(){
+        String versionName = APKVersionCodeUtils.getVerName(this);
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        final Observable<AppPackageBean> appPackage = fzbInterface.getAppPackage("android","com.xcy.fzb", versionName);
+        appPackage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AppPackageBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(final AppPackageBean appPackageBean) {
+//                        Toast.makeText(AboutFZBActivity.this, appPackageBean.getData().getComment(), Toast.LENGTH_SHORT).show();
+                        if(appPackageBean.getData().getIsUpgrade().equals("0")){
+//                            Toast.makeText(LoginActivity.this,"当前版本已是最新版本",Toast.LENGTH_SHORT).show();
+                            initfvb();
+                        }else if(appPackageBean.getData().getIsUpgrade().equals("1")){
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
+                            builder1.setTitle("提示");
+                            builder1.setMessage("是否更新当前版本");
+                            builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    initfvb();
+                                }
+                            });
+                            builder1.setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    url = appPackageBean.getData().getAppurl();
+                                    showDownloadDialog();
+                                }
+                            });
+                            builder1.show();
+                        }else if(appPackageBean.getData().getIsUpgrade().equals("2")){
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
+                            builder1.setTitle("提示");
+                            builder1.setMessage("是否更新当前版本");
+                            builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    AllActivity.exit = true;
+                                    finish();
+                                }
+                            });
+                            builder1.setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    url = appPackageBean.getData().getAppurl();
+                                    showDownloadDialog();
+                                }
+                            });
+                            builder1.show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("版本更新","错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    /**
+     * 显示正在下载对话框
+     */
+    protected void showDownloadDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle("下载中");
+        View view = LayoutInflater.from(LoginActivity.this).inflate(R.layout.dialog_progress, null);
+        mProgressBar = (ProgressBar) view.findViewById(R.id.id_progress);
+        builder.setView(view);
+        builder.setCancelable(false);
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // 隐藏当前对话框
+                dialog.dismiss();
+                // 设置下载状态为取消
+                mIsCancel = true;
+            }
+        });
+
+        mDownloadDialog = builder.create();
+        mDownloadDialog.show();
+
+        // 下载文件
+        downloadAPK();
+    }
+    /**
+     * 开启新线程下载apk文件
+     */
+    private void downloadAPK() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+                        String sdPath = Environment.getExternalStorageDirectory() + "/";
+//                      文件保存路径
+                        mSavePath = sdPath + "fzbdownload";
+
+                        File dir = new File(mSavePath);
+                        if (!dir.exists()){
+                            dir.mkdir();
+                        }
+                        // 下载文件
+                        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+                        conn.connect();
+                        InputStream is = conn.getInputStream();
+                        int length = conn.getContentLength();
+
+                        File apkFile = new File(mSavePath, mVersion_name);
+                        FileOutputStream fos = new FileOutputStream(apkFile);
+
+                        int count = 0;
+                        byte[] buffer = new byte[1024];
+                        while (!mIsCancel){
+                            int numread = is.read(buffer);
+                            count += numread;
+                            // 计算进度条的当前位置
+                            mProgress = (int) (((float)count/length) * 100);
+                            // 更新进度条
+                            mUpdateProgressHandler.sendEmptyMessage(1);
+
+                            // 下载完成
+                            if (numread < 0){
+                                mUpdateProgressHandler.sendEmptyMessage(2);
+                                break;
+                            }
+                            fos.write(buffer, 0, numread);
+                        }
+                        fos.close();
+                        is.close();
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    /**
+     * 接收消息
+     */
+    private Handler mUpdateProgressHandler = new Handler(){
+        @RequiresApi(api = Build.VERSION_CODES.O)
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 1:
+                    // 设置进度条
+                    mProgressBar.setProgress(mProgress);
+                    break;
+                case 2:
+                    // 隐藏当前下载对话框
+                    mDownloadDialog.dismiss();
+                    // 安装 APK 文件
+                    installAPK();
+            }
+        };
+    };
+
+
+    /**
+     * 下载到本地后执行安装
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    protected void installAPK() {
+
+        //兼容8.0
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            boolean hasInstallPermission = AboutFZBActivity.this.getPackageManager().canRequestPackageInstalls();
+//            if (!hasInstallPermission) {
+////                ToastUtil.makeText(MyApplication.getContext(), MyApplication.getContext().getString(R.string.string_install_unknow_apk_note), false);
+//                startInstallPermissionSettingActivity();
+//                return;
+//            }
+//        }
+
+        File apkFile = new File(mSavePath, mVersion_name);
+        Intent intent = new Intent();
+//跳转下载完成和打开页面
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//执行动作
+        intent.setAction(Intent.ACTION_VIEW);
+//执行的数据类型
+        if (Build.VERSION.SDK_INT >= 24) { //判读版本是否在7.0以上
+            //参数1 上下文, 参数2 Provider主机地址 和配置文件中保持一致   参数3  共享的文件
+            Uri apkUri =
+                    FileProvider.getUriForFile(LoginActivity.this, "com.xcy.fzb.fileprovider", apkFile);
+            //添加这一句表示对目标应用临时授权该Uri所代表的文件
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+        } else {
+            intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
+        }
+        Log.e("TAG", "安装apk");
+        LoginActivity.this.startActivity(intent);
+
+//        File apkFile = new File(mSavePath, mVersion_name);
+//        if (!apkFile.exists()){
+//            return;
+//        }
+////        Uri apkUri = FileProvider.getUriForFile(AboutFZBActivity.this, "com.zidian.qingframe.fileprovider", apkPath);
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+////      安装完成后，启动app（源码中少了这句话）
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        Uri uri = Uri.parse("file://" + apkFile.toString());
+//        intent.setDataAndType(uri, "application/vnd.android.package-archive");
+//        AboutFZBActivity.this.startActivity(intent);
+//
+//        startInstallPermissionSettingActivity();
+//        String fileName = mSavePath;
+//        Intent i = new Intent();
+//        i.setAction(Intent.ACTION_VIEW);
+//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        i.setDataAndType(Uri.fromFile(new File(fileName) ), "application/vnd.android.package-archive");
+//        startActivity(i);
+    }
+
+    /**
+     *      * 跳转到设置-允许安装未知来源-页面
+     *      
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void startInstallPermissionSettingActivity() {
+        //注意这个是8.0新API
+        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        LoginActivity.this.startActivity(intent);
     }
 }

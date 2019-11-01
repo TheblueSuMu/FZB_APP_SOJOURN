@@ -379,6 +379,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 break;
             //            TODO 成交
             case R.id.review_the_success_bt5:
+                FinalContents.setProjectID(infoData.getProjectId());
                 intent = new Intent(ReviewTheSuccessActivity.this, FillInTransactionInformationActivity.class);
                 FinalContents.setTiaodan("成交");
                 startActivity(intent);

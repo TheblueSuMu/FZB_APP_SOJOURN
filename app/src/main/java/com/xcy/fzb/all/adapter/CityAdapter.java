@@ -6,13 +6,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.NationBean;
 import com.xcy.fzb.all.view.RecyclerViewActivity;
 
@@ -39,20 +42,20 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.i("拼音数据","拼音"+list.get(position).getPinyin());
-        holder.item_city_adapter_name.setText(list.get(position).getNationName());
-        holder.item_city_adapter_pingying.setText(list.get(position).getPinyin());
-        num = getNum(4);
-        if (num == 0) {
-            holder.item_city_adapter_linear.setBackgroundResource(R.drawable.city_back1);
-        } else if (num == 1) {
-            holder.item_city_adapter_linear.setBackgroundResource(R.drawable.city_back2);
-        } else if (num == 2) {
-            holder.item_city_adapter_linear.setBackgroundResource(R.drawable.city_back3);
-        } else if (num == 3) {
-            holder.item_city_adapter_linear.setBackgroundResource(R.drawable.city_back4);
-        } else if (num == 4) {
-            Log.i("云","有四");
-        }
+        Glide.with(context).load(FinalContents.getImageUrl()+list.get(position).getNationImg()).into(holder.item_city_adapter_name);
+//        holder.item_city_adapter_pingying.setText(list.get(position).getPinyin());
+//        num = getNum(4);
+//        if (num == 0) {
+//            holder.item_city_adapter_linear.setBackgroundResource(R.drawable.city_back1);
+//        } else if (num == 1) {
+//            holder.item_city_adapter_linear.setBackgroundResource(R.drawable.city_back2);
+//        } else if (num == 2) {
+//            holder.item_city_adapter_linear.setBackgroundResource(R.drawable.city_back3);
+//        } else if (num == 3) {
+//            holder.item_city_adapter_linear.setBackgroundResource(R.drawable.city_back4);
+//        } else if (num == 4) {
+//            Log.i("云","有四");
+//        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +85,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder>{
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView item_city_adapter_name;
+        ImageView item_city_adapter_name;
         TextView item_city_adapter_pingying;
         LinearLayout item_city_adapter_linear;
 

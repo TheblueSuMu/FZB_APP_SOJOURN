@@ -31,8 +31,8 @@ public class HouseTypeFragment extends Fragment implements View.OnClickListener 
     private CheckBox house5;
     private CheckBox house6;
     private Button ensure;
-    private String url = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID()+ "&apartment=";
-    private String eventUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID()+ "&apartment=";
+    private String url = FinalContents.getImageUrl() +  "/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID()+ "&apartment=";
+    private String eventUrl = FinalContents.getBaseUrl() + "/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID()+ "&apartment=";
     private String string = "";
     private Map<Integer,String> map = new HashMap<>();
 

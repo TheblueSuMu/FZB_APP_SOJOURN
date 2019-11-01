@@ -98,10 +98,6 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
 
     private DateTimePickerView dateTimePickerView;
 
-    private String newsListUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/newsList?";
-    private String cityUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/findCityForParentId";
-    private String messageUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/messageList?";
-    private String hotUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?";
 
     private String projectType = "1";//房产类型
     private String arrposid = "1"; //新闻类型

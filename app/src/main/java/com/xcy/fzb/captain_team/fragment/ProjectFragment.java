@@ -99,10 +99,6 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 
     private DateTimePickerView dateTimePickerView;
 
-    private String newsListUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/newsList?";
-    private String cityUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/findCityForParentId";
-    private String messageUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/messageList?";
-    private String hotUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?";
 
     private String projectType = "1";//房产类型
     private String arrposid = "1"; //新闻类型
@@ -295,7 +291,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     startActivity(intent);
                 }
             }
-        }else {
+        } else {
             if (view.getId() == R.id.project_city_selector) {
                 showPickerView();
             }
@@ -353,7 +349,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("城市列表","获取："+e.getMessage());
+                        Log.i("城市列表", "获取：" + e.getMessage());
                     }
 
                     @Override
@@ -400,7 +396,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                 recyclerView.setAdapter(recyclerAdapter);
                                 recyclerAdapter.notifyDataSetChanged();
 
-                            }else {
+                            } else {
                                 all_no_information.setVisibility(View.VISIBLE);
                                 recyclerView.setVisibility(View.GONE);
                             }
@@ -517,7 +513,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                         imglist = imgData.getData();
                         if (imglist.size() != 0) {
                             for (int i = 0; i < imglist.size(); i++) {
-                                list_path.add("http://39.98.173.250:8080" + imglist.get(i).getCoverImg());
+                                list_path.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                                 list_title.add(imglist.get(i).getTitle());
                             }
 
@@ -623,7 +619,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(hidden){
+        if (hidden) {
             //TODO now visible to user 不显示fragment
         } else {
             onResume();

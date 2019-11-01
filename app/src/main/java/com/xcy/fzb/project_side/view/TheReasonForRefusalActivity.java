@@ -2,20 +2,29 @@ package com.xcy.fzb.project_side.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CBean;
-import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 //TODO 拒绝原因
 public class TheReasonForRefusalActivity extends AllActivity {
@@ -28,6 +37,8 @@ public class TheReasonForRefusalActivity extends AllActivity {
     private String message;
     private String url;
 
+    int isnum = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +46,7 @@ public class TheReasonForRefusalActivity extends AllActivity {
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -74,26 +85,57 @@ public class TheReasonForRefusalActivity extends AllActivity {
         the_reason_for_refusal_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                message = the_reason_for_refusal_et.getText().toString();
-                if (message.equals("")) {
-                    Toast.makeText(TheReasonForRefusalActivity.this, "请填写拒绝原因", Toast.LENGTH_SHORT).show();
-                }else {
-                    url = FinalContents.getBaseUrl() + "specialUpdate/reportAndVisitAudit?preparationId=" + FinalContents.getPreparationId() + "&maxStatus=" + FinalContents.getStatus() + "&minStatus=2&userId=" + FinalContents.getUserID() + "&reason=" + message;
-                    OkHttpPost okHttpPost = new OkHttpPost(url);
-                    String data = okHttpPost.post();
-                    Gson gson = new Gson();
-                    CBean cBean = gson.fromJson(data, CBean.class);
-                    if (cBean.getMsg().equals("成功")) {
-                        Toast.makeText(TheReasonForRefusalActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(TheReasonForRefusalActivity.this, CheckPendingTheProjectActivity.class);
-                        startActivity(intent);
-                        finish();
+                if(isnum == 0){
+                    isnum = 1;
+                    message = the_reason_for_refusal_et.getText().toString();
+                    if (message.equals("")) {
+                        Toast.makeText(TheReasonForRefusalActivity.this, "请填写拒绝原因", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(TheReasonForRefusalActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                        finish();
+
+                        Retrofit.Builder builder = new Retrofit.Builder();
+                        builder.baseUrl(FinalContents.getBaseUrl());
+                        builder.addConverterFactory(GsonConverterFactory.create());
+                        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                        Retrofit build = builder.build();
+                        MyService fzbInterface = build.create(MyService.class);
+                        Observable<CBean> clientFragmentBean = fzbInterface.getReportAndVisitAudit(FinalContents.getUserID(), FinalContents.getPreparationId(), FinalContents.getStatus(), "1");
+                        clientFragmentBean.subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Observer<CBean>() {
+                                    @Override
+                                    public void onSubscribe(Disposable d) {
+
+                                    }
+
+                                    @Override
+                                    public void onNext(CBean cBean) {
+                                        if (cBean.getMsg().equals("成功")) {
+                                            Toast.makeText(TheReasonForRefusalActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                            FinalContents.setEndStart("成功");
+                                            the_reason_for_refusal_et.setText("");
+                                            Intent intent = new Intent(TheReasonForRefusalActivity.this, CheckPendingTheProjectActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(TheReasonForRefusalActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
+                                        Log.i("MyCL", "错误信息：" + e.getMessage());
+                                    }
+
+                                    @Override
+                                    public void onComplete() {
+
+                                    }
+                                });
+
                     }
+                    isnum = 0;
                 }
+
 
             }
         });

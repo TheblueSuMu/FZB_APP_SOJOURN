@@ -48,7 +48,7 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
     private RelativeLayout nofound;
     private TextView textView;
 
-    private String hotUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?";
+    private String hotUrl = FinalContents.getBaseUrl() + "/fangfang/app/v1/commonSelect/projectList?";
 
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;

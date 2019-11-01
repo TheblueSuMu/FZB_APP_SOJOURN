@@ -38,7 +38,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class BuildingInformationActivity extends AllActivity {
 
     private LinearLayout building_img;
-    private String buildingUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectBuildingInfo?";
     private TextView name;
     private TextView state;
     private TextView ladder;

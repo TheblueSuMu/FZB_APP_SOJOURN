@@ -35,7 +35,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PhotoTileActivity extends AllActivity {
     private LinearLayout photo_img;
     private RecyclerView photoTileRv;
-    private String photoUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectPhoto?";
     private List<String> array = new ArrayList<>();
 
     @Override

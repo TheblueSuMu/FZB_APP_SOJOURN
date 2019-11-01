@@ -591,6 +591,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
 
     }
 
+
     private void initSysUser() {
         Log.i("顾问", "ID2：" + FinalContents.getAgentId());
         Retrofit.Builder builder = new Retrofit.Builder();

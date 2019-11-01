@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.xcy.fzb.all.api.APKVersionCodeUtils;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.Login.LoginActivity;
 
@@ -41,7 +42,8 @@ public class BaseUrl extends AppCompatActivity {
             initLogin();
         }
 
-
+        String versionName = APKVersionCodeUtils.getVerName(this);
+        FinalContents.setVersionNumBer(versionName);
 //        init();
 
 

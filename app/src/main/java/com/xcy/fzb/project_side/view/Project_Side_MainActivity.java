@@ -258,7 +258,7 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
 
         Log.i("MyCL","进入了Broker_MainActivity中onResume方法中");
 
-        initDaown();
+//        initDaown();
 
     }
 

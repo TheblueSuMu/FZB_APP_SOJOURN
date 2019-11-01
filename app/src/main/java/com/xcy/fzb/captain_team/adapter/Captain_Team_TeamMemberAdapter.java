@@ -71,7 +71,7 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
                     if (contact.getName().equals(list.get(i).getName() + "@" + list.get(i).getId())) {
                         Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + list.get(i).getPhoto()).into(holder.member_name_img);
                         if (list.get(i).getType().equals("1")) {
-                            holder.tvName.setText(append.substring(0, j));
+                            holder.tvName.setText(append.substring(0, j) + "(" + list.get(i).getLevelName() + ")");
                             if (list.get(i).getCounselorNum().equals("")) {
                                 if (list.get(i).getSaleNum().equals("")) {
                                     holder.member_name_tv1.setText("销售：0 人  顾问：0人");

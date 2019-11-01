@@ -35,8 +35,6 @@ public class ForgetActivity extends AllActivity implements View.OnClickListener 
     private EditText password;
     private Button getCode;
     private TextView ensure;
-    private String sendUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/sendCode?";
-    private String forgetUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonUpdate/findBackPassword?";
     private RelativeLayout binding_return;
 
 

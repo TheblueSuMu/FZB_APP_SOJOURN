@@ -264,7 +264,7 @@ public class Captain_Team_MainActivity extends AllActivity implements View.OnCli
 
         Log.i("MyCL","进入了Broker_MainActivity中onResume方法中");
 
-        initDaown();
+//        initDaown();
 
     }
 

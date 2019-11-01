@@ -131,6 +131,7 @@
                             android:layout_height="1dp"
                             android:layout_alignParentBottom="true"
                             android:layout_marginLeft="15dp"
+                            android:visibility="gone"
                             android:layout_marginTop="23dp"
                             android:layout_marginRight="16dp"
                             android:background="#fff3f2f7" />

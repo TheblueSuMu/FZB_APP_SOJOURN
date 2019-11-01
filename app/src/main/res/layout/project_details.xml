@@ -471,7 +471,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="15dp"
-                        android:text="报备规则"
+                        android:text="导客规则"
                         android:textColor="#111"
                         android:textSize="19sp"
                         android:textStyle="bold" />

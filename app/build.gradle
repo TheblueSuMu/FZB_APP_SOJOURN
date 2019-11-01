@@ -142,6 +142,10 @@ dependencies {
     //TODO Loading加载页
     implementation 'com.github.androidprogresslayout:library:2.0.2'
 
+    //TODO Loading加载页
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:26.1.0'
+
     implementation 'me.jessyan:autosize:1.1.2'
     implementation project(path: ':gallery')
 

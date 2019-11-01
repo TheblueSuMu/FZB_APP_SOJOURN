@@ -27,7 +27,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -75,10 +74,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class OverSeaActivity extends AllActivity implements View.OnClickListener, SensorEventListener {
     private BannerViewPager banner;
     private List<String> list_img;
-    private String newsListUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/newsList?";
-    private String nacationUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectCityNationlist?";
-    private String projectListUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?" + "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
-    private String eventUrl = "";
 
     private String arrposid = "2"; //新闻类型
     private String arrpos = "4"; //专场新闻类型
@@ -231,7 +226,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             nationRv.setVisibility(View.VISIBLE);
             oversea_rb_2s.setText("国家");
             state.setText("国家");
-            seview.setVisibility(View.GONE);
+            seview.setVisibility(View.VISIBLE);
             initcity();
             inithot();
         } else if (FinalContents.getProjectType().equals("3")) {
@@ -564,15 +559,15 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 //                                        // ...长按事件
 //                                    }
 //                                });
-                                if (nationlist.size() > 4) {
-                                    GridLayoutManager layoutManager = new GridLayoutManager(OverSeaActivity.this,4);
-                                    layoutManager.setOrientation(GridLayoutManager.VERTICAL);
-                                    nationRv.setLayoutManager(layoutManager);
-                                } else if (nationlist.size() <= 4 && nationlist.size() != 0) {
+//                                if (nationlist.size() > 4) {
+//                                    GridLayoutManager layoutManager = new GridLayoutManager(OverSeaActivity.this,4);
+//                                    layoutManager.setOrientation(GridLayoutManager.VERTICAL);
+//                                    nationRv.setLayoutManager(layoutManager);
+//                                } else if (nationlist.size() <= 4 && nationlist.size() != 0) {
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(OverSeaActivity.this);
                                     layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                                     nationRv.setLayoutManager(layoutManager);
-                                }
+//                                }
                                 CityAdapter recyclerAdapter = new CityAdapter(nationlist);
                                 nationRv.setAdapter(recyclerAdapter);
                                 recyclerAdapter.notifyDataSetChanged();

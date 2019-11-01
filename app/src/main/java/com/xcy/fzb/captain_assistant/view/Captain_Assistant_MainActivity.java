@@ -31,7 +31,6 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
-import com.xcy.fzb.broker.view.Broker_MainActivity;
 import com.xcy.fzb.captain_assistant.fragment.AssistantHomeFragment;
 import com.xcy.fzb.captain_assistant.fragment.AssistantMeFragment;
 import com.xcy.fzb.captain_assistant.fragment.TeamFragment;
@@ -268,7 +267,7 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
     protected void onResume() {
         super.onResume();
         Log.i("MyCL","进入了Broker_MainActivity中onResume方法中");
-        initDaown();
+//        initDaown();
     }
 
     private void initDaown(){

@@ -142,7 +142,7 @@ public class WebViewActivity extends AllActivity {
                                 public void onClick(View view) {
                                     final List<String> list = new ArrayList<>();
                                     for (int i = 0; i < newsDetailsBean.getData().getAttList().size(); i++) {
-                                        list.add(newsDetailsBean.getData().getAttList().get(i).getAttacheName());
+                                        list.add(newsDetailsBean.getData().getAttList().get(i).getName());
                                     }
                                     //      监听选中
                                     OptionsPickerView pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
@@ -150,7 +150,7 @@ public class WebViewActivity extends AllActivity {
                                         public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                             //               返回的分别是三个级别的选中位置
                                             //              展示选中数据
-                                            Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + newsDetailsBean.getData().getAttList().get(options1).getAttachePhone()));//跳转到拨号界面，同时传递电话号码
+                                            Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + newsDetailsBean.getData().getAttList().get(options1).getPhone()));//跳转到拨号界面，同时传递电话号码
                                             startActivity(dialIntent);
                                         }
                                     })

@@ -69,7 +69,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DynamicFragment extends Fragment {
     PtrClassicFrameLayout ptrClassicFrameLayout;
     private RecyclerView recyclerView;
-    private String dynamicUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectHousesDynamicsList?";
     private List<Dynamic2Bean.DataBean.RowsBean> list = new ArrayList<>();
     private Dynamic2Adapter recyclerAdapter;
     private String imgUrl;
@@ -153,7 +152,7 @@ public class DynamicFragment extends Fragment {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<Dynamic2Bean> userMessage = fzbInterface.getDynamicBeanList2(FinalContents.getUserID(),"1000");
+        Observable<Dynamic2Bean> userMessage = fzbInterface.getDynamicBeanList2(FinalContents.getUserID(), "1000");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Dynamic2Bean>() {
@@ -236,21 +235,21 @@ public class DynamicFragment extends Fragment {
                                     //        String imagename = list.get(position).getContent();
                                     //        TODO 图片保存到本地
 
-                                    Log.i("打印图片","图片："+list.get(position).getImgUrl());
+                                    Log.i("打印图片", "图片：" + list.get(position).getImgUrl());
                                     if (list.get(position).getImgUrl().equals("")) {
 
-                                    }else {
+                                    } else {
                                         String UrlImage = list.get(position).getImgUrl();
-                                        final String[] a  = list.get(position).getImgUrl().split("[|]");
-                                        for (int i = 0; i < a.length; i++){
-                                            Log.i("分割图片","图片："+ a[i]);
-                                            final  int finalI = i;
-                                            Log.i("分割图片","图片151："+imgURl);
+                                        final String[] a = list.get(position).getImgUrl().split("[|]");
+                                        for (int i = 0; i < a.length; i++) {
+                                            Log.i("分割图片", "图片：" + a[i]);
+                                            final int finalI = i;
                                             new Thread(new Runnable() {
                                                 @Override
                                                 public void run() {
                                                     url = a[finalI];
-                                                    imgURl = "http://39.98.173.250:8080" + url;
+                                                    imgURl = FinalContents.getImageUrl() + url;
+                                                    Log.i("分割图片", "图片151：" + imgURl);
                                                     mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
                                                     Bitmap bp = returnBitMap(imgURl);
                                                     Log.i("MyCL", "bp：" + bp);
@@ -280,7 +279,7 @@ public class DynamicFragment extends Fragment {
                                 @Override
                                 public void tp(int position) {
                                     Intent intent = new Intent(getContext(), BigPhotoActivity.class);
-                                    intent.putExtra("index",position);
+                                    intent.putExtra("index", position);
                                     intent.putExtra("bigPhotoimg", list.get(position).getImg());
                                     startActivity(intent);
                                 }
@@ -324,7 +323,7 @@ public class DynamicFragment extends Fragment {
                             });
                             recyclerView.setAdapter(recyclerAdapter);
                             recyclerAdapter.notifyDataSetChanged();
-                        }else {
+                        } else {
                             recyclerView.setVisibility(View.GONE);
                             all_no_information.setVisibility(View.VISIBLE);
                         }
@@ -334,7 +333,7 @@ public class DynamicFragment extends Fragment {
                     public void onError(Throwable e) {
                         recyclerView.setVisibility(View.GONE);
                         all_no_information.setVisibility(View.VISIBLE);
-                        Log.i("列表数据获取错误", "错误" + e);
+                        Log.i("楼盘动态列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -356,7 +355,7 @@ public class DynamicFragment extends Fragment {
     private void saveImageToPhotos(Context context, Bitmap bmp) {
         // 首先保存图片
 
-        Log.i("分割图片","图片151："+bmp);
+        Log.i("分割图片", "图片151：" + bmp);
 
         File appDir = new File(Environment.getExternalStorageDirectory(), "Boohee");
         if (!appDir.exists()) {

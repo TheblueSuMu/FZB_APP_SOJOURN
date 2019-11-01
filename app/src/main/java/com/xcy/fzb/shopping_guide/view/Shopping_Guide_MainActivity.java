@@ -20,13 +20,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.github.androidprogresslayout.ProgressLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -37,7 +30,6 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
-import com.xcy.fzb.broker.view.Broker_MainActivity;
 import com.xcy.fzb.shopping_guide.fragment.MeFragment;
 import com.xcy.fzb.shopping_guide.fragment.MessageFragment;
 import com.xcy.fzb.shopping_guide.fragment.ProjectFragment;
@@ -48,6 +40,14 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Shopping_Guide_MainActivity extends AllActivity implements View.OnClickListener, ProjectFragment.FragmentInteraction {
     private RadioButton task;
@@ -251,7 +251,7 @@ public class Shopping_Guide_MainActivity extends AllActivity implements View.OnC
 
         Log.i("MyCL","进入了Broker_MainActivity中onResume方法中");
 
-        initDaown();
+//        initDaown();
 
     }
 

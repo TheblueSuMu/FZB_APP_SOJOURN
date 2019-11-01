@@ -221,6 +221,7 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
 //            TODO 我的团队
             intent = new Intent(getContext(), Captain_Team_MyTeamActivity.class);
             startActivity(intent);
+
         } else if (id == R.id.me_Brokerage) {
 //            TODO 团队佣金
             intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);

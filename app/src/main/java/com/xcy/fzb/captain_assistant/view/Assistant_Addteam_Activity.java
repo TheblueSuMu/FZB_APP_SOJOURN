@@ -212,7 +212,7 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
                             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                 //               返回的分别是三个级别的选中位置
                                 //              展示选中数据
-                                add_aconsultant_tv3.setText(ratioByOwnerIdBean.getData().get(options1).getName() + "");
+                                add_aconsultant_tv3.setText(ratioByOwnerIdBean.getData().get(options1).getName() + "比例：" + ratioByOwnerIdBean.getData().get(options1).getPercent());
                                 FinalContents.setRatioId(ratioByOwnerIdBean.getData().get(options1).getId());
                             }
                         })

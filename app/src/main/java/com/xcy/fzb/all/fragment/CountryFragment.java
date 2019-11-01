@@ -41,8 +41,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class CountryFragment extends Fragment {
     private String projectType;
-    private String countryUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectCityNationlist?" + "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
-    private String url = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?" + "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
     private String eventUrl = "";
 
     private Context context;

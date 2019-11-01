@@ -103,8 +103,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private String procuctType = "";
     private String fitmentState = "";
 
-    private String url = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
-    private String reportSaveUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonUpdate/reportSave?";
+    private String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
     private String eventUrl;
 
     private Map<Integer,String> areaMap = new HashMap<>();

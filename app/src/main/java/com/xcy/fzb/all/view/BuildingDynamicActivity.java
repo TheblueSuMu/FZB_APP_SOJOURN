@@ -57,7 +57,6 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
 
     LinearLayout dynamic_return;
     RecyclerView dynamic_rv;
-    private String dynamicUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectHousesDynamicsList?";
     private Dynamic2Bean.DataBean dynamicBeanData;
     private List<Dynamic2Bean.DataBean.RowsBean> list;
     private Dynamic2Adapter recyclerAdapter;

@@ -129,9 +129,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
     private TextView project_details_kai;
 
 
-    private String projectDetailsUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectDetails?";
-    private String houseTypeUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectPropertyHouseList?";
-    private String collectUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonUpdate/projectCollectSave?";
     private CollectBean.DataBean dataBean = new CollectBean.DataBean();
     private LinearLayout project_details_all;
     private TextView project_details_share_all;

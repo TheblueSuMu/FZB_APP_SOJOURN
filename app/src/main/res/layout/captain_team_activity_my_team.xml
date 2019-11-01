@@ -755,7 +755,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
-                                    android:text="顾问成交TOP5"
+                                    android:text="成交TOP5"
                                     android:textColor="#ff000000"
                                     android:textSize="15sp" />
 

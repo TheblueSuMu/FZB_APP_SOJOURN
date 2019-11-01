@@ -169,6 +169,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                         review_the_success_tv1.setText(infoData.getCustomerName());
                         processData = myClientFragmentBean.getData().getListData();
                         FinalContents.setJJrID(FinalContents.getUserID());
+                        FinalContents.setProjectID(infoData.getProjectId());
                         review_the_success_tv2.setText(infoData.getProjectName());
                         review_the_success_tv3.setText(infoData.getCustomerName() + "[" + infoData.getCustomerPhone() + "]");
 

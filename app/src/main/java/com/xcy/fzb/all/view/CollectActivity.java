@@ -54,7 +54,6 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
     private LinearLayout collect_ll1;
     private LinearLayout collect_ll2;
 
-    private String hotUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?";
 
     private RecyclerView recyclerView;
     private ImageView all_no_information;

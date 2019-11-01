@@ -59,7 +59,6 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
     private EditText release_message;
     private Button release_fb;
     private TextView release_qx;
-    private String addurl = "http://39.98.173.250:8080/fangfang/app/v1/ordinaryUpdate/economicCircleSave?";
 
     private List<Object> mDatas;
     private List<Object> mDatas_s = new ArrayList<>();

@@ -22,7 +22,7 @@ public class PriceFragment extends Fragment {
     private EditText down;
     private EditText up;
     private Button ensure;
-    private String url = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
+    private String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonSelect/projectList?" + "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
     private String eventUrl = "";
 
     public PriceFragment() {
@@ -42,7 +42,7 @@ public class PriceFragment extends Fragment {
         ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                eventUrl = url+"&projectPriceStart="+down.getText()+"&projectPriceEnd="+up.getText();
+                eventUrl = url + "&projectPriceStart=" + down.getText() + "&projectPriceEnd=" + up.getText();
                 FinalContents.setProjectPriceStart(down.getText().toString());
                 FinalContents.setProjectPriceEnd(up.getText().toString());
                 EventBus.getDefault().post(eventUrl);

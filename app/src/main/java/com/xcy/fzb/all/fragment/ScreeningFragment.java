@@ -58,7 +58,7 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
     private String procuctType = "";
     private String fitmentState = "";
 
-    private String url = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
+    private String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
     private String eventUrl;
     private Map<Integer,String> areaMap = new HashMap<>();
     private Map<Integer,String> traitMap = new HashMap<>();

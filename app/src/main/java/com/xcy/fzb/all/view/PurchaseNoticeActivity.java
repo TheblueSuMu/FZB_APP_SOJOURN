@@ -49,7 +49,6 @@ public class PurchaseNoticeActivity extends AllActivity implements View.OnClickL
     private TextView title;
     private TextView time;
     private TextView content;
-    private String houseTypeUrl = "http://39.98.173.250:8080/fangfang/app/v1/commonSelect/projectPropertyHouseList?";
     private String talkToolId = "";
 
     FlowFragment flowFragment = new FlowFragment();

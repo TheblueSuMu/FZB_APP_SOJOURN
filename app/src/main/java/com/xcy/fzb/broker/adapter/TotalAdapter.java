@@ -71,7 +71,6 @@ public class TotalAdapter extends RecyclerView.Adapter<TotalAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
-
         if (list.get(position).getIsLike().equals("0")) {
             Glide.with(holder.itemView.getContext()).load(R.mipmap.icon_2).into(holder.item_circle_like);
         } else {
@@ -80,6 +79,8 @@ public class TotalAdapter extends RecyclerView.Adapter<TotalAdapter.ViewHolder> 
         FinalContents.setTargetId(list.get(position).getId());
         Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getCreateByPhoto()).into(holder.all_img);
         Log.i("MyCL", "圖片網址：" + list.get(position).getImgUrl());
+        Log.i("MyCL", "头像網址：" + list.get(position).getCreateByPhoto());
+
         if (list.get(position).getImgUrl().equals("")) {
             holder.circle_ll.setVisibility(View.GONE);
         } else {
