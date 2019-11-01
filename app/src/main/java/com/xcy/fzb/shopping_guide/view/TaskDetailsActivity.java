@@ -161,8 +161,6 @@ public class TaskDetailsActivity extends AllActivity {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("即看","" + FinalContents.getUserID());
-        Log.i("即看","" + FinalContents.getRouteTimeId());
         Observable<TaskDetailsBean> userMessage = fzbInterface.getRoutetimeDetails(FinalContents.getUserID(),FinalContents.getRouteTimeId());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -228,19 +226,16 @@ public class TaskDetailsActivity extends AllActivity {
 
             @Override
             public void onCollapsed() {
-                Log.i(TAG, "onCollapsed: =");
                 mTitle.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onInternediateFromExpand() {
-                Log.i(TAG, "onInternediateFromExpand: =");
                 mTitle.setVisibility(View.GONE);
             }
 
             @Override
             public void onInternediateFromCollapsed() {
-                Log.i(TAG, "onInternediateFromCollapsed: =");
                 mTitle.setVisibility(View.GONE);
             }
 

@@ -239,8 +239,7 @@ public class MyClientFragment7 extends Fragment implements ClientFragmentAdapter
     public void onEvent(MyClientData myClientName) {
         String name = myClientName.getName();
         String judge = myClientName.getJudge();
-        Log.i("MyCL", "name" + name);
-        Log.i("MyCL", "judge" + judge);
+
         if (FinalContents.getZhuanyuan().equals("1")) {
             if (judge.equals("失效")) {
                 initData2(name);

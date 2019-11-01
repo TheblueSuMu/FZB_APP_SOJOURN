@@ -46,7 +46,6 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
             substring = list.get(position).getValue().substring(0, 1);
             if (substring.equals("")) {
             }else {
-                Log.i("截取","数据："+list.get(position).getValue());
                 if (substring.equals("/")) {
                     holder.item_reivew_adapter_item.setVisibility(View.VISIBLE);
                     holder.item_reivew_adapter_item_value.setVisibility(View.GONE);

@@ -131,7 +131,6 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
                 transaction.hide(projectFragment);
                 transaction.show(messageFragment);
                 transaction.hide(meFragment);
-                Log.i("消息跳转","type2："+str);
                 transaction.commit();
                 message.setChecked(true);
             } else if (str.equals("2")) {
@@ -146,7 +145,6 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
                 transaction.hide(projectFragment);
                 transaction.show(messageFragment);
                 transaction.hide(meFragment);
-                Log.i("消息跳转","type3："+str);
 
                 transaction.commit();
                 message.setChecked(true);
@@ -162,7 +160,6 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
                 transaction.hide(projectFragment);
                 transaction.show(messageFragment);
                 transaction.hide(meFragment);
-                Log.i("消息跳转","type5："+str);
 
                 transaction.commit();
                 message.setChecked(true);
@@ -256,7 +253,6 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
     protected void onResume() {
         super.onResume();
 
-        Log.i("MyCL","进入了Broker_MainActivity中onResume方法中");
 
 //        initDaown();
 

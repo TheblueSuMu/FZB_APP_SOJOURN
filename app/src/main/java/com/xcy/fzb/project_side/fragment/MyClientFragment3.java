@@ -64,7 +64,6 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         StatusBar.makeStatusBarTransparent(getActivity());
-        Log.i("刷新","刷新");
         return inflater.inflate(R.layout.fragment_my_client_fragment3, container, false);
     }
 
@@ -75,7 +74,6 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
         EventBus.getDefault().register(this);
         client_3_rv = getActivity().findViewById(R.id.client_3_rv);
         all_no_information = getActivity().findViewById(R.id.all_no_information);
-        Log.i("刷新","正在刷新");
 
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -255,10 +253,8 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
         super.onResume();
 
         if (FinalContents.getZhuanyuan().equals("1")) {
-            Log.i("刷新","成功刷新1");
             initData2("");
         } else {
-            Log.i("刷新","成功刷新1");
             initData("");
         }
 

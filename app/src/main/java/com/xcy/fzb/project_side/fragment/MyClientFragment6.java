@@ -68,7 +68,6 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         StatusBar.makeStatusBarTransparent(getActivity());
-        Log.i("刷新","刷新中。。。。");
         return inflater.inflate(R.layout.fragment_my_client_fragment6, container, false);
     }
 
@@ -78,7 +77,6 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
         super.onActivityCreated(savedInstanceState);
 
         EventBus.getDefault().register(this);
-        Log.i("刷新","正在刷新1");
 
         client_6_rv = getActivity().findViewById(R.id.client_6_rv);
         all_no_information = getActivity().findViewById(R.id.all_no_information);
@@ -246,7 +244,6 @@ public class MyClientFragment6 extends Fragment implements ClientFragmentAdapter
     public void onEvent(MyClientData myClientName) {
         String name = myClientName.getName();
         String judge = myClientName.getJudge();
-        Log.i("MyCL", "廣播");
 
         if (FinalContents.getZhuanyuan().equals("1")) {
             if(judge.equals("成交")){

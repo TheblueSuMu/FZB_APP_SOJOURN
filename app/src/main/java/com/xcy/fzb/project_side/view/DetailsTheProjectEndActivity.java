@@ -392,7 +392,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         afterDate1 = dateString;
                         details_the_project_end_time2.setText("-"+dateString+" >");
-                        Log.d("wsw", "new date: " + dateString);
+
                         initViewData1();
                     }
                 });
@@ -431,7 +431,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         afterDate2 = dateString;
                         details_the_project_end_time4.setText("-"+dateString+" >");
-                        Log.d("wsw", "new date: " + dateString);
                         initViewData2();
                     }
                 });
@@ -657,7 +656,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         //设置X轴的值（最小值、最大值、然后会根据设置的刻度数量自动分配刻度显示）
         xAxis.setAxisMinimum(0f);
         xAxis.setAxisMaximum(list.size());
-        Log.i("length","长度："+list.size());
         //不显示网格线
         xAxis.setDrawGridLines(false);
         // 标签倾斜

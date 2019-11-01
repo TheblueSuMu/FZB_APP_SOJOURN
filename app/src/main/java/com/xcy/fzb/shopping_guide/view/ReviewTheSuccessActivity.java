@@ -131,9 +131,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
     private void initData() {
 
-        Log.i("MyCL", "getCustomerId：" + FinalContents.getCustomerID());
-        Log.i("MyCL", "userID：" + FinalContents.getUserID());
-
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -237,9 +234,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 if (isnum3 == 0) {
                     isnum3 = 1;
                     finish();
-                    Log.i("MyCL", "getProjectName：" + infoData.getProjectName());
-                    Log.i("MyCL", "getCustomerName：" + infoData.getCustomerName());
-                    Log.i("MyCL", "getCustomerPhone：" + infoData.getCustomerPhone());
                     intent = new Intent(ReviewTheSuccessActivity.this, ConfessToRaiseInformationActivity.class);
                     ProjectProgressApi.setCustomerName(infoData.getCustomerName());
                     ProjectProgressApi.setProjectName(infoData.getProjectName());
@@ -254,7 +248,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 if (isnum4 == 0) {
                     isnum4 = 1;
                     finish();
-                    Log.i("MyCL", "getPreparationId：" + infoData.getPreparationId());
                     intent = new Intent(ReviewTheSuccessActivity.this, FillInTransactionInformationActivity.class);
                     FinalContents.setPreparationId(infoData.getPreparationId());
                     FinalContents.setTiaodan("成交");

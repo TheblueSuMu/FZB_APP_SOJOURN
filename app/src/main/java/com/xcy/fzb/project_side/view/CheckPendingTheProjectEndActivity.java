@@ -270,8 +270,6 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
                                     FinalContents.setPreparationId(rows.get(position).getPreparationId());
                                     FinalContents.setCustomerID(rows.get(position).getCustomerId());
                                     FinalContents.setStatus(rows.get(position).getStatus());
-                                    Log.i("MyCL", "getPreparationId：" + rows.get(position).getPreparationId());
-                                    Log.i("MyCL", "getCustomerId：" + rows.get(position).getCustomerId());
                                     startActivity(intent);
                                 }
                             });
@@ -312,7 +310,6 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
     public void onResume() {
         super.onResume();
         FinalContents.setJuJue("待我审核");
-        Log.i("dialog","数字:"+FinalContents.getNumS());
         if (FinalContents.getNumS() == 1) {
             initData(1);
         } else if (FinalContents.getNumS() == 2) {

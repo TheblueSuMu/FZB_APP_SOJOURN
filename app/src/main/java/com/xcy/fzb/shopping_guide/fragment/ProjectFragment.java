@@ -156,7 +156,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     SharItOff.setShar("隐");
                     Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
                 }
-                Log.i("MyCL","摇一摇");
+
                 initHotList();
 
                 vibrator.vibrate(100);
@@ -253,7 +253,6 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
             }
         }else {
             if(view.getId() == R.id.project_city_selector){
-                Log.i("点击事件","事件触发");
                 showPickerView();
             }
         }
@@ -337,7 +336,6 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                 //              展示选中数据
                                 city.setText(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
-                                Log.i("city",FinalContents.getCityID());
                                 initHotList();
                             }
                         })
@@ -381,7 +379,6 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(HotBean hotBean) {
-                        Log.i("city",hotBean.getCode());
                         if (hotBean.getCode().equals("1")) {
                             HotBean.DataBean hotBeanData = hotBean.getData();
                             hotlist = hotBeanData.getRows();
@@ -541,9 +538,6 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                 public void OnBannerClick(int position) {
                                     FinalContents.setProjectID(imglist.get(position).getProject().getId());
                                     FinalContents.setNewID(imglist.get(position).getId());
-                                    Log.i("详情", "项目ID" + FinalContents.getProjectID());
-                                    Log.i("详情", "用户ID" + FinalContents.getUserID());
-                                    Log.i("详情", "用户ID" + FinalContents.getNewID());
                                     Intent intent = new Intent(view.getContext(), WebViewActivity.class);
                                     intent.putExtra("title", "新闻详情");
                                     intent.putExtra("webview", imglist.get(position).getContent());

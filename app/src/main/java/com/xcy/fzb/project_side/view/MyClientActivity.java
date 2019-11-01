@@ -139,22 +139,16 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
                     //处理事件
                     String s = my_client_ss.getText().toString();
                     if(my_client_11_9.getVisibility() == View.VISIBLE){
-                        Log.i("MyCL","回车点击事件1");
                         EventBus.getDefault().post(new MyClientData(s,"报备"));
                     }else if(my_client_11_10.getVisibility() == View.VISIBLE){
-                        Log.i("MyCL","回车点击事件2");
                         EventBus.getDefault().post(new MyClientData(s,"到访"));
                     }else if(my_client_11_11.getVisibility() == View.VISIBLE){
-                        Log.i("MyCL","回车点击事件3");
                         EventBus.getDefault().post(new MyClientData(s,"登岛"));
                     }else if(my_client_11_12.getVisibility() == View.VISIBLE){
-                        Log.i("MyCL","回车点击事件4");
                         EventBus.getDefault().post(new MyClientData(s,"认筹"));
                     }else if(my_client_11_13.getVisibility() == View.VISIBLE){
-                        Log.i("MyCL","回车点击事件5");
                         EventBus.getDefault().post(new MyClientData(s,"成交"));
                     }else if(my_client_11_14.getVisibility() == View.VISIBLE){
-                        Log.i("MyCL","回车点击事件6");
                         EventBus.getDefault().post(new MyClientData(s,"失效"));
                     }
                     return true;
@@ -327,8 +321,7 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("返回的信息","数据："+FinalContents.getChengJao());
-        Log.i("返回的信息","数据2："+FinalContents.getTiaozhuang());
+
 
         if (FinalContents.getTiaozhuang().equals("登岛成功")) {
             myClientFragment4 = new MyClientFragment4();
@@ -383,13 +376,11 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
             my_client_11_13.setVisibility(View.INVISIBLE);
             my_client_11_14.setVisibility(View.VISIBLE);
         } else if (FinalContents.getTiaozhuang().equals("成交")){
-            Log.i("成交123","跳转到成交页");
             myClientFragment6 = new MyClientFragment6();
             manager = getSupportFragmentManager();
             transaction = manager.beginTransaction();
             transaction.replace(R.id.my_client_fl, myClientFragment6);
             transaction.commit();
-            Log.i("成交123","跳转到成交");
 
             my_client_11_9.setVisibility(View.INVISIBLE);
             my_client_11_10.setVisibility(View.INVISIBLE);
@@ -403,7 +394,6 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
             transaction = manager.beginTransaction();
             transaction.replace(R.id.my_client_fl, myClientFragment6);
             transaction.commit();
-            Log.i("成交123","跳转到调单");
 
             my_client_11_9.setVisibility(View.INVISIBLE);
             my_client_11_10.setVisibility(View.INVISIBLE);

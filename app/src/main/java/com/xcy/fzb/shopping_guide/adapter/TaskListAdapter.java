@@ -57,7 +57,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("导购任务","任务列表："+list.get(position).getTaskStatus());
                 if (list.get(position).getTaskStatus().equals("60")) {
                     FinalContents.setDaoGou("60");
                 } else {

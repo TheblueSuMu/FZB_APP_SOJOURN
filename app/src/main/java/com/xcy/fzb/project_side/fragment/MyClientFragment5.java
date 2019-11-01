@@ -230,9 +230,7 @@ public class MyClientFragment5 extends Fragment implements ClientFragmentAdapter
         Intent intent = new Intent(getContext(), ReviewTheSuccessActivity.class);
         FinalContents.setCustomerID(rows.get(position).getCustomerId());
         FinalContents.setPreparationId(rows.get(position).getPreparationId());
-        Log.i("MyCL", "getCustomerId___myclient：" + rows.get(position).getCustomerId());
-        Log.i("MyCL", "getCustomerId：" + FinalContents.getCustomerID());
-        Log.i("MyCL", "userID：" + FinalContents.getUserID());
+
         startActivity(intent);
 
     }
@@ -247,7 +245,6 @@ public class MyClientFragment5 extends Fragment implements ClientFragmentAdapter
     public void onEvent(MyClientData myClientName) {
         String name = myClientName.getName();
         String judge = myClientName.getJudge();
-        Log.i("MyCL", "廣播");
         if (FinalContents.getZhuanyuan().equals("1")) {
             if(judge.equals("认筹")){
                 initData2(name);

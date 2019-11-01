@@ -703,7 +703,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(ReportActivity.this, "您输入的信息有误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ReportActivity.this, "请选择房源", Toast.LENGTH_SHORT).show();
                         Log.i("wsw","返回的数据"+e.getMessage());
                     }
 

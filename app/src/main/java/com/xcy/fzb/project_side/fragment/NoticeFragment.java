@@ -196,7 +196,6 @@ public class NoticeFragment extends Fragment {
                                                 public void run() {
                                                     mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
                                                     Bitmap bp = returnBitMap(imgURl);
-                                                    Log.i("MyCL", "bp：" + bp);
                                                     saveImageToPhotos(getContext(), bp);
                                                 }
                                             }).start();
@@ -208,7 +207,6 @@ public class NoticeFragment extends Fragment {
                                                     public void run() {
                                                         mHandler.obtainMessage(SAVE_BEGIN).sendToTarget();
                                                         Bitmap bp = returnBitMap(imgURl);
-                                                        Log.i("MyCL", "bp：" + bp);
                                                         saveImageToPhotos(getContext(), bp);
                                                     }
                                                 }).start();
@@ -291,30 +289,19 @@ public class NoticeFragment extends Fragment {
     public final static Bitmap returnBitMap(String url) {
         URL myFileUrl;
         Bitmap bitmap = null;
-        Log.i("MyCL", "1");
         try {
             myFileUrl = new URL(url);
-            Log.i("MyCL", "2");
             HttpURLConnection conn;
-            Log.i("MyCL", "3");
             conn = (HttpURLConnection) myFileUrl.openConnection();
-            Log.i("MyCL", "4");
             conn.setDoInput(true);
-            Log.i("MyCL", "5");
             conn.connect();
-            Log.i("MyCL", "6");
             InputStream is = conn.getInputStream();
-            Log.i("MyCL", "7");
             bitmap = BitmapFactory.decodeStream(is);
-            Log.i("MyCL", "8");
         } catch (MalformedURLException e) {
-            Log.i("MyCL", "9");
             e.printStackTrace();
         } catch (IOException e) {
-            Log.i("MyCL", "10");
             e.printStackTrace();
         }
-        Log.i("MyCL", "11");
         return bitmap;
     }
 
