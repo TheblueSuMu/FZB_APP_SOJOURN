@@ -233,11 +233,20 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
             }
         }
 
-        if (FinalContents.getDengLu().equals("")) {
-            initDengLu();
-        } else {
 
+        if (pref.getString("forget", "").equals("")) {
+            if (FinalContents.getDengLu().equals("")) {
+                initDengLu();
+                editor.putString("forget", "1");
+                editor.commit();
+            } else {
+
+            }
         }
+
+
+
+
 
         click();
     }
@@ -721,6 +730,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                             editor.putString("userID", FinalContents.getUserID());
                             editor.putString("cityID", FinalContents.getCityID());
                             editor.putString("identity", FinalContents.getIdentity());
+                            editor.putString("forget", "");
                             editor.commit();
                             startActivity(intent);
                             finish();
@@ -805,6 +815,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
                                 finish();
@@ -820,6 +831,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
                                 finish();
@@ -835,6 +847,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
                                 finish();
@@ -851,6 +864,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
                                 finish();
@@ -932,6 +946,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
                                 finish();
@@ -947,6 +962,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
                                 finish();
@@ -966,6 +982,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
                                 finish();

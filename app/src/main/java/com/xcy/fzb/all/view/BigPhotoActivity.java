@@ -34,6 +34,7 @@ public class BigPhotoActivity extends AllActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_big_photo);
+        FinalContents.setHidden(false);
         init_No_Network();
     }
 

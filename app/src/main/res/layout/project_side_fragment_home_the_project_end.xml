@@ -24,11 +24,10 @@
             cube_ptr:ptr_resistance="1.7">
 
             <ScrollView
+                android:id="@+id/project_side_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FFFFFF"
-                android:overScrollMode="never"
-                android:scrollbars="none">
+                android:background="#FFFFFF">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

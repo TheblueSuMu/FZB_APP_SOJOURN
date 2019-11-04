@@ -259,122 +259,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="15dp"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/project_Lable_rv"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"/>
 
-                        <CheckBox
-                            android:id="@+id/checkbox1"
-                            android:layout_width="70dp"
-                            android:layout_height="33dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/tagview_check_theme"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="独家"
-                            android:textColor="@drawable/checkbox_text_check"
-                            android:textSize="14sp" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox2"
-                            android:layout_width="70dp"
-                            android:layout_height="33dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/tagview_check_theme"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="高佣"
-                            android:textColor="@drawable/checkbox_text_check"
-                            android:textSize="14sp" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox3"
-                            android:layout_width="70dp"
-                            android:layout_height="33dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/tagview_check_theme"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="前佣"
-                            android:textColor="@drawable/checkbox_text_check"
-                            android:textSize="14sp" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox4"
-                            android:layout_width="70dp"
-                            android:layout_height="33dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/tagview_check_theme"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="带看奖"
-                            android:textColor="@drawable/checkbox_text_check"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <CheckBox
-                            android:id="@+id/checkbox5"
-                            android:layout_width="70dp"
-                            android:layout_height="33dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/tagview_check_theme"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="成交奖"
-                            android:textColor="@drawable/checkbox_text_check"
-                            android:textSize="14sp" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox6"
-                            android:layout_width="70dp"
-                            android:layout_height="33dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/tagview_check_theme"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="跳点"
-                            android:textColor="@drawable/checkbox_text_check"
-                            android:textSize="14sp" />
-
-                        <CheckBox
-                            android:id="@+id/checkbox7"
-                            android:layout_width="70dp"
-                            android:layout_height="33dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/tagview_check_theme"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="包销"
-                            android:textColor="@drawable/checkbox_text_check"
-                            android:textSize="14sp" />
-
-                        <CheckBox
-                            android:layout_width="70dp"
-                            android:layout_height="33dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_weight="1"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="包销"
-                            android:textColor="@drawable/checkbox_text_check"
-                            android:textSize="14sp"
-                            android:visibility="invisible" />
-
-                    </LinearLayout>
                 </LinearLayout>
 
                 <RelativeLayout
@@ -386,9 +277,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/overseas_hot"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </androidx.recyclerview.widget.RecyclerView>
+                        android:layout_height="wrap_content"/>
 
                     <ImageView
                         android:id="@+id/all_no_information"

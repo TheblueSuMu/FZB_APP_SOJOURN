@@ -101,7 +101,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
     private static String[] PERMISSIONS_STORAGE = {
             "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.WRITE_EXTERNAL_STORAGE"};
-    private String s;
+    private String s = "";
     private File file;
 
     @Override
@@ -212,9 +212,15 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             personal_name.setText(data.getName());
                             personal_identity.setText("经纪人");
                             personal_city.setText(data.getCity());
-                            personal_sex.setText(data.getSex());
+                            if (data.getSex().equals("")) {
+                                personal_sex.setText("男");
+                                s = "男";
+                            }else {
+                                personal_sex.setText(data.getSex());
+                                s = data.getSex();
+                            }
                             personal_phone.setText(data.getPhone());
-                            s = data.getSex();
+
                             UserMessageBean.DataBean.StoreManageBean storeManage = data.getStoreManage();
                             personal_store.setText(storeManage.getStoreName());
 
@@ -249,7 +255,13 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             personal_name.setText(data.getName());
                             personal_identity.setText("专案");
                             personal_city.setText(data.getCity());
-                            personal_sex.setText(data.getSex());
+                            if (data.getSex().equals("")) {
+                                personal_sex.setText("男");
+                                s = "男";
+                            }else {
+                                personal_sex.setText(data.getSex());
+                                s = data.getSex();
+                            }
                             personal_phone.setText(data.getPhone());
                             s = data.getSex();
                             String storeManage = data.getStoreManage();
@@ -290,7 +302,13 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                 personal_identity.setText("导购");
                             }
                             personal_city.setText(data.getCity());
-                            personal_sex.setText(data.getSex());
+                            if (data.getSex().equals("")) {
+                                personal_sex.setText("男");
+                                s = "男";
+                            }else {
+                                personal_sex.setText(data.getSex());
+                                s = data.getSex();
+                            }
                             personal_phone.setText(data.getPhone());
                             s = data.getSex();
                             String storeManage = data.getStoreManage();
@@ -350,7 +368,13 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             }
 
                             personal_city.setText(userMessageBean.getData().getSysUser().getCity());
-                            personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
+                            if (userMessageBean.getData().getSysUser().getSex().equals("")) {
+                                personal_sex.setText("男");
+                                s = "男";
+                            }else {
+                                personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
+                                s = userMessageBean.getData().getSysUser().getSex();
+                            }
                             personal_phone.setText(userMessageBean.getData().getSysUser().getPhone());
                             s = userMessageBean.getData().getSysUser().getSex();
                             personal_store.setText(userMessageBean.getData().getSysUser().getStoreManage());
@@ -398,7 +422,13 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             }
 
                             personal_city.setText(userMessageBean.getData().getSysUser().getCity());
-                            personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
+                            if (userMessageBean.getData().getSysUser().getSex().equals("")) {
+                                personal_sex.setText("男");
+                                s = "男";
+                            }else {
+                                personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
+                                s = userMessageBean.getData().getSysUser().getSex();
+                            }
                             personal_phone.setText(userMessageBean.getData().getSysUser().getPhone());
                             s = userMessageBean.getData().getSysUser().getSex();
                             personal_store.setText(userMessageBean.getData().getSysUser().getStoreManage());
@@ -446,7 +476,13 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             }
 
                             personal_city.setText(userMessageBean.getData().getCity());
-                            personal_sex.setText(userMessageBean.getData().getSex());
+                            if (userMessageBean.getData().getSex().equals("")) {
+                                personal_sex.setText("男");
+                                s = "男";
+                            }else {
+                                personal_sex.setText(userMessageBean.getData().getSex());
+                                s = userMessageBean.getData().getSex();
+                            }
                             personal_phone.setText(userMessageBean.getData().getPhone());
                             s = userMessageBean.getData().getSex();
                             personal_store.setText(userMessageBean.getData().getStoreManage());
@@ -588,7 +624,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 
 
                 String s2 = personal_sex.getText().toString();
-
+                s = personal_sex.getText().toString();
                 final AlertDialog.Builder builder1 = new AlertDialog.Builder(PersonalInformationActivity.this);
                 builder1.setTitle("性别");
                 final String[] items = {"男", "女"};
@@ -615,12 +651,14 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            s = items[i].toString();
+                            s = items[0].toString();
 //                        Toast.makeText(PersonalInformationActivity.this, items[i], Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
 
+                Log.i("修改性别","2 shuju + xingbie："+s);
+                Log.i("修改性别","2 shuju + xingbie："+personal_sex.getText().toString());
                 builder1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -634,7 +672,9 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         ChangeSexBean.DataBean data1 = changeSexBean.getData();
                         if (data1.getMessage().equals("修改性别成功")) {
                             Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.i("修改性别","xingbie："+s);
                             personal_sex.setText(s);
+                            Log.i("修改性别","shuju + xingbie："+personal_sex.getText().toString());
                         } else {
                             Toast.makeText(PersonalInformationActivity.this, "性别修改失败", Toast.LENGTH_SHORT).show();
                         }

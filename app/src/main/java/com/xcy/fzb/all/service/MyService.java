@@ -246,6 +246,10 @@ public interface MyService {
     @POST("commonSelect/projectMoreInfo")
     Observable<MoreBean> getProjectMoreInfo(@Query("id") String id);
 
+    //海外筛选 楼盘特色/项目标签
+    @POST("commonSelect/label")
+    Observable<LabelBean> getLabel(@Query("type") String type);
+
     //项目详情相册
     @POST("commonSelect/projectPhoto")
     Observable<PhotoBean> getProjectPhoto(@Query("userId") String userId, @Query("projectId") String projectId);

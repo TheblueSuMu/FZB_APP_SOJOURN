@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -121,6 +122,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
     private String beforeDate = "";
     private String afterDate = "";
     private ImageView all_no_information;
+    private ScrollView project_side_scrollview;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -136,7 +138,8 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         StatusBar.makeStatusBarTransparent(getActivity());
 
         mPtrClassicFrameLayout = view.findViewById(R.id.store_house_ptr_frame);
-
+        project_side_scrollview = view.findViewById(R.id.project_side_scrollview);
+        project_side_scrollview.smoothScrollTo(0,20);
         FinalContents.setTiaozhuang("");
         all_no_information = view.findViewById(R.id.all_no_information);
         img_home_the_project_end = view.findViewById(R.id.img_home_the_project_end);
@@ -193,6 +196,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         time1_ll1_home_the_project_end = view.findViewById(R.id.time1_ll1_home_the_project_end);
 
         rv_home_the_project_end = view.findViewById(R.id.rv_home_the_project_end);
+        rv_home_the_project_end.setFocusable(false);
 
         time1_home_the_project_end.setOnClickListener(this);
         time2_home_the_project_end.setOnClickListener(this);

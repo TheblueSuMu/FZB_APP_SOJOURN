@@ -2,6 +2,7 @@ package com.xcy.fzb.all.fragment;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +10,28 @@ import android.widget.Button;
 import android.widget.CheckBox;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.Project_Label_Adapter;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.modle.LabelBean;
+import com.xcy.fzb.all.service.MyService;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,8 +77,11 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
     private String eventUrl;
     private Map<Integer,String> areaMap = new HashMap<>();
     private Map<Integer,String> traitMap = new HashMap<>();
+    private Map<Integer,String> LabelMap = new HashMap<>();
     private Map<Integer,String> typeMap = new HashMap<>();
     private Map<Integer,String> stateMap = new HashMap<>();
+    private RecyclerView screening_label_rv;
+    private String projectLabel = "";
 
 
     public ScreeningFragment() {
@@ -82,6 +100,8 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initView(View view){
+        screening_label_rv = view.findViewById(R.id.screening_label_rv);
+
         area1 = view.findViewById(R.id.screen_area_1);
         area2 = view.findViewById(R.id.screen_area_2);
         area3 = view.findViewById(R.id.screen_area_3);
@@ -139,7 +159,7 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
         decorate3.setOnClickListener(this);
         decorate4.setOnClickListener(this);
         ensure.setOnClickListener(this);
-
+        initProjectLabel();
 
     }
 
@@ -172,6 +192,63 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
         stateMap.put(1,"");
         stateMap.put(2,"");
         stateMap.put(3,"");
+    }
+
+
+    private void initProjectLabel(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<LabelBean> nationBean = fzbInterface.getLabel("0");
+        nationBean.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<LabelBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(final LabelBean labelBean) {
+                        if (labelBean.getData().size() != 0) {
+                            GridLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),4);
+                            linearLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+                            screening_label_rv.setLayoutManager(linearLayoutManager);
+                            Project_Label_Adapter reportItemAdapter = new Project_Label_Adapter(labelBean.getData());
+                            screening_label_rv.setAdapter(reportItemAdapter);
+                            reportItemAdapter.notifyDataSetChanged();
+                            reportItemAdapter.setOnItemClickListener(new Project_Label_Adapter.OnItemClickLisenter() {
+                                @Override
+                                public void onItemClick(CheckBox checkBox, int postion) {
+                                    projectLabel = "";
+                                    if (checkBox.isChecked()) {
+                                        LabelMap.put(postion,","+ labelBean.getData().get(postion).getLable());
+                                        Log.i("项目卖点","来来来："+labelBean.getData().get(postion).getId()+"名字:"+labelBean.getData().get(postion).getLable());
+                                    }else {
+                                        LabelMap.put(postion,"");
+                                    }
+                                    for (int i = 0;i < LabelMap.size();i++){
+                                        projectLabel = projectLabel + LabelMap.get(i);
+                                    }
+                                    Log.i("项目卖点","数据："+ projectLabel);
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("海外筛选", "楼盘特色/项目标签错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @Override
@@ -369,14 +446,15 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
                 for (int i = 0;i < stateMap.size();i++){
                     fitmentState = fitmentState + stateMap.get(i);
                 }
-                eventUrl = url+ "&areaSection="+areaSection+"&ffProjectTrait="+ffProjectTrait+"&procuctType="+procuctType+"&fitmentState="+fitmentState;
+                eventUrl = url+ "&areaSection="+areaSection+"&ffProjectTrait="+projectLabel+"&procuctType="+procuctType+"&fitmentState="+fitmentState;
                 FinalContents.setAreaSection(areaSection);
-                FinalContents.setFfProjectTrait(ffProjectTrait);
+                FinalContents.setFfProjectTrait(projectLabel);
                 FinalContents.setProcuctType(procuctType);
                 FinalContents.setFitmentState(fitmentState);
                 EventBus.getDefault().post(eventUrl);
                 areaSection = "";
                 ffProjectTrait = "";
+                projectLabel = "";
                 procuctType = "";
                 fitmentState = "";
                 break;

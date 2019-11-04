@@ -36,6 +36,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.CityAdapter;
 import com.xcy.fzb.all.adapter.IssueAdapter;
 import com.xcy.fzb.all.adapter.OverseaCityAdapter;
+import com.xcy.fzb.all.adapter.ProjectLabelAdapter;
 import com.xcy.fzb.all.adapter.RecyclerAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.application.DemoApplication;
@@ -46,6 +47,7 @@ import com.xcy.fzb.all.fragment.PriceFragment;
 import com.xcy.fzb.all.fragment.ScreeningFragment;
 import com.xcy.fzb.all.modle.HotBean;
 import com.xcy.fzb.all.modle.ImgData;
+import com.xcy.fzb.all.modle.LabelBean;
 import com.xcy.fzb.all.modle.NationBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
@@ -58,7 +60,9 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import co.lujun.androidtagview.ColorFactory;
 import co.lujun.androidtagview.TagContainerLayout;
@@ -99,7 +103,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private LinearLayout back;
     private ImageView report;
     FrameLayout oversea_fl;
-    private String projectLabel;
+    private String projectLabel = "";
 
     private TagContainerLayout tagView;
     private LinearLayout oversea_linear;
@@ -119,21 +123,15 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private List<HotBean.DataBean.RowsBean> hotlist;
     private DemoApplication application;
     private RecyclerAdapter recyclerAdapter;
-    private CheckBox checkBox1;
-    private CheckBox checkBox2;
-    private CheckBox checkBox3;
-    private CheckBox checkBox4;
-    private CheckBox checkBox5;
-    private CheckBox checkBox6;
-    private CheckBox checkBox7;
-
+    private Map<Integer,String> LabelMap = new HashMap<>();
     View seview;
     private ImageView all_no_information;
 
     //TODO     摇一摇
     private SensorManager mSensorManager;
     private Vibrator vibrator;
-//    private DemoApplication application;
+    private RecyclerView project_lable_rv;
+    //    private DemoApplication application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -274,23 +272,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         imglist = application.getImglist();
         hotlist = application.getHotlist();
 
-        checkBox1 = findViewById(R.id.checkbox1);
-        checkBox2 = findViewById(R.id.checkbox2);
-        checkBox3 = findViewById(R.id.checkbox3);
-        checkBox4 = findViewById(R.id.checkbox4);
-        checkBox5 = findViewById(R.id.checkbox5);
-        checkBox6 = findViewById(R.id.checkbox6);
-        checkBox7 = findViewById(R.id.checkbox7);
-
-        checkBox1.setOnClickListener(this);
-        checkBox2.setOnClickListener(this);
-        checkBox3.setOnClickListener(this);
-        checkBox4.setOnClickListener(this);
-        checkBox5.setOnClickListener(this);
-        checkBox6.setOnClickListener(this);
-        checkBox7.setOnClickListener(this);
-
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         banner = findViewById(R.id.banner_2);
@@ -320,6 +301,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         oversea_lll = findViewById(R.id.oversea_lll);
 
         all_no_information = findViewById(R.id.all_no_information);
+
+        project_lable_rv = findViewById(R.id.project_Lable_rv);
 
         search = findViewById(R.id.oversea_search);
         search.setFocusable(false);
@@ -392,7 +375,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             }
         });
 
-
+        initProjectLabel();
         sort.setOnClickListener(this);
         screen.setOnClickListener(this);
         state.setOnClickListener(this);
@@ -435,79 +418,67 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
-            case R.id.checkbox1:
-                if (checkBox1.isChecked()) {
-                    projectLabel = "独家";
-                    FinalContents.setProjectLabel(projectLabel);
-                    inithot();
-                } else {
-                    FinalContents.setProjectLabel("");
-                    inithot();
-                }
-                break;
-            case R.id.checkbox2:
-                if (checkBox2.isChecked()) {
-                    projectLabel = "高佣";
-                    FinalContents.setProjectLabel(projectLabel);
-                    inithot();
-                } else {
-                    FinalContents.setProjectLabel("");
-                    inithot();
-                }
-                break;
-            case R.id.checkbox3:
-                if (checkBox3.isChecked()) {
-                    projectLabel = "前佣";
-                    FinalContents.setProjectLabel(projectLabel);
-                    inithot();
-                } else {
-                    FinalContents.setProjectLabel("");
-                    inithot();
-                }
-                break;
-            case R.id.checkbox4:
-                if (checkBox4.isChecked()) {
-                    projectLabel = "带看奖";
-                    FinalContents.setProjectLabel(projectLabel);
-                    inithot();
-                } else {
-                    FinalContents.setProjectLabel("");
-                    inithot();
-                }
-                break;
-            case R.id.checkbox5:
-                if (checkBox5.isChecked()) {
-                    projectLabel = "成交奖";
-                    FinalContents.setProjectLabel(projectLabel);
-                    inithot();
-                } else {
-                    FinalContents.setProjectLabel("");
-                    inithot();
-                }
-                break;
-            case R.id.checkbox6:
-                if (checkBox6.isChecked()) {
-                    projectLabel = "跳点";
-                    FinalContents.setProjectLabel(projectLabel);
-                    inithot();
-                } else {
-                    FinalContents.setProjectLabel("");
-                    inithot();
-                }
-                break;
-            case R.id.checkbox7:
-                if (checkBox7.isChecked()) {
-                    projectLabel = "包销";
-                    FinalContents.setProjectLabel(projectLabel);
-                    inithot();
-                } else {
-                    FinalContents.setProjectLabel("");
-                    inithot();
-                }
-                break;
         }
     }
 
+    private void initProjectLabel(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<LabelBean> nationBean = fzbInterface.getLabel("1");
+        nationBean.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<LabelBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(final LabelBean labelBean) {
+                        if (labelBean.getData().size() != 0) {
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(OverSeaActivity.this);
+                            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                            project_lable_rv.setLayoutManager(linearLayoutManager);
+                            ProjectLabelAdapter reportItemAdapter = new ProjectLabelAdapter(labelBean.getData());
+                            project_lable_rv.setAdapter(reportItemAdapter);
+                            reportItemAdapter.notifyDataSetChanged();
+                            reportItemAdapter.setOnItemClickListener(new ProjectLabelAdapter.OnItemClickLisenter() {
+                                @Override
+                                public void onItemClick(CheckBox checkBox, int postion) {
+                                    projectLabel = "";
+                                    if (checkBox.isChecked()) {
+                                        LabelMap.put(postion,","+ labelBean.getData().get(postion).getLable());
+                                        Log.i("项目卖点","来来来："+labelBean.getData().get(postion).getId()+"名字:"+labelBean.getData().get(postion).getLable());
+                                    }else {
+                                        LabelMap.put(postion,"");
+                                    }
+                                    for (int i = 0;i < LabelMap.size();i++){
+                                        projectLabel = projectLabel + LabelMap.get(i);
+                                    }
+
+                                    Log.i("项目卖点","数据："+projectLabel);
+                                    FinalContents.setProjectLabel(projectLabel);
+                                    inithot();
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("海外筛选", "楼盘特色/项目标签错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
 
     private void initcity() {
 

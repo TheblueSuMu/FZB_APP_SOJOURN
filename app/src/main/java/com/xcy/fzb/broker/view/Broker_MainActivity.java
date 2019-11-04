@@ -143,6 +143,7 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 button_message.setChecked(true);
             }
         }
+
     }
 
     private void initfvb() {

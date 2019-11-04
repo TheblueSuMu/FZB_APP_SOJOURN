@@ -165,6 +165,16 @@ public class FinalContents {
 
     static String VersionNumBer = "1.0";
 
+    static boolean Hidden = true;
+
+    public static boolean isHidden() {
+        return Hidden;
+    }
+
+    public static void setHidden(boolean hidden) {
+        Hidden = hidden;
+    }
+
     public static String getVersionNumBer() {
         return VersionNumBer;
     }

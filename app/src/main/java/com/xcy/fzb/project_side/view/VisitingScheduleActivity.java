@@ -107,7 +107,6 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
     private String projecttype;
     private RecyclerView fill_in_transaction_information_rv;
     private TextView fill_in_transaction_information_tishi;
-    private boolean whethe = false;
     private String str = "";
 
     int ifnum1 = 0;
@@ -353,50 +352,46 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
     private void initTradeSave() {
         initselect();
 
-        if (whethe) {
-            Retrofit.Builder builder = new Retrofit.Builder();
-            builder.baseUrl(FinalContents.getBaseUrl());
-            builder.addConverterFactory(GsonConverterFactory.create());
-            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-            Retrofit build = builder.build();
-            MyService fzbInterface = build.create(MyService.class);
-            Observable<TradeSaveBean> userMessage = fzbInterface.getTradeSave("", FinalContents.getProjectID(), "", FinalContents.getPreparationId(), FinalContents.getCustomerID(), fang_hao_et1.getText().toString() + "栋" + fang_hao_et2.getText().toString() + "单元" + fang_hao_et3.getText().toString() + "室", apartment, fill_in_transaction_information_et4.getText().toString(), fill_in_transaction_information_et5.getText().toString(), str, payment_way.getText().toString(), FinalContents.getCommissionId(), projecttype, gender, project_relation.getText().toString(), fill_in_transaction_information_et1.getText().toString(), fill_in_transaction_information_et2.getText().toString(), fill_in_transaction_information_et3.getText().toString(), FinalContents.getUserID(), project_time.getText().toString());
-            userMessage.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<TradeSaveBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<TradeSaveBean> userMessage = fzbInterface.getTradeSave("", FinalContents.getProjectID(), "", FinalContents.getPreparationId(), FinalContents.getCustomerID(), fang_hao_et1.getText().toString() + "栋" + fang_hao_et2.getText().toString() + "单元" + fang_hao_et3.getText().toString() + "室", apartment, fill_in_transaction_information_et4.getText().toString(), fill_in_transaction_information_et5.getText().toString(), str, payment_way.getText().toString(), FinalContents.getCommissionId(), projecttype, gender, project_relation.getText().toString(), fill_in_transaction_information_et1.getText().toString(), fill_in_transaction_information_et2.getText().toString(), fill_in_transaction_information_et3.getText().toString(), FinalContents.getUserID(), project_time.getText().toString());
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<TradeSaveBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
+                    }
+
+                    @SuppressLint("WrongConstant")
+                    @Override
+                    public void onNext(TradeSaveBean tradeSaveBean) {
+                        if (FinalContents.getCommissionId().equals("")) {
+                            Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(VisitingScheduleActivity.this, tradeSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            finish();
                         }
+                    }
 
-                        @SuppressLint("WrongConstant")
-                        @Override
-                        public void onNext(TradeSaveBean tradeSaveBean) {
-                            if (FinalContents.getCommissionId().equals("")) {
-                                Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(VisitingScheduleActivity.this, tradeSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
-                        }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("成交信息", "错误" + e);
+                    }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.i("成交信息", "错误" + e);
-                        }
+                    @Override
+                    public void onComplete() {
 
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
-            if (FinalContents.getCommissionId().equals("")) {
-                Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
-            } else {
-                FinalContents.setTiaozhuang("成交");
-            }
-        } else {
+                    }
+                });
+        if (FinalContents.getCommissionId().equals("")) {
             Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
+        } else {
+            FinalContents.setTiaozhuang("成交");
         }
     }
 
@@ -650,7 +645,6 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                                 project_brokerage.setText(brokerBean.getData().get(postion).getCommissionFormat());
                                 FinalContents.setCommissionId(brokerBean.getData().get(postion).getId());
                                 transition_layout.setVisibility(View.GONE);
-                                whethe = true;
                             }
                         });
                         timeRangeAdapter.notifyDataSetChanged();
@@ -804,7 +798,6 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                         }
 
                         project_brokerage.setText(tradeAuditBean.getData().getCommission().getCommissionFormat());
-
 
                         FinalContents.setPreparationId(tradeAuditBean.getData().getPreparationId());
                         FinalContents.setCommissionId(tradeAuditBean.getData().getCommissionId());

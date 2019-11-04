@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.xcy.fzb.all.api.APKVersionCodeUtils;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.Login.LoginActivity;
+import com.xcy.fzb.all.persente.CleanDataUtils;
 
 public class BaseUrl extends AppCompatActivity {
     private TextView ensure;
@@ -38,6 +39,7 @@ public class BaseUrl extends AppCompatActivity {
             BaseUrl.this.finish();
             editor.putString("introduction", "1");
             editor.commit();
+            CleanDataUtils.cleanSharedPreference(this);
         } else if (pref.getString("introduction", "").equals("1")) {
             initLogin();
         }

@@ -49,6 +49,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         StatusBar.makeStatusBarTransparent(getActivity());
         view = inflater.inflate(R.layout.modulebroker_fragment_message, null);
+        FinalContents.setHidden(true);
         initView();
         return view;
     }
@@ -59,6 +60,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
         manager = getActivity().getSupportFragmentManager();
         transaction = manager.beginTransaction();
         if (FinalContents.isLuo()) {
+
             transaction.add(R.id.information_fl, dynamicFragment);
             transaction.add(R.id.information_fl, noticeFragment);
             transaction.add(R.id.information_fl, guestRoomFragment);
@@ -135,6 +137,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
         transaction = manager.beginTransaction();
         switch (view.getId()) {
             case R.id.information_ll_1:
+                type = "1";
                 information_ll_5.setVisibility(View.VISIBLE);
                 information_ll_6.setVisibility(View.INVISIBLE);
                 information_ll_7.setVisibility(View.INVISIBLE);
@@ -145,6 +148,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
                 transaction.hide(goodNewsFragment);
                 break;
             case R.id.information_ll_2:
+                type = "2";
                 information_ll_5.setVisibility(View.INVISIBLE);
                 information_ll_6.setVisibility(View.VISIBLE);
                 information_ll_7.setVisibility(View.INVISIBLE);
@@ -155,6 +159,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
                 transaction.hide(goodNewsFragment);
                 break;
             case R.id.information_ll_3:
+                type = "3";
                 information_ll_5.setVisibility(View.INVISIBLE);
                 information_ll_6.setVisibility(View.INVISIBLE);
                 information_ll_7.setVisibility(View.VISIBLE);
@@ -165,6 +170,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
                 transaction.hide(goodNewsFragment);
                 break;
             case R.id.information_ll_4:
+                type = "4";
                 information_ll_5.setVisibility(View.INVISIBLE);
                 information_ll_6.setVisibility(View.INVISIBLE);
                 information_ll_7.setVisibility(View.INVISIBLE);
@@ -181,12 +187,21 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(hidden){
-            type = "1";
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
+        if (FinalContents.isHidden()) {             //TODO 非消息内部
+            if(hidden){
+                type = "1";
+                //TODO now visible to user 不显示fragment
+            } else {
+                onResume();
+                //TODO now invisible to user 显示fragment
+            }
+        }else {                                     //TODO  消息内部
+            if(hidden){
+                //TODO now visible to user 不显示fragment
+            } else {
+                onResume();
+                //TODO now invisible to user 显示fragment
+            }
         }
     }
 }
