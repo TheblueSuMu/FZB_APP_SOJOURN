@@ -673,6 +673,17 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     }
 
     private void initReport(){
+        
+        if (client_name.getText().toString().equals("")) {
+            Toast.makeText(this, "请选择客户", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (project_name.getText().toString().equals("")) {
+            Toast.makeText(this, "请选择项目", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());

@@ -437,7 +437,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 break;
             case R.id.checkbox1:
                 if (checkBox1.isChecked()) {
-                    projectLabel = "0";
+                    projectLabel = "独家";
                     FinalContents.setProjectLabel(projectLabel);
                     inithot();
                 } else {
@@ -447,7 +447,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 break;
             case R.id.checkbox2:
                 if (checkBox2.isChecked()) {
-                    projectLabel = "1";
+                    projectLabel = "高佣";
                     FinalContents.setProjectLabel(projectLabel);
                     inithot();
                 } else {
@@ -457,7 +457,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 break;
             case R.id.checkbox3:
                 if (checkBox3.isChecked()) {
-                    projectLabel = "2";
+                    projectLabel = "前佣";
                     FinalContents.setProjectLabel(projectLabel);
                     inithot();
                 } else {
@@ -467,7 +467,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 break;
             case R.id.checkbox4:
                 if (checkBox4.isChecked()) {
-                    projectLabel = "3";
+                    projectLabel = "带看奖";
                     FinalContents.setProjectLabel(projectLabel);
                     inithot();
                 } else {
@@ -477,7 +477,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 break;
             case R.id.checkbox5:
                 if (checkBox5.isChecked()) {
-                    projectLabel = "4";
+                    projectLabel = "成交奖";
                     FinalContents.setProjectLabel(projectLabel);
                     inithot();
                 } else {
@@ -487,7 +487,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 break;
             case R.id.checkbox6:
                 if (checkBox6.isChecked()) {
-                    projectLabel = "5";
+                    projectLabel = "跳点";
                     FinalContents.setProjectLabel(projectLabel);
                     inithot();
                 } else {
@@ -497,7 +497,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 break;
             case R.id.checkbox7:
                 if (checkBox7.isChecked()) {
-                    projectLabel = "6";
+                    projectLabel = "包销";
                     FinalContents.setProjectLabel(projectLabel);
                     inithot();
                 } else {

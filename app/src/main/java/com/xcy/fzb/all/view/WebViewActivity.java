@@ -130,6 +130,12 @@ public class WebViewActivity extends AllActivity {
                         @Override
                         public void onNext(final NewsDetailsBean newsDetailsBean) {
                             Log.i("轮播图详情数据","走一波");
+                            if (newsDetailsBean.getData().getIsProject() == 1) {
+                                web_bottom.setVisibility(View.VISIBLE);
+                            }else {
+                                web_bottom.setVisibility(View.GONE);
+                            }
+
                             web_share.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
