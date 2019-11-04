@@ -294,6 +294,10 @@ public interface MyService {
     @POST("nodeSelect/reportBefore")
     Observable<ReportBean> getReportBean(@Query("userId") String userId);
 
+    //我的报备数据请求
+    @POST("nodeSelect/isIdNumber")
+    Observable<IdNumberBean> getIdNumber(@Query("projectId") String projectId);
+
     //我的报备数据提交
     @POST("nodeUpdate/reportSave")
     Observable<ChangePhoneBean> getReportPostBean(@Query("customerId") String customerId, @Query("procuctType") String procuctType, @Query("areaSection") String areaSection, @Query("purpose") String purpose, @Query("projectLabel") String projectLabel, @Query("priceMin") String priceMin, @Query("priceMax") String priceMax, @Query("projectId") String projectId, @Query("intentionalRegion") String intentionalRegion, @Query("guideRuleId") String guideRuleId, @Query("isIsland") String isIsland, @Query("idCard") String idCard, @Query("remarks") String remarks, @Query("landingStartDate") String landingStartDate, @Query("landingEndDate") String landingEndDate, @Query("userId") String userId);
