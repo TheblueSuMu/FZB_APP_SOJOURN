@@ -96,7 +96,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     private String url1 = "";
     private String url2 = "";
     private int flag;
-    private StoreChangeBean.DataBean.StoreManageBean storeManage;
+    private StoreChangeBean.DataBean.StoreManageBeanX storeManage;
     private File files;
 
     int isPhoto = 0;
@@ -108,7 +108,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -190,8 +190,17 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                             add_broker_et2.setText(storeChangeBean.getData().getStoreManage().getStoreName());
                             add_broker_et3.setText(storeChangeBean.getData().getStoreManage().getArea());
                             add_broker_et4.setText(storeChangeBean.getData().getStoreManage().getAddress());
-                            Glide.with(AddStoreActivity.this).load("http://39.98.173.250:8080/" + storeChangeBean.getData().getStoreManage().getStoreRise()).into(add_broker_img1);
-                            Glide.with(AddStoreActivity.this).load("http://39.98.173.250:8080/" + storeChangeBean.getData().getStoreManage().getStoreImg()).into(add_broker_img2);
+                            if (storeChangeBean.getData().getStoreManage().getStoreRise().equals("")) {
+
+                            } else {
+                                Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + storeChangeBean.getData().getStoreManage().getStoreRise()).into(add_broker_img1);
+                            }
+                            if (storeChangeBean.getData().getStoreManage().getStoreImg().equals("")) {
+
+                            } else {
+                                Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + storeChangeBean.getData().getStoreManage().getStoreImg()).into(add_broker_img2);
+                            }
+
                             FinalContents.setCompanyManageId(storeManage.getCompany().getId());
                             url1 = storeChangeBean.getData().getStoreManage().getStoreRise();
                             url1 = storeChangeBean.getData().getStoreManage().getStoreImg();
@@ -357,8 +366,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                         }
 
 
-
-
 //TODO Uri图片转换成file类型的 end
 
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
@@ -402,7 +409,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             }
 
             if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
-                Toast.makeText(AddStoreActivity.this,"带*号的数据请填写完整",Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddStoreActivity.this, "带*号的数据请填写完整", Toast.LENGTH_SHORT).show();
             } else {
 
 
@@ -461,7 +468,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                 flag = 2;
             }
             if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
-                Toast.makeText(AddStoreActivity.this,"带*号的数据请填写完整",Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddStoreActivity.this, "带*号的数据请填写完整", Toast.LENGTH_SHORT).show();
             } else {
                 Retrofit.Builder builder = new Retrofit.Builder();
                 builder.baseUrl(FinalContents.getBaseUrl());

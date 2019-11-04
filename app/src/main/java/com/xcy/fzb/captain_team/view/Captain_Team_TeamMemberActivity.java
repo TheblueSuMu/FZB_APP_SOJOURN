@@ -151,8 +151,8 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
             }else if(tdz.equals("2")){
                 team_member_ll2.setVisibility(View.GONE);
                 team_member_ll4.setVisibility(View.VISIBLE);
-                string1 = "添加顾问";
-                string2 = "";
+//                string1 = "添加顾问";
+//                string2 = "";
                 initData("", "3", "");
             }
         }else {
@@ -239,8 +239,8 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                     string1 = "添加顾问";
                     string2 = "批量修改顾问级别";
                 }else if(FinalContents.getIdentity().equals("60")){
-                    string1 = "添加顾问";
-                    string2 = "";
+//                    string1 = "添加顾问";
+//                    string2 = "";
                 }
                 FinalContents.setXiaoShou("不");
                 team_member_ll2.setVisibility(View.GONE);

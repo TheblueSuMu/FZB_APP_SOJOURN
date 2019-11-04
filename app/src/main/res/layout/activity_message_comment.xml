@@ -56,12 +56,12 @@
                 android:layout_marginRight="15dp">
 
                 <com.makeramen.roundedimageview.RoundedImageView
-                    app:riv_oval="true"
                     android:id="@+id/comment_buddha"
                     android:layout_width="43dp"
                     android:layout_height="43dp"
                     android:layout_centerVertical="true"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    app:riv_oval="true" />
 
                 <TextView
                     android:id="@+id/comment_title"
@@ -91,7 +91,8 @@
                 android:layout_height="108dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"></ImageView>
+                android:layout_marginRight="10dp"
+                android:scaleType="fitXY"></ImageView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -119,12 +120,12 @@
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/particulars_xiao_img"
-                    app:riv_oval="true"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/logo_square" />
+                    android:src="@mipmap/logo_square"
+                    app:riv_oval="true" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -132,8 +133,8 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/comment"
                     android:gravity="center_vertical"
-                    android:paddingLeft="15dp"
                     android:hint="想知道什么？留言吧"
+                    android:paddingLeft="15dp"
                     android:textColor="#999999"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -145,7 +146,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
-                android:background="#FFFFFF"/>
+                android:background="#FFFFFF" />
 
         </LinearLayout>
     </ScrollView>
@@ -212,29 +213,29 @@
 
     <RelativeLayout
         android:id="@+id/all_no_network"
-        android:background="#fff"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageimage"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network" />
 
         <Button
-            android:layout_below="@id/imageimage"
             android:id="@+id/all_no_reload"
-            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageimage"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
             android:background="@drawable/button_back"
             android:text="重新加载"
-            android:textSize="12sp"
             android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="12sp" />
 
     </RelativeLayout>
 

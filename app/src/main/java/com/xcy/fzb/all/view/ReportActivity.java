@@ -317,8 +317,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth + 1);
+
         report_start.setText("<"+string);
-        report_end.setText("-"+string+" >");
+        report_end.setText("-"+string1+" >");
         dateTimePickerView.setStartDate(Calendar.getInstance());
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
