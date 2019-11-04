@@ -93,7 +93,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="项目关注度"
+                            android:text=""
                             android:textColor="#ff333333"
                             android:textSize="12sp" />
                     </RelativeLayout>
@@ -132,7 +132,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="项目关注度"
+                            android:text=""
                             android:textColor="#ff333333"
                             android:textSize="12sp" />
 
@@ -172,7 +172,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="项目关注度"
+                            android:text=""
                             android:textColor="#ff333333"
                             android:textSize="12sp" />
 
