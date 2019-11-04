@@ -3,6 +3,7 @@ package com.xcy.fzb.all.view;
 import android.annotation.SuppressLint;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -164,6 +165,16 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
         }
 
         initData();
+
+        comment_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MessageCommentActivity.this, BigPhotoActivity.class);
+                intent.putExtra("index", 0);
+                intent.putExtra("bigPhotoimg",img);
+                startActivity(intent);
+            }
+        });
 
     }
 

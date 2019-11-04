@@ -1,8 +1,11 @@
 package com.xcy.fzb.project_attache.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -82,6 +85,8 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     private String getLongitude = "";
     private ComapnyManage.DataBean.CompanyManageBean companyManage;
     private Observable<AddCompanyBean> addCompanyBean;
+
+    private int GPS_REQUEST_CODE = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -240,12 +245,22 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                 break;
             case R.id.add_company_rl2:
 
-                Intent intent = new Intent(AddCompanyActivity.this, TestMapActivity.class);
+                boolean locServiceEnable = isLocServiceEnable(AddCompanyActivity.this);
+                if (locServiceEnable == true) {
+                    Log.i("MyCL", "定位服务已开启");
+                    Intent intent = new Intent(AddCompanyActivity.this, TestMapActivity.class);
 
-                intent.putExtra("La",getLatitude);
-                intent.putExtra("Lo",getLongitude);
+                    intent.putExtra("La",getLatitude);
+                    intent.putExtra("Lo",getLongitude);
 
-                startActivityForResult(intent, 1);
+                    startActivityForResult(intent, 1);
+                } else {
+                    Log.i("MyCL", "定位服务未开启");
+                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivityForResult(intent, GPS_REQUEST_CODE);
+                }
+
+
 
 //                add_company_tv3.setText("117.155243,39.112389");
                 break;
@@ -289,6 +304,13 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                 break;
         }
 
+    }
+
+    public static boolean isLocServiceEnable(Context context) {
+        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        boolean gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        return gps || network;
     }
 
     private void initdatas2() {
@@ -458,7 +480,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
 
-        Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(append2.substring(0,8), append1.substring(0,8));
+        Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
         changeAddress.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ChangeAddress>() {

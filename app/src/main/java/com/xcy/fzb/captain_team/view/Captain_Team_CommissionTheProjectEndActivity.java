@@ -246,23 +246,39 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
 
         Captain_Team_PopAdapter popAdapter = new Captain_Team_PopAdapter(list);
         recyclerView.setAdapter(popAdapter);
-
         popAdapter.setOnItemClickListener(new Captain_Team_PopAdapter.OnItemClickLisenter() {
             @Override
             public void onItemClick(int postion) {
-                if (postion == 0) {
-                    status = "";
-                } else if (postion == 1) {
-                    status = "1";
-                } else if (postion == 2) {
-                    status = "2";
-                } else if (postion == 3) {
-                    status = "3";
-                } else if (postion == 4) {
-                    status = "4";
-                } else if (postion == 5) {
-                    status = "5";
+
+                if(FinalContents.getIdentity().equals("63")){
+                    if (postion == 0) {
+                        status = "";
+                    } else if (postion == 1) {
+                        status = "1";
+                    } else if (postion == 2) {
+                        status = "2";
+                    } else if (postion == 3) {
+                        status = "4";
+                    } else if (postion == 4) {
+                        status = "5";
+                    }
+                }else {
+                    if (postion == 0) {
+                        status = "";
+                    } else if (postion == 1) {
+                        status = "1";
+                    } else if (postion == 2) {
+                        status = "2";
+                    } else if (postion == 3) {
+                        status = "3";
+                    } else if (postion == 4) {
+                        status = "4";
+                    } else if (postion == 5) {
+                        status = "5";
+                    }
                 }
+
+
                 commission_the_project_end_all.setText(list.get(postion));
                 initDataBean();
                 p.dismiss();

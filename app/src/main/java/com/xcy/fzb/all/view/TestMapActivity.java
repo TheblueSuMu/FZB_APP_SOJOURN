@@ -306,45 +306,6 @@ public class TestMapActivity extends AppCompatActivity {
         //        finish();
     }
 
-    OnGetGeoCoderResultListener listeners = new OnGetGeoCoderResultListener() {
-        // 反地理编码查询结果回调函数
-        @Override
-        public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
-            Log.i("地图", "result.error：" + result.error);
-            Log.i("地图", "result：" + result);
-            Log.i("地图", "result.getAddress：" + result.getAddress());
-            if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-                Log.i("地图", "空");
-                //没有找到检索结果
-                return;
-            } else {
-                //详细地址
-                String address = result.getAddress();
-                //行政区号
-                int adCode = result.getCityCode();
-                Log.i("地图", "address：" + address);
-                Log.i("地图", "adCode：" + adCode);
-            }
-
-//            if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-//                // 没有检测到结果
-//                Toast.makeText(TestMapActivity.this, "抱歉，未能找到结果",
-//                        Toast.LENGTH_LONG).show();
-//            }
-//            Toast.makeText(TestMapActivity.this,
-//                    "位置：" + result.getAddress(), Toast.LENGTH_LONG)
-//                    .show();
-        }
-
-        // 地理编码查询结果回调函数
-        @Override
-        public void onGetGeoCodeResult(GeoCodeResult result) {
-            if (result == null
-                    || result.error != SearchResult.ERRORNO.NO_ERROR) {
-                // 没有检测到结果
-            }
-        }
-    };
 
     //    TODO 动态打开gps
     @Override
