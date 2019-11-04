@@ -233,7 +233,6 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                         sum = (area * price);
                         java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
                         str = myformat.format(sum);
-                        Log.i("计算价格", "sum:" + sum);
                         fill_in_transaction_information_et6.setText(str + "元");
                         fill_in_transaction_information_tishi.setVisibility(View.GONE);
                         return true;
@@ -265,7 +264,6 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                             sum = (area * price);
                             java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
                             str = myformat.format(sum);
-                            Log.i("计算价格", "sum:" + sum);
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
@@ -298,7 +296,6 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                             sum = (area * price);
                             java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
                             str = myformat.format(sum);
-                            Log.i("计算价格", "sum:" + sum);
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
@@ -355,13 +352,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
     // TODO 添加成交信息数据
     private void initTradeSave() {
         initselect();
-        Log.i("成交信息", "项目ID：" + FinalContents.getProjectID());
-        Log.i("成交信息", "报备ID：" + FinalContents.getPreparationId());
-        Log.i("成交信息", "客户ID：" + FinalContents.getCustomerID());
-        Log.i("成交信息", "佣金ID：" + FinalContents.getCommissionId());
-        Log.i("成交信息", "用户ID：" + FinalContents.getUserID());
 
-        Log.i("成交123", "添加成交");
         if (whethe) {
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
@@ -403,7 +394,6 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                 Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
             } else {
                 FinalContents.setTiaozhuang("成交");
-                Log.i("返回的数据：", "成交内的：" + FinalContents.getTiaozhuang());
             }
         } else {
             Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
@@ -658,20 +648,17 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                             @Override
                             public void onItemClick(int postion) {
                                 project_brokerage.setText(brokerBean.getData().get(postion).getCommissionFormat());
-                                Log.i("佣金", "佣金ID：" + brokerBean.getData().get(postion).getId());
                                 FinalContents.setCommissionId(brokerBean.getData().get(postion).getId());
                                 transition_layout.setVisibility(View.GONE);
                                 whethe = true;
                             }
                         });
                         timeRangeAdapter.notifyDataSetChanged();
-                        Log.i("获取到数据", "获取到了并显示");
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.i("列表数据获取错误", "错误" + e);
-                        Log.i("获取到数据", "获取到了不显示");
                     }
 
                     @Override
@@ -682,7 +669,6 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
     }
 
     private void initFindTrade() {
-        Log.i("返回的数据：", "getPreparationId：" + FinalContents.getPreparationId());
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -708,7 +694,6 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                         ConfessAdapter confessAdapter = new ConfessAdapter(findTradeBean.getData().getShowData());
                         fill_in_transaction_information_rv.setNestedScrollingEnabled(false);
                         fill_in_transaction_information_rv.setAdapter(confessAdapter);
-                        Log.i("返回的数据：", "getValue：" + findTradeBean.getData().getShowData().get(0).getValue());
                         fill_in_transaction_information_et1.setText(findTradeBean.getData().getFfServerEarnestMoney().getFullName());
                         fill_in_transaction_information_et2.setText(findTradeBean.getData().getFfServerEarnestMoney().getPhone());
                         fill_in_transaction_information_et3.setText(findTradeBean.getData().getFfServerEarnestMoney().getIdNumber());
@@ -734,8 +719,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
     }
 
     private void initFindAdjustApply() {
-        Log.i("调单信息", "调单：" + FinalContents.getPreparationId());
-        Log.i("调单信息", "调单：" + FinalContents.getUserID());
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());

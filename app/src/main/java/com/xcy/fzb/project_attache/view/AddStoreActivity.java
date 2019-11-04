@@ -295,10 +295,10 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                         Uri photoUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 //TODO Uri图片转换成file类型的 start
                         files = uri2File(photoUri);
-                        Log.i("MyCL", "Uri图片转换成file类型的：" + files);
+
                         isPhoto = 1;
 //TODO Uri图片转换成file类型的 end
-                        Log.i("MyCL", "图片路径：" + photoUri);
+
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                         startActivityForResult(intent, 1);
                     } else {
@@ -356,11 +356,11 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                             isPhoto = 1;
                         }
 
-                        Log.i("MyCL", "Uri图片转换成file类型的：" + files);
+
 
 
 //TODO Uri图片转换成file类型的 end
-                        Log.i("MyCL", "图片路径：" + photoUri);
+
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                         startActivityForResult(intent, 1);
                     } else {
@@ -385,8 +385,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
     private void initDatas() {
 
-        Log.i("MyCL", "图片一：" + url1);
-        Log.i("MyCL", "图片二：" + url2);
         if (FinalContents.getStoreChange().equals("")) {
             String s1 = add_broker_et2.getText().toString();
             String s2 = add_broker_et3.getText().toString();
@@ -556,7 +554,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
         sum++;
 //TODO  获取相册图片地址
         if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
-            Log.e("MyCL", "ActivityResult resultCode error");
+
             return;
         }
         bm = null;
@@ -573,7 +571,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
                 Uri originalUri = data.getData();        //获得图片的uri
 
-                Log.i("MyCL", "图片uri" + originalUri);
                 bm = MediaStore.Images.Media.getBitmap(resolver, originalUri);        //显得到bitmap图片
 //                if (ifsearch == 1) {
 
@@ -581,7 +578,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 //                    Glide.with(AddStoreActivity.this).load(bm).into(add_broker_img2);
 //                }
                 final File san = saveFile(bm, sum + ".png");
-                Log.i("MyCL", "bm:" + bm);
                 new Thread() {
                     @Override
                     public void run() {
@@ -596,7 +592,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                         RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), san);
 
                         MultipartBody.Part part = MultipartBody.Part.createFormData("file", san.getName(), requestBody);
-                        Log.i("MyCL", "");
                         Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "zhuanyuan", part);
                         addPhoto.subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -645,7 +640,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
                 //最后根据索引值获取图片路径
                 String path = cursor.getString(column_index);
-                Log.i("MyCL", "图片路径：" + path);
 
             } catch (IOException e) {
 
@@ -713,7 +707,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                     MyService fzbInterface = build.create(MyService.class);
                     RequestBody requestBody = RequestBody.create(MediaType.parse("image/png/jpg"), files);
                     MultipartBody.Part part = MultipartBody.Part.createFormData("file", files.getName(), requestBody);
-                    Log.i("MyCL", "file.getName()：" + files.getName());
                     final Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "cesda", part);
                     addPhoto.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())

@@ -149,12 +149,11 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                 .subscribe(new Observer<CommissionUpBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.i("MyCL","1");
+
                     }
 
                     @Override
                     public void onNext(CommissionUpBean commissionUpBean) {
-                        Log.i("MyCL","2");
                         commission_tv1.setText(commissionUpBean.getData().getTotalAmount());
                         commission_tv2.setText(commissionUpBean.getData().getAlreadyAmount());
                         commission_tv3.setText(commissionUpBean.getData().getNotAmount());
@@ -227,7 +226,6 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                     @Override
                     public void onNext(CommissionListBean commissionListBean) {
                         rows = commissionListBean.getData().getRows();
-                        Log.i("长度","长度："+rows.size());
                         if (rows.size() != 0) {
                             myBrokerage_rl.setVisibility(View.GONE);
                             commission_rv.setVisibility(View.VISIBLE);

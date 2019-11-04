@@ -122,7 +122,6 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
         if (FinalContents.getDetails().equals("项目详情")) {
             ProjectID = FinalContents.getProjectID();
         }
-        Log.i("报备列表","报备："+FinalContents.getUserID()+"||"+name);
         clientFragmentAdapter = new ClientFragmentAdapter();
         clientFragmentAdapter.setClick(this);
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -223,7 +222,6 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
     public void ItemOnClick(int position) {
         Intent intent = new Intent(getContext(), ReviewTheSuccessActivity.class);
         FinalContents.setPreparationId(rows.get(position).getPreparationId());
-        Log.i("MyCL","MyClient2：" + rows.get(position).getPreparationId());
         startActivity(intent);
     }
     @Override
@@ -236,7 +234,6 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
     public void onEvent(MyClientData myClientName) {
         String name = myClientName.getName();
         String judge = myClientName.getJudge();
-        Log.i("MyCL", "廣播");
         if (FinalContents.getZhuanyuan().equals("1")) {
             if(judge.equals("报备")){
                 initData2(name);

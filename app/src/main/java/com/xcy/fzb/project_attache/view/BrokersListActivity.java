@@ -120,17 +120,13 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                     //处理事件
                     String s = brokers_list_et.getText().toString();
                     String s1 = brokers_tv.getText().toString();
-                    Log.i("MyCL", "s");
                     if (s1.equals("全部")) {
                         initData(FinalContents.getStoreId(), s, "");
-                        Log.i("MyCL", "s1");
                         return true;
                     } else if (s1.equals("只看异常门店")) {
-                        Log.i("MyCL", "s2");
                         initData(FinalContents.getStoreId(), s, "3");
                         return true;
                     } else {
-                        Log.i("MyCL", "s3");
                         initData(FinalContents.getStoreId(), s, "");
                         return true;
                     }

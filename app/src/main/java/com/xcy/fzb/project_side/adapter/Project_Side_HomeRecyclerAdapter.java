@@ -110,7 +110,6 @@ public class Project_Side_HomeRecyclerAdapter extends RecyclerView.Adapter<Proje
         holder.commission.setText("佣金："+beanList.get(position).getCommission());
         holder.second.setText("秒结："+beanList.get(position).getSecondPay());
         FinalContents.setProjectID(beanList.get(position).getProjectId());
-        Log.i("MyCL","项目id：" + beanList.get(position).getProjectId());
         if (SharItOff.getShar().equals("显")) {
             holder.modulebroke_ll.setVisibility(View.VISIBLE);
         } else if (SharItOff.getShar().equals("隐")) {

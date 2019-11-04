@@ -249,7 +249,6 @@ public class Shopping_Guide_MainActivity extends AllActivity implements View.OnC
     protected void onResume() {
         super.onResume();
 
-        Log.i("MyCL","进入了Broker_MainActivity中onResume方法中");
 
 //        initDaown();
 

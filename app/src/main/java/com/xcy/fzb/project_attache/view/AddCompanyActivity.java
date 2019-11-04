@@ -305,17 +305,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
 
-            Log.i("专员公司", "s3：" + s3);
-            Log.i("专员公司", "s1：" + s1);
-            Log.i("专员公司", "s4：" + s4);
-            Log.i("专员公司", "s2：" + s2);
-            Log.i("专员公司", "s5：" + s5);
-            Log.i("专员公司", "s6：" + s6);
-            Log.i("专员公司", "s7：" + s7);
-            Log.i("专员公司", "s8：" + s8);
-            Log.i("专员公司", "num：" + num);
-            Log.i("专员公司", " FinalContents.getUserID()：" + FinalContents.getUserID());
-
             addCompanyBean = fzbInterface.getAddCompanyBean("", s3, s1, s4, s2, s5, s6, s7, s8, num, FinalContents.getUserID());
 
             addCompanyBean.subscribeOn(Schedulers.io())
@@ -323,12 +312,10 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                     .subscribe(new Observer<AddCompanyBean>() {
                         @Override
                         public void onSubscribe(Disposable d) {
-                            Log.i("MyCL", "c1");
                         }
 
                         @Override
                         public void onNext(AddCompanyBean addCompanyBean) {
-                            Log.i("MyCL", "c2");
                             if (addCompanyBean.getData().getMessage().equals("保存成功")) {
                                 FinalContents.setStoreChange("");
                                 FinalContents.setMyAddType("公司");
@@ -368,29 +355,17 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
 
-            Log.i("专员公司", "s3：" + s3);
-            Log.i("专员公司", "s1：" + s1);
-            Log.i("专员公司", "s4：" + s4);
-            Log.i("专员公司", "s2：" + s2);
-            Log.i("专员公司", "s5：" + s5);
-            Log.i("专员公司", "s6：" + s6);
-            Log.i("专员公司", "s7：" + s7);
-            Log.i("专员公司", "s8：" + s8);
-            Log.i("专员公司", "num：" + num);
-            Log.i("专员公司", " FinalContents.getUserID()：" + FinalContents.getUserID());
-
             addCompanyBean = fzbInterface.getAddCompanyBean(companyManage.getId(), s3, s1, s4, s2, "", "", "", "", num, FinalContents.getUserID());
             addCompanyBean.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<AddCompanyBean>() {
                         @Override
                         public void onSubscribe(Disposable d) {
-                            Log.i("MyCL", "c1");
+
                         }
 
                         @Override
                         public void onNext(AddCompanyBean addCompanyBean) {
-                            Log.i("MyCL", "c2");
                             if (addCompanyBean.getData().getMessage().equals("保存成功")) {
                                 FinalContents.setStoreChange("");
                                 FinalContents.setMyAddType("公司");
@@ -469,8 +444,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         getLatitude = data.getStringExtra("getLatitude");
         getLongitude = data.getStringExtra("getLongitude");
 
-        Log.i("经纬度转坐标","地图坐标getLongitude：" + getLongitude);
-        Log.i("经纬度转坐标","地图坐标getLatitude：" + getLatitude);
 
         StringBuffer stringBuffer1 = new StringBuffer();
         StringBuffer stringBuffer2 = new StringBuffer();
@@ -484,8 +457,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("经纬度转坐标","地图坐标append2：" + append2.substring(0,10));
-        Log.i("经纬度转坐标","地图坐标append1：" + append1.substring(0,10));
+
         Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(append2.substring(0,8), append1.substring(0,8));
         changeAddress.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

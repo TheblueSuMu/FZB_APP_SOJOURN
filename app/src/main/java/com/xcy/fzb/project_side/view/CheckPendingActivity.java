@@ -139,10 +139,6 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
             check_pending_bt2.setText("修改成交信息");
         }
 
-        Log.i("MyCL", "getCustomerId：" + FinalContents.getCustomerID());
-        Log.i("数据", "userID：" + FinalContents.getUserID());
-        Log.i("数据", "报备：" + FinalContents.getPreparationId());
-
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -247,9 +243,6 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
 
     @SuppressLint("WrongConstant")
     private void initBTN() {
-        Log.i("MyCL", "getUserID：" + FinalContents.getUserID());
-        Log.i("MyCL", "getPreparationId：" + FinalContents.getPreparationId());
-        Log.i("MyCL", "Name：" + name);
         if (name.equals("报备") || name.equals("到访")) {
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
@@ -327,8 +320,6 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         }
                     });
         } else if (name.equals("成交")) {
-            Log.i("成交", "用户名：" + FinalContents.getUserID());
-            Log.i("成交", "报备：" + FinalContents.getPreparationId());
 
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());

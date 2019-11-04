@@ -44,7 +44,6 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder
         Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getCustomerImg()).into(holder.item_client_icon);
         holder.item_client_status.setText(list.get(position).getStatusStr());
 
-        Log.i("yyy","用户ID："+ FinalContents.getUserID());
 
 
         if (list.get(position).getNoTrade().equals("")) {

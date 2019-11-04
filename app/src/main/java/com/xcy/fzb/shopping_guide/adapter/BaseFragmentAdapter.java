@@ -41,7 +41,6 @@ public class BaseFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        //        Logger.i("BaseFragmentAdapter position=" +position);
         return isEmpty() ? null : mFragmentList.get(position);
     }
 

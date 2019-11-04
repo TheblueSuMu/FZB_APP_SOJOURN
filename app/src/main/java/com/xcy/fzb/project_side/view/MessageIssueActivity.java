@@ -303,12 +303,10 @@ public class MessageIssueActivity extends AllActivity {
 
 //TODO Uri图片转换成file类型的 start
                                         file = uri2File(photoUri);
-                                        Log.i("MyCL", "Uri图片转换成file类型的：" + file);
 
                                         isPhoto = 1;
 
 //TODO Uri图片转换成file类型的 end
-                                        Log.i("MyCL", "图片路径：" + photoUri);
                                         intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, photoUri);
                                         startActivityForResult(intent, 1);
                                     } else {
@@ -344,7 +342,6 @@ public class MessageIssueActivity extends AllActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         i++;
         if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
-            Log.e("MyCL", "ActivityResult resultCode error");
             return;
         }
         bm = null;
@@ -361,14 +358,12 @@ public class MessageIssueActivity extends AllActivity {
 
                 Uri originalUri = data.getData();        //获得图片的uri
 
-                Log.i("MyCL", "图片uri" + originalUri);
                 bm = MediaStore.Images.Media.getBitmap(resolver, originalUri);        //显得到bitmap图片
 //TODO bitmap图片转换成file类型的 start
 
                 long l = System.currentTimeMillis();
 
                 final File san = saveFile(bm, "" + l + ".png");
-                Log.i("MyCL", "Uri图片转换成file类型的：" + san);
 
                 new Thread() {
                     @Override
@@ -385,7 +380,6 @@ public class MessageIssueActivity extends AllActivity {
                         MultipartBody.Part part = MultipartBody.Part.createFormData("file", san.getName(), requestBody);
 
                         Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "messageissue", part);
-                        Log.i("MyCL", "addPhoto：" + addPhoto.toString());
                         addPhoto.subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(new Observer<AddPhotoBean>() {
@@ -401,7 +395,6 @@ public class MessageIssueActivity extends AllActivity {
                                         } else {
                                             stringBuffer.append("|" + addPhotoBean.getData().getUrl());
                                         }
-                                        Log.i("MyCL", "解析完成后图片路径：" + stringBuffer.toString());
                                         myImage = addPhotoBean.getData().getUrl();
                                         mDatas.add(myImage);
                                         adapter.notifyDataSetChanged();
@@ -511,7 +504,6 @@ public class MessageIssueActivity extends AllActivity {
                     MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
 
                     Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "messageissue", part);
-                    Log.i("MyCL", "addPhoto：" + addPhoto.toString());
                     addPhoto.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(new Observer<AddPhotoBean>() {
@@ -527,7 +519,6 @@ public class MessageIssueActivity extends AllActivity {
                                     } else {
                                         stringBuffer.append("|" + addPhotoBean.getData().getUrl());
                                     }
-                                    Log.i("MyCL", "解析完成后图片路径：" + stringBuffer.toString());
                                     myImage = addPhotoBean.getData().getUrl();
                                     mDatas.add(myImage);
 

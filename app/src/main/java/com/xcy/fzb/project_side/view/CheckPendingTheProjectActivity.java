@@ -206,8 +206,6 @@ public class CheckPendingTheProjectActivity extends AllActivity implements View.
                                     FinalContents.setPreparationId(rows.get(position).getPreparationId());
                                     FinalContents.setCustomerID(rows.get(position).getCustomerId());
                                     FinalContents.setStatus(rows.get(position).getStatus());
-                                    Log.i("MyCL", "getPreparationId：" + rows.get(position).getPreparationId());
-                                    Log.i("MyCL", "getCustomerId：" + rows.get(position).getCustomerId());
                                     startActivity(intent);
                                 }
                             });

@@ -70,8 +70,6 @@ public class ClientFragment extends AllFragment {
     }
 
     private void initData() {
-        Log.i("导购","数据：用户ID："+FinalContents.getUserID());
-        Log.i("导购","数据：行程路线ID："+FinalContents.getRouteTimeId());
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());

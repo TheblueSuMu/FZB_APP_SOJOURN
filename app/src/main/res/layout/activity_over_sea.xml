@@ -131,10 +131,10 @@
                             android:layout_height="1dp"
                             android:layout_alignParentBottom="true"
                             android:layout_marginLeft="15dp"
-                            android:visibility="gone"
                             android:layout_marginTop="23dp"
                             android:layout_marginRight="16dp"
-                            android:background="#fff3f2f7" />
+                            android:background="#fff3f2f7"
+                            android:visibility="gone" />
                     </LinearLayout>
 
 
@@ -163,8 +163,8 @@
                     android:id="@+id/overseas_issue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
@@ -392,11 +392,11 @@
 
                     <ImageView
                         android:id="@+id/all_no_information"
-                        android:background="#fff"
-                        android:visibility="gone"
-                        android:src="@mipmap/no_information"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:background="#fff"
+                        android:src="@mipmap/no_information"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -516,7 +516,7 @@
 
     </LinearLayout>
 
-    <ImageView
+    <com.xcy.fzb.all.api.FreeView
         android:id="@+id/oversea_report"
         android:layout_width="49dp"
         android:layout_height="49dp"
@@ -528,29 +528,29 @@
 
     <RelativeLayout
         android:id="@+id/all_no_network"
-        android:background="#fff"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageimage"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network" />
 
         <Button
-            android:layout_below="@id/imageimage"
             android:id="@+id/all_no_reload"
-            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageimage"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
             android:background="@drawable/button_back"
             android:text="重新加载"
-            android:textSize="12sp"
             android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="12sp" />
 
     </RelativeLayout>
 

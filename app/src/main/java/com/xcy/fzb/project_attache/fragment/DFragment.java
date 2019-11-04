@@ -225,8 +225,6 @@ public class DFragment extends Fragment implements View.OnClickListener {
                 } else if (i == R.id.rb4_modulebroke) {
                     String s = time1_modulebroker.getText().toString();
                     String s1 = time2_modulebroker.getText().toString();
-                    Log.i("MyCL","s:" + s);
-                    Log.i("MyCL","s1:" + s1);
                     initDataNum("3", s, s1);
                     ll1_modulebroker.setVisibility(View.VISIBLE);
                 }
@@ -265,7 +263,6 @@ public class DFragment extends Fragment implements View.OnClickListener {
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         time2_modulebroker.setText(dateString);
-                        Log.d("wsw", "new date: " + dateString);
                         String s = time1_modulebroker.getText().toString();
                         String s1 = time2_modulebroker.getText().toString();
                         initDataNum("3", s, s1);
@@ -531,7 +528,6 @@ public class DFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.modulebroke_tv_type:
-                Log.i("MyCL", "點擊了");
                 popupWindow = new PopupWindow(getContext());
                 inflate = LayoutInflater.from(getContext()).inflate(R.layout.project_attache_item_popwindow, null);
                 popupWindow.setContentView(inflate);

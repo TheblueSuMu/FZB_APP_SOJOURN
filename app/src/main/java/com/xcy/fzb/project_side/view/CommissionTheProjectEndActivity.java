@@ -340,7 +340,6 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         startTime = dateString;
                         drawer_end_time.setText("-"+dateString+" >");
-                        Log.d("wsw", "new date: " + dateString);
                     }
                 });
             }
@@ -418,7 +417,6 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(ReceivableBean receivableBean) {
-                        Log.i("接收数据","接收到的数据"+receivableBean.getMsg());
                         if (receivableBean.getCode().equals("1")) {
                             if (receivableBean.getData() != null) {
                                 ReceivableBean.DataBean receivableBeanData = receivableBean.getData();

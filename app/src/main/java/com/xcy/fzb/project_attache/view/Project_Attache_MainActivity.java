@@ -224,7 +224,6 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
             public void onClick(View view) {
                 GetandSaveCurrentImage();
                 String sdCardPath = getSDCardPath();
-                Log.i("MyCL", "sdCardPath：" + sdCardPath);
                 Intent intent = new Intent(Project_Attache_MainActivity.this, ContentActivity.class);
                 intent.putExtra("img", filepath);
                 startActivity(intent);
@@ -266,7 +265,6 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
             case R.id.button_backup:
                 GetandSaveCurrentImage();
                 String sdCardPath = getSDCardPath();
-                Log.i("MyCL", "sdCardPath：" + sdCardPath);
                 Intent intent = new Intent(Project_Attache_MainActivity.this, ContentActivity.class);
                 intent.putExtra("img", filepath);
                 startActivity(intent);
@@ -307,16 +305,13 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
         View decorview = getWindow().getDecorView();
         decorview.setDrawingCacheEnabled(true);
         Bmp = decorview.getDrawingCache();
-        Log.i("MyCL", "Bmp：" + Bmp);
         String SavePath = getSDCardPath() + "/AndyDemo/ScreenImage";
-        Log.i("MyCL", "SavePath：" + SavePath);
         //3.保存Bitmap
         try {
             path = new File(SavePath);
             //文件
             num++;
             filepath = SavePath + "/Screen_" + num + ".png";
-            Log.i("MyCL", "filepath：" + filepath);
             File file = new File(filepath);
             if (!path.exists()) {
                 path.mkdirs();
@@ -393,8 +388,6 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
     @Override
     protected void onResume() {
         super.onResume();
-
-        Log.i("MyCL","进入了Broker_MainActivity中onResume方法中");
 
 //        initDaown();
 

@@ -150,7 +150,6 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
             case R.id.initiated_the_review_ll1:
 
                 initData(1);
-                Log.i("MyCL", "退筹");
                 initiated_the_review_ll2.setVisibility(View.VISIBLE);
                 initiated_the_review_ll4.setVisibility(View.GONE);
                 initiated_the_review_ll6.setVisibility(View.GONE);
@@ -160,7 +159,6 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
             case R.id.initiated_the_review_ll3:
 
                 initData(2);
-                Log.i("MyCL", "调单");
                 initiated_the_review_ll2.setVisibility(View.GONE);
                 initiated_the_review_ll4.setVisibility(View.VISIBLE);
                 initiated_the_review_ll6.setVisibility(View.GONE);
@@ -169,7 +167,6 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
             case R.id.initiated_the_review_ll5:
 
                 initData(3);
-                Log.i("MyCL", "退单");
                 initiated_the_review_ll2.setVisibility(View.GONE);
                 initiated_the_review_ll4.setVisibility(View.GONE);
                 initiated_the_review_ll6.setVisibility(View.VISIBLE);

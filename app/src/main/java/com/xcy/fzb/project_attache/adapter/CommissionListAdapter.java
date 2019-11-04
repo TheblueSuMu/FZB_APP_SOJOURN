@@ -31,8 +31,6 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
 
     @Override
     public void onBindViewHolder(@NonNull CommissionListViewHolder holder, int position) {
-        Log.i("length","length："+position);
-        Log.i("length","getCustomerName："+rows.get(position).getCustomerName());
 
         holder.item_commission_list_tv1.setText(rows.get(position).getCustomerName());
         holder.item_commission_list_tv2.setText(rows.get(position).getProjectName());

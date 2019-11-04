@@ -125,7 +125,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_attache_activity_company_details);
 
-        Log.i("专员门店","进入详情");
         init_No_Network();
     }
 
@@ -273,7 +272,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         company_details_tv5.setText(dateString);
-                        Log.d("wsw", "new date: " + dateString);
                         String s = company_details_tv4.getText().toString();
                         String s1 = company_details_tv5.getText().toString();
                         initDataNum("3", s, s1);
@@ -388,12 +386,11 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 .subscribe(new Observer<FinanceBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.i("MyCL", "4");
+
                     }
 
                     @Override
                     public void onNext(FinanceBean financeBean) {
-                        Log.i("MyCL", "3");
                         company_details_tv10.setText(financeBean.getData().getTotalAmount() + "");
                         company_details_tv11.setText(financeBean.getData().getAlreadyAmount() + "");
                         company_details_tv12.setText(financeBean.getData().getNotAmount() + "");
@@ -427,12 +424,11 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 .subscribe(new Observer<DataNumBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.i("MyCL", "1");
+
                     }
 
                     @Override
                     public void onNext(DataNumBean dataNumBean) {
-                        Log.i("MyCL", "2");
                         details_tv2.setText(dataNumBean.getData().getReportNumber() + "");
                         details_tv3.setText(dataNumBean.getData().getAccessingNumber() + "");
                         details_tv4.setText(dataNumBean.getData().getIsIslandNumber() + "");
@@ -464,8 +460,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Log.i("专员","FinalContents.getStoreId()：" + FinalContents.getStoreId());
-        Log.i("专员","FinalContents.getUserID()：" + FinalContents.getUserID());
         Observable<CompanyDetailsBean> companyDetailsBean1 = myService.getCompanyDetailsBean(FinalContents.getStoreId(), FinalContents.getUserID());
         companyDetailsBean1.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

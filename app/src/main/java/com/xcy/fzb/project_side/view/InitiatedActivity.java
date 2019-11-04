@@ -88,8 +88,7 @@ public class InitiatedActivity extends AllActivity {
 
     private void initData() {
 
-        Log.i("MyCL", "getCustomerId：" + FinalContents.getCustomerID());
-        Log.i("MyCL", "userID：" + FinalContents.getUserID());
+
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
