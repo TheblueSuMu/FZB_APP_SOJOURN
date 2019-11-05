@@ -26,6 +26,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -45,11 +48,14 @@ import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.captain_team.view.Captain_Team_AddAConsultantActivity;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
@@ -97,6 +103,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
     String imgStr = "";
     String isPhoto = "";
 
+
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             "android.permission.READ_EXTERNAL_STORAGE",
@@ -111,7 +118,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             ButterKnife.bind(this);
@@ -215,7 +222,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             if (data.getSex().equals("")) {
                                 personal_sex.setText("男");
                                 s = "男";
-                            }else {
+                            } else {
                                 personal_sex.setText(data.getSex());
                                 s = data.getSex();
                             }
@@ -258,7 +265,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             if (data.getSex().equals("")) {
                                 personal_sex.setText("男");
                                 s = "男";
-                            }else {
+                            } else {
                                 personal_sex.setText(data.getSex());
                                 s = data.getSex();
                             }
@@ -305,7 +312,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             if (data.getSex().equals("")) {
                                 personal_sex.setText("男");
                                 s = "男";
-                            }else {
+                            } else {
                                 personal_sex.setText(data.getSex());
                                 s = data.getSex();
                             }
@@ -371,7 +378,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             if (userMessageBean.getData().getSysUser().getSex().equals("")) {
                                 personal_sex.setText("男");
                                 s = "男";
-                            }else {
+                            } else {
                                 personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
                                 s = userMessageBean.getData().getSysUser().getSex();
                             }
@@ -425,7 +432,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             if (userMessageBean.getData().getSysUser().getSex().equals("")) {
                                 personal_sex.setText("男");
                                 s = "男";
-                            }else {
+                            } else {
                                 personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
                                 s = userMessageBean.getData().getSysUser().getSex();
                             }
@@ -479,7 +486,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             if (userMessageBean.getData().getSex().equals("")) {
                                 personal_sex.setText("男");
                                 s = "男";
-                            }else {
+                            } else {
                                 personal_sex.setText(userMessageBean.getData().getSex());
                                 s = userMessageBean.getData().getSex();
                             }
@@ -623,72 +630,77 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
             case R.id.personal_rl_3:
 
 
-                String s2 = personal_sex.getText().toString();
-                s = personal_sex.getText().toString();
-                final AlertDialog.Builder builder1 = new AlertDialog.Builder(PersonalInformationActivity.this);
-                builder1.setTitle("性别");
-                final String[] items = {"男", "女"};
-                if (s2.equals("男")) {
-                    builder1.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+                initRatioByOwnerId();
 
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            s = items[i].toString();
-//                        Toast.makeText(PersonalInformationActivity.this, items[i], Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else if (s2.equals("女")) {
-                    builder1.setSingleChoiceItems(items, 1, new DialogInterface.OnClickListener() {
 
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            s = items[i].toString();
-//                        Toast.makeText(PersonalInformationActivity.this, items[i], Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else if (s2.equals("")) {
-                    builder1.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+//                String s2 = personal_sex.getText().toString();
+//                s = personal_sex.getText().toString();
+//                final AlertDialog.Builder builder1 = new AlertDialog.Builder(PersonalInformationActivity.this);
+//                builder1.setTitle("性别");
+//                final String[] items = {"男", "女"};
+//                if (s2.equals("男")) {
+//                    builder1.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+//
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            s = items[i].toString();
+////                        Toast.makeText(PersonalInformationActivity.this, items[i], Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                } else if (s2.equals("女")) {
+//                    builder1.setSingleChoiceItems(items, 1, new DialogInterface.OnClickListener() {
+//
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            s = items[i].toString();
+////                        Toast.makeText(PersonalInformationActivity.this, items[i], Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                } else if (s2.equals("")) {
+//                    builder1.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+//
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            s = items[0].toString();
+////                        Toast.makeText(PersonalInformationActivity.this, items[i], Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//
+//                Log.i("修改性别","2 shuju + xingbie："+s);
+//                Log.i("修改性别","2 shuju + xingbie："+personal_sex.getText().toString());
+//                builder1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                        String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonUpdate/updateSex?" + "userId=" + FinalContents.getUserID() + "&sex=" + s;
+////                        修改性别成功
+//                        OkHttpPost okHttpPost = new OkHttpPost(url);
+//                        String data = okHttpPost.post();
+//                        Gson gson = new Gson();
+//                        ChangeSexBean changeSexBean = gson.fromJson(data, ChangeSexBean.class);
+//                        ChangeSexBean.DataBean data1 = changeSexBean.getData();
+//                        if (data1.getMessage().equals("修改性别成功")) {
+//                            Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
+//                            Log.i("修改性别","xingbie："+s);
+//                            personal_sex.setText(s);
+//                            Log.i("修改性别","shuju + xingbie："+personal_sex.getText().toString());
+//                        } else {
+//                            Toast.makeText(PersonalInformationActivity.this, "性别修改失败", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    }
+//                });
+//                builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                    }
+//                });
+//
+//                builder1.show();
 
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            s = items[0].toString();
-//                        Toast.makeText(PersonalInformationActivity.this, items[i], Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
 
-                Log.i("修改性别","2 shuju + xingbie："+s);
-                Log.i("修改性别","2 shuju + xingbie："+personal_sex.getText().toString());
-                builder1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                        String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonUpdate/updateSex?" + "userId=" + FinalContents.getUserID() + "&sex=" + s;
-//                        修改性别成功
-                        OkHttpPost okHttpPost = new OkHttpPost(url);
-                        String data = okHttpPost.post();
-                        Gson gson = new Gson();
-                        ChangeSexBean changeSexBean = gson.fromJson(data, ChangeSexBean.class);
-                        ChangeSexBean.DataBean data1 = changeSexBean.getData();
-                        if (data1.getMessage().equals("修改性别成功")) {
-                            Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
-                            Log.i("修改性别","xingbie："+s);
-                            personal_sex.setText(s);
-                            Log.i("修改性别","shuju + xingbie："+personal_sex.getText().toString());
-                        } else {
-                            Toast.makeText(PersonalInformationActivity.this, "性别修改失败", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
-                builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-
-                builder1.show();
                 break;
 //手机号
             case R.id.personal_rl_4:
@@ -714,6 +726,48 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                 Toast.makeText(PersonalInformationActivity.this, "暂无功能", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    private void initRatioByOwnerId() {
+
+        final List<String> list1 = new ArrayList<>();
+        list1.add("男");
+        list1.add("女");
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(PersonalInformationActivity.this, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //              展示选中数据
+                String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonUpdate/updateSex?" + "userId=" + FinalContents.getUserID() + "&sex=" + list1.get(options1);
+//              修改性别成功
+                OkHttpPost okHttpPost = new OkHttpPost(url);
+                String data = okHttpPost.post();
+                Gson gson = new Gson();
+                ChangeSexBean changeSexBean = gson.fromJson(data, ChangeSexBean.class);
+                ChangeSexBean.DataBean data1 = changeSexBean.getData();
+                if (data1.getMessage().equals("修改性别成功")) {
+                    Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
+                    personal_sex.setText(list1.get(options1));
+                } else {
+                    Toast.makeText(PersonalInformationActivity.this, "性别修改失败", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        })
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        String s2 = personal_sex.getText().toString();
+        if (s2.equals("男")) {
+            pvOptions.setSelectOptions(0);//设置选择第一个
+        } else if (s2.equals("女")) {
+            pvOptions.setSelectOptions(1);
+        } else {
+            pvOptions.setSelectOptions(0);
+        }
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list1);
+        //      展示
+        pvOptions.show();
     }
 
     @Override

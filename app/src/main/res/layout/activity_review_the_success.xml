@@ -68,10 +68,13 @@
                             android:layout_marginTop="25dp"
                             android:layout_marginRight="15dp">
 
-                            <ImageView
+                            <com.makeramen.roundedimageview.RoundedImageView
                                 android:id="@+id/review_the_success_img1"
                                 android:layout_width="60dp"
+                                app:riv_oval="true"
                                 android:layout_height="60dp"
+                                android:layout_centerVertical="true"
+                                android:src="@mipmap/logo_garden"
                                 android:scaleType="fitXY"/>
 
                             <LinearLayout
@@ -136,8 +139,7 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/review_the_success_rv"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="15dp">
+                                android:layout_height="match_parent">
 
                             </androidx.recyclerview.widget.RecyclerView>
 

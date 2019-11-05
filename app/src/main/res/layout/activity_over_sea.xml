@@ -14,7 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:background="@drawable/toolbar_back">
+            android:background="@drawable/my_brokerage">
 
             <LinearLayout
                 android:id="@+id/oversea_back"
@@ -33,15 +33,19 @@
             <EditText
                 android:id="@+id/oversea_search"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="59dp"
-                android:layout_marginTop="25dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
                 android:layout_marginRight="56dp"
                 android:background="@drawable/edittext_shape"
                 android:gravity="center"
                 android:hint="搜索"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:textColor="#333333"
-                android:textColorHint="#ff333333" />
+                android:textColorHint="#ff333333"
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <ScrollView
@@ -264,7 +268,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/project_Lable_rv"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -277,7 +281,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/overseas_hot"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                     <ImageView
                         android:id="@+id/all_no_information"

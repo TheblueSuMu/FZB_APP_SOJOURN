@@ -618,7 +618,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                         for (int i = 0; i < imglist.size(); i++) {
                             list_img.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                         }
-
                         banner.initBanner(list_img, false)//关闭3D画廊效果
                                 .addPageMargin(10, 50)//参数1page之间的间距,参数2中间item距离边界的间距
                                 .addPoint(6)//添加指示器

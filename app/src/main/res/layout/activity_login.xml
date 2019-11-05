@@ -150,7 +150,7 @@
                     android:button="@null"
                     android:checked="true"
                     android:drawableLeft="@drawable/checkbox_check"
-                    android:text="记住账号"
+                    android:text="    记住账号"
                     android:textColor="#ff666666"
                     android:textSize="12sp" />
 
@@ -311,8 +311,9 @@
                     android:layout_centerInParent="true"
                     android:button="@null"
                     android:checked="true"
-                    android:drawableLeft="@drawable/checkbox_check"
-                    android:text="登录即代表阅读并同意《房坐标用户服务条款》"
+                    android:drawableLeft="@drawable/checkbox_check_s"
+                    android:gravity="center_vertical"
+                    android:text="    登录即代表阅读并同意《房坐标用户服务条款》"
                     android:textColor="#ff666666"
                     android:textSize="9sp" />
             </RelativeLayout>
