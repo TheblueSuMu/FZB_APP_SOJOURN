@@ -454,10 +454,11 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center_horizontal"
+                                    android:ellipsize="end"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -465,8 +466,8 @@
                                     android:layout_gravity="center"
                                     android:layout_marginTop="5dp"
                                     android:text="总佣金"
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -497,10 +498,11 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center_horizontal"
+                                    android:ellipsize="end"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -508,8 +510,8 @@
                                     android:layout_marginTop="5dp"
                                     android:gravity="center"
                                     android:text="已结"
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -540,10 +542,11 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center_horizontal"
+                                    android:ellipsize="end"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -552,8 +555,8 @@
                                     android:gravity="center"
                                     android:text="未结"
 
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
