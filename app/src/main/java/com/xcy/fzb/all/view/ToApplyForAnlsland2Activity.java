@@ -598,48 +598,6 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (ProjectProgressApi.getFieldBeanList() != null) {
-            if (ProjectProgressApi.getFieldBeanList().size() != 0) {
-                to_apply_for_an_island2_ll1.setVisibility(View.VISIBLE);
-
-                if (ProjectProgressApi.getIndex() != 999999) {
-                    index = ProjectProgressApi.getIndex();
-                    list.set(index, ProjectProgressApi.getFieldBean());
-                } else {
-                    if (ProjectProgressApi.getChongfu().equals("不重复")) {
-                        list.add(ProjectProgressApi.getFieldBean());
-                    }
-                }
-
-                if (to_apply_for_an_island2_tv1.getText().toString().equals("")) {
-                } else {
-                    int expenses = Integer.parseInt(to_apply_for_an_island2_tv1.getText().toString());
-                    sumCost = "" + expenses * (list.size() + 1);
-                    to_apply_for_an_island2_tv3.setText(sumCost);
-                }
-                MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(ToApplyForAnlsland2Activity.this);
-                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                to_apply_for_an_island2_rv.setLayoutManager(layoutManager);
-                FieldBeanListAdapter fieldAdapter = new FieldBeanListAdapter(list);
-                to_apply_for_an_island2_rv.setAdapter(fieldAdapter);
-                fieldAdapter.notifyDataSetChanged();
-                fieldAdapter.setOnItemClickListener(new FieldBeanListAdapter.OnItemClickLisenter() {
-                    @Override
-                    public void onItemClick(int postion) {
-                        ProjectProgressApi.setFieldID(list.get(postion).getId());
-                        ProjectProgressApi.setLandingId(list.get(postion).getLandingId());
-                        ProjectProgressApi.setIndex(postion);
-                        ProjectProgressApi.setFieldBean(list.get(postion));
-                        Intent intent = new Intent(ToApplyForAnlsland2Activity.this, FieldActivity.class);
-                        startActivity(intent);
-                    }
-                });
-            }
-        }
-    }
 
     //TODO 获取相册图片
     @Override
@@ -829,6 +787,51 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 }
             }.start();
         }
+
+        if (ProjectProgressApi.getFieldBeanList() != null) {
+            if (ProjectProgressApi.getFieldBeanList().size() != 0) {
+                to_apply_for_an_island2_ll1.setVisibility(View.VISIBLE);
+
+                if (ProjectProgressApi.getIndex() != 999999) {
+                    index = ProjectProgressApi.getIndex();
+                    list.set(index, ProjectProgressApi.getFieldBean());
+                } else {
+                    if (ProjectProgressApi.getChongfu().equals("不重复")) {
+                        list.add(ProjectProgressApi.getFieldBean());
+                    }
+                }
+
+                if (to_apply_for_an_island2_tv1.getText().toString().equals("")) {
+                } else {
+                    int expenses = Integer.parseInt(to_apply_for_an_island2_tv1.getText().toString());
+                    sumCost = "" + expenses * (list.size() + 1);
+                    to_apply_for_an_island2_tv3.setText(sumCost);
+                }
+                MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(ToApplyForAnlsland2Activity.this);
+                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                to_apply_for_an_island2_rv.setLayoutManager(layoutManager);
+                FieldBeanListAdapter fieldAdapter = new FieldBeanListAdapter(list);
+                to_apply_for_an_island2_rv.setAdapter(fieldAdapter);
+                fieldAdapter.notifyDataSetChanged();
+                fieldAdapter.setOnItemClickListener(new FieldBeanListAdapter.OnItemClickLisenter() {
+                    @Override
+                    public void onItemClick(int postion) {
+                        ProjectProgressApi.setFieldID(list.get(postion).getId());
+                        ProjectProgressApi.setLandingId(list.get(postion).getLandingId());
+                        ProjectProgressApi.setIndex(postion);
+                        ProjectProgressApi.setFieldBean(list.get(postion));
+                        Intent intent = new Intent(ToApplyForAnlsland2Activity.this, FieldActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+        }
+
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ProjectProgressApi.setChongfu("1");
+    }
 }

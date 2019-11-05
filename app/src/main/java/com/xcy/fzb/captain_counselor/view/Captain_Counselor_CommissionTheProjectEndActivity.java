@@ -31,6 +31,10 @@ import com.xcy.fzb.captain_counselor.adapter.TheProjectEndCommissionAdapter;
 
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -64,6 +68,7 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
     String startTime = "";
     String endTime = "";
     private PopupWindow p;
+    private PtrClassicFrameLayout captain_counselor_commission_the_project_end_ptrclass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,11 +113,33 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
 
         initDataBean();
 
+        captain_counselor_commission_the_project_end_ptrclass = findViewById(R.id.captain_counselor_commission_the_project_end_ptrclass);
 
         commission_the_project_end_return.setOnClickListener(this);
         commission_the_project_end_l1.setOnClickListener(this);
         commission_the_project_end_l3.setOnClickListener(this);
         commission_the_project_end_l5.setOnClickListener(this);
+
+        captain_counselor_commission_the_project_end_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        captain_counselor_commission_the_project_end_ptrclass.refreshComplete();
+                        captain_counselor_commission_the_project_end_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        commission_the_project_end_et.setText("");
+                        search = commission_the_project_end_et.getText().toString();
+                        initDataBean();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
 
         commission_the_project_end_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

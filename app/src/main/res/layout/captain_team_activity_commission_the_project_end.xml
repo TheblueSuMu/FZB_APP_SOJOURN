@@ -270,11 +270,6 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent">
 
-           <androidx.recyclerview.widget.RecyclerView
-               android:id="@+id/commission_the_project_end_rv"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"/>
-
            <ImageView
                android:id="@+id/all_no_information"
                android:background="#fff"
@@ -282,6 +277,27 @@
                android:src="@mipmap/no_information"
                android:layout_width="match_parent"
                android:layout_height="match_parent"/>
+
+           <in.srain.cube.views.ptr.PtrClassicFrameLayout
+               xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+               android:id="@+id/commission_the_project_end_ptrclass"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+
+               cube_ptr:ptr_duration_to_close="300"
+               cube_ptr:ptr_duration_to_close_header="800"
+               cube_ptr:ptr_keep_header_when_refresh="true"
+               cube_ptr:ptr_pull_to_fresh="false"
+               cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+               cube_ptr:ptr_resistance="1.7"
+               >
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/commission_the_project_end_rv"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+
+           </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
        </RelativeLayout>
 

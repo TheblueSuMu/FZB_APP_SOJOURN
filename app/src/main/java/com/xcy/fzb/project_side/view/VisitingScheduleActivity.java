@@ -108,7 +108,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
     private RecyclerView fill_in_transaction_information_rv;
     private TextView fill_in_transaction_information_tishi;
     private String str = "";
-
+    String id = "";
     int ifnum1 = 0;
     int ifnum2 = 0;
     int ifnum3 = 0;
@@ -358,7 +358,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<TradeSaveBean> userMessage = fzbInterface.getTradeSave("", FinalContents.getProjectID(), "", FinalContents.getPreparationId(), FinalContents.getCustomerID(), fang_hao_et1.getText().toString() + "栋" + fang_hao_et2.getText().toString() + "单元" + fang_hao_et3.getText().toString() + "室", apartment, fill_in_transaction_information_et4.getText().toString(), fill_in_transaction_information_et5.getText().toString(), str, payment_way.getText().toString(), FinalContents.getCommissionId(), projecttype, gender, project_relation.getText().toString(), fill_in_transaction_information_et1.getText().toString(), fill_in_transaction_information_et2.getText().toString(), fill_in_transaction_information_et3.getText().toString(), FinalContents.getUserID(), project_time.getText().toString());
+        Observable<TradeSaveBean> userMessage = fzbInterface.getTradeSave(id, FinalContents.getProjectID(), "", FinalContents.getPreparationId(), FinalContents.getCustomerID(), fang_hao_et1.getText().toString() + "栋" + fang_hao_et2.getText().toString() + "单元" + fang_hao_et3.getText().toString() + "室", apartment, fill_in_transaction_information_et4.getText().toString(), fill_in_transaction_information_et5.getText().toString(), str, payment_way.getText().toString(), FinalContents.getCommissionId(), projecttype, gender, project_relation.getText().toString(), fill_in_transaction_information_et1.getText().toString(), fill_in_transaction_information_et2.getText().toString(), fill_in_transaction_information_et3.getText().toString(), FinalContents.getUserID(), project_time.getText().toString());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<TradeSaveBean>() {
@@ -791,6 +791,7 @@ public class VisitingScheduleActivity extends AllActivity implements View.OnClic
                         str = tradeAuditBean.getData().getTotalPrice();
                         payment_way.setText(tradeAuditBean.getData().getPaymentMethod());
                         project_time.setText(tradeAuditBean.getData().getTradeDate());
+                        id = tradeAuditBean.getData().getId();
 
                         if (tradeAuditBean.getData().getTotalPrice().equals("")) {
                         } else {

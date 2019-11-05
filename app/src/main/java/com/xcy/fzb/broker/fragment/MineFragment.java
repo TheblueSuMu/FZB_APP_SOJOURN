@@ -43,6 +43,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -87,6 +91,7 @@ public class MineFragment extends Fragment implements TotalAdapter.EPinLun, Tota
     private TotalAdapter recyclerAdapter;
     private String url;
     private ImageView all_no_information;
+    private PtrClassicFrameLayout mine_ptrclass;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,7 +113,26 @@ public class MineFragment extends Fragment implements TotalAdapter.EPinLun, Tota
 
     private void initfvb() {
         totalRv = view.findViewById(R.id.mine_rv);
+        mine_ptrclass = view.findViewById(R.id.mine_ptrclass);
         all_no_information = view.findViewById(R.id.all_no_information);
+        mine_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mine_ptrclass.refreshComplete();
+                        mine_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        initView();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
         initView();
     }
 

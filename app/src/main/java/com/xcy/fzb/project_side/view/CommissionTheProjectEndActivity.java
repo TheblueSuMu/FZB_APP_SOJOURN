@@ -38,6 +38,10 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -97,6 +101,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
     TextView drawer_picker_ensure;
 
     DateTimePickerView drawer_pickerView;
+    private PtrClassicFrameLayout project_side_commission_the_project_end_ptrclass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +133,8 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
 
     private void initView() {
         StatusBar.makeStatusBarTransparent(this);
+        project_side_commission_the_project_end_ptrclass = findViewById(R.id.project_side_commission_the_project_end_ptrclass);
+
         commission_the_project_end_return = findViewById(R.id.commission_the_project_end_return);
         commission_the_project_end_screen = findViewById(R.id.commission_the_project_end_screen);
         commission_the_project_end_et = findViewById(R.id.commission_the_project_end_et);
@@ -141,6 +148,29 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
         commission_the_project_end_l4 = findViewById(R.id.commission_the_project_end_l4);
         commission_the_project_end_rl = findViewById(R.id.commission_the_project_end_rl);
         commission_the_project_end_rv = findViewById(R.id.commission_the_project_end_rv);
+
+        project_side_commission_the_project_end_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        project_side_commission_the_project_end_ptrclass.refreshComplete();
+                        project_side_commission_the_project_end_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        commission_the_project_end_et.setText("");
+                        search = commission_the_project_end_et.getText().toString();
+                        initData();
+                        initDataBean();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
+
         // TODO 侧滑菜单
         mDlMain = findViewById(R.id.mDlMain);
         mRlRight = findViewById(R.id.rl_right);
@@ -291,6 +321,8 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
         drawer_start_time.setText("<"+string);
         drawer_end_time.setText("-"+string+" >");
         drawer_pickerView.setStartDate(Calendar.getInstance());
+        startTime = drawer_start_time.getText().toString();
+        endTime = drawer_end_time.getText().toString();
         // 注意：月份是从0开始计数的
         drawer_pickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
 
@@ -338,7 +370,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
                         int month = date.get(Calendar.MONTH);
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        startTime = dateString;
+                        endTime = dateString;
                         drawer_end_time.setText("-"+dateString+" >");
                     }
                 });

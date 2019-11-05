@@ -77,7 +77,6 @@
                         android:layout_alignParentRight="true"
                         android:gravity="right"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"
                         android:hint="回显数据"
                         android:textColor="#111111"
                         android:textSize="15sp" />
@@ -113,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="35dp"
+                        android:layout_marginRight="15dp"
                         android:gravity="right"
                         android:hint="请选择性别"
                         android:textColor="#ff111111"
@@ -124,7 +123,6 @@
                         android:src="@mipmap/nexts"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginRight="20dp"
                         android:layout_height="9dp"></ImageView>
 
                 </RelativeLayout>

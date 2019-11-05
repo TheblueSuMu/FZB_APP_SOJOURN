@@ -251,8 +251,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
         project_details_linear3 = findViewById(R.id.project_details_linear3);
 
-        group_booking = findViewById(R.id.project_details_group_booking);
-
         talktool_layout = findViewById(R.id.project_details_talktool_layout);
         award_layout = findViewById(R.id.project_details_award_layout);
 
@@ -609,12 +607,12 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         }
 
                         if (FinalContents.getZyHome().equals("1")) {
-                            group_booking.setVisibility(View.GONE);
+                            project_details_group_booking.setVisibility(View.GONE);
                         } else {
                             if (projectDetailsBeanData.getProjectListVo().getIsgroup().equals("1")) {
-                                group_booking.setVisibility(View.VISIBLE);
+                                project_details_group_booking.setVisibility(View.VISIBLE);
                             } else {
-                                group_booking.setVisibility(View.GONE);
+                                project_details_group_booking.setVisibility(View.GONE);
                             }
                         }
 

@@ -2,7 +2,6 @@ package com.xcy.fzb.shopping_guide.adapter;
 
 import android.content.Context;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +53,7 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
                     for (int i = 0;i < a.length;i++){
                         arraylist.add(a[i]);
                     }
-                    MyGridLayoutManager layoutManager = new MyGridLayoutManager(context,5);
+                    MyGridLayoutManager layoutManager = new MyGridLayoutManager(context,3);
                     layoutManager.setOrientation(MyGridLayoutManager.VERTICAL);
                     holder.item_reivew_adapter_item.setLayoutManager(layoutManager);
                     ReviewAdapterItemAdapter recyclerAdapter = new ReviewAdapterItemAdapter(arraylist);

@@ -22,6 +22,10 @@ import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.shopping_guide.adapter.JourneyAdapter;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -34,6 +38,7 @@ public class JourneyFragment extends AllFragment {
     private RecyclerView journey_rv;
     private View view;
     private ImageView all_no_information;
+    private PtrClassicFrameLayout journey_ptrclass;
 
     @Nullable
     @Override
@@ -41,6 +46,27 @@ public class JourneyFragment extends AllFragment {
         view = inflater.inflate(R.layout.shopping_guide_fragment_journey, null);
         journey_rv = view.findViewById(R.id.journey_rv);
         all_no_information = view.findViewById(R.id.all_no_information);
+        journey_ptrclass = view.findViewById(R.id.journey_ptrclass);
+
+        journey_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        journey_ptrclass.refreshComplete();
+                        journey_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        initData();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
+
         initData();
         return view;
     }

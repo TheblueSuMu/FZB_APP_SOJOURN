@@ -154,162 +154,187 @@
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt1"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:visibility="gone"
-                        android:drawableTop="@mipmap/introduction_button"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/lose_efficacy"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="失效"
-                        android:textColor="#FFFFFF" />
+                        android:visibility="gone"
+                        android:textColor="#666666" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt2"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:visibility="gone"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/the_island"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="申请登岛"
-                        android:textColor="#FFFFFF" />
+                        android:visibility="gone"
+                        android:textColor="#666666"/>
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt3"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:visibility="gone"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/visit"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="申请到访"
-                        android:textColor="#FFFFFF" />
+                        android:visibility="gone"
+                        android:textColor="#666666"/>
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt4"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/popular_recognition_chip"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="认筹"
                         android:visibility="gone"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#666666" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt5"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/make_a_bargain"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="成交"
                         android:visibility="gone"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#666666" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt6"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/lose_efficacy"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="未成交"
                         android:visibility="gone"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#666666"/>
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt7"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/make_a_bargain"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="修改信息"
                         android:visibility="gone"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#666666" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt8"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/back_to_raise"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="退筹"
                         android:visibility="gone"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#666666" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt9"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/the_single"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="调单"
                         android:visibility="gone"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#666666" />
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt10"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/chargeback"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="退单"
                         android:visibility="gone"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#666666"/>
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt11"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/pass"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="通过"
-                        android:visibility="gone"
-                        android:textColor="#FFFFFF" />
+                        android:visibility="visible"
+                        android:textColor="#666666"/>
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt12"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/repulse"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="拒绝"
-                        android:visibility="gone"
-                        android:textColor="#FFFFFF" />
+                        android:visibility="visible"
+                        android:textColor="#666666"/>
 
-                    <Button
+                    <TextView
                         android:id="@+id/review_the_success_bt13"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/points_dialog_but"
+                        android:drawableTop="@mipmap/make_a_bargain"
+                        android:gravity="center_horizontal"
+                        android:drawablePadding="9dp"
                         android:text="补全信息"
                         android:visibility="gone"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#666666" />
                 </LinearLayout>
 
             </RelativeLayout>

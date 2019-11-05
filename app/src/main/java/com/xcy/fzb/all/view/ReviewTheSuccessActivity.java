@@ -65,20 +65,20 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
     RecyclerView review_the_success_rv;
 
-    Button review_the_success_bt1;
-    Button review_the_success_bt2;
-    Button review_the_success_bt3;
-    Button review_the_success_bt4;
-    Button review_the_success_bt5;
+    TextView review_the_success_bt1;
+    TextView review_the_success_bt2;
+    TextView review_the_success_bt3;
+    TextView review_the_success_bt4;
+    TextView review_the_success_bt5;
 
-    Button review_the_success_bt6;
-    Button review_the_success_bt7;
-    Button review_the_success_bt8;
-    Button review_the_success_bt9;
-    Button review_the_success_bt10;
-    Button review_the_success_bt11;
-    Button review_the_success_bt12;
-    Button review_the_success_bt13;
+    TextView review_the_success_bt6;
+    TextView review_the_success_bt7;
+    TextView review_the_success_bt8;
+    TextView review_the_success_bt9;
+    TextView review_the_success_bt10;
+    TextView review_the_success_bt11;
+    TextView review_the_success_bt12;
+    TextView review_the_success_bt13;
 
 
     private Intent intent;
