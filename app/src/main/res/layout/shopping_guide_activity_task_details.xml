@@ -265,6 +265,11 @@
                     app:tabSelectedTextColor="#354687"
                     app:tabTextColor="#333333"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE"></LinearLayout>
+
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.viewpager.widget.ViewPager

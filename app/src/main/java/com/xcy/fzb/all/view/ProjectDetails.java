@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -540,15 +541,15 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 public void onClick(DialogInterface dialogInterface, int posotion) {
                                     if (i == 1) {
                                         if (remindBean.getData().getMessage().equals("取消订阅")) {
-                                            project_details_ding.setTextColor(R.color.colorAppBar);
+                                            project_details_ding.setTextColor(Color.parseColor("#111111"));
                                         } else if (remindBean.getData().getMessage().equals("订阅成功")) {
-                                            project_details_ding.setTextColor(R.color.textcolor3);
+                                            project_details_ding.setTextColor(Color.parseColor("#111111"));
                                         }
                                     } else {
                                         if (remindBean.getData().getMessage().equals("取消订阅")) {
-                                            project_details_kai.setTextColor(R.color.colorAppBar);
+                                            project_details_kai.setTextColor(Color.parseColor("#111111"));
                                         } else if (remindBean.getData().getMessage().equals("订阅成功")) {
-                                            project_details_kai.setTextColor(R.color.textcolor3);
+                                            project_details_kai.setTextColor(Color.parseColor("#111111"));
                                         }
                                     }
                                 }
@@ -639,15 +640,15 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         }
 
                         if (projectDetailsBean.getData().getProjectListVo().getRemindstatus1().equals("1")) {
-                            project_details_ding.setTextColor(R.color.textcolor3);
+                            project_details_ding.setTextColor(Color.parseColor("#111111"));
                         } else if (projectDetailsBean.getData().getProjectListVo().getRemindstatus1().equals("0")) {
-                            project_details_ding.setTextColor(R.color.colorAppBar);
+                            project_details_ding.setTextColor(Color.parseColor("#111111"));
                         }
 
                         if (projectDetailsBean.getData().getProjectListVo().getRemindstatus2().equals("1")) {
-                            project_details_kai.setTextColor(R.color.textcolor3);
+                            project_details_kai.setTextColor(Color.parseColor("#111111"));
                         } else if (projectDetailsBean.getData().getProjectListVo().getRemindstatus2().equals("0")) {
-                            project_details_kai.setTextColor(R.color.colorAppBar);
+                            project_details_kai.setTextColor(Color.parseColor("#111111"));
                         }
 
                         number.setText(projectDetailsBeanData.getHouseImgCountNum() + "张");

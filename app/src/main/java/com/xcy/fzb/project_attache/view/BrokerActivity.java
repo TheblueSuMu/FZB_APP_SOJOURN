@@ -122,7 +122,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -375,9 +375,9 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         broker_tv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(agentInfo.getAgentPhone().equals("")){
-                    Toast.makeText(BrokerActivity.this,"暂无电话",Toast.LENGTH_SHORT).show();
-                }else {
+                if (agentInfo.getAgentPhone().equals("")) {
+                    Toast.makeText(BrokerActivity.this, "暂无电话", Toast.LENGTH_SHORT).show();
+                } else {
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + agentInfo.getAgentPhone()));//跳转到拨号界面，同时传递电话号码
                     startActivity(dialIntent);
                 }
@@ -448,7 +448,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         broker_tv8.setText(dataNumBean.getData().getIsIslandNumber() + "");
                         broker_tv9.setText(dataNumBean.getData().getEarnestMoneyNumber() + "");
                         broker_tv10.setText(dataNumBean.getData().getTradeNumber() + "");
-                        broker_tv11.setText(dataNumBean.getData().getLandingNumber() + "");
+                        broker_tv11.setText(dataNumBean.getData().getInvalidNum() + "");
 
                     }
 
@@ -520,7 +520,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         broker_tv8.setText(agentDataStatistics.getIsIslandNumber() + "");
                         broker_tv9.setText(agentDataStatistics.getEarnestMoneyNumber() + "");
                         broker_tv10.setText(agentDataStatistics.getTradeNumber() + "");
-                        broker_tv11.setText(agentDataStatistics.getLandingNumber() + "");
+                        broker_tv11.setText(agentDataStatistics.getInvalidNum() + "");
 //        TODO 近七天活动度
                         BrokerBean.DataBean.GsonOptionBean gsonOption = brokerBean.getData().getGsonOption();
                         integers = brokerBean.getData().getGsonOption().getSeries().get(0).getData();

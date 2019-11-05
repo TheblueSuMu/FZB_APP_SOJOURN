@@ -8,9 +8,10 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="65dp"
@@ -30,7 +31,6 @@
                     android:src="@mipmap/return2" />
 
             </RelativeLayout>
-
 
 
             <TextView
@@ -60,8 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#AC1E26"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/broker_tv"
@@ -256,11 +256,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:ellipsize="end"
                                     android:gravity="center_horizontal"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -268,18 +269,18 @@
                                     android:layout_gravity="center"
                                     android:layout_marginTop="5dp"
                                     android:text="报备"
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginBottom="-3dp"
-                            android:background="#E5E5E5"></LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="1dp"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_gravity="bottom"-->
+<!--                            android:layout_marginBottom="-3dp"-->
+<!--                            android:background="#E5E5E5"></LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -299,11 +300,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:ellipsize="end"
                                     android:gravity="center_horizontal"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -311,18 +313,18 @@
                                     android:layout_marginTop="5dp"
                                     android:gravity="center"
                                     android:text="到访"
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginBottom="-3dp"
-                            android:background="#E5E5E5"></LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="1dp"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_gravity="bottom"-->
+<!--                            android:layout_marginBottom="-3dp"-->
+<!--                            android:background="#E5E5E5"></LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -342,11 +344,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:ellipsize="end"
                                     android:gravity="center_horizontal"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -355,18 +358,18 @@
                                     android:gravity="center"
                                     android:text="登岛"
 
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginBottom="-3dp"
-                            android:background="#E5E5E5"></LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="1dp"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_gravity="bottom"-->
+<!--                            android:layout_marginBottom="-3dp"-->
+<!--                            android:background="#E5E5E5"></LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -386,11 +389,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:ellipsize="end"
                                     android:gravity="center_horizontal"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -398,8 +402,8 @@
                                     android:layout_gravity="center"
                                     android:layout_marginTop="5dp"
                                     android:text="认筹"
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -430,11 +434,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:ellipsize="end"
                                     android:gravity="center_horizontal"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -442,18 +447,18 @@
                                     android:layout_marginTop="5dp"
                                     android:gravity="center"
                                     android:text="成交"
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginBottom="-3dp"
-                            android:background="#E5E5E5"></LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="1dp"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_gravity="bottom"-->
+<!--                            android:layout_marginBottom="-3dp"-->
+<!--                            android:background="#E5E5E5"></LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -473,11 +478,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:ellipsize="end"
                                     android:gravity="center_horizontal"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -485,8 +491,8 @@
                                     android:layout_marginTop="5dp"
                                     android:gravity="center"
                                     android:text="失效"
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -675,11 +681,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:ellipsize="end"
                                     android:gravity="center_horizontal"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -687,18 +694,18 @@
                                     android:layout_gravity="center"
                                     android:layout_marginTop="5dp"
                                     android:text="总佣金"
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginBottom="-3dp"
-                            android:background="#E5E5E5"></LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="1dp"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_gravity="bottom"-->
+<!--                            android:layout_marginBottom="-3dp"-->
+<!--                            android:background="#E5E5E5"></LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -718,11 +725,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:ellipsize="end"
                                     android:gravity="center_horizontal"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -730,18 +738,18 @@
                                     android:layout_marginTop="5dp"
                                     android:gravity="center"
                                     android:text="已结"
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="bottom"
-                            android:layout_marginBottom="-3dp"
-                            android:background="#E5E5E5"></LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="1dp"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:layout_gravity="bottom"-->
+<!--                            android:layout_marginBottom="-3dp"-->
+<!--                            android:background="#E5E5E5"></LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -761,11 +769,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:ellipsize="end"
                                     android:gravity="center_horizontal"
                                     android:lines="1"
                                     android:text=""
-                                    android:textColor="#334485"
-                                    android:textSize="24sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="18sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -774,8 +783,8 @@
                                     android:gravity="center"
                                     android:text="未结"
 
-                                    android:textColor="#ff666666"
-                                    android:textSize="13sp" />
+                                    android:textColor="#111111"
+                                    android:textSize="12sp" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -857,29 +866,29 @@
 
     <RelativeLayout
         android:id="@+id/all_no_network"
-        android:background="#fff"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageimage"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network" />
 
         <Button
-            android:layout_below="@id/imageimage"
             android:id="@+id/all_no_reload"
-            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageimage"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
             android:background="@drawable/button_back"
             android:text="重新加载"
-            android:textSize="12sp"
             android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="12sp" />
 
     </RelativeLayout>
 

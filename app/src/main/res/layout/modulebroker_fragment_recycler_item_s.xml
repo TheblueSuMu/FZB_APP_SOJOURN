@@ -5,22 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginRight="1dp"
+    android:layout_marginTop="10dp"
     android:background="#fff"
     android:orientation="vertical"
     tools:ignore="ResourceName">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="15dp">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/ImageViewS"
             android:layout_width="130dp"
             android:layout_height="100dp"
             android:layout_margin="5dp"
             android:scaleType="fitXY"
-            android:src="@mipmap/logo_square" />
+            android:src="@mipmap/logo_square"
+            app:riv_corner_radius="5dp" />
+
+        <ImageView
+            android:id="@+id/item_OnlineStateS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@mipmap/onlinestate"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/group_booking_itemS"
@@ -36,144 +46,129 @@
             android:textColor="#fff"
             android:textSize="11sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/TextViewNameS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_toRightOf="@id/ImageViewS"
-            android:orientation="vertical">
+            android:text=""
+            android:textColor="#ff111111"
+            android:textSize="15sp" />
+
+        <co.lujun.androidtagview.TagContainerLayout
+            android:id="@+id/tagViewS"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_below="@id/TextViewNameS"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/ImageViewS"
+            android:text="标签"
+            android:textColor="#ff8296aa"
+            app:container_background_color="#fff"
+            app:container_border_color="#fff"
+            app:horizontal_interval="2dp"
+            app:tag_background_color="#ffeceff3"
+            app:tag_border_color="#fff"
+            app:tag_clickable="true"
+            app:tag_corner_radius="2dp"
+            app:tag_horizontal_padding="3dp"
+            app:tag_text_color="#ff8296aa"
+            app:tag_text_size="10sp"
+            app:tag_theme="pure_teal"
+            app:tag_vertical_padding="3dp" />
+
+        <LinearLayout
+            android:id="@+id/wwwS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tagViewS"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/ImageViewS">
 
             <TextView
-                android:id="@+id/TextViewNameS"
+                android:id="@+id/chickS"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="15dp"
-                android:layout_weight="1"
-                android:text="[河东区]书香蓝郡-住宅"
-                android:textColor="#ff111111"
-                android:textSize="15sp" />
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layout_marginRight="15dp">
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#666666"
+                android:textSize="10sp" />
 
-                <co.lujun.androidtagview.TagContainerLayout
-                    android:id="@+id/tagViewS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="标签"
-                    android:textColor="#ff8296aa"
-                    android:layout_centerVertical="true"
-                    app:container_background_color="#fff"
-                    app:container_border_color="#fff"
-                    app:horizontal_interval="2dp"
-                    app:tag_background_color="#ffeceff3"
-                    app:tag_border_color="#fff"
-                    app:tag_clickable="true"
-                    app:tag_corner_radius="2dp"
-                    app:tag_horizontal_padding="3dp"
-                    app:tag_text_color="#ff8296aa"
-                    app:tag_text_size="10sp"
-                    app:tag_theme="pure_teal"
-                    app:tag_vertical_padding="3dp" />
+            <TextView
+                android:id="@+id/attentionS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text=""
+                android:textColor="#666666"
+                android:textSize="10sp" />
 
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/collectS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text=""
+                android:textColor="#666666"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/transmitS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="#666666"
+                android:textSize="10sp" />
 
 
-            <LinearLayout
-                android:id="@+id/wwwS"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginRight="15dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical">
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/chickS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="报备"
-                    android:textColor="#666666"
-                    android:textSize="10sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wwwS"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/ImageViewS">
 
-                <TextView
-                    android:id="@+id/attentionS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="关注"
-                    android:textColor="#666666"
-                    android:textSize="10sp" />
+            <TextView
+                android:id="@+id/priceS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text=""
+                android:textColor="#A52A2A"
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/collectS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="收藏"
-                    android:textColor="#666666"
-                    android:textSize="10sp" />
+            <TextView
+                android:id="@+id/price_moneyS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text=""
+                android:textColor="#A52A2A"
+                android:textSize="9sp" />
 
-                <TextView
-                    android:id="@+id/transmitS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:singleLine="true"
-                    android:text="转发"
-                    android:textColor="#666666"
-                    android:textSize="10sp" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="3dp"
+                android:background="#ffd2d2d2" />
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_below="@id/wwwS"
-                android:layout_marginRight="15dp"
-                android:layout_weight="1"
-                android:gravity="bottom">
-
-                <TextView
-                    android:id="@+id/priceS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="价格"
-                    android:textColor="#AC1E26"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/price_moneyS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="价格"
-                    android:textColor="#AC1E26"
-                    android:textSize="9sp" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="15dp"
-                    android:layout_marginTop="3dp"
-                    android:background="#ffd2d2d2" />
-
-                <TextView
-                    android:id="@+id/squareS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="平方"
-                    android:textColor="#ff666666"
-                    android:textSize="10sp" />
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/squareS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text=""
+                android:textColor="#ff666666"
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -183,64 +178,78 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
         android:background="#ffeeeeee" />
 
     <LinearLayout
         android:id="@+id/modulebroke_llS"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginLeft="15dp"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/commissionS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:drawableLeft="@mipmap/money"
+                    android:singleLine="true"
+                    android:drawablePadding="2dp"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text=""
+                    android:textColor="#ff666666"
+                    android:textSize="10sp" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="2dp"
+                android:background="#ffeeeeee" />
 
             <TextView
-                android:id="@+id/commissionS"
-                android:layout_width="wrap_content"
+                android:id="@+id/secondS"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:singleLine="true"
-                android:drawablePadding="2dp"
-                android:drawableLeft="@mipmap/money"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/timet"
                 android:gravity="center_vertical"
-                android:paddingLeft="31dp"
-                android:paddingRight="5dp"
-                android:text="  佣金：10000元/套"
+                android:paddingLeft="45dp"
+                android:text=""
                 android:textColor="#ff666666"
                 android:textSize="10sp" />
 
-        </RelativeLayout>
+
+        </LinearLayout>
 
         <View
-            android:layout_width="1dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="#ffeeeeee" />
 
-        <TextView
-            android:id="@+id/secondS"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:layout_weight="1"
-            android:drawableLeft="@mipmap/timet"
-            android:gravity="center_vertical"
-            android:paddingLeft="45dp"
-            android:text="  秒结：10000元"
-            android:textColor="#ff666666"
-            android:textSize="10sp" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="#ffeeeeee" />
-
 </LinearLayout>
+
+

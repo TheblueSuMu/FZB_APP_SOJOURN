@@ -698,7 +698,7 @@ public interface MyService {
 
     //公司列表
     @POST("commissionerSelect/companyList")
-    Observable<StoreListBean> getCompanList(@Query("search") String search, @Query("status") String status, @Query("userId") String userId, @Query("pageSize") String pageSize);
+    Observable<StoreListBean> getCompanList(@Query("companyId") String companyId,@Query("search") String search, @Query("status") String status, @Query("userId") String userId, @Query("pageSize") String pageSize);
 
     //门店详情
     @POST("commissionerSelect/storeDetails")

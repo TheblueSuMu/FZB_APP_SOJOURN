@@ -109,8 +109,9 @@ public class ConfirmTheVisitActivity extends AllActivity {
 
     private int GPS_REQUEST_CODE = 10;
 
+    int ismap = 0;
 
-    // 定位相关
+   // 定位相关
     LocationClient mLocClient;
     //定位监听
     public MyLocationListenner myListener = new MyLocationListenner();
@@ -187,6 +188,7 @@ public class ConfirmTheVisitActivity extends AllActivity {
             initMapData();
         } else {
             Log.i("MyCL", "定位服务未开启");
+            ismap = 1;
             Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             startActivityForResult(intent, GPS_REQUEST_CODE);
         }
@@ -753,6 +755,10 @@ public class ConfirmTheVisitActivity extends AllActivity {
             }.start();
         }
         isPhoto = 0;
+        if(ismap == 1){
+            initMapData();
+            ismap = 0;
+        }
     }
 
     /**

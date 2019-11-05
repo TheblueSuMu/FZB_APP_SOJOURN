@@ -330,7 +330,7 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
                                 Log.i("销售数据", "销售数据");
                                 final List<String> lists = new ArrayList<>();
                                 for (int i = 0; i < ratioByOwnerIdBean.getData().size(); i++) {
-                                    lists.add(ratioByOwnerIdBean.getData().get(i).getName());
+                                    lists.add(ratioByOwnerIdBean.getData().get(i).getName() + "("  + ratioByOwnerIdBean.getData().get(i).getPercent() + "%)");
                                 }
                                 //      监听选中
                                 OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_AddSalesActivity.this, new OnOptionsSelectListener() {
@@ -338,7 +338,7 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
                                     public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                         //               返回的分别是三个级别的选中位置
                                         //              展示选中数据
-                                        add_sales_tv2.setText(ratioByOwnerIdBean.getData().get(options1).getName() + "");
+                                        add_sales_tv2.setText(ratioByOwnerIdBean.getData().get(options1).getName() + "("  + ratioByOwnerIdBean.getData().get(options1).getPercent() + "%)");
                                         FinalContents.setRatioId(ratioByOwnerIdBean.getData().get(options1).getId());
                                     }
                                 })

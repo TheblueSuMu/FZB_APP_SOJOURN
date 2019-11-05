@@ -100,8 +100,8 @@
 
                     <View
                         android:layout_width="1dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
                         android:layout_toRightOf="@id/project_details_attention"
                         android:background="#ffd2d2d2" />
 
@@ -140,8 +140,8 @@
 
                     <View
                         android:layout_width="1dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
                         android:layout_toRightOf="@id/project_details_transmit"
                         android:background="#ffd2d2d2" />
 
@@ -187,6 +187,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -247,7 +248,7 @@
                     android:id="@+id/project_details_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="15dp"
                     android:paddingLeft="15dp"
                     android:text=""
                     android:textColor="#000"
@@ -437,6 +438,7 @@
                         android:layout_marginLeft="74dp"
                         android:drawableLeft="@mipmap/trend"
                         android:text=" 变价通知"
+                        android:textColor="#111111"
                         android:textSize="14sp" />
 
                     <TextView
@@ -446,6 +448,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="79dp"
                         android:drawableLeft="@mipmap/inform"
+                        android:textColor="#111111"
                         android:text=" 开盘通知"
                         android:textSize="14sp" />
 
