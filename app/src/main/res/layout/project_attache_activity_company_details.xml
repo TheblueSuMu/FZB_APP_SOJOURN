@@ -8,9 +8,9 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -62,15 +62,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/ll1"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:visibility="gone"
-                    android:background="#AC1E26">
+                    android:background="#AC1E26"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv1"
@@ -220,11 +220,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:visibility="gone"
                             android:layout_marginTop="20dp"
                             android:layout_marginRight="15dp"
                             android:gravity="center"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:visibility="gone">
 
 
                             <TextView
@@ -285,8 +285,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:gravity="center_horizontal"
                                         android:ellipsize="end"
+                                        android:gravity="center_horizontal"
                                         android:lines="1"
                                         android:text=""
                                         android:textColor="#111111"
@@ -304,12 +304,12 @@
 
                             </LinearLayout>
 
-<!--                            <LinearLayout-->
-<!--                                android:layout_width="1dp"-->
-<!--                                android:layout_height="40dp"-->
-<!--                                android:layout_gravity="bottom"-->
-<!--                                android:layout_marginBottom="-3dp"-->
-<!--                                android:background="#E5E5E5"></LinearLayout>-->
+                            <!--                            <LinearLayout-->
+                            <!--                                android:layout_width="1dp"-->
+                            <!--                                android:layout_height="40dp"-->
+                            <!--                                android:layout_gravity="bottom"-->
+                            <!--                                android:layout_marginBottom="-3dp"-->
+                            <!--                                android:background="#E5E5E5"></LinearLayout>-->
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -329,8 +329,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:gravity="center_horizontal"
                                         android:ellipsize="end"
+                                        android:gravity="center_horizontal"
                                         android:lines="1"
                                         android:text=""
                                         android:textColor="#111111"
@@ -348,12 +348,12 @@
 
                             </LinearLayout>
 
-<!--                            <LinearLayout-->
-<!--                                android:layout_width="1dp"-->
-<!--                                android:layout_height="40dp"-->
-<!--                                android:layout_gravity="bottom"-->
-<!--                                android:layout_marginBottom="-3dp"-->
-<!--                                android:background="#E5E5E5"></LinearLayout>-->
+                            <!--                            <LinearLayout-->
+                            <!--                                android:layout_width="1dp"-->
+                            <!--                                android:layout_height="40dp"-->
+                            <!--                                android:layout_gravity="bottom"-->
+                            <!--                                android:layout_marginBottom="-3dp"-->
+                            <!--                                android:background="#E5E5E5"></LinearLayout>-->
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -373,8 +373,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:gravity="center_horizontal"
                                         android:ellipsize="end"
+                                        android:gravity="center_horizontal"
                                         android:lines="1"
                                         android:text=""
                                         android:textColor="#111111"
@@ -393,12 +393,12 @@
 
                             </LinearLayout>
 
-<!--                            <LinearLayout-->
-<!--                                android:layout_width="1dp"-->
-<!--                                android:layout_height="40dp"-->
-<!--                                android:layout_gravity="bottom"-->
-<!--                                android:layout_marginBottom="-3dp"-->
-<!--                                android:background="#E5E5E5"></LinearLayout>-->
+                            <!--                            <LinearLayout-->
+                            <!--                                android:layout_width="1dp"-->
+                            <!--                                android:layout_height="40dp"-->
+                            <!--                                android:layout_gravity="bottom"-->
+                            <!--                                android:layout_marginBottom="-3dp"-->
+                            <!--                                android:background="#E5E5E5"></LinearLayout>-->
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -418,8 +418,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:gravity="center_horizontal"
                                         android:ellipsize="end"
+                                        android:gravity="center_horizontal"
                                         android:lines="1"
                                         android:text=""
                                         android:textColor="#111111"
@@ -463,8 +463,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:gravity="center_horizontal"
                                         android:ellipsize="end"
+                                        android:gravity="center_horizontal"
                                         android:lines="1"
                                         android:text=""
                                         android:textColor="#111111"
@@ -482,12 +482,12 @@
 
                             </LinearLayout>
 
-<!--                            <LinearLayout-->
-<!--                                android:layout_width="1dp"-->
-<!--                                android:layout_height="40dp"-->
-<!--                                android:layout_gravity="bottom"-->
-<!--                                android:layout_marginBottom="-3dp"-->
-<!--                                android:background="#E5E5E5"></LinearLayout>-->
+                            <!--                            <LinearLayout-->
+                            <!--                                android:layout_width="1dp"-->
+                            <!--                                android:layout_height="40dp"-->
+                            <!--                                android:layout_gravity="bottom"-->
+                            <!--                                android:layout_marginBottom="-3dp"-->
+                            <!--                                android:background="#E5E5E5"></LinearLayout>-->
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -507,8 +507,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:gravity="center_horizontal"
                                         android:ellipsize="end"
+                                        android:gravity="center_horizontal"
                                         android:lines="1"
                                         android:text=""
                                         android:textColor="#111111"
@@ -544,8 +544,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:gravity="center_horizontal"
                                         android:ellipsize="end"
+                                        android:gravity="center_horizontal"
                                         android:lines="1"
                                         android:text=""
                                         android:textColor="#111111"
@@ -666,10 +666,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="20dp"
-                            android:visibility="gone"
                             android:layout_marginRight="15dp"
                             android:gravity="center"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:visibility="gone">
 
 
                             <TextView
@@ -730,8 +730,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:gravity="center_horizontal"
                                         android:ellipsize="end"
+                                        android:gravity="center_horizontal"
                                         android:lines="1"
                                         android:text=""
                                         android:textColor="#111111"
@@ -749,12 +749,12 @@
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="1dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="bottom"
-                                android:layout_marginBottom="-3dp"
-                                android:background="#E5E5E5"></LinearLayout>
+                            <!--                            <LinearLayout-->
+                            <!--                                android:layout_width="1dp"-->
+                            <!--                                android:layout_height="40dp"-->
+                            <!--                                android:layout_gravity="bottom"-->
+                            <!--                                android:layout_marginBottom="-3dp"-->
+                            <!--                                android:background="#E5E5E5"></LinearLayout>-->
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -774,8 +774,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:gravity="center_horizontal"
                                         android:ellipsize="end"
+                                        android:gravity="center_horizontal"
                                         android:lines="1"
                                         android:text=""
                                         android:textColor="#111111"
@@ -793,12 +793,12 @@
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="1dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="bottom"
-                                android:layout_marginBottom="-3dp"
-                                android:background="#E5E5E5"></LinearLayout>
+                            <!--                            <LinearLayout-->
+                            <!--                                android:layout_width="1dp"-->
+                            <!--                                android:layout_height="40dp"-->
+                            <!--                                android:layout_gravity="bottom"-->
+                            <!--                                android:layout_marginBottom="-3dp"-->
+                            <!--                                android:background="#E5E5E5"></LinearLayout>-->
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -818,8 +818,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:gravity="center_horizontal"
                                         android:ellipsize="end"
+                                        android:gravity="center_horizontal"
                                         android:lines="1"
                                         android:text=""
                                         android:textColor="#111111"
@@ -854,12 +854,11 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:id="@+id/details_report_picker"
-                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:background="#e7e7e7"
                 android:orientation="vertical"
                 android:visibility="gone">
@@ -869,38 +868,37 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_weight="1"
                         android:id="@+id/details_report_picker_cancel"
-                        android:text="取消"
-                        android:textSize="18sp"
-                        android:textColor="#ff666666"
-                        android:layout_marginLeft="10dp"
-                        android:layout_alignParentLeft="true"
-                        android:gravity="center_vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp" />
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="取消"
+                        android:textColor="#ff666666"
+                        android:textSize="18sp" />
 
                     <TextView
-                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="请选择时间"
+                        android:layout_weight="1"
                         android:gravity="center"
+                        android:text="请选择时间"
                         android:textColor="#ff111111"
-                        android:textSize="18sp"
-                        />
+                        android:textSize="18sp" />
 
                     <TextView
-                        android:layout_weight="1"
                         android:id="@+id/details_report_picker_ensure"
-                        android:text="确定"
-                        android:textSize="18sp"
-                        android:textColor="#334485"
-                        android:layout_marginRight="10dp"
-                        android:layout_alignParentRight="true"
-                        android:gravity="center_vertical|right"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp" />
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:text="确定"
+                        android:textColor="#334485"
+                        android:textSize="18sp" />
 
 
                 </LinearLayout>
@@ -909,8 +907,8 @@
                     android:id="@+id/details_report_pickerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:preferredMaxOffsetItemCount="4"
-                    android:background="#e7e7e7"/>
+                    android:background="#e7e7e7"
+                    app:preferredMaxOffsetItemCount="4" />
             </LinearLayout>
 
         </RelativeLayout>
@@ -919,29 +917,29 @@
 
     <RelativeLayout
         android:id="@+id/all_no_network"
-        android:background="#fff"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageimage"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network" />
 
         <Button
-            android:layout_below="@id/imageimage"
             android:id="@+id/all_no_reload"
-            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageimage"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
             android:background="@drawable/button_back"
             android:text="重新加载"
-            android:textSize="12sp"
             android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
