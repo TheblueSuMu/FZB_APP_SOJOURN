@@ -321,25 +321,31 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                                 }
 
                             }
-                        }else if (FinalContents.getIdentity().equals("63")){
-                            Log.i("顾问","第一个不显示");
-                            if(FinalContents.getManageFlag().equals("0")){
-                                Log.i("顾问","第二个显示");
-                                sales_details_details_xiugai.setVisibility(View.GONE);
-                            }else {
-                                Log.i("顾问","第二个不显示");
-                                if (agentDetailsBean.getData().getAgentInfo().getIdentity().equals("60")) {
-                                    Log.i("顾问","显示");
-                                    sales_details_details_xiugai.setVisibility(View.VISIBLE);
-                                    sales_details_details_amend.setVisibility(View.VISIBLE);
-                                }else {
-                                    Log.i("顾问","不显示");
-                                    sales_details_details_xiugai.setVisibility(View.GONE);
-                                    sales_details_details_amend.setVisibility(View.GONE);
-                                }
-
-                            }
                         }
+
+                        /**
+                         * 20191104 团助 修改
+                         */
+
+//                        else if (FinalContents.getIdentity().equals("63")){
+//                            Log.i("顾问","第一个不显示");
+//                            if(FinalContents.getManageFlag().equals("0")){
+//                                Log.i("顾问","第二个显示");
+//                                sales_details_details_xiugai.setVisibility(View.GONE);
+//                            }else {
+//                                Log.i("顾问","第二个不显示");
+//                                if (agentDetailsBean.getData().getAgentInfo().getIdentity().equals("60")) {
+//                                    Log.i("顾问","显示");
+//                                    sales_details_details_xiugai.setVisibility(View.VISIBLE);
+//                                    sales_details_details_amend.setVisibility(View.VISIBLE);
+//                                }else {
+//                                    Log.i("顾问","不显示");
+//                                    sales_details_details_xiugai.setVisibility(View.GONE);
+//                                    sales_details_details_amend.setVisibility(View.GONE);
+//                                }
+//
+//                            }
+//                        }
 
                         if (agentDetailsBean.getData().getAgentInfo().getType().equals("2")) {
                             sales_details_details_tv1.setText(agentDetailsBean.getData().getAgentInfo().getName() + "(" + agentDetailsBean.getData().getAgentInfo().getRatioName() + ")");
@@ -509,6 +515,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     Log.i("销售啊啊啊", "修改销售：" + FinalContents.getXiuGai());
                     Intent intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_AddSalesActivity.class);
                     startActivity(intent);
+                    finish();
                 } else if (FinalContents.getIdentity().equals("61")) {
                     finish();
                     FinalContents.setXiuGai("修改顾问");
@@ -516,10 +523,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     Log.i("销售啊啊啊", "修改gw：" + FinalContents.getXiuGai());
                     Intent intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_AddAConsultantActivity.class);
                     startActivity(intent);
+                    finish();
                 } else if (FinalContents.getIdentity().equals("63")) {
-                    /**
-                     * 修改
-                     */
                     Log.i("团助端修改", "63");
                     if (agentDetails.getData().getAgentInfo().getType().equals("1")) {
                         Log.i("团助端修改","1");
@@ -541,6 +546,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_AddAConsultantActivity.class);
                         FinalContents.setXiuGai("修改顾问");
                         startActivity(intent);
+                        finish();
                     }
                 }
                 break;
@@ -596,6 +602,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     Log.i("销售啊啊啊", "修改销售：" + FinalContents.getXiuGai());
                     Intent intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_AddSalesActivity.class);
                     startActivity(intent);
+                    finish();
                 } else if (FinalContents.getIdentity().equals("61")) {
                     finish();
                     FinalContents.setXiuGai("修改顾问");
@@ -603,6 +610,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     Log.i("销售啊啊啊", "修改gw：" + FinalContents.getXiuGai());
                     Intent intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_AddAConsultantActivity.class);
                     startActivity(intent);
+                    finish();
                 } else if (FinalContents.getIdentity().equals("63")) {
                     /**
                      * 修改
@@ -628,6 +636,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_AddAConsultantActivity.class);
                         FinalContents.setXiuGai("修改顾问");
                         startActivity(intent);
+                        finish();
                     }
                 }else {
 
@@ -915,11 +924,13 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Assistant_Addteam_Activity.class);
                         FinalContents.setXiuGai("修改团队长");
                         startActivity(intent);
+                        finish();
                     }else if(agentDetails.getData().getAgentInfo().getType().equals("2")){
                         FinalContents.setOwnerId("");
                         intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_AddSalesActivity.class);
                         FinalContents.setXiuGai("修改销售");
                         startActivity(intent);
+                        finish();
                     }
                 } else if (postion == 1) {
                     if(agentDetails.getData().getAgentInfo().getType().equals("1")){
@@ -928,12 +939,14 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         intent.putExtra("SearchIf","销售");
                         intent.putExtra("SearchID",agentDetails.getData().getAgentInfo().getId());
                         startActivity(intent);
+                        finish();
                     }else if(agentDetails.getData().getAgentInfo().getType().equals("2")){
                         FinalContents.setOwnerId("");
                         intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_CommissionLevelActivity.class);
                         intent.putExtra("SearchIf","顾问");
                         intent.putExtra("SearchID",agentDetails.getData().getAgentInfo().getId());
                         startActivity(intent);
+                        finish();
                     }
                 }
                 p.dismiss();
