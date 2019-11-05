@@ -59,7 +59,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -97,7 +97,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
             type = "1";
         }
 
-		StatusBar.makeStatusBarTransparent(this);
+        StatusBar.makeStatusBarTransparent(this);
         all_no_information = findViewById(R.id.all_no_information);
         batch_modifying_img = findViewById(R.id.batch_modifying_img);
 
@@ -121,7 +121,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
         initData();
     }
 
-    private void initDataView(){
+    private void initDataView() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -145,7 +145,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
                         public void onNext(final RatioByOwnerId2Bean ratioByOwnerIdBean) {
                             final List<String> list = new ArrayList<>();
                             for (int i = 0; i < ratioByOwnerIdBean.getData().size(); i++) {
-                                list.add(ratioByOwnerIdBean.getData().get(i).getName());
+                                list.add(ratioByOwnerIdBean.getData().get(i).getName()+ "(" + ratioByOwnerIdBean.getData().get(i).getPercent() + "%)");
                             }
                             //      监听选中
                             OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_BatchModifyingActivity.this, new OnOptionsSelectListener() {
@@ -153,7 +153,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
                                 public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                     //               返回的分别是三个级别的选中位置
                                     //              展示选中数据
-                                    batch_modifying_btn.setText(ratioByOwnerIdBean.getData().get(options1).getName()+"");
+                                    batch_modifying_btn.setText(ratioByOwnerIdBean.getData().get(options1).getName() + "(" + ratioByOwnerIdBean.getData().get(options1).getPercent() + "%)");
                                     FinalContents.setRatioId(ratioByOwnerIdBean.getData().get(options1).getId());
                                     initViewData();
                                 }
@@ -169,7 +169,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
 
                         @Override
                         public void onError(Throwable e) {
-                            Log.i("列表数据获取错误","错误"+e);
+                            Log.i("列表数据获取错误", "错误" + e);
                         }
 
                         @Override
@@ -206,7 +206,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
                                     //              展示选中数据
                                     batch_modifying_btn.setText(list.get(options1));
                                     FinalContents.setRatioId(commissionLevelSelectBean.getData().get(options1).getId());
-                                    Log.i("MyCL","initViewData()：");
+                                    Log.i("MyCL", "initViewData()：");
                                     initViewData();
                                 }
                             })
@@ -241,7 +241,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<TeamMemberBean> teamMemberBeane = fzbInterface.getTeamMemberBeane("", type, "", FinalContents.getUserID(), FinalContents.getUserID(),"1000");
+        Observable<TeamMemberBean> teamMemberBeane = fzbInterface.getTeamMemberBeane("", type, "", FinalContents.getUserID(), FinalContents.getUserID(), "1000");
         teamMemberBeane.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<TeamMemberBean>() {
@@ -267,12 +267,12 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
                                 public void onItemClick(int postion) {
                                     if (IDS.equals("")) {
                                         IDS = teamMemberBean.getData().getRows().get(postion).getId();
-                                    }else {
-                                        IDS = IDS +","+ teamMemberBean.getData().getRows().get(postion).getId();
+                                    } else {
+                                        IDS = IDS + "," + teamMemberBean.getData().getRows().get(postion).getId();
                                     }
                                 }
                             });
-                        }else {
+                        } else {
                             all_no_information.setVisibility(View.VISIBLE);
                             batch_modifying_rv.setVisibility(View.GONE);
                         }
@@ -295,17 +295,17 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
 
     }
 
-    private void initViewData(){
+    private void initViewData() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("MyCL","FinalContents.getUserID()：" + FinalContents.getUserID());
-        Log.i("MyCL","FinalContents.getRatioId()：" + FinalContents.getRatioId());
-        Log.i("MyCL","IDS：" + IDS);
-        Observable<LevelBean> teamMemberBeane = fzbInterface.getLevelBean(FinalContents.getUserID(), FinalContents.getRatioId(),IDS);
+        Log.i("MyCL", "FinalContents.getUserID()：" + FinalContents.getUserID());
+        Log.i("MyCL", "FinalContents.getRatioId()：" + FinalContents.getRatioId());
+        Log.i("MyCL", "IDS：" + IDS);
+        Observable<LevelBean> teamMemberBeane = fzbInterface.getLevelBean(FinalContents.getUserID(), FinalContents.getRatioId(), IDS);
         teamMemberBeane.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LevelBean>() {

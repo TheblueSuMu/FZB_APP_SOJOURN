@@ -88,6 +88,8 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 
     private int GPS_REQUEST_CODE = 10;
 
+    int isnum = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -244,24 +246,19 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                 getAddress();
                 break;
             case R.id.add_company_rl2:
-
                 boolean locServiceEnable = isLocServiceEnable(AddCompanyActivity.this);
                 if (locServiceEnable == true) {
                     Log.i("MyCL", "定位服务已开启");
+                    isnum = 1;
                     Intent intent = new Intent(AddCompanyActivity.this, TestMapActivity.class);
-
                     intent.putExtra("La",getLatitude);
                     intent.putExtra("Lo",getLongitude);
-
                     startActivityForResult(intent, 1);
                 } else {
                     Log.i("MyCL", "定位服务未开启");
                     Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     startActivityForResult(intent, GPS_REQUEST_CODE);
                 }
-
-
-
 //                add_company_tv3.setText("117.155243,39.112389");
                 break;
             case R.id.add_company_btn:
@@ -459,55 +456,59 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            add_company_tv3.setText(data.getStringExtra("getLatitude") + "\n" + data.getStringExtra("getLongitude"));
-        }
+       if(isnum == 1){
+           if (requestCode == 1 && resultCode == RESULT_OK) {
+               add_company_tv3.setText(data.getStringExtra("getLatitude") + "\n" + data.getStringExtra("getLongitude"));
+           }
 
-        getLatitude = data.getStringExtra("getLatitude");
-        getLongitude = data.getStringExtra("getLongitude");
+           getLatitude = data.getStringExtra("getLatitude");
+           getLongitude = data.getStringExtra("getLongitude");
 
 
-        StringBuffer stringBuffer1 = new StringBuffer();
-        StringBuffer stringBuffer2 = new StringBuffer();
+           StringBuffer stringBuffer1 = new StringBuffer();
+           StringBuffer stringBuffer2 = new StringBuffer();
 
-        StringBuffer append1 = stringBuffer1.append(getLatitude);
-        StringBuffer append2 = stringBuffer2.append(getLongitude);
+           StringBuffer append1 = stringBuffer1.append(getLatitude);
+           StringBuffer append2 = stringBuffer2.append(getLongitude);
 
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
+           Retrofit.Builder builder = new Retrofit.Builder();
+           builder.baseUrl(FinalContents.getBaseUrl());
+           builder.addConverterFactory(GsonConverterFactory.create());
+           builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+           Retrofit build = builder.build();
+           MyService fzbInterface = build.create(MyService.class);
 
-        Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
-        changeAddress.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ChangeAddress>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+           Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
+           changeAddress.subscribeOn(Schedulers.io())
+                   .observeOn(AndroidSchedulers.mainThread())
+                   .subscribe(new Observer<ChangeAddress>() {
+                       @Override
+                       public void onSubscribe(Disposable d) {
 
-                    }
+                       }
 
-                    @Override
-                    public void onNext(ChangeAddress changeAddress) {
+                       @Override
+                       public void onNext(ChangeAddress changeAddress) {
 
-                        add_company_et2.setText(changeAddress.getData().getValue());
-                    }
+                           add_company_et2.setText(changeAddress.getData().getValue());
 
-                    @Override
-                    public void onError(Throwable e) {
+                       }
 
-                        Log.i("经纬度转坐标","经纬度转坐标错误信息：" + e.getMessage());
+                       @Override
+                       public void onError(Throwable e) {
 
-                    }
+                           Log.i("经纬度转坐标","经纬度转坐标错误信息：" + e.getMessage());
 
-                    @Override
-                    public void onComplete() {
+                       }
 
-                    }
-                });
+                       @Override
+                       public void onComplete() {
 
+                       }
+                   });
+       }
+
+       isnum = 0;
 
     }
 
