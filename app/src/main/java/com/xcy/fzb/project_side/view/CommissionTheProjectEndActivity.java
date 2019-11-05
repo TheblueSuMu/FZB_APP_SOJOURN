@@ -171,6 +171,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
             }
         });
 
+
         // TODO 侧滑菜单
         mDlMain = findViewById(R.id.mDlMain);
         mRlRight = findViewById(R.id.rl_right);
@@ -227,7 +228,14 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
                 return false;    
             }
         });
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH)+1;
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
+        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        drawer_start_time.setText("<"+string);
+        drawer_end_time.setText("-"+string+" >");
     }
 
     @Override

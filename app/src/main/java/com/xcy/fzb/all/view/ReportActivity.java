@@ -340,12 +340,9 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             @Override
             public void onClick(View view) {
                 report_picker.setVisibility(View.GONE);
+                Log.d("判断", "判断: " + blean);
                 if (blean) {
                     initDate2();
-                }else {
-                    dateTimePickerView.setStartDate(Calendar.getInstance());
-                    // 注意：月份是从0开始计数的
-                    dateTimePickerView.setEndDate(new GregorianCalendar(year+3, month, dayOfMonth));
                 }
             }
         });
@@ -361,6 +358,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             @Override
             public void onClick(View view) {
                 report_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setStartDate(Calendar.getInstance());
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
                     public void onSelectedDateChanged(Calendar date) {
@@ -379,13 +377,13 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     }
 
     private void initDate2(){
-        dateTimePickerView.setStartDate(new GregorianCalendar(year1, month1, dayOfMonth1));
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setEndDate(new GregorianCalendar(year1+3, month1, dayOfMonth1));
+
         report_end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 report_picker.setVisibility(View.VISIBLE);
+                Log.d("判断", "n 判断: " + blean);
+                dateTimePickerView.setStartDate(new GregorianCalendar(year1, month1, dayOfMonth1));
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
                     public void onSelectedDateChanged(Calendar date) {
@@ -399,6 +397,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     }
                 });
                 blean = false;
+                Log.d("判断", "new 判断: " + blean);
             }
         });
     }
