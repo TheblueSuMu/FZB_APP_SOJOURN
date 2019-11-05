@@ -24,6 +24,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ReportItemAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ChangePhoneBean;
+import com.xcy.fzb.all.modle.IdNumberBean;
 import com.xcy.fzb.all.modle.ReportBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -126,6 +127,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private LinearLayout report_ll_start_sq2;
 
     int ifnum1 = 0;
+    private LinearLayout report_linear;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -162,6 +164,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private void initView(){
 
         StatusBar.makeStatusBarTransparent(this);
+        report_linear = findViewById(R.id.report_linear);
 
         report_btn_s = findViewById(R.id.report_btn_yes);
         report_btn_f = findViewById(R.id.report_btn_no);
@@ -423,6 +426,43 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     @Override
                     public void onError(Throwable e) {
                         Log.i("wsw","返回的数据"+e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void initIdNumber(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<IdNumberBean> userMessage = fzbInterface.getIdNumber(FinalContents.getProjectID());
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<IdNumberBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(IdNumberBean idNumberBean) {
+                        if (idNumberBean.getData().getIsPapers() == 0) {
+                            report_linear.setVisibility(View.GONE);
+                        }else if (idNumberBean.getData().getIsPapers() == 1){
+                            report_linear.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("wsw","报备的数据"+e.getMessage());
                     }
 
                     @Override
@@ -746,6 +786,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         }
         return onTouchEvent(ev);
     }
+
     public  boolean isShouldHideInput(View v, MotionEvent event) {
         if (v != null && (v instanceof EditText)) {
             int[] leftTop = { 0, 0 };
@@ -767,7 +808,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         return false;
     }
 
-
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -780,6 +820,16 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             project_name.setText(FinalContents.getProjectName());
         } else {
             project_name.setText("");
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (FinalContents.getProjectName().equals("")) {
+
+        }else {
+            initIdNumber();
         }
     }
 }

@@ -162,6 +162,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:visibility="gone"
+                        android:drawableTop="@mipmap/introduction_button"
                         android:background="@drawable/points_dialog_but"
                         android:text="失效"
                         android:textColor="#FFFFFF" />
