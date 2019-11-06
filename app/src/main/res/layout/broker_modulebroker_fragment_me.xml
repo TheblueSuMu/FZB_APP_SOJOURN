@@ -115,12 +115,12 @@
                 android:id="@+id/me_Client"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -130,7 +130,7 @@
                         android:layout_gravity="center_horizontal"
                         android:text=""
                         android:textColor="#334485"
-                        android:textSize="24sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -139,7 +139,7 @@
                         android:layout_marginTop="10dp"
                         android:text="我的客户"
                         android:textColor="#111111"
-                        android:textSize="15sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -154,12 +154,12 @@
                 android:id="@+id/me_Brokerage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -170,7 +170,7 @@
                         android:text=""
                         android:lines="1"
                         android:textColor="#334485"
-                        android:textSize="24sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -179,7 +179,7 @@
                         android:layout_marginTop="10dp"
                         android:text="我的佣金(万元)"
                         android:textColor="#111111"
-                        android:textSize="15sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>

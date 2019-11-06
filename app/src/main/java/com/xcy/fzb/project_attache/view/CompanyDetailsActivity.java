@@ -39,6 +39,8 @@ import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.view.MyClientActivity;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -58,7 +60,7 @@ import top.defaults.view.DateTimePickerView;
 public class CompanyDetailsActivity extends AllActivity implements View.OnClickListener {
 
     RelativeLayout company_details_return;
-    ImageView company_details_call;
+    TextView company_details_call;
     ImageView details_change;
 
     LinearLayout company_details_ll1;
@@ -128,7 +130,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -479,13 +481,14 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         if (storeInfo.getShopownerName().equals("")) {
                             company_details_tv3.setVisibility(View.GONE);
                             company_details_call.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             company_details_tv3.setVisibility(View.VISIBLE);
-                            company_details_tv3.setText("店长：" + storeInfo.getShopownerName() + " " + storeInfo.getShopownerPhone());
-                            if(storeInfo.getShopownerPhone().equals("")){
+                            company_details_tv3.setText("店长：" + storeInfo.getShopownerName());
+                            if (storeInfo.getShopownerPhone().equals("")) {
                                 company_details_call.setVisibility(View.GONE);
-                            }else {
+                            } else {
                                 company_details_call.setVisibility(View.VISIBLE);
+                                company_details_call.setText(storeInfo.getShopownerPhone());
                             }
                         }
 //                        TODO 数据统计
@@ -514,7 +517,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("MyCL","错误信息：" + e.getMessage());
+                        Log.i("MyCL", "错误信息：" + e.getMessage());
                     }
 
                     @Override

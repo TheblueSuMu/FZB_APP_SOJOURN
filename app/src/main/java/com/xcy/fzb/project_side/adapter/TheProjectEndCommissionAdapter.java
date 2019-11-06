@@ -95,7 +95,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
             holder.the_project_end_tv5.setVisibility(View.GONE);
             holder.the_project_end_tv6.setVisibility(View.VISIBLE);
             holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv7.setText("结清时间："+rowsBeanList.get(position).getClosingTime());
+            holder.the_project_end_tv7.setText(rowsBeanList.get(position).getClosingTime());
         }
 
         if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00") ) {

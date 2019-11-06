@@ -450,7 +450,6 @@ public class DFragment extends Fragment implements View.OnClickListener {
 
                     }
                 });
-
     }
 
     @Override

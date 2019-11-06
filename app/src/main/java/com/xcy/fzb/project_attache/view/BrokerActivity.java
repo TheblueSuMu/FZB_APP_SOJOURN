@@ -73,6 +73,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
     TextView broker_tv16;
     TextView broker_tv17;
     TextView broker_tv18;
+    TextView broker_call;
 
     LinearLayout broker_ll1;
     LinearLayout broker_ll2;
@@ -191,6 +192,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         broker_tv16 = findViewById(R.id.broker_tv16);
         broker_tv17 = findViewById(R.id.broker_tv17);
         broker_tv18 = findViewById(R.id.broker_tv18);
+        broker_call = findViewById(R.id.broker_call);
 
         details_chart = findViewById(R.id.lc_broker);
 
@@ -357,7 +359,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
             }
         });
 
-        broker_tv1.setOnClickListener(new View.OnClickListener() {
+        broker_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -372,17 +374,17 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         });
 
 
-        broker_tv1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (agentInfo.getAgentPhone().equals("")) {
-                    Toast.makeText(BrokerActivity.this, "暂无电话", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + agentInfo.getAgentPhone()));//跳转到拨号界面，同时传递电话号码
-                    startActivity(dialIntent);
-                }
-            }
-        });
+//        broker_tv1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (agentInfo.getAgentPhone().equals("")) {
+//                    Toast.makeText(BrokerActivity.this, "暂无电话", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + agentInfo.getAgentPhone()));//跳转到拨号界面，同时传递电话号码
+//                    startActivity(dialIntent);
+//                }
+//            }
+//        });
 
     }
 
@@ -503,7 +505,8 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                             }
                         }
                         broker_tv18.setText(agentInfo.getAgentName());
-                        broker_tv1.setText(agentInfo.getAgentName() + " " + agentInfo.getAgentPhone() + "  ");
+                        broker_tv1.setText(agentInfo.getAgentName());
+                        broker_call.setText(agentInfo.getAgentPhone());
                         /**
                          * 修改 20191023
                          */

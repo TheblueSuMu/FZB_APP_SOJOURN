@@ -1,5 +1,7 @@
 package com.xcy.fzb.captain_team.adapter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +51,7 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TeamMemberViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final TeamMemberViewHolder holder, final int position) {
 
         Log.i("MyCL", "集合长度：" + contacts.size());
         contact = contacts.get(position);
@@ -183,6 +185,18 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
             }
 
         }
+
+        holder.member_name_tv3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < list.size(); ++i){
+                    if(contacts.get(position).getName().equals(list.get(i).getName() + "@" + list.get(i).getId())){
+                        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + list.get(i).getPhone()));//跳转到拨号界面，同时传递电话号码
+                        holder.itemView.getContext().startActivity(dialIntent);
+                    }
+                }
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

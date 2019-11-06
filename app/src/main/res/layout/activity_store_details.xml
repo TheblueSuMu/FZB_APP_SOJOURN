@@ -104,13 +104,23 @@
                             android:textColor="#ff666666"
                             android:textSize="13sp" />
 
-                        <ImageView
+                        <TextView
                             android:id="@+id/store_details_call"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="5dp"
-                            android:src="@mipmap/icon_mine_call" />
+                            android:layout_marginLeft="9dp"
+                            android:text=""
+                            android:textColor="#334485"
+                            android:background="@drawable/x_color"
+                            android:textSize="13sp"/>
+<!--                        <ImageView-->
+<!--                            android:id="@+id/store_details_call"-->
+<!--                            android:layout_width="15dp"-->
+<!--                            android:layout_height="15dp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:src="@mipmap/icon_mine_call" />-->
                     </LinearLayout>
 
                     <LinearLayout
@@ -287,7 +297,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="10dp"
                                 android:text=""
-                                android:textColor="#ffac8f5c"
+                                android:textColor="#111111"
                                 android:textSize="20sp" />
 
                             <TextView
@@ -297,7 +307,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:text="经纪人"
-                                android:textColor="#ff333333"
+                                android:textColor="#111111"
                                 android:textSize="15sp" />
 
                         </RelativeLayout>

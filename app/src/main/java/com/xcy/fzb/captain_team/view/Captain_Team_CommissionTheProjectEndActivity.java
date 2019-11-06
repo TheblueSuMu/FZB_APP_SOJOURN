@@ -22,6 +22,9 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
@@ -231,27 +234,84 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
     }
 
     private void PopWindow() {
-        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
-        //处理popWindow 显示内容
-        handleListView(contentView);
-        //创建并显示popWindow
-        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        p.setTouchable(true);
-        p.setFocusable(true);
-        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
-        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int xOff;
-        int buttonWidth = commission_the_project_end_all.getWidth();
-        int popupwindowWidth = p.getContentView().getMeasuredWidth();
-        xOff = buttonWidth - popupwindowWidth;
-        p.showAsDropDown(commission_the_project_end_all, xOff, 0);
 
-        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
+        final List<String> list = new ArrayList<>();
+        list.add("全部");
+        list.add("只看未结清");
+        list.add("只看已结清");
+        if(FinalContents.getIdentity().equals("63")){
+
+        }else {
+            list.add("只看自己");
+        }
+        list.add("只看调单");
+        list.add("只看退单");
+
+
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_CommissionTheProjectEndActivity.this, new OnOptionsSelectListener() {
             @Override
-            public void onDismiss() {
-
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //              展示选中数据
+                commission_the_project_end_all.setText(list.get(options1));
+                if(FinalContents.getIdentity().equals("63")){
+                    if (options1 == 0) {
+                        status = "";
+                    } else if (options1 == 1) {
+                        status = "1";
+                    } else if (options1 == 2) {
+                        status = "2";
+                    } else if (options1 == 3) {
+                        status = "4";
+                    } else if (options1 == 4) {
+                        status = "5";
+                    }
+                }else {
+                    if (options1 == 0) {
+                        status = "";
+                    } else if (options1 == 1) {
+                        status = "1";
+                    } else if (options1 == 2) {
+                        status = "2";
+                    } else if (options1 == 3) {
+                        status = "3";
+                    } else if (options1 == 4) {
+                        status = "4";
+                    } else if (options1 == 5) {
+                        status = "5";
+                    }
+                }
+                initDataBean();
             }
-        });
+        })
+                .setSelectOptions(0)
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list);
+        //      展示
+        pvOptions.show();
+
+//        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
+//        //处理popWindow 显示内容
+//        handleListView(contentView);
+//        //创建并显示popWindow
+//        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        p.setTouchable(true);
+//        p.setFocusable(true);
+//        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
+//        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+//        int xOff;
+//        int buttonWidth = commission_the_project_end_all.getWidth();
+//        int popupwindowWidth = p.getContentView().getMeasuredWidth();
+//        xOff = buttonWidth - popupwindowWidth;
+//        p.showAsDropDown(commission_the_project_end_all, xOff, 0);
+//
+//        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//            @Override
+//            public void onDismiss() {
+//
+//            }
+//        });
     }
 
     // TODO 填写数据

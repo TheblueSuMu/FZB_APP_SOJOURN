@@ -41,7 +41,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
     RelativeLayout store_details_return;
     ImageView store_details_change;
-    ImageView store_details_call;
+    TextView store_details_call;
 
 
     RadioGroup store_details_rg1;
@@ -95,7 +95,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -285,7 +285,20 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         store_details_tv1.setText(companyInfo.getCompanyName());
                         store_details_tv2.setText(companyInfo.getCompanyAddress());
 
-                        store_details_tv3.setText("公司负责人：" + companyInfo.getShopownerName() + " " + companyInfo.getShopownerPhone());
+
+                        if(companyInfo.getShopownerName().equals("")){
+
+                        }else {
+                            store_details_tv3.setText("公司负责人：" + companyInfo.getShopownerName());
+                        }
+
+                        if(companyInfo.getShopownerPhone().equals("")){
+
+                        }else {
+                            store_details_call.setText(companyInfo.getShopownerPhone());
+                        }
+
+
                         store_details_tv13.setText(companyInfo.getCompanyName());
 
                         if (companyInfo.getShopownerPhone().equals("")) {
@@ -293,7 +306,6 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         } else {
                             store_details_call.setVisibility(View.VISIBLE);
                         }
-
 
 
                     }

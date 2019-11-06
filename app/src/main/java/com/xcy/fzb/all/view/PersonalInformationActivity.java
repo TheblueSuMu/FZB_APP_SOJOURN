@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -521,7 +522,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                 break;
 //头像
             case R.id.personal_rl_1:
-
                 //   弹出框
                 AlertDialog.Builder builder = new AlertDialog.Builder(PersonalInformationActivity.this);
                 builder.setTitle("请选择图片来源");
@@ -552,15 +552,12 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                 Uri photoUri = PersonalInformationActivity.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                                 file = uri2File(photoUri);
 //                                TODO 提交头像
-
                                 if (isPhoto.equals("")) {
                                     isPhoto = "拍照";
                                 }
-
-
                                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                                 startActivityForResult(intent, 1);
-                            } else {
+                            }else {
 
                             }
                             Toast.makeText(PersonalInformationActivity.this, "相机", Toast.LENGTH_SHORT).show();
@@ -580,7 +577,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                     }
                 });
                 builder.show();
-
                 break;
 //昵称
             case R.id.personal_rl_2:

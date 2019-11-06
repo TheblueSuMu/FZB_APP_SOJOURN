@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -134,6 +135,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
     String endDate3 = "";
     private PtrClassicFrameLayout ptrClassicFrameLayout;
 
+    ImageView all_no_information_S_S;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,6 +171,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         ptrClassicFrameLayout = findViewById(R.id.my_team_PtrClassic);
 
         market_time_ll1 = findViewById(R.id.my_team_ll1);
+        all_no_information_S_S = findViewById(R.id.all_no_information_S_S);
         market_time_ll2 = findViewById(R.id.my_team_ll2);
         market_time_ll3 = findViewById(R.id.my_team_ll3);
         market_time_ll4 = findViewById(R.id.my_team_ll4);
@@ -320,6 +324,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
             }
         });
         initMyTeamData();
+        initDailyTurnover();
     }
 
     @Override
@@ -707,14 +712,19 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
 
                     @Override
                     public void onNext(DailyTurnoverBean dailyTurnoverBean) {
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(Captain_Team_MyTeamActivity.this);
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        layoutManager.setScrollEnabled(false);
-                        market_time_rv.setLayoutManager(layoutManager);
-                        DailyTurnoverAdapter adapter = new DailyTurnoverAdapter(dailyTurnoverBean.getData());
-                        market_time_rv.setNestedScrollingEnabled(false);
-                        market_time_rv.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
+                        if(dailyTurnoverBean.getData().size() == 0){
+                            all_no_information_S_S.setVisibility(View.VISIBLE);
+                        }else {
+                            all_no_information_S_S.setVisibility(View.GONE);
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(Captain_Team_MyTeamActivity.this);
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            layoutManager.setScrollEnabled(false);
+                            market_time_rv.setLayoutManager(layoutManager);
+                            DailyTurnoverAdapter adapter = new DailyTurnoverAdapter(dailyTurnoverBean.getData());
+                            market_time_rv.setNestedScrollingEnabled(false);
+                            market_time_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
                     }
 
                     @Override

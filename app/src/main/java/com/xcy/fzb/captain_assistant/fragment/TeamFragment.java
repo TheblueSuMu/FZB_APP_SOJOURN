@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -132,9 +133,11 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
 
     String state = "2";
 
-    String type3 = "";
+    String type3 = "0";
     String startDate3 = "";
     String endDate3 = "";
+
+    ImageView all_no_information_S_S_S;
 
     public TeamFragment() {
         // Required empty public constructor
@@ -157,6 +160,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
 
         StatusBar.makeStatusBarTransparent(getActivity());
 
+        all_no_information_S_S_S = getActivity().findViewById(R.id.all_no_information_S_S_S);
         market_time_ll1 = getActivity().findViewById(R.id.team_ll1);
         market_time_ll2 = getActivity().findViewById(R.id.team_ll2);
         market_time_ll3 = getActivity().findViewById(R.id.team_ll3);
@@ -658,14 +662,19 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(DailyTurnoverBean dailyTurnoverBean) {
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        layoutManager.setScrollEnabled(false);
-                        market_time_rv.setLayoutManager(layoutManager);
-                        DailyTurnoverAdapter adapter = new DailyTurnoverAdapter(dailyTurnoverBean.getData());
-                        market_time_rv.setNestedScrollingEnabled(false);
-                        market_time_rv.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
+                        if(dailyTurnoverBean.getData().size() == 0){
+                            all_no_information_S_S_S.setVisibility(View.VISIBLE);
+                        }else {
+                            all_no_information_S_S_S.setVisibility(View.GONE);
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            layoutManager.setScrollEnabled(false);
+                            market_time_rv.setLayoutManager(layoutManager);
+                            DailyTurnoverAdapter adapter = new DailyTurnoverAdapter(dailyTurnoverBean.getData());
+                            market_time_rv.setNestedScrollingEnabled(false);
+                            market_time_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
                     }
 
                     @Override
@@ -755,14 +764,14 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
 
                         FinalContents.setAgentId(FinalContents.getUserID());
 
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        layoutManager.setScrollEnabled(false);
-                        market_time_rv.setLayoutManager(layoutManager);
-                        MyTeam2Adapter adapter = new MyTeam2Adapter(myTeamBean.getData().getDailyTurnover());
-                        market_time_rv.setNestedScrollingEnabled(false);
-                        market_time_rv.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
+//                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
+//                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//                        layoutManager.setScrollEnabled(false);
+//                        market_time_rv.setLayoutManager(layoutManager);
+//                        MyTeam2Adapter adapter = new MyTeam2Adapter(myTeamBean.getData().getDailyTurnover());
+//                        market_time_rv.setNestedScrollingEnabled(false);
+//                        market_time_rv.setAdapter(adapter);
+//                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
