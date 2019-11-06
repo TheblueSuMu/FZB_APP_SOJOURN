@@ -292,15 +292,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         areaMap.put(6,"");
         areaMap.put(7,"");
 
-        traitMap.put(0,"");
-        traitMap.put(1,"");
-        traitMap.put(2,"");
-        traitMap.put(3,"");
-        traitMap.put(4,"");
-        traitMap.put(5,"");
-        traitMap.put(6,"");
-        traitMap.put(7,"");
-
         typeMap.put(0,"");
         typeMap.put(1,"");
         typeMap.put(2,"");
@@ -424,6 +415,11 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                         productTypeListBeans = reportBean.getData().getProductTypeList();
                         projectLabelListBeans = reportBean.getData().getProjectLabelList();
                         purposeListBeans = reportBean.getData().getPurposeList();
+
+                        for (int i = 0;i < projectLabelListBeans.size();i++){
+                            traitMap.put(i,"");
+                        }
+
                         GridLayoutManager gridLayoutManager = new GridLayoutManager(ReportActivity.this,4);
                         gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
                         report_rv.setLayoutManager(gridLayoutManager);
@@ -435,11 +431,11 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                             public void onItemClick(CheckBox checkBox, int postion) {
                                 if (checkBox.isChecked()) {
                                     traitMap.put(postion,","+ projectLabelListBeans.get(postion).getId());
-                                    Log.i("楼盘特色","来来来："+projectLabelListBeans.get(postion).getId()+"名字:"+projectLabelListBeans.get(postion).getLable());
+                                    Log.i("楼盘特色","来来来："+traitMap.get(postion)+"名字:"+projectLabelListBeans.get(postion).getLable());
                                 }else {
                                     traitMap.put(postion,"");
                                 }
-
+                                Log.i("楼盘特色","数据："+traitMap.get(postion));
                             }
                         });
                     }

@@ -155,6 +155,12 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private List<String> names = new ArrayList<>(); //折线名字集合
     private List<Integer> colour = new ArrayList<>();//折线颜色集合
     private List<String> indexList;
+    private int year3;
+    private int month3;
+    private int dayOfMonth3;
+    private int year;
+    private int month;
+    private int dayOfMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -321,9 +327,9 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     //TODO 详情页时间赋值
     private void initDate(){
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH)+1;
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
         details_the_project_end_time1.setText("<"+string);
@@ -333,11 +339,11 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time5.setText("<"+string);
         details_the_project_end_time6.setText("-"+string+" >");
 
-        dateTimePickerView.setStartDate(new GregorianCalendar(year-2, month, dayOfMonth));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year -2, month, dayOfMonth));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
 
-        dateTimePickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year +1, month, dayOfMonth));
 
         particulars_picker_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -364,6 +370,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dateTimePickerView.setStartDate(new GregorianCalendar(year-2, month, dayOfMonth));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -382,6 +390,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dateTimePickerView.setStartDate(new GregorianCalendar(year-2, month, dayOfMonth));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -403,6 +413,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dateTimePickerView.setStartDate(new GregorianCalendar(year-2, month, dayOfMonth));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -421,6 +433,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dateTimePickerView.setStartDate(new GregorianCalendar(year-2, month, dayOfMonth));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -441,14 +455,16 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dateTimePickerView.setStartDate(new GregorianCalendar(year-2, month, dayOfMonth));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
                     public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        year3 = date.get(Calendar.YEAR);
+                        month3 = date.get(Calendar.MONTH);
+                        dayOfMonth3 = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year3, month3 + 1, dayOfMonth3);
                         beforeDate3 = dateString;
                         details_the_project_end_time5.setText("<"+dateString);
                     }
@@ -456,10 +472,19 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             }
         });
 
+         year3 = calendar.get(Calendar.YEAR);
+         month3 = calendar.get(Calendar.MONTH)+1;
+         dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
+         initDate3();
+    }
+
+    private void initDate3(){
         //                TODO 结束时间
         details_the_project_end_time6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dateTimePickerView.setStartDate(new GregorianCalendar(year3, month3, dayOfMonth3));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year3, month3, dayOfMonth3+5));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override

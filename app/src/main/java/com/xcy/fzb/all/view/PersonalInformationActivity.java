@@ -48,7 +48,6 @@ import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.captain_team.view.Captain_Team_AddAConsultantActivity;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -229,7 +228,12 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             personal_phone.setText(data.getPhone());
 
                             UserMessageBean.DataBean.StoreManageBean storeManage = data.getStoreManage();
-                            personal_store.setText(storeManage.getStoreName());
+                            if(storeManage.getStoreName().equals("")){
+                                information_rl.setVisibility(View.GONE);
+                                information_ll.setVisibility(View.GONE);
+                            }else {
+                                personal_store.setText(storeManage.getStoreName());
+                            }
 
                         }
 

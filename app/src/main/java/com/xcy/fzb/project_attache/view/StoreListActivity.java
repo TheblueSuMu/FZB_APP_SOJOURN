@@ -478,17 +478,10 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                 if (listData.get(i).getCompanyId().equals(itemName)) {
                     for (int j = 0; j < listData.size(); ++j) {
                         if (mContactModels.get(i).getName().equals((listData.get(j).getCompanyName() + listData.get(j).getStoreName()))) {
-
-                            if(listData.get(j).getStoreNum().equals("0")){
-                                Toast.makeText(StoreListActivity.this,"旗下无门店，请另选其它公司",Toast.LENGTH_SHORT).show();
-                            }else {
-                                FinalContents.setAddtype2(listData.get(j).getCompanyName());
-                                FinalContents.setCompanyManageId(listData.get(j).getCompanyId());
-                                FinalContents.setMyAddType("");
-                                finish();
-                            }
-
-
+                            FinalContents.setAddtype2(listData.get(j).getCompanyName());
+                            FinalContents.setCompanyManageId(listData.get(j).getCompanyId());
+                            FinalContents.setMyAddType("");
+                            finish();
                         }
                     }
 

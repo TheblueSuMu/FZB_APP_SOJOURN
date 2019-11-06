@@ -232,6 +232,11 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
                     @Override
                     public void onNext(final LabelBean labelBean) {
                         if (labelBean.getData().size() != 0) {
+
+                            for (int i = 0; i < LabelMap.size();i++){
+                                LabelMap.put(i," ");
+                            }
+
                             GridLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),4);
                             linearLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
                             screening_label_rv.setLayoutManager(linearLayoutManager);
@@ -245,12 +250,20 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
                                     if (checkBox.isChecked()) {
                                         LabelMap.put(postion,","+ labelBean.getData().get(postion).getLable());
                                         Log.i("项目卖点","来来来："+labelBean.getData().get(postion).getId()+"名字:"+labelBean.getData().get(postion).getLable());
-                                    }else {
+
+                                    }else if (!checkBox.isChecked()) {
                                         LabelMap.put(postion,"");
                                     }
-                                    for (int i = 0;i < LabelMap.size();i++){
-                                        projectLabel = projectLabel + LabelMap.get(i);
+                                    Log.i("项目卖点","mz："+ LabelMap.get(postion));
+
+                                    for (int j = 0;j < labelBean.getData().size();j++){
+                                        if (LabelMap.get(j) == null) {
+                                        }else {
+                                            projectLabel = projectLabel + LabelMap.get(j);
+                                        }
                                     }
+//                                    projectLabel = projectLabel + LabelMap.get(postion);
+
                                     Log.i("项目卖点","数据："+ projectLabel);
                                 }
                             });

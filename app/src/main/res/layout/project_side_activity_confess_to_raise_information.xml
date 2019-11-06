@@ -212,7 +212,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="20dp"
                             android:background="#FFFFFF"
                             android:gravity="right"
                             android:hint="请输入认筹客户姓名"
@@ -250,7 +249,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="20dp"
                             android:orientation="horizontal">
 
                             <RadioButton
@@ -295,7 +293,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="20dp"
                             android:background="#FFFFFF"
                             android:maxLength="11"
                             android:gravity="right"
@@ -336,7 +333,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="20dp"
                             android:background="#FFFFFF"
                             android:digits="0123456789xX"
                             android:gravity="right"
@@ -419,7 +415,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="20dp"
                             android:background="#FFFFFF"
                             android:gravity="right"
                             android:hint="请输入意向楼栋"
@@ -500,7 +495,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="20dp"
                             android:background="#FFFFFF"
                             android:gravity="right"
                             android:hint="请输入意向面积"

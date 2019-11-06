@@ -579,9 +579,9 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 //                                    layoutManager.setOrientation(GridLayoutManager.VERTICAL);
 //                                    nationRv.setLayoutManager(layoutManager);
 //                                } else if (nationlist.size() <= 4 && nationlist.size() != 0) {
-                                    LinearLayoutManager layoutManager = new LinearLayoutManager(OverSeaActivity.this);
-                                    layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-                                    nationRv.setLayoutManager(layoutManager);
+                                LinearLayoutManager layoutManager = new LinearLayoutManager(OverSeaActivity.this);
+                                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                nationRv.setLayoutManager(layoutManager);
 //                                }
                                 CityAdapter recyclerAdapter = new CityAdapter(nationlist);
                                 nationRv.setAdapter(recyclerAdapter);
