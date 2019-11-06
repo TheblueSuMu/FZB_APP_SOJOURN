@@ -104,13 +104,23 @@
                             android:textColor="#ff666666"
                             android:textSize="13sp" />
 
-                        <ImageView
+                        <TextView
                             android:id="@+id/store_details_call"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="5dp"
-                            android:src="@mipmap/icon_mine_call" />
+                            android:layout_marginLeft="9dp"
+                            android:text=""
+                            android:textColor="#334485"
+                            android:background="@drawable/x_color"
+                            android:textSize="13sp"/>
+<!--                        <ImageView-->
+<!--                            android:id="@+id/store_details_call"-->
+<!--                            android:layout_width="15dp"-->
+<!--                            android:layout_height="15dp"-->
+<!--                            android:layout_gravity="center_vertical"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:src="@mipmap/icon_mine_call" />-->
                     </LinearLayout>
 
                     <LinearLayout
@@ -235,75 +245,111 @@
                         android:background="#EEEEED"></LinearLayout>
 
 
-                    <LinearLayout
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:layout_marginRight="30dp"-->
+<!--                        android:layout_marginBottom="20dp"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <RelativeLayout-->
+<!--                            android:id="@+id/store_details_rl1"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:background="@mipmap/cp1">-->
+
+<!--                            <TextView-->
+<!--                                android:id="@+id/store_details_tv6"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginLeft="10dp"-->
+<!--                                android:layout_marginTop="10dp"-->
+<!--                                android:text=""-->
+<!--                                android:textColor="#111111"-->
+<!--                                android:textSize="20sp" />-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_alignParentBottom="true"-->
+<!--                                android:layout_marginLeft="10dp"-->
+<!--                                android:layout_marginBottom="10dp"-->
+<!--                                android:text="门店"-->
+<!--                                android:textColor="#111111"-->
+<!--                                android:textSize="15sp" />-->
+<!--                        </RelativeLayout>-->
+
+<!--                        <RelativeLayout-->
+<!--                            android:id="@+id/store_details_rl2"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginLeft="15dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:background="@mipmap/cp2">-->
+
+<!--                            <TextView-->
+<!--                                android:id="@+id/store_details_tv7"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginLeft="10dp"-->
+<!--                                android:layout_marginTop="10dp"-->
+<!--                                android:text=""-->
+<!--                                android:textColor="#111111"-->
+<!--                                android:textSize="20sp" />-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_alignParentBottom="true"-->
+<!--                                android:layout_marginLeft="10dp"-->
+<!--                                android:layout_marginBottom="10dp"-->
+<!--                                android:text="经纪人"-->
+<!--                                android:textColor="#111111"-->
+<!--                                android:textSize="15sp" />-->
+
+<!--                        </RelativeLayout>-->
+
+<!--                    </LinearLayout>-->
+
+
+                    <com.xcy.fzb.all.utils.MyViewPager
+                        android:id="@+id/vpager_one_s2"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginBottom="20dp"
+                        android:layout_height="155dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="25dp">
+
+                    </com.xcy.fzb.all.utils.MyViewPager>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="5dp"
                         android:orientation="horizontal">
 
-                        <RelativeLayout
-                            android:id="@+id/store_details_rl1"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@mipmap/cp1">
+                        <LinearLayout
+                            android:id="@+id/fragment_llss_1"
+                            android:orientation="horizontal"
+                            android:layout_width="23dp"
+                            android:layout_height="3dp"
+                            android:background="#334485"></LinearLayout>
 
-                            <TextView
-                                android:id="@+id/store_details_tv6"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp"
-                                android:text=""
-                                android:textColor="#111111"
-                                android:textSize="20sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:text="门店"
-                                android:textColor="#111111"
-                                android:textSize="15sp" />
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/store_details_rl2"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
-                            android:layout_weight="1"
-                            android:background="@mipmap/cp2">
-
-                            <TextView
-                                android:id="@+id/store_details_tv7"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp"
-                                android:text=""
-                                android:textColor="#ffac8f5c"
-                                android:textSize="20sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:text="经纪人"
-                                android:textColor="#ff333333"
-                                android:textSize="15sp" />
-
-                        </RelativeLayout>
+                        <LinearLayout
+                            android:id="@+id/fragment_llss_2"
+                            android:orientation="horizontal"
+                            android:layout_width="23dp"
+                            android:layout_height="3dp"
+                            android:layout_marginLeft="5dp"
+                            android:background="#EEEEEE"></LinearLayout>
 
                     </LinearLayout>
-
 
                     <LinearLayout
                         android:layout_width="match_parent"

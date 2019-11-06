@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,28 +14,41 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.MyFragmentPagerAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.DailyTurnoverBean;
 import com.xcy.fzb.all.database.DataStatisticsBean;
 import com.xcy.fzb.all.database.MyTeamBean;
 import com.xcy.fzb.all.database.TeamCommissionsBean;
+import com.xcy.fzb.all.fragment.MyFragment1;
+import com.xcy.fzb.all.fragment.MyFragment2;
+import com.xcy.fzb.all.fragment.MyFragment3;
+import com.xcy.fzb.all.fragment.MyFragment5;
+import com.xcy.fzb.all.fragment.MyFragment6;
+import com.xcy.fzb.all.persente.Fragnemt_SS;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.MyViewPager;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_team.adapter.DailyTurnoverAdapter;
 import com.xcy.fzb.captain_team.adapter.MyTeamAdapter;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import androidx.viewpager.widget.ViewPager;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -49,7 +63,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import top.defaults.view.DateTimePickerView;
 
 //TODO 圈层4-1我的团队
-public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnClickListener {
+public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnClickListener, MyViewPager.OnSingleTouchListener {
 
     RelativeLayout market_img;
 
@@ -134,6 +148,16 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
     String endDate3 = "";
     private PtrClassicFrameLayout ptrClassicFrameLayout;
 
+    ImageView all_no_information_S_S;
+
+
+    private MyViewPager vpager_one;
+    private ArrayList<Fragment> aList = new ArrayList<>();
+    private MyFragmentPagerAdapter mAdapter;
+
+    LinearLayout fragment_ll_1;
+    LinearLayout fragment_ll_2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,7 +165,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -167,7 +191,46 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         StatusBar.makeStatusBarTransparent(this);
         ptrClassicFrameLayout = findViewById(R.id.my_team_PtrClassic);
 
+        fragment_ll_2 = findViewById(R.id.fragment_llsss_2);
+        fragment_ll_1 = findViewById(R.id.fragment_llsss_1);
+        vpager_one = findViewById(R.id.vpager_one_s4);
+        vpager_one.setOnSingleTouchListener(this);
+        if (FinalContents.getFragmentSS().equals("0")) {
+            mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+            FinalContents.setFragmentSS("1");
+            aList.add(new MyFragment5());
+            aList.add(new MyFragment6());
+
+            mAdapter.setListfragment(aList);
+            vpager_one.setAdapter(mAdapter);
+            vpager_one.setCurrentItem(0);
+        }
+
+        vpager_one.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    fragment_ll_1.setBackgroundColor(Color.parseColor("#334485"));
+                    fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                } else if (position == 1) {
+                    fragment_ll_2.setBackgroundColor(Color.parseColor("#334485"));
+                    fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         market_time_ll1 = findViewById(R.id.my_team_ll1);
+        all_no_information_S_S = findViewById(R.id.all_no_information_S_S);
         market_time_ll2 = findViewById(R.id.my_team_ll2);
         market_time_ll3 = findViewById(R.id.my_team_ll3);
         market_time_ll4 = findViewById(R.id.my_team_ll4);
@@ -184,7 +247,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         market_time_ll15 = findViewById(R.id.my_team_ll15);
         market_time_ll16 = findViewById(R.id.my_team_ll16);
 
-        market_time_tv1 = findViewById(R.id.my_team_tv1);
+//        market_time_tv1 = findViewById(R.id.my_team_tv1);
         market_time_tv2 = findViewById(R.id.my_team_tv2);
         market_time_tv3 = findViewById(R.id.my_team_tv3);
         market_time_tv4 = findViewById(R.id.my_team_tv4);
@@ -194,7 +257,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         market_time_tv8 = findViewById(R.id.my_team_tv8);
         market_time_tv9 = findViewById(R.id.my_team_tv9);
         market_time_tv10 = findViewById(R.id.my_team_tv10);
-        market_time_tv11 = findViewById(R.id.my_team_tv11);
+//        market_time_tv11 = findViewById(R.id.my_team_tv11);
         market_time_tv12 = findViewById(R.id.my_team_tv12);
         market_time_tv13 = findViewById(R.id.my_team_tv13);
 
@@ -222,8 +285,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         market_time_rb11 = findViewById(R.id.my_team_rb11);
         market_time_rb12 = findViewById(R.id.my_team_rb12);
 
-        market_time_rl1 = findViewById(R.id.my_team_rl1);
-        market_time_rl2 = findViewById(R.id.my_team_rl2);
+//        market_time_rl1 = findViewById(R.id.my_team_rl1);
+//        market_time_rl2 = findViewById(R.id.my_team_rl2);
 
         market_time_rv = findViewById(R.id.my_team_rv);
         market_img = findViewById(R.id.my_team_img);
@@ -272,8 +335,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         dateTimePickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
 
         market_img.setOnClickListener(this);
-        market_time_rl1.setOnClickListener(this);
-        market_time_rl2.setOnClickListener(this);
+//        market_time_rl1.setOnClickListener(this);
+//        market_time_rl2.setOnClickListener(this);
         market_time_ll1.setOnClickListener(this);
         market_time_ll2.setOnClickListener(this);
         market_time_ll3.setOnClickListener(this);
@@ -306,7 +369,6 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         market_time_rb12.setOnClickListener(this);
 
 
-
         report_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -321,6 +383,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
             }
         });
         initMyTeamData();
+        initDailyTurnover();
     }
 
     @Override
@@ -331,22 +394,22 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
             case R.id.my_team_img:
                 finish();
                 break;
-//            TODO 销售（上）
-            case R.id.my_team_rl1:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_TeamMemberActivity.class);
-                intent.putExtra("tdz","1");
-                startActivity(intent);
-                break;
-//            TODO 顾问（上）
-            case R.id.my_team_rl2:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_TeamMemberActivity.class);
-                intent.putExtra("tdz","2");
-                startActivity(intent);
-                break;
+////            TODO 销售（上）
+//            case R.id.my_team_rl1:
+//                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_TeamMemberActivity.class);
+//                intent.putExtra("tdz","1");
+//                startActivity(intent);
+//                break;
+////            TODO 顾问（上）
+//            case R.id.my_team_rl2:
+//                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_TeamMemberActivity.class);
+//                intent.putExtra("tdz","2");
+//                startActivity(intent);
+//                break;
 //            TODO 报备
             case R.id.my_team_ll1:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
-                intent.putExtra("client","1");
+                intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_MyClientActivity.class);
+                intent.putExtra("client", "1");
                 /**
                  * 修改
                  */
@@ -357,8 +420,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 break;
 //            TODO 到访
             case R.id.my_team_ll2:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
-                intent.putExtra("client","2");
+                intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_MyClientActivity.class);
+                intent.putExtra("client", "2");
                 /**
                  * 修改
                  */
@@ -369,8 +432,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 break;
 //            TODO 登岛
             case R.id.my_team_ll3:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
-                intent.putExtra("client","3");
+                intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_MyClientActivity.class);
+                intent.putExtra("client", "3");
                 /**
                  * 修改
                  */
@@ -381,8 +444,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 break;
 //            TODO 认筹
             case R.id.my_team_ll4:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
-                intent.putExtra("client","4");
+                intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_MyClientActivity.class);
+                intent.putExtra("client", "4");
                 /**
                  * 修改
                  */
@@ -393,8 +456,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 break;
 //            TODO 成交
             case R.id.my_team_ll5:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
-                intent.putExtra("client","5");
+                intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_MyClientActivity.class);
+                intent.putExtra("client", "5");
                 /**
                  * 修改
                  */
@@ -405,8 +468,8 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 break;
 //            TODO 失效
             case R.id.my_team_ll6:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_MyClientActivity.class);
-                intent.putExtra("client","6");
+                intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_MyClientActivity.class);
+                intent.putExtra("client", "6");
                 /**
                  * 修改
                  */
@@ -417,17 +480,17 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 break;
 //            TODO 总佣金
             case R.id.my_team_ll7:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_CommissionTheProjectEndActivity.class);
+                intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_CommissionTheProjectEndActivity.class);
                 startActivity(intent);
                 break;
 //            TODO 已结
             case R.id.my_team_ll8:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_CommissionTheProjectEndActivity.class);
+                intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_CommissionTheProjectEndActivity.class);
                 startActivity(intent);
                 break;
 //            TODO 未结
             case R.id.my_team_ll9:
-                intent = new Intent(Captain_Team_MyTeamActivity.this,Captain_Team_CommissionTheProjectEndActivity.class);
+                intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_CommissionTheProjectEndActivity.class);
                 startActivity(intent);
                 break;
 //            TODO 销售（下）
@@ -648,7 +711,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
 
 
     // TODO 数据统计
-    private void initDataStatistics(){
+    private void initDataStatistics() {
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -656,7 +719,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(),FinalContents.getUserID(),type1,startDate1,endDate1);
+        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(), FinalContents.getUserID(), type1, startDate1, endDate1);
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataStatisticsBean>() {
@@ -668,12 +731,12 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                     @Override
                     public void onNext(DataStatisticsBean dataStatisticsBean) {
 
-                        market_time_tv2.setText(dataStatisticsBean.getData().getReportNumber()+"");
-                        market_time_tv3.setText(dataStatisticsBean.getData().getAccessingNumber()+"");
-                        market_time_tv4.setText(dataStatisticsBean.getData().getIsIslandNumber()+"");
-                        market_time_tv5.setText(dataStatisticsBean.getData().getEarnestMoneyNumber()+"");
-                        market_time_tv6.setText(dataStatisticsBean.getData().getTradeNumber()+"");
-                        market_time_tv7.setText(dataStatisticsBean.getData().getInvalidNum()+"");
+                        market_time_tv2.setText(dataStatisticsBean.getData().getReportNumber() + "");
+                        market_time_tv3.setText(dataStatisticsBean.getData().getAccessingNumber() + "");
+                        market_time_tv4.setText(dataStatisticsBean.getData().getIsIslandNumber() + "");
+                        market_time_tv5.setText(dataStatisticsBean.getData().getEarnestMoneyNumber() + "");
+                        market_time_tv6.setText(dataStatisticsBean.getData().getTradeNumber() + "");
+                        market_time_tv7.setText(dataStatisticsBean.getData().getInvalidNum() + "");
 
                     }
 
@@ -690,14 +753,14 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
     }
 
     // TODO 成交TOP5单
-    private void initDailyTurnover(){
+    private void initDailyTurnover() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DailyTurnoverBean> clientCommissions = fzbInterface.getDailyTurnover(FinalContents.getUserID(),FinalContents.getUserID(),state,type3,startDate3,endDate3);
+        Observable<DailyTurnoverBean> clientCommissions = fzbInterface.getDailyTurnover(FinalContents.getUserID(), FinalContents.getUserID(), state, type3, startDate3, endDate3);
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DailyTurnoverBean>() {
@@ -708,14 +771,19 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
 
                     @Override
                     public void onNext(DailyTurnoverBean dailyTurnoverBean) {
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(Captain_Team_MyTeamActivity.this);
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        layoutManager.setScrollEnabled(false);
-                        market_time_rv.setLayoutManager(layoutManager);
-                        DailyTurnoverAdapter adapter = new DailyTurnoverAdapter(dailyTurnoverBean.getData());
-                        market_time_rv.setNestedScrollingEnabled(false);
-                        market_time_rv.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
+                        if (dailyTurnoverBean.getData().size() == 0) {
+                            all_no_information_S_S.setVisibility(View.VISIBLE);
+                        } else {
+                            all_no_information_S_S.setVisibility(View.GONE);
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(Captain_Team_MyTeamActivity.this);
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            layoutManager.setScrollEnabled(false);
+                            market_time_rv.setLayoutManager(layoutManager);
+                            DailyTurnoverAdapter adapter = new DailyTurnoverAdapter(dailyTurnoverBean.getData());
+                            market_time_rv.setNestedScrollingEnabled(false);
+                            market_time_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
                     }
 
                     @Override
@@ -731,14 +799,14 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
     }
 
     // TODO 团队佣金
-    private void initTeamCommissions(){
+    private void initTeamCommissions() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<TeamCommissionsBean> clientCommissions = fzbInterface.getTeamCommissions(FinalContents.getUserID(),FinalContents.getUserID(),type2,startDate2,endDate2);
+        Observable<TeamCommissionsBean> clientCommissions = fzbInterface.getTeamCommissions(FinalContents.getUserID(), FinalContents.getUserID(), type2, startDate2, endDate2);
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<TeamCommissionsBean>() {
@@ -749,9 +817,9 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
 
                     @Override
                     public void onNext(TeamCommissionsBean teamCommissionsBean) {
-                        market_time_tv8.setText(teamCommissionsBean.getData().getTotalAmount()+"");
-                        market_time_tv9.setText(teamCommissionsBean.getData().getAlreadyAmount()+"");
-                        market_time_tv10.setText(teamCommissionsBean.getData().getNotAmount()+"");
+                        market_time_tv8.setText(teamCommissionsBean.getData().getTotalAmount() + "");
+                        market_time_tv9.setText(teamCommissionsBean.getData().getAlreadyAmount() + "");
+                        market_time_tv10.setText(teamCommissionsBean.getData().getNotAmount() + "");
                     }
 
                     @Override
@@ -768,7 +836,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
 
 
     // TODO 我的团队显示数据
-    private void initMyTeamData(){
+    private void initMyTeamData() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -786,19 +854,22 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
 
                     @Override
                     public void onNext(MyTeamBean myTeamBean) {
-                        market_time_tv11.setText(myTeamBean.getData().getSalesNum()+"");
-                        market_time_tv1.setText(myTeamBean.getData().getCounselorNum()+"");
 
-                        market_time_tv2.setText(myTeamBean.getData().getDataStatistics().getReportNumber()+"");
-                        market_time_tv3.setText(myTeamBean.getData().getDataStatistics().getAccessingNumber()+"");
-                        market_time_tv4.setText(myTeamBean.getData().getDataStatistics().getIsIslandNumber()+"");
-                        market_time_tv5.setText(myTeamBean.getData().getDataStatistics().getEarnestMoneyNumber()+"");
-                        market_time_tv6.setText(myTeamBean.getData().getDataStatistics().getTradeNumber()+"");
-                        market_time_tv7.setText(myTeamBean.getData().getDataStatistics().getInvalidNum()+"");
+//                        market_time_tv11.setText(myTeamBean.getData().getSalesNum()+"");
+//                        market_time_tv1.setText(myTeamBean.getData().getCounselorNum()+"");
 
-                        market_time_tv8.setText(myTeamBean.getData().getMoneyData().getTotalAmount()+"");
-                        market_time_tv9.setText(myTeamBean.getData().getMoneyData().getAlreadyAmount()+"");
-                        market_time_tv10.setText(myTeamBean.getData().getMoneyData().getNotAmount()+"");
+                        EventBus.getDefault().post(new Fragnemt_SS("", "", "", myTeamBean.getData().getSalesNum() + "", myTeamBean.getData().getCounselorNum() + ""));
+
+                        market_time_tv2.setText(myTeamBean.getData().getDataStatistics().getReportNumber() + "");
+                        market_time_tv3.setText(myTeamBean.getData().getDataStatistics().getAccessingNumber() + "");
+                        market_time_tv4.setText(myTeamBean.getData().getDataStatistics().getIsIslandNumber() + "");
+                        market_time_tv5.setText(myTeamBean.getData().getDataStatistics().getEarnestMoneyNumber() + "");
+                        market_time_tv6.setText(myTeamBean.getData().getDataStatistics().getTradeNumber() + "");
+                        market_time_tv7.setText(myTeamBean.getData().getDataStatistics().getInvalidNum() + "");
+
+                        market_time_tv8.setText(myTeamBean.getData().getMoneyData().getTotalAmount() + "");
+                        market_time_tv9.setText(myTeamBean.getData().getMoneyData().getAlreadyAmount() + "");
+                        market_time_tv10.setText(myTeamBean.getData().getMoneyData().getNotAmount() + "");
 
                         MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(Captain_Team_MyTeamActivity.this);
                         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -820,5 +891,21 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
 
                     }
                 });
+    }
+
+    @Override
+    public void onSingleTouch() {
+
+        int currentItem = vpager_one.getCurrentItem();
+        if (currentItem == 0) {
+            intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_TeamMemberActivity.class);
+            intent.putExtra("tdz", "1");
+            startActivity(intent);
+        } else if (currentItem == 1) {
+            intent = new Intent(Captain_Team_MyTeamActivity.this, Captain_Team_TeamMemberActivity.class);
+            intent.putExtra("tdz", "2");
+            startActivity(intent);
+        }
+
     }
 }

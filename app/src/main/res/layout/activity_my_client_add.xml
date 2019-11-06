@@ -9,9 +9,9 @@
     tools:context=".all.view.MyClientAddActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -33,7 +33,6 @@
             </RelativeLayout>
 
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,8 +49,8 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_marginBottom="70dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="70dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -93,11 +92,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:imeOptions="actionNext"
-                            android:singleLine="true"
                             android:layout_marginLeft="100dp"
                             android:layout_marginRight="50dp"
                             android:background="#FFFFFF"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
                             android:textSize="15sp" />
 
                         <TextView
@@ -137,22 +136,29 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="15dp">
 
-                        <TextView
-                            android:id="@+id/client_add_photo_tv_1"
+                        <LinearLayout
+                            android:id="@+id/client_add_photo_ll_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="本人手机"
-                            android:textColor="#ff999999"
-                            android:textSize="15sp" />
+                            android:layout_centerVertical="true">
 
-                        <ImageView
-                            android:id="@+id/client_add_photo_img_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="70dp"
-                            android:src="@mipmap/icon_add_3" />
+                            <TextView
+                                android:id="@+id/client_add_photo_tv_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="本人手机"
+                                android:textColor="#ff999999"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:id="@+id/client_add_photo_img_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="5dp"
+                                android:src="@mipmap/icon_add_3" />
+                        </LinearLayout>
+
 
                         <EditText
                             android:id="@+id/client_add_photo_et_1"
@@ -161,12 +167,12 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="100dp"
                             android:layout_marginRight="50dp"
-                            android:inputType="number"
-                            android:imeOptions="actionNext"
-                            android:singleLine="true"
-                            android:digits="1234567890"
-                            android:maxLength="13"
                             android:background="#FFFFFF"
+                            android:digits="1234567890"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="13"
+                            android:singleLine="true"
                             android:textSize="15sp" />
 
                         <ImageView
@@ -197,22 +203,28 @@
                         android:layout_marginRight="15dp"
                         android:visibility="gone">
 
-                        <TextView
-                            android:id="@+id/client_add_photo_tv_2"
+                        <LinearLayout
+                            android:id="@+id/client_add_photo_ll_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="本人手机"
-                            android:textColor="#ff999999"
-                            android:textSize="15sp" />
+                            android:layout_centerVertical="true">
 
-                        <ImageView
-                            android:id="@+id/client_add_photo_img_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="70dp"
-                            android:src="@mipmap/icon_add_3"/>
+                            <TextView
+                                android:id="@+id/client_add_photo_tv_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="本人手机"
+                                android:textColor="#ff999999"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:id="@+id/client_add_photo_img_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="5dp"
+                                android:src="@mipmap/icon_add_3" />
+                        </LinearLayout>
 
                         <EditText
                             android:id="@+id/client_add_photo_et_2"
@@ -221,12 +233,12 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="100dp"
                             android:layout_marginRight="50dp"
-                            android:inputType="number"
-                            android:imeOptions="actionNext"
-                            android:singleLine="true"
-                            android:digits="1234567890"
-                            android:maxLength="13"
                             android:background="#FFFFFF"
+                            android:digits="1234567890"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="13"
+                            android:singleLine="true"
                             android:textSize="15sp" />
 
 
@@ -260,22 +272,29 @@
                         android:layout_marginRight="15dp"
                         android:visibility="gone">
 
-                        <TextView
-                            android:id="@+id/client_add_photo_tv_3"
+                        <LinearLayout
+                            android:id="@+id/client_add_photo_ll_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="本人手机"
-                            android:textColor="#ff999999"
-                            android:textSize="15sp" />
+                            android:layout_centerVertical="true">
 
-                        <ImageView
-                            android:id="@+id/client_add_photo_img_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="70dp"
-                            android:src="@mipmap/icon_add_3"/>
+                            <TextView
+                                android:id="@+id/client_add_photo_tv_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="本人手机"
+                                android:textColor="#ff999999"
+                                android:textSize="15sp" />
+
+                            <ImageView
+                                android:id="@+id/client_add_photo_img_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="5dp"
+                                android:src="@mipmap/icon_add_3" />
+                        </LinearLayout>
 
                         <EditText
                             android:id="@+id/client_add_photo_et_3"
@@ -284,12 +303,12 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="100dp"
                             android:layout_marginRight="50dp"
-                            android:inputType="number"
-                            android:imeOptions="actionNext"
-                            android:singleLine="true"
-                            android:digits="1234567890"
-                            android:maxLength="13"
                             android:background="#FFFFFF"
+                            android:digits="1234567890"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="13"
+                            android:singleLine="true"
                             android:textSize="15sp" />
 
                         <ImageView
@@ -320,9 +339,9 @@
                 android:id="@+id/client_add_btn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="38dp"
                 android:layout_marginRight="38dp"
-                android:layout_alignParentBottom="true"
                 android:layout_marginBottom="25dp"
                 android:background="@drawable/points_dialog_but"
                 android:text="确定"
@@ -335,29 +354,29 @@
 
     <RelativeLayout
         android:id="@+id/all_no_network"
-        android:background="#fff"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageimage"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network" />
 
         <Button
-            android:layout_below="@id/imageimage"
             android:id="@+id/all_no_reload"
-            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageimage"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
             android:background="@drawable/button_back"
             android:text="重新加载"
-            android:textSize="12sp"
             android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="12sp" />
 
     </RelativeLayout>
 

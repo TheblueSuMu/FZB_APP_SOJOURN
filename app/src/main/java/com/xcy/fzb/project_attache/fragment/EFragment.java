@@ -208,6 +208,8 @@ public class EFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     FinalContents.setIFSP("1");
+                    FinalContents.setFragmentSS("0");
+                    FinalContents.setFragmentSSS("0");
                     intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                     getActivity().finish();

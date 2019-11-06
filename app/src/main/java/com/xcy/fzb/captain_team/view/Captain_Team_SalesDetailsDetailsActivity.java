@@ -231,6 +231,14 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
 
         }
 
+        sales_details_details_tv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + agentDetails.getData().getAgentInfo().getPhone()));//跳转到拨号界面，同时传递电话号码
+                startActivity(dialIntent);
+            }
+        });
+
         initData();
     }
 

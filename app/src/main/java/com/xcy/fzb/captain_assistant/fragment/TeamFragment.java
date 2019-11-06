@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,24 +23,38 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.MyFragmentPagerAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.DailyTurnoverBean;
 import com.xcy.fzb.all.database.DataStatisticsBean;
 import com.xcy.fzb.all.database.TeamCommissionsBean;
+import com.xcy.fzb.all.fragment.MyFragment1;
+import com.xcy.fzb.all.fragment.MyFragment2;
+import com.xcy.fzb.all.fragment.MyFragment3;
+import com.xcy.fzb.all.fragment.MyFragment4;
+import com.xcy.fzb.all.fragment.MyFragment5;
+import com.xcy.fzb.all.fragment.MyFragment6;
 import com.xcy.fzb.all.modle.MyTeam2Bean;
+import com.xcy.fzb.all.persente.Fragnemt_SS;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.MyViewPager;
 import com.xcy.fzb.captain_assistant.adapter.MyTeam2Adapter;
 import com.xcy.fzb.captain_assistant.view.Assistant_Teams_Activity;
 import com.xcy.fzb.captain_team.adapter.DailyTurnoverAdapter;
 import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import androidx.viewpager.widget.ViewPager;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -52,7 +67,7 @@ import top.defaults.view.DateTimePickerView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeamFragment extends Fragment implements View.OnClickListener {
+public class TeamFragment extends Fragment implements View.OnClickListener, MyViewPager.OnSingleTouchListener {
 
     LinearLayout market_time_ll1;
     LinearLayout market_time_ll2;
@@ -132,9 +147,21 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
 
     String state = "2";
 
-    String type3 = "";
+    String type3 = "0";
     String startDate3 = "";
     String endDate3 = "";
+
+    ImageView all_no_information_S_S_S;
+
+    LinearLayout fragment_lls_1;
+    LinearLayout fragment_lls_2;
+    LinearLayout fragment_lls_3;
+
+    private MyViewPager vpager_one;
+    private ArrayList<Fragment> aList = new ArrayList<>();
+    private MyFragmentPagerAdapter mAdapter;
+    private PtrClassicFrameLayout ptrClassicFrameLayout;
+    private MyTeam2Bean.DataBean data;
 
     public TeamFragment() {
         // Required empty public constructor
@@ -152,11 +179,63 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
+
     //  TODO 声明
     private void initView() {
 
         StatusBar.makeStatusBarTransparent(getActivity());
 
+        ptrClassicFrameLayout = getActivity().findViewById(R.id.PtrClassic_modulebroke);
+        fragment_lls_3 = getActivity().findViewById(R.id.fragment_lls_3);
+        fragment_lls_2 = getActivity().findViewById(R.id.fragment_lls_2);
+        fragment_lls_1 = getActivity().findViewById(R.id.fragment_lls_1);
+        vpager_one = getActivity().findViewById(R.id.vpager_one_s1);
+        vpager_one.setOnSingleTouchListener(this);
+        if (FinalContents.getFragmentSS().equals("0")) {
+            mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
+            aList.add(new MyFragment4());
+            aList.add(new MyFragment5());
+            aList.add(new MyFragment6());
+
+            mAdapter.setListfragment(aList);
+            vpager_one.setAdapter(mAdapter);
+            vpager_one.setCurrentItem(0);
+            FinalContents.setFragmentSS("1");
+        }
+
+        vpager_one.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    fragment_lls_1.setBackgroundColor(Color.parseColor("#334485"));
+                    fragment_lls_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                    fragment_lls_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                    EventBus.getDefault().post(new Fragnemt_SS("", "", data.getLeaderNum() + "",data.getSalesNum() + "",""));
+                } else if (position == 1) {
+                    fragment_lls_2.setBackgroundColor(Color.parseColor("#334485"));
+                    fragment_lls_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                    fragment_lls_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                    EventBus.getDefault().post(new Fragnemt_SS("", "", "",data.getSalesNum() + "",data.getCounselorNum() + ""));
+                } else if (position == 2) {
+                    fragment_lls_3.setBackgroundColor(Color.parseColor("#334485"));
+                    fragment_lls_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                    fragment_lls_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                    EventBus.getDefault().post(new Fragnemt_SS("", "", "",data.getSalesNum() + "",data.getCounselorNum() + ""));
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
+        all_no_information_S_S_S = getActivity().findViewById(R.id.all_no_information_S_S_S);
         market_time_ll1 = getActivity().findViewById(R.id.team_ll1);
         market_time_ll2 = getActivity().findViewById(R.id.team_ll2);
         market_time_ll3 = getActivity().findViewById(R.id.team_ll3);
@@ -174,7 +253,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
         market_time_ll15 = getActivity().findViewById(R.id.team_ll15);
         market_time_ll16 = getActivity().findViewById(R.id.team_ll16);
 
-        market_time_tv1 = getActivity().findViewById(R.id.team_tv1);
+//        market_time_tv1 = getActivity().findViewById(R.id.team_tv1);
         market_time_tv2 = getActivity().findViewById(R.id.team_tv2);
         market_time_tv3 = getActivity().findViewById(R.id.team_tv3);
         market_time_tv4 = getActivity().findViewById(R.id.team_tv4);
@@ -184,10 +263,10 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
         market_time_tv8 = getActivity().findViewById(R.id.team_tv8);
         market_time_tv9 = getActivity().findViewById(R.id.team_tv9);
         market_time_tv10 = getActivity().findViewById(R.id.team_tv10);
-        market_time_tv11 = getActivity().findViewById(R.id.team_tv11);
+//        market_time_tv11 = getActivity().findViewById(R.id.team_tv11);
         market_time_tv12 = getActivity().findViewById(R.id.team_tv12);
         market_time_tv13 = getActivity().findViewById(R.id.team_tv13);
-        market_time_tv14 = getActivity().findViewById(R.id.team_tv14);
+//        market_time_tv14 = getActivity().findViewById(R.id.team_tv14);
 
         market_time_time_tv1 = getActivity().findViewById(R.id.team_time_tv1);
         market_time_time_tv2 = getActivity().findViewById(R.id.team_time_tv2);
@@ -213,9 +292,9 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
         market_time_rb11 = getActivity().findViewById(R.id.team_rb11);
         market_time_rb12 = getActivity().findViewById(R.id.team_rb12);
 
-        market_time_rl1 = getActivity().findViewById(R.id.team_rl1);
-        market_time_rl2 = getActivity().findViewById(R.id.team_rl2);
-        market_time_rl3 = getActivity().findViewById(R.id.team_rl3);
+//        market_time_rl1 = getActivity().findViewById(R.id.team_rl1);
+//        market_time_rl2 = getActivity().findViewById(R.id.team_rl2);
+//        market_time_rl3 = getActivity().findViewById(R.id.team_rl3);
 
         market_time_rv = getActivity().findViewById(R.id.team_rv);
 
@@ -243,8 +322,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
         dateTimePickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
 
-        market_time_rl1.setOnClickListener(this);
-        market_time_rl2.setOnClickListener(this);
+//        market_time_rl1.setOnClickListener(this);
+//        market_time_rl2.setOnClickListener(this);
         market_time_ll1.setOnClickListener(this);
         market_time_ll2.setOnClickListener(this);
         market_time_ll3.setOnClickListener(this);
@@ -275,8 +354,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
         market_time_rb10.setOnClickListener(this);
         market_time_rb11.setOnClickListener(this);
         market_time_rb12.setOnClickListener(this);
-        market_time_rl3.setOnClickListener(this);
-
+//        market_time_rl3.setOnClickListener(this);
 
 
         report_ensure.setOnClickListener(new View.OnClickListener() {
@@ -300,70 +378,70 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
 
         switch (view.getId()) {
-//            TODO 团队长（上）
-            case R.id.team_rl3:
-                intent = new Intent(getContext(), Assistant_Teams_Activity.class);
-                intent.putExtra("Iftz","1");
-                startActivity(intent);
-                break;
-//            TODO 销售（上）
-            case R.id.team_rl1:
-                intent = new Intent(getContext(), Assistant_Teams_Activity.class);
-                intent.putExtra("Iftz","2");
-                startActivity(intent);
-                break;
-//            TODO 顾问（上）
-            case R.id.team_rl2:
-                intent = new Intent(getContext(),Assistant_Teams_Activity.class);
-                intent.putExtra("Iftz","3");
-                startActivity(intent);
-                break;
+////            TODO 团队长（上）
+//            case R.id.team_rl3:
+//                intent = new Intent(getContext(), Assistant_Teams_Activity.class);
+//                intent.putExtra("Iftz","1");
+//                startActivity(intent);
+//                break;
+////            TODO 销售（上）
+//            case R.id.team_rl1:
+//                intent = new Intent(getContext(), Assistant_Teams_Activity.class);
+//                intent.putExtra("Iftz","2");
+//                startActivity(intent);
+//                break;
+////            TODO 顾问（上）
+//            case R.id.team_rl2:
+//                intent = new Intent(getContext(),Assistant_Teams_Activity.class);
+//                intent.putExtra("Iftz","3");
+//                startActivity(intent);
+//                break;
 //            TODO 报备
             case R.id.team_ll1:
                 intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
                 FinalContents.setQuanceng("1");
                 FinalContents.setMySelf("0");
-                intent.putExtra("client","1");
+                intent.putExtra("client", "1");
                 startActivity(intent);
                 break;
 //            TODO 到访
             case R.id.team_ll2:
-                intent = new Intent(getContext(),Captain_Team_MyClientActivity.class);
+                intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
                 FinalContents.setQuanceng("1");
                 FinalContents.setMySelf("0");
-                intent.putExtra("client","2");
+                intent.putExtra("client", "2");
                 startActivity(intent);
                 break;
 //            TODO 登岛
             case R.id.team_ll3:
-                intent = new Intent(getContext(),Captain_Team_MyClientActivity.class);
+                intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
                 FinalContents.setQuanceng("1");
                 FinalContents.setMySelf("0");
-                intent.putExtra("client","3");
+                intent.putExtra("client", "3");
                 startActivity(intent);
                 break;
 //            TODO 认筹
             case R.id.team_ll4:
-                intent = new Intent(getContext(),Captain_Team_MyClientActivity.class);
+                intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
                 FinalContents.setQuanceng("1");
                 FinalContents.setMySelf("0");
-                intent.putExtra("client","4");
+                intent.putExtra("client", "4");
                 startActivity(intent);
                 break;
 //            TODO 成交
             case R.id.team_ll5:
-                intent = new Intent(getContext(),Captain_Team_MyClientActivity.class);
+                intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
                 FinalContents.setQuanceng("1");
                 FinalContents.setMySelf("0");
-                intent.putExtra("client","5");
+                intent.putExtra("client", "5");
                 startActivity(intent);
                 break;
 //            TODO 失效
             case R.id.team_ll6:
-                intent = new Intent(getContext(),Captain_Team_MyClientActivity.class);
+                intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
                 FinalContents.setQuanceng("1");
                 FinalContents.setMySelf("0");
-                intent.putExtra("client","6");
+                intent.putExtra("client", "6");
                 startActivity(intent);
                 break;
 //            TODO 总佣金
@@ -373,12 +451,12 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
                 break;
 //            TODO 已结
             case R.id.team_ll8:
-                intent = new Intent(getContext(),Captain_Team_CommissionTheProjectEndActivity.class);
+                intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
                 startActivity(intent);
                 break;
 //            TODO 未结
             case R.id.team_ll9:
-                intent = new Intent(getContext(),Captain_Team_CommissionTheProjectEndActivity.class);
+                intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
                 startActivity(intent);
                 break;
 //            TODO 销售（下）
@@ -598,7 +676,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
     }
 
     // TODO 数据统计
-    private void initDataStatistics(){
+    private void initDataStatistics() {
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -606,7 +684,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(),FinalContents.getUserID(),type1,startDate1,endDate1);
+        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(), FinalContents.getUserID(), type1, startDate1, endDate1);
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataStatisticsBean>() {
@@ -618,12 +696,12 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onNext(DataStatisticsBean dataStatisticsBean) {
 
-                        market_time_tv2.setText(dataStatisticsBean.getData().getReportNumber()+"");
-                        market_time_tv3.setText(dataStatisticsBean.getData().getAccessingNumber()+"");
-                        market_time_tv4.setText(dataStatisticsBean.getData().getIsIslandNumber()+"");
-                        market_time_tv5.setText(dataStatisticsBean.getData().getEarnestMoneyNumber()+"");
-                        market_time_tv6.setText(dataStatisticsBean.getData().getTradeNumber()+"");
-                        market_time_tv7.setText(dataStatisticsBean.getData().getInvalidNum()+"");
+                        market_time_tv2.setText(dataStatisticsBean.getData().getReportNumber() + "");
+                        market_time_tv3.setText(dataStatisticsBean.getData().getAccessingNumber() + "");
+                        market_time_tv4.setText(dataStatisticsBean.getData().getIsIslandNumber() + "");
+                        market_time_tv5.setText(dataStatisticsBean.getData().getEarnestMoneyNumber() + "");
+                        market_time_tv6.setText(dataStatisticsBean.getData().getTradeNumber() + "");
+                        market_time_tv7.setText(dataStatisticsBean.getData().getInvalidNum() + "");
 
                     }
 
@@ -640,14 +718,14 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
     }
 
     // TODO 成交TOP5单
-    private void initDailyTurnover(){
+    private void initDailyTurnover() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DailyTurnoverBean> clientCommissions = fzbInterface.getDailyTurnover(FinalContents.getUserID(),FinalContents.getUserID(),state,type3,startDate3,endDate3);
+        Observable<DailyTurnoverBean> clientCommissions = fzbInterface.getDailyTurnover(FinalContents.getUserID(), FinalContents.getUserID(), state, type3, startDate3, endDate3);
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DailyTurnoverBean>() {
@@ -659,14 +737,19 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(DailyTurnoverBean dailyTurnoverBean) {
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        layoutManager.setScrollEnabled(false);
-                        market_time_rv.setLayoutManager(layoutManager);
-                        DailyTurnoverAdapter adapter = new DailyTurnoverAdapter(dailyTurnoverBean.getData());
-                        market_time_rv.setNestedScrollingEnabled(false);
-                        market_time_rv.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
+                        if (dailyTurnoverBean.getData().size() == 0) {
+                            all_no_information_S_S_S.setVisibility(View.VISIBLE);
+                        } else {
+                            all_no_information_S_S_S.setVisibility(View.GONE);
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            layoutManager.setScrollEnabled(false);
+                            market_time_rv.setLayoutManager(layoutManager);
+                            DailyTurnoverAdapter adapter = new DailyTurnoverAdapter(dailyTurnoverBean.getData());
+                            market_time_rv.setNestedScrollingEnabled(false);
+                            market_time_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
                     }
 
                     @Override
@@ -682,14 +765,14 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
     }
 
     // TODO 团队佣金
-    private void initTeamCommissions(){
+    private void initTeamCommissions() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<TeamCommissionsBean> clientCommissions = fzbInterface.getTeamCommissions(FinalContents.getUserID(),FinalContents.getUserID(),type2,startDate2,endDate2);
+        Observable<TeamCommissionsBean> clientCommissions = fzbInterface.getTeamCommissions(FinalContents.getUserID(), FinalContents.getUserID(), type2, startDate2, endDate2);
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<TeamCommissionsBean>() {
@@ -700,9 +783,9 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
 
                     @Override
                     public void onNext(TeamCommissionsBean teamCommissionsBean) {
-                        market_time_tv8.setText(teamCommissionsBean.getData().getTotalAmount()+"");
-                        market_time_tv9.setText(teamCommissionsBean.getData().getAlreadyAmount()+"");
-                        market_time_tv10.setText(teamCommissionsBean.getData().getNotAmount()+"");
+                        market_time_tv8.setText(teamCommissionsBean.getData().getTotalAmount() + "");
+                        market_time_tv9.setText(teamCommissionsBean.getData().getAlreadyAmount() + "");
+                        market_time_tv10.setText(teamCommissionsBean.getData().getNotAmount() + "");
                     }
 
                     @Override
@@ -719,7 +802,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
 
 
     // TODO 我的团队显示数据
-    private void initMyTeamData(){
+    private void initMyTeamData() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -738,32 +821,37 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(MyTeam2Bean myTeamBean) {
-                        market_time_tv14.setText(myTeamBean.getData().getLeaderNum()+"");
+                        data = myTeamBean.getData();
+//                        market_time_tv14.setText(myTeamBean.getData().getLeaderNum()+"");
+//
+//                        market_time_tv11.setText(myTeamBean.getData().getSalesNum()+"");
+//                        market_time_tv1.setText(myTeamBean.getData().getCounselorNum()+"");
+                        Log.i("广播", "myTeamBean.getData().getLeaderNum()：" + myTeamBean.getData().getLeaderNum());
+                        Log.i("广播", "myTeamBean.getData().getData()：" + myTeamBean.getData().getSalesNum());
+                        Log.i("广播", "myTeamBean.getData().getCounselorNum()：" + myTeamBean.getData().getCounselorNum());
+                        EventBus.getDefault().post(new Fragnemt_SS("", "", myTeamBean.getData().getLeaderNum() + "", myTeamBean.getData().getSalesNum() + "", myTeamBean.getData().getCounselorNum() + ""));
 
-                        market_time_tv11.setText(myTeamBean.getData().getSalesNum()+"");
-                        market_time_tv1.setText(myTeamBean.getData().getCounselorNum()+"");
+                        market_time_tv2.setText(myTeamBean.getData().getDataStatistics().getReportNumber() + "");
+                        market_time_tv3.setText(myTeamBean.getData().getDataStatistics().getAccessingNumber() + "");
+                        market_time_tv4.setText(myTeamBean.getData().getDataStatistics().getIsIslandNumber() + "");
+                        market_time_tv5.setText(myTeamBean.getData().getDataStatistics().getEarnestMoneyNumber() + "");
+                        market_time_tv6.setText(myTeamBean.getData().getDataStatistics().getTradeNumber() + "");
+                        market_time_tv7.setText(myTeamBean.getData().getDataStatistics().getInvalidNum() + "");
 
-                        market_time_tv2.setText(myTeamBean.getData().getDataStatistics().getReportNumber()+"");
-                        market_time_tv3.setText(myTeamBean.getData().getDataStatistics().getAccessingNumber()+"");
-                        market_time_tv4.setText(myTeamBean.getData().getDataStatistics().getIsIslandNumber()+"");
-                        market_time_tv5.setText(myTeamBean.getData().getDataStatistics().getEarnestMoneyNumber()+"");
-                        market_time_tv6.setText(myTeamBean.getData().getDataStatistics().getTradeNumber()+"");
-                        market_time_tv7.setText(myTeamBean.getData().getDataStatistics().getInvalidNum()+"");
-
-                        market_time_tv8.setText(myTeamBean.getData().getMoneyData().getTotalAmount()+"");
-                        market_time_tv9.setText(myTeamBean.getData().getMoneyData().getAlreadyAmount()+"");
-                        market_time_tv10.setText(myTeamBean.getData().getMoneyData().getNotAmount()+"");
+                        market_time_tv8.setText(myTeamBean.getData().getMoneyData().getTotalAmount() + "");
+                        market_time_tv9.setText(myTeamBean.getData().getMoneyData().getAlreadyAmount() + "");
+                        market_time_tv10.setText(myTeamBean.getData().getMoneyData().getNotAmount() + "");
 
                         FinalContents.setAgentId(FinalContents.getUserID());
 
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        layoutManager.setScrollEnabled(false);
-                        market_time_rv.setLayoutManager(layoutManager);
-                        MyTeam2Adapter adapter = new MyTeam2Adapter(myTeamBean.getData().getDailyTurnover());
-                        market_time_rv.setNestedScrollingEnabled(false);
-                        market_time_rv.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
+//                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
+//                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//                        layoutManager.setScrollEnabled(false);
+//                        market_time_rv.setLayoutManager(layoutManager);
+//                        MyTeam2Adapter adapter = new MyTeam2Adapter(myTeamBean.getData().getDailyTurnover());
+//                        market_time_rv.setNestedScrollingEnabled(false);
+//                        market_time_rv.setAdapter(adapter);
+//                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -787,11 +875,30 @@ public class TeamFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(hidden){
+        if (hidden) {
             //TODO now visible to user 不显示fragment
         } else {
             onResume();
             //TODO now invisible to user 显示fragment
+        }
+    }
+
+    @Override
+    public void onSingleTouch() {
+
+        int currentItem = vpager_one.getCurrentItem();
+        if (currentItem == 0) {
+            intent = new Intent(getContext(), Assistant_Teams_Activity.class);
+            intent.putExtra("Iftz", "1");
+            startActivity(intent);
+        } else if (currentItem == 1) {
+            intent = new Intent(getContext(), Assistant_Teams_Activity.class);
+            intent.putExtra("Iftz", "2");
+            startActivity(intent);
+        } else if (currentItem == 2) {
+            intent = new Intent(getContext(), Assistant_Teams_Activity.class);
+            intent.putExtra("Iftz", "3");
+            startActivity(intent);
         }
     }
 }

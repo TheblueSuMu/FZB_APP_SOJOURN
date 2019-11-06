@@ -7,9 +7,9 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,7 +31,6 @@
                     android:src="@mipmap/return2" />
 
             </RelativeLayout>
-
 
 
             <TextView
@@ -100,11 +99,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:background="#FFFFFF">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -129,8 +130,8 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:gravity="right"
                             android:layout_marginRight="30dp"
+                            android:gravity="right"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
 
@@ -154,11 +155,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:background="#FFFFFF">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -184,11 +187,11 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="15dp"
+                            android:background="#FFFFFF"
+                            android:gravity="right"
+                            android:hint="请输入门店名称"
                             android:imeOptions="actionNext"
                             android:singleLine="true"
-                            android:background="#FFFFFF"
-                            android:hint="请输入门店名称"
-                            android:gravity="right"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
 
@@ -204,6 +207,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:background="#FFFFFF">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -218,6 +222,7 @@
                                 android:text="所在的区域"
                                 android:textColor="#ff333333"
                                 android:textSize="15sp" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -235,8 +240,8 @@
                             android:layout_centerVertical="true"
                             android:layout_marginRight="15dp"
                             android:background="#FFFFFF"
-                            android:text="市/区"
                             android:gravity="right"
+                            android:text="市/区"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
 
@@ -251,6 +256,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:background="#FFFFFF">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -265,6 +271,7 @@
                                 android:text="详细地址"
                                 android:textColor="#ff333333"
                                 android:textSize="15sp" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -277,15 +284,15 @@
                         <EditText
                             android:id="@+id/add_broker_et4"
                             android:layout_width="wrap_content"
-                            android:layout_marginLeft="100dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginLeft="100dp"
                             android:layout_marginRight="15dp"
-                            android:imeOptions="actionNext"
                             android:background="#FFFFFF"
                             android:gravity="right"
                             android:hint="请输入详细地址"
+                            android:imeOptions="actionNext"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
 
@@ -300,11 +307,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:background="#FFFFFF">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -337,8 +346,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:button="@null"
-                                android:drawableLeft="@drawable/checkbox_check_s"
                                 android:checked="true"
+                                android:drawableLeft="@drawable/checkbox_check_s"
                                 android:text="  是" />
 
                             <RadioButton
@@ -353,10 +362,10 @@
                             <RadioButton
                                 android:id="@+id/add_broker_rb3"
                                 android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:button="@null"
                                 android:drawableLeft="@drawable/checkbox_check_s"
-                                android:layout_height="wrap_content"
                                 android:text="  取消合作" />
                         </RadioGroup>
                     </RelativeLayout>
@@ -377,6 +386,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="15dp"
+                            android:layout_marginTop="15dp"
                             android:text="门头照片"
                             android:textColor="#ff333333"
                             android:textSize="15sp" />
@@ -462,29 +472,29 @@
 
     <RelativeLayout
         android:id="@+id/all_no_network"
-        android:background="#fff"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageimage"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network" />
 
         <Button
-            android:layout_below="@id/imageimage"
             android:id="@+id/all_no_reload"
-            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageimage"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
             android:background="@drawable/button_back"
             android:text="重新加载"
-            android:textSize="12sp"
             android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="12sp" />
 
     </RelativeLayout>
 

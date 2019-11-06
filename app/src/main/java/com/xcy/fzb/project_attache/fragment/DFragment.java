@@ -32,16 +32,25 @@ import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.MyFragmentPagerAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.DataNumBean;
+import com.xcy.fzb.all.fragment.MyFragment1;
+import com.xcy.fzb.all.fragment.MyFragment2;
+import com.xcy.fzb.all.fragment.MyFragment3;
 import com.xcy.fzb.all.modle.DBean;
 import com.xcy.fzb.all.modle.TendentcyBean;
+import com.xcy.fzb.all.persente.Fragnemt_SS;
+import com.xcy.fzb.all.persente.MyClientName;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.MyViewPager;
 import com.xcy.fzb.project_attache.view.BrokersListActivity;
 import com.xcy.fzb.project_attache.view.CommissionActivity;
 import com.xcy.fzb.project_attache.view.StoreListActivity;
 import com.xcy.fzb.project_side.view.MyClientActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,6 +59,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.viewpager.widget.ViewPager;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -64,7 +74,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import top.defaults.view.DateTimePickerView;
 
 
-public class DFragment extends Fragment implements View.OnClickListener {
+public class DFragment extends Fragment implements View.OnClickListener, MyViewPager.OnSingleTouchListener {
 
     LinearLayout ll1_modulebroker;
     LinearLayout ll2_modulebroker;
@@ -73,6 +83,9 @@ public class DFragment extends Fragment implements View.OnClickListener {
     LinearLayout ll5_modulebroker;
     LinearLayout ll6_modulebroker;
     LinearLayout ll7_modulebroker;
+    LinearLayout fragment_ll_1;
+    LinearLayout fragment_ll_2;
+    LinearLayout fragment_ll_3;
 
     RadioButton rb1_modulebroker;
     RadioButton rb2_modulebroker;
@@ -99,6 +112,7 @@ public class DFragment extends Fragment implements View.OnClickListener {
     RelativeLayout rl1_modulebroke;
     RelativeLayout rl2_modulebroke;
     RelativeLayout rl3_modulebroke;
+    RelativeLayout fragment_ss_1;
     private Intent intent;
 
     private LineChart details_chart;
@@ -118,11 +132,16 @@ public class DFragment extends Fragment implements View.OnClickListener {
     TextView report_ensure;
     private PtrClassicFrameLayout ptrClassicFrameLayout;
 
+    private MyViewPager vpager_one;
+    private ArrayList<Fragment> aList = new ArrayList<>();
+    private MyFragmentPagerAdapter mAdapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         StatusBar.makeStatusBarTransparent(getActivity());
         FinalContents.setZhuanyuan("1");
+
         return inflater.inflate(R.layout.project_attache_modulebroker_fragment_economics, container, false);
     }
 
@@ -132,8 +151,80 @@ public class DFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void initView(){
+    private void initView() {
         ptrClassicFrameLayout = getActivity().findViewById(R.id.PtrClassic_modulebroke);
+        fragment_ll_3 = getActivity().findViewById(R.id.fragment_ll_3);
+        fragment_ll_2 = getActivity().findViewById(R.id.fragment_ll_2);
+        fragment_ll_1 = getActivity().findViewById(R.id.fragment_ll_1);
+        vpager_one = getActivity().findViewById(R.id.vpager_one);
+        vpager_one.setOnSingleTouchListener(this);
+        if (FinalContents.getFragmentSS().equals("0")) {
+            mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
+            FinalContents.setFragmentSS("1");
+            aList.add(new MyFragment1());
+            aList.add(new MyFragment2());
+            aList.add(new MyFragment3());
+
+            mAdapter.setListfragment(aList);
+            vpager_one.setAdapter(mAdapter);
+            vpager_one.setCurrentItem(0);
+        }
+
+        vpager_one.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 0){
+                    fragment_ll_1.setBackgroundColor(Color.parseColor("#334485"));
+                    fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                    fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                }else if(position == 1){
+                    fragment_ll_2.setBackgroundColor(Color.parseColor("#334485"));
+                    fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                    fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                }else if(position == 2){
+                    fragment_ll_3.setBackgroundColor(Color.parseColor("#334485"));
+                    fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                    fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
+//        vpager_one.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.i("广播","点击：");
+//                int currentItem = vpager_one.getCurrentItem();
+//                Log.i("广播","广播currentItem：" + currentItem);
+//                if (vpager_one.getCurrentItem() == 0) {
+//                    intent = new Intent(getContext(), StoreListActivity.class);
+//                    FinalContents.setCompanyId("");
+//                    FinalContents.setMyAddType("");
+//                    startActivity(intent);
+//                } else if (vpager_one.getCurrentItem() == 1) {
+//                    FinalContents.setStoreId("");
+//                    FinalContents.setCompanyId("");
+//                    intent = new Intent(getContext(), BrokersListActivity.class);
+//                    startActivity(intent);
+//                } else if (vpager_one.getCurrentItem() == 2) {
+//                    intent = new Intent(getContext(), CommissionActivity.class);
+//                    FinalContents.setCompanyId("");
+//                    FinalContents.setStoreId("");
+//                    FinalContents.setAgentId("");
+//                    startActivity(intent);
+//                }
+//            }
+//        });
 
         ll1_modulebroker = getActivity().findViewById(R.id.ll1_modulebroke);
         ll2_modulebroker = getActivity().findViewById(R.id.ll2_modulebroke);
@@ -150,9 +241,9 @@ public class DFragment extends Fragment implements View.OnClickListener {
         rb5_modulebroker = getActivity().findViewById(R.id.rb5_modulebroke);
         rb6_modulebroker = getActivity().findViewById(R.id.rb6_modulebroke);
 
-        tv1_modulebroker = getActivity().findViewById(R.id.tv1_modulebroke);
-        tv2_modulebroker = getActivity().findViewById(R.id.tv2_modulebroke);
-        tv3_modulebroker = getActivity().findViewById(R.id.tv3_modulebroke);
+//        tv1_modulebroker = getActivity().findViewById(R.id.tv1_modulebroke);
+//        tv2_modulebroker = getActivity().findViewById(R.id.tv2_modulebroke);
+//        tv3_modulebroker = getActivity().findViewById(R.id.tv3_modulebroke);
         modulebroke_tv_type = getActivity().findViewById(R.id.modulebroke_tv_type);
 
         tv4_modulebroker = getActivity().findViewById(R.id.tv4_modulebroke);
@@ -165,9 +256,9 @@ public class DFragment extends Fragment implements View.OnClickListener {
         time1_modulebroker = getActivity().findViewById(R.id.time1_modulebroke);
         time2_modulebroker = getActivity().findViewById(R.id.time2_modulebroke);
 
-        rl1_modulebroke = getActivity().findViewById(R.id.rl1_modulebroke);
-        rl2_modulebroke = getActivity().findViewById(R.id.rl2_modulebroke);
-        rl3_modulebroke = getActivity().findViewById(R.id.rl3_modulebroke);
+//        rl1_modulebroke = getActivity().findViewById(R.id.rl1_modulebroke);
+//        rl2_modulebroke = getActivity().findViewById(R.id.rl2_modulebroke);
+//        rl3_modulebroke = getActivity().findViewById(R.id.rl3_modulebroke);
 
         modulebroke_rg1 = getActivity().findViewById(R.id.modulebroke_rg1);
         modulebroke_rg2 = getActivity().findViewById(R.id.modulebroke_rg2);
@@ -199,7 +290,7 @@ public class DFragment extends Fragment implements View.OnClickListener {
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
+        int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
@@ -316,9 +407,9 @@ public class DFragment extends Fragment implements View.OnClickListener {
         ll5_modulebroker.setOnClickListener(this);
         ll6_modulebroker.setOnClickListener(this);
         ll7_modulebroker.setOnClickListener(this);
-        rl1_modulebroke.setOnClickListener(this);
-        rl2_modulebroke.setOnClickListener(this);
-        rl3_modulebroke.setOnClickListener(this);
+//        rl1_modulebroke.setOnClickListener(this);
+//        rl2_modulebroke.setOnClickListener(this);
+//        rl3_modulebroke.setOnClickListener(this);
         modulebroke_tv_type.setOnClickListener(this);
 
         initData();
@@ -353,7 +444,7 @@ public class DFragment extends Fragment implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("专员","错误信息"+e.getMessage());
+                        Log.i("专员", "错误信息" + e.getMessage());
                     }
 
                     @Override
@@ -394,7 +485,7 @@ public class DFragment extends Fragment implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("专员","错误信息"+e.getMessage());
+                        Log.i("专员", "错误信息" + e.getMessage());
                     }
 
                     @Override
@@ -425,8 +516,14 @@ public class DFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onNext(DBean dBean) {
                         dataMap = dBean.getData().getDataMap();
-                        tv1_modulebroker.setText(dBean.getData().getStoreCount() + "");
-                        tv2_modulebroker.setText(dBean.getData().getPeopleCount() + "");
+
+                        Log.i("广播", "广播数据：" + dBean.getData().getStoreCount());
+                        Log.i("广播", "广播数据：" + dBean.getData().getPeopleCount());
+
+                        EventBus.getDefault().post(new Fragnemt_SS(dBean.getData().getStoreCount() + "", dBean.getData().getPeopleCount() + "", "", "", ""));
+
+//                        tv1_modulebroker.setText(dBean.getData().getStoreCount() + "");
+//                        tv2_modulebroker.setText(dBean.getData().getPeopleCount() + "");
                         tv4_modulebroker.setText(dataMap.getReportNumber() + "");
                         tv5_modulebroker.setText(dataMap.getAccessingNumber() + "");
                         tv6_modulebroker.setText(dataMap.getIsIslandNumber() + "");
@@ -442,7 +539,7 @@ public class DFragment extends Fragment implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("专员","专员门店列表错误信息：" + e.getMessage());
+                        Log.i("专员", "专员门店列表错误信息：" + e.getMessage());
                     }
 
                     @Override
@@ -450,7 +547,6 @@ public class DFragment extends Fragment implements View.OnClickListener {
 
                     }
                 });
-
     }
 
     @Override
@@ -458,27 +554,27 @@ public class DFragment extends Fragment implements View.OnClickListener {
 
         switch (view.getId()) {
 //            TODO 门店
-            case R.id.rl1_modulebroke:
-                intent = new Intent(getContext(), StoreListActivity.class);
-                FinalContents.setCompanyId("");
-                FinalContents.setMyAddType("");
-                startActivity(intent);
-                break;
+//            case R.id.rl1_modulebroke:
+//                intent = new Intent(getContext(), StoreListActivity.class);
+//                FinalContents.setCompanyId("");
+//                FinalContents.setMyAddType("");
+//                startActivity(intent);
+//                break;
             //            TODO 经纪人
-            case R.id.rl2_modulebroke:
-                FinalContents.setStoreId("");
-                FinalContents.setCompanyId("");
-                intent = new Intent(getContext(), BrokersListActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.rl2_modulebroke:
+//                FinalContents.setStoreId("");
+//                FinalContents.setCompanyId("");
+//                intent = new Intent(getContext(), BrokersListActivity.class);
+//                startActivity(intent);
+//                break;
             //            TODO 佣金跟进
-            case R.id.rl3_modulebroke:
-                intent = new Intent(getContext(), CommissionActivity.class);
-                FinalContents.setCompanyId("");
-                FinalContents.setStoreId("");
-                FinalContents.setAgentId("");
-                startActivity(intent);
-                break;
+//            case R.id.rl3_modulebroke:
+//                intent = new Intent(getContext(), CommissionActivity.class);
+//                FinalContents.setCompanyId("");
+//                FinalContents.setStoreId("");
+//                FinalContents.setAgentId("");
+//                startActivity(intent);
+//                break;
             //            TODO 报备
             case R.id.ll2_modulebroke:
                 intent = new Intent(getContext(), MyClientActivity.class);
@@ -586,7 +682,6 @@ public class DFragment extends Fragment implements View.OnClickListener {
         }
 
     }
-
 
     //TODO 详情页趋势图绘制
     private void init(final List<Integer> list) {
@@ -717,11 +812,46 @@ public class DFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(hidden){
+        if (hidden) {
             //TODO now visible to user 不显示fragment
         } else {
             onResume();
             //TODO now invisible to user 显示fragment
         }
+    }
+
+    @Override
+    public void onSingleTouch() {
+
+        Log.i("广播", "点击：");
+        int currentItem = vpager_one.getCurrentItem();
+        Log.i("广播", "广播currentItem：" + currentItem);
+        if (vpager_one.getCurrentItem() == 0) {
+            intent = new Intent(getContext(), StoreListActivity.class);
+            FinalContents.setCompanyId("");
+            FinalContents.setMyAddType("");
+            startActivity(intent);
+        } else if (vpager_one.getCurrentItem() == 1) {
+            FinalContents.setStoreId("");
+            FinalContents.setCompanyId("");
+            intent = new Intent(getContext(), BrokersListActivity.class);
+            startActivity(intent);
+        } else if (vpager_one.getCurrentItem() == 2) {
+            intent = new Intent(getContext(), CommissionActivity.class);
+            FinalContents.setCompanyId("");
+            FinalContents.setStoreId("");
+            FinalContents.setAgentId("");
+            startActivity(intent);
+        }
+
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        EventBus.getDefault().unregister(this);
+
     }
 }

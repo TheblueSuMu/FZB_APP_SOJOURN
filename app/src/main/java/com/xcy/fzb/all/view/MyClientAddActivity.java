@@ -25,12 +25,18 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.AddClientBean;
 import com.xcy.fzb.all.modle.AddPhotoBean;
+import com.xcy.fzb.all.modle.ChangeSexBean;
+import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -40,6 +46,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -63,6 +71,10 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
     ImageView client_add_photo_add;
     ImageView client_add_photo_delete_1;
     ImageView client_add_photo_delete_2;
+
+    LinearLayout client_add_photo_ll_1;
+    LinearLayout client_add_photo_ll_2;
+    LinearLayout client_add_photo_ll_3;
 
     TextView client_add_name_tv;
     TextView client_add_photo_tv_1;
@@ -107,6 +119,8 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
     Uri saveUri;
     private static final String FILE_PATH = "/sdcard/syscamera.jpg";
     private File file;
+
+    int issex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +172,9 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
         client_add_photo_et_2 = findViewById(R.id.client_add_photo_et_2);
         client_add_photo_et_3 = findViewById(R.id.client_add_photo_et_3);
         client_add_btn = findViewById(R.id.client_add_btn);
+        client_add_photo_ll_1 = findViewById(R.id.client_add_photo_ll_1);
+        client_add_photo_ll_2 = findViewById(R.id.client_add_photo_ll_2);
+        client_add_photo_ll_3 = findViewById(R.id.client_add_photo_ll_3);
 
         client_add_ll_1 = findViewById(R.id.client_add_ll_1);
         client_add_ll_2 = findViewById(R.id.client_add_ll_2);
@@ -182,6 +199,9 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
         client_add_photo_delete_1.setOnClickListener(this);
         client_add_photo_delete_2.setOnClickListener(this);
         client_add_btn.setOnClickListener(this);
+        client_add_photo_ll_1.setOnClickListener(this);
+        client_add_photo_ll_2.setOnClickListener(this);
+        client_add_photo_ll_3.setOnClickListener(this);
 
         saveUri = Uri.fromFile(new File(getExternalFilesDir(Environment.DIRECTORY_DCIM), "test.jpg"));
     }
@@ -271,36 +291,43 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
 
                 break;
 //                TODO 选择联系人
-            case R.id.client_add_photo_img_1:
+            case R.id.client_add_photo_ll_1:
+                issex = 1;
+                initSelectData();
 
-                builders.setItems(cities, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        client_add_photo_tv_1.setText(cities[which] + "");
-                        name1 = cities[which] + "";
-                    }
-                });
-                builders.show();
+//                builders.setItems(cities, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        client_add_photo_tv_1.setText(cities[which] + "");
+//                        name1 = cities[which] + "";
+//                    }
+//                });
+//                builders.show();
                 break;
-            case R.id.client_add_photo_img_2:
-                builders.setItems(cities, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        client_add_photo_tv_2.setText(cities[which] + "");
-                        name2 = cities[which] + "";
-                    }
-                });
-                builders.show();
+            case R.id.client_add_photo_ll_2:
+                issex = 2;
+                initSelectData();
+//                builders.setItems(cities, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        client_add_photo_tv_2.setText(cities[which] + "");
+//                        name2 = cities[which] + "";
+//                    }
+//                });
+//                builders.show();
                 break;
-            case R.id.client_add_photo_img_3:
-                builders.setItems(cities, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        client_add_photo_tv_3.setText(cities[which] + "");
-                        name3 = cities[which] + "";
-                    }
-                });
-                builders.show();
+            case R.id.client_add_photo_ll_3:
+                issex = 3;
+                initSelectData();
+
+//                builders.setItems(cities, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        client_add_photo_tv_3.setText(cities[which] + "");
+//                        name3 = cities[which] + "";
+//                    }
+//                });
+//                builders.show();
                 break;
 //                TODO 添加
             case R.id.client_add_photo_add:
@@ -324,6 +351,37 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                 client_add_ll_2.setVisibility(View.GONE);
                 break;
         }
+
+    }
+
+    private void initSelectData() {
+        final List<String> list1 = new ArrayList<>();
+        list1.add("本人手机");
+        list1.add("父母手机");
+        list1.add("配偶手机");
+        list1.add("子女手机");
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(MyClientAddActivity.this, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //              展示选中数据
+                if (issex == 1) {
+                    client_add_photo_tv_1.setText(list1.get(options1));
+                    name1 = list1.get(options1);
+                } else if (issex == 2) {
+                    client_add_photo_tv_2.setText(list1.get(options1));
+                    name2 = list1.get(options1);
+                } else if (issex == 3) {
+                    client_add_photo_tv_3.setText(list1.get(options1));
+                    name3 = list1.get(options1);
+                }
+            }
+        }).setSelectOptions(0)
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list1);
+        //      展示
+        pvOptions.show();
 
     }
 

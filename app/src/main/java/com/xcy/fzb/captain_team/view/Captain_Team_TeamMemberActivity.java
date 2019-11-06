@@ -21,18 +21,25 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.TeamMemberBean;
+import com.xcy.fzb.all.modle.ChangeSexBean;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
+import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
+import com.xcy.fzb.all.view.PersonalInformationActivity;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_PopAdapter;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_TeamMemberAdapter;
 
@@ -88,7 +95,7 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -140,22 +147,22 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
         mContactModels = new ArrayList<>();
         decoration = new PinnedHeaderDecoration();
 
-        if(FinalContents.getIdentity().equals("60")){
+        if (FinalContents.getIdentity().equals("60")) {
             String tdz = getIntent().getStringExtra("tdz");
-            if(tdz.equals("1")){
+            if (tdz.equals("1")) {
                 team_member_ll2.setVisibility(View.VISIBLE);
                 team_member_ll4.setVisibility(View.GONE);
                 string1 = "添加销售";
                 string2 = "批量修改销售级别";
                 initData("", "2", "");
-            }else if(tdz.equals("2")){
+            } else if (tdz.equals("2")) {
                 team_member_ll2.setVisibility(View.GONE);
                 team_member_ll4.setVisibility(View.VISIBLE);
 //                string1 = "添加顾问";
 //                string2 = "";
                 initData("", "3", "");
             }
-        }else {
+        } else {
             initData("", "2", "");
         }
 
@@ -238,7 +245,7 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                 if (FinalContents.getIdentity().equals("61")) {
                     string1 = "添加顾问";
                     string2 = "批量修改顾问级别";
-                }else if(FinalContents.getIdentity().equals("60")){
+                } else if (FinalContents.getIdentity().equals("60")) {
 //                    string1 = "添加顾问";
 //                    string2 = "";
                 }
@@ -260,27 +267,70 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
 
     //TODO 弹窗
     private void PopWindow() {
-        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
-        //处理popWindow 显示内容
-        handleListView(contentView);
-        //创建并显示popWindow
-        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        p.setTouchable(true);
-        p.setFocusable(true);
-        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
-        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int xOff;
-        int buttonWidth = team_member_tv.getWidth();
-        int popupwindowWidth = p.getContentView().getMeasuredWidth();
-        xOff = buttonWidth - popupwindowWidth;
-        p.showAsDropDown(team_member_tv, xOff, 0);
 
-        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
+        final List<String> list1 = new ArrayList<>();
+        list1.add("全部");
+        list1.add("不看禁用");
+        list1.add("只看禁用");
+
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_TeamMemberActivity.this, new OnOptionsSelectListener() {
             @Override
-            public void onDismiss() {
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //              展示选中数据
+                team_member_tv.setText(list1.get(options1));
+                String s = team_member_et.getText().toString();
+                if(options1 == 0){
+                    if (team_member_ll2.getVisibility() == View.VISIBLE) {
+                        initData(s, "2", "");
+                    } else if (team_member_ll4.getVisibility() == View.VISIBLE) {
+                        initData(s, "3", "");
+                    }
+                }else if (options1 == 1){
+                    if (team_member_ll2.getVisibility() == View.VISIBLE) {
+                        initData(s, "2", "1");
+                    } else if (team_member_ll4.getVisibility() == View.VISIBLE) {
+                        initData(s, "3", "1");
+                    }
+                }else if(options1 == 2){
+                    if (team_member_ll2.getVisibility() == View.VISIBLE) {
+                        initData(s, "2", "0");
+                    } else if (team_member_ll4.getVisibility() == View.VISIBLE) {
+                        initData(s, "3", "0");
+                    }
+                }
 
             }
-        });
+        })
+                .setSelectOptions(0)
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list1);
+        //      展示
+        pvOptions.show();
+
+
+//        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
+//        //处理popWindow 显示内容
+//        handleListView(contentView);
+//        //创建并显示popWindow
+//        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        p.setTouchable(true);
+//        p.setFocusable(true);
+//        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
+//        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+//        int xOff;
+//        int buttonWidth = team_member_tv.getWidth();
+//        int popupwindowWidth = p.getContentView().getMeasuredWidth();
+//        xOff = buttonWidth - popupwindowWidth;
+//        p.showAsDropDown(team_member_tv, xOff, 0);
+//
+//        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//            @Override
+//            public void onDismiss() {
+//
+//            }
+//        });
     }
 
     // TODO 填写数据
@@ -328,28 +378,68 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
     }
 
     //TODO 弹窗
-    private void PopWindow1(){
-        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
-        //处理popWindow 显示内容
-        handleListView1(contentView);
-        //创建并显示popWindow
-        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        p.setTouchable(true);
-        p.setFocusable(true);
-        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
-        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int xOff;
-        int buttonWidth = team_member_img2.getWidth();
-        int popupwindowWidth = p.getContentView().getMeasuredWidth();
-        xOff = buttonWidth - popupwindowWidth;
-        p.showAsDropDown(team_member_img2,xOff,0);
+    private void PopWindow1() {
 
-        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+        final List<String> list1 = new ArrayList<>();
+        list1.add(string1);
+        if (string2.equals("")) {
+
+        } else {
+            list1.add(string2);
+        }
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_TeamMemberActivity.this, new OnOptionsSelectListener() {
             @Override
-            public void onDismiss() {
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //              展示选中数据
+
+                if(options1 == 0){
+                    if (string1.equals("添加顾问")) {
+                        FinalContents.setXiuGai("添加顾问");
+                        Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_AddAConsultantActivity.class);
+                        startActivity(intent);
+                    } else if (string1.equals("添加销售")) {
+                        FinalContents.setXiuGai("添加销售");
+                        Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_AddSalesActivity.class);
+                        startActivity(intent);
+                    }
+                }else if (options1 == 1){
+                    Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_BatchModifyingActivity.class);
+                    startActivity(intent);
+                }
 
             }
-        });
+        })
+                .setSelectOptions(0)
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list1);
+        //      展示
+        pvOptions.show();
+
+
+//        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
+//        //处理popWindow 显示内容
+//        handleListView1(contentView);
+//        //创建并显示popWindow
+//        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        p.setTouchable(true);
+//        p.setFocusable(true);
+//        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
+//        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+//        int xOff;
+//        int buttonWidth = team_member_img2.getWidth();
+//        int popupwindowWidth = p.getContentView().getMeasuredWidth();
+//        xOff = buttonWidth - popupwindowWidth;
+//        p.showAsDropDown(team_member_img2,xOff,0);
+//
+//        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//            @Override
+//            public void onDismiss() {
+//
+//            }
+//        });
     }
 
     // TODO 填写数据
@@ -358,12 +448,11 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
         RecyclerView recyclerView = contentView.findViewById(R.id.rv_user);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
         final List<String> list = new ArrayList<>();
         list.add(string1);
         if (string2.equals("")) {
 
-        }else {
+        } else {
             list.add(string2);
         }
 
@@ -376,15 +465,15 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                 if (postion == 0) {
                     if (string1.equals("添加顾问")) {
                         FinalContents.setXiuGai("添加顾问");
-                        Intent intent = new Intent(Captain_Team_TeamMemberActivity.this,Captain_Team_AddAConsultantActivity.class);
+                        Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_AddAConsultantActivity.class);
                         startActivity(intent);
                     } else if (string1.equals("添加销售")) {
                         FinalContents.setXiuGai("添加销售");
-                        Intent intent = new Intent(Captain_Team_TeamMemberActivity.this,Captain_Team_AddSalesActivity.class);
+                        Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_AddSalesActivity.class);
                         startActivity(intent);
                     }
                 } else if (postion == 1) {
-                    Intent intent = new Intent(Captain_Team_TeamMemberActivity.this,Captain_Team_BatchModifyingActivity.class);
+                    Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_BatchModifyingActivity.class);
                     startActivity(intent);
                 }
 
@@ -407,7 +496,7 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<TeamMemberBean> teamMemberBeane = fzbInterface.getTeamMemberBeane(searcName, type, loginFlag, FinalContents.getUserID(), FinalContents.getUserID(),"1000");
+        Observable<TeamMemberBean> teamMemberBeane = fzbInterface.getTeamMemberBeane(searcName, type, loginFlag, FinalContents.getUserID(), FinalContents.getUserID(), "1000");
         teamMemberBeane.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<TeamMemberBean>() {
@@ -424,16 +513,16 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                             all_no_information.setVisibility(View.GONE);
                             team_member_rv.setVisibility(View.VISIBLE);
                             for (int i = 0; i < rows.size(); ++i) {
-                                if (rows.get(i).getName().equals("")){
+                                if (rows.get(i).getName().equals("")) {
 
-                                }else {
+                                } else {
                                     ContactModel contactModel = new ContactModel(rows.get(i).getName() + "@" + rows.get(i).getId());
                                     mContactModels.add(contactModel);
                                 }
                             }
                             initDatas();
                             flag = 0;
-                        }else {
+                        } else {
                             all_no_information.setVisibility(View.VISIBLE);
                             team_member_rv.setVisibility(View.GONE);
                         }
@@ -491,11 +580,11 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
     //TODO item点击事件
     @Override
     public void itemClick(String itemName) {
-        for (int i = 0;i < rows.size();i++){
+        for (int i = 0; i < rows.size(); i++) {
             if ((rows.get(i).getName() + "@" + rows.get(i).getId()).equals(itemName)) {
                 FinalContents.setAgentId(rows.get(i).getId());
                 FinalContents.setInforId(rows.get(i).getId());
-                Intent intent = new Intent(Captain_Team_TeamMemberActivity.this,Captain_Team_SalesDetailsDetailsActivity.class);
+                Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_SalesDetailsDetailsActivity.class);
                 startActivity(intent);
             }
         }

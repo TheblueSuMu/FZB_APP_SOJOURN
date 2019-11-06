@@ -181,8 +181,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             initData(FinalContents.getCompanyId(), "", "");
             FinalContents.setStoreList("1");
         }
-
-
     }
 
     private void initData(String companyId, String search, String status) {

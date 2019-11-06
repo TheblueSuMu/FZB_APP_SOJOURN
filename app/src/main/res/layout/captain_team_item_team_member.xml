@@ -50,7 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text=""
-                android:textColor="#ff666666"
+                android:textColor="#334485"
+                android:background="@drawable/x_color"
                 android:textSize="12sp" />
 
             <TextView

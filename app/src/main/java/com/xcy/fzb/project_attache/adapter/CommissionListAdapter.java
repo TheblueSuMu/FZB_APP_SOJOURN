@@ -156,7 +156,7 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
 
             holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
             holder.item_commission_list_tv10.setVisibility(View.VISIBLE);
-            holder.item_commission_list_tv11.setText("结清时间：" + rows.get(position).getClosingTime() + "");
+            holder.item_commission_list_tv11.setText(rows.get(position).getClosingTime() + "");
 
         }
 

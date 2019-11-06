@@ -276,6 +276,8 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     FinalContents.setIFSP("1");
+                    FinalContents.setFragmentSS("0");
+                    FinalContents.setFragmentSSS("0");
                     intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                     getActivity().finish();

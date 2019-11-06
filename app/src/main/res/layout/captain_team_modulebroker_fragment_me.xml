@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E9EBEB"
     tools:ignore="MissingDefaultResource,ResourceName">
 
@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E9EBEB">
+
         <RelativeLayout
             android:id="@+id/my_rl_1"
             android:layout_width="match_parent"
@@ -28,8 +29,8 @@
                     android:layout_width="10dp"
                     android:layout_height="18dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="15dp"
                     android:layout_marginTop="2dp"
+                    android:layout_marginRight="15dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/white_next" />
 
@@ -37,9 +38,9 @@
                     android:id="@+id/me_photo"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    app:riv_oval="true"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/logo_garden"
-                    android:scaleType="fitXY" />
+                    app:riv_oval="true" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -109,12 +110,12 @@
                 android:id="@+id/me_Client"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -122,9 +123,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:ellipsize="end"
+                        android:lines="1"
                         android:text=""
                         android:textColor="#334485"
-                        android:textSize="24sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -133,13 +136,13 @@
                         android:layout_marginTop="10dp"
                         android:text="成交量(套)"
                         android:textColor="#111111"
-                        android:textSize="15sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="1dp"
+                android:layout_width="0.5dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:background="#A0A0A0"></LinearLayout>
@@ -148,12 +151,12 @@
                 android:id="@+id/me_Brokerage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -161,9 +164,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:ellipsize="end"
+                        android:lines="1"
                         android:text=""
                         android:textColor="#334485"
-                        android:textSize="24sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -172,13 +177,13 @@
                         android:layout_marginTop="10dp"
                         android:text="团队佣金(万元)"
                         android:textColor="#111111"
-                        android:textSize="15sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="1dp"
+                android:layout_width="0.5dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:background="#A0A0A0"></LinearLayout>
@@ -187,12 +192,12 @@
                 android:id="@+id/me_team"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -200,9 +205,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:ellipsize="end"
+                        android:lines="1"
                         android:text=""
                         android:textColor="#334485"
-                        android:textSize="24sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -211,7 +218,7 @@
                         android:layout_marginTop="10dp"
                         android:text="我的团队"
                         android:textColor="#111111"
-                        android:textSize="15sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -232,6 +239,7 @@
                 android:layout_height="53dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
                 android:background="@drawable/my_e_fragment">
 
                 <ImageView
@@ -300,7 +308,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="275dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/my_e_fragment"
                     android:orientation="vertical">
@@ -365,11 +372,11 @@
                             android:id="@+id/my_tv_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#111111"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="10dp"
                             android:layout_toRightOf="@id/my_img_3"
                             android:text="意见反馈"
+                            android:textColor="#111111"
                             android:textSize="15sp" />
 
                         <ImageView
@@ -404,13 +411,13 @@
 
                         <TextView
                             android:id="@+id/my_tv_5"
-                            android:textColor="#111111"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="10dp"
                             android:layout_toRightOf="@id/my_img_4"
                             android:text="关于房坐标"
+                            android:textColor="#111111"
                             android:textSize="15sp" />
 
                         <ImageView
@@ -447,19 +454,19 @@
                             android:id="@+id/my_tv_6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#111111"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="10dp"
                             android:layout_toRightOf="@id/my_img_5"
                             android:text="清空缓存"
+                            android:textColor="#111111"
                             android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/my_tv_huancun"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="20dp"
                             android:textSize="15sp" />
 
@@ -495,13 +502,13 @@
 
                         <TextView
                             android:id="@+id/my_tv_7"
-                            android:textColor="#111111"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="10dp"
                             android:layout_toRightOf="@id/my_img_6"
                             android:text="退出登录"
+                            android:textColor="#111111"
                             android:textSize="15sp" />
 
                         <ImageView

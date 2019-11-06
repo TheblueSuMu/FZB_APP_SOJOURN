@@ -112,7 +112,7 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
             holder.brokerage_item_notAmount.setVisibility(View.GONE);
             holder.the_project_end_tv6.setVisibility(View.VISIBLE);
             holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv7.setText("结清时间："+rows.get(position).getClosingTime());
+            holder.the_project_end_tv7.setText(rows.get(position).getClosingTime());
         }
 
         if (rows.get(position).getMoneyStatus() == 0) {

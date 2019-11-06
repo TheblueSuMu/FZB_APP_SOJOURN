@@ -158,7 +158,7 @@ public class EFragment extends AllFragment implements View.OnClickListener {
                         Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getPhoto()).into(me_photo);
 
                         me_name.setText(data.getName());
-                        if (data.getIdentity().equals("1")) {
+                        if (data.getIdentity().equals("1") || data.getIdentity().equals("2") || data.getIdentity().equals("3")) {
                             me_identity.setText("经纪人");
                         }
                         me_city.setText(data.getCity());
