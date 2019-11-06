@@ -54,6 +54,7 @@ MobSDK {
                 appId "wx9d85bc7226e4f900"
                 appSecret "94e5ef971d7e3ba906fcfbd935fefa68"
             }
+
         }
     }
 }

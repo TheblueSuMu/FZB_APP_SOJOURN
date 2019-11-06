@@ -374,10 +374,14 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                         public void onNext(TradeSaveBean tradeSaveBean) {
                             if (FinalContents.getCommissionId().equals("")) {
                                 Toast.makeText(FillInTransactionInformationActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
+                                ifnum6 = 0;
                             } else {
                                 Toast.makeText(FillInTransactionInformationActivity.this, tradeSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                 finish();
+                                ifnum6 = 0;
                             }
+
+                            Log.i("判断","shuju2："+ifnum6);
                         }
 
                         @Override
@@ -423,10 +427,13 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                     public void onNext(TradeSaveBean tradeSaveBean) {
                         Toast.makeText(FillInTransactionInformationActivity.this, tradeSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                         if (FinalContents.getCommissionId().equals("")) {
-
+                            ifnum6 = 0;
                         } else {
                             finish();
+                            ifnum6 = 0;
                         }
+
+                        Log.i("判断","shuju3："+ifnum6);
                     }
 
                     @Override
@@ -521,10 +528,10 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                         ifnum6 = 1;
                         if (FinalContents.getTiaodan().equals("调单")) {
                             initAdjustApplySave();
-                            ifnum6 = 0;
                         } else if (FinalContents.getTiaodan().equals("成交")) {
+                            Log.i("判断","shuju："+ifnum6);
                             initTradeSave();
-                            ifnum6 = 0;
+
                         }
                     }
 

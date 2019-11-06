@@ -718,8 +718,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
                 Log.i("楼盘特色","数据："+ffProjectTrait);
 
-                report_tv_timer.getVisibility();
-                if (report_tv_timer.getVisibility() == View.VISIBLE) {
+                if (report_linear.getVisibility() == View.VISIBLE) {
                     if (IDcard.getText().length() == 18) {
                         initReport();
                     } else if (IDcard.getText().length() == 0){
@@ -727,7 +726,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     } else if (IDcard.getText().length() < 18) {
                         Toast.makeText(ReportActivity.this, "请输入正确的身份证号码", Toast.LENGTH_SHORT).show();
                     }
-                }else {
+                }else if (report_linear.getVisibility() == View.GONE){
                     initReport();
                 }
 

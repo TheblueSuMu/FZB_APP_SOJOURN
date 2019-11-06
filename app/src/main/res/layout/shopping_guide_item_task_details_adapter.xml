@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_marginRight="5dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -10,16 +11,11 @@
         <TextView
             android:id="@+id/item_task_details_adapter_name"
             android:text="专案【刘喆】"
-            android:textColor="#ff666666"
+            android:textColor="#334485"
             android:textSize="13sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <ImageView
-            android:id="@+id/item_task_details_adapter_icon"
-            android:src="@mipmap/icon_call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </RelativeLayout>

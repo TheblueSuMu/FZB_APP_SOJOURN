@@ -191,7 +191,7 @@ public class TaskDetailsActivity extends AllActivity {
 
 
                             MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(TaskDetailsActivity.this);
-                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                             task_details_constraintlayout_listview.setLayoutManager(layoutManager);
                             TaskDetailsAdapter recyclerAdapter = new TaskDetailsAdapter(taskDetailsBean.getData().getProjectSpecialInfo().get(0).getBean());
                             task_details_constraintlayout_listview.setAdapter(recyclerAdapter);

@@ -328,12 +328,12 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
         drawer_start_time.setText("<"+string);
         drawer_end_time.setText("-"+string+" >");
-        drawer_pickerView.setStartDate(Calendar.getInstance());
+        drawer_pickerView.setStartDate(new GregorianCalendar(year-2, month, dayOfMonth));
         startTime = drawer_start_time.getText().toString();
         endTime = drawer_end_time.getText().toString();
         // 注意：月份是从0开始计数的
         drawer_pickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-
+        drawer_pickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
         drawer_picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

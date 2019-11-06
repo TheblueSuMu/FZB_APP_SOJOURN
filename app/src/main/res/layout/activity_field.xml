@@ -117,7 +117,7 @@
                             android:background="#FFFFFF"
                             android:layout_marginRight="20dp"
                             android:gravity="right"
-                            android:text="请选择性别"
+                            android:hint="请选择性别"
                             android:textColor="#111"
                             android:textSize="13sp" />
 

@@ -1,8 +1,10 @@
 package com.xcy.fzb;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,10 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.xcy.fzb.Login.LoginActivity;
 import com.xcy.fzb.all.api.APKVersionCodeUtils;
 import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.Login.LoginActivity;
-import com.xcy.fzb.all.persente.CleanDataUtils;
 
 public class BaseUrl extends AppCompatActivity {
     private TextView ensure;
@@ -24,6 +25,7 @@ public class BaseUrl extends AppCompatActivity {
 
     private  final int SPLASH_DISPLAY_LENGHT = 2000;//两秒后进入系统，时间可自行调整
 
+    @SuppressLint("ApplySharedPref")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +34,40 @@ public class BaseUrl extends AppCompatActivity {
         editor = getSharedPreferences("data", MODE_PRIVATE).edit();
         pref = getSharedPreferences("data", MODE_PRIVATE);
 
-
-        if (pref.getString("introduction", "").equals("")) {
-            Intent mainIntent = new Intent(BaseUrl.this,Introduction.class);
-            BaseUrl.this.startActivity(mainIntent);
-            BaseUrl.this.finish();
-            editor.putString("introduction", "1");
+        if (pref.getString("versionCode", "").equals("")) {
+            editor.clear();
+            FinalContents.setClean("1");
+            editor.putString("versionCode", "1");
             editor.commit();
-            CleanDataUtils.cleanSharedPreference(this);
-        } else if (pref.getString("introduction", "").equals("1")) {
-            initLogin();
+            Log.i("打印","shuju："+1);
+            Log.i("打印","versionCode："+pref.getString("versionCode", ""));
+            if (pref.getString("introduction", "").equals("")) {
+                Intent mainIntent = new Intent(BaseUrl.this,Introduction.class);
+                BaseUrl.this.startActivity(mainIntent);
+                BaseUrl.this.finish();
+                editor.putString("introduction", "1");
+                editor.commit();
+                Log.i("打印","shuju："+3);
+            } else if (pref.getString("introduction", "").equals("1")) {
+                initLogin();
+                Log.i("打印","shuju："+4);
+            }
+        }else {
+            Log.i("打印","shuju："+2);
+            if (pref.getString("introduction", "").equals("")) {
+                Intent mainIntent = new Intent(BaseUrl.this,Introduction.class);
+                BaseUrl.this.startActivity(mainIntent);
+                BaseUrl.this.finish();
+                editor.putString("introduction", "1");
+                editor.commit();
+                Log.i("打印","shuju："+3);
+            } else if (pref.getString("introduction", "").equals("1")) {
+                initLogin();
+                Log.i("打印","shuju："+4);
+            }
         }
+
+
 
         String versionName = APKVersionCodeUtils.getVerName(this);
         FinalContents.setVersionNumBer(versionName);

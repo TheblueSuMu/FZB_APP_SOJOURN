@@ -216,10 +216,23 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
             case R.id.to_apply_for_an_island_btn:
                 if (!to_apply_for_an_island_et1.getText().toString().equals("")) {
                     if (to_apply_for_an_island_tv2.getText().toString().equals("男") || to_apply_for_an_island_tv2.getText().toString().equals("女")) {
-                        if (!to_apply_for_an_island_tv3.getText().toString().equals("")) {
-                            if (FinalContents.getProjectType().equals("2")) {
-                                //  TODO 海外
-                                if (!to_apply_for_an_island_et2.getText().toString().equals("")) {
+                        if (!imgUrl.equals("")) {
+                            if (!to_apply_for_an_island_tv3.getText().toString().equals("")) {
+                                if (FinalContents.getProjectType().equals("2")) {
+                                    //  TODO 海外
+                                    if (!to_apply_for_an_island_et2.getText().toString().equals("")) {
+                                        intent = new Intent(ToApplyForAnIslandActivity.this, ToApplyForAnlsland2Activity.class);
+                                        ProjectProgressApi.setGender(to_apply_for_an_island_tv2.getText().toString());        //      TODO    性别
+                                        ProjectProgressApi.setIdNumber(to_apply_for_an_island_et1.getText().toString());        //      TODO    身份证号码
+                                        ProjectProgressApi.setAge(to_apply_for_an_island_tv3.getText().toString());        //      TODO    年龄
+                                        ProjectProgressApi.setPassportNumber(to_apply_for_an_island_et2.getText().toString());        //      TODO    护照号码
+                                        ProjectProgressApi.setPassportimg(imgUrl);        //      TODO    身份证或护照 照片
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(this, "请输入护照编号", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else if (FinalContents.getProjectType().equals("3")) {
+                                    //  TODO 旅居
                                     intent = new Intent(ToApplyForAnIslandActivity.this, ToApplyForAnlsland2Activity.class);
                                     ProjectProgressApi.setGender(to_apply_for_an_island_tv2.getText().toString());        //      TODO    性别
                                     ProjectProgressApi.setIdNumber(to_apply_for_an_island_et1.getText().toString());        //      TODO    身份证号码
@@ -227,22 +240,13 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                                     ProjectProgressApi.setPassportNumber(to_apply_for_an_island_et2.getText().toString());        //      TODO    护照号码
                                     ProjectProgressApi.setPassportimg(imgUrl);        //      TODO    身份证或护照 照片
                                     startActivity(intent);
-                                } else {
-                                    Toast.makeText(this, "请输入护照编号", Toast.LENGTH_SHORT).show();
                                 }
-                            } else if (FinalContents.getProjectType().equals("3")) {
-                                //  TODO 旅居
-                                intent = new Intent(ToApplyForAnIslandActivity.this, ToApplyForAnlsland2Activity.class);
-                                ProjectProgressApi.setGender(to_apply_for_an_island_tv2.getText().toString());        //      TODO    性别
-                                ProjectProgressApi.setIdNumber(to_apply_for_an_island_et1.getText().toString());        //      TODO    身份证号码
-                                ProjectProgressApi.setAge(to_apply_for_an_island_tv3.getText().toString());        //      TODO    年龄
-                                ProjectProgressApi.setPassportNumber(to_apply_for_an_island_et2.getText().toString());        //      TODO    护照号码
-                                ProjectProgressApi.setPassportimg(imgUrl);        //      TODO    身份证或护照 照片
-                                startActivity(intent);
-                            }
 
-                        } else {
-                            Toast.makeText(this, "请输入年龄", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(this, "请输入年龄", Toast.LENGTH_SHORT).show();
+                            }
+                        }else {
+                            Toast.makeText(this, "请上传照片", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(this, "请选择性别", Toast.LENGTH_SHORT).show();

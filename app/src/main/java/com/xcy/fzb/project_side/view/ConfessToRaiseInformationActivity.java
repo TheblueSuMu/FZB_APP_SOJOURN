@@ -252,87 +252,87 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
                 break;
             //            TODO 提交
             case R.id.confess_to_raise_information_btn:
+
+                s = confess_to_raise_information_et1.getText().toString();
+                s1 = confess_to_raise_information_et2.getText().toString();
+                s2 = confess_to_raise_information_et3.getText().toString();
+                s3 = confess_to_raise_information_et4.getText().toString();
+                s4 = confess_to_raise_information_et5.getText().toString();
+
+                s5 = confess_to_raise_information_tv4.getText().toString();
+                s6 = confess_to_raise_information_tv5.getText().toString();
+                s7 = confess_to_raise_information_tv6.getText().toString();
+
+                if (!MatcherUtils.isMobile(confess_to_raise_information_et2.getText().toString())) {
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (s6.equals("一室")) {
+                    s8 = "1";
+                } else if (s6.equals("二室")) {
+                    s8 = "2";
+                } else if (s6.equals("三室")) {
+                    s8 = "3";
+                } else if (s6.equals("四室")) {
+                    s8 = "4";
+                } else if (s6.equals("五室")) {
+                    s8 = "5";
+                }
+
+                if (confess_to_raise_information_rb1.isChecked()) {
+                    sex = "男";
+                } else if (confess_to_raise_information_rb2.isChecked()) {
+                    sex = "女";
+                }
+
+                if (confess_to_raise_information_et1.getText().toString().equals("")) {
+                    Toast.makeText(this, "请输入认筹客户姓名", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (sex.equals("")) {
+                    Toast.makeText(this, "请选择性别", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_et2.getText().toString().equals("")) {
+                    Toast.makeText(this, "请输入认筹客户电话", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_et3.getText().toString().equals("")) {
+                    Toast.makeText(this, "请输入认筹客户身份证", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_tv4.getText().toString().equals("")) {
+                    Toast.makeText(this, "请选择报备客户与认筹客户关系", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_et4.getText().toString().equals("")) {
+                    Toast.makeText(this, "请输入意向楼栋", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_tv5.getText().toString().equals("")) {
+                    Toast.makeText(this, "请选择意向户型", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_et5.getText().toString().equals("")) {
+                    Toast.makeText(this, "请输入意向面积", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (confess_to_raise_information_tv6.getText().toString().equals("")) {
+                    Toast.makeText(this, "请选择认筹时间", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (isnum1 == 0) {
                     isnum1 = 1;
-                    s = confess_to_raise_information_et1.getText().toString();
-                    s1 = confess_to_raise_information_et2.getText().toString();
-                    s2 = confess_to_raise_information_et3.getText().toString();
-                    s3 = confess_to_raise_information_et4.getText().toString();
-                    s4 = confess_to_raise_information_et5.getText().toString();
-
-                    s5 = confess_to_raise_information_tv4.getText().toString();
-                    s6 = confess_to_raise_information_tv5.getText().toString();
-                    s7 = confess_to_raise_information_tv6.getText().toString();
-
-                    if (!MatcherUtils.isMobile(confess_to_raise_information_et2.getText().toString())) {
-                        Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (s6.equals("一室")) {
-                        s8 = "1";
-                    } else if (s6.equals("二室")) {
-                        s8 = "2";
-                    } else if (s6.equals("三室")) {
-                        s8 = "3";
-                    } else if (s6.equals("四室")) {
-                        s8 = "4";
-                    } else if (s6.equals("五室")) {
-                        s8 = "5";
-                    }
-
-                    if (confess_to_raise_information_rb1.isChecked()) {
-                        sex = "男";
-                    } else if (confess_to_raise_information_rb2.isChecked()) {
-                        sex = "女";
-                    }
-
-                    if (confess_to_raise_information_et1.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入认筹客户姓名", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (sex.equals("")) {
-                        Toast.makeText(this, "请选择性别", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (confess_to_raise_information_et2.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入认筹客户电话", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (confess_to_raise_information_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入认筹客户身份证", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (confess_to_raise_information_tv4.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择报备客户与认筹客户关系", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (confess_to_raise_information_et4.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入意向楼栋", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (confess_to_raise_information_tv5.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择意向户型", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (confess_to_raise_information_et5.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入意向面积", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (confess_to_raise_information_tv6.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择认筹时间", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
                     init();
-                    isnum1 = 0;
                 }
 
                 break;
@@ -363,8 +363,10 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
                             Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                             FinalContents.setTiaozhuang("认筹成功");
                             finish();
+                            isnum1 = 0;
                         } else {
                             Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            isnum1 = 0;
                         }
                     }
 

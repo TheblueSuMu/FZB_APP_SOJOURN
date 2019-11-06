@@ -72,8 +72,7 @@ public class CleanDataUtils {
          * @param context
          */
         public static void cleanSharedPreference(Context context) {
-            deleteFilesByDirectory(new File("/data/data/"
-                    + context.getPackageName() + "/shared_prefs"));
+            deleteFilesByDirectory(new File("/data/data/" + context.getPackageName() + "/shared_prefs"));
         }
 
         /**

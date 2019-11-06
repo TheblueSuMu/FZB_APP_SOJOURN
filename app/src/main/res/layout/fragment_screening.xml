@@ -521,24 +521,35 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
                 android:layout_height="65dp"
                 android:layout_marginTop="10dp">
 
-                <Button
-                    android:id="@+id/screen_ensure"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/screen_reset"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="38dp"
-                    android:layout_marginRight="38dp"
-                    android:background="@drawable/points_dialog_but"
-                    android:text="确定"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/reset"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp" />
 
-            </RelativeLayout>
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:id="@+id/screen_ensure"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/put_in"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

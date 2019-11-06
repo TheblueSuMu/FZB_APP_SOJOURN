@@ -1,6 +1,7 @@
 package com.xcy.fzb.all.application;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 
 import androidx.multidex.MultiDex;
 
@@ -46,12 +47,15 @@ public class DemoApplication extends Application {
     public PriceFragment priceFragment;
     public HouseTypeFragment houseTypeFragment;
     public ScreeningFragment screeningFragment;
-
+    private SharedPreferences.Editor editor;
+    private SharedPreferences pref;
     public List<NationBean.DataBean> nationlist;
     public List<ImgData.DataBean> imagelist;
     @Override
     public void onCreate() {
         super.onCreate();
+        editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+        pref = getSharedPreferences("data", MODE_PRIVATE);
         //在使用SDK各组件之前初始化context信息，传入ApplicationContext
         SDKInitializer.initialize(this);
         //自4.3.0起，百度地图SDK所有接口均支持百度坐标和国测局坐标，用此方法设置您使用的坐标类型.

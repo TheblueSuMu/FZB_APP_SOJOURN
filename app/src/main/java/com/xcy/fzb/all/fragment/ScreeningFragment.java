@@ -1,15 +1,18 @@
 package com.xcy.fzb.all.fragment;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,7 +69,7 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
     private CheckBox decorate3;
     private CheckBox decorate4;
 
-    private Button ensure;
+    private ImageView ensure;
 
     private String areaSection = "";
     private String ffProjectTrait = "";
@@ -82,7 +85,10 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
     private Map<Integer,String> stateMap = new HashMap<>();
     private RecyclerView screening_label_rv;
     private String projectLabel = "";
-
+    private ImageView screen_reset;
+    private View inflate;
+    FragmentManager manager;
+    FragmentTransaction transaction;
 
     public ScreeningFragment() {
         // Required empty public constructor
@@ -93,10 +99,12 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_screening, container, false);
+        inflate = inflater.inflate(R.layout.fragment_screening, container, false);
+        manager = getActivity().getSupportFragmentManager();
+        transaction = manager.beginTransaction();
         initData();
-        initView(view);
-        return view;
+        initView(inflate);
+        return inflate;
     }
 
     private void initView(View view){
@@ -132,6 +140,7 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
         decorate4 = view.findViewById(R.id.screen_decorate_4);
 
         ensure = view.findViewById(R.id.screen_ensure);
+        screen_reset = view.findViewById(R.id.screen_reset);
 
         area1.setOnClickListener(this);
         area2.setOnClickListener(this);
@@ -161,7 +170,16 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
         ensure.setOnClickListener(this);
         initProjectLabel();
 
+        screen_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listterner.process("重置"); // 3.1 执行回调
+                Log.i("重置","重置");
+            }
+        });
     }
+
+
 
     private void initData(){
         areaMap.put(0,"");
@@ -458,6 +476,45 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
                 procuctType = "";
                 fitmentState = "";
                 break;
+        }
+    }
+
+
+    // 2.1 定义用来与外部activity交互，获取到宿主activity
+    private FragmentInteraction listterner;
+
+    // 1 定义了所有activity必须实现的接口方法
+    public interface FragmentInteraction {
+        void process(String str);
+    }
+
+    // 当FRagmen被加载到activity的时候会被回调
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        if(activity instanceof FragmentInteraction) {
+            listterner = (FragmentInteraction)activity; // 2.2 获取到宿主activity并赋值
+        } else{
+            throw new IllegalArgumentException("activity must implements FragmentInteraction");
+        }
+    }
+
+    //把传递进来的activity对象释放掉
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listterner = null;
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            onResume();
+            //TODO now invisible to user 显示fragment
         }
     }
 }

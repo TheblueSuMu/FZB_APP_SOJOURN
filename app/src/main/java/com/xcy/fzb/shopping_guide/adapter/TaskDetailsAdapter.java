@@ -2,11 +2,11 @@ package com.xcy.fzb.shopping_guide.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +38,9 @@ public class TaskDetailsAdapter extends RecyclerView.Adapter<TaskDetailsAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.item_task_details_adapter_name.setText("专案【"+list.get(position).getSpecialName()+"】");
-        holder.item_task_details_adapter_icon.setOnClickListener(new View.OnClickListener() {
+        holder.item_task_details_adapter_name.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+//        holder.item_task_details_adapter_name.getPaint().setAntiAlias(true);//抗锯齿
+        holder.item_task_details_adapter_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String phone = list.get(position).getSpecialPhone();
@@ -58,13 +60,11 @@ public class TaskDetailsAdapter extends RecyclerView.Adapter<TaskDetailsAdapter.
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView item_task_details_adapter_icon;
         TextView item_task_details_adapter_name;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             item_task_details_adapter_name = itemView.findViewById(R.id.item_task_details_adapter_name);
-            item_task_details_adapter_icon = itemView.findViewById(R.id.item_task_details_adapter_icon);
 
         }
     }

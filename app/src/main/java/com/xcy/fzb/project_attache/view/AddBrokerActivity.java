@@ -297,7 +297,6 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                                     finish();
                                 } else {
                                     Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                    finish();
                                 }
                             }
 
@@ -344,7 +343,6 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                                     finish();
                                 } else {
                                     Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                    finish();
                                 }
                             }
 

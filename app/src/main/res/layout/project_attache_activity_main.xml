@@ -25,15 +25,14 @@
 
         <RadioGroup
             android:id="@+id/main_rg"
-            android:paddingTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@drawable/back_yy"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
             <RadioButton
-                android:paddingLeft="15dp"
                 android:id="@+id/button_home"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -41,11 +40,12 @@
                 android:button="@null"
                 android:checked="true"
                 android:drawableTop="@drawable/checked_home"
-                android:gravity="center"
                 android:drawablePadding="6dp"
+                android:gravity="center"
+                android:paddingLeft="15dp"
                 android:text="首页"
                 android:textColor="#ff333333"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <RadioButton
                 android:id="@+id/button_message"
@@ -54,11 +54,11 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:drawableTop="@drawable/checked_attache"
-                android:gravity="center"
                 android:drawablePadding="6dp"
+                android:gravity="center"
                 android:text="门店"
                 android:textColor="#ff333333"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
 
             <RadioButton
@@ -70,7 +70,7 @@
                 android:gravity="center"
                 android:text="添加"
                 android:textColor="#ff333333"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
 
             <RadioButton
@@ -80,12 +80,11 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:drawableTop="@drawable/checked_message"
-                android:gravity="center"
                 android:drawablePadding="6dp"
+                android:gravity="center"
                 android:text="消息"
                 android:textColor="#ff333333"
-                android:textSize="12sp"
-                />
+                android:textSize="12sp" />
 
             <RadioButton
                 android:id="@+id/button_me"
@@ -94,11 +93,11 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:drawableTop="@drawable/checked_me"
-                android:gravity="center"
                 android:drawablePadding="6dp"
+                android:gravity="center"
                 android:text="我的"
                 android:textColor="#ff333333"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
         </RadioGroup>
 

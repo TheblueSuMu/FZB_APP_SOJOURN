@@ -79,7 +79,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class OverSeaActivity extends AllActivity implements View.OnClickListener, SensorEventListener {
+public class OverSeaActivity extends AllActivity implements View.OnClickListener, SensorEventListener ,ScreeningFragment.FragmentInteraction{
     private BannerViewPager banner;
     private List<String> list_img;
 
@@ -143,6 +143,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_over_sea);
         init_No_Network();
+
     }
 
     private void init_No_Network(){
@@ -176,6 +177,20 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         }
     }
 
+    // 3.2 +实现接口，实现回调
+    @Override
+    public void process(String str) {
+        if (str != null) {
+            if (str.equals("重置")) {
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                screeningFragment = new ScreeningFragment();
+                transaction.replace(R.id.oversea_fl, screeningFragment);
+                transaction.commit();
+                Log.i("重置","yi重置");
+            }
+        }
+    }
 
     /**
      *  摇一摇
@@ -649,7 +664,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                         }
                         banner.initBanner(list_img, false)//关闭3D画廊效果
                                 .addPageMargin(10, 50)//参数1page之间的间距,参数2中间item距离边界的间距
-                                .addPoint(6)//添加指示器
                                 .addStartTimer(8)//自动轮播5秒间隔
                                 .addPointBottom(7)
                                 .addRoundCorners(12)//圆角

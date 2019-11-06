@@ -143,6 +143,14 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+        pref = getSharedPreferences("data", MODE_PRIVATE);
+
+        if (FinalContents.getClean().equals("")) {
+        }else {
+            editor.clear();
+        }
+
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             if (FinalContents.getDengLu().equals("")) {
@@ -168,10 +176,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         FinalContents.setZhuanAn("1");
         FinalContents.setCityName("长春市");
         FinalContents.setLuo(true);
-
-        editor = getSharedPreferences("data", MODE_PRIVATE).edit();
-        pref = getSharedPreferences("data", MODE_PRIVATE);
-
 
         if (FinalContents.getDengLu().equals("")) {
 

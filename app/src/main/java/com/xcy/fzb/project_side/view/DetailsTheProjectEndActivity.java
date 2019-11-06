@@ -718,16 +718,17 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
             set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set1.setCubicIntensity(0.2f);
+
             set1.setDrawFilled(true);
-            set1.setDrawCircles(true);
+            set1.setDrawCircles(false);
             set1.setLineWidth(1.8f);
             set1.setCircleRadius(4f);
             set1.setValueTextSize(9f);
             set1.setHighlightEnabled(!set1.isHighlightEnabled());
-            set1.setCircleColor(Color.GRAY);
+            set1.setCircleColor(Color.GRAY); 
             set1.setHighLightColor(Color.BLACK);
             set1.setColor(R.color.line);
-            set1.setFillColor(R.color.mian);
+            set1.setFillColor(R.drawable.line_back);
             set1.setDrawValues(!set1.isDrawValuesEnabled());
             set1.setFillAlpha(50);
             set1.setDrawHorizontalHighlightIndicator(false);

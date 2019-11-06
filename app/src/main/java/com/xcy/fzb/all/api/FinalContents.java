@@ -24,8 +24,8 @@ public class FinalContents {
     public static final String SP_FILE_NAME = "fzb";
     public static final String SP_LOGIN_NAME = "fzbLogin";
 
-//    static String ImageUrl = "http://39.98.173.250:8080";
-    static String ImageUrl = "http://yanshi.fangzuobiao.com:88";
+    static String ImageUrl = "http://39.98.173.250:8080";
+//    static String ImageUrl = "http://yanshi.fangzuobiao.com:88";
 
 
     public static String getImageUrl() {
@@ -36,8 +36,8 @@ public class FinalContents {
         ImageUrl = imageUrl;
     }
 
-//    static String BaseUrl = "http://39.98.173.250:8080/fangfang/app/v1/";
-    static String BaseUrl = "http://yanshi.fangzuobiao.com:88/fangfang/app/v1/";
+    static String BaseUrl = "http://39.98.173.250:8080/fangfang/app/v1/";
+//    static String BaseUrl = "http://yanshi.fangzuobiao.com:88/fangfang/app/v1/";
 
 
     static String userID = "";
@@ -166,6 +166,16 @@ public class FinalContents {
     static String VersionNumBer = "1.0";
 
     static boolean Hidden = true;
+
+    static String Clean = "";
+
+    public static String getClean() {
+        return Clean;
+    }
+
+    public static void setClean(String clean) {
+        Clean = clean;
+    }
 
     public static boolean isHidden() {
         return Hidden;

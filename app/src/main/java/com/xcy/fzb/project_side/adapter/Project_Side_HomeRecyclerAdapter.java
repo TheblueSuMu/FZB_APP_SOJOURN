@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,15 +73,19 @@ public class Project_Side_HomeRecyclerAdapter extends RecyclerView.Adapter<Proje
         String ids = beanList.get(position).getProductFeature();//从pd里取出字符串
         List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
 
-        holder.tagView.setTheme(ColorFactory.NONE);
-        holder.tagView.setTags(tags);
-
         if (beanList.get(position).getOnlineState().equals("0")) {
             holder.item_OnlineState.setVisibility(View.VISIBLE);
         } else if (beanList.get(position).getOnlineState().equals("1")){
             holder.item_OnlineState.setVisibility(View.GONE);
         }
 
+        if (beanList.get(position).getProductFeature().equals("")) {
+            holder.tagView.setVisibility(View.GONE);
+        }else {
+            holder.tagView.setVisibility(View.VISIBLE);
+            holder.tagView.setTheme(ColorFactory.NONE);
+            holder.tagView.setTags(tags);
+        }
 
         if (beanList.get(position).getIsgroup().equals("1")) {
             holder.group_booking.setVisibility(View.VISIBLE);
