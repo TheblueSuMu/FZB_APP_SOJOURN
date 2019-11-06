@@ -56,7 +56,7 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
                     }
                     Log.i("走呀","数组的长度："+ a.length);
                     Log.i("走呀","1："+ arraylist.size());
-                    MyGridLayoutManager layoutManager = new MyGridLayoutManager(context,5);
+                    MyGridLayoutManager layoutManager = new MyGridLayoutManager(context,3);
                     layoutManager.setOrientation(MyGridLayoutManager.VERTICAL);
                     holder.item_reivew_adapter_item.setLayoutManager(layoutManager);
                     ReviewAdapterItemAdapter reviewAdapterItemAdapter = new ReviewAdapterItemAdapter(arraylist);

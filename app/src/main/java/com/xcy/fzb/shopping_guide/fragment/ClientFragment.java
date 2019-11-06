@@ -25,6 +25,10 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.KeyUtils;
 import com.xcy.fzb.shopping_guide.adapter.ClientAdapter;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -37,9 +41,10 @@ public class ClientFragment extends AllFragment {
     private View view;
     private RecyclerView client_rv;
     private EditText client_search;
-    private String search;
+    private String search = "";
     int isnum = 0;
     private ImageView all_no_information;
+    private PtrClassicFrameLayout client_ptrclass;
 
     @Nullable
     @Override
@@ -48,12 +53,11 @@ public class ClientFragment extends AllFragment {
         client_rv = view.findViewById(R.id.client_rv);
         all_no_information = view.findViewById(R.id.all_no_information);
         client_search = view.findViewById(R.id.client_search);
-        initData();
+        client_ptrclass = view.findViewById(R.id.client_ptrclass);
         client_search.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (KeyEvent.KEYCODE_ENTER == i && KeyEvent.ACTION_DOWN == keyEvent.getAction()) {
-
                     KeyUtils.hideKeyboard(client_search);
                     search = client_search.getText().toString();
                     if (isnum == 0) {
@@ -64,6 +68,27 @@ public class ClientFragment extends AllFragment {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        client_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        client_ptrclass.refreshComplete();
+                        client_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        client_search.setText("");
+                        search = client_search.getText().toString();
+                        initData();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
             }
         });
         return view;
@@ -98,12 +123,12 @@ public class ClientFragment extends AllFragment {
                             ClientAdapter recyclerAdapter = new ClientAdapter(customerListBean.getData().getRows());
                             client_rv.setAdapter(recyclerAdapter);
                             recyclerAdapter.notifyDataSetChanged();
-                            isnum = 0;
                         }else {
                             all_no_information.setVisibility(View.VISIBLE);
                             client_rv.setVisibility(View.GONE);
-                        }
 
+                        }
+                        isnum = 0;
                     }
 
                     @Override
@@ -123,6 +148,19 @@ public class ClientFragment extends AllFragment {
     @Override
     public void onResume() {
         super.onResume();
+        search = "";
+        client_search.setText("");
         initData();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            onResume();
+            //TODO now invisible to user 显示fragment
+        }
     }
 }

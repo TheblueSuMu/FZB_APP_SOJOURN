@@ -115,10 +115,18 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:background="#FFFFFF"
+                            android:layout_marginRight="20dp"
                             android:gravity="right"
                             android:text="请选择性别"
-                            android:textColor="#ff111111"
+                            android:textColor="#111"
                             android:textSize="13sp" />
+
+                        <ImageView
+                            android:layout_width="6dp"
+                            android:src="@mipmap/nexts"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_height="9dp"/>
 
                     </RelativeLayout>
 
@@ -301,7 +309,6 @@
                             android:id="@+id/field_img"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@mipmap/wx_tp"
                             android:background="#999999" />
 
                         <TextView

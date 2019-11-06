@@ -52,8 +52,8 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
     TextView check_pending_tv3;
     RecyclerView check_pending_rv;
 
-    Button check_pending_bt1;
-    Button check_pending_bt2;
+    TextView check_pending_bt1;
+    TextView check_pending_bt2;
 
     Project_Side_MakeABargainAdapter adapter;
 

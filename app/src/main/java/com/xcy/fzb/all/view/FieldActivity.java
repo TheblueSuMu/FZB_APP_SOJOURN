@@ -173,9 +173,11 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
         if (FinalContents.getProjectType().equals("2")) {
             //  TODO 海外
             field_ll.setVisibility(View.VISIBLE);
+            field_img.setImageResource(R.mipmap.wx_hz);
         } else if (FinalContents.getProjectType().equals("3")) {
             //  TODO 旅居
             field_ll.setVisibility(View.GONE);
+            field_img.setImageResource(R.mipmap.wx_sfz);
         }
 
         field_return.setOnClickListener(this);

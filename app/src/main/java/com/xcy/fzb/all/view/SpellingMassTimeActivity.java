@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -23,6 +24,10 @@ import com.xcy.fzb.all.utils.CommonUtil;
 
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -36,6 +41,8 @@ public class SpellingMassTimeActivity extends AllActivity {
     private RelativeLayout task_history_back;
     private RecyclerView task_history_rv;
     private List<SpellingMassTimeBean.DataBean.RowsBean> rows;
+    private PtrClassicFrameLayout task_history_ptrclass;
+    private ImageView all_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +74,9 @@ public class SpellingMassTimeActivity extends AllActivity {
     private void initView() {
 
         StatusBar.makeStatusBarTransparent(this);
-
+        task_history_ptrclass = findViewById(R.id.task_history_ptrclass);
         task_history_back = findViewById(R.id.task_history_back);
+        all_no_information = findViewById(R.id.all_no_information_task_history);
         task_history_rv = findViewById(R.id.task_history_rv);
         task_history_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +85,25 @@ public class SpellingMassTimeActivity extends AllActivity {
             }
         });
         initData();
+
+        task_history_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        task_history_ptrclass.refreshComplete();
+                        task_history_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        initData();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
 
     }
 
@@ -103,18 +130,27 @@ public class SpellingMassTimeActivity extends AllActivity {
 
                         rows = taskListBean.getData().getRows();
                         Log.i("MyCL", "拼团测试：" + rows.size());
-                        task_history_rv.setVisibility(View.VISIBLE);
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(SpellingMassTimeActivity.this);
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        task_history_rv.setLayoutManager(layoutManager);
-                        SpellingMassTimeAdaptewr recyclerAdapter = new SpellingMassTimeAdaptewr();
-                        recyclerAdapter.setRows(rows);
-                        task_history_rv.setAdapter(recyclerAdapter);
-                        recyclerAdapter.notifyDataSetChanged();
+                        if (rows.size() != 0) {
+                            task_history_rv.setVisibility(View.VISIBLE);
+                            all_no_information.setVisibility(View.GONE);
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(SpellingMassTimeActivity.this);
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            task_history_rv.setLayoutManager(layoutManager);
+                            SpellingMassTimeAdaptewr recyclerAdapter = new SpellingMassTimeAdaptewr();
+                            recyclerAdapter.setRows(rows);
+                            task_history_rv.setAdapter(recyclerAdapter);
+                            recyclerAdapter.notifyDataSetChanged();
+                        }else {
+                            task_history_rv.setVisibility(View.GONE);
+                            all_no_information.setVisibility(View.VISIBLE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        task_history_rv.setVisibility(View.GONE);
+                        all_no_information.setVisibility(View.VISIBLE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

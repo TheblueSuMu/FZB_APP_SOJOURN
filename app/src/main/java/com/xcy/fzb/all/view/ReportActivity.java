@@ -126,8 +126,13 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private LinearLayout report_ll_start_sq1;
     private LinearLayout report_ll_start_sq2;
 
+    int year1 = 0;
+    int month1 = 0;
+    int dayOfMonth1 = 0;
+
     int ifnum1 = 0;
     private LinearLayout report_linear;
+    boolean blean = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -315,9 +320,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
     private void initDate(){
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH)+1;
+        final int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
 
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
         String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth + 1);
@@ -334,6 +340,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             @Override
             public void onClick(View view) {
                 report_picker.setVisibility(View.GONE);
+                Log.d("判断", "判断: " + blean);
+                if (blean) {
+                    initDate2();
+                }
             }
         });
 
@@ -348,23 +358,32 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             @Override
             public void onClick(View view) {
                 report_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setStartDate(Calendar.getInstance());
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
                     public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                         year1 = date.get(Calendar.YEAR);
+                         month1 = date.get(Calendar.MONTH);
+                         dayOfMonth1 = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year1, month1 + 1, dayOfMonth1);
                         timeStart = dateString;
                         report_start.setText("<"+dateString);
                     }
                 });
+                blean = true;
             }
         });
+
+    }
+
+    private void initDate2(){
+
         report_end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 report_picker.setVisibility(View.VISIBLE);
+                Log.d("判断", "n 判断: " + blean);
+                dateTimePickerView.setStartDate(new GregorianCalendar(year1, month1, dayOfMonth1));
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
                     public void onSelectedDateChanged(Calendar date) {
@@ -377,6 +396,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                         Log.d("wsw", "new date: " + dateString);
                     }
                 });
+                blean = false;
+                Log.d("判断", "new 判断: " + blean);
             }
         });
     }
@@ -697,13 +718,18 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
                 Log.i("楼盘特色","数据："+ffProjectTrait);
 
-//                if (IDcard.getText().length() == 18) {
+                report_tv_timer.getVisibility();
+                if (report_tv_timer.getVisibility() == View.VISIBLE) {
+                    if (IDcard.getText().length() == 18) {
+                        initReport();
+                    } else if (IDcard.getText().length() == 0){
+                        Toast.makeText(ReportActivity.this, "请输入身份证号码", Toast.LENGTH_SHORT).show();
+                    } else if (IDcard.getText().length() < 18) {
+                        Toast.makeText(ReportActivity.this, "请输入正确的身份证号码", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
                     initReport();
-//                } else if (IDcard.getText().length() == 0){
-//                    Toast.makeText(ReportActivity.this, "请输入身份证号码", Toast.LENGTH_SHORT).show();
-//                } else if (IDcard.getText().length() < 18) {
-//                    Toast.makeText(ReportActivity.this, "请输入正确的身份证号码", Toast.LENGTH_SHORT).show();
-//                }
+                }
 
                 areaSection = "";
                 ffProjectTrait = "";

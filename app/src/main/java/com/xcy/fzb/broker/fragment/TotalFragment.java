@@ -43,6 +43,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -92,6 +96,7 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
     List<String> list;
     private String url;
     private ImageView all_no_information;
+    private PtrClassicFrameLayout total_ptrclass;
 
     @Nullable
     @Override
@@ -103,7 +108,26 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
 
     private void initfvb() {
         totalRv = view.findViewById(R.id.total_rv);
+        total_ptrclass = view.findViewById(R.id.total_ptrclass);
         all_no_information = view.findViewById(R.id.all_no_information);
+        total_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        total_ptrclass.refreshComplete();
+                        total_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        initView();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
         initView();
     }
 

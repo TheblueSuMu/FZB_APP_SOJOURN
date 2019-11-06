@@ -29,6 +29,10 @@ import com.xcy.fzb.all.utils.CommonUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -62,6 +66,8 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
     private List<BorkerageDownBean.DataBean.RowsBean> rows;
     private String s;
     int isnum = 0;
+    private PtrClassicFrameLayout my_brokerage_ptrclass;
+    String prokecttype = "3";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,7 +99,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
     public void initView() {
 
         StatusBar.makeStatusBarTransparent(this);
-
+        my_brokerage_ptrclass = findViewById(R.id.my_brokerage_ptrclass);
         myBrokerageImg = findViewById(R.id.my_brokerage_img);
         myBrokerageTotalText = findViewById(R.id.my_brokerage_total_text);
         myBrokerageMbText = findViewById(R.id.my_brokerage_mb_text);
@@ -141,6 +147,28 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
                 return false;
             }
 
+        });
+
+        my_brokerage_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        my_brokerage_ptrclass.refreshComplete();
+                        my_brokerage_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        initDataUp();
+                        my_brokerage_et.setText("");
+                        s = my_brokerage_et.getText().toString();
+                        initDataDown(prokecttype, s);
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
         });
 
         initDataUp();
@@ -194,7 +222,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
         int id = view.getId();
         if (id == R.id.my_brokerage_img) {//返回上一级
             finish();
-        } else if (id == R.id.my_brokerage_cs_text) {//旅居房产
+        } else if (id == R.id.my_brokerage_cs_text) {//城市房产
             Log.i("MyCL", "1");
             s = my_brokerage_et.getText().toString();
             myBrokerageLj.setVisibility(View.GONE);
@@ -212,6 +240,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
             myBrokerageCs.setVisibility(View.GONE);
             Log.i("MyCL", "3");
             initDataDown("3", s);
+            prokecttype = "3";
 //
 //            fragmentManager = getSupportFragmentManager();
 //            transaction = fragmentManager.beginTransaction();
@@ -224,6 +253,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
             myBrokerageLj.setVisibility(View.GONE);
             myBrokerageCs.setVisibility(View.GONE);
             initDataDown("2", s);
+            prokecttype = "2";
 //            fragmentManager = getSupportFragmentManager();
 //            transaction = fragmentManager.beginTransaction();
 //            transaction.replace(R.id.my_brokerage_fl, overseasFragment);

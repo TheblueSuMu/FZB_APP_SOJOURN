@@ -39,6 +39,10 @@ import com.xcy.fzb.captain_team.adapter.Captain_Team_TheProjectEndCommissionAdap
 import java.util.ArrayList;
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -76,6 +80,7 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
     String endTime = "";
     private PopupWindow p;
     private LinearLayout commission_the_project_end_linear;
+    private PtrClassicFrameLayout commission_the_project_end_ptrclass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,12 +127,35 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
         commission_the_project_end_rv = findViewById(R.id.commission_the_project_end_rv);
         commission_the_project_end_all = findViewById(R.id.commission_the_project_end_all);
         commission_the_project_end_linear = findViewById(R.id.commission_the_project_end_linear);
+        commission_the_project_end_ptrclass = findViewById(R.id.commission_the_project_end_ptrclass);
 
         if (FinalContents.getIdentity().equals("60")) {
             commission_the_project_end_linear.setVisibility(View.VISIBLE);
         } else if (FinalContents.getIdentity().equals("61")) {
             commission_the_project_end_linear.setVisibility(View.GONE);
         }
+
+        commission_the_project_end_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        commission_the_project_end_ptrclass.refreshComplete();
+                        commission_the_project_end_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        commission_the_project_end_et.setText("");
+                        search = commission_the_project_end_et.getText().toString();
+                        initData();
+                        initDataBean();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
 
         initData();
         initDataBean();

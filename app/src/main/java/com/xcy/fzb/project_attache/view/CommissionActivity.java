@@ -2,7 +2,6 @@ package com.xcy.fzb.project_attache.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -28,6 +27,10 @@ import com.xcy.fzb.project_attache.adapter.CommissionListAdapter;
 
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -59,6 +62,8 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     CommissionListAdapter adapter;
     private String s = "";
     private RelativeLayout myBrokerage_rl;
+    private PtrClassicFrameLayout commission_ptrclass;
+    String projecttype = "3";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +95,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     @SuppressLint("WrongConstant")
     private void initView() {
         StatusBar.makeStatusBarTransparent(this);
+        commission_ptrclass = findViewById(R.id.commission_ptrclass);
         commission_return = findViewById(R.id.commission_return);
         commission_tv1 = findViewById(R.id.commission_tv1);
         commission_tv2 = findViewById(R.id.commission_tv2);
@@ -112,6 +118,28 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         commission_ll3.setOnClickListener(this);
 
         initDataUp();
+
+        commission_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        commission_ptrclass.refreshComplete();
+                        commission_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        commission_et.setText("");
+                        s = commission_et.getText().toString();
+                        initDataUp();
+                        initData(projecttype, s);
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
 
         commission_cb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,7 +214,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                 s = commission_et.getText().toString();
                 commission_ll2.setVisibility(View.VISIBLE);
                 commission_ll4.setVisibility(View.INVISIBLE);
-
+                projecttype = "3";
                 initData("3", s);
 
                 break;
@@ -194,7 +222,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                 s = commission_et.getText().toString();
                 commission_ll2.setVisibility(View.INVISIBLE);
                 commission_ll4.setVisibility(View.VISIBLE);
-
+                projecttype = "2";
                 initData("2", s);
 
                 break;

@@ -90,6 +90,7 @@ public class BackToRaiseThatActivity extends AllActivity {
                     message = back_to_raise_that_et.getText().toString();
                     if (message.equals("")) {
                         Toast.makeText(BackToRaiseThatActivity.this, "请填写退筹说明内容", Toast.LENGTH_SHORT).show();
+                        ifnum1 = 0;
                         return;
                     } else {
                         Retrofit.Builder builder = new Retrofit.Builder();
@@ -110,6 +111,7 @@ public class BackToRaiseThatActivity extends AllActivity {
                                     @Override
                                     public void onNext(BackToBean backToBean) {
                                         Toast.makeText(BackToRaiseThatActivity.this, backToBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                        ifnum1 = 0;
                                         finish();
                                     }
 
@@ -124,7 +126,7 @@ public class BackToRaiseThatActivity extends AllActivity {
                                     }
                                 });
                     }
-                    ifnum1 = 0;
+
                 }
 
 

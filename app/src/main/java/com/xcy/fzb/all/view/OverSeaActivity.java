@@ -67,6 +67,10 @@ import java.util.Map;
 import co.lujun.androidtagview.ColorFactory;
 import co.lujun.androidtagview.TagContainerLayout;
 import co.lujun.androidtagview.TagView;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -131,6 +135,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private SensorManager mSensorManager;
     private Vibrator vibrator;
     private RecyclerView project_lable_rv;
+    private PtrClassicFrameLayout oversea_ptrclass;
     //    private DemoApplication application;
 
     @Override
@@ -259,6 +264,30 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         StatusBar.makeStatusBarTransparent(this);
 
         initvoid();
+
+        oversea_ptrclass = findViewById(R.id.oversea_ptrclass);
+
+        oversea_ptrclass.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        oversea_ptrclass.refreshComplete();
+                        oversea_ptrclass.setLastUpdateTimeKey("2017-2-10");
+                        initfvb();
+                        initView();
+                        initissue();
+                        init();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
 
         application = (DemoApplication) getApplication();
         comprehensiveFragment = application.getComprehensiveFragment();
