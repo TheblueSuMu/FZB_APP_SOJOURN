@@ -15,34 +15,84 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@drawable/my_brokerage">
+            android:layout_height="250dp"
+            android:background="#FFFFFF">
 
             <RelativeLayout
-                android:id="@+id/my_team_img"
-                android:layout_width="50dp"
-                android:layout_height="70dp">
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="@mipmap/qx_ss">
 
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="18dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginBottom="17dp"
-                    android:src="@mipmap/return2">
+                <RelativeLayout
+                    android:id="@+id/my_team_img"
+                    android:layout_width="50dp"
+                    android:layout_height="70dp">
 
-                </ImageView>
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="18dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="17dp"
+                        android:src="@mipmap/return2">
+
+                    </ImageView>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="35dp"
+                    android:text="我的团队"
+                    android:textColor="#ffffffff"
+                    android:textSize="18sp" />
+
+
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="15dp"
-                android:text="我的团队"
-                android:textColor="#ffffffff"
-                android:textSize="18sp" />
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/my_team_rl2"
+                    android:layout_width="match_parent"
+                    android:layout_height="155dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@mipmap/gw_ss">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="60dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/my_team_tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="#ff111111"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="（个）"
+                            android:textColor="#ff111111"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -77,32 +127,7 @@
                             <!--TODO LinearLayout up-->
 
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:orientation="horizontal">
 
-                                <RelativeLayout
-                                    android:id="@+id/my_team_rl2"
-                                    android:layout_width="210dp"
-                                    android:layout_height="110dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@mipmap/qcw">
-
-                                    <TextView
-                                        android:id="@+id/my_team_tv1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="40dp"
-                                        android:layout_marginTop="30dp"
-                                        android:text=""
-                                        android:textColor="#ff333333"
-                                        android:textSize="16sp" />
-                                </RelativeLayout>
-                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -870,12 +895,12 @@
                                     android:layout_marginTop="5dp"></androidx.recyclerview.widget.RecyclerView>
 
                                 <ImageView
-                                    android:visibility="gone"
                                     android:id="@+id/all_no_information_S"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="#fff"
-                                    android:src="@mipmap/no_information"/>
+                                    android:src="@mipmap/no_information"
+                                    android:visibility="gone" />
                             </RelativeLayout>
 
 

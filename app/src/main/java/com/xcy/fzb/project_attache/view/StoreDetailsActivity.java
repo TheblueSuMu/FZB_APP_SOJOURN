@@ -1,6 +1,7 @@
 package com.xcy.fzb.project_attache.view;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,18 +17,29 @@ import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.MyFragmentPagerAdapter;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.fragment.MyFragment1;
+import com.xcy.fzb.all.fragment.MyFragment2;
+import com.xcy.fzb.all.fragment.MyFragment3;
 import com.xcy.fzb.all.modle.CompanyBean;
 import com.xcy.fzb.all.modle.CompanyDataBean;
+import com.xcy.fzb.all.persente.Fragnemt_SS;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.MyViewPager;
 import com.xcy.fzb.all.view.AllActivity;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -37,7 +49,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import top.defaults.view.DateTimePickerView;
 
-public class StoreDetailsActivity extends AllActivity implements View.OnClickListener {
+public class StoreDetailsActivity extends AllActivity implements View.OnClickListener , MyViewPager.OnSingleTouchListener {
 
     RelativeLayout store_details_return;
     ImageView store_details_change;
@@ -87,6 +99,13 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
     private CompanyBean.DataBean.CompanyDataStatisticsBean companyDataStatistics;
     private CompanyBean.DataBean.CompanyInfoBean companyInfo;
 
+    private MyViewPager vpager_one;
+    private ArrayList<Fragment> aList = new ArrayList<>();
+    private MyFragmentPagerAdapter mAdapter;
+
+    LinearLayout fragment_ll_1;
+    LinearLayout fragment_ll_2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,6 +138,45 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
         StatusBar.makeStatusBarTransparent(this);
 
+
+        fragment_ll_2 = findViewById(R.id.fragment_llss_2);
+        fragment_ll_1 = findViewById(R.id.fragment_llss_1);
+        vpager_one = findViewById(R.id.vpager_one_s2);
+        vpager_one.setOnSingleTouchListener(this);
+        if (FinalContents.getFragmentSSS().equals("0")) {
+            mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+            FinalContents.setFragmentSSS("1");
+            aList.add(new MyFragment1());
+            aList.add(new MyFragment2());
+
+            mAdapter.setListfragment(aList);
+            vpager_one.setAdapter(mAdapter);
+            vpager_one.setCurrentItem(0);
+        }
+
+        vpager_one.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 0){
+                    fragment_ll_1.setBackgroundColor(Color.parseColor("#334485"));
+                    fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                }else if(position == 1){
+                    fragment_ll_2.setBackgroundColor(Color.parseColor("#334485"));
+                    fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         store_details_return = findViewById(R.id.store_details_return);
         store_details_change = findViewById(R.id.store_details_change);
         store_details_tv13 = findViewById(R.id.store_details_tv13);
@@ -141,16 +199,16 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         store_details_tv3 = findViewById(R.id.store_details_tv3);
         store_details_tv4 = findViewById(R.id.store_details_tv4);
         store_details_tv5 = findViewById(R.id.store_details_tv5);
-        store_details_tv6 = findViewById(R.id.store_details_tv6);
-        store_details_tv7 = findViewById(R.id.store_details_tv7);
+//        store_details_tv6 = findViewById(R.id.store_details_tv6);
+//        store_details_tv7 = findViewById(R.id.store_details_tv7);
         store_details_tv8 = findViewById(R.id.store_details_tv8);
         store_details_tv9 = findViewById(R.id.store_details_tv9);
         store_details_tv10 = findViewById(R.id.store_details_tv10);
         store_details_tv11 = findViewById(R.id.store_details_tv11);
         store_details_tv12 = findViewById(R.id.store_details_tv12);
-
-        store_details_rl1 = findViewById(R.id.store_details_rl1);
-        store_details_rl2 = findViewById(R.id.store_details_rl2);
+//
+//        store_details_rl1 = findViewById(R.id.store_details_rl1);
+//        store_details_rl2 = findViewById(R.id.store_details_rl2);
 
         store_details_ll1 = findViewById(R.id.store_details_ll1);
         store_details_ll2 = findViewById(R.id.store_details_ll2);
@@ -167,8 +225,8 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         store_details_change.setOnClickListener(this);
         store_details_tv4.setOnClickListener(this);
         store_details_tv5.setOnClickListener(this);
-        store_details_rl1.setOnClickListener(this);
-        store_details_rl2.setOnClickListener(this);
+//        store_details_rl1.setOnClickListener(this);
+//        store_details_rl2.setOnClickListener(this);
         store_details_tv8.setOnClickListener(this);
         store_details_tv9.setOnClickListener(this);
         store_details_ll3.setOnClickListener(this);
@@ -273,8 +331,11 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                     public void onNext(CompanyBean companyBean) {
 //                        数据统计
                         companyDataStatistics = companyBean.getData().getCompanyDataStatistics();
-                        store_details_tv6.setText(companyDataStatistics.getStoreNum() + "");
-                        store_details_tv7.setText(companyDataStatistics.getAgentNum() + "");
+//                        store_details_tv6.setText(companyDataStatistics.getStoreNum() + "");
+//                        store_details_tv7.setText(companyDataStatistics.getAgentNum() + "");
+
+                        EventBus.getDefault().post(new Fragnemt_SS(companyDataStatistics.getStoreNum() + "", companyDataStatistics.getAgentNum() + "", "", "", ""));
+
 //                        财务数据
                         companyMoneyData = companyBean.getData().getCompanyMoneyData();
                         store_details_tv10.setText(companyMoneyData.getTotalAmount() + "");
@@ -286,15 +347,15 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         store_details_tv2.setText(companyInfo.getCompanyAddress());
 
 
-                        if(companyInfo.getShopownerName().equals("")){
+                        if (companyInfo.getShopownerName().equals("")) {
 
-                        }else {
+                        } else {
                             store_details_tv3.setText("公司负责人：" + companyInfo.getShopownerName());
                         }
 
-                        if(companyInfo.getShopownerPhone().equals("")){
+                        if (companyInfo.getShopownerPhone().equals("")) {
 
-                        }else {
+                        } else {
                             store_details_call.setText(companyInfo.getShopownerPhone());
                         }
 
@@ -381,8 +442,11 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                     @Override
                     public void onNext(CompanyDataBean companyDataBean) {
                         CompanyDataBean.DataBean data = companyDataBean.getData();
-                        store_details_tv6.setText(data.getStoreNum() + "");
-                        store_details_tv7.setText(data.getAgentNum() + "");
+//                        store_details_tv6.setText(data.getStoreNum() + "");
+//                        store_details_tv7.setText(data.getAgentNum() + "");
+
+                        EventBus.getDefault().post(new Fragnemt_SS(data.getStoreNum() + "", data.getAgentNum() + "", "", "", ""));
+
                     }
 
                     @Override
@@ -451,15 +515,15 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                     }
                 });
                 break;
-            case R.id.store_details_rl1:
-                intent = new Intent(StoreDetailsActivity.this, StoreListActivity.class);
-                FinalContents.setMyAddType("");
-                FinalContents.setCompanyId(companyInfo.getCompanyId());
-                startActivity(intent);
-                break;
-            case R.id.store_details_rl2:
-                initDataS();
-                break;
+//            case R.id.store_details_rl1:
+//                intent = new Intent(StoreDetailsActivity.this, StoreListActivity.class);
+//                FinalContents.setMyAddType("");
+//                FinalContents.setCompanyId(companyInfo.getCompanyId());
+//                startActivity(intent);
+//                break;
+//            case R.id.store_details_rl2:
+//                initDataS();
+//                break;
             case R.id.store_details_tv8:
                 report_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
@@ -532,5 +596,19 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         super.onDestroy();
         FinalContents.setMyAddType("");
         FinalContents.setCompanyId("");
+    }
+
+    @Override
+    public void onSingleTouch() {
+
+        int currentItem = vpager_one.getCurrentItem();
+        if(currentItem == 0){
+            intent = new Intent(StoreDetailsActivity.this, StoreListActivity.class);
+                FinalContents.setMyAddType("");
+                FinalContents.setCompanyId(companyInfo.getCompanyId());
+                startActivity(intent);
+        }else if(currentItem == 1){
+            initDataS();
+        }
     }
 }

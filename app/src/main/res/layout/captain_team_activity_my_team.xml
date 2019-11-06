@@ -15,34 +15,76 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@drawable/my_brokerage">
+            android:layout_height="245dp"
+            android:background="#FFFFFF">
 
             <RelativeLayout
-                android:id="@+id/my_team_img"
-                android:layout_width="50dp"
-                android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="@mipmap/qx_ss">
 
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="18dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginBottom="17dp"
-                    android:src="@mipmap/return2" />
+                <RelativeLayout
+                    android:id="@+id/my_team_img"
+                    android:layout_width="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="50dp">
 
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="18dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="17dp"
+                        android:src="@mipmap/return2" />
+
+                </RelativeLayout>
             </RelativeLayout>
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_marginTop="34dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="15dp"
+
                 android:text="我的团队"
                 android:textColor="#ffffffff"
                 android:textSize="18sp" />
+
+            <com.xcy.fzb.all.utils.MyViewPager
+                android:id="@+id/vpager_one_s4"
+                android:layout_width="match_parent"
+                android:layout_height="155dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="25dp">
+
+            </com.xcy.fzb.all.utils.MyViewPager>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/fragment_llsss_1"
+                    android:orientation="horizontal"
+                    android:layout_width="23dp"
+                    android:layout_height="3dp"
+                    android:background="#334485"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fragment_llsss_2"
+                    android:orientation="horizontal"
+                    android:layout_width="23dp"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="#EEEEEE"></LinearLayout>
+            </LinearLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -75,56 +117,56 @@
                             <!--TODO LinearLayout up-->
 
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:orientation="horizontal">
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="center_horizontal"-->
+<!--                                android:orientation="horizontal">-->
 
-                                <RelativeLayout
-                                    android:id="@+id/my_team_rl1"
-                                    android:layout_width="150dp"
-                                    android:layout_height="85dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@mipmap/qcxs">
+<!--                                <RelativeLayout-->
+<!--                                    android:id="@+id/my_team_rl1"-->
+<!--                                    android:layout_width="150dp"-->
+<!--                                    android:layout_height="85dp"-->
+<!--                                    android:layout_marginTop="15dp"-->
+<!--                                    android:layout_marginBottom="10dp"-->
+<!--                                    android:background="@mipmap/qcxs">-->
 
-                                    <TextView
-                                        android:id="@+id/my_team_tv11"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="30dp"
-                                        android:layout_marginTop="20dp"
-                                        android:text=""
-                                        android:textColor="#ff333333"
-                                        android:textSize="16sp" />
-                                </RelativeLayout>
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/my_team_tv11"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginLeft="30dp"-->
+<!--                                        android:layout_marginTop="20dp"-->
+<!--                                        android:text=""-->
+<!--                                        android:textColor="#ff333333"-->
+<!--                                        android:textSize="16sp" />-->
+<!--                                </RelativeLayout>-->
 
-                                <RelativeLayout
-                                    android:id="@+id/my_team_rl2"
-                                    android:layout_width="150dp"
-                                    android:layout_height="85dp"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:layout_marginBottom="10dp"
-                                    android:background="@mipmap/qcw">
+<!--                                <RelativeLayout-->
+<!--                                    android:id="@+id/my_team_rl2"-->
+<!--                                    android:layout_width="150dp"-->
+<!--                                    android:layout_height="85dp"-->
+<!--                                    android:layout_marginLeft="15dp"-->
+<!--                                    android:layout_marginTop="15dp"-->
+<!--                                    android:layout_marginBottom="10dp"-->
+<!--                                    android:background="@mipmap/qcw">-->
 
-                                    <TextView
-                                        android:id="@+id/my_team_tv1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="30dp"
-                                        android:layout_marginTop="20dp"
-                                        android:text=""
-                                        android:textColor="#ff333333"
-                                        android:textSize="16sp" />
-                                </RelativeLayout>
-                            </LinearLayout>
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/my_team_tv1"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_marginLeft="30dp"-->
+<!--                                        android:layout_marginTop="20dp"-->
+<!--                                        android:text=""-->
+<!--                                        android:textColor="#ff333333"-->
+<!--                                        android:textSize="16sp" />-->
+<!--                                </RelativeLayout>-->
+<!--                            </LinearLayout>-->
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="5dp"
-                                android:background="#EEEEED"></LinearLayout>
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="5dp"-->
+<!--                                android:background="#EEEEED"></LinearLayout>-->
                             <!--TODO 数据统计-->
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -667,12 +709,12 @@
 
                                 </LinearLayout>
 
-<!--                                <LinearLayout-->
-<!--                                    android:layout_width="1dp"-->
-<!--                                    android:layout_height="40dp"-->
-<!--                                    android:layout_gravity="bottom"-->
-<!--                                    android:layout_marginBottom="-3dp"-->
-<!--                                    android:background="#E5E5E5"></LinearLayout>-->
+                                <!--                                <LinearLayout-->
+                                <!--                                    android:layout_width="1dp"-->
+                                <!--                                    android:layout_height="40dp"-->
+                                <!--                                    android:layout_gravity="bottom"-->
+                                <!--                                    android:layout_marginBottom="-3dp"-->
+                                <!--                                    android:background="#E5E5E5"></LinearLayout>-->
 
                                 <LinearLayout
                                     android:layout_width="0dp"
@@ -710,12 +752,12 @@
 
                                 </LinearLayout>
 
-<!--                                <LinearLayout-->
-<!--                                    android:layout_width="1dp"-->
-<!--                                    android:layout_height="40dp"-->
-<!--                                    android:layout_gravity="bottom"-->
-<!--                                    android:layout_marginBottom="-3dp"-->
-<!--                                    android:background="#E5E5E5"></LinearLayout>-->
+                                <!--                                <LinearLayout-->
+                                <!--                                    android:layout_width="1dp"-->
+                                <!--                                    android:layout_height="40dp"-->
+                                <!--                                    android:layout_gravity="bottom"-->
+                                <!--                                    android:layout_marginBottom="-3dp"-->
+                                <!--                                    android:background="#E5E5E5"></LinearLayout>-->
 
                                 <LinearLayout
                                     android:layout_width="0dp"
@@ -946,15 +988,14 @@
                                     android:layout_marginTop="5dp"></androidx.recyclerview.widget.RecyclerView>
 
                                 <ImageView
-                                    android:visibility="gone"
                                     android:id="@+id/all_no_information_S_S"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="#fff"
-                                    android:src="@mipmap/no_information"/>
+                                    android:src="@mipmap/no_information"
+                                    android:visibility="gone" />
 
                             </RelativeLayout>
-
 
 
                             <!--TODO LinearLayout down-->

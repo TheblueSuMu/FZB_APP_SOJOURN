@@ -165,6 +165,26 @@ public class FinalContents {
 
     static String VersionNumBer = "1.0";
 
+    static String FragmentSS = "0";
+
+    static String FragmentSSS = "0";
+
+    public static String getFragmentSSS() {
+        return FragmentSSS;
+    }
+
+    public static void setFragmentSSS(String fragmentSSS) {
+        FragmentSSS = fragmentSSS;
+    }
+
+    public static String getFragmentSS() {
+        return FragmentSS;
+    }
+
+    public static void setFragmentSS(String fragmentSS) {
+        FragmentSS = fragmentSS;
+    }
+
     static boolean Hidden = true;
 
     public static boolean isHidden() {
