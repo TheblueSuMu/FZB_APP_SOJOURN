@@ -14,8 +14,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="#334485"
+            android:layout_height="120dp"
+            android:background="@drawable/my_brokerage"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="60dp"
                     android:src="@mipmap/return2" />
 
             </RelativeLayout>
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="7dp"
+                android:layout_marginBottom="57dp"
                 android:text="经纪人列表"
                 android:textColor="#FFFEFE"
                 android:textSize="18sp" />
@@ -52,53 +52,61 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="15dp"
-                android:layout_marginBottom="6dp"
+                android:layout_marginBottom="56dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/my_client_add" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#334485">
-
-            <EditText
-                android:id="@+id/brokers_list_et"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="150dp"
-                android:background="@drawable/comment"
-                android:gravity="center"
-                android:hint="搜索"
-                android:textColor="#333333"
-                android:textSize="12sp" />
 
             <RelativeLayout
-                android:id="@+id/brokers_tv_rl"
-                android:layout_width="125dp"
-                android:layout_height="30dp"
-                android:background="@drawable/check_type"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:layout_centerVertical="true">
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="70dp"
+                android:background="#00000000">
 
-                <TextView
-                    android:id="@+id/brokers_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <EditText
+                    android:id="@+id/brokers_list_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
                     android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:drawableRight="@mipmap/xq"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="110dp"
+                    android:background="@drawable/comment"
                     android:gravity="center"
-                    android:text="全部  "
-                    android:textColor="#ff333333"
-                    android:textSize="13sp" />
+                    android:hint="搜索"
+                    android:textColor="#333333"
+                    android:textSize="12sp" />
+
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/brokers_tv_rl"-->
+<!--                    android:layout_width="125dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:background="@drawable/check_type"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_marginRight="15dp"-->
+<!--                    android:layout_centerVertical="true">-->
+
+                <RelativeLayout
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp">
+                    <TextView
+                        android:id="@+id/brokers_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="全部"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+<!--                </RelativeLayout>-->
 
             </RelativeLayout>
 
         </RelativeLayout>
+
+
 
         <RelativeLayout
             android:layout_width="match_parent"

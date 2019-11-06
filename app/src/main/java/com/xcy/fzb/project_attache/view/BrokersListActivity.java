@@ -18,18 +18,25 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.BrokersListBean;
 import com.xcy.fzb.all.database.BrokersListData;
+import com.xcy.fzb.all.modle.ChangeSexBean;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
+import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
+import com.xcy.fzb.all.view.PersonalInformationActivity;
 import com.xcy.fzb.project_attache.adapter.ContactsAdapter;
 
 import java.util.ArrayList;
@@ -51,7 +58,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
     EditText brokers_list_et;
     RecyclerView brokers_list_rv;
 
-    RelativeLayout brokers_tv_rl;
+//    RelativeLayout brokers_tv_rl;
 
     TextView brokers_tv;
 
@@ -73,7 +80,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -102,7 +109,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
         brokers_list_et = findViewById(R.id.brokers_list_et);
         brokers_list_rv = findViewById(R.id.brokers_list_rv);
         brokers_tv = findViewById(R.id.brokers_tv);
-        brokers_tv_rl = findViewById(R.id.brokers_tv_rl);
+//        brokers_tv_rl = findViewById(R.id.brokers_tv_rl);
         context = BrokersListActivity.this;
         mContactModels = new ArrayList<>();
         listData = new ArrayList<>();
@@ -111,7 +118,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
 
         brokers_list_return.setOnClickListener(this);
         brokers_list_add.setOnClickListener(this);
-        brokers_tv_rl.setOnClickListener(this);
+        brokers_tv.setOnClickListener(this);
 
         brokers_list_et.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -145,7 +152,12 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<BrokersListBean> brokersListBean = fzbInterface.getBrokersListBean(FinalContents.getCompanyId(),storeId, search, status, FinalContents.getUserID(),"1000");
+        Log.i("MyCL", "--1--FinalContents.getCompanyId()：" + FinalContents.getCompanyId());
+        Log.i("MyCL", "--1--storeId：" + storeId);
+        Log.i("MyCL", "--1--search：" + search);
+        Log.i("MyCL", "--1--status：" + status);
+        Log.i("MyCL", "--1-- FinalContents.getUserID()：" +  FinalContents.getUserID());
+        Observable<BrokersListBean> brokersListBean = fzbInterface.getBrokersListBean(FinalContents.getCompanyId(), storeId, search, status, FinalContents.getUserID(), "1000");
         brokersListBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BrokersListBean>() {
@@ -176,15 +188,16 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
 
                             }
                             initDatas();
-                        }else {
-
+                        } else {
+                            all_no_information.setVisibility(View.VISIBLE);
+                            brokers_list_rv.setVisibility(View.GONE);
                         }
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("经纪人列表","错误信息:"+e.getMessage());
+                        Log.i("经纪人列表", "错误信息:" + e.getMessage());
                         brokers_list_rv.setVisibility(View.GONE);
                         all_no_information.setVisibility(View.VISIBLE);
                     }
@@ -232,44 +245,76 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                 Intent intent = new Intent(BrokersListActivity.this, AddBrokerActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.brokers_tv_rl:
-                popupWindow = new PopupWindow(BrokersListActivity.this);
-                inflate = LayoutInflater.from(BrokersListActivity.this).inflate(R.layout.project_attache_item_popwindows, null);
-                popupWindow.setContentView(inflate);
+            case R.id.brokers_tv:
 
-                popupWindow.setWidth(brokers_tv_rl.getMeasuredWidth());
-                popupWindow.setHeight(brokers_tv_rl.getMeasuredHeight() * 2 + 20);
-
-                final TextView item_popwindoe_1 = inflate.findViewById(R.id.item_popwindoe_1s);
-                final TextView item_popwindoe_2 = inflate.findViewById(R.id.item_popwindoe_2s);
-
-                item_popwindoe_1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String string = brokers_list_et.getText().toString();
-                        brokers_tv.setText("全部");
-                        initData(FinalContents.getStoreId(), string, "");
-                        popupWindow.dismiss();
-                    }
-                });
-                item_popwindoe_2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String string = brokers_list_et.getText().toString();
-                        brokers_tv.setText("只看异常门店");
-                        initData(FinalContents.getStoreId(), string, "3");
-                        popupWindow.dismiss();
-                    }
-                });
+                initAll();
 
 
-                popupWindow.setFocusable(true); //设置PopupWindow可获得焦点
-                popupWindow.setTouchable(true); //设置PopupWindow可触摸
-                popupWindow.setOutsideTouchable(true);
-                popupWindow.showAsDropDown(brokers_tv_rl, 0, 0);
+//                popupWindow = new PopupWindow(BrokersListActivity.this);
+//                inflate = LayoutInflater.from(BrokersListActivity.this).inflate(R.layout.project_attache_item_popwindows, null);
+//                popupWindow.setContentView(inflate);
+//
+//                popupWindow.setWidth(brokers_tv.getMeasuredWidth() * 3);
+//                popupWindow.setHeight(brokers_tv.getMeasuredHeight() * 3 + 20);
+//
+//                final TextView item_popwindoe_1 = inflate.findViewById(R.id.item_popwindoe_1s);
+//                final TextView item_popwindoe_2 = inflate.findViewById(R.id.item_popwindoe_2s);
+//
+//                item_popwindoe_1.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        String string = brokers_list_et.getText().toString();
+//                        brokers_tv.setText("全部");
+//                        initData(FinalContents.getStoreId(), string, "");
+//                        popupWindow.dismiss();
+//                    }
+//                });
+//                item_popwindoe_2.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        String string = brokers_list_et.getText().toString();
+//                        brokers_tv.setText("只看异常门店");
+//                        initData(FinalContents.getStoreId(), string, "3");
+//                        popupWindow.dismiss();
+//                    }
+//                });
+//
+//
+//                popupWindow.setFocusable(true); //设置PopupWindow可获得焦点
+//                popupWindow.setTouchable(true); //设置PopupWindow可触摸
+//                popupWindow.setOutsideTouchable(true);
+//                popupWindow.showAsDropDown(brokers_tv, 0, 0);
                 break;
 
         }
+
+    }
+
+    private void initAll() {
+
+        final List<String> list1 = new ArrayList<>();
+        list1.add("全部");
+        list1.add("只看异常门店");
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(BrokersListActivity.this, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                brokers_tv.setText(list1.get(options1));
+                String string = brokers_list_et.getText().toString();
+                if (options1 == 0) {
+                    initData(FinalContents.getStoreId(), string, "");
+                } else if (options1 == 1) {
+
+                    initData(FinalContents.getStoreId(), string, "3");
+                }
+            }
+        }).setSelectOptions(0)
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list1);
+        //      展示
+        pvOptions.show();
+
 
     }
 }

@@ -18,8 +18,11 @@
 
             <TextView
                 android:id="@+id/recycler_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:text="项目列表"
                 android:textColor="#FFFEFE"
@@ -32,7 +35,9 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="15dp"
                     android:src="@mipmap/return2" />
 

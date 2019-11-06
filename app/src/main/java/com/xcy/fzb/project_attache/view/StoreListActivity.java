@@ -164,17 +164,17 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         store_list_add.setOnClickListener(this);
 
         if (FinalContents.getMyAddType().equals("公司")) {
-            store_list_tv2.setTextColor(Color.parseColor("#334485"));
-            store_list_tv1.setTextColor(Color.parseColor("#ff333333"));
+            store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
+            store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
             store_list_ll4.setVisibility(View.VISIBLE);
-            store_list_ll2.setVisibility(View.GONE);
+            store_list_ll2.setVisibility(View.INVISIBLE);
             initDatam("","", "");
             FinalContents.setStoreList("2");
         } else if (FinalContents.getMyAddType().equals("门店")) {
-            store_list_tv1.setTextColor(Color.parseColor("#334485"));
-            store_list_tv2.setTextColor(Color.parseColor("#ff333333"));
+            store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
+            store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
             store_list_ll2.setVisibility(View.VISIBLE);
-            store_list_ll4.setVisibility(View.GONE);
+            store_list_ll4.setVisibility(View.INVISIBLE);
             initData(FinalContents.getCompanyManageId(), "", "");
             FinalContents.setStoreList("1");
         } else {
@@ -305,10 +305,10 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                 break;
             case R.id.store_list_ll1:
-                store_list_tv1.setTextColor(Color.parseColor("#334485"));
-                store_list_tv2.setTextColor(Color.parseColor("#ff333333"));
+                store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
+                store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
                 store_list_ll2.setVisibility(View.VISIBLE);
-                store_list_ll4.setVisibility(View.GONE);
+                store_list_ll4.setVisibility(View.INVISIBLE);
 
 
                if(FinalContents.getMyAddType().equals("门店")){
@@ -325,10 +325,10 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                 break;
             case R.id.store_list_ll3:
-                store_list_tv2.setTextColor(Color.parseColor("#334485"));
-                store_list_tv1.setTextColor(Color.parseColor("#ff333333"));
+                store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
+                store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
                 store_list_ll4.setVisibility(View.VISIBLE);
-                store_list_ll2.setVisibility(View.GONE);
+                store_list_ll2.setVisibility(View.INVISIBLE);
 
                 if(FinalContents.getMyAddType().equals("公司")){
                     initDatam("","", "");
@@ -503,17 +503,17 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
 
         if (FinalContents.getMyAddType().equals("公司")) {
-            store_list_tv2.setTextColor(Color.parseColor("#334485"));
-            store_list_tv1.setTextColor(Color.parseColor("#ff333333"));
+            store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
+            store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
             store_list_ll4.setVisibility(View.VISIBLE);
-            store_list_ll2.setVisibility(View.GONE);
+            store_list_ll2.setVisibility(View.INVISIBLE);
             FinalContents.setStoreList("2");
             initDatam("","", "");
             FinalContents.setMyAddType("");
         } else if (FinalContents.getMyAddType().equals("门店")) {
-            store_list_tv1.setTextColor(Color.parseColor("#334485"));
-            store_list_tv2.setTextColor(Color.parseColor("#ff333333"));
-            store_list_ll4.setVisibility(View.GONE);
+            store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
+            store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
+            store_list_ll4.setVisibility(View.INVISIBLE);
             store_list_ll2.setVisibility(View.VISIBLE);
             FinalContents.setStoreList("1");
             FinalContents.setMyAddType("");
