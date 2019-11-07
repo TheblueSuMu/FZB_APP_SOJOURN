@@ -20,6 +20,9 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
@@ -32,6 +35,7 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
+import com.xcy.fzb.captain_assistant.view.Assistant_Teams_Activity;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_PopAdapter;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_TeamMemberAdapter;
 import com.xcy.fzb.captain_team.view.Captain_Team_AddAConsultantActivity;
@@ -52,7 +56,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 //TODO 圈层5-1 团队人员
-public class TeamMemberActivity extends AllActivity implements View.OnClickListener, Captain_Team_TeamMemberAdapter.ItemOnClick {
+public class  TeamMemberActivity extends AllActivity implements View.OnClickListener, Captain_Team_TeamMemberAdapter.ItemOnClick {
 
     RelativeLayout team_member_img1;
     ImageView team_member_img2;
@@ -180,27 +184,57 @@ public class TeamMemberActivity extends AllActivity implements View.OnClickListe
 
     //TODO 弹窗
     private void PopWindow() {
-        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
-        //处理popWindow 显示内容
-        handleListView(contentView);
-        //创建并显示popWindow
-        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        p.setTouchable(true);
-        p.setFocusable(true);
-        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
-        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int xOff;
-        int buttonWidth = team_member_tv.getWidth();
-        int popupwindowWidth = p.getContentView().getMeasuredWidth();
-        xOff = buttonWidth - popupwindowWidth;
-        p.showAsDropDown(team_member_tv, xOff, 0);
 
-        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
+        final List<String> list1 = new ArrayList<>();
+        list1.add("全部");
+        list1.add("不看禁用");
+        list1.add("只看禁用");
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(TeamMemberActivity.this, new OnOptionsSelectListener() {
             @Override
-            public void onDismiss() {
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                team_member_tv.setText(list1.get(options1));
+                String s = team_member_et.getText().toString();
+                if (options1 == 0) {
+                    initData(s, "3", "");
 
+                } else if (options1 == 1) {
+
+                    initData(s, "3", "1");
+
+                } else if (options1 == 2) {
+                    initData(s, "3", "0");
+
+                }
             }
-        });
+        }).setSelectOptions(0)
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list1);
+        //      展示
+        pvOptions.show();
+
+//        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
+//        //处理popWindow 显示内容
+//        handleListView(contentView);
+//        //创建并显示popWindow
+//        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        p.setTouchable(true);
+//        p.setFocusable(true);
+//        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
+//        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+//        int xOff;
+//        int buttonWidth = team_member_tv.getWidth();
+//        int popupwindowWidth = p.getContentView().getMeasuredWidth();
+//        xOff = buttonWidth - popupwindowWidth;
+//        p.showAsDropDown(team_member_tv, xOff, 0);
+//
+//        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//            @Override
+//            public void onDismiss() {
+//
+//            }
+//        });
     }
 
     // TODO 填写数据
@@ -241,27 +275,60 @@ public class TeamMemberActivity extends AllActivity implements View.OnClickListe
 
     //TODO 弹窗
     private void PopWindow1() {
-        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
-        //处理popWindow 显示内容
-        handleListView1(contentView);
-        //创建并显示popWindow
-        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        p.setTouchable(true);
-        p.setFocusable(true);
-        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
-        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int xOff;
-        int buttonWidth = team_member_img2.getWidth();
-        int popupwindowWidth = p.getContentView().getMeasuredWidth();
-        xOff = buttonWidth - popupwindowWidth;
-        p.showAsDropDown(team_member_img2, xOff, 0);
 
-        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+        final List<String> list1 = new ArrayList<>();
+        list1.add(string1);
+        if (string2.equals("")) {
+
+        } else {
+            list1.add(string2);
+        }
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(TeamMemberActivity.this, new OnOptionsSelectListener() {
             @Override
-            public void onDismiss() {
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                if (options1 == 0) {
+                    /*TODO 添加顾问*/
+                    FinalContents.setXiuGai("添加顾问");
+                    Intent intent = new Intent(TeamMemberActivity.this, Captain_Team_AddAConsultantActivity.class);
+                    startActivity(intent);
 
+                } else if (options1 == 1) {
+                    /*TODO 修改顾问级别*/
+                    Intent intent = new Intent(TeamMemberActivity.this, Captain_Team_BatchModifyingActivity.class);
+                    startActivity(intent);
+                }
             }
-        });
+        }).setSelectOptions(0)
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list1);
+        //      展示
+        pvOptions.show();
+
+
+//        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
+//        //处理popWindow 显示内容
+//        handleListView1(contentView);
+//        //创建并显示popWindow
+//        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        p.setTouchable(true);
+//        p.setFocusable(true);
+//        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
+//        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+//        int xOff;
+//        int buttonWidth = team_member_img2.getWidth();
+//        int popupwindowWidth = p.getContentView().getMeasuredWidth();
+//        xOff = buttonWidth - popupwindowWidth;
+//        p.showAsDropDown(team_member_img2, xOff, 0);
+//
+//        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//            @Override
+//            public void onDismiss() {
+//
+//            }
+//        });
     }
 
     // TODO 填写数据

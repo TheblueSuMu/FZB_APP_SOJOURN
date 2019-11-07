@@ -24,6 +24,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.LikeNumBean;
 import com.xcy.fzb.all.modle.Dynamic2Bean;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.view.MessageCommentActivity;
 import com.xcy.fzb.all.view.ProjectDetails;
 
 import java.util.ArrayList;
@@ -222,6 +223,21 @@ public class Dynamic2Adapter extends RecyclerView.Adapter<Dynamic2Adapter.ViewHo
                 }
             }
         });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FinalContents.setTargetId(list.get(position).getId());
+                Log.i("MyCL", "ID：" + list.get(position).getId());
+                Intent intent = new Intent(holder.itemView.getContext(), MessageCommentActivity.class);
+                intent.putExtra("headPortrait", list.get(position).getCreateBy().getPhoto());
+                intent.putExtra("title", list.get(position).getCreateBy().getName());
+                intent.putExtra("message", list.get(position).getContent());
+                intent.putExtra("img", list.get(position).getImgUrl());
+                intent.putExtra("isLike", list.get(position).getIsLike());
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @Override

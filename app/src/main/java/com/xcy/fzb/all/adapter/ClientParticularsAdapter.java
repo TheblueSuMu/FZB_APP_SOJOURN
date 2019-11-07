@@ -72,7 +72,7 @@ public class ClientParticularsAdapter extends RecyclerView.Adapter<ClientParticu
 
         }
 
-        holder.item_client_ll.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FinalContents.setPreparationId(listData.get(position).getPreparationId());

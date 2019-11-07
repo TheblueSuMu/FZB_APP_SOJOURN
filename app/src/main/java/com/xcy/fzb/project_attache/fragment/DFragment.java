@@ -17,8 +17,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -35,7 +37,6 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.MyFragmentPagerAdapter;
 import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.DataNumBean;
 import com.xcy.fzb.all.fragment.MyFragment1;
 import com.xcy.fzb.all.fragment.MyFragment2;
@@ -43,9 +44,15 @@ import com.xcy.fzb.all.fragment.MyFragment3;
 import com.xcy.fzb.all.modle.DBean;
 import com.xcy.fzb.all.modle.TendentcyBean;
 import com.xcy.fzb.all.persente.Fragnemt_SS;
+import com.xcy.fzb.all.persente.MyClientName;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.MyViewPager;
+import com.xcy.fzb.captain_assistant.view.Assistant_Addteam_Activity;
+import com.xcy.fzb.captain_assistant.view.Assistant_Teams_Activity;
+import com.xcy.fzb.captain_team.view.Captain_Team_AddAConsultantActivity;
+import com.xcy.fzb.captain_team.view.Captain_Team_AddSalesActivity;
+import com.xcy.fzb.captain_team.view.Captain_Team_BatchModifyingActivity;
 import com.xcy.fzb.project_attache.view.BrokersListActivity;
 import com.xcy.fzb.project_attache.view.CommissionActivity;
 import com.xcy.fzb.project_attache.view.StoreListActivity;
@@ -60,6 +67,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.viewpager.widget.ViewPager;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -178,15 +186,15 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
             @Override
             public void onPageSelected(int position) {
-                if(position == 0){
+                if (position == 0) {
                     fragment_ll_1.setBackgroundColor(Color.parseColor("#334485"));
                     fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
                     fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
-                }else if(position == 1){
+                } else if (position == 1) {
                     fragment_ll_2.setBackgroundColor(Color.parseColor("#334485"));
                     fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
                     fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
-                }else if(position == 2){
+                } else if (position == 2) {
                     fragment_ll_3.setBackgroundColor(Color.parseColor("#334485"));
                     fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
                     fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
@@ -306,20 +314,16 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.rb1_modulebroke) {
                     ll1_modulebroker.setVisibility(View.GONE);
-                    NewlyIncreased.setTag("0");
                     initDataNum("0", "", "");
                 } else if (i == R.id.rb2_modulebroke) {
                     initDataNum("1", "", "");
-                    NewlyIncreased.setTag("1");
                     ll1_modulebroker.setVisibility(View.GONE);
                 } else if (i == R.id.rb3_modulebroke) {
                     initDataNum("2", "", "");
-                    NewlyIncreased.setTag("2");
                     ll1_modulebroker.setVisibility(View.GONE);
                 } else if (i == R.id.rb4_modulebroke) {
                     String s = time1_modulebroker.getText().toString();
                     String s1 = time2_modulebroker.getText().toString();
-                    NewlyIncreased.setTag("3");
                     initDataNum("3", s, s1);
                     ll1_modulebroker.setVisibility(View.VISIBLE);
                 }
@@ -340,7 +344,6 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         time1_modulebroker.setText(dateString);
                         String s = time1_modulebroker.getText().toString();
                         String s1 = time2_modulebroker.getText().toString();
-                        NewlyIncreased.setStartDate(dateString);
                         initDataNum("3", s, s1);
 
                     }
@@ -361,7 +364,6 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         time2_modulebroker.setText(dateString);
                         String s = time1_modulebroker.getText().toString();
                         String s1 = time2_modulebroker.getText().toString();
-                        NewlyIncreased.setEndDate(dateString);
                         initDataNum("3", s, s1);
                     }
                 });
@@ -630,62 +632,109 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 startActivity(intent);
                 break;
             case R.id.modulebroke_tv_type:
-                popupWindow = new PopupWindow(getContext());
-                inflate = LayoutInflater.from(getContext()).inflate(R.layout.project_attache_item_popwindow, null);
-                popupWindow.setContentView(inflate);
 
-                popupWindow.setWidth(modulebroke_tv_type.getMeasuredWidth());
-                popupWindow.setHeight(modulebroke_tv_type.getMeasuredHeight() * 3 + 20);
+                initPopWindow();
 
-                final TextView item_popwindoe_1 = inflate.findViewById(R.id.item_popwindoe_1);
-                final TextView item_popwindoe_2 = inflate.findViewById(R.id.item_popwindoe_2);
-                final TextView item_popwindoe_3 = inflate.findViewById(R.id.item_popwindoe_3);
-
-                item_popwindoe_1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        modulebroke_tv_type.setText("近七天的活动度   ");
-                        if (rb5_modulebroker.isChecked()) {
-                            initDatatTendency("0", "0");
-                        } else if (rb6_modulebroker.isChecked()) {
-                            initDatatTendency("0", "1");
-                        }
-                        popupWindow.dismiss();
-                    }
-                });
-                item_popwindoe_2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        modulebroke_tv_type.setText("近七天的新增量   ");
-                        if (rb5_modulebroker.isChecked()) {
-                            initDatatTendency("1", "0");
-                        } else if (rb6_modulebroker.isChecked()) {
-                            initDatatTendency("1", "1");
-                        }
-                        popupWindow.dismiss();
-                    }
-                });
-                item_popwindoe_3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        modulebroke_tv_type.setText("近七天的递减量   ");
-                        if (rb5_modulebroker.isChecked()) {
-                            initDatatTendency("2", "0");
-                        } else if (rb6_modulebroker.isChecked()) {
-                            initDatatTendency("2", "1");
-                        }
-                        popupWindow.dismiss();
-                    }
-                });
-
-                popupWindow.setFocusable(true); //设置PopupWindow可获得焦点
-                popupWindow.setTouchable(true); //设置PopupWindow可触摸
-                popupWindow.setOutsideTouchable(true);
-                popupWindow.showAsDropDown(modulebroke_tv_type, 0, 0);
+//                popupWindow = new PopupWindow(getContext());
+//                inflate = LayoutInflater.from(getContext()).inflate(R.layout.project_attache_item_popwindow, null);
+//                popupWindow.setContentView(inflate);
+//
+//                popupWindow.setWidth(modulebroke_tv_type.getMeasuredWidth());
+//                popupWindow.setHeight(modulebroke_tv_type.getMeasuredHeight() * 3 + 20);
+//
+//                final TextView item_popwindoe_1 = inflate.findViewById(R.id.item_popwindoe_1);
+//                final TextView item_popwindoe_2 = inflate.findViewById(R.id.item_popwindoe_2);
+//                final TextView item_popwindoe_3 = inflate.findViewById(R.id.item_popwindoe_3);
+//
+//                item_popwindoe_1.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        modulebroke_tv_type.setText("近七天的活动度   ");
+//                        if (rb5_modulebroker.isChecked()) {
+//                            initDatatTendency("0", "0");
+//                        } else if (rb6_modulebroker.isChecked()) {
+//                            initDatatTendency("0", "1");
+//                        }
+//                        popupWindow.dismiss();
+//                    }
+//                });
+//                item_popwindoe_2.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        modulebroke_tv_type.setText("近七天的新增量   ");
+//                        if (rb5_modulebroker.isChecked()) {
+//                            initDatatTendency("1", "0");
+//                        } else if (rb6_modulebroker.isChecked()) {
+//                            initDatatTendency("1", "1");
+//                        }
+//                        popupWindow.dismiss();
+//                    }
+//                });
+//                item_popwindoe_3.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        modulebroke_tv_type.setText("近七天的递减量   ");
+//                        if (rb5_modulebroker.isChecked()) {
+//                            initDatatTendency("2", "0");
+//                        } else if (rb6_modulebroker.isChecked()) {
+//                            initDatatTendency("2", "1");
+//                        }
+//                        popupWindow.dismiss();
+//                    }
+//                });
+//
+//                popupWindow.setFocusable(true); //设置PopupWindow可获得焦点
+//                popupWindow.setTouchable(true); //设置PopupWindow可触摸
+//                popupWindow.setOutsideTouchable(true);
+//                popupWindow.showAsDropDown(modulebroke_tv_type, 0, 0);
 
 
                 break;
         }
+
+    }
+
+    private void initPopWindow() {
+
+
+        final List<String> list1 = new ArrayList<>();
+        list1.add("近七天的活动度");
+        list1.add("近七天的新增量");
+        list1.add("近七天的递减量");
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(getContext(), new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+
+                modulebroke_tv_type.setText(list1.get(options1) + "   ");
+
+                if(options1 == 0){
+                    if (rb5_modulebroker.isChecked()) {
+                        initDatatTendency("0", "0");
+                    } else if (rb6_modulebroker.isChecked()) {
+                        initDatatTendency("0", "1");
+                    }
+                }else if(options1 == 1){
+                    if (rb5_modulebroker.isChecked()) {
+                        initDatatTendency("1", "0");
+                    } else if (rb6_modulebroker.isChecked()) {
+                        initDatatTendency("1", "1");
+                    }
+                }else if(options1 == 2){
+                    if (rb5_modulebroker.isChecked()) {
+                        initDatatTendency("2", "0");
+                    } else if (rb6_modulebroker.isChecked()) {
+                        initDatatTendency("2", "1");
+                    }
+                }
+
+            }
+        }).setSelectOptions(0)
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list1);
+        //      展示
+        pvOptions.show();
 
     }
 
@@ -779,7 +828,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
             set1.setCircleRadius(4f);
             set1.setValueTextSize(9f);
             set1.setHighlightEnabled(!set1.isHighlightEnabled());
-            set1.setCircleColor(R.color.circlecolor);
+            set1.setCircleColor(Color.GRAY);
             set1.setHighLightColor(Color.BLACK);
             set1.setColor(R.color.line);
             set1.setFillColor(R.color.mian);
@@ -856,7 +905,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     @Override
     public void onDestroy() {
         super.onDestroy();
+        FinalContents.setFragmentSS("0");
         EventBus.getDefault().unregister(this);
-
     }
 }

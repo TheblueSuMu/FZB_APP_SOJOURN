@@ -64,6 +64,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import co.lujun.androidtagview.ColorFactory;
 import co.lujun.androidtagview.TagContainerLayout;
 import co.lujun.androidtagview.TagView;
@@ -79,7 +80,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class OverSeaActivity extends AllActivity implements View.OnClickListener, SensorEventListener ,ScreeningFragment.FragmentInteraction{
+public class OverSeaActivity extends AllActivity implements View.OnClickListener, SensorEventListener, ScreeningFragment.FragmentInteraction, SwipeRefreshLayout.OnRefreshListener {
     private BannerViewPager banner;
     private List<String> list_img;
 
@@ -127,7 +128,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private List<HotBean.DataBean.RowsBean> hotlist;
     private DemoApplication application;
     private RecyclerAdapter recyclerAdapter;
-    private Map<Integer,String> LabelMap = new HashMap<>();
+    private Map<Integer, String> LabelMap = new HashMap<>();
     View seview;
     private ImageView all_no_information;
 
@@ -135,7 +136,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private SensorManager mSensorManager;
     private Vibrator vibrator;
     private RecyclerView project_lable_rv;
-    private PtrClassicFrameLayout oversea_ptrclass;
+    private SwipeRefreshLayout oversea_ptrclass;
     //    private DemoApplication application;
 
     @Override
@@ -146,7 +147,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             title = findViewById(R.id.oversea_title);
@@ -157,9 +158,9 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             seview = findViewById(R.id.seview);
 
             initfvb();
+            init();
             initView();
             initissue();
-            init();
             EventBus.getDefault().register(this);
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -187,21 +188,21 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 screeningFragment = new ScreeningFragment();
                 transaction.replace(R.id.oversea_fl, screeningFragment);
                 transaction.commit();
-                Log.i("重置","yi重置");
+                Log.i("重置", "yi重置");
             }
         }
     }
 
     /**
-     *  摇一摇
+     * 摇一摇
      */
 
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        if(FinalContents.getIdentity().equals("63")){
+        if (FinalContents.getIdentity().equals("63")) {
 
-        }else {
+        } else {
             int sensortype = event.sensor.getType();
             float[] values = event.values;
             if (sensortype == Sensor.TYPE_ACCELEROMETER) {
@@ -231,8 +232,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
-
-
 
 
     private void init() {
@@ -282,27 +281,30 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
         oversea_ptrclass = findViewById(R.id.oversea_ptrclass);
 
-        oversea_ptrclass.setPtrHandler(new PtrHandler() {
-            @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                frame.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        oversea_ptrclass.refreshComplete();
-                        oversea_ptrclass.setLastUpdateTimeKey("2017-2-10");
-                        initfvb();
-                        initView();
-                        initissue();
-                        init();
-                    }
-                }, 1000);
-            }
+        oversea_ptrclass.setOnRefreshListener(this);
 
-            @Override
-            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
-            }
-        });
+//        oversea_ptrclass.disableWhenHorizontalMove(true);
+//        oversea_ptrclass.setPtrHandler(new PtrHandler() {
+//            @Override
+//            public void onRefreshBegin(PtrFrameLayout frame) {
+//                frame.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        oversea_ptrclass.refreshComplete();
+//                        oversea_ptrclass.setLastUpdateTimeKey("2017-2-10");
+//                        initfvb();
+//                        initView();
+//                        initissue();
+//                        init();
+//                    }
+//                }, 1000);
+//            }
+//
+//            @Override
+//            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+//                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+//            }
+//        });
 
         application = (DemoApplication) getApplication();
         comprehensiveFragment = application.getComprehensiveFragment();
@@ -465,7 +467,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         }
     }
 
-    private void initProjectLabel(){
+    private void initProjectLabel() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -495,16 +497,16 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                                 public void onItemClick(CheckBox checkBox, int postion) {
                                     projectLabel = "";
                                     if (checkBox.isChecked()) {
-                                        LabelMap.put(postion,","+ labelBean.getData().get(postion).getLable());
-                                        Log.i("项目卖点","来来来："+labelBean.getData().get(postion).getId()+"名字:"+labelBean.getData().get(postion).getLable());
-                                    }else {
-                                        LabelMap.put(postion,"");
+                                        LabelMap.put(postion, "," + labelBean.getData().get(postion).getLable());
+                                        Log.i("项目卖点", "来来来：" + labelBean.getData().get(postion).getId() + "名字:" + labelBean.getData().get(postion).getLable());
+                                    } else {
+                                        LabelMap.put(postion, "");
                                     }
-                                    for (int i = 0;i < LabelMap.size();i++){
+                                    for (int i = 0; i < LabelMap.size(); i++) {
                                         projectLabel = projectLabel + LabelMap.get(i);
                                     }
 
-                                    Log.i("项目卖点","数据："+projectLabel);
+                                    Log.i("项目卖点", "数据：" + projectLabel);
                                     FinalContents.setProjectLabel(projectLabel);
                                     inithot();
                                 }
@@ -638,13 +640,17 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     //首页轮播图
     private void initView() {
         list_img = new ArrayList<>();
-
+        list_img.clear();
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+        Log.i("轮播图","FinalContents.getUserID()：" + FinalContents.getUserID());
+        Log.i("轮播图","FinalContents.getCityID()：" + FinalContents.getCityID());
+        Log.i("轮播图","FinalContents.getProjectType()：" + FinalContents.getProjectType());
+        Log.i("轮播图","arrposid：" + arrposid);
         Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(), FinalContents.getCityID(), FinalContents.getProjectType(), arrposid);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -750,7 +756,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getCityID(), FinalContents.getComprehensiveSorting(), FinalContents.getProjectLabel(), FinalContents.getProjectType(), FinalContents.getNation(), FinalContents.getProjectPriceStart(), FinalContents.getProjectPriceEnd(), FinalContents.getApartment(), FinalContents.getAreaSection(), FinalContents.getFfProjectTrait(), FinalContents.getProcuctType(), FinalContents.getFitmentState(),"1000");
+        Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getCityID(), FinalContents.getComprehensiveSorting(), FinalContents.getProjectLabel(), FinalContents.getProjectType(), FinalContents.getNation(), FinalContents.getProjectPriceStart(), FinalContents.getProjectPriceEnd(), FinalContents.getApartment(), FinalContents.getAreaSection(), FinalContents.getFfProjectTrait(), FinalContents.getProcuctType(), FinalContents.getFitmentState(), "1000");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HotBean>() {
@@ -776,7 +782,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                             recyclerAdapter = new RecyclerAdapter(hotlist);
                             hotRv.setAdapter(recyclerAdapter);
                             recyclerAdapter.notifyDataSetChanged();
-                        }else {
+                        } else {
                             all_no_information.setVisibility(View.VISIBLE);
                             hotRv.setVisibility(View.GONE);
                         }
@@ -844,6 +850,19 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         super.onStop();
 
         mSensorManager.unregisterListener(this);
+
+    }
+
+    @Override
+    public void onRefresh() {
+
+        if (oversea_ptrclass.isRefreshing()) {//如果正在刷新
+            initfvb();
+            initView();
+            initissue();
+            init();
+            oversea_ptrclass.setRefreshing(false);//取消刷新
+        }
 
     }
 }

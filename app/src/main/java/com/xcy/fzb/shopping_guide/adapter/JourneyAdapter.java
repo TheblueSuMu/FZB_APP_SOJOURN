@@ -93,7 +93,7 @@ public class JourneyAdapter extends RecyclerView.Adapter<JourneyAdapter.ViewHold
             holder.item_journey_fulfill.setText("已完成");
 //            holder.item_journey_fulfill.setTextColor(R.color.textcolor);
             holder.item_journey_fulfill.setTextColor(Color.parseColor("#999999"));
-            Glide.with(holder.itemView.getContext()).load(R.mipmap.qz).into(holder.shopping_img);
+            Glide.with(holder.itemView.getContext()).load(R.mipmap.hui_ss).into(holder.shopping_img);
         } else if (listData.get(position).getIsComplete() == 0) {
             holder.item_journey_fulfill.setText("完成");
             holder.item_journey_fulfill.setTextColor(R.color.textcolorcheck);
@@ -129,7 +129,7 @@ public class JourneyAdapter extends RecyclerView.Adapter<JourneyAdapter.ViewHold
                                             holder.item_journey_fulfill.setText("已完成");
 //                                            holder.item_journey_fulfill.setTextColor(R.color.textcolor);
                                             holder.item_journey_fulfill.setTextColor(Color.parseColor("#999999"));
-                                            Glide.with(holder.itemView.getContext()).load(R.mipmap.qz).into(holder.shopping_img);
+                                            Glide.with(holder.itemView.getContext()).load(R.mipmap.hui_ss).into(holder.shopping_img);
                                         }
                                     }
 

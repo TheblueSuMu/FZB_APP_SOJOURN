@@ -604,6 +604,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        FinalContents.setFragmentSSS("0");
         FinalContents.setMyAddType("");
         FinalContents.setCompanyId("");
         NewlyIncreased.setTag("");

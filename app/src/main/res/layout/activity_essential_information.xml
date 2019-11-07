@@ -271,12 +271,18 @@
                                 android:id="@+id/essential_information_rb1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:button="@null"
+                                android:drawableLeft="@drawable/checkbox_check_s"
+                                android:checked="true"
                                 android:text="是" />
 
                             <RadioButton
                                 android:id="@+id/essential_information_rb2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:button="@null"
+                                android:drawableLeft="@drawable/checkbox_check_s"
+                                android:layout_marginLeft="5dp"
                                 android:text="否" />
 
                         </RadioGroup>
