@@ -178,15 +178,15 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
             @Override
             public void onPageSelected(int position) {
-                if(position == 0){
+                if (position == 0) {
                     fragment_ll_1.setBackgroundColor(Color.parseColor("#334485"));
                     fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
                     fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
-                }else if(position == 1){
+                } else if (position == 1) {
                     fragment_ll_2.setBackgroundColor(Color.parseColor("#334485"));
                     fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
                     fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
-                }else if(position == 2){
+                } else if (position == 2) {
                     fragment_ll_3.setBackgroundColor(Color.parseColor("#334485"));
                     fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
                     fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
@@ -850,8 +850,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+        FinalContents.setFragmentSS("0");
         EventBus.getDefault().unregister(this);
-
     }
 }

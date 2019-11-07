@@ -901,4 +901,10 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             startActivity(intent);
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        FinalContents.setFragmentSS("0");
+    }
 }

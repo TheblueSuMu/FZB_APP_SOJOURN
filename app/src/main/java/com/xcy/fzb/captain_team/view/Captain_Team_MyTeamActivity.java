@@ -908,4 +908,10 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         }
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FinalContents.setFragmentSS("0");
+    }
 }

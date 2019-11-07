@@ -21,7 +21,7 @@
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:src="@mipmap/circle1" />
+            android:src="@mipmap/liang_ss" />
 
         <TextView
             android:layout_width="1dp"

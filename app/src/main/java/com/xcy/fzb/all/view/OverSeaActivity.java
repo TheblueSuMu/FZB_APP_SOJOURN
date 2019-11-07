@@ -158,9 +158,9 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             seview = findViewById(R.id.seview);
 
             initfvb();
+            init();
             initView();
             initissue();
-            init();
             EventBus.getDefault().register(this);
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -640,13 +640,17 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     //首页轮播图
     private void initView() {
         list_img = new ArrayList<>();
-
+        list_img.clear();
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+        Log.i("轮播图","FinalContents.getUserID()：" + FinalContents.getUserID());
+        Log.i("轮播图","FinalContents.getCityID()：" + FinalContents.getCityID());
+        Log.i("轮播图","FinalContents.getProjectType()：" + FinalContents.getProjectType());
+        Log.i("轮播图","arrposid：" + arrposid);
         Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(), FinalContents.getCityID(), FinalContents.getProjectType(), arrposid);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

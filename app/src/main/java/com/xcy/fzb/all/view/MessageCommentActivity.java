@@ -182,6 +182,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
         String et = comment_et.getText().toString();
         if (et.equals("")) {
             Toast.makeText(MessageCommentActivity.this, "评论内容不能为空", Toast.LENGTH_SHORT).show();
+            num = 0;
         } else {
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
