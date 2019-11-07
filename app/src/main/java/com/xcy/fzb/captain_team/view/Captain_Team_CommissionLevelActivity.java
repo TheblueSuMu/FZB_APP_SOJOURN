@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -126,7 +127,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
+        final Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
         Log.i("MyCL", "FinalContents.getUserID()：" + FinalContents.getUserID());
         Observable<CommissionLevelSelectBean> commissionLevelSelece = fzbInterface.getCommissionLevelSelece(FinalContents.getUserID(), searchID);
@@ -146,6 +147,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                         adapter.setOnItemClickListener(new Captain_Team_CommissionLevelAdapter.OnItemClickLisenter() {
                             @Override
                             public void onItemClick(final int postion) {
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(Captain_Team_CommissionLevelActivity.this);
                                 builder.setTitle(data.get(postion).getName());    //设置对话框标题
 

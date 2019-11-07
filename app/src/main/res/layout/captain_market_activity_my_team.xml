@@ -8,14 +8,14 @@
     android:background="#FFFFFF"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="190dp"
             android:background="#FFFFFF">
 
             <RelativeLayout
@@ -52,50 +52,10 @@
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="15dp"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/my_team_rl2"
-                    android:layout_width="match_parent"
-                    android:layout_height="155dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@mipmap/gw_ss">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="60dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/my_team_tv1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textColor="#ff111111"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="（个）"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </LinearLayout>
-
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_marginTop="75dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -127,7 +87,46 @@
                             <!--TODO LinearLayout up-->
 
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="15dp"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal">
 
+                                <RelativeLayout
+                                    android:id="@+id/my_team_rl2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="155dp"
+                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginRight="15dp"
+                                    android:background="@mipmap/gw_ss">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="30dp"
+                                        android:layout_marginTop="60dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/my_team_tv1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=""
+                                            android:textColor="#ff111111"
+                                            android:textSize="20sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="（个）"
+                                            android:textColor="#ff111111"
+                                            android:textSize="15sp" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -334,13 +333,6 @@
                                     </LinearLayout>
 
                                 </LinearLayout>
-
-                                <!--                                <LinearLayout-->
-                                <!--                                    android:layout_width="1dp"-->
-                                <!--                                    android:layout_height="40dp"-->
-                                <!--                                    android:layout_gravity="bottom"-->
-                                <!--                                    android:layout_marginBottom="-3dp"-->
-                                <!--                                    android:background="#E5E5E5"></LinearLayout>-->
 
                                 <LinearLayout
                                     android:layout_width="0dp"
@@ -973,7 +965,7 @@
 
         </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/all_no_network"
