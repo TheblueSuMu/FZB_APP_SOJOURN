@@ -18,6 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -45,6 +48,11 @@ import com.xcy.fzb.all.persente.MyClientName;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.MyViewPager;
+import com.xcy.fzb.captain_assistant.view.Assistant_Addteam_Activity;
+import com.xcy.fzb.captain_assistant.view.Assistant_Teams_Activity;
+import com.xcy.fzb.captain_team.view.Captain_Team_AddAConsultantActivity;
+import com.xcy.fzb.captain_team.view.Captain_Team_AddSalesActivity;
+import com.xcy.fzb.captain_team.view.Captain_Team_BatchModifyingActivity;
 import com.xcy.fzb.project_attache.view.BrokersListActivity;
 import com.xcy.fzb.project_attache.view.CommissionActivity;
 import com.xcy.fzb.project_attache.view.StoreListActivity;
@@ -624,62 +632,109 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 startActivity(intent);
                 break;
             case R.id.modulebroke_tv_type:
-                popupWindow = new PopupWindow(getContext());
-                inflate = LayoutInflater.from(getContext()).inflate(R.layout.project_attache_item_popwindow, null);
-                popupWindow.setContentView(inflate);
 
-                popupWindow.setWidth(modulebroke_tv_type.getMeasuredWidth());
-                popupWindow.setHeight(modulebroke_tv_type.getMeasuredHeight() * 3 + 20);
+                initPopWindow();
 
-                final TextView item_popwindoe_1 = inflate.findViewById(R.id.item_popwindoe_1);
-                final TextView item_popwindoe_2 = inflate.findViewById(R.id.item_popwindoe_2);
-                final TextView item_popwindoe_3 = inflate.findViewById(R.id.item_popwindoe_3);
-
-                item_popwindoe_1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        modulebroke_tv_type.setText("近七天的活动度   ");
-                        if (rb5_modulebroker.isChecked()) {
-                            initDatatTendency("0", "0");
-                        } else if (rb6_modulebroker.isChecked()) {
-                            initDatatTendency("0", "1");
-                        }
-                        popupWindow.dismiss();
-                    }
-                });
-                item_popwindoe_2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        modulebroke_tv_type.setText("近七天的新增量   ");
-                        if (rb5_modulebroker.isChecked()) {
-                            initDatatTendency("1", "0");
-                        } else if (rb6_modulebroker.isChecked()) {
-                            initDatatTendency("1", "1");
-                        }
-                        popupWindow.dismiss();
-                    }
-                });
-                item_popwindoe_3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        modulebroke_tv_type.setText("近七天的递减量   ");
-                        if (rb5_modulebroker.isChecked()) {
-                            initDatatTendency("2", "0");
-                        } else if (rb6_modulebroker.isChecked()) {
-                            initDatatTendency("2", "1");
-                        }
-                        popupWindow.dismiss();
-                    }
-                });
-
-                popupWindow.setFocusable(true); //设置PopupWindow可获得焦点
-                popupWindow.setTouchable(true); //设置PopupWindow可触摸
-                popupWindow.setOutsideTouchable(true);
-                popupWindow.showAsDropDown(modulebroke_tv_type, 0, 0);
+//                popupWindow = new PopupWindow(getContext());
+//                inflate = LayoutInflater.from(getContext()).inflate(R.layout.project_attache_item_popwindow, null);
+//                popupWindow.setContentView(inflate);
+//
+//                popupWindow.setWidth(modulebroke_tv_type.getMeasuredWidth());
+//                popupWindow.setHeight(modulebroke_tv_type.getMeasuredHeight() * 3 + 20);
+//
+//                final TextView item_popwindoe_1 = inflate.findViewById(R.id.item_popwindoe_1);
+//                final TextView item_popwindoe_2 = inflate.findViewById(R.id.item_popwindoe_2);
+//                final TextView item_popwindoe_3 = inflate.findViewById(R.id.item_popwindoe_3);
+//
+//                item_popwindoe_1.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        modulebroke_tv_type.setText("近七天的活动度   ");
+//                        if (rb5_modulebroker.isChecked()) {
+//                            initDatatTendency("0", "0");
+//                        } else if (rb6_modulebroker.isChecked()) {
+//                            initDatatTendency("0", "1");
+//                        }
+//                        popupWindow.dismiss();
+//                    }
+//                });
+//                item_popwindoe_2.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        modulebroke_tv_type.setText("近七天的新增量   ");
+//                        if (rb5_modulebroker.isChecked()) {
+//                            initDatatTendency("1", "0");
+//                        } else if (rb6_modulebroker.isChecked()) {
+//                            initDatatTendency("1", "1");
+//                        }
+//                        popupWindow.dismiss();
+//                    }
+//                });
+//                item_popwindoe_3.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        modulebroke_tv_type.setText("近七天的递减量   ");
+//                        if (rb5_modulebroker.isChecked()) {
+//                            initDatatTendency("2", "0");
+//                        } else if (rb6_modulebroker.isChecked()) {
+//                            initDatatTendency("2", "1");
+//                        }
+//                        popupWindow.dismiss();
+//                    }
+//                });
+//
+//                popupWindow.setFocusable(true); //设置PopupWindow可获得焦点
+//                popupWindow.setTouchable(true); //设置PopupWindow可触摸
+//                popupWindow.setOutsideTouchable(true);
+//                popupWindow.showAsDropDown(modulebroke_tv_type, 0, 0);
 
 
                 break;
         }
+
+    }
+
+    private void initPopWindow() {
+
+
+        final List<String> list1 = new ArrayList<>();
+        list1.add("近七天的活动度");
+        list1.add("近七天的新增量");
+        list1.add("近七天的递减量");
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(getContext(), new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+
+                modulebroke_tv_type.setText(list1.get(options1) + "   ");
+
+                if(options1 == 0){
+                    if (rb5_modulebroker.isChecked()) {
+                        initDatatTendency("0", "0");
+                    } else if (rb6_modulebroker.isChecked()) {
+                        initDatatTendency("0", "1");
+                    }
+                }else if(options1 == 1){
+                    if (rb5_modulebroker.isChecked()) {
+                        initDatatTendency("1", "0");
+                    } else if (rb6_modulebroker.isChecked()) {
+                        initDatatTendency("1", "1");
+                    }
+                }else if(options1 == 2){
+                    if (rb5_modulebroker.isChecked()) {
+                        initDatatTendency("2", "0");
+                    } else if (rb6_modulebroker.isChecked()) {
+                        initDatatTendency("2", "1");
+                    }
+                }
+
+            }
+        }).setSelectOptions(0)
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list1);
+        //      展示
+        pvOptions.show();
 
     }
 
