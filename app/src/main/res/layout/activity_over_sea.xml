@@ -14,7 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:background="@drawable/toolbar_back">
+            android:background="@drawable/my_brokerage">
 
             <LinearLayout
                 android:id="@+id/oversea_back"
@@ -41,10 +41,11 @@
                 android:gravity="center"
                 android:hint="搜索"
                 android:textColor="#333333"
+                android:textSize="15sp"
                 android:textColorHint="#ff333333" />
         </RelativeLayout>
 
-        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        <com.xcy.fzb.all.utils.SuperSwipeRefreshLayout
             xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/oversea_ptrclass"
             android:layout_width="match_parent"
@@ -315,7 +316,7 @@
                 </LinearLayout>
             </ScrollView>
 
-        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+        </com.xcy.fzb.all.utils.SuperSwipeRefreshLayout>
 
     </LinearLayout>
 

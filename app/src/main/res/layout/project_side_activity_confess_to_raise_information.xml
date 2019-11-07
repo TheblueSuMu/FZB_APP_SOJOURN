@@ -255,11 +255,17 @@
                                 android:id="@+id/confess_to_raise_information_rb1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:button="@null"
+                                android:drawableLeft="@drawable/checkbox_check_s"
+                                android:checked="true"
                                 android:text="男" />
 
                             <RadioButton
                                 android:id="@+id/confess_to_raise_information_rb2"
                                 android:layout_width="wrap_content"
+                                android:button="@null"
+                                android:drawableLeft="@drawable/checkbox_check_s"
+                                android:layout_marginLeft="5dp"
                                 android:layout_height="wrap_content"
                                 android:text="女" />
                         </RadioGroup>

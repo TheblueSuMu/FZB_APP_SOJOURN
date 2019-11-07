@@ -2,6 +2,7 @@ package com.xcy.fzb.broker.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.TotalBean;
 import com.xcy.fzb.all.modle.TotalZanBean;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.view.EconomicCircleParticularsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -185,6 +187,16 @@ public class TotalAdapter extends RecyclerView.Adapter<TotalAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 eFuZi.fz(position);
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FinalContents.setEconomicCircleID(list.get(position).getId());
+                Log.i("MyCL", "ID：" + list.get(position).getId());
+                Intent intent = new Intent(holder.itemView.getContext(), EconomicCircleParticularsActivity.class);
+                holder.itemView.getContext().startActivity(intent);
             }
         });
 

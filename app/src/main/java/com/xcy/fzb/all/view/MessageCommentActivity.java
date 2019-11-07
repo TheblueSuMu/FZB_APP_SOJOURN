@@ -130,7 +130,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
         comment_fb_img = findViewById(R.id.comment_fb_img);
         particulars_xiao_img = findViewById(R.id.particulars_xiao_img);
 
-        Glide.with(this).load(R.mipmap.z3).into(particulars_xiao_img);
+        Glide.with(this).load(R.mipmap.logo_garden).into(particulars_xiao_img);
 
         comment_return.setOnClickListener(this);
         comment_zan_img.setOnClickListener(this);
