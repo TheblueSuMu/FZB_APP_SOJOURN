@@ -15,13 +15,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.MyFragmentPagerAdapter;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.fragment.MyFragment1;
 import com.xcy.fzb.all.fragment.MyFragment2;
-import com.xcy.fzb.all.fragment.MyFragment3;
 import com.xcy.fzb.all.modle.CompanyBean;
 import com.xcy.fzb.all.modle.CompanyDataBean;
 import com.xcy.fzb.all.persente.Fragnemt_SS;
@@ -38,8 +41,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -117,6 +118,9 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
     private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
+            NewlyIncreased.setTag("");
+            NewlyIncreased.setStartDate("");
+            NewlyIncreased.setEndDate("");
             initView();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -239,16 +243,20 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.store_details_rb1) {
                     initDataNum("0", "", "");
+                    NewlyIncreased.setTag("0");
                     store_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.store_details_rb2) {
                     initDataNum("1", "", "");
+                    NewlyIncreased.setTag("1");
                     store_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.store_details_rb3) {
                     initDataNum("2", "", "");
+                    NewlyIncreased.setTag("2");
                     store_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.store_details_rb4) {
                     String s1 = store_details_tv4.getText().toString();
                     String s = store_details_tv5.getText().toString();
+                    NewlyIncreased.setTag("3");
                     initDataNum("3", s1, s);
                     store_details_ll1.setVisibility(View.VISIBLE);
                 }
@@ -495,6 +503,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         store_details_tv4.setText(dateString);
                         String s = store_details_tv4.getText().toString();
                         String s1 = store_details_tv5.getText().toString();
+                        NewlyIncreased.setStartDate(dateString);
                         initDataNum("3", s, s1);
                     }
                 });
@@ -511,6 +520,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         store_details_tv5.setText(dateString);
                         String s = store_details_tv4.getText().toString();
                         String s1 = store_details_tv5.getText().toString();
+                        NewlyIncreased.setEndDate(dateString);
                         initDataNum("3", s, s1);
                     }
                 });
@@ -596,6 +606,9 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         super.onDestroy();
         FinalContents.setMyAddType("");
         FinalContents.setCompanyId("");
+        NewlyIncreased.setTag("");
+        NewlyIncreased.setStartDate("");
+        NewlyIncreased.setEndDate("");
     }
 
     @Override

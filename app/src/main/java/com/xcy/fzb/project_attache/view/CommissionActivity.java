@@ -2,7 +2,9 @@ package com.xcy.fzb.project_attache.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -22,6 +24,7 @@ import com.xcy.fzb.all.modle.CommissionUpBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.KeyUtils;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_attache.adapter.CommissionListAdapter;
 
@@ -118,6 +121,24 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         commission_ll3.setOnClickListener(this);
 
         initDataUp();
+
+        commission_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                //当actionId == XX_SEND 或者 XX_DONE时都触发
+                //或者event.getKeyCode == ENTER 且 event.getAction == ACTION_DOWN时也触发
+                //注意，这是一定要判断event != null。因为在某些输入法上会返回null。
+                if (actionId == EditorInfo.IME_ACTION_SEND || actionId == EditorInfo.IME_ACTION_DONE || (event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode() && KeyEvent.ACTION_DOWN == event.getAction())) {
+                    //处理事件
+                    KeyUtils.hideKeyboard(commission_et);
+                    s = commission_et.getText().toString();
+                    initData(projecttype, s);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         commission_ptrclass.setPtrHandler(new PtrHandler() {
             @Override

@@ -54,7 +54,7 @@
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="55dp">
+                    android:layout_above="@+id/linearlayout_ll">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -150,10 +150,12 @@
                 </ScrollView>
 
                 <LinearLayout
+                    android:id="@+id/linearlayout_ll"
+                    android:paddingTop="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/linearlayout_back"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -167,8 +169,17 @@
                         android:gravity="center_horizontal"
                         android:drawablePadding="9dp"
                         android:text="失效"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:textColor="#666666" />
+                    
+                    <LinearLayout
+                        android:id="@+id/success_linear1"
+                        android:visibility="gone"
+                        android:orientation="vertical"
+                        android:background="#EEEEEE"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
 
                     <TextView
                         android:id="@+id/review_the_success_bt2"
@@ -184,6 +195,15 @@
                         android:visibility="gone"
                         android:textColor="#666666"/>
 
+                    <LinearLayout
+                        android:id="@+id/success_linear2"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:background="#EEEEEE"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
+
                     <TextView
                         android:id="@+id/review_the_success_bt3"
                         android:layout_width="0dp"
@@ -197,6 +217,15 @@
                         android:text="申请到访"
                         android:visibility="gone"
                         android:textColor="#666666"/>
+
+                    <LinearLayout
+                        android:id="@+id/success_linear3"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:background="#EEEEEE"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
 
                     <TextView
                         android:id="@+id/review_the_success_bt4"
@@ -212,6 +241,15 @@
                         android:visibility="gone"
                         android:textColor="#666666" />
 
+                    <LinearLayout
+                        android:id="@+id/success_linear4"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:background="#EEEEEE"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
+
                     <TextView
                         android:id="@+id/review_the_success_bt5"
                         android:layout_width="0dp"
@@ -225,6 +263,15 @@
                         android:text="成交"
                         android:visibility="gone"
                         android:textColor="#666666" />
+
+                    <LinearLayout
+                        android:id="@+id/success_linear5"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:background="#EEEEEE"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
 
                     <TextView
                         android:id="@+id/review_the_success_bt6"
@@ -240,6 +287,15 @@
                         android:visibility="gone"
                         android:textColor="#666666"/>
 
+                    <LinearLayout
+                        android:id="@+id/success_linear6"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:background="#EEEEEE"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
+
                     <TextView
                         android:id="@+id/review_the_success_bt7"
                         android:layout_width="0dp"
@@ -247,12 +303,21 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:drawableTop="@mipmap/make_a_bargain"
+                        android:drawableTop="@mipmap/change_information"
                         android:gravity="center_horizontal"
                         android:drawablePadding="9dp"
                         android:text="修改信息"
                         android:visibility="gone"
                         android:textColor="#666666" />
+
+                    <LinearLayout
+                        android:id="@+id/success_linear7"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:background="#EEEEEE"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
 
                     <TextView
                         android:id="@+id/review_the_success_bt8"
@@ -268,6 +333,15 @@
                         android:visibility="gone"
                         android:textColor="#666666" />
 
+                    <LinearLayout
+                        android:id="@+id/success_linear8"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:background="#EEEEEE"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
+
                     <TextView
                         android:id="@+id/review_the_success_bt9"
                         android:layout_width="0dp"
@@ -281,6 +355,15 @@
                         android:text="调单"
                         android:visibility="gone"
                         android:textColor="#666666" />
+
+                    <LinearLayout
+                        android:id="@+id/success_linear9"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:background="#EEEEEE"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
 
                     <TextView
                         android:id="@+id/review_the_success_bt10"
@@ -296,6 +379,15 @@
                         android:visibility="gone"
                         android:textColor="#666666"/>
 
+                    <LinearLayout
+                        android:id="@+id/success_linear10"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:background="#EEEEEE"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
+
                     <TextView
                         android:id="@+id/review_the_success_bt11"
                         android:layout_width="0dp"
@@ -309,6 +401,15 @@
                         android:text="通过"
                         android:visibility="visible"
                         android:textColor="#666666"/>
+
+                    <LinearLayout
+                        android:id="@+id/success_linear11"
+                        android:orientation="vertical"
+                        android:background="#EEEEEE"
+                        android:visibility="gone"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
 
                     <TextView
                         android:id="@+id/review_the_success_bt12"
@@ -324,6 +425,15 @@
                         android:visibility="visible"
                         android:textColor="#666666"/>
 
+                    <LinearLayout
+                        android:id="@+id/success_linear12"
+                        android:orientation="vertical"
+                        android:background="#EEEEEE"
+                        android:visibility="gone"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
+
                     <TextView
                         android:id="@+id/review_the_success_bt13"
                         android:layout_width="0dp"
@@ -331,12 +441,21 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:drawableTop="@mipmap/make_a_bargain"
+                        android:drawableTop="@mipmap/complete_the_information"
                         android:gravity="center_horizontal"
                         android:drawablePadding="9dp"
                         android:text="补全信息"
                         android:visibility="gone"
                         android:textColor="#666666" />
+
+                    <LinearLayout
+                        android:id="@+id/success_linear13"
+                        android:orientation="vertical"
+                        android:background="#EEEEEE"
+                        android:visibility="gone"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"/>
                 </LinearLayout>
 
             </RelativeLayout>

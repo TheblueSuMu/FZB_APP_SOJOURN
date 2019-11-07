@@ -37,6 +37,7 @@
                 android:layout_marginTop="35dp"
                 android:layout_marginRight="105dp"
                 android:background="@drawable/comment"
+                android:imeOptions="actionSearch"
                 android:gravity="center"
                 android:hint="搜索"
                 android:textColor="#333333"

@@ -30,6 +30,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.BrokerBean;
 import com.xcy.fzb.all.database.DataNumBean;
 import com.xcy.fzb.all.database.FinanceBean;
@@ -126,6 +127,9 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
     private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
+            NewlyIncreased.setTag("");
+            NewlyIncreased.setStartDate("");
+            NewlyIncreased.setEndDate("");
             initView();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -220,15 +224,19 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.broker_rb1) {
                     initDataNum("0", "", "");
+                    NewlyIncreased.setTag("0");
                     broker_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb2) {
                     initDataNum("1", "", "");
+                    NewlyIncreased.setTag("1");
                     broker_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb3) {
                     initDataNum("2", "", "");
+                    NewlyIncreased.setTag("2");
                     broker_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb4) {
                     initDataNum("3", "", "");
+                    NewlyIncreased.setTag("3");
                     broker_ll1.setVisibility(View.VISIBLE);
                 }
             }
@@ -282,7 +290,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         String s = broker_tv4.getText().toString();
                         String s1 = broker_tv5.getText().toString();
                         initDataNum("3", s, s1);
-
+                        NewlyIncreased.setStartDate(dateString);
                     }
                 });
             }
@@ -302,6 +310,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         String s = broker_tv4.getText().toString();
                         String s1 = broker_tv5.getText().toString();
                         initDataNum("3", s, s1);
+                        NewlyIncreased.setEndDate(dateString);
                     }
                 });
             }
@@ -746,4 +755,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        NewlyIncreased.setTag("0");
+        NewlyIncreased.setStartDate("");
+        NewlyIncreased.setEndDate("");
+    }
 }

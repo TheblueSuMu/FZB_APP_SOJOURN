@@ -50,7 +50,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="55dp">
+                android:layout_above="@id/check_pending_ll">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,10 +133,11 @@
 
             <LinearLayout
                 android:id="@+id/check_pending_ll"
+                android:paddingTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="10dp"
+                android:background="@drawable/linearlayout_back"
                 android:orientation="horizontal">
 
                 <TextView
@@ -153,10 +154,10 @@
                     android:textColor="#666666"/>
 
                 <LinearLayout
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="#EEEEEE"
                     android:layout_width="1dp"
-                    android:layout_height="25dp"/>
+                    android:layout_height="30dp"/>
 
                 <TextView
                     android:id="@+id/check_pending_bt2"

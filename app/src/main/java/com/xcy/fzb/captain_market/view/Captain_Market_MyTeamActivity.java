@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.DailyTurnoverBean;
 import com.xcy.fzb.all.database.DataStatisticsBean;
 import com.xcy.fzb.all.database.MyTeamBean;
@@ -405,6 +406,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv1.setText(dateString);
                         startDate1 = dateString;
+                        NewlyIncreased.setStartDate(dateString);
                     }
                 });
 
@@ -421,6 +423,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv2.setText(dateString);
                         endDate1 = dateString;
+                        NewlyIncreased.setEndDate(dateString);
                     }
                 });
                 initDataStatistics();
@@ -493,6 +496,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                 type1 = "0";
                 startDate1 = "";
                 endDate1 = "";
+                NewlyIncreased.setTag("0");
                 initDataStatistics();
                 break;
 
@@ -502,6 +506,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                 type1 = "1";
                 startDate1 = "";
                 endDate1 = "";
+                NewlyIncreased.setTag("1");
                 initDataStatistics();
                 break;
 
@@ -511,6 +516,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                 type1 = "2";
                 startDate1 = "";
                 endDate1 = "";
+                NewlyIncreased.setTag("2");
                 initDataStatistics();
                 break;
 
@@ -518,6 +524,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             case R.id.my_team_rb4:
                 market_time_ll10.setVisibility(View.VISIBLE);
                 type1 = "3";
+                NewlyIncreased.setTag("3");
                 break;
 
             //            TODO 财务数据 时间选择 全部
@@ -771,5 +778,13 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
 
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        NewlyIncreased.setTag("");
+        NewlyIncreased.setStartDate("");
+        NewlyIncreased.setEndDate("");
     }
 }

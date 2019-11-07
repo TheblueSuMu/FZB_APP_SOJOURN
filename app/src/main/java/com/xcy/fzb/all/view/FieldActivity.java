@@ -87,6 +87,7 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
     private String et5;
     private String sex;
     private FieldBean fieldBean = new FieldBean();
+    private FieldBean fieldBean2 = new FieldBean();
     private List<FieldBean> list = new ArrayList<>();
 
     //  TODO    图片
@@ -266,6 +267,26 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                     fieldBean.setIdNumber(field_et4.getText().toString());      //  TODO    身份证号码
                     fieldBean.setPassportNumber(field_et5.getText().toString());      //  TODO    护照号码
                     fieldBean.setPassportImg(imgUrl);      //  TODO    照片地址
+
+                    if (ProjectProgressApi.getFieldBean().getCity() != null) {
+                        if (ProjectProgressApi.getFieldBean().getCity().equals("")) {
+
+                        }else {
+                            fieldBean.setCity(ProjectProgressApi.getFieldBean().getCity());
+                            fieldBean.setOccupation(ProjectProgressApi.getFieldBean().getOccupation());
+                            fieldBean.setFocus(ProjectProgressApi.getFieldBean().getFocus());
+                            fieldBean.setIntentionalBuilding(ProjectProgressApi.getFieldBean().getIntentionalBuilding());
+                            fieldBean.setPaymentMethod(ProjectProgressApi.getFieldBean().getPaymentMethod());
+                            fieldBean.setHasDecision(ProjectProgressApi.getFieldBean().getHasDecision());
+                            fieldBean.setResistance(ProjectProgressApi.getFieldBean().getResistance());
+                            fieldBean.setObjective(ProjectProgressApi.getFieldBean().getObjective());
+                            fieldBean.setIdealArea(ProjectProgressApi.getFieldBean().getIdealArea());
+                        }
+                    }
+
+                    Log.i("同行人", "基本描摹信息："+fieldBean);
+                    Log.i("同行人", "基本描摹信息："+fieldBean.getCity());
+                    Log.i("同行人", "基本描摹信息："+fieldBean.getObjective());
 
                     ProjectProgressApi.setFieldBean(fieldBean);
                     ProjectProgressApi.setField("1");
@@ -623,33 +644,37 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        fieldBean = ProjectProgressApi.getFieldBean();
+        fieldBean2 = ProjectProgressApi.getFieldBean();
 
-        fieldBean.setFullName(field_et1.getText().toString());      //  TODO    客户名
-        fieldBean.setGender(field_tv1.getText().toString());      //  TODO    性别
-        fieldBean.setRelation(field_et2.getText().toString());      //  TODO    关系
-        fieldBean.setPhone(field_et3.getText().toString());      //  TODO    手机号
-        fieldBean.setIdNumber(field_et4.getText().toString());      //  TODO    身份证号码
-        fieldBean.setPassportNumber(field_et5.getText().toString());      //  TODO    护照号码
-        fieldBean.setPassportImg(imgUrl);      //  TODO    照片地址
+        fieldBean2.setFullName(field_et1.getText().toString());      //  TODO    客户名
+        fieldBean2.setGender(field_tv1.getText().toString());      //  TODO    性别
+        fieldBean2.setRelation(field_et2.getText().toString());      //  TODO    关系
+        fieldBean2.setPhone(field_et3.getText().toString());      //  TODO    手机号
+        fieldBean2.setIdNumber(field_et4.getText().toString());      //  TODO    身份证号码
+        fieldBean2.setPassportNumber(field_et5.getText().toString());      //  TODO    护照号码
+        fieldBean2.setPassportImg(imgUrl);      //  TODO    照片地址
 
         if (fieldBean.getCity() != null) {
             if (fieldBean.getCity().equals("")) {
 
             }else {
-                fieldBean.setCity(fieldBean.getCity());
-                fieldBean.setOccupation(fieldBean.getOccupation());
-                fieldBean.setFocus(fieldBean.getFocus());
-                fieldBean.setIntentionalBuilding(fieldBean.getIntentionalBuilding());
-                fieldBean.setPaymentMethod(fieldBean.getPaymentMethod());
-                fieldBean.setHasDecision(fieldBean.getHasDecision());
-                fieldBean.setResistance(fieldBean.getResistance());
-                fieldBean.setObjective(fieldBean.getObjective());
-                fieldBean.setIdealArea(fieldBean.getIdealArea());
+                fieldBean2.setCity(fieldBean.getCity());
+                fieldBean2.setOccupation(fieldBean.getOccupation());
+                fieldBean2.setFocus(fieldBean.getFocus());
+                fieldBean2.setIntentionalBuilding(fieldBean.getIntentionalBuilding());
+                fieldBean2.setPaymentMethod(fieldBean.getPaymentMethod());
+                fieldBean2.setHasDecision(fieldBean.getHasDecision());
+                fieldBean2.setResistance(fieldBean.getResistance());
+                fieldBean2.setObjective(fieldBean.getObjective());
+                fieldBean2.setIdealArea(fieldBean.getIdealArea());
             }
         }
 
 
-        ProjectProgressApi.setFieldBean(fieldBean);
+        ProjectProgressApi.setFieldBean(fieldBean2);
+        Log.i("同行人", "基本描摹信息："+fieldBean2);
+        Log.i("同行人", "基本描摹信息："+fieldBean2.getCity());
+        Log.i("同行人", "基本描摹信息："+fieldBean2.getObjective());
+
     }
 }

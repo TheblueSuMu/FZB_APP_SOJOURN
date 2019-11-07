@@ -141,7 +141,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
                 break;
 //                TODO 分享
             case R.id.fzb_fx:
-                FinalContents.showShare("房app下载", "http://admin.fangzuobiao.com:88/fangfang/static/down/index.html", "app下载", "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3055880154,1625749017&fm=26&gp=0.jpg", "http://admin.fangzuobiao.com:88/fangfang/static/down/index.html", AboutFZBActivity.this);
+                FinalContents.showShare("房app下载", FinalContents.getImageUrl()+"/fangfang/static/down/index.html", "app下载", FinalContents.getImageUrl()+"/fangfang/static/common/images/logo.png", FinalContents.getImageUrl()+"/fangfang/static/down/index.html", AboutFZBActivity.this);
                 break;
 //                TODO 检测版本
             case R.id.fzb_jc:

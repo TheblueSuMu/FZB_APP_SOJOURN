@@ -103,124 +103,6 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <!--                    <LinearLayout-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="80dp"-->
-                    <!--                        android:layout_marginLeft="15dp"-->
-                    <!--                        android:layout_marginTop="20dp"-->
-                    <!--                        android:layout_marginRight="15dp"-->
-                    <!--                        android:layout_marginBottom="20dp"-->
-                    <!--                        android:orientation="horizontal">-->
-
-                    <!--                        <RelativeLayout-->
-                    <!--                            android:id="@+id/rl1_modulebroke"-->
-                    <!--                            android:layout_width="0dp"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:layout_weight="1"-->
-                    <!--                            android:background="@mipmap/cp1">-->
-
-                    <!--                            <LinearLayout-->
-                    <!--                                android:layout_width="wrap_content"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:layout_centerVertical="true"-->
-                    <!--                                android:layout_marginLeft="15dp"-->
-                    <!--                                android:orientation="vertical">-->
-
-                    <!--                                <TextView-->
-                    <!--                                    android:id="@+id/tv1_modulebroke"-->
-                    <!--                                    android:layout_width="wrap_content"-->
-                    <!--                                    android:layout_height="wrap_content"-->
-                    <!--                                    android:layout_gravity="center_horizontal"-->
-                    <!--                                    android:text=""-->
-                    <!--                                    android:textColor="#ffac8f5c"-->
-                    <!--                                    android:textSize="20sp" />-->
-
-                    <!--                                <TextView-->
-                    <!--                                    android:layout_width="wrap_content"-->
-                    <!--                                    android:layout_height="wrap_content"-->
-                    <!--                                    android:layout_gravity="center_horizontal"-->
-                    <!--                                    android:layout_marginTop="15dp"-->
-                    <!--                                    android:text="门店"-->
-                    <!--                                    android:textColor="#ff333333"-->
-                    <!--                                    android:textSize="15sp" />-->
-                    <!--                            </LinearLayout>-->
-
-
-                    <!--                        </RelativeLayout>-->
-
-                    <!--                        <RelativeLayout-->
-                    <!--                            android:id="@+id/rl2_modulebroke"-->
-                    <!--                            android:layout_width="0dp"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:layout_marginLeft="7dp"-->
-                    <!--                            android:layout_weight="1"-->
-                    <!--                            android:background="@mipmap/cp2">-->
-
-                    <!--                            <LinearLayout-->
-                    <!--                                android:layout_width="wrap_content"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:layout_centerVertical="true"-->
-                    <!--                                android:layout_marginLeft="15dp"-->
-                    <!--                                android:orientation="vertical">-->
-
-                    <!--                                <TextView-->
-                    <!--                                    android:id="@+id/tv2_modulebroke"-->
-                    <!--                                    android:layout_width="wrap_content"-->
-                    <!--                                    android:layout_height="wrap_content"-->
-                    <!--                                    android:layout_gravity="center_horizontal"-->
-                    <!--                                    android:text=""-->
-                    <!--                                    android:textColor="#ffac8f5c"-->
-                    <!--                                    android:textSize="20sp" />-->
-
-                    <!--                                <TextView-->
-                    <!--                                    android:layout_width="wrap_content"-->
-                    <!--                                    android:layout_height="wrap_content"-->
-                    <!--                                    android:layout_gravity="center_horizontal"-->
-                    <!--                                    android:layout_marginTop="15dp"-->
-                    <!--                                    android:text="经纪人"-->
-                    <!--                                    android:textColor="#ff333333"-->
-                    <!--                                    android:textSize="15sp" />-->
-
-                    <!--                            </LinearLayout>-->
-
-
-                    <!--                        </RelativeLayout>-->
-
-                    <!--                        <RelativeLayout-->
-                    <!--                            android:id="@+id/rl3_modulebroke"-->
-                    <!--                            android:layout_width="0dp"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:layout_marginLeft="7dp"-->
-                    <!--                            android:layout_weight="1"-->
-                    <!--                            android:background="@mipmap/cp3">-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/tv3_modulebroke"-->
-                    <!--                                android:layout_width="wrap_content"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:layout_marginLeft="10dp"-->
-                    <!--                                android:layout_marginTop="10dp"-->
-                    <!--                                android:textColor="#ffac8f5c"-->
-                    <!--                                android:textSize="20sp" />-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:layout_width="wrap_content"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:layout_alignParentBottom="true"-->
-                    <!--                                android:layout_marginLeft="10dp"-->
-                    <!--                                android:layout_marginBottom="10dp"-->
-                    <!--                                android:text="佣金\n跟进"-->
-                    <!--                                android:textColor="#ff333333"-->
-                    <!--                                android:textSize="15sp" />-->
-
-                    <!--                        </RelativeLayout>-->
-                    <!--                    </LinearLayout>-->
-
-                    <!--                    <LinearLayout-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="5dp"-->
-                    <!--                        android:background="#EEEEED"></LinearLayout>-->
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -392,13 +274,6 @@
 
                         </LinearLayout>
 
-                        <!--                        <LinearLayout-->
-                        <!--                            android:layout_width="1dp"-->
-                        <!--                            android:layout_height="40dp"-->
-                        <!--                            android:layout_gravity="bottom"-->
-                        <!--                            android:layout_marginBottom="-3dp"-->
-                        <!--                            android:background="#E5E5E5"></LinearLayout>-->
-
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -435,13 +310,6 @@
                             </LinearLayout>
 
                         </LinearLayout>
-
-                        <!--                        <LinearLayout-->
-                        <!--                            android:layout_width="1dp"-->
-                        <!--                            android:layout_height="40dp"-->
-                        <!--                            android:layout_gravity="bottom"-->
-                        <!--                            android:layout_marginBottom="-3dp"-->
-                        <!--                            android:background="#E5E5E5"></LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -480,13 +348,6 @@
                             </LinearLayout>
 
                         </LinearLayout>
-
-                        <!--                        <LinearLayout-->
-                        <!--                            android:layout_width="1dp"-->
-                        <!--                            android:layout_height="40dp"-->
-                        <!--                            android:layout_gravity="bottom"-->
-                        <!--                            android:layout_marginBottom="-3dp"-->
-                        <!--                            android:background="#E5E5E5"></LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -569,13 +430,6 @@
                             </LinearLayout>
 
                         </LinearLayout>
-
-                        <!--                        <LinearLayout-->
-                        <!--                            android:layout_width="1dp"-->
-                        <!--                            android:layout_height="40dp"-->
-                        <!--                            android:layout_gravity="bottom"-->
-                        <!--                            android:layout_marginBottom="-3dp"-->
-                        <!--                            android:background="#E5E5E5"></LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -715,7 +569,7 @@
                     <com.github.mikephil.charting.charts.LineChart
                         android:id="@+id/lc_modulebroke"
                         android:layout_width="match_parent"
-                        android:layout_height="130dp"
+                        android:layout_height="300dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="15dp"
