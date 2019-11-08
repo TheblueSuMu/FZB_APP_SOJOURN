@@ -82,24 +82,24 @@
                         <LinearLayout
                             android:id="@+id/fragment_ll_1"
                             android:orientation="horizontal"
-                            android:layout_width="23dp"
-                            android:layout_height="3dp"
-                            android:background="#334485"></LinearLayout>
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/checkbox_underline_shape_s"></LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/fragment_ll_2"
                             android:orientation="horizontal"
-                            android:layout_width="23dp"
-                            android:layout_height="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:background="#EEEEEE"></LinearLayout>
+                            android:background="@drawable/checkbox_underline_shape_s_s"></LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/fragment_ll_3"
                             android:orientation="horizontal"
-                            android:layout_width="23dp"
-                            android:layout_height="3dp"
-                            android:background="#EEEEEE"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/checkbox_underline_shape_s_s"
                             android:layout_marginLeft="5dp"></LinearLayout>
                     </LinearLayout>
 

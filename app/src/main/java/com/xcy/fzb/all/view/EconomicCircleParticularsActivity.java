@@ -77,6 +77,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     private EconomicCircleBean economicCircleBean;
     private TextView particulars_xiao_size;
     private boolean whehter = true;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             AndroidBug5497Workaround.assistActivity(this);
@@ -112,6 +113,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
         StatusBar.makeStatusBarTransparent(this);
 
         particulars_et_comment.setOnKeyListener(new View.OnKeyListener() {
+
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (KeyEvent.KEYCODE_ENTER == i && KeyEvent.ACTION_DOWN == keyEvent.getAction()) {
@@ -119,7 +121,8 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                     if (flag == 0) {
                         String s = particulars_et_comment.getText().toString();
                         if (s.equals("")) {
-                            Toast.makeText(EconomicCircleParticularsActivity.this, "评论不能为空", Toast.LENGTH_SHORT).show();
+                            toast = Toast.makeText(EconomicCircleParticularsActivity.this, "评论不能为空", Toast.LENGTH_SHORT);
+                            toast.show();
                             flag = 0;
                         } else {
                             flag = 1;
@@ -365,7 +368,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
 
     @SuppressLint("WrongConstant")
     private void initLinear() {
-        particulars_xiao_size.setText("全部"+commentList.size()+"条评论");
+        particulars_xiao_size.setText("全部" + commentList.size() + "条评论");
         LinearLayoutManager manager = new LinearLayoutManager(EconomicCircleParticularsActivity.this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         particulars_rv_comment.setLayoutManager(manager);
@@ -471,5 +474,26 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                 break;
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        toast.cancel();
+        toast=null;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        toast.cancel();
+        toast=null;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        toast.cancel();
+        toast=null;
     }
 }

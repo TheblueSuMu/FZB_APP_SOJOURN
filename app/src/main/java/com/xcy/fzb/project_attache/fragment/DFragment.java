@@ -187,17 +187,30 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    fragment_ll_1.setBackgroundColor(Color.parseColor("#334485"));
-                    fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
-                    fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_ll_1.setBackgroundColor(Color.parseColor("#334485"));
+//                    fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+
+                    fragment_ll_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
+                    fragment_ll_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
+                    fragment_ll_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
+
                 } else if (position == 1) {
-                    fragment_ll_2.setBackgroundColor(Color.parseColor("#334485"));
-                    fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
-                    fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_ll_2.setBackgroundColor(Color.parseColor("#334485"));
+//                    fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+
+                    fragment_ll_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
+                    fragment_ll_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
+                    fragment_ll_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
                 } else if (position == 2) {
-                    fragment_ll_3.setBackgroundColor(Color.parseColor("#334485"));
-                    fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
-                    fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_ll_3.setBackgroundColor(Color.parseColor("#334485"));
+//                    fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+
+                    fragment_ll_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
+                    fragment_ll_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
+                    fragment_ll_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
                 }
             }
 

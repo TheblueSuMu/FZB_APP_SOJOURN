@@ -91,11 +91,14 @@ public class JourneyAdapter extends RecyclerView.Adapter<JourneyAdapter.ViewHold
             holder.item_journey_tv4.setVisibility(View.VISIBLE);
             holder.item_journey_tv4.setText("完成时间："+listData.get(position).getCompleteTime());
             holder.item_journey_fulfill.setText("已完成");
+            holder.item_journey_fulfill.setBackgroundResource(R.drawable.dg_shapes);
 //            holder.item_journey_fulfill.setTextColor(R.color.textcolor);
             holder.item_journey_fulfill.setTextColor(Color.parseColor("#999999"));
             Glide.with(holder.itemView.getContext()).load(R.mipmap.hui_ss).into(holder.shopping_img);
         } else if (listData.get(position).getIsComplete() == 0) {
             holder.item_journey_fulfill.setText("完成");
+            holder.item_journey_fulfill.setBackgroundResource(R.drawable.dg_shape);
+            holder.item_journey_fulfill.setPadding(20,5,20,5);
             holder.item_journey_fulfill.setTextColor(R.color.textcolorcheck);
         }
 
@@ -127,6 +130,7 @@ public class JourneyAdapter extends RecyclerView.Adapter<JourneyAdapter.ViewHold
                                         Toast.makeText(context, ""+journeyBean.getData().getMsg(), Toast.LENGTH_SHORT).show();
                                         if (journeyBean.getData().getMsg().equals("成功完成")) {
                                             holder.item_journey_fulfill.setText("已完成");
+                                            holder.item_journey_fulfill.setBackgroundResource(R.drawable.dg_shapes);
 //                                            holder.item_journey_fulfill.setTextColor(R.color.textcolor);
                                             holder.item_journey_fulfill.setTextColor(Color.parseColor("#999999"));
                                             Glide.with(holder.itemView.getContext()).load(R.mipmap.hui_ss).into(holder.shopping_img);
