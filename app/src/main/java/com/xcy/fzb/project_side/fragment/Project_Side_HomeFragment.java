@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.modle.HomeBean;
 import com.xcy.fzb.all.modle.SideHomeBean;
@@ -335,6 +336,8 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         beforeDate = dateString;
                         time1_home_the_project_end.setText("<" + dateString);
+                        NewlyIncreased.setStartDate(dateString);
+                        NewlyIncreased.setYJstartDate(dateString);
                     }
                 });
             }
@@ -354,6 +357,8 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                         afterDate = dateString;
                         time2_home_the_project_end.setText("-" + dateString + " >");
                         Log.d("wsw", "new date: " + dateString);
+                        NewlyIncreased.setEndDate(dateString);
+                        NewlyIncreased.setYJstartDate(dateString);
                         initViewData();
                     }
                 });
@@ -549,6 +554,8 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                 beforeDate = "";
                 afterDate = "";
                 type = "";
+                NewlyIncreased.setTag("0");
+                NewlyIncreased.setYJType("0");
                 initViewData();
                 break;
             case R.id.rb2_home_the_project_end:
@@ -556,6 +563,8 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                 beforeDate = "";
                 afterDate = "";
                 type = "1";
+                NewlyIncreased.setTag("1");
+                NewlyIncreased.setYJType("1");
                 initViewData();
                 break;
             case R.id.rb3_home_the_project_end:
@@ -563,11 +572,15 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                 beforeDate = "";
                 afterDate = "";
                 type = "2";
+                NewlyIncreased.setTag("2");
+                NewlyIncreased.setYJType("2");
                 initViewData();
                 break;
             case R.id.rb4_home_the_project_end:
                 time1_ll1_home_the_project_end.setVisibility(View.VISIBLE);
                 type = "3";
+                NewlyIncreased.setTag("3");
+                NewlyIncreased.setYJType("3");
                 initDate();
                 break;
         }

@@ -9,6 +9,7 @@ import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.mob.MobSDK;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.XCrashHandlerUtils;
 import com.xcy.fzb.all.fragment.ComprehensiveFragment;
 import com.xcy.fzb.all.fragment.CountryFragment;
 import com.xcy.fzb.all.fragment.HomeFragment;
@@ -64,6 +65,10 @@ public class DemoApplication extends Application {
 
         SDKInitializer.initialize(getApplicationContext());
 
+        XCrashHandlerUtils xCrashHandlerUtils = new XCrashHandlerUtils();
+        xCrashHandlerUtils.init(this);
+//        CrashHandler crashHandler = new CrashHandler();
+//        crashHandler.init(this);
         MobSDK.init(this);
 
         MultiDex.install(this);

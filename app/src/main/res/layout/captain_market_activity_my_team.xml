@@ -128,773 +128,783 @@
                                 </RelativeLayout>
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="5dp"
-                                android:background="#EEEEED"></LinearLayout>
-                            <!--TODO 数据统计-->
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="数据统计"
-                                    android:textColor="#ff000000"
-                                    android:textSize="15sp" />
-
-                                <RadioGroup
-                                    android:id="@+id/my_team_rg1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:orientation="horizontal">
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb1"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector_all"
-                                        android:button="@null"
-                                        android:checked="true"
-                                        android:text="全部"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb2"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector"
-                                        android:button="@null"
-                                        android:text="昨天"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb3"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector"
-                                        android:button="@null"
-                                        android:text="近七日"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb4"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector_custom"
-                                        android:button="@null"
-                                        android:text="自定义"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-                                </RadioGroup>
-
-                            </RelativeLayout>
-                            <!--TODO 日期-->
-                            <LinearLayout
-                                android:id="@+id/my_team_ll10"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp"
-                                android:gravity="center"
-                                android:orientation="horizontal"
-                                android:visibility="gone">
-
-
-                                <TextView
-                                    android:id="@+id/my_team_time_tv1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="2019.03.23"
-                                    android:textColor="#ff334485"
-                                    android:textSize="13sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-"
-                                    android:textColor="#ff334485"
-                                    android:textSize="13sp" />
-
-                                <TextView
-                                    android:id="@+id/my_team_time_tv2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="2019.04.03"
-                                    android:textColor="#ff334485"
-                                    android:textSize="13sp" />
-
-                            </LinearLayout>
-                            <!--TODO -->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp"
-                                android:background="#EEEEED"></LinearLayout>
-                            <!--TODO 报备-->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:id="@+id/my_team_ll1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/my_team_tv2"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:layout_marginTop="5dp"
-                                            android:text="报备"
-                                            android:textColor="#111111"
-                                            android:textSize="12sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <!--                                <LinearLayout-->
-                                <!--                                    android:layout_width="1dp"-->
-                                <!--                                    android:layout_height="40dp"-->
-                                <!--                                    android:layout_gravity="bottom"-->
-                                <!--                                    android:layout_marginBottom="-3dp"-->
-                                <!--                                    android:background="#E5E5E5"></LinearLayout>-->
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:id="@+id/my_team_ll2"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/my_team_tv3"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp"
-                                            android:gravity="center"
-                                            android:text="到访"
-                                            android:textColor="#111111"
-                                            android:textSize="12sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:id="@+id/my_team_ll3"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/my_team_tv4"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp"
-                                            android:gravity="center"
-                                            android:text="登岛"
-
-                                            android:textColor="#111111"
-                                            android:textSize="12sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-                            <!--TODO 认筹-->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:id="@+id/my_team_ll4"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/my_team_tv5"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp"
-                                            android:gravity="center"
-                                            android:text="认筹"
-                                            android:textColor="#111111"
-                                            android:textSize="12sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <!--                                <LinearLayout-->
-                                <!--                                    android:layout_width="1dp"-->
-                                <!--                                    android:layout_height="40dp"-->
-                                <!--                                    android:layout_gravity="bottom"-->
-                                <!--                                    android:layout_marginBottom="-3dp"-->
-                                <!--                                    android:background="#E5E5E5"></LinearLayout>-->
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:id="@+id/my_team_ll5"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/my_team_tv6"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp"
-                                            android:gravity="center"
-                                            android:text="成交"
-                                            android:textColor="#111111"
-                                            android:textSize="12sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <!--                                <LinearLayout-->
-                                <!--                                    android:layout_width="1dp"-->
-                                <!--                                    android:layout_height="40dp"-->
-                                <!--                                    android:layout_gravity="bottom"-->
-                                <!--                                    android:layout_marginBottom="-3dp"-->
-                                <!--                                    android:background="#E5E5E5"></LinearLayout>-->
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:id="@+id/my_team_ll6"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/my_team_tv7"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp"
-                                            android:gravity="center"
-                                            android:text="失效"
-                                            android:textColor="#111111"
-                                            android:textSize="12sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="5dp"
-                                android:layout_marginTop="20dp"
-                                android:background="#EEEEED"></LinearLayout>
-                            <!--TODO 财务数据-->
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="财务数据"
-                                    android:textColor="#ff000000"
-                                    android:textSize="15sp" />
-
-                                <RadioGroup
-                                    android:id="@+id/my_team_rg2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:orientation="horizontal">
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb5"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector_all"
-                                        android:button="@null"
-                                        android:checked="true"
-                                        android:text="全部"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb6"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector"
-                                        android:button="@null"
-                                        android:text="昨天"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb7"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector"
-                                        android:button="@null"
-                                        android:text="近30日"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb8"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector_custom"
-                                        android:button="@null"
-                                        android:text="自定义"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-                                </RadioGroup>
-
-                            </RelativeLayout>
-                            <!--TODO 日期-->
-                            <LinearLayout
-                                android:id="@+id/my_team_ll11"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp"
-                                android:gravity="center"
-                                android:orientation="horizontal"
-                                android:visibility="gone">
-
-
-                                <TextView
-                                    android:id="@+id/my_team_time_tv3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="2019.03.23"
-                                    android:textColor="#ff334485"
-                                    android:textSize="13sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-"
-                                    android:textColor="#ff334485"
-                                    android:textSize="13sp" />
-
-                                <TextView
-                                    android:id="@+id/my_team_time_tv4"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="2019.04.03"
-                                    android:textColor="#ff334485"
-                                    android:textSize="13sp" />
-
-                            </LinearLayout>
-                            <!--TODO -->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp"
-                                android:background="#EEEEED"></LinearLayout>
-                            <!--TODO 总佣金-->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:id="@+id/my_team_ll7"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/my_team_tv8"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:layout_marginTop="5dp"
-                                            android:text="总佣金(万)"
-                                            android:textColor="#111111"
-                                            android:textSize="12sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <!--                                <LinearLayout-->
-                                <!--                                    android:layout_width="1dp"-->
-                                <!--                                    android:layout_height="40dp"-->
-                                <!--                                    android:layout_gravity="bottom"-->
-                                <!--                                    android:layout_marginBottom="-3dp"-->
-                                <!--                                    android:background="#E5E5E5"></LinearLayout>-->
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:id="@+id/my_team_ll8"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/my_team_tv9"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp"
-                                            android:gravity="center"
-                                            android:text="已结(万)"
-                                            android:textColor="#111111"
-                                            android:textSize="12sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <!--                                <LinearLayout-->
-                                <!--                                    android:layout_width="1dp"-->
-                                <!--                                    android:layout_height="40dp"-->
-                                <!--                                    android:layout_gravity="bottom"-->
-                                <!--                                    android:layout_marginBottom="-3dp"-->
-                                <!--                                    android:background="#E5E5E5"></LinearLayout>-->
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:id="@+id/my_team_ll9"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:gravity="center"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/my_team_tv10"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="5dp"
-                                            android:gravity="center"
-                                            android:text="未结(万)"
-                                            android:textColor="#111111"
-                                            android:textSize="12sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="5dp"
-                                android:layout_marginTop="20dp"
-                                android:background="#EEEEED"></LinearLayout>
-                            <!--TODO 顾问成交TOP5-->
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:text="顾问成交TOP5"
-                                    android:textColor="#ff000000"
-                                    android:textSize="15sp" />
-
-                                <RadioGroup
-                                    android:id="@+id/my_team_rg3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:orientation="horizontal">
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb9"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector_all"
-                                        android:button="@null"
-                                        android:checked="true"
-                                        android:text="全部"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb10"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector"
-                                        android:button="@null"
-                                        android:text="昨天"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb11"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector"
-                                        android:button="@null"
-                                        android:text="近七日"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-
-                                    <RadioButton
-                                        android:id="@+id/my_team_rb12"
-                                        android:layout_width="50dp"
-                                        android:layout_height="23dp"
-                                        android:background="@drawable/home_selector_custom"
-                                        android:button="@null"
-                                        android:text="自定义"
-                                        android:textAlignment="center"
-                                        android:textColor="@drawable/home_selector_text"
-                                        android:textSize="13sp" />
-                                </RadioGroup>
-
-                            </RelativeLayout>
-                            <!--TODO 日期-->
-                            <LinearLayout
-                                android:id="@+id/my_team_ll12"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginRight="15dp"
-                                android:gravity="center"
-                                android:orientation="horizontal"
-                                android:visibility="gone">
-
-
-                                <TextView
-                                    android:id="@+id/my_team_time_tv5"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="2019.03.23"
-                                    android:textColor="#ff334485"
-                                    android:textSize="13sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="-"
-                                    android:textColor="#ff334485"
-                                    android:textSize="13sp" />
-
-                                <TextView
-                                    android:id="@+id/my_team_time_tv6"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="2019.04.03"
-                                    android:textColor="#ff334485"
-                                    android:textSize="13sp" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginBottom="15dp"
-                                android:background="#F6F5F4"></LinearLayout>
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/my_team_rv"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="5dp"></androidx.recyclerview.widget.RecyclerView>
-
-                                <ImageView
-                                    android:id="@+id/all_no_information_S"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="#fff"
-                                    android:src="@mipmap/no_information"
-                                    android:visibility="gone" />
-                            </RelativeLayout>
-
+                           <LinearLayout
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:orientation="vertical"
+                               android:background="#FFFFFF">
+                               <LinearLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="5dp"
+                                   android:background="#EEEEED"></LinearLayout>
+                               <!--TODO 数据统计-->
+                               <RelativeLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginLeft="15dp"
+                                   android:layout_marginTop="15dp"
+                                   android:layout_marginRight="15dp">
+
+                                   <TextView
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:layout_centerVertical="true"
+                                       android:text="数据统计"
+                                       android:textColor="#ff000000"
+                                       android:textSize="15sp" />
+
+                                   <RadioGroup
+                                       android:id="@+id/my_team_rg1"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:layout_alignParentRight="true"
+                                       android:layout_centerVertical="true"
+                                       android:orientation="horizontal">
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb1"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector_all"
+                                           android:button="@null"
+                                           android:checked="true"
+                                           android:text="全部"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb2"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector"
+                                           android:button="@null"
+                                           android:text="昨天"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb3"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector"
+                                           android:button="@null"
+                                           android:text="近七日"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb4"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector_custom"
+                                           android:button="@null"
+                                           android:text="自定义"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+                                   </RadioGroup>
+
+                               </RelativeLayout>
+                               <!--TODO 日期-->
+                               <LinearLayout
+                                   android:id="@+id/my_team_ll10"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginLeft="15dp"
+                                   android:layout_marginTop="15dp"
+                                   android:layout_marginRight="15dp"
+                                   android:gravity="center"
+                                   android:orientation="horizontal"
+                                   android:visibility="gone">
+
+
+                                   <TextView
+                                       android:id="@+id/my_team_time_tv1"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:text="2019.03.23"
+                                       android:textColor="#ff334485"
+                                       android:textSize="13sp" />
+
+                                   <TextView
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:text="-"
+                                       android:textColor="#ff334485"
+                                       android:textSize="13sp" />
+
+                                   <TextView
+                                       android:id="@+id/my_team_time_tv2"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:text="2019.04.03"
+                                       android:textColor="#ff334485"
+                                       android:textSize="13sp" />
+
+                               </LinearLayout>
+                               <!--TODO -->
+                               <LinearLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="1dp"
+                                   android:layout_marginLeft="15dp"
+                                   android:layout_marginTop="15dp"
+                                   android:layout_marginRight="15dp"
+                                   android:background="#EEEEED"></LinearLayout>
+                               <!--TODO 报备-->
+                               <LinearLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginTop="20dp"
+                                   android:orientation="horizontal">
+
+                                   <LinearLayout
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:orientation="horizontal">
+
+                                       <LinearLayout
+                                           android:id="@+id/my_team_ll1"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:gravity="center"
+                                           android:orientation="vertical">
+
+                                           <TextView
+                                               android:id="@+id/my_team_tv2"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:ellipsize="end"
+                                               android:lines="1"
+                                               android:text=""
+                                               android:textColor="#111111"
+                                               android:textSize="18sp" />
+
+                                           <TextView
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:layout_marginTop="5dp"
+                                               android:text="报备"
+                                               android:textColor="#111111"
+                                               android:textSize="12sp" />
+                                       </LinearLayout>
+
+                                   </LinearLayout>
+
+                                   <!--                                <LinearLayout-->
+                                   <!--                                    android:layout_width="1dp"-->
+                                   <!--                                    android:layout_height="40dp"-->
+                                   <!--                                    android:layout_gravity="bottom"-->
+                                   <!--                                    android:layout_marginBottom="-3dp"-->
+                                   <!--                                    android:background="#E5E5E5"></LinearLayout>-->
+
+                                   <LinearLayout
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:orientation="horizontal">
+
+                                       <LinearLayout
+                                           android:id="@+id/my_team_ll2"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="match_parent"
+                                           android:gravity="center"
+                                           android:orientation="vertical">
+
+                                           <TextView
+                                               android:id="@+id/my_team_tv3"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:ellipsize="end"
+                                               android:lines="1"
+                                               android:text=""
+                                               android:textColor="#111111"
+                                               android:textSize="18sp" />
+
+                                           <TextView
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_marginTop="5dp"
+                                               android:gravity="center"
+                                               android:text="到访"
+                                               android:textColor="#111111"
+                                               android:textSize="12sp" />
+                                       </LinearLayout>
+
+                                   </LinearLayout>
+
+                                   <LinearLayout
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:orientation="horizontal">
+
+                                       <LinearLayout
+                                           android:id="@+id/my_team_ll3"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="match_parent"
+                                           android:gravity="center"
+                                           android:orientation="vertical">
+
+                                           <TextView
+                                               android:id="@+id/my_team_tv4"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:ellipsize="end"
+                                               android:lines="1"
+                                               android:text=""
+                                               android:textColor="#111111"
+                                               android:textSize="18sp" />
+
+                                           <TextView
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_marginTop="5dp"
+                                               android:gravity="center"
+                                               android:text="登岛"
+
+                                               android:textColor="#111111"
+                                               android:textSize="12sp" />
+                                       </LinearLayout>
+
+                                   </LinearLayout>
+
+                               </LinearLayout>
+                               <!--TODO 认筹-->
+                               <LinearLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginTop="15dp"
+                                   android:orientation="horizontal">
+
+                                   <LinearLayout
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:orientation="horizontal">
+
+                                       <LinearLayout
+                                           android:id="@+id/my_team_ll4"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="match_parent"
+                                           android:gravity="center"
+                                           android:orientation="vertical">
+
+                                           <TextView
+                                               android:id="@+id/my_team_tv5"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:ellipsize="end"
+                                               android:lines="1"
+                                               android:text=""
+                                               android:textColor="#111111"
+                                               android:textSize="18sp" />
+
+                                           <TextView
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_marginTop="5dp"
+                                               android:gravity="center"
+                                               android:text="认筹"
+                                               android:textColor="#111111"
+                                               android:textSize="12sp" />
+                                       </LinearLayout>
+
+                                   </LinearLayout>
+
+                                   <!--                                <LinearLayout-->
+                                   <!--                                    android:layout_width="1dp"-->
+                                   <!--                                    android:layout_height="40dp"-->
+                                   <!--                                    android:layout_gravity="bottom"-->
+                                   <!--                                    android:layout_marginBottom="-3dp"-->
+                                   <!--                                    android:background="#E5E5E5"></LinearLayout>-->
+
+                                   <LinearLayout
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:orientation="horizontal">
+
+                                       <LinearLayout
+                                           android:id="@+id/my_team_ll5"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="match_parent"
+                                           android:gravity="center"
+                                           android:orientation="vertical">
+
+                                           <TextView
+                                               android:id="@+id/my_team_tv6"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:ellipsize="end"
+                                               android:lines="1"
+                                               android:text=""
+                                               android:textColor="#111111"
+                                               android:textSize="18sp" />
+
+                                           <TextView
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_marginTop="5dp"
+                                               android:gravity="center"
+                                               android:text="成交"
+                                               android:textColor="#111111"
+                                               android:textSize="12sp" />
+                                       </LinearLayout>
+
+                                   </LinearLayout>
+
+                                   <!--                                <LinearLayout-->
+                                   <!--                                    android:layout_width="1dp"-->
+                                   <!--                                    android:layout_height="40dp"-->
+                                   <!--                                    android:layout_gravity="bottom"-->
+                                   <!--                                    android:layout_marginBottom="-3dp"-->
+                                   <!--                                    android:background="#E5E5E5"></LinearLayout>-->
+
+                                   <LinearLayout
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:orientation="horizontal">
+
+                                       <LinearLayout
+                                           android:id="@+id/my_team_ll6"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="match_parent"
+                                           android:gravity="center"
+                                           android:orientation="vertical">
+
+                                           <TextView
+                                               android:id="@+id/my_team_tv7"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:ellipsize="end"
+                                               android:lines="1"
+                                               android:text=""
+                                               android:textColor="#111111"
+                                               android:textSize="18sp" />
+
+                                           <TextView
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_marginTop="5dp"
+                                               android:gravity="center"
+                                               android:text="失效"
+                                               android:textColor="#111111"
+                                               android:textSize="12sp" />
+                                       </LinearLayout>
+
+                                   </LinearLayout>
+
+                               </LinearLayout>
+
+                               <LinearLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="5dp"
+                                   android:layout_marginTop="20dp"
+                                   android:background="#EEEEED"></LinearLayout>
+                               <!--TODO 财务数据-->
+                               <RelativeLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:visibility="gone"
+                                   android:layout_marginLeft="15dp"
+                                   android:layout_marginTop="15dp"
+                                   android:layout_marginRight="15dp">
+
+                                   <TextView
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:layout_centerVertical="true"
+                                       android:text="财务数据"
+                                       android:textColor="#ff000000"
+                                       android:textSize="15sp" />
+
+                                   <RadioGroup
+                                       android:id="@+id/my_team_rg2"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:layout_alignParentRight="true"
+                                       android:layout_centerVertical="true"
+                                       android:orientation="horizontal">
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb5"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector_all"
+                                           android:button="@null"
+                                           android:checked="true"
+                                           android:text="全部"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb6"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector"
+                                           android:button="@null"
+                                           android:text="昨天"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb7"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector"
+                                           android:button="@null"
+                                           android:text="近30日"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb8"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector_custom"
+                                           android:button="@null"
+                                           android:text="自定义"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+                                   </RadioGroup>
+
+                               </RelativeLayout>
+                               <!--TODO 日期-->
+                               <LinearLayout
+                                   android:id="@+id/my_team_ll11"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginLeft="15dp"
+                                   android:layout_marginTop="15dp"
+                                   android:layout_marginRight="15dp"
+                                   android:gravity="center"
+                                   android:orientation="horizontal"
+                                   android:visibility="gone">
+
+
+                                   <TextView
+                                       android:id="@+id/my_team_time_tv3"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:text="2019.03.23"
+                                       android:textColor="#ff334485"
+                                       android:textSize="13sp" />
+
+                                   <TextView
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:text="-"
+                                       android:textColor="#ff334485"
+                                       android:textSize="13sp" />
+
+                                   <TextView
+                                       android:id="@+id/my_team_time_tv4"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:text="2019.04.03"
+                                       android:textColor="#ff334485"
+                                       android:textSize="13sp" />
+
+                               </LinearLayout>
+                               <!--TODO -->
+                               <LinearLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="1dp"
+                                   android:visibility="gone"
+                                   android:layout_marginLeft="15dp"
+                                   android:layout_marginTop="15dp"
+                                   android:layout_marginRight="15dp"
+                                   android:background="#EEEEED"/>
+                               <!--TODO 总佣金-->
+                               <LinearLayout
+                                   android:visibility="gone"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginTop="20dp"
+                                   android:orientation="horizontal">
+
+                                   <LinearLayout
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:orientation="horizontal">
+
+                                       <LinearLayout
+                                           android:id="@+id/my_team_ll7"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:gravity="center"
+                                           android:orientation="vertical">
+
+                                           <TextView
+                                               android:id="@+id/my_team_tv8"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:ellipsize="end"
+                                               android:lines="1"
+                                               android:text=""
+                                               android:textColor="#111111"
+                                               android:textSize="18sp" />
+
+                                           <TextView
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:layout_marginTop="5dp"
+                                               android:text="总佣金(万)"
+                                               android:textColor="#111111"
+                                               android:textSize="12sp" />
+                                       </LinearLayout>
+
+                                   </LinearLayout>
+
+                                   <!--                                <LinearLayout-->
+                                   <!--                                    android:layout_width="1dp"-->
+                                   <!--                                    android:layout_height="40dp"-->
+                                   <!--                                    android:layout_gravity="bottom"-->
+                                   <!--                                    android:layout_marginBottom="-3dp"-->
+                                   <!--                                    android:background="#E5E5E5"></LinearLayout>-->
+
+                                   <LinearLayout
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:orientation="horizontal">
+
+                                       <LinearLayout
+                                           android:id="@+id/my_team_ll8"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="match_parent"
+                                           android:gravity="center"
+                                           android:orientation="vertical">
+
+                                           <TextView
+                                               android:id="@+id/my_team_tv9"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:ellipsize="end"
+                                               android:lines="1"
+                                               android:text=""
+                                               android:textColor="#111111"
+                                               android:textSize="18sp" />
+
+                                           <TextView
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_marginTop="5dp"
+                                               android:gravity="center"
+                                               android:text="已结(万)"
+                                               android:textColor="#111111"
+                                               android:textSize="12sp" />
+                                       </LinearLayout>
+
+                                   </LinearLayout>
+
+                                   <!--                                <LinearLayout-->
+                                   <!--                                    android:layout_width="1dp"-->
+                                   <!--                                    android:layout_height="40dp"-->
+                                   <!--                                    android:layout_gravity="bottom"-->
+                                   <!--                                    android:layout_marginBottom="-3dp"-->
+                                   <!--                                    android:background="#E5E5E5"></LinearLayout>-->
+
+                                   <LinearLayout
+                                       android:layout_width="0dp"
+                                       android:layout_height="wrap_content"
+                                       android:layout_weight="1"
+                                       android:orientation="horizontal">
+
+                                       <LinearLayout
+                                           android:id="@+id/my_team_ll9"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="match_parent"
+                                           android:gravity="center"
+                                           android:orientation="vertical">
+
+                                           <TextView
+                                               android:id="@+id/my_team_tv10"
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_gravity="center"
+                                               android:ellipsize="end"
+                                               android:lines="1"
+                                               android:text=""
+                                               android:textColor="#111111"
+                                               android:textSize="18sp" />
+
+                                           <TextView
+                                               android:layout_width="wrap_content"
+                                               android:layout_height="wrap_content"
+                                               android:layout_marginTop="5dp"
+                                               android:gravity="center"
+                                               android:text="未结(万)"
+                                               android:textColor="#111111"
+                                               android:textSize="12sp" />
+                                       </LinearLayout>
+
+                                   </LinearLayout>
+
+                               </LinearLayout>
+
+                               <LinearLayout
+                                   android:visibility="gone"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="5dp"
+                                   android:layout_marginTop="20dp"
+                                   android:background="#EEEEED"></LinearLayout>
+                               <!--TODO 顾问成交TOP5-->
+                               <RelativeLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginLeft="15dp"
+                                   android:layout_marginTop="15dp"
+                                   android:layout_marginRight="15dp">
+
+                                   <TextView
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:layout_centerVertical="true"
+                                       android:text="顾问成交TOP5"
+                                       android:textColor="#ff000000"
+                                       android:textSize="15sp" />
+
+                                   <RadioGroup
+                                       android:id="@+id/my_team_rg3"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:layout_alignParentRight="true"
+                                       android:layout_centerVertical="true"
+                                       android:orientation="horizontal">
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb9"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector_all"
+                                           android:button="@null"
+                                           android:checked="true"
+                                           android:text="全部"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb10"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector"
+                                           android:button="@null"
+                                           android:text="昨天"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb11"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector"
+                                           android:button="@null"
+                                           android:text="近七日"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+
+                                       <RadioButton
+                                           android:id="@+id/my_team_rb12"
+                                           android:layout_width="50dp"
+                                           android:layout_height="23dp"
+                                           android:background="@drawable/home_selector_custom"
+                                           android:button="@null"
+                                           android:text="自定义"
+                                           android:textAlignment="center"
+                                           android:textColor="@drawable/home_selector_text"
+                                           android:textSize="13sp" />
+                                   </RadioGroup>
+
+                               </RelativeLayout>
+                               <!--TODO 日期-->
+                               <LinearLayout
+                                   android:id="@+id/my_team_ll12"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginLeft="15dp"
+                                   android:layout_marginTop="15dp"
+                                   android:layout_marginRight="15dp"
+                                   android:gravity="center"
+                                   android:orientation="horizontal"
+                                   android:visibility="gone">
+
+
+                                   <TextView
+                                       android:id="@+id/my_team_time_tv5"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:text="2019.03.23"
+                                       android:textColor="#ff334485"
+                                       android:textSize="13sp" />
+
+                                   <TextView
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:text="-"
+                                       android:textColor="#ff334485"
+                                       android:textSize="13sp" />
+
+                                   <TextView
+                                       android:id="@+id/my_team_time_tv6"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:text="2019.04.03"
+                                       android:textColor="#ff334485"
+                                       android:textSize="13sp" />
+
+                               </LinearLayout>
+
+                               <LinearLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="1dp"
+                                   android:layout_marginTop="15dp"
+                                   android:layout_marginBottom="15dp"
+                                   android:background="#F6F5F4"></LinearLayout>
+
+                               <RelativeLayout
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content">
+
+                                   <androidx.recyclerview.widget.RecyclerView
+                                       android:id="@+id/my_team_rv"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       android:layout_marginTop="5dp"></androidx.recyclerview.widget.RecyclerView>
+
+                                   <ImageView
+                                       android:id="@+id/all_no_information_S"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       android:background="#fff"
+                                       android:src="@mipmap/no_information"
+                                       android:visibility="gone" />
+                               </RelativeLayout>
+
+                           </LinearLayout>
 
                             <!--TODO LinearLayout down-->
                         </LinearLayout>

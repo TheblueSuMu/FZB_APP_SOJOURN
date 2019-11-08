@@ -5,6 +5,34 @@ public class NewlyIncreased {
     static String startDate = "";
     static String endDate = "";
 
+    static String YJType = "";
+    static String YJstartDate = "";
+    static String YJendDate = "";
+
+    public static String getYJType() {
+        return YJType;
+    }
+
+    public static void setYJType(String YJType) {
+        NewlyIncreased.YJType = YJType;
+    }
+
+    public static String getYJstartDate() {
+        return YJstartDate;
+    }
+
+    public static void setYJstartDate(String YJstartDate) {
+        NewlyIncreased.YJstartDate = YJstartDate;
+    }
+
+    public static String getYJendDate() {
+        return YJendDate;
+    }
+
+    public static void setYJendDate(String YJendDate) {
+        NewlyIncreased.YJendDate = YJendDate;
+    }
+
     public static String getTag() {
         return Tag;
     }

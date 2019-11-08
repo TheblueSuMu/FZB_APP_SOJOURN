@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
@@ -37,6 +38,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.MyFragmentPagerAdapter;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.DataNumBean;
 import com.xcy.fzb.all.fragment.MyFragment1;
 import com.xcy.fzb.all.fragment.MyFragment2;
@@ -44,15 +46,9 @@ import com.xcy.fzb.all.fragment.MyFragment3;
 import com.xcy.fzb.all.modle.DBean;
 import com.xcy.fzb.all.modle.TendentcyBean;
 import com.xcy.fzb.all.persente.Fragnemt_SS;
-import com.xcy.fzb.all.persente.MyClientName;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.MyViewPager;
-import com.xcy.fzb.captain_assistant.view.Assistant_Addteam_Activity;
-import com.xcy.fzb.captain_assistant.view.Assistant_Teams_Activity;
-import com.xcy.fzb.captain_team.view.Captain_Team_AddAConsultantActivity;
-import com.xcy.fzb.captain_team.view.Captain_Team_AddSalesActivity;
-import com.xcy.fzb.captain_team.view.Captain_Team_BatchModifyingActivity;
 import com.xcy.fzb.project_attache.view.BrokersListActivity;
 import com.xcy.fzb.project_attache.view.CommissionActivity;
 import com.xcy.fzb.project_attache.view.StoreListActivity;
@@ -67,7 +63,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.viewpager.widget.ViewPager;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -286,6 +281,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         ptrClassicFrameLayout.refreshComplete();
                         ptrClassicFrameLayout.setLastUpdateTimeKey("2017-2-10");
                         initData();
+                        rb1_modulebroker.setChecked(true);
                     }
                 }, 1000);
             }
@@ -314,16 +310,20 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.rb1_modulebroke) {
                     ll1_modulebroker.setVisibility(View.GONE);
+                    NewlyIncreased.setTag("0");
                     initDataNum("0", "", "");
                 } else if (i == R.id.rb2_modulebroke) {
                     initDataNum("1", "", "");
+                    NewlyIncreased.setTag("1");
                     ll1_modulebroker.setVisibility(View.GONE);
                 } else if (i == R.id.rb3_modulebroke) {
                     initDataNum("2", "", "");
+                    NewlyIncreased.setTag("2");
                     ll1_modulebroker.setVisibility(View.GONE);
                 } else if (i == R.id.rb4_modulebroke) {
                     String s = time1_modulebroker.getText().toString();
                     String s1 = time2_modulebroker.getText().toString();
+                    NewlyIncreased.setTag("3");
                     initDataNum("3", s, s1);
                     ll1_modulebroker.setVisibility(View.VISIBLE);
                 }
@@ -344,6 +344,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         time1_modulebroker.setText(dateString);
                         String s = time1_modulebroker.getText().toString();
                         String s1 = time2_modulebroker.getText().toString();
+                        NewlyIncreased.setStartDate(dateString);
                         initDataNum("3", s, s1);
 
                     }
@@ -364,6 +365,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         time2_modulebroker.setText(dateString);
                         String s = time1_modulebroker.getText().toString();
                         String s1 = time2_modulebroker.getText().toString();
+                        NewlyIncreased.setEndDate(dateString);
                         initDataNum("3", s, s1);
                     }
                 });
@@ -861,7 +863,17 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     @Override
     public void onResume() {
         super.onResume();
-        initView();
+        if (NewlyIncreased.getTag().equals("0")) {
+
+        } else if (NewlyIncreased.getTag().equals("1")){
+
+        } else if (NewlyIncreased.getTag().equals("2")){
+
+        } else if (NewlyIncreased.getTag().equals("3")){
+
+        } else {
+            initView();
+        }
     }
 
     @Override

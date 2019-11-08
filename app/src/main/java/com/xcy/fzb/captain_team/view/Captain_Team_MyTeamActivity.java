@@ -166,6 +166,12 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
     private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
+            NewlyIncreased.setTag("");
+            NewlyIncreased.setStartDate("");
+            NewlyIncreased.setEndDate("");
+            NewlyIncreased.setYJType("0");
+            NewlyIncreased.setYJstartDate("");
+            NewlyIncreased.setYJendDate("");
             initView();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -556,6 +562,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv3.setText(dateString);
                         startDate2 = dateString;
+                        NewlyIncreased.setYJstartDate(dateString);
                     }
                 });
                 break;
@@ -571,6 +578,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv4.setText(dateString);
                         endDate2 = dateString;
+                        NewlyIncreased.setYJendDate(dateString);
                     }
                 });
                 initTeamCommissions();
@@ -649,6 +657,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 type2 = "0";
                 startDate2 = "";
                 endDate2 = "";
+                NewlyIncreased.setYJType("0");
                 initTeamCommissions();
                 break;
 
@@ -658,6 +667,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 type2 = "1";
                 startDate2 = "";
                 endDate2 = "";
+                NewlyIncreased.setYJType("1");
                 initTeamCommissions();
                 break;
 
@@ -667,6 +677,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                 type2 = "2";
                 startDate2 = "";
                 endDate2 = "";
+                NewlyIncreased.setYJType("2");
                 initTeamCommissions();
                 break;
 
@@ -674,6 +685,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
             case R.id.my_team_rb8:
                 market_time_ll11.setVisibility(View.VISIBLE);
                 type2 = "3";
+                NewlyIncreased.setYJType("3");
                 break;
 
             //            TODO 成交TOP5 时间选择 全部
@@ -919,5 +931,9 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         NewlyIncreased.setTag("");
         NewlyIncreased.setStartDate("");
         NewlyIncreased.setEndDate("");
+        NewlyIncreased.setYJType("0");
+        NewlyIncreased.setYJstartDate("");
+        NewlyIncreased.setYJendDate("");
+        FinalContents.setFragmentSS("0");
     }
 }

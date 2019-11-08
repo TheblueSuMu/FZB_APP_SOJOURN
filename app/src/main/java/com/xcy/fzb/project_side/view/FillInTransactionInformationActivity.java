@@ -201,10 +201,6 @@ public class FillInTransactionInformationActivity extends AllActivity implements
         fang_hao_et2 = findViewById(R.id.fang_hao_et2);
         fang_hao_et1 = findViewById(R.id.fang_hao_et1);
 
-        fang_hao_et1.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-        fang_hao_et2.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-        fang_hao_et3.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-
         fill_in_transaction_information_return.setOnClickListener(this);
         fill_in_transaction_information_btn.setOnClickListener(this);
         fill_in_transaction_information_rl1.setOnClickListener(this);
@@ -696,7 +692,6 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                             @Override
                             public void onItemClick(int postion) {
                                 project_brokerage.setText(brokerBean.getData().get(postion).getCommissionFormat());
-
                                 FinalContents.setCommissionId(brokerBean.getData().get(postion).getId());
                                 transition_layout.setVisibility(View.GONE);
                                 whethe = true;

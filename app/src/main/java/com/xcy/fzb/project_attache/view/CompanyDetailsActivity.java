@@ -135,6 +135,9 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
             NewlyIncreased.setTag("");
             NewlyIncreased.setStartDate("");
             NewlyIncreased.setEndDate("");
+            NewlyIncreased.setYJType("");
+            NewlyIncreased.setYJstartDate("");
+            NewlyIncreased.setYJendDate("");
             initView();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -312,6 +315,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         company_details_tv8.setText(dateString);
                         String s = company_details_tv8.getText().toString();
                         String s1 = company_details_tv9.getText().toString();
+                        NewlyIncreased.setYJstartDate(dateString);
                         initDataNum("3", s, s1);
 
                     }
@@ -333,6 +337,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         Log.d("wsw", "new date: " + dateString);
                         String s = company_details_tv8.getText().toString();
                         String s1 = company_details_tv9.getText().toString();
+                        NewlyIncreased.setYJendDate(dateString);
                         initDataNum("3", s, s1);
                     }
                 });
@@ -367,15 +372,19 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.company_details_rb5) {
                     initFinanceNum("0", "", "");
+                    NewlyIncreased.setYJType("0");
                     company_details_ll2.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb6) {
                     initFinanceNum("1", "", "");
+                    NewlyIncreased.setYJType("1");
                     company_details_ll2.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb7) {
                     initFinanceNum("2", "", "");
+                    NewlyIncreased.setYJType("2");
                     company_details_ll2.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb8) {
                     initFinanceNum("3", "", "");
+                    NewlyIncreased.setYJType("3");
                     company_details_ll2.setVisibility(View.VISIBLE);
                 }
             }
@@ -390,7 +399,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), FinalContents.getStoreId(), "", type, startTime, endTime);
+        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(),"", FinalContents.getStoreId(), "", type, startTime, endTime);
         financeBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -763,9 +772,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
     @Override
     protected void onRestart() {
         super.onRestart();
-
-        initData();
-
     }
 
     @Override
@@ -774,5 +780,8 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         NewlyIncreased.setTag("");
         NewlyIncreased.setStartDate("");
         NewlyIncreased.setEndDate("");
+        NewlyIncreased.setYJType("");
+        NewlyIncreased.setYJstartDate("");
+        NewlyIncreased.setYJendDate("");
     }
 }

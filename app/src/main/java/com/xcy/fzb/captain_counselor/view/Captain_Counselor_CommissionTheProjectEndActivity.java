@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.CommissionListBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -204,7 +205,7 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<CommissionListBean> userMessage = fzbInterface.getCommissionList(FinalContents.getUserID(),projectType,search,status,"1000");
+        Observable<CommissionListBean> userMessage = fzbInterface.getCommissionList(FinalContents.getUserID(),projectType,search,status,"1000", NewlyIncreased.getYJType(),NewlyIncreased.getYJstartDate(),NewlyIncreased.getYJendDate());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CommissionListBean>() {

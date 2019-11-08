@@ -49,6 +49,14 @@ public class TimeRangeAdapter extends RecyclerView.Adapter<TimeRangeAdapter.View
         holder.timerange_title.setText(list.get(position).getMainTitle());
         holder.timerange_content.setText(list.get(position).getCommissionFormat());
         holder.timerange_miao.setText(list.get(position).getSecondsFormat());
+        holder.timerange_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClickLisenter != null){
+                    onItemClickLisenter.onItemClick(position);
+                }
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

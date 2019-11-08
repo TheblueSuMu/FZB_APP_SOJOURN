@@ -113,11 +113,11 @@ public interface MyService {
 
     //专案端 佣金上半部分数据
     @POST("specialSelect/findReceivableMoneyCount?")
-    Observable<MoneyCountBean> getMoneyCountList(@Query("userId") String userId, @Query("projectId") String projectId);
+    Observable<MoneyCountBean> getMoneyCountList(@Query("userId") String userId, @Query("projectId") String projectId, @Query("type") String type, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
     //专案端 佣金下半部分数据
     @POST("specialSelect/findReceivableMoneyList?")
-    Observable<ReceivableBean> getMoneyList(@Query("userId") String userId, @Query("search") String search, @Query("status") String status, @Query("projectType") String projectType, @Query("projectId") String projectId, @Query("startTime") String startTime, @Query("endTime") String endTime, @Query("pageSize") String pageSize);
+    Observable<ReceivableBean> getMoneyList(@Query("userId") String userId, @Query("search") String search, @Query("status") String status, @Query("projectType") String projectType, @Query("projectId") String projectId, @Query("startTime") String startTime, @Query("endTime") String endTime, @Query("pageSize") String pageSize, @Query("type") String type);
 
     //专案端 申请登岛添加的数据
     @POST("nodeUpdate/islandSave")
@@ -205,9 +205,9 @@ public interface MyService {
     @POST("specialUpdate/addHousesDynamic?")
     Observable<MessageIssueBean> getAddHousesDynamic(@Query("title") String title, @Query("content") String content, @Query("img") String img, @Query("userId") String userId, @Query("projectId") String projectId);
 
-    //专案端用户个人信息数据
+    //专案端待我审核列表
     @POST("specialSelect/toAuditList?")
-    Observable<CheckPendingBean> getToAuditList(@Query("userId") String userId,@Query("projectId") String projectId, @Query("type") String type, @Query("status") int status, @Query("pageSize") String pageSize);
+    Observable<CheckPendingBean> getToAuditList(@Query("userId") String userId,@Query("projectId") String projectId, @Query("type") String type, @Query("status") int status, @Query("pageSize") String pageSize, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
     //首页城市列表数据
     @POST("commonSelect/findCityForParentId")
@@ -580,7 +580,7 @@ public interface MyService {
 
     //圈层端团队佣金 佣金列表
     @POST("layersSelect/commissionList")
-    Observable<CommissionListBean> getCommissionList(@Query("userId") String userId, @Query("projectType") String projectType, @Query("search") String search, @Query("status") String status, @Query("pageSize") String pageSize);
+    Observable<CommissionListBean> getCommissionList(@Query("userId") String userId, @Query("projectType") String projectType, @Query("search") String search, @Query("status") String status, @Query("pageSize") String pageSize, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
     //圈层端添加销售 查询团队长级别信息
     @POST("layersSelect/getTeamLeaderLevel")
@@ -680,7 +680,7 @@ public interface MyService {
 
     //佣金数据切换
     @POST("commissionerSelect/moneyData")
-    Observable<com.xcy.fzb.all.database.FinanceBean> getFinanceBean(@Query("userId") String userId, @Query("storeId") String storeId, @Query("agentId") String agentId,
+    Observable<com.xcy.fzb.all.database.FinanceBean> getFinanceBean(@Query("userId") String userId,@Query("companyId") String companyId, @Query("storeId") String storeId, @Query("agentId") String agentId,
                                                                     @Query("type") String type, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
     //趋势图
@@ -689,7 +689,7 @@ public interface MyService {
 
     //佣金跟进
     @POST("commissionerSelect/amountlist")
-    Observable<CommissionListBean> getCommissionListBean(@Query("userId") String userId, @Query("projectType") String projectType, @Query("search") String search, @Query("status") String status, @Query("pageSize") String pageSize);
+    Observable<CommissionListBean> getCommissionListBean(@Query("userId") String userId, @Query("projectType") String projectType,@Query("companyId") String companyId, @Query("storeId") String storeId, @Query("agentId") String agentId, @Query("search") String search, @Query("status") String status, @Query("pageSize") String pageSize, @Query("type") String type, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
     //经纪人列表
     @POST("commissionerSelect/agentList")
@@ -728,7 +728,7 @@ public interface MyService {
 
     //佣金上半部
     @POST("commissionerSelect/moneyData")
-    Observable<CommissionUpBean> getcommissionUpBean(@Query("userId") String userId,@Query("companyId") String companyId,@Query("storeId") String storeId,@Query("agentId") String agentId,@Query("type") String type);
+    Observable<CommissionUpBean> getcommissionUpBean(@Query("userId") String userId,@Query("companyId") String companyId,@Query("storeId") String storeId,@Query("agentId") String agentId,@Query("type") String type,@Query("startDate") String startDate,@Query("endDate") String endDate);
 
     //修改经纪人
     @POST("commissionerSelect/getAgent")

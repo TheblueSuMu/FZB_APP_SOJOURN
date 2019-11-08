@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.MoneyCountBean;
 import com.xcy.fzb.all.modle.ReceivableBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
@@ -401,7 +402,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<MoneyCountBean> userMessage = fzbInterface.getMoneyCountList(FinalContents.getUserID(),ProjectID);
+        Observable<MoneyCountBean> userMessage = fzbInterface.getMoneyCountList(FinalContents.getUserID(),ProjectID, NewlyIncreased.getYJType(), NewlyIncreased.getYJstartDate(), NewlyIncreased.getYJendDate());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MoneyCountBean>() {
@@ -439,13 +440,21 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
             ProjectID = FinalContents.getProjectID();
         }
 
+        if (endTime.equals("") && startTime.equals("")) {
+            if (NewlyIncreased.getYJType().equals("3")) {
+                endTime = NewlyIncreased.getYJendDate();
+                startTime = NewlyIncreased.getYJstartDate();
+            }
+        }
+
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ReceivableBean> userMessage = fzbInterface.getMoneyList(FinalContents.getUserID(),search,status,projectType,ProjectID,startTime,endTime,"1000");
+        Observable<ReceivableBean> userMessage = fzbInterface.getMoneyList(FinalContents.getUserID(),search,status,projectType,ProjectID,startTime,endTime,"1000",NewlyIncreased.getYJType());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ReceivableBean>() {

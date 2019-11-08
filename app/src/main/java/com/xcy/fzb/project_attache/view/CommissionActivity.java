@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.CommissionListBean;
 import com.xcy.fzb.all.modle.CommissionUpBean;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -192,7 +193,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<CommissionUpBean> commissionUpBeanObservable = myService.getcommissionUpBean(FinalContents.getUserID(),FinalContents.getCompanyId(),FinalContents.getStoreId(),FinalContents.getAgentId(),"0");
+        Observable<CommissionUpBean> commissionUpBeanObservable = myService.getcommissionUpBean(FinalContents.getUserID(),FinalContents.getCompanyId(),FinalContents.getStoreId(),FinalContents.getAgentId(), NewlyIncreased.getYJType(),NewlyIncreased.getYJstartDate(),NewlyIncreased.getYJendDate());
         commissionUpBeanObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CommissionUpBean>() {
@@ -263,7 +264,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<CommissionListBean> commissionListBean = myService.getCommissionListBean(FinalContents.getUserID(), projectType, search, ifCheckBox,"1000");
+        Observable<CommissionListBean> commissionListBean = myService.getCommissionListBean(FinalContents.getUserID(), projectType, FinalContents.getCompanyId(),FinalContents.getStoreId(),FinalContents.getAgentId(),search, ifCheckBox,"1000", NewlyIncreased.getYJType(),NewlyIncreased.getYJstartDate(),NewlyIncreased.getYJendDate());
         commissionListBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CommissionListBean>() {

@@ -140,6 +140,8 @@ public class WebViewActivity extends AllActivity {
                                 @Override
                                 public void onClick(View view) {
                                     Log.i("轮播图详情数据","点击分享");
+                                    Log.i("轮播图详情数据","图片"+FinalContents.getImageUrl()+newsDetailsBean.getData().getShareImg());
+
                                     FinalContents.showShare(newsDetailsBean.getData().getTitle(),FinalContents.getImageUrl()+"/NewsSharing?userId="+FinalContents.getUserID()+"&id="+newsDetailsBean.getData().getId(),newsDetailsBean.getData().getProject().getProjectName(),FinalContents.getImageUrl()+newsDetailsBean.getData().getShareImg(),FinalContents.getImageUrl()+"/NewsSharing?userId="+FinalContents.getUserID()+"&id="+newsDetailsBean.getData().getId(),WebViewActivity.this);
                                 }
                             });

@@ -121,6 +121,9 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
             NewlyIncreased.setTag("");
             NewlyIncreased.setStartDate("");
             NewlyIncreased.setEndDate("");
+            NewlyIncreased.setYJType("");
+            NewlyIncreased.setYJstartDate("");
+            NewlyIncreased.setYJendDate("");
             initView();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -267,16 +270,20 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.store_details_rb5) {
                     initFinanceNum("0", "", "");
+                    NewlyIncreased.setYJType("0");
                     store_details_ll2.setVisibility(View.GONE);
                 } else if (i == R.id.store_details_rb6) {
                     initFinanceNum("1", "", "");
+                    NewlyIncreased.setYJType("1");
                     store_details_ll2.setVisibility(View.GONE);
                 } else if (i == R.id.store_details_rb7) {
                     initFinanceNum("2", "", "");
+                    NewlyIncreased.setYJType("2");
                     store_details_ll2.setVisibility(View.GONE);
                 } else if (i == R.id.store_details_rb8) {
                     String s1 = store_details_tv8.getText().toString();
                     String s = store_details_tv9.getText().toString();
+                    NewlyIncreased.setYJType("3");
                     initFinanceNum("3", s1, s);
                     store_details_ll2.setVisibility(View.VISIBLE);
                 }
@@ -400,7 +407,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<com.xcy.fzb.all.database.FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), FinalContents.getStoreId(), "", type, startTime, endTime);
+        Observable<com.xcy.fzb.all.database.FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), FinalContents.getCompanyId(),"", "", type, startTime, endTime);
         financeBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<com.xcy.fzb.all.database.FinanceBean>() {
@@ -546,6 +553,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         store_details_tv8.setText(dateString);
                         String s = store_details_tv8.getText().toString();
                         String s1 = store_details_tv9.getText().toString();
+                        NewlyIncreased.setYJstartDate(dateString);
                         initFinanceNum("3", s, s1);
 
                     }
@@ -563,6 +571,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         store_details_tv8.setText(dateString);
                         String s = store_details_tv8.getText().toString();
                         String s1 = store_details_tv9.getText().toString();
+                        NewlyIncreased.setYJendDate(dateString);
                         initFinanceNum("3", s, s1);
 
                     }
@@ -610,6 +619,9 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         NewlyIncreased.setTag("");
         NewlyIncreased.setStartDate("");
         NewlyIncreased.setEndDate("");
+        NewlyIncreased.setYJType("");
+        NewlyIncreased.setYJstartDate("");
+        NewlyIncreased.setYJendDate("");
     }
 
     @Override

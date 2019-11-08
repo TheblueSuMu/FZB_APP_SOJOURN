@@ -130,6 +130,9 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
             NewlyIncreased.setTag("");
             NewlyIncreased.setStartDate("");
             NewlyIncreased.setEndDate("");
+            NewlyIncreased.setYJType("");
+            NewlyIncreased.setYJstartDate("");
+            NewlyIncreased.setYJendDate("");
             initView();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -246,15 +249,19 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.broker_rb5) {
                     initFinanceNum("0", "", "");
+                    NewlyIncreased.setYJType("0");
                     broker_ll9.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb6) {
                     initFinanceNum("1", "", "");
+                    NewlyIncreased.setYJType("1");
                     broker_ll9.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb7) {
                     initFinanceNum("2", "", "");
+                    NewlyIncreased.setYJType("2");
                     broker_ll9.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb8) {
                     initFinanceNum("3", "", "");
+                    NewlyIncreased.setYJType("3");
                     broker_ll9.setVisibility(View.VISIBLE);
                 }
             }
@@ -329,6 +336,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         broker_tv13.setText(dateString);
                         String s = broker_tv13.getText().toString();
                         String s1 = broker_tv14.getText().toString();
+                        NewlyIncreased.setYJstartDate(dateString);
                         initDataNum("3", s, s1);
 
                     }
@@ -349,6 +357,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         broker_tv14.setText(dateString);
                         String s = broker_tv13.getText().toString();
                         String s1 = broker_tv14.getText().toString();
+                        NewlyIncreased.setYJendDate(dateString);
                         initDataNum("3", s, s1);
                     }
                 });
@@ -405,7 +414,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), "", FinalContents.getAgentId(), type, startTime, endTime);
+        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), "", "",FinalContents.getAgentId(), type, startTime, endTime);
         financeBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -761,5 +770,8 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         NewlyIncreased.setTag("0");
         NewlyIncreased.setStartDate("");
         NewlyIncreased.setEndDate("");
+        NewlyIncreased.setYJType("");
+        NewlyIncreased.setYJstartDate("");
+        NewlyIncreased.setYJendDate("");
     }
 }

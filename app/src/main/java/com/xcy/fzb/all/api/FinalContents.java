@@ -27,7 +27,6 @@ public class FinalContents {
     static String ImageUrl = "http://39.98.173.250:8080";
 //    static String ImageUrl = "http://yanshi.fangzuobiao.com:88";
 
-
     public static String getImageUrl() {
         return ImageUrl;
     }

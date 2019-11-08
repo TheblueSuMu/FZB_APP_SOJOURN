@@ -78,9 +78,9 @@ public class EssentialInformationActivity extends AllActivity {
                     initSQDD();
                 }
             } else if (ProjectProgressApi.getComplemented().equals("1")) {
-                if (ProjectProgressApi.getField().equals("1")) {
+                if (ProjectProgressApi.getField().equals("0")) {
                     initComplemented();
-                }else if (ProjectProgressApi.getField().equals("0")){
+                }else if (ProjectProgressApi.getField().equals("1")){
                     initData();
                 }
             }

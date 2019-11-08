@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.CheckPendingBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -222,7 +223,7 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<CheckPendingBean> userMessage = fzbInterface.getToAuditList(FinalContents.getUserID(),ProjectID,"1",position,"1000");
+        Observable<CheckPendingBean> userMessage = fzbInterface.getToAuditList(FinalContents.getUserID(),ProjectID,"1",position,"1000", NewlyIncreased.getTag(),NewlyIncreased.getStartDate(),NewlyIncreased.getEndDate());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CheckPendingBean>() {

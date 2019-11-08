@@ -20,17 +20,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.MyFragmentPagerAdapter;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.DailyTurnoverBean;
 import com.xcy.fzb.all.database.DataStatisticsBean;
 import com.xcy.fzb.all.database.TeamCommissionsBean;
-import com.xcy.fzb.all.fragment.MyFragment1;
-import com.xcy.fzb.all.fragment.MyFragment2;
-import com.xcy.fzb.all.fragment.MyFragment3;
 import com.xcy.fzb.all.fragment.MyFragment4;
 import com.xcy.fzb.all.fragment.MyFragment5;
 import com.xcy.fzb.all.fragment.MyFragment6;
@@ -40,7 +39,6 @@ import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.MyViewPager;
-import com.xcy.fzb.captain_assistant.adapter.MyTeam2Adapter;
 import com.xcy.fzb.captain_assistant.view.Assistant_Teams_Activity;
 import com.xcy.fzb.captain_team.adapter.DailyTurnoverAdapter;
 import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
@@ -53,7 +51,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import androidx.viewpager.widget.ViewPager;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -490,6 +487,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv1.setText(dateString);
                         startDate1 = dateString;
+                        NewlyIncreased.setStartDate(dateString);
                     }
                 });
 
@@ -506,6 +504,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv2.setText(dateString);
                         endDate1 = dateString;
+                        NewlyIncreased.setEndDate(dateString);
                     }
                 });
                 initDataStatistics();
@@ -522,6 +521,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv3.setText(dateString);
                         startDate2 = dateString;
+                        NewlyIncreased.setYJstartDate(dateString);
                     }
                 });
                 break;
@@ -537,6 +537,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv4.setText(dateString);
                         endDate2 = dateString;
+                        NewlyIncreased.setYJendDate(dateString);
                     }
                 });
                 initTeamCommissions();
@@ -578,6 +579,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 type1 = "0";
                 startDate1 = "";
                 endDate1 = "";
+                NewlyIncreased.setTag("0");
                 initDataStatistics();
                 break;
 
@@ -587,6 +589,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 type1 = "1";
                 startDate1 = "";
                 endDate1 = "";
+                NewlyIncreased.setTag("1");
                 initDataStatistics();
                 break;
 
@@ -596,6 +599,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 type1 = "2";
                 startDate1 = "";
                 endDate1 = "";
+                NewlyIncreased.setTag("2");
                 initDataStatistics();
                 break;
 
@@ -603,6 +607,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             case R.id.team_rb4:
                 market_time_ll10.setVisibility(View.VISIBLE);
                 type1 = "3";
+                NewlyIncreased.setTag("3");
                 break;
 
             //            TODO 财务数据 时间选择 全部
@@ -611,6 +616,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 type2 = "0";
                 startDate2 = "";
                 endDate2 = "";
+                NewlyIncreased.setYJType("0");
                 initTeamCommissions();
                 break;
 
@@ -620,6 +626,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 type2 = "1";
                 startDate2 = "";
                 endDate2 = "";
+                NewlyIncreased.setYJType("1");
                 initTeamCommissions();
                 break;
 
@@ -629,6 +636,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 type2 = "2";
                 startDate2 = "";
                 endDate2 = "";
+                NewlyIncreased.setYJType("2");
                 initTeamCommissions();
                 break;
 
@@ -636,6 +644,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             case R.id.team_rb8:
                 market_time_ll11.setVisibility(View.VISIBLE);
                 type2 = "3";
+                NewlyIncreased.setYJType("3");
                 break;
 
             //            TODO 成交TOP5 时间选择 全部
@@ -870,6 +879,15 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     public void onResume() {
         super.onResume();
         initView();
+        NewlyIncreased.setTag("0");
+        NewlyIncreased.setStartDate("");
+        NewlyIncreased.setEndDate("");
+        NewlyIncreased.setYJType("0");
+        NewlyIncreased.setYJstartDate("");
+        NewlyIncreased.setYJendDate("");
+        market_time_rb1.setChecked(true);
+        market_time_rb5.setChecked(true);
+        market_time_rb9.setChecked(true);
     }
 
     @Override

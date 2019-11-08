@@ -45,6 +45,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.PopAdapter;
 import com.xcy.fzb.all.api.APKVersionCodeUtils;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.AppPackageBean;
 import com.xcy.fzb.all.database.CaptainBean;
 import com.xcy.fzb.all.database.ExemplaryUserBean;
@@ -146,10 +147,13 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         editor = getSharedPreferences("data", MODE_PRIVATE).edit();
         pref = getSharedPreferences("data", MODE_PRIVATE);
 
+
         if (FinalContents.getClean().equals("")) {
         }else {
             editor.clear();
         }
+
+
 
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
@@ -171,18 +175,31 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         AdministrationAuthority administrationAuthority = new AdministrationAuthority();
         administrationAuthority.CameraPermissions(LoginActivity.this);
 
-        FinalContents.setQuanceng("");
-        FinalContents.setZhuanyuan("");
-        FinalContents.setZhuanAn("1");
-        FinalContents.setCityName("长春市");
-        FinalContents.setLuo(true);
 
+
+        initClear();
         if (FinalContents.getDengLu().equals("")) {
 
         }else {
             initfvb();
         }
 
+    }
+
+
+    private void initClear(){
+        NewlyIncreased.setTag("");
+        NewlyIncreased.setStartDate("");
+        NewlyIncreased.setEndDate("");
+        NewlyIncreased.setYJType("");
+        NewlyIncreased.setYJstartDate("");
+        NewlyIncreased.setYJendDate("");
+
+        FinalContents.setQuanceng("");
+        FinalContents.setZhuanyuan("");
+        FinalContents.setZhuanAn("1");
+        FinalContents.setCityName("长春市");
+        FinalContents.setLuo(true);
     }
 
     @Override

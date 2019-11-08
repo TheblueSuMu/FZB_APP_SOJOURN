@@ -173,6 +173,12 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private void init_No_Network(){
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
+            NewlyIncreased.setTag("0");
+            NewlyIncreased.setStartDate("");
+            NewlyIncreased.setEndDate("");
+            NewlyIncreased.setYJType("0");
+            NewlyIncreased.setYJstartDate("");
+            NewlyIncreased.setYJendDate("");
             initView();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -384,6 +390,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         beforeDate1 = dateString;
                         details_the_project_end_time1.setText("<"+dateString);
                         NewlyIncreased.setStartDate(dateString);
+
                     }
                 });
             }
@@ -405,6 +412,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         afterDate1 = dateString;
                         details_the_project_end_time2.setText("-"+dateString+" >");
                         NewlyIncreased.setEndDate(dateString);
+
                         initViewData1();
                     }
                 });
@@ -427,6 +435,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         beforeDate2 = dateString;
                         details_the_project_end_time3.setText("<"+dateString);
+                        NewlyIncreased.setYJstartDate(dateString);
                     }
                 });
             }
@@ -447,6 +456,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         afterDate2 = dateString;
                         details_the_project_end_time4.setText("-"+dateString+" >");
+                        NewlyIncreased.setYJendDate(dateString);
                         initViewData2();
                     }
                 });
@@ -473,7 +483,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 });
             }
         });
-
          year3 = calendar.get(Calendar.YEAR);
          month3 = calendar.get(Calendar.MONTH)+1;
          dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
@@ -836,6 +845,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 beforeDate2 = "";
                 afterDate2 = "";
                 type2 = "";
+                NewlyIncreased.setYJType("0");
                 initViewData1();
                 break;
             case R.id.details_the_project_end_rb6:
@@ -843,6 +853,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 beforeDate2 = "";
                 afterDate2 = "";
                 type2 = "1";
+                NewlyIncreased.setYJType("1");
                 initViewData1();
                 break;
             case R.id.details_the_project_end_rb7:
@@ -850,11 +861,13 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 beforeDate2 = "";
                 afterDate2 = "";
                 type2 = "2";
+                NewlyIncreased.setYJType("2");
                 initViewData1();
                 break;
             case R.id.details_the_project_end_rb8:
                 details_the_project_end_time_ll2.setVisibility(View.VISIBLE);
                 type2 = "3";
+                NewlyIncreased.setYJType("3");
                 initDate();
                 break;
 //                    TODO 报备
@@ -969,5 +982,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         NewlyIncreased.setTag("0");
         NewlyIncreased.setStartDate("");
         NewlyIncreased.setEndDate("");
+        NewlyIncreased.setYJType("0");
+        NewlyIncreased.setYJstartDate("");
+        NewlyIncreased.setYJendDate("");
     }
 }
