@@ -179,7 +179,6 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
                     });
 
         } else {
-
             final Observable<CommissionLevelSelectBean> commissionLevelSelece = fzbInterface.getCommissionLevelSelece(FinalContents.getUserID(), FinalContents.getUserID());
             commissionLevelSelece.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -195,7 +194,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
 
                             final List<String> list = new ArrayList<>();
                             for (int i = 0; i < commissionLevelSelectBean.getData().size(); i++) {
-                                list.add(commissionLevelSelectBean.getData().get(i).getName());
+                                list.add(commissionLevelSelectBean.getData().get(i).getName()+ "(" + commissionLevelSelectBean.getData().get(i).getPercent() + "%)");
                             }
                             //      监听选中
                             //创建

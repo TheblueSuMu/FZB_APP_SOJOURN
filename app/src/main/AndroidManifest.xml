@@ -84,16 +84,16 @@
         <activity android:name=".all.view.RecyclerViewActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.EconomicCircleParticularsActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 经济圈详情-->
         <activity android:name=".FinMag" android:theme="@style/LunchTheme">       <!--TODO 域名-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".BaseUrl" android:theme="@style/LunchTheme">       <!--TODO 启动页-->
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
+        </activity>
+        <activity android:name=".BaseUrl" android:theme="@style/LunchTheme">       <!--TODO 启动页-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Introduction" android:launchMode="singleTop"/>       <!--TODO 引导页-->
         <activity android:name=".Login.LoginActivity" android:launchMode="singleTop"/>  <!--TODO 登录页-->

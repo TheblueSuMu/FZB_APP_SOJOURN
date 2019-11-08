@@ -16,7 +16,6 @@
             <EditText
                 android:id="@+id/client_search"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:hint="按客户姓名/手机号搜索"
                 android:gravity="center"
                 android:drawableLeft="@mipmap/search"

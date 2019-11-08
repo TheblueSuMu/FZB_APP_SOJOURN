@@ -405,6 +405,7 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                     }
                 }else if (options1 == 1){
                     Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_BatchModifyingActivity.class);
+                    FinalContents.setXiuGai("");
                     startActivity(intent);
                 }
 
@@ -417,7 +418,6 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
         pvOptions.setPicker(list1);
         //      展示
         pvOptions.show();
-
 
 //        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
 //        //处理popWindow 显示内容
@@ -476,7 +476,6 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                     Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_BatchModifyingActivity.class);
                     startActivity(intent);
                 }
-
                 p.dismiss();
             }
         });
