@@ -77,7 +77,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     private EconomicCircleBean economicCircleBean;
     private TextView particulars_xiao_size;
     private boolean whehter = true;
-    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,8 +120,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                     if (flag == 0) {
                         String s = particulars_et_comment.getText().toString();
                         if (s.equals("")) {
-                            toast = Toast.makeText(EconomicCircleParticularsActivity.this, "评论不能为空", Toast.LENGTH_SHORT);
-                            toast.show();
+                            Toast.makeText(EconomicCircleParticularsActivity.this, "评论不能为空", Toast.LENGTH_SHORT);
                             flag = 0;
                         } else {
                             flag = 1;
@@ -474,26 +472,5 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                 break;
         }
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        toast.cancel();
-        toast=null;
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        toast.cancel();
-        toast=null;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        toast.cancel();
-        toast=null;
     }
 }

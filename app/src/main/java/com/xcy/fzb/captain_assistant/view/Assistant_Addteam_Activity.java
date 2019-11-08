@@ -165,6 +165,7 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
                 break;
 //                TODO 级别
             case R.id.add_team_rl2:
+                ifnum = 0;
                 if(ifnum == 0){
                     initRatioByOwnerId();
                     ifnum = 1;

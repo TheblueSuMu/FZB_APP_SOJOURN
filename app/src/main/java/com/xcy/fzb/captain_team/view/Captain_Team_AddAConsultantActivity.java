@@ -181,6 +181,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                 break;
 //            TODO 选择团队长
             case R.id.add_acon_rl_s:
+                ifnum1 = 0;
                 if (FinalContents.getIdentity().equals("63")) {
                     if (ifnum1 == 0) {
                         ifnum1 = 1;
@@ -190,6 +191,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                 break;
 //            TODO 选择销售
             case R.id.add_aconsultant_rl1:
+                ifnum2 = 0;
                 if (FinalContents.getIdentity().equals("63") || (FinalContents.getXiuGai().equals("添加顾问") && FinalContents.getIdentity().equals("60"))) {
                     if (ifnum2 == 0) {
                         ifnum2 = 1;
@@ -199,6 +201,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                 break;
 //                TODO 级别
             case R.id.add_aconsultant_rl2:
+                ifnum3 = 0;
                 if(ifnum3 == 0){
                     ifnum3 = 1;
                     if(add_aconsultant_tv2.getText().toString().equals("")){

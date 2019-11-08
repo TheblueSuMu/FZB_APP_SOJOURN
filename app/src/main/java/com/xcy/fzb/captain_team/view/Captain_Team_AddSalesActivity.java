@@ -166,6 +166,7 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
                 break;
 //            TODO 选择团队长
             case R.id.add_sales_rl1:
+                ifnum1 = 0;
                 if (FinalContents.getIdentity().equals("63")) {
                     if (ifnum1 == 0) {
                         ifnum1 = 1;
@@ -178,7 +179,7 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
                 break;
 //                TODO 级别
             case R.id.add_sales_rl2:
-
+                ifnum2 = 0;
                 if (ifnum2 == 0) {
                     ifnum2 = 1;
                     initRatioByOwnerId();

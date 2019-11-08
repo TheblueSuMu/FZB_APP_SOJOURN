@@ -185,6 +185,15 @@ public class EssentialInformationActivity extends AllActivity {
                         fieldBean.setIdealArea(essential_information_et8.getText().toString());
                         ProjectProgressApi.setFieldBean(fieldBean);
                     }else if (ProjectProgressApi.getField().equals("0")){
+                        ProjectProgressApi.setCustomerCity(essential_information_et1.getText().toString());
+                        ProjectProgressApi.setCustomerOccupation(essential_information_et2.getText().toString());
+                        ProjectProgressApi.setCustomerFocus(essential_information_et3.getText().toString());
+                        ProjectProgressApi.setCustomerIntentionalBuilding(essential_information_et4.getText().toString());
+                        ProjectProgressApi.setCustomerPaymentMethod(essential_information_et5.getText().toString());
+                        ProjectProgressApi.setCustomerHasDecision(authority);
+                        ProjectProgressApi.setCustomerResistance(essential_information_et6.getText().toString());
+                        ProjectProgressApi.setCustomerObjective(essential_information_et7.getText().toString());
+                        ProjectProgressApi.setCustomerAuditStatus(essential_information_et8.getText().toString());
                     }
                 }
                 Toast.makeText(EssentialInformationActivity.this, "用户消息提交完成", Toast.LENGTH_SHORT).show();

@@ -152,7 +152,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                     holder.the_project_end_company.setText("自己");
                 } else {
                     holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName());
-                    if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0")) {
+                    if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0") || rowsBeanList.get(position).getCommission().equals("0.00")) {
                         holder.the_project_end_tv2.setVisibility(View.GONE);
                     } else {
                         holder.the_project_end_tv2.setVisibility(View.VISIBLE);
@@ -171,7 +171,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                 }
 
 
-                if (rowsBeanList.get(position).getNotAmount().equals("")) {
+                if (rowsBeanList.get(position).getNotAmount().equals("") || rowsBeanList.get(position).getNotAmount().equals("0") || rowsBeanList.get(position).getNotAmount().equals("0.00")) {
                     holder.the_project_end_tv4.setVisibility(View.GONE);
 
                 } else {
@@ -224,7 +224,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                     holder.the_project_end_company.setText("自己");
                 } else {
                     holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName());
-                    if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0")) {
+                    if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0") || rowsBeanList.get(position).getCommission().equals("0.00")) {
                         holder.the_project_end_tv2.setVisibility(View.GONE);
                     } else {
                         holder.the_project_end_tv2.setVisibility(View.VISIBLE);
@@ -248,7 +248,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
                 }
 
 
-                if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0")) {
+                if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0")|| rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
                     holder.the_project_end_tv5.setVisibility(View.GONE);
                 } else {
                     holder.the_project_end_tv5.setVisibility(View.VISIBLE);
