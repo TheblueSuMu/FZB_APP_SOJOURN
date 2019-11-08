@@ -393,6 +393,7 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                         to_apply_for_an_island_et1.setText(landBean.getData().getIdNumber());
                         to_apply_for_an_island_tv3.setText(landBean.getData().getAge());
                         to_apply_for_an_island_et2.setText(landBean.getData().getPassportNumber());
+                        imgUrl = landBean.getData().getPassportImg();
                         Glide.with(ToApplyForAnIslandActivity.this).load(FinalContents.getImageUrl() + landBean.getData().getPassportImg()).into(to_apply_for_an_island_img);
                     }
 

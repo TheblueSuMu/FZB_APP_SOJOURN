@@ -34,40 +34,50 @@ public class BaseUrl extends AppCompatActivity {
         editor = getSharedPreferences("data", MODE_PRIVATE).edit();
         pref = getSharedPreferences("data", MODE_PRIVATE);
 
-        if (pref.getString("versionCode", "").equals("")) {
-            editor.clear();
-            FinalContents.setClean("1");
-            editor.putString("versionCode", "1");
+//        if (pref.getString("versionCode", "").equals("")) {
+//            editor.clear();
+//            FinalContents.setClean("1");
+//            editor.putString("versionCode", "1");
+//            editor.commit();
+//            Log.i("打印","shuju："+1);
+//            Log.i("打印","versionCode："+pref.getString("versionCode", ""));
+//            if (pref.getString("introduction", "").equals("")) {
+//                Intent mainIntent = new Intent(BaseUrl.this,Introduction.class);
+//                BaseUrl.this.startActivity(mainIntent);
+//                BaseUrl.this.finish();
+//                editor.putString("introduction", "1");
+//                editor.commit();
+//                Log.i("打印","shuju："+3);
+//            } else if (pref.getString("introduction", "").equals("1")) {
+//                initLogin();
+//                Log.i("打印","shuju："+4);
+//            }
+//        }else {
+//            Log.i("打印","shuju："+2);
+//            if (pref.getString("introduction", "").equals("")) {
+//                Intent mainIntent = new Intent(BaseUrl.this,Introduction.class);
+//                BaseUrl.this.startActivity(mainIntent);
+//                BaseUrl.this.finish();
+//                editor.putString("introduction", "1");
+//                editor.commit();
+//                Log.i("打印","shuju："+3);
+//            } else if (pref.getString("introduction", "").equals("1")) {
+//                initLogin();
+//                Log.i("打印","shuju："+4);
+//            }
+//        }
+
+        if (pref.getString("introduction", "").equals("")) {
+            Intent mainIntent = new Intent(BaseUrl.this,Introduction.class);
+            BaseUrl.this.startActivity(mainIntent);
+            BaseUrl.this.finish();
+            editor.putString("introduction", "1");
             editor.commit();
-            Log.i("打印","shuju："+1);
-            Log.i("打印","versionCode："+pref.getString("versionCode", ""));
-            if (pref.getString("introduction", "").equals("")) {
-                Intent mainIntent = new Intent(BaseUrl.this,Introduction.class);
-                BaseUrl.this.startActivity(mainIntent);
-                BaseUrl.this.finish();
-                editor.putString("introduction", "1");
-                editor.commit();
-                Log.i("打印","shuju："+3);
-            } else if (pref.getString("introduction", "").equals("1")) {
-                initLogin();
-                Log.i("打印","shuju："+4);
-            }
-        }else {
-            Log.i("打印","shuju："+2);
-            if (pref.getString("introduction", "").equals("")) {
-                Intent mainIntent = new Intent(BaseUrl.this,Introduction.class);
-                BaseUrl.this.startActivity(mainIntent);
-                BaseUrl.this.finish();
-                editor.putString("introduction", "1");
-                editor.commit();
-                Log.i("打印","shuju："+3);
-            } else if (pref.getString("introduction", "").equals("1")) {
-                initLogin();
-                Log.i("打印","shuju："+4);
-            }
+            Log.i("打印","shuju："+3);
+        } else if (pref.getString("introduction", "").equals("1")) {
+            initLogin();
+            Log.i("打印","shuju："+4);
         }
-
-
 
         String versionName = APKVersionCodeUtils.getVerName(this);
         FinalContents.setVersionNumBer(versionName);

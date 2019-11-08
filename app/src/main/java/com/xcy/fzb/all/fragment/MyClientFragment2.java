@@ -20,6 +20,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ClientFragmentAdapter;
 import com.xcy.fzb.all.adapter.ReportProcessAdapter;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ClientFragmentBean;
 import com.xcy.fzb.all.modle.ReportProcessBean;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -125,7 +126,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ClientFragmentBean> clientFragment = fzbInterface.getClientFragment(FinalContents.getUserID() + "", "", "","10","1000");
+        Observable<ClientFragmentBean> clientFragment = fzbInterface.getClientFragment(FinalContents.getUserID() + "", "", "","10","1000", NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate());
         clientFragment.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ClientFragmentBean>() {
@@ -175,7 +176,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ReportProcessBean> clientFragment = fzbInterface.getReportProcess(FinalContents.getAgentId(), "10", "",FinalContents.getUserID(),"1000",FinalContents.getMySelf());
+        Observable<ReportProcessBean> clientFragment = fzbInterface.getReportProcess(FinalContents.getAgentId(), "10", "",FinalContents.getUserID(),"1000",FinalContents.getMySelf(), NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate());
         clientFragment.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ReportProcessBean>() {

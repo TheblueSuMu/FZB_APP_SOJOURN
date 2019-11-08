@@ -47,7 +47,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="55dp">
+            android:layout_above="@+id/linearlayout_l">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -137,55 +137,107 @@
         </ScrollView>
 
         <LinearLayout
+            android:id="@+id/linearlayout_l"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:background="@drawable/linearlayout_back"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
-            <Button
+            <TextView
                 android:id="@+id/review_the_success_bt1"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="补全信息"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt4"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="申请认筹"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/review_the_success_bt5"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
-                android:text="申请成交"
-                android:textColor="#FFFFFF" />
+                android:drawableTop="@mipmap/change_information"
+                android:gravity="center_horizontal"
+                android:drawablePadding="9dp"
+                android:text="修改信息"
+                android:visibility="visible"
+                android:textColor="#666666" />
 
-            <Button
-                android:id="@+id/review_the_success_bt3"
+            <LinearLayout
+                android:id="@+id/success_layout1"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:background="#EEEEEE"
+                android:layout_marginTop="5dp"
+                android:layout_width="1dp"
+                android:layout_height="30dp"/>
+
+            <TextView
+                android:id="@+id/review_the_success_bt4"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/points_dialog_but"
+                android:drawableTop="@mipmap/popular_recognition_chip"
+                android:gravity="center_horizontal"
+                android:drawablePadding="9dp"
+                android:text="申请认筹"
+                android:visibility="visible"
+                android:textColor="#666666" />
+
+            <LinearLayout
+                android:id="@+id/success_layout4"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:background="#EEEEEE"
+                android:layout_marginTop="5dp"
+                android:layout_width="1dp"
+                android:layout_height="30dp"/>
+
+
+            <TextView
+                android:id="@+id/review_the_success_bt5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/make_a_bargain"
+                android:gravity="center_horizontal"
+                android:drawablePadding="9dp"
+                android:text="成交"
+                android:visibility="visible"
+                android:textColor="#666666" />
+
+            <LinearLayout
+                android:id="@+id/success_layout5"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:background="#EEEEEE"
+                android:layout_marginTop="5dp"
+                android:layout_width="1dp"
+                android:layout_height="30dp"/>
+
+            <TextView
+                android:id="@+id/review_the_success_bt3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/lose_efficacy"
+                android:gravity="center_horizontal"
+                android:drawablePadding="9dp"
                 android:text="未成交"
-                android:textColor="#FFFFFF" />
+                android:visibility="visible"
+                android:textColor="#666666"/>
+
+            <LinearLayout
+                android:id="@+id/success_layout3"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:background="#EEEEEE"
+                android:layout_marginTop="5dp"
+                android:layout_width="1dp"
+                android:layout_height="30dp"/>
+
 
         </LinearLayout>
     </RelativeLayout>

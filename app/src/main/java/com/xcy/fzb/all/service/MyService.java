@@ -126,8 +126,11 @@ public interface MyService {
                                            @Query("age") String age, @Query("gender") String gender, @Query("passportNumber") String passportNumber,
                                            @Query("passportImg") String passportImg, @Query("route") String route, @Query("islandTime") String islandTime,
                                            @Query("isPay") String isPay, @Query("sumCost") String sumCost, @Query("landingImg") String landingImg,
-                                           @Query("occupation") String occupation, @Query("focus") String focus, @Query("userId") String userId,
-                                           @Query("jsonStr") String jsonStr, @Query("customerName") String customerName);
+                                           @Query("city") String city, @Query("occupation") String occupation, @Query("focus") String focus,
+                                           @Query("intentionalBuilding") String intentionalBuilding,@Query("paymentMethod") String paymentMethod,@Query("hasDecision") String hasDecision,
+                                           @Query("resistance") String resistance,@Query("objective") String objective,@Query("idealArea") String idealArea,
+
+                                           @Query("userId") String userId, @Query("jsonStr") String jsonStr, @Query("customerName") String customerName);
 
     //专案端拒絕記錄
     @POST("specialSelect/myExaminelist")
@@ -336,7 +339,7 @@ public interface MyService {
 
     //客户列表页 报备-到访-登岛-认筹-成交-失效
     @POST("commonSelect/reportProcessList")
-    Observable<ClientFragmentBean> getClientFragment(@Query("userId") String userId, @Query("projectId") String projectId, @Query("searchName") String searchName, @Query("type") String type, @Query("pageSize") String pageSize);
+    Observable<ClientFragmentBean> getClientFragment(@Query("userId") String userId, @Query("projectId") String projectId, @Query("searchName") String searchName, @Query("type") String type, @Query("pageSize") String pageSize, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
 
 //    //根据用户Id获取用户信息
@@ -549,7 +552,7 @@ public interface MyService {
 
     //圈层 报备流程数据
     @POST("layersSelect/getreportProcess")
-    Observable<ReportProcessBean> getReportProcess(@Query("agentId") String agentId, @Query("status") String status, @Query("search") String search, @Query("userId") String userId, @Query("pageSize") String pageSize, @Query("type") String type);
+    Observable<ReportProcessBean> getReportProcess(@Query("agentId") String agentId, @Query("status") String status, @Query("search") String search, @Query("userId") String userId, @Query("pageSize") String pageSize, @Query("type") String type, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
     //圈层端我的团队 数据统计
     @POST("layersSelect/dataStatistics")
@@ -652,7 +655,7 @@ public interface MyService {
 
     // 专员端报备流程数据请求
     @POST("commissionerSelect/processData")
-    Observable<ProcessDataBean> getProcessData(@Query("storeId") String storeId, @Query("status") String status, @Query("search") String search, @Query("userId") String userId, @Query("pageSize") String pageSize);
+    Observable<ProcessDataBean> getProcessData(@Query("storeId") String storeId, @Query("status") String status, @Query("search") String search, @Query("userId") String userId, @Query("pageSize") String pageSize, @Query("type") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
 //    //专员用户Id获取用户信息
 //    @POST("commonSelect/getUserInfo")

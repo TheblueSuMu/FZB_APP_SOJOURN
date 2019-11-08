@@ -122,6 +122,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     int ifnum1 = 0;
     int ifnum2 = 0;
     int ifnum3 = 0;
+    private String fieldbeanlist;
 
 
     @Override
@@ -455,11 +456,14 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
         ProjectProgressApi.setFieldBeanList(list);
 
         Gson gson = new Gson();
-        String fieldbeanlist = gson.toJson(ProjectProgressApi.getFieldBeanList());
+        fieldbeanlist = gson.toJson(ProjectProgressApi.getFieldBeanList());
 
         if (list.size() != 0) {
             isColleague = "1";
         }
+        Log.i("成交数据", "基本描摹信息：" + fieldbeanlist);
+        Log.i("同行人", "基本描摹信息：" + fieldbeanlist);
+        Log.i("同行人", "基本描摹信息："+list.size());
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -467,7 +471,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<LandSaveBean> userMessage = fzbInterface.getIslandSave(FinalContents.getPreparationId(), routeid, FinalContents.getProjectType(), isColleague, list.size() + "", ProjectProgressApi.getIdNumber(), ProjectProgressApi.getAge(), ProjectProgressApi.getGender(), ProjectProgressApi.getPassportNumber(), ProjectProgressApi.getPassportimg(), route, isLandTime, isPay, to_apply_for_an_island2_tv3.getText().toString(), imgUrl, occupation, focus, FinalContents.getUserID(), fieldbeanlist, ProjectProgressApi.getCustomerName());
+        Observable<LandSaveBean> userMessage = fzbInterface.getIslandSave(FinalContents.getPreparationId(), routeid, FinalContents.getProjectType(), isColleague, list.size() + "", ProjectProgressApi.getIdNumber(), ProjectProgressApi.getAge(), ProjectProgressApi.getGender(), ProjectProgressApi.getPassportNumber(), ProjectProgressApi.getPassportimg(), route, isLandTime, isPay, to_apply_for_an_island2_tv3.getText().toString(), imgUrl,ProjectProgressApi.getCustomerCity(), occupation, focus,ProjectProgressApi.getCustomerIntentionalBuilding()+"", ProjectProgressApi.getCustomerPaymentMethod()+"", ProjectProgressApi.getCustomerHasDecision()+"",ProjectProgressApi.getCustomerResistance()+"",ProjectProgressApi.getCustomerObjective()+"",ProjectProgressApi.getCustomerAuditStatus()+"", FinalContents.getUserID(), fieldbeanlist, ProjectProgressApi.getCustomerName());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LandSaveBean>() {
@@ -801,12 +805,19 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     }
                 }
 
+                Log.i("同行人", "基本描摹信息："+ProjectProgressApi.getFieldBean());
+                Log.i("同行人", "基本描摹信息："+ProjectProgressApi.getFieldBean().getCity());
+                Log.i("同行人", "基本描摹信息："+ProjectProgressApi.getFieldBean().getObjective());
+                Log.i("同行人", "基本描摹信息："+ProjectProgressApi.getFieldBeanList().get(0).getCity());
+                Log.i("同行人", "基本描摹信息："+ProjectProgressApi.getFieldBeanList().get(0).getObjective());
+
                 if (to_apply_for_an_island2_tv1.getText().toString().equals("")) {
                 } else {
                     int expenses = Integer.parseInt(to_apply_for_an_island2_tv1.getText().toString());
                     sumCost = "" + expenses * (list.size() + 1);
                     to_apply_for_an_island2_tv3.setText(sumCost);
                 }
+
                 MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(ToApplyForAnlsland2Activity.this);
                 layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 to_apply_for_an_island2_rv.setLayoutManager(layoutManager);
@@ -834,4 +845,5 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
         super.onPause();
         ProjectProgressApi.setChongfu("1");
     }
+
 }

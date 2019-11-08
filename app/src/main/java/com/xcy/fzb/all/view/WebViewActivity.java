@@ -140,7 +140,7 @@ public class WebViewActivity extends AllActivity {
                                 @Override
                                 public void onClick(View view) {
                                     Log.i("轮播图详情数据","点击分享");
-                                    FinalContents.showShare(newsDetailsBean.getData().getTitle(),"http://yanshi.fangzuobiao.com:88/NewsSharing?userId="+FinalContents.getUserID()+"&newId="+FinalContents.getNewID(),newsDetailsBean.getData().getProject().getProjectName(),FinalContents.getImageUrl()+newsDetailsBean.getData().getShareImg(),"http://yanshi.fangzuobiao.com:88/NewsSharing?userId="+FinalContents.getUserID()+"&newId="+FinalContents.getNewID(),WebViewActivity.this);
+                                    FinalContents.showShare(newsDetailsBean.getData().getTitle(),FinalContents.getImageUrl()+"/NewsSharing?userId="+FinalContents.getUserID()+"&id="+newsDetailsBean.getData().getId(),newsDetailsBean.getData().getProject().getProjectName(),FinalContents.getImageUrl()+newsDetailsBean.getData().getShareImg(),FinalContents.getImageUrl()+"/NewsSharing?userId="+FinalContents.getUserID()+"&id="+newsDetailsBean.getData().getId(),WebViewActivity.this);
                                 }
                             });
                             web_call.setOnClickListener(new View.OnClickListener() {

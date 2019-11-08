@@ -40,6 +40,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.AgentDetailsBean;
 import com.xcy.fzb.all.database.DataStatisticsBean;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -128,6 +129,9 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private void init_No_Network(){
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
+            NewlyIncreased.setTag("");
+            NewlyIncreased.setStartDate("");
+            NewlyIncreased.setEndDate("");
             initfvb();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -479,6 +483,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                 type = "0";
                 startTime = "";
                 endTime = "";
+                NewlyIncreased.setTag("0");
                 initDataStatistics();
                 break;
             //      TODO 数据统计 昨天
@@ -487,6 +492,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                 type = "1";
                 startTime = "";
                 endTime = "";
+                NewlyIncreased.setTag("1");
                 initDataStatistics();
                 break;
             //      TODO 数据统计 七天
@@ -495,12 +501,14 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                 type = "2";
                 startTime = "";
                 endTime = "";
+                NewlyIncreased.setTag("2");
                 initDataStatistics();
                 break;
             //      TODO 数据统计 自定义
             case R.id.sales_details_details_rb4:
                 sales_details_details_ll1.setVisibility(View.VISIBLE);
                 type = "3";
+                NewlyIncreased.setTag("3");
                 break;
             //      TODO 选择开始时间
             case R.id.sales_details_details_time1:
@@ -735,6 +743,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         startTime = dateString;
                         sales_details_details_time1.setText("<" + dateString);
+                        NewlyIncreased.setStartDate(dateString);
                     }
                 });
             }
@@ -754,6 +763,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         endTime = dateString;
                         sales_details_details_time2.setText("-" + dateString + " >");
+                        NewlyIncreased.setEndDate(dateString);
                         initDataStatistics();
                     }
                 });
@@ -963,4 +973,11 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        NewlyIncreased.setTag("");
+        NewlyIncreased.setStartDate("");
+        NewlyIncreased.setEndDate("");
+    }
 }

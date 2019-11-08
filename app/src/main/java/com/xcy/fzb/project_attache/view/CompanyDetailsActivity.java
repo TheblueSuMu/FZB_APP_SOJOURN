@@ -30,6 +30,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.DataNumBean;
 import com.xcy.fzb.all.database.FinanceBean;
 import com.xcy.fzb.all.modle.CompanyDetailsBean;
@@ -38,8 +39,6 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.view.MyClientActivity;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -133,6 +132,9 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
     private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
+            NewlyIncreased.setTag("");
+            NewlyIncreased.setStartDate("");
+            NewlyIncreased.setEndDate("");
             initView();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -256,6 +258,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         company_details_tv4.setText(dateString);
                         String s = company_details_tv4.getText().toString();
                         String s1 = company_details_tv5.getText().toString();
+                        NewlyIncreased.setStartDate(dateString);
                         initDataNum("3", s, s1);
 
                     }
@@ -276,6 +279,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         company_details_tv5.setText(dateString);
                         String s = company_details_tv4.getText().toString();
                         String s1 = company_details_tv5.getText().toString();
+                        NewlyIncreased.setEndDate(dateString);
                         initDataNum("3", s, s1);
                     }
                 });
@@ -341,15 +345,19 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.company_details_rb1) {
                     initDataNum("0", "", "");
+                    NewlyIncreased.setTag("0");
                     company_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb2) {
                     initDataNum("1", "", "");
+                    NewlyIncreased.setTag("1");
                     company_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb3) {
                     initDataNum("2", "", "");
+                    NewlyIncreased.setTag("2");
                     company_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb4) {
                     initDataNum("3", "", "");
+                    NewlyIncreased.setTag("3");
                     company_details_ll1.setVisibility(View.VISIBLE);
                 }
             }
@@ -758,5 +766,13 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
 
         initData();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        NewlyIncreased.setTag("");
+        NewlyIncreased.setStartDate("");
+        NewlyIncreased.setEndDate("");
     }
 }

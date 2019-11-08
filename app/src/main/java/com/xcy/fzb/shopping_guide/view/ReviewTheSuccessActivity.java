@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,10 +54,10 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
     RecyclerView review_the_success_rv;
 
-    Button review_the_success_bt1;
-    Button review_the_success_bt3;
-    Button review_the_success_bt4;
-    Button review_the_success_bt5;
+    TextView review_the_success_bt1;
+    TextView review_the_success_bt3;
+    TextView review_the_success_bt4;
+    TextView review_the_success_bt5;
 
 
     private Intent intent;
@@ -70,6 +71,10 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     int isnum2 = 0;
     int isnum3 = 0;
     int isnum4 = 0;
+    private LinearLayout success_layout1;
+    private LinearLayout success_layout3;
+    private LinearLayout success_layout4;
+    private LinearLayout success_layout5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +119,11 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         review_the_success_bt4 = findViewById(R.id.review_the_success_bt4);
         review_the_success_bt5 = findViewById(R.id.review_the_success_bt5);
 
+        success_layout1 = findViewById(R.id.success_layout1);
+        success_layout3 = findViewById(R.id.success_layout3);
+        success_layout4 = findViewById(R.id.success_layout4);
+        success_layout5 = findViewById(R.id.success_layout5);
+
 
         review_the_success_return.setOnClickListener(this);
         review_the_success_bt1.setOnClickListener(this);
@@ -151,12 +161,16 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                         for (int i = 0; i < myClientFragmentBean.getData().getMenuData().size(); i++) {
                             if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("60")) {
                                 review_the_success_bt5.setVisibility(View.VISIBLE);//申请成交
+                                success_layout5.setVisibility(View.VISIBLE);
                             } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("50")) {
                                 review_the_success_bt4.setVisibility(View.VISIBLE);//申请认筹
+                                success_layout4.setVisibility(View.VISIBLE);
                             } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("400")) {
                                 review_the_success_bt1.setVisibility(View.VISIBLE);//补全信息
+                                success_layout1.setVisibility(View.VISIBLE);
                             } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("402")) {
                                 review_the_success_bt3.setVisibility(View.VISIBLE);//未成交
+                                success_layout3.setVisibility(View.VISIBLE);
                             }
                         }
 

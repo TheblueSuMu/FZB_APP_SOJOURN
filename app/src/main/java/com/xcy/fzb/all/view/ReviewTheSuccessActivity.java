@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -91,6 +92,19 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     private RecyclerView review_the_success_nameRv;
     private ImageView all_no_information;
     private RelativeLayout lien;
+    private LinearLayout success_linear1;
+    private LinearLayout success_linear2;
+    private LinearLayout success_linear3;
+    private LinearLayout success_linear4;
+    private LinearLayout success_linear5;
+    private LinearLayout success_linear6;
+    private LinearLayout success_linear7;
+    private LinearLayout success_linear8;
+    private LinearLayout success_linear9;
+    private LinearLayout success_linear10;
+    private LinearLayout success_linear11;
+    private LinearLayout success_linear12;
+    private LinearLayout success_linear13;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +175,22 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         review_the_success_bt13 = findViewById(R.id.review_the_success_bt13);
         review_the_success_nameRv = findViewById(R.id.review_the_success_NameRv);
 
+        success_linear1 = findViewById(R.id.success_linear1);
+        success_linear2 = findViewById(R.id.success_linear2);
+        success_linear3 = findViewById(R.id.success_linear3);
+        success_linear4 = findViewById(R.id.success_linear4);
+        success_linear5 = findViewById(R.id.success_linear5);
+        success_linear6 = findViewById(R.id.success_linear6);
+        success_linear7 = findViewById(R.id.success_linear7);
+        success_linear8 = findViewById(R.id.success_linear8);
+        success_linear9 = findViewById(R.id.success_linear9);
+        success_linear10 = findViewById(R.id.success_linear10);
+        success_linear11 = findViewById(R.id.success_linear11);
+        success_linear12 = findViewById(R.id.success_linear12);
+        success_linear13 = findViewById(R.id.success_linear13);
+
+
+
         review_the_success_return.setOnClickListener(this);
         review_the_success_bt1.setOnClickListener(this);
         review_the_success_bt2.setOnClickListener(this);
@@ -226,54 +256,67 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                             if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("0")) {
                                 //  TODO    失效
                                 review_the_success_bt1.setVisibility(View.VISIBLE);
+                                success_linear1.setVisibility(View.VISIBLE);
                                 review_the_success_bt1.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("40")) {
                                 //  TODO    申请登岛
                                 review_the_success_bt2.setVisibility(View.VISIBLE);
+                                success_linear2.setVisibility(View.VISIBLE);
                                 review_the_success_bt2.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("20")) {
                                 //  TODO    申请到访
                                 review_the_success_bt3.setVisibility(View.VISIBLE);
+                                success_linear3.setVisibility(View.VISIBLE);
                                 review_the_success_bt3.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("50")) {
                                 //  TODO    认筹
                                 review_the_success_bt4.setVisibility(View.VISIBLE);
+                                success_linear4.setVisibility(View.VISIBLE);
                                 review_the_success_bt4.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("60")) {
                                 //  TODO    成交
                                 review_the_success_bt5.setVisibility(View.VISIBLE);
+                                success_linear5.setVisibility(View.VISIBLE);
                                 review_the_success_bt5.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("402")) {
                                 //  TODO    未成交
                                 review_the_success_bt6.setVisibility(View.VISIBLE);
+                                success_linear6.setVisibility(View.VISIBLE);
                                 review_the_success_bt6.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("500")) {
                                 //  TODO    修改信息
                                 review_the_success_bt7.setVisibility(View.VISIBLE);
+                                success_linear7.setVisibility(View.VISIBLE);
                                 review_the_success_bt7.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("501")) {
                                 //  TODO    退筹
                                 review_the_success_bt8.setVisibility(View.VISIBLE);
+                                success_linear8.setVisibility(View.VISIBLE);
                                 review_the_success_bt8.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("601")) {
                                 //  TODO    调单
                                 review_the_success_bt9.setVisibility(View.VISIBLE);
+                                success_linear9.setVisibility(View.VISIBLE);
                                 review_the_success_bt9.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("602")) {
                                 //  TODO    退单
                                 review_the_success_bt10.setVisibility(View.VISIBLE);
+                                success_linear10.setVisibility(View.VISIBLE);
                                 review_the_success_bt10.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("5")) {
                                 //  TODO    通过
                                 review_the_success_bt11.setVisibility(View.VISIBLE);
+                                success_linear11.setVisibility(View.VISIBLE);
                                 review_the_success_bt11.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("6")) {
                                 //  TODO    拒绝
                                 review_the_success_bt12.setVisibility(View.VISIBLE);
+                                success_linear12.setVisibility(View.VISIBLE);
                                 review_the_success_bt12.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("400")) {
                                 //  TODO    补全信息
                                 review_the_success_bt13.setVisibility(View.VISIBLE);
+                                success_linear13.setVisibility(View.VISIBLE);
                                 review_the_success_bt13.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                             }
                         }

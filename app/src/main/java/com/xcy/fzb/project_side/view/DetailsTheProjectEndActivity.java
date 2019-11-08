@@ -33,6 +33,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.DynamicLineChartManager;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.BusinessBean;
 import com.xcy.fzb.all.modle.DetailsBean;
 import com.xcy.fzb.all.modle.FinanceBean;
@@ -382,6 +383,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         beforeDate1 = dateString;
                         details_the_project_end_time1.setText("<"+dateString);
+                        NewlyIncreased.setStartDate(dateString);
                     }
                 });
             }
@@ -402,7 +404,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         afterDate1 = dateString;
                         details_the_project_end_time2.setText("-"+dateString+" >");
-
+                        NewlyIncreased.setEndDate(dateString);
                         initViewData1();
                     }
                 });
@@ -804,6 +806,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 beforeDate1 = "";
                 afterDate1 = "";
                 type1 = "";
+                NewlyIncreased.setTag("0");
                 initViewData2();
                 break;
             case R.id.details_the_project_end_rb2:
@@ -811,6 +814,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 beforeDate1 = "";
                 afterDate1 = "";
                 type1 = "1";
+                NewlyIncreased.setTag("1");
                 initViewData2();
                 break;
             case R.id.details_the_project_end_rb3:
@@ -818,11 +822,13 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 beforeDate1 = "";
                 afterDate1 = "";
                 type1 = "2";
+                NewlyIncreased.setTag("2");
                 initViewData2();
                 break;
             case R.id.details_the_project_end_rb4:
                 details_the_project_end_time_ll1.setVisibility(View.VISIBLE);
                 type1 = "3";
+                NewlyIncreased.setTag("3");
                 initDate();
                 break;
             case R.id.details_the_project_end_rb5:
@@ -960,5 +966,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         super.onDestroy();
         FinalContents.setProjectID("");
         FinalContents.setDetails("");
+        NewlyIncreased.setTag("0");
+        NewlyIncreased.setStartDate("");
+        NewlyIncreased.setEndDate("");
     }
 }

@@ -587,18 +587,18 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                 break;
             //            TODO 成交时间
             case R.id.fill_in_transaction_information_rl5:
-//                if (ifnum3 == 0) {
-//                    ifnum3 = 1;
-//                    picker.setVisibility(View.VISIBLE);
-//                    initDate();
-//                    ifnum3 = 0;
-//                }
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH) + 1;
-                int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
-                project_time.setText(dateString);
+                if (ifnum3 == 0) {
+                    ifnum3 = 1;
+                    picker.setVisibility(View.VISIBLE);
+                    initDate();
+                    ifnum3 = 0;
+                }
+//                Calendar calendar = Calendar.getInstance();
+//                int year = calendar.get(Calendar.YEAR);
+//                int month = calendar.get(Calendar.MONTH) + 1;
+//                int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+//                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
+//                project_time.setText(dateString);
                 break;
             //            TODO 佣金
             case R.id.fill_in_transaction_information_rl6:
