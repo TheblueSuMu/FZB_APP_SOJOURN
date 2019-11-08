@@ -25,7 +25,8 @@ public class FinalContents {
     public static final String SP_LOGIN_NAME = "fzbLogin";
 
 //    static String ImageUrl = "http://39.98.173.250:8080";
-    static String ImageUrl = "http://yanshi.fangzuobiao.com:88";
+//    static String ImageUrl = "http://yanshi.fangzuobiao.com:88";
+    static String ImageUrl = "http://39.100.13.183:8080";
 
     public static String getImageUrl() {
         return ImageUrl;
@@ -36,8 +37,8 @@ public class FinalContents {
     }
 
 //    static String BaseUrl = "http://39.98.173.250:8080/fangfang/app/v1/";
-    static String BaseUrl = "http://yanshi.fangzuobiao.com:88/fangfang/app/v1/";
-
+//    static String BaseUrl = "http://yanshi.fangzuobiao.com:88/fangfang/app/v1/";
+    static String BaseUrl = "http://39.100.13.183:8080/fangfang/app/v1/";
 
     static String userID = "";
     static String projectID = "";
@@ -977,6 +978,8 @@ public class FinalContents {
 //            byte[] bytes = bitmap2Bytes(bitmap, 32);
 //            Bitmap bitmap2 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             oks.setImageUrl(imagePath); //网络地址
+        }else if (imagePath.equals("") || imagePath == null ){
+            oks.setImageUrl(FinalContents.getImageUrl()+"/fangfang/static/common/images/logo.png");
         }
         // url在微信、微博，Facebook等平台中使用
         oks.setUrl(url);

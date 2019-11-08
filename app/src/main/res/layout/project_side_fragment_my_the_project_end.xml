@@ -77,7 +77,6 @@
 
                 <TextView
                     android:id="@+id/city_my_the_project_end"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""

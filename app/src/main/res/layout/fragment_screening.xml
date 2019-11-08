@@ -522,34 +522,43 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@drawable/linearlayout_back"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_height="65dp"
-                android:layout_marginTop="10dp">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_weight="1"
-                    android:id="@+id/screen_reset"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@mipmap/reset"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="10dp">
 
-                <ImageView
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:id="@+id/screen_ensure"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@mipmap/put_in"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
+                    <ImageView
+                        android:layout_weight="1"
+                        android:id="@+id/screen_reset"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/reset"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:id="@+id/screen_ensure"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/put_in"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
+
+
 
         </LinearLayout>
 

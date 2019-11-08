@@ -191,7 +191,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="12dp"
-                        android:background="#EEEEEE"></LinearLayout>
+                        android:background="#EEEEEE"/>
 
                     <RelativeLayout
                         android:id="@+id/my_about"
@@ -233,7 +233,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="12dp"
-                        android:background="#EEEEEE"></LinearLayout>
+                        android:background="#EEEEEE"/>
 
                     <RelativeLayout
                         android:id="@+id/my_empty"
@@ -278,7 +278,6 @@
                             android:layout_centerVertical="true"
                             android:src="@mipmap/next" />
                     </RelativeLayout>
-
 
                     <RelativeLayout
                         android:id="@+id/my_exit"

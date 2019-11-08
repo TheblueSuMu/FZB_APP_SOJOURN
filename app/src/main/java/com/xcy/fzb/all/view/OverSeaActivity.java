@@ -29,6 +29,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.lzj.gallery.library.views.BannerViewPager;
@@ -64,14 +65,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import co.lujun.androidtagview.ColorFactory;
 import co.lujun.androidtagview.TagContainerLayout;
 import co.lujun.androidtagview.TagView;
-import in.srain.cube.views.ptr.PtrClassicFrameLayout;
-import in.srain.cube.views.ptr.PtrDefaultHandler;
-import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -201,6 +197,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     public void onSensorChanged(SensorEvent event) {
 
         if (FinalContents.getIdentity().equals("63")) {
+
+        }else if (FinalContents.getIdentity().equals("7")) {
 
         } else {
             int sensortype = event.sensor.getType();

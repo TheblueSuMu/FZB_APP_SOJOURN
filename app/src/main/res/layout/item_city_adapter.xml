@@ -17,8 +17,8 @@
             android:id="@+id/item_city_adapter_name"
             android:src="@mipmap/logo_garden"
             app:riv_corner_radius="10dp"
-            android:layout_width="60dp"
-            android:layout_height="60dp"/>
+            android:layout_width="70dp"
+            android:layout_height="70dp"/>
 
         <TextView
             android:id="@+id/item_city_adapter_pingying"

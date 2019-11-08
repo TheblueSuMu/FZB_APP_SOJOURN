@@ -54,6 +54,7 @@ import com.xcy.fzb.all.modle.LoginUserBean;
 import com.xcy.fzb.all.modle.UserIdentity;
 import com.xcy.fzb.all.modle.UserSaveBean;
 import com.xcy.fzb.all.persente.AdministrationAuthority;
+import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
@@ -200,6 +201,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         FinalContents.setZhuanAn("1");
         FinalContents.setCityName("长春市");
         FinalContents.setLuo(true);
+        SharItOff.setShar("显");
     }
 
     @Override

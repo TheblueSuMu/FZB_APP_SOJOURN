@@ -8,8 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,6 +46,7 @@ public class CountryFragment extends Fragment {
     private Context context;
     private View view;
     private CheckBox country_all;
+    private ImageView country_reset;
 
     public CountryFragment(String projectType) {
         this.projectType = projectType;
@@ -54,7 +55,7 @@ public class CountryFragment extends Fragment {
     private List<CountryBean.DataBean> list = new ArrayList<>();
 
     private RecyclerView recyclerView;
-    private Button ensure;
+    private ImageView ensure;
 
 
     @Override
@@ -63,10 +64,11 @@ public class CountryFragment extends Fragment {
         view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_country, null);
         StatusBar.makeStatusBarTransparent(getActivity());
         ensure = view.findViewById(R.id.country_ensure);
+        country_reset = view.findViewById(R.id.country_reset);
         recyclerView = view.findViewById(R.id.country_recycler);
         country_all = view.findViewById(R.id.country_all);
         context = container.getContext();
-
+        country_all.setChecked(true);
         init();
 
         return view;
@@ -115,6 +117,16 @@ public class CountryFragment extends Fragment {
                             country_all.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                    FinalContents.setIndex(-1);
+                                    FinalContents.setNation("");
+                                    recyclerAdapter.notifyDataSetChanged();
+                                }
+                            });
+
+                            country_reset.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    country_all.setChecked(true);
                                     FinalContents.setIndex(-1);
                                     FinalContents.setNation("");
                                     recyclerAdapter.notifyDataSetChanged();

@@ -195,7 +195,7 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
 
                             final List<String> list = new ArrayList<>();
                             for (int i = 0; i < commissionLevelSelectBean.getData().size(); i++) {
-                                list.add(commissionLevelSelectBean.getData().get(i).getName());
+                                list.add(commissionLevelSelectBean.getData().get(i).getName()+ "(" + commissionLevelSelectBean.getData().get(i).getPercent() + "%)");
                             }
                             //      监听选中
                             //创建

@@ -65,7 +65,7 @@
                 <GridView
                     android:id="@+id/message_issue_gv"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="300dp"
                     android:layout_marginLeft="26dp"
                     android:layout_marginTop="49dp"
                     android:layout_marginRight="15dp"

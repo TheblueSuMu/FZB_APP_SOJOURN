@@ -2,13 +2,10 @@ package com.xcy.fzb.captain_team.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,22 +21,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.TeamMemberBean;
-import com.xcy.fzb.all.modle.ChangeSexBean;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
-import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
-import com.xcy.fzb.all.view.PersonalInformationActivity;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_PopAdapter;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_TeamMemberAdapter;
 
@@ -405,6 +398,7 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                     }
                 }else if (options1 == 1){
                     Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_BatchModifyingActivity.class);
+                    FinalContents.setXiuGai("");
                     startActivity(intent);
                 }
 

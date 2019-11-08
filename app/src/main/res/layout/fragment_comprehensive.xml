@@ -79,22 +79,25 @@
             android:layout_marginTop="15dp"
             android:background="#EEEEEE"></LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="65dp">
 
-            <Button
-                android:id="@+id/ensure"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="38dp"
-                android:layout_marginRight="38dp"
-                android:background="@drawable/points_dialog_but"
-                android:text="确定"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-        </RelativeLayout>
     </RadioGroup>
+
+    <RelativeLayout
+        android:background="@drawable/linearlayout_back"
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <Button
+            android:id="@+id/ensure"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:background="@drawable/points_dialog_but"
+            android:text="确定"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </RelativeLayout>
 
 </LinearLayout>

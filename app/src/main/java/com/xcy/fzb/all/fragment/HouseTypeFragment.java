@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
@@ -30,11 +30,12 @@ public class HouseTypeFragment extends Fragment implements View.OnClickListener 
     private CheckBox house4;
     private CheckBox house5;
     private CheckBox house6;
-    private Button ensure;
+    private ImageView ensure;
     private String url = FinalContents.getImageUrl() +  "/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID()+ "&apartment=";
     private String eventUrl = FinalContents.getBaseUrl() + "/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID()+ "&apartment=";
     private String string = "";
     private Map<Integer,String> map = new HashMap<>();
+    private ImageView house_reset;
 
     public HouseTypeFragment() {
         // Required empty public constructor
@@ -56,6 +57,8 @@ public class HouseTypeFragment extends Fragment implements View.OnClickListener 
         house5 = view.findViewById(R.id.house_type_5);
         house6 = view.findViewById(R.id.house_type_6);
         ensure = view.findViewById(R.id.house_ensure);
+        house_reset = view.findViewById(R.id.house_reset);
+        house_reset.setOnClickListener(this);
         initData();
         init();
         return view;
@@ -144,6 +147,17 @@ public class HouseTypeFragment extends Fragment implements View.OnClickListener 
                 FinalContents.setApartment(string);
                 EventBus.getDefault().post(eventUrl);
                 string = "";
+                break;
+            case R.id.house_reset:
+                house0.setChecked(false);
+                house1.setChecked(false);
+                house2.setChecked(false);
+                house3.setChecked(false);
+                house4.setChecked(false);
+                house5.setChecked(false);
+                house6.setChecked(false);
+
+                initData();
                 break;
         }
     }

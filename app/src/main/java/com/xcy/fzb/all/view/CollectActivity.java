@@ -233,6 +233,8 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
 
         if(FinalContents.getIdentity().equals("63")){
 
+        }else if (FinalContents.getIdentity().equals("7")) {
+
         }else {
             int sensortype = event.sensor.getType();
             float[] values = event.values;

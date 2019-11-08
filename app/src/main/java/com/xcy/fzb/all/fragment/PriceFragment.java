@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
@@ -21,9 +21,10 @@ import org.greenrobot.eventbus.EventBus;
 public class PriceFragment extends Fragment {
     private EditText down;
     private EditText up;
-    private Button ensure;
+    private ImageView ensure;
     private String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonSelect/projectList?" + "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
     private String eventUrl = "";
+    private ImageView price_reset;
 
     public PriceFragment() {
         // Required empty public constructor
@@ -39,6 +40,14 @@ public class PriceFragment extends Fragment {
         down = view.findViewById(R.id.price_down_count);
         up = view.findViewById(R.id.price_up_count);
         ensure = view.findViewById(R.id.price_ensure);
+        price_reset = view.findViewById(R.id.price_reset);
+        price_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                down.setText("");
+                up.setText("");
+            }
+        });
         ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

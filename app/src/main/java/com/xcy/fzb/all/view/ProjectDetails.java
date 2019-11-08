@@ -736,16 +736,16 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 commissionRv.setLayoutManager(layoutManager);
                                 CommissionRecycler commissionRecycler = new CommissionRecycler(projectDetailsBeanData);
                                 commissionRv.setAdapter(commissionRecycler);
-                            }
 
-                            if (SharItOff.getShar().equals("显")) {
-                                linear2.setVisibility(View.VISIBLE);
-                                linear0.setVisibility(View.VISIBLE);
+                                if (SharItOff.getShar().equals("显")) {
+                                    linear2.setVisibility(View.VISIBLE);
+                                    linear0.setVisibility(View.VISIBLE);
 
-                            } else if (SharItOff.getShar().equals("隐")) {
-                                linear2.setVisibility(View.GONE);
-                                linear0.setVisibility(View.GONE);
+                                } else if (SharItOff.getShar().equals("隐")) {
+                                    linear2.setVisibility(View.GONE);
+                                    linear0.setVisibility(View.GONE);
 
+                                }
                             }
                         }
 

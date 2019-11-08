@@ -60,9 +60,9 @@
             android:enabled="true"
             android:process=":remote" />
         <!--TODO 百度地图 end-->
-        <activity android:name=".all.view.MessageCommentActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>   <!--TODO 公用 楼盘动态详情-->
-        <activity android:name=".all.view.MapActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".all.view.BannerPhotoActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".all.view.MessageCommentActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 楼盘动态详情-->
+        <activity android:name=".all.view.MapActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".all.view.BannerPhotoActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.CollectActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/><!--TODO 公用 我的收藏-->
         <activity android:name=".all.view.WebViewActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.BuildingDynamicActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
@@ -77,30 +77,30 @@
         <activity android:name=".all.view.ForgetActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.AllActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.WebActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".all.view.BigPhotoActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".all.view.BigPhotoActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.ClientParticularsActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 客户管理-->
         <activity android:name=".all.view.MyClientActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 我的客户-->
         <activity android:name=".all.view.AboutFZBActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.RecyclerViewActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.EconomicCircleParticularsActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 经济圈详情-->
         <activity android:name=".FinMag" android:theme="@style/LunchTheme">       <!--TODO 域名-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".BaseUrl" android:theme="@style/LunchTheme">       <!--TODO 启动页-->
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
+        <activity android:name=".BaseUrl" android:theme="@style/LunchTheme">       <!--TODO 启动页-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Introduction" android:launchMode="singleTop"/>       <!--TODO 引导页-->
         <activity android:name=".Login.LoginActivity" android:launchMode="singleTop"/>  <!--TODO 登录页-->
 
-        <activity android:name=".all.view.FeedbackActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>    <!--TODO 公用 意见反馈-->
-        <activity android:name=".all.view.DisclaimerActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>    <!--TODO 公用 免责声明-->
-        <activity android:name=".broker.view.Broker_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>    <!--TODO 经纪人 主页-->
+        <activity android:name=".all.view.FeedbackActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 意见反馈-->
+        <activity android:name=".all.view.DisclaimerActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 免责声明-->
+        <activity android:name=".broker.view.Broker_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 经纪人 主页-->
         <activity android:name=".all.view.BindingPhoneActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 绑定手机号-->
         <activity android:name=".all.view.CentreActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 项目详情页 医疗中心-->
         <activity android:name=".all.view.ChangePhoneActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 更换手机号-->
@@ -130,7 +130,7 @@
         <!--TODO 可能会修改区域 end-->
 
         <!--TODO 圈层-->
-        <activity android:name=".captain_team.view.Captain_Team_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity>  <!--TODO 圈层 主页-->
+        <activity android:name=".captain_team.view.Captain_Team_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>  <!--TODO 圈层 主页-->
         <activity android:name=".captain_team.view.Captain_Team_TeamMemberActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 团队人员-->
         <activity android:name=".captain_team.view.Captain_Team_AddAConsultantActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 添加顾问-->
         <activity android:name=".captain_team.view.Captain_Team_AddSalesActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 添加销售-->

@@ -387,6 +387,7 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                         field_et3.setText(colleagueBean.getData().getPhone());
                         field_et4.setText(colleagueBean.getData().getIdNumber());
                         field_et5.setText(colleagueBean.getData().getPassportNumber());
+                        imgUrl = colleagueBean.getData().getPassportImg();
                         Glide.with(FieldActivity.this).load(FinalContents.getImageUrl() + colleagueBean.getData().getPassportImg()).into(field_img);
                     }
 

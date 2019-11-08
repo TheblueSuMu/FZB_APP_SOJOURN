@@ -26,6 +26,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.AppPackageBean;
+import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -85,10 +86,9 @@ public class Shopping_Guide_MainActivity extends AllActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopping_guide_activity_main);
-
         StatusBar.makeStatusBarTransparent(this);
         initfvb();
-
+        SharItOff.setShar("隐");
     }
 
     private void init_No_Network(){
