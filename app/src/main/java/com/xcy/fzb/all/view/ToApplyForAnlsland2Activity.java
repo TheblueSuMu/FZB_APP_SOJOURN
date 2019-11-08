@@ -504,6 +504,13 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
 
     //            TODO 补全信息 请求登岛报备
     private void initlandUpdate() {
+
+        Log.i("补全信息","申请登岛ID："+ProjectProgressApi.getID());
+        Log.i("补全信息","报备id："+FinalContents.getPreparationId());
+        Log.i("补全信息","routeId："+routeid);
+        Log.i("补全信息","用户ID："+FinalContents.getUserID());
+
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -573,7 +580,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                             Glide.with(ToApplyForAnlsland2Activity.this).load(FinalContents.getImageUrl() + landBean.getData().getLandingImg()).into(to_apply_for_an_island2_img3);
                         }
                         colleagueUserNum = Integer.parseInt(to_apply_for_an_island2_tv1.getText().toString());
-                        landBean.getData().getColleagues();
+                        routeid = landBean.getData().getRouteId();
                         if (landBean.getData().getColleagues().size() == 0) {
                             to_apply_for_an_island2_ll1.setVisibility(View.GONE);
                             to_apply_for_an_island2_rl4.setVisibility(View.GONE);

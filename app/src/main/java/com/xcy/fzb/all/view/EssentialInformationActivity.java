@@ -196,7 +196,6 @@ public class EssentialInformationActivity extends AllActivity {
                         ProjectProgressApi.setCustomerAuditStatus(essential_information_et8.getText().toString());
                     }
                 }
-                Toast.makeText(EssentialInformationActivity.this, "用户消息提交完成", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
