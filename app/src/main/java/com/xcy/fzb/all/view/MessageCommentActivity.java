@@ -62,6 +62,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
     private TextView particulars_xiao_pinglun;
     private String isLike;
     int num = 0;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
     }
 
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -171,7 +172,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
             public void onClick(View v) {
                 Intent intent = new Intent(MessageCommentActivity.this, BigPhotoActivity.class);
                 intent.putExtra("index", 0);
-                intent.putExtra("bigPhotoimg",img);
+                intent.putExtra("bigPhotoimg", img);
                 startActivity(intent);
             }
         });
@@ -181,7 +182,8 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
     private void initDataEt() {
         String et = comment_et.getText().toString();
         if (et.equals("")) {
-            Toast.makeText(MessageCommentActivity.this, "评论内容不能为空", Toast.LENGTH_SHORT).show();
+            toast = Toast.makeText(MessageCommentActivity.this, "评论内容不能为空", Toast.LENGTH_SHORT);
+            toast.show();
             num = 0;
         } else {
             Retrofit.Builder builder = new Retrofit.Builder();
@@ -190,7 +192,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<CommentBean> dynamicDetailsBean = fzbInterface.getHousesDynamicCommentLike("2",et,FinalContents.getTargetId(),FinalContents.getUserID(), FinalContents.getUserID());
+            Observable<CommentBean> dynamicDetailsBean = fzbInterface.getHousesDynamicCommentLike("2", et, FinalContents.getTargetId(), FinalContents.getUserID(), FinalContents.getUserID());
             dynamicDetailsBean.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<CommentBean>() {
@@ -334,5 +336,23 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
                 break;
         }
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        toast.cancel();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        toast.cancel();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        toast.cancel();
     }
 }

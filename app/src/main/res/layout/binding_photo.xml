@@ -8,7 +8,7 @@
     tools:ignore="ResourceName">
 
     <TextView
-        android:id="@+id/commission_binding_title"
+        android:id="@+id/photo_binding_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -18,7 +18,7 @@
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/commission_binding_proportion"
+        android:id="@+id/photo_binding_proportion"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="70dp"
@@ -45,7 +45,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:id="@+id/commission_binding_cancel"
+            android:id="@+id/photo_binding_cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -68,7 +68,7 @@
             android:orientation="horizontal" />
 
         <RelativeLayout
-            android:id="@+id/commission_binding_confirm"
+            android:id="@+id/photo_binding_confirm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

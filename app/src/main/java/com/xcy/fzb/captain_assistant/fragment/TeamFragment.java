@@ -208,19 +208,34 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    fragment_lls_1.setBackgroundColor(Color.parseColor("#334485"));
-                    fragment_lls_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
-                    fragment_lls_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_lls_1.setBackgroundColor(Color.parseColor("#334485"));
+//                    fragment_lls_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_lls_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+
+                    fragment_lls_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
+                    fragment_lls_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
+                    fragment_lls_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
+
                     EventBus.getDefault().post(new Fragnemt_SS("", "", data.getLeaderNum() + "",data.getSalesNum() + "",""));
                 } else if (position == 1) {
-                    fragment_lls_2.setBackgroundColor(Color.parseColor("#334485"));
-                    fragment_lls_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
-                    fragment_lls_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_lls_2.setBackgroundColor(Color.parseColor("#334485"));
+//                    fragment_lls_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_lls_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
+
+                    fragment_lls_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
+                    fragment_lls_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
+                    fragment_lls_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
+
                     EventBus.getDefault().post(new Fragnemt_SS("", "", "",data.getSalesNum() + "",data.getCounselorNum() + ""));
                 } else if (position == 2) {
-                    fragment_lls_3.setBackgroundColor(Color.parseColor("#334485"));
-                    fragment_lls_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
-                    fragment_lls_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_lls_3.setBackgroundColor(Color.parseColor("#334485"));
+//                    fragment_lls_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
+//                    fragment_lls_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
+
+                    fragment_lls_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
+                    fragment_lls_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
+                    fragment_lls_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
+
                     EventBus.getDefault().post(new Fragnemt_SS("", "", "",data.getSalesNum() + "",data.getCounselorNum() + ""));
                 }
             }

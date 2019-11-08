@@ -597,7 +597,7 @@
                         android:lineSpacingMultiplier="1.2"
                         android:lines="2"
                         android:singleLine="true"
-                        android:text="三百峰项目频获关注，河南的到家吧就看得见你减多少南京南京可能就就不打就开始可能是看来你！"
+                        android:text=""
                         android:textColor="#111111"
                         android:textSize="14sp" />
 
@@ -606,7 +606,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="9dp"
-                        android:text="2019-03-15 12：33：30"
+                        android:text=""
                         android:textColor="#666666"
                         android:textSize="12sp" />
 
