@@ -60,7 +60,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -148,35 +148,68 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                             @Override
                             public void onItemClick(final int postion) {
 
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Captain_Team_CommissionLevelActivity.this);
-                                builder.setTitle(data.get(postion).getName());    //设置对话框标题
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(Captain_Team_CommissionLevelActivity.this);
+                                View inflate = LayoutInflater.from(Captain_Team_CommissionLevelActivity.this).inflate(R.layout.binding_commission, null, false);
+                                builder1.setView(inflate);
+                                TextView commission_binding_title = inflate.findViewById(R.id.commission_binding_title);
+                                RelativeLayout commission_binding_cancel = inflate.findViewById(R.id.commission_binding_cancel);
+                                RelativeLayout commission_binding_confirm = inflate.findViewById(R.id.commission_binding_confirm);
+                                final EditText commission_binding_proportion = inflate.findViewById(R.id.commission_binding_proportion);
 
-                                final EditText edit = new EditText(Captain_Team_CommissionLevelActivity.this);
-                                edit.setPadding(50,0,0,30);
-                                edit.setHint("请输入要修改的佣金比例");
-                                builder.setView(edit);
-                                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                                commission_binding_title.setText(data.get(postion).getName());
+                                final AlertDialog show = builder1.show();
+
+                                commission_binding_cancel.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                        if (edit.getText().toString().equals("")) {
+                                    public void onClick(View v) {
+                                        Toast.makeText(Captain_Team_CommissionLevelActivity.this, "您已取消修改佣金比例", Toast.LENGTH_SHORT).show();
+                                        show.dismiss();
+                                    }
+                                });
+                                commission_binding_confirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        String s = commission_binding_proportion.getText().toString();
+                                        if (s.equals("")) {
                                             Toast.makeText(Captain_Team_CommissionLevelActivity.this, "数值不能为空", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            initDataAdd(commissionLevelSelectBean.getData().get(postion).getId(), edit.getText().toString());
+                                            initDataAdd(commissionLevelSelectBean.getData().get(postion).getId(), s);
+                                            show.dismiss();
                                         }
 
                                     }
                                 });
-                                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Toast.makeText(Captain_Team_CommissionLevelActivity.this, "您已取消修改佣金比例", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                                builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
-                                AlertDialog dialog = builder.create();  //创建对话框
-                                dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
-                                dialog.show();
+
+
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(Captain_Team_CommissionLevelActivity.this);
+//                                builder.setTitle(data.get(postion).getName());    //设置对话框标题
+//
+//                                final EditText edit = new EditText(Captain_Team_CommissionLevelActivity.this);
+//                                edit.setPadding(50, 0, 0, 30);
+//                                edit.setHint("请输入要修改的佣金比例");
+//                                builder.setView(edit);
+//                                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//
+//                                        if (edit.getText().toString().equals("")) {
+//                                            Toast.makeText(Captain_Team_CommissionLevelActivity.this, "数值不能为空", Toast.LENGTH_SHORT).show();
+//                                        } else {
+//                                            initDataAdd(commissionLevelSelectBean.getData().get(postion).getId(), edit.getText().toString());
+//                                        }
+//
+//                                    }
+//                                });
+//                                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        Toast.makeText(Captain_Team_CommissionLevelActivity.this, "您已取消修改佣金比例", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                                builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
+//                                AlertDialog dialog = builder.create();  //创建对话框
+//                                dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
+//                                dialog.show();
                             }
                         });
                     }
@@ -275,32 +308,63 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                         adapter.setOnItemClickListener(new Captain_Team_CommissionLevelAdapter.OnItemClickLisenter() {
                             @Override
                             public void onItemClick(final int postion) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Captain_Team_CommissionLevelActivity.this);
-                                builder.setTitle(data.get(postion).getName());    //设置对话框标题
-                                final EditText edit = new EditText(Captain_Team_CommissionLevelActivity.this);
-                                edit.setPadding(50,0,0,30);
-                                edit.setHint("请输入要修改的佣金比例");
-                                builder.setView(edit);
-                                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(Captain_Team_CommissionLevelActivity.this);
+                                View inflate = LayoutInflater.from(Captain_Team_CommissionLevelActivity.this).inflate(R.layout.binding_commission, null, false);
+                                builder1.setView(inflate);
+                                TextView commission_binding_title = inflate.findViewById(R.id.commission_binding_title);
+                                RelativeLayout commission_binding_cancel = inflate.findViewById(R.id.commission_binding_cancel);
+                                RelativeLayout commission_binding_confirm = inflate.findViewById(R.id.commission_binding_confirm);
+                                final EditText commission_binding_proportion = inflate.findViewById(R.id.commission_binding_proportion);
+
+                                commission_binding_title.setText(data.get(postion).getName());
+                                final AlertDialog show = builder1.show();
+
+                                commission_binding_cancel.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        if (edit.getText().toString().equals("")) {
+                                    public void onClick(View v) {
+                                        Toast.makeText(Captain_Team_CommissionLevelActivity.this, "您已取消修改佣金比例", Toast.LENGTH_SHORT).show();
+                                        show.dismiss();
+                                    }
+                                });
+                                commission_binding_confirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        String s = commission_binding_proportion.getText().toString();
+                                        if (s.equals("")) {
                                             Toast.makeText(Captain_Team_CommissionLevelActivity.this, "数值不能为空", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            initDataAdd(commissionLevelSelectBean.getData().get(postion).getId(), edit.getText().toString());
+                                            initDataAdd(commissionLevelSelectBean.getData().get(postion).getId(), s);
+                                            show.dismiss();
                                         }
                                     }
                                 });
-                                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Toast.makeText(Captain_Team_CommissionLevelActivity.this, "您已取消修改佣金比例", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                                builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
-                                AlertDialog dialog = builder.create();  //创建对话框
-                                dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
-                                dialog.show();
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(Captain_Team_CommissionLevelActivity.this);
+//                                builder.setTitle(data.get(postion).getName());    //设置对话框标题
+//                                final EditText edit = new EditText(Captain_Team_CommissionLevelActivity.this);
+//                                edit.setPadding(50,0,0,30);
+//                                edit.setHint("请输入要修改的佣金比例");
+//                                builder.setView(edit);
+//                                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        if (edit.getText().toString().equals("")) {
+//                                            Toast.makeText(Captain_Team_CommissionLevelActivity.this, "数值不能为空", Toast.LENGTH_SHORT).show();
+//                                        } else {
+//                                            initDataAdd(commissionLevelSelectBean.getData().get(postion).getId(), edit.getText().toString());
+//                                        }
+//                                    }
+//                                });
+//                                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        Toast.makeText(Captain_Team_CommissionLevelActivity.this, "您已取消修改佣金比例", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                                builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
+//                                AlertDialog dialog = builder.create();  //创建对话框
+//                                dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
+//                                dialog.show();
                             }
                         });
                     }

@@ -737,22 +737,24 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 CommissionRecycler commissionRecycler = new CommissionRecycler(projectDetailsBeanData);
                                 commissionRv.setAdapter(commissionRecycler);
                             }
+
+                            if (SharItOff.getShar().equals("显")) {
+                                linear2.setVisibility(View.VISIBLE);
+                                linear0.setVisibility(View.VISIBLE);
+
+                            } else if (SharItOff.getShar().equals("隐")) {
+                                linear2.setVisibility(View.GONE);
+                                linear0.setVisibility(View.GONE);
+
+                            }
                         }
 
-                        if (SharItOff.getShar().equals("显")) {
-                            linear2.setVisibility(View.VISIBLE);
-                            linear0.setVisibility(View.VISIBLE);
-
-                        } else if (SharItOff.getShar().equals("隐")) {
-                            linear2.setVisibility(View.GONE);
-                            linear0.setVisibility(View.GONE);
-
-                        }
 
 
-                        if (FinalContents.getIdentity().equals("63")) {
-                            linear3.setVisibility(View.GONE);
-                        } else {
+
+//                        if (FinalContents.getIdentity().equals("63")) {
+//                            linear3.setVisibility(View.GONE);
+//                        } else {
                             if (projectDetailsBeanData.getHousesDynamics().size() == 0) {
                                 linear3.setVisibility(View.GONE);
                             } else {
@@ -760,7 +762,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 house_title.setText(projectDetailsBeanData.getHousesDynamics().get(0).getContent());
                                 house_time.setText(projectDetailsBeanData.getHousesDynamics().get(0).getCreateDate());
                             }
-                        }
+//                        }
 
                         //户型信息
                         if (projectDetailsBeanData.getFamilyInfomations().size() == 0) {
