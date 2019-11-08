@@ -326,6 +326,16 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
                 Retrofit build = builder.build();
                 MyService fzbInterface = build.create(MyService.class);
+                Log.i("经纪人","data.getId()：" + data.getId());
+                Log.i("经纪人","num：" + num);
+                Log.i("经纪人","s3：" + s3);
+                Log.i("经纪人","s4：" + s4);
+                Log.i("经纪人","s5：" + s5);
+                Log.i("经纪人","s6：" + s6);
+                Log.i("经纪人","FinalContents.getUserID()：" + FinalContents.getUserID());
+                Log.i("经纪人","FinalContents.getCompanyManageId()：" + FinalContents.getCompanyManageId());
+                Log.i("经纪人","FinalContents.getStoreManageId()：" + FinalContents.getStoreManageId());
+
                 Observable<AddBrokerBean> addBrokerBean = fzbInterface.getAddBrokerBean(data.getId(), num, s3, s4, s5, s6, FinalContents.getUserID(), FinalContents.getCompanyManageId(), FinalContents.getStoreManageId(), "1");
                 addBrokerBean.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -348,6 +358,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
                             @Override
                             public void onError(Throwable e) {
+                                Log.i("经纪人","错误信息：" + e.getMessage());
                             }
 
                             @Override

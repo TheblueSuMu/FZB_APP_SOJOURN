@@ -186,7 +186,6 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
                     ifnum2 = 0;
                 }
 
-
                 break;
 //                TODO 确定
             case R.id.add_sales_btn:
