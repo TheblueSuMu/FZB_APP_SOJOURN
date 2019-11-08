@@ -282,6 +282,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@mipmap/wx_tp"
+                        android:scaleType="fitXY"
                         android:background="#999999" />
 
                     <TextView

@@ -412,7 +412,6 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
         //      展示
         pvOptions.show();
 
-
 //        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
 //        //处理popWindow 显示内容
 //        handleListView1(contentView);
@@ -470,7 +469,6 @@ public class Captain_Team_TeamMemberActivity extends AllActivity implements View
                     Intent intent = new Intent(Captain_Team_TeamMemberActivity.this, Captain_Team_BatchModifyingActivity.class);
                     startActivity(intent);
                 }
-
                 p.dismiss();
             }
         });

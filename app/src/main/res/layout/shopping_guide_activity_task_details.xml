@@ -263,8 +263,9 @@
                     android:layout_alignParentBottom="true"
                     android:background="#fff"
                     app:tabIndicatorColor="#354687"
-                    app:tabIndicatorHeight="4dp"
+                    app:tabIndicatorHeight="2dp"
                     app:tabSelectedTextColor="#354687"
+                    app:tabIndicatorFullWidth="false"
                     app:tabIndicator="@drawable/y_shape_tab_line"
                     app:tabTextColor="#333333"/>
 

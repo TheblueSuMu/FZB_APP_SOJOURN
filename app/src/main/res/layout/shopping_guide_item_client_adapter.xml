@@ -7,8 +7,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="79dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginRight="15dp">
 
         <com.makeramen.roundedimageview.RoundedImageView
@@ -17,6 +19,7 @@
             android:layout_height="50dp"
             android:layout_centerVertical="true"
             android:src="@mipmap/logo_garden"
+            android:scaleType="fitXY"
             app:riv_oval="true" />
 
         <TextView

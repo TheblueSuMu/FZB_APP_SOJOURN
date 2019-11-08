@@ -179,7 +179,6 @@ public class Captain_Team_BatchModifyingActivity extends AllActivity {
                     });
 
         } else {
-
             final Observable<CommissionLevelSelectBean> commissionLevelSelece = fzbInterface.getCommissionLevelSelece(FinalContents.getUserID(), FinalContents.getUserID());
             commissionLevelSelece.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
