@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xcy.fzb.R;
@@ -53,8 +54,8 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
                     for (int i = 0;i < a.length;i++){
                         arraylist.add(a[i]);
                     }
-                    MyGridLayoutManager layoutManager = new MyGridLayoutManager(context,3);
-                    layoutManager.setOrientation(MyGridLayoutManager.VERTICAL);
+                    GridLayoutManager layoutManager = new GridLayoutManager(context,3);
+                    layoutManager.setOrientation(GridLayoutManager.VERTICAL);
                     holder.item_reivew_adapter_item.setLayoutManager(layoutManager);
                     ReviewAdapterItemAdapter recyclerAdapter = new ReviewAdapterItemAdapter(arraylist);
                     recyclerAdapter.setImgUrl(list.get(position).getValue());
