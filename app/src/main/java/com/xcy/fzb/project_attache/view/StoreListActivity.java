@@ -120,13 +120,13 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             public void onClick(View view) {
                 if (store_list_cb.isChecked()) {
                     if (store_list_ll2.getVisibility() == View.VISIBLE) {
-                        initData("", "", "1");
+                        initData("", "", "1","","","");
                     } else {
                         initDatam("","", "1");
                     }
                 } else {
                     if (store_list_ll2.getVisibility() == View.VISIBLE) {
-                        initData("", "", "");
+                        initData("", "", "","","","");
                     } else {
                         initDatam("","", "");
                     }
@@ -141,9 +141,9 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                     String s = store_list_et.getText().toString();
                     if (store_list_ll2.getVisibility() == View.VISIBLE) {
                         if (store_list_cb.isChecked()) {
-                            initData("", s, "1");
+                            initData("", s, "1","","","");
                         } else {
-                            initData("", s, "");
+                            initData("", s, "","","","");
                         }
                     } else if (store_list_ll4.getVisibility() == View.VISIBLE) {
                         if (store_list_cb.isChecked()) {
@@ -175,15 +175,20 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
             store_list_ll2.setVisibility(View.VISIBLE);
             store_list_ll4.setVisibility(View.INVISIBLE);
-            initData(FinalContents.getCompanyManageId(), "", "");
+            initData(FinalContents.getCompanyManageId(), "", "","","","");
             FinalContents.setStoreList("1");
         } else {
-            initData(FinalContents.getCompanyId(), "", "");
+
+            String types = getIntent().getStringExtra("types");
+            String starts = getIntent().getStringExtra("starts");
+            String ends = getIntent().getStringExtra("ends");
+
+            initData(FinalContents.getCompanyId(), "", "",types,starts,ends);
             FinalContents.setStoreList("1");
         }
     }
 
-    private void initData(String companyId, String search, String status) {
+    private void initData(String companyId, String search, String status,String type,String startData,String endData) {
 
         context = StoreListActivity.this;
         mContactModels = new ArrayList<>();
@@ -198,7 +203,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        final Observable<StoreListBean> storeList = fzbInterface.getStoreList(companyId, search, status, FinalContents.getUserID(), "1000");
+        final Observable<StoreListBean> storeList = fzbInterface.getStoreList(companyId, search, status, FinalContents.getUserID(), "1000",type,startData,endData);
         storeList.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<StoreListBean>() {
@@ -310,13 +315,13 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
 
                if(FinalContents.getMyAddType().equals("门店")){
-                   initData(FinalContents.getCompanyManageId(), "", "");
+                   initData(FinalContents.getCompanyManageId(), "", "","","","");
                    FinalContents.setStoreList("1");
                }else {
                    if (store_list_cb.isChecked()) {
-                       initData("", "", "1");
+                       initData("", "", "1","","","");
                    } else {
-                       initData("", "", "");
+                       initData("", "", "","","","");
                    }
                    FinalContents.setStoreList("1");
                }
@@ -508,9 +513,9 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             store_list_ll2.setVisibility(View.VISIBLE);
             FinalContents.setStoreList("1");
             FinalContents.setMyAddType("");
-            initData("", "", "");
+            initData("", "", "","","","");
         } else {
-            initData("", "", "");
+            initData("", "", "","","","");
             FinalContents.setStoreList("1");
         }
 

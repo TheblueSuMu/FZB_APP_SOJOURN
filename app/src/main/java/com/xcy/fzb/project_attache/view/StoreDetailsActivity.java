@@ -106,6 +106,9 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
     LinearLayout fragment_ll_1;
     LinearLayout fragment_ll_2;
+    private String type;
+    private String s;
+    private String s1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -608,8 +611,15 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
     }
 
     private void initDataS() {
+
         intent = new Intent(StoreDetailsActivity.this, BrokersListActivity.class);
+
         FinalContents.setCompanyId(companyInfo.getCompanyId());
+
+        intent.putExtra("types",type);
+        intent.putExtra("starts",s);
+        intent.putExtra("ends",s1);
+
         startActivity(intent);
 
     }
@@ -630,10 +640,30 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
     @Override
     public void onSingleTouch() {
-
+        if(store_details_rb1.isChecked()){
+            type = "0";
+            s = "";
+            s1 = "";
+        }else if(store_details_rb2.isChecked()){
+            type = "1";
+            s = "";
+            s1 = "";
+        }else if(store_details_rb3.isChecked()){
+            type = "2";
+            s = "";
+            s1 = "";
+        }else if(store_details_rb4.isChecked()){
+            type = "3";
+            s = store_details_tv4.getText().toString();
+            s1 = store_details_tv5.getText().toString();
+        }
         int currentItem = vpager_one.getCurrentItem();
         if(currentItem == 0){
             intent = new Intent(StoreDetailsActivity.this, StoreListActivity.class);
+            intent.putExtra("types",type);
+            intent.putExtra("starts",s);
+            intent.putExtra("ends",s1);
+
                 FinalContents.setMyAddType("");
                 FinalContents.setCompanyId(companyInfo.getCompanyId());
                 startActivity(intent);
