@@ -67,6 +67,7 @@
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                     <LinearLayout
+                        android:id="@+id/appbar_layout"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -184,14 +185,13 @@
 
                             </LinearLayout>
 
-                            <View
-                                android:layout_marginTop="26dp"
-                                android:background="#EEEEEE"
-                                android:layout_width="match_parent"
-                                android:layout_height="5dp"/>
-
                         </LinearLayout>
 
+
+                        <TextView
+                            android:text=""
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
 
                     </LinearLayout>
 
@@ -200,11 +200,12 @@
                 <LinearLayout
                     android:id="@+id/rl_title"
                     android:orientation="vertical"
+                    android:layout_marginBottom="26dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <RelativeLayout
-                        android:layout_marginTop="26dp"
+                        android:layout_marginTop="12dp"
                         android:layout_marginLeft="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -248,13 +249,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                    <View
-                        android:layout_marginTop="26dp"
-                        android:background="#EEEEEE"
-                        android:layout_width="match_parent"
-                        android:layout_height="5dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:background="#EEEEEE"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"/>
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabs"

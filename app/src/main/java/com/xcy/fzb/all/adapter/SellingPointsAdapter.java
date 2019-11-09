@@ -44,7 +44,7 @@ public class SellingPointsAdapter extends RecyclerView.Adapter<SellingPointsAdap
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, WebActivity.class);
-                intent.putExtra("webUrl","http://yanshi.fangzuobiao.com:88/sellingPoint?"+"&userId="+ FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId());
+                intent.putExtra("webUrl",FinalContents.getAdminUrl()+"/sellingPoint?"+"&userId="+ FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId());
                 intent.putExtra("title","卖点详情");
                 FinalContents.setTalkToolId(rows.get(position).getId());
                 context.startActivity(intent);

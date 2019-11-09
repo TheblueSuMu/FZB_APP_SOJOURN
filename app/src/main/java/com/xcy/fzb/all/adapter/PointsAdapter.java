@@ -50,14 +50,14 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.ViewHolder
         holder.project_points_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FinalContents.showShare(rows.get(position).getTitle(),"http://yanshi.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),rows.get(position).getContent(),FinalContents.getImageUrl()+rows.get(position).getImg(),"http://yanshi.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),context);
+                FinalContents.showShare(rows.get(position).getTitle(),FinalContents.getAdminUrl()+"/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),rows.get(position).getContent(),FinalContents.getImageUrl()+rows.get(position).getImg(),FinalContents.getAdminUrl()+"/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),context);
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, WebActivity.class);
-                intent.putExtra("webUrl","http://yanshi.fangzuobiao.com:88/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId());
+                intent.putExtra("webUrl",FinalContents.getAdminUrl()+"/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId());
                 intent.putExtra("title","海报详情");
                 FinalContents.setTalkToolId(rows.get(position).getId());
                 context.startActivity(intent);
