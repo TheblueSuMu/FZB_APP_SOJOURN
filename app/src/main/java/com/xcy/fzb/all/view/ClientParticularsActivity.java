@@ -97,6 +97,9 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
         client_particulars_img.setOnClickListener(this);
         client_particulars_return.setOnClickListener(this);
 
+        if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
+            client_particulars_report.setVisibility(View.GONE);
+        }
 
         initData();
 
