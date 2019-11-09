@@ -38,7 +38,7 @@
         android:layout_marginTop="75dp"
         android:layout_height="match_parent">
 
-        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        <com.xcy.fzb.all.utils.SuperSwipeRefreshLayout
             android:id="@+id/PtrClassic_modulebroke"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -605,7 +605,7 @@
                 </LinearLayout>
             </ScrollView>
 
-        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+        </com.xcy.fzb.all.utils.SuperSwipeRefreshLayout>
 
 
     </RelativeLayout>

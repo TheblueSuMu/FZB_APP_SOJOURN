@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
@@ -78,7 +79,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import top.defaults.view.DateTimePickerView;
 
 
-public class DFragment extends Fragment implements View.OnClickListener, MyViewPager.OnSingleTouchListener {
+public class DFragment extends Fragment implements View.OnClickListener, MyViewPager.OnSingleTouchListener, SwipeRefreshLayout.OnRefreshListener {
 
     LinearLayout ll1_modulebroker;
     LinearLayout ll2_modulebroker;
@@ -134,7 +135,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     LinearLayout report_picker;
     TextView report_cancel;
     TextView report_ensure;
-    private PtrClassicFrameLayout ptrClassicFrameLayout;
+    private SwipeRefreshLayout ptrClassicFrameLayout;
 
     private MyViewPager vpager_one;
     private ArrayList<Fragment> aList = new ArrayList<>();
@@ -286,25 +287,27 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         report_ensure = getActivity().findViewById(R.id.fragment_report_picker_ensure);
         details_chart = getActivity().findViewById(R.id.lc_modulebroke);
 
-        ptrClassicFrameLayout.setPtrHandler(new PtrHandler() {
-            @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                frame.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        ptrClassicFrameLayout.refreshComplete();
-                        ptrClassicFrameLayout.setLastUpdateTimeKey("2017-2-10");
-                        initData();
-                        rb1_modulebroker.setChecked(true);
-                    }
-                }, 1000);
-            }
+        ptrClassicFrameLayout.setOnRefreshListener(this);
 
-            @Override
-            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
-            }
-        });
+//        ptrClassicFrameLayout.setPtrHandler(new PtrHandler() {
+//            @Override
+//            public void onRefreshBegin(PtrFrameLayout frame) {
+//                frame.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ptrClassicFrameLayout.refreshComplete();
+//                        ptrClassicFrameLayout.setLastUpdateTimeKey("2017-2-10");
+//                        initData();
+//                        rb1_modulebroker.setChecked(true);
+//                    }
+//                }, 1000);
+//            }
+//
+//            @Override
+//            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+//                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+//            }
+//        });
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -936,5 +939,16 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         super.onDestroy();
         FinalContents.setFragmentSS("0");
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onRefresh() {
+
+        if (ptrClassicFrameLayout.isRefreshing()) {//如果正在刷新
+            initView();
+            initData();
+            ptrClassicFrameLayout.setRefreshing(false);//取消刷新
+        }
+
     }
 }
