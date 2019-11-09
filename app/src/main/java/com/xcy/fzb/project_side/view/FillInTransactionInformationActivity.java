@@ -526,7 +526,6 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                         } else if (FinalContents.getTiaodan().equals("成交")) {
                             Log.i("判断","shuju："+ifnum6);
                             initTradeSave();
-
                         }
                     }
 
