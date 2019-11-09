@@ -24,10 +24,10 @@ public class FinalContents {
     public static final String SP_FILE_NAME = "fzb";
     public static final String SP_LOGIN_NAME = "fzbLogin";
 
-//    static String ImageUrl = "http://39.98.173.250:8080";
+    static String ImageUrl = "http://39.98.173.250:8080";
 //    static String ImageUrl = "http://yanshi.fangzuobiao.com:88";
 //    static String ImageUrl = "http://39.100.13.183:8080";
-    static String ImageUrl = "http://39.98.224.67:8080";
+//    static String ImageUrl = "http://39.98.224.67:8080";
 
     public static String getImageUrl() {
         return ImageUrl;
@@ -37,10 +37,10 @@ public class FinalContents {
         ImageUrl = imageUrl;
     }
 
-//    static String BaseUrl = "http://39.98.173.250:8080/fangfang/app/v1/";
+    static String BaseUrl = "http://39.98.173.250:8080/fangfang/app/v1/";
 //    static String BaseUrl = "http://yanshi.fangzuobiao.com:88/fangfang/app/v1/";
 //    static String BaseUrl = "http://39.100.13.183:8080/fangfang/app/v1/";
-    static String BaseUrl = "http://39.98.224.67:8080/fangfang/app/v1/";
+//    static String BaseUrl = "http://39.98.224.67:8080/fangfang/app/v1/";
 
     static String userID = "";
     static String projectID = "";
