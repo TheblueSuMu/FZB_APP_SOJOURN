@@ -2,6 +2,7 @@ package com.xcy.fzb.project_attache.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -840,15 +841,18 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
             set1.setDrawFilled(true);
             set1.setDrawCircles(true);
             set1.setLineWidth(1.8f);
-            set1.setCircleRadius(4f);
+            set1.setCircleRadius(3f);
             set1.setValueTextSize(9f);
             set1.setHighlightEnabled(!set1.isHighlightEnabled());
-            set1.setCircleColor(Color.GRAY);
+            set1.setCircleColor(Color.parseColor("#FFFFFF"));
+            set1.setCircleHoleColor(Color.parseColor("#5484FF"));
             set1.setHighLightColor(Color.BLACK);
-            set1.setColor(R.color.line);
-            set1.setFillColor(R.color.mian);
+            set1.setColor(Color.parseColor("#5484FF"));
+//            set1.setFillColor(R.color.mian);
+            set1.setFillAlpha(20);
+            Drawable drawable = getResources().getDrawable(R.drawable.line_back);
+            set1.setFillDrawable(drawable);
             set1.setDrawValues(!set1.isDrawValuesEnabled());
-            set1.setFillAlpha(50);
             set1.setDrawHorizontalHighlightIndicator(false);
             set1.setFillFormatter(new IFillFormatter() {
                 @Override
