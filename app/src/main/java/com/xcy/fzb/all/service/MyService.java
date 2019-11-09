@@ -693,11 +693,11 @@ public interface MyService {
 
     //经纪人列表
     @POST("commissionerSelect/agentList")
-    Observable<BrokersListBean> getBrokersListBean(@Query("companyId") String companyId, @Query("storeId") String storeId, @Query("search") String search, @Query("status") String status, @Query("userId") String userId, @Query("pageSize") String pageSize);
+    Observable<BrokersListBean> getBrokersListBean(@Query("companyId") String companyId, @Query("storeId") String storeId, @Query("search") String search, @Query("status") String status, @Query("userId") String userId, @Query("pageSize") String pageSize, @Query("type") String type, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
     //门店列表
     @POST("commissionerSelect/storeList")
-    Observable<StoreListBean> getStoreList(@Query("companyId") String companyId, @Query("search") String search, @Query("status") String status, @Query("userId") String userId, @Query("pageSize") String pageSize);
+    Observable<StoreListBean> getStoreList(@Query("companyId") String companyId, @Query("search") String search, @Query("status") String status, @Query("userId") String userId, @Query("pageSize") String pageSize, @Query("type") String type, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
     //公司列表
     @POST("commissionerSelect/companyList")

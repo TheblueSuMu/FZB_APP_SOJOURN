@@ -128,13 +128,13 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                     String s = brokers_list_et.getText().toString();
                     String s1 = brokers_tv.getText().toString();
                     if (s1.equals("全部")) {
-                        initData(FinalContents.getStoreId(), s, "");
+                        initData(FinalContents.getStoreId(), s, "","","","");
                         return true;
                     } else if (s1.equals("只看异常门店")) {
-                        initData(FinalContents.getStoreId(), s, "3");
+                        initData(FinalContents.getStoreId(), s, "3","","","");
                         return true;
                     } else {
-                        initData(FinalContents.getStoreId(), s, "");
+                        initData(FinalContents.getStoreId(), s, "","","","");
                         return true;
                     }
                 }
@@ -144,7 +144,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
 
     }
 
-    private void initData(String storeId, String search, String status) {
+    private void initData(String storeId, String search, String status,String type,String startData,String endData) {
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -157,7 +157,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
         Log.i("MyCL", "--1--search：" + search);
         Log.i("MyCL", "--1--status：" + status);
         Log.i("MyCL", "--1-- FinalContents.getUserID()：" +  FinalContents.getUserID());
-        Observable<BrokersListBean> brokersListBean = fzbInterface.getBrokersListBean(FinalContents.getCompanyId(), storeId, search, status, FinalContents.getUserID(), "1000");
+        Observable<BrokersListBean> brokersListBean = fzbInterface.getBrokersListBean(FinalContents.getCompanyId(), storeId, search, status, FinalContents.getUserID(), "1000",type,startData,endData);
         brokersListBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BrokersListBean>() {
@@ -230,7 +230,14 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        initData(FinalContents.getStoreId(), "", "");
+        if(FinalContents.getCompanyId().equals("")){
+            initData(FinalContents.getStoreId(), "", "","","","");
+        }else {
+            String types = getIntent().getStringExtra("types");
+            String starts = getIntent().getStringExtra("starts");
+            String ends = getIntent().getStringExtra("ends");
+            initData(FinalContents.getStoreId(), "", "",types,starts,ends);
+        }
     }
 
     @Override
@@ -301,10 +308,10 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                 brokers_tv.setText(list1.get(options1));
                 String string = brokers_list_et.getText().toString();
                 if (options1 == 0) {
-                    initData(FinalContents.getStoreId(), string, "");
+                    initData(FinalContents.getStoreId(), string, "","","","");
                 } else if (options1 == 1) {
 
-                    initData(FinalContents.getStoreId(), string, "3");
+                    initData(FinalContents.getStoreId(), string, "3","","","");
                 }
             }
         }).setSelectOptions(0)
