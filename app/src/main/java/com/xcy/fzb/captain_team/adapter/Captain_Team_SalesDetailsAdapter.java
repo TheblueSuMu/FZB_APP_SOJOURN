@@ -1,5 +1,7 @@
 package com.xcy.fzb.captain_team.adapter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,12 +61,26 @@ public class Captain_Team_SalesDetailsAdapter extends RecyclerView.Adapter<Capta
             holder.item_sales_details_tv3.setText("团队长："+list.get(position).getLeaderName());
         }
         holder.item_sales_details_tv2.setText(list.get(position).getPhone());
+
+        holder.item_sales_details_tv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + list.get(position).getPhone()));//跳转到拨号界面，同时传递电话号码
+                holder.itemView.getContext().startActivity(dialIntent);
+            }
+        });
+
         if(list.get(position).getLoginDate().equals("")){
             holder.item_sales_details_tv4.setVisibility(View.GONE);
         }else {
             holder.item_sales_details_tv4.setText("最后上线时间："+list.get(position).getLoginDate());
         }
 
+        if (list.get(position).getLoginFlag().equals("0")) {
+            holder.member_name_rls.setVisibility(View.VISIBLE);
+        } else {
+            holder.member_name_rls.setVisibility(View.GONE);
+        }
 
         holder.item_sales_details_rl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +101,7 @@ public class Captain_Team_SalesDetailsAdapter extends RecyclerView.Adapter<Capta
     class SalesDetailsViewHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout item_sales_details_rl;
+        RelativeLayout member_name_rls;
         ImageView item_sales_details_img;
         TextView item_sales_details_tv1;
         TextView item_sales_details_tv2;
@@ -93,6 +110,7 @@ public class Captain_Team_SalesDetailsAdapter extends RecyclerView.Adapter<Capta
         public SalesDetailsViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            member_name_rls = itemView.findViewById(R.id.member_name_rls);
             item_sales_details_rl = itemView.findViewById(R.id.item_sales_details_rl);
             item_sales_details_img = itemView.findViewById(R.id.item_sales_details_img);
             item_sales_details_tv1 = itemView.findViewById(R.id.item_sales_details_tv1);

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -11,12 +12,33 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/item_sales_details_img"
             android:layout_width="60dp"
+            app:riv_oval="true"
             android:layout_height="60dp"
             android:layout_marginLeft="15dp"
             android:scaleType="fitXY" />
+
+        <RelativeLayout
+            android:id="@+id/member_name_rls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/shape_team_member"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="已禁用"
+                android:textColor="#ffffffff"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -35,16 +57,17 @@
                     android:textColor="#ff111111"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/item_sales_details_tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:textColor="#ff666666"
-                    android:textSize="12sp" />
+
 
             </LinearLayout>
-
+            <TextView
+                android:id="@+id/item_sales_details_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:textColor="#334485"
+                android:background="@drawable/x_color"
+                android:textSize="12sp" />
             <TextView
                 android:id="@+id/item_sales_details_tv3"
                 android:layout_width="wrap_content"
