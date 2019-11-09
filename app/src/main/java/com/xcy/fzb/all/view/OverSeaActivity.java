@@ -353,6 +353,10 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         back = findViewById(R.id.oversea_back);
         report = findViewById(R.id.oversea_report);
 
+        if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
+            report.setVisibility(View.GONE);
+        }
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
