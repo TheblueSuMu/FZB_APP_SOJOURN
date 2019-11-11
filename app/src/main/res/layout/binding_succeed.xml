@@ -6,25 +6,25 @@
     android:background="@drawable/tologin"
     tools:ignore="ResourceName">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="绑定成功"
-        android:textSize="20sp"
-        android:textColor="#334485"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="绑定成功"
+      android:textSize="20sp"
+      android:textColor="#334485"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="33dp"/>
 
-    <Button
-        android:id="@+id/item_binding_btn"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="85dp"
-        android:text="知道了"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:layout_marginBottom="26dp"
-        android:background="@drawable/points_dialog_but"/>
+  <Button
+      android:id="@+id/item_binding_btn"
+      android:layout_width="150dp"
+      android:layout_height="40dp"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="85dp"
+      android:text="知道了"
+      android:textColor="#FFFFFF"
+      android:textSize="18sp"
+      android:layout_marginBottom="26dp"
+      android:background="@drawable/points_dialog_but"/>
 
 </RelativeLayout>

@@ -326,7 +326,8 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
             }
         });
-        builder.show();
+        AlertDialog show = builder.show();
+        show.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#334485"));
 
     }
 
@@ -386,7 +387,8 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
             }
         });
-        builder.show();
+        AlertDialog show = builder.show();
+        show.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#334485"));
 
     }
 

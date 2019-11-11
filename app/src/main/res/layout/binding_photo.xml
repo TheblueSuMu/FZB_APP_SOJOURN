@@ -13,26 +13,35 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="销售一级"
+        android:text="请选择图片"
         android:textColor="#ff333333"
         android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/photo_binding_proportion"
+    <TextView
+        android:id="@+id/photo_binding_proportion_1"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/commission_shape"
-        android:hint="请输入要修改的佣金比例"
-        android:paddingLeft="15dp"
-        android:textSize="15sp"></EditText>
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:text="相机"
+        android:textAlignment="center"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/photo_binding_proportion_2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="100dp"
+        android:text="相册"
+        android:textAlignment="center"
+        android:textColor="#333333"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="135dp"
+        android:layout_marginTop="145dp"
         android:background="#EEEEEE"
         android:orientation="horizontal">
 
@@ -41,7 +50,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="43dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="146dp"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -57,7 +66,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="取消"
-                android:textColor="#ff333333"
+                android:textColor="#334485"
                 android:textSize="15sp" />
         </RelativeLayout>
 
@@ -70,6 +79,7 @@
         <RelativeLayout
             android:id="@+id/photo_binding_confirm"
             android:layout_width="0dp"
+            android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal">

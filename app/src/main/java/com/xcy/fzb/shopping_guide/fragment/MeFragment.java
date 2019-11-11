@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -147,7 +148,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
                     }
                 });
-                builder.show();
+                AlertDialog show = builder.show();
+                show.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#334485"));
+                show.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#334485"));
                 break;
 //                TODO 退出登录
             case R.id.exit_my_the_project_end:
@@ -166,7 +169,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         FinalContents.setDengLu("0");
                     }
                 });
-                builder2.show();
+                AlertDialog show2 = builder2.show();
+                show2.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#334485"));
                 break;
         }
 

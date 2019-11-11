@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -580,7 +581,8 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 
                     }
                 });
-                builder.show();
+                AlertDialog show = builder.show();
+                show.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#334485"));
                 break;
 //昵称
             case R.id.personal_rl_2:

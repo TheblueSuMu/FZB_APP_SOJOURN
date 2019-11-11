@@ -4,6 +4,7 @@ package com.xcy.fzb.captain_market.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -277,7 +278,9 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
                 }
             });
-            builder.show();
+            AlertDialog show = builder.show();
+            show.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#334485"));
+            show.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#334485"));
         } else if (id == R.id.my_exit) {
 //            TODO 退出登录
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -294,7 +297,8 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
                     FinalContents.setDengLu("0");
                 }
             });
-            builder.show();
+            AlertDialog show = builder.show();
+            show.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#334485"));
 
         }
 
