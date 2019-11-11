@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -455,8 +456,8 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
 
             }
         });
-        builder.show();
-
+        AlertDialog show = builder.show();
+        show.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#334485"));
     }
 
     //TODO 获取相册图片

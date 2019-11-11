@@ -201,16 +201,16 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
         mPoiSearch.setOnGetPoiSearchResultListener(listener);
 //TODO 发起检索请求
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
                 mPoiSearch.searchNearby(new PoiNearbySearchOption()
                         .location(new LatLng(o, d))
                         .radius(10000)
                         .keyword(RetrieveName)
                         .pageNum(10));
-            }
-        }).start();
+//            }
+//        }).start();
 
 
 
