@@ -102,7 +102,7 @@
                 android:id="@+id/attention"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:text=""
                 android:textColor="#666666"
                 android:textSize="10sp" />
@@ -111,7 +111,7 @@
                 android:id="@+id/collect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:text=""
                 android:textColor="#666666"
                 android:textSize="10sp" />
@@ -120,7 +120,7 @@
                 android:id="@+id/transmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:singleLine="true"
                 android:text=""
                 android:textColor="#666666"

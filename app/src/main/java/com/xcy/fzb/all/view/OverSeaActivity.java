@@ -476,7 +476,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<LabelBean> nationBean = fzbInterface.getLabel("1");
+        Observable<LabelBean> nationBean = fzbInterface.getLabel(FinalContents.getProjectType(),FinalContents.getUserID(),"1");
         nationBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LabelBean>() {

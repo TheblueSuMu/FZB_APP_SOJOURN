@@ -251,7 +251,7 @@ public interface MyService {
 
     //海外筛选 楼盘特色/项目标签
     @POST("commonSelect/label")
-    Observable<LabelBean> getLabel(@Query("type") String type);
+    Observable<LabelBean> getLabel(@Query("projectType") String projectType,@Query("userId") String userId,@Query("type") String type);
 
     //项目详情相册
     @POST("commonSelect/projectPhoto")

@@ -3,6 +3,7 @@ package com.xcy.fzb.all.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,6 @@ public class ClientParticularsAdapter extends RecyclerView.Adapter<ClientParticu
     @Override
     public void onBindViewHolder(@NonNull ClientParticularsViewHolder holder, final int position) {
         int num = 0;
-        String bhq = "";
         int a = 0;
         holder.item_client_title.setText(listData.get(position).getProjectName());
         List<ClientParticularsBean.DataBean.ListDataBean.AttacheListBean> attacheList = listData.get(position).getAttacheList();
@@ -56,21 +56,20 @@ public class ClientParticularsAdapter extends RecyclerView.Adapter<ClientParticu
             }
         }
         final List<ClientParticularsBean.DataBean.ListDataBean.ListMapBean> listMap = listData.get(position).getListMap();
-        for (int j = 0; j < listMap.size(); ++j) {
-            String value = listMap.get(j).getValue();
-            if(value.equals("")){
+        if (listMap.size() != 0) {
+            for (int j = 0; j < listMap.size(); ++j) {
 
-            }else {
-                StringBuffer stringBuffer = new StringBuffer();
-                stringBuffer.append(value);
-                if (stringBuffer.substring(0, 1).equals("2")) {
-                    a = 1;
-                } else {
-                    bhq = value;
+                if (listMap.get(j).getKey() != null) {
+                    if (listMap.get(j).getKey().equals("报备保护期")) {
+                        holder.item_client_tv2.setVisibility(View.VISIBLE);
+                        holder.item_client_tv2.setText("保护期"+listMap.get(j).getValue());
+                        holder.item_client_tv2.setTextColor(Color.parseColor("#C3555B"));
+                        return;
+                    }
                 }
             }
-
         }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,14 +81,15 @@ public class ClientParticularsAdapter extends RecyclerView.Adapter<ClientParticu
         });
 
         if (listData.get(position).getStatusName().equals("失效") || a == 1) {
+            holder.item_client_tv1.setVisibility(View.VISIBLE);
             holder.item_client_tv1.setText(listData.get(position).getStatusName());
             holder.item_client_tv1.setTextColor(Color.parseColor(listData.get(position).getStatusColor()));
             holder.item_client_tv2.setVisibility(View.GONE);
         } else {
+            Log.i("报备保护期","数值：" + listData.get(position).getStatusName());
+            holder.item_client_tv1.setVisibility(View.VISIBLE);
             holder.item_client_tv1.setText(listData.get(position).getStatusName());
             holder.item_client_tv1.setTextColor(Color.parseColor(listData.get(position).getStatusColor()));
-            holder.item_client_tv2.setText("保护期" + bhq);
-            holder.item_client_tv2.setTextColor(Color.parseColor("#C3555B"));
         }
 
     }

@@ -60,6 +60,7 @@ import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.view.AllActivity;
+import com.xcy.fzb.all.view.DisclaimerActivity;
 import com.xcy.fzb.all.view.ForgetActivity;
 import com.xcy.fzb.broker.view.Broker_MainActivity;
 import com.xcy.fzb.captain_assistant.view.Captain_Assistant_MainActivity;
@@ -140,6 +141,9 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     private String mVersion_name= FinalContents.getVersionNumBer();
     //  请求链接
     private String url ="";
+    private TextView fuwu;
+    private PopAdapter popAdapter;
+    private List<UserSaveBean> xlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +165,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
             if (FinalContents.getDengLu().equals("")) {
                 initDaown();
             }else {
+                initfvb();
             }
         } else {
             Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
@@ -179,12 +184,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
 
         initClear();
-        if (FinalContents.getDengLu().equals("")) {
-
-        }else {
-            initfvb();
-        }
-
     }
 
 
@@ -222,13 +221,13 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
     //命名区域
     private void initfvb() {
-        list.clear();
+        list = new ArrayList<>();
         login_tv_username = findViewById(R.id.tv_tip);
         login_tv_password = findViewById(R.id.tv_password);
         login_tv_get_code = findViewById(R.id.ctv_get_code);
         login_tv_select_type = findViewById(R.id.tv_select_login_type);
         login_tv_login = findViewById(R.id.tv_user_login);
-
+        fuwu = findViewById(R.id.fuwu);
         login_tv_forget_password = findViewById(R.id.tv_forget_password);
         login_tv_wechat = findViewById(R.id.tv_wechat);
 
@@ -241,11 +240,19 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         login_iv_user_state = findViewById(R.id.iv_user_state);
         login_iv_login_type = findViewById(R.id.iv_login_type);
 
+        fuwu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, DisclaimerActivity.class);
+                startActivity(intent);
+            }
+        });
+
         FinalContents.setIFSP("1");
 
-        if (pref.getString("user_name", "").equals("")) {
+        if (pref.getString("user_name1", "").equals("")) {
         } else {
-            list.add(new UserSaveBean(pref.getString("user_name", ""), pref.getString("user_password", "")));
+            list.add(new UserSaveBean(pref.getString("user_name1", ""), pref.getString("user_password1", "")));
             if (pref.getString("user_name2", "").equals("")) {
             } else {
                 list.add(new UserSaveBean(pref.getString("user_name2", ""), pref.getString("user_password2", "")));
@@ -260,14 +267,15 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         if (pref.getString("forget", "").equals("")) {
             if (FinalContents.getDengLu().equals("")) {
                 initDengLu();
+                Log.i("登录", "加载1：" + pref.getString("forget", ""));
+            } else {
                 editor.putString("forget", "1");
                 editor.commit();
-            } else {
-
+                Log.i("登录", "加载2：" + pref.getString("forget", ""));
             }
         }
 
-
+        Log.i("登录", "加载4：" + pref.getString("forget", ""));
 
 
 
@@ -277,7 +285,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     private void initDengLu() {
         Log.i("登录", "数据：" + pref.getString("DengLu", ""));
         if (pref.getString("denglu", "").equals("经纪人")) {
-            if (pref.getString("user_name", "").equals("")) {
+            if (pref.getString("user_name1", "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -295,7 +303,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("销售")) {
-            if (pref.getString("user_name", "").equals("")) {
+            if (pref.getString("user_name1", "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -313,7 +321,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("顾问")) {
-            if (pref.getString("user_name", "").equals("")) {
+            if (pref.getString("user_name1", "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -331,7 +339,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("团队长")) {
-            if (pref.getString("user_name", "").equals("")) {
+            if (pref.getString("user_name1", "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -349,7 +357,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("团助")) {
-            if (pref.getString("user_name", "").equals("")) {
+            if (pref.getString("user_name1", "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -367,7 +375,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("专员")) {
-            if (pref.getString("user_name", "").equals("")) {
+            if (pref.getString("user_name1", "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -386,7 +394,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("专案")) {
-            if (pref.getString("user_name", "").equals("")) {
+            if (pref.getString("user_name1", "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -404,7 +412,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("导购")) {
-            if (pref.getString("user_name", "").equals("")) {
+            if (pref.getString("user_name1", "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -620,7 +628,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(LoginActivity.this, "请输入正确的验证码", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "请确认您输入的验证码或手机号是否正确", Toast.LENGTH_SHORT).show();
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
@@ -717,11 +725,11 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     @Override
                     public void onNext(LoginUserBean loginUserBean1) {
                         loginUserBean = loginUserBean1;
-                        if (pref.getString("user_name", "").equals("")) {
-                            editor.putString("user_name", userName);
-                            editor.putString("user_password", passWord);
+                        if (pref.getString("user_name1", "").equals("")) {
+                            editor.putString("user_name1", userName);
+                            editor.putString("user_password1", passWord);
                             editor.commit();
-                        } else if (pref.getString("user_name", "").equals(userName)) {
+                        } else if (pref.getString("user_name1", "").equals(userName)) {
                         } else {
                             if (pref.getString("user_name2", "").equals("")) {
                                 editor.putString("user_name2", userName);
@@ -735,8 +743,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                     editor.commit();
                                 } else if (pref.getString("user_name3", "").equals(userName)) {
                                 } else {
-                                    editor.putString("user_name", userName);
-                                    editor.putString("user_password", passWord);
+                                    editor.putString("user_name1", userName);
+                                    editor.putString("user_password1", passWord);
                                     editor.commit();
                                 }
                             }
@@ -798,11 +806,11 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     @Override
                     public void onNext(ExemplaryUserBean exemplaryUserBean) {
                         ExemplaryUserBean userBean = exemplaryUserBean;
-                        if (pref.getString("user_name", "").equals("")) {
-                            editor.putString("user_name", userName);
-                            editor.putString("user_password", passWord);
+                        if (pref.getString("user_name1", "").equals("")) {
+                            editor.putString("user_name1", userName);
+                            editor.putString("user_password1", passWord);
                             editor.commit();
-                        } else if (pref.getString("user_name", "").equals(userName)) {
+                        } else if (pref.getString("user_name1", "").equals(userName)) {
                         } else {
                             if (pref.getString("user_name2", "").equals("")) {
                                 editor.putString("user_name2", userName);
@@ -816,8 +824,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                     editor.commit();
                                 } else if (pref.getString("user_name3", "").equals(userName)) {
                                 } else {
-                                    editor.putString("user_name", userName);
-                                    editor.putString("user_password", passWord);
+                                    editor.putString("user_name1", userName);
+                                    editor.putString("user_password1", passWord);
                                     editor.commit();
                                 }
                             }
@@ -930,11 +938,11 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     @Override
                     public void onNext(CaptainBean captainBean) {
                         CaptainBean userBean = captainBean;
-                        if (pref.getString("user_name", "").equals("")) {
-                            editor.putString("user_name", userName);
-                            editor.putString("user_password", passWord);
+                        if (pref.getString("user_name1", "").equals("")) {
+                            editor.putString("user_name1", userName);
+                            editor.putString("user_password1", passWord);
                             editor.commit();
-                        } else if (pref.getString("user_name", "").equals(userName)) {
+                        } else if (pref.getString("user_name1", "").equals(userName)) {
                         } else {
                             if (pref.getString("user_name2", "").equals("")) {
                                 editor.putString("user_name2", userName);
@@ -948,8 +956,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                     editor.commit();
                                 } else if (pref.getString("user_name3", "").equals(userName)) {
                                 } else {
-                                    editor.putString("user_name", userName);
-                                    editor.putString("user_password", passWord);
+                                    editor.putString("user_name1", userName);
+                                    editor.putString("user_password1", passWord);
                                     editor.commit();
                                 }
                             }
@@ -1085,11 +1093,38 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
     //获取历史账号
     private void handleListView(View contentView) {
-
         RecyclerView recyclerView = contentView.findViewById(R.id.rv_user);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        final PopAdapter popAdapter = new PopAdapter(list);
+
+//        xlist = new ArrayList<>();
+//
+//        for (int i = 0;i < list.size();i++){
+//            xlist.add(list.get(i));
+//        }
+//
+//
+//        if (list.size() >= 4) {
+//            xlist = new ArrayList<>();
+//            for (int i = list.size()-3; i < list.size(); i++){
+//                xlist.add(list.get(i));
+////                Log.i("size","数据："+arrayList.get(i));
+//            }
+////            listAdapter = new ListAdapter(xlist);
+//        }else {
+////            listAdapter = new ListAdapter(arrayList);
+//
+//        }
+//
+//        list = new ArrayList<>();
+//        for (int i = 0;i < xlist.size();i++){
+//            list.add(xlist.get(i));
+//        }
+
+
+
+
+        popAdapter = new PopAdapter(list);
         recyclerView.setAdapter(popAdapter);
 
         popAdapter.setOnItemClickListener(new PopAdapter.OnItemClickLisenter() {
@@ -1100,10 +1135,10 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     login_et_password.setText(list.get(postion).getUserPassword());
                     p.dismiss();
                 } else if (FinalContents.getDelete().equals("删除")) {
-                    if (pref.getString("user_name", "").equals(list.get(postion).getUserName())) {
+                    if (pref.getString("user_name1", "").equals(list.get(postion).getUserName())) {
                         Toast.makeText(LoginActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
-                        editor.remove("user_name");
-                        editor.remove("user_password");
+                        editor.remove("user_name1");
+                        editor.remove("user_password1");
                     } else {
                         if (pref.getString("user_name2", "").equals(list.get(postion).getUserName())) {
                             editor.remove("user_name2");

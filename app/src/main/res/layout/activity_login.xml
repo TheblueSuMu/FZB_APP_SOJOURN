@@ -304,18 +304,35 @@
                 android:layout_marginTop="37dp"
                 android:layout_marginBottom="35dp">
 
-                <CheckBox
-                    android:id="@+id/checkboxed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <RelativeLayout
                     android:layout_centerInParent="true"
-                    android:button="@null"
-                    android:checked="true"
-                    android:drawableLeft="@drawable/checkbox_check_s"
-                    android:gravity="center_vertical"
-                    android:text="    登录即代表阅读并同意《房坐标用户服务条款》"
-                    android:textColor="#ff666666"
-                    android:textSize="9sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/checkboxed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:checked="true"
+                        android:drawableLeft="@drawable/checkbox_check_s"
+                        android:gravity="center_vertical"
+                        android:text="    登录即代表阅读并同意"
+                        android:textColor="#ff666666"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/fuwu"
+                        android:layout_toRightOf="@id/checkboxed"
+                        android:text="《房坐标用户服务条款》"
+                        android:textColor="#334485"
+                        android:textSize="9sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
