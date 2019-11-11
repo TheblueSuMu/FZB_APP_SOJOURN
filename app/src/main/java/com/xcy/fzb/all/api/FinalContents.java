@@ -29,6 +29,16 @@ public class FinalContents {
 //    static String ImageUrl = "http://39.100.13.183:8080";
     static String ImageUrl = "http://39.98.224.67:8080";
 
+    static String AdminUrl = "http://yanshi.fangzuobiao.com:88";
+
+    public static String getAdminUrl() {
+        return AdminUrl;
+    }
+
+    public static void setAdminUrl(String adminUrl) {
+        AdminUrl = adminUrl;
+    }
+
     public static String getImageUrl() {
         return ImageUrl;
     }

@@ -78,6 +78,7 @@ public class TaskDetailsActivity extends AllActivity {
     String[] mTitles = new String[]{
             "行程", "注意事项", "客户"
     };
+    private LinearLayout appbar_layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,6 +116,7 @@ public class TaskDetailsActivity extends AllActivity {
         mAppBarLayout = (AppBarLayout) findViewById(R.id.mainappbar);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
 
+        appbar_layout = findViewById(R.id.appbar_layout);
         mTitle =  findViewById(R.id.rl_title);
         task_details_tool_layout = findViewById(R.id.task_details_tool_layout);
         task_details_tool_title = findViewById(R.id.task_details_tool_title);
@@ -214,6 +216,7 @@ public class TaskDetailsActivity extends AllActivity {
 
     private void init(){
         mTitle.setVisibility(View.GONE);
+        appbar_layout.setVisibility(View.VISIBLE);
         setupViewPager();
 
         AppBarStateChangeListener listener = new AppBarStateChangeListener();
