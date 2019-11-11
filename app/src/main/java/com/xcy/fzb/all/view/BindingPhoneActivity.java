@@ -1,5 +1,6 @@
 package com.xcy.fzb.all.view;
 
+import android.app.AlertDialog;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -144,18 +145,24 @@ public class BindingPhoneActivity extends AllActivity implements View.OnClickLis
                     @Override
                     public void onNext(ChangePhoneBean changeBean) {
                         ChangePhoneBean.DataBean data = changeBean.getData();
+
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(BindingPhoneActivity.this);
                         inflate = View.inflate(BindingPhoneActivity.this, R.layout.binding_succeed, null);
+                        builder1.setView(inflate);
                         item_binding_btn = inflate.findViewById(R.id.item_binding_btn);
-                        mHeadPopupclly = new PopupWindow(inflate, AbsListView.LayoutParams.MATCH_PARENT, AbsListView.LayoutParams.MATCH_PARENT, true);
-                        mHeadPopupclly.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
-                        mHeadPopupclly.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-                        mHeadPopupclly.setBackgroundDrawable(new BitmapDrawable());
-                        mHeadPopupclly.setOutsideTouchable(true);
-                        mHeadPopupclly.showAsDropDown(binding_btn_2, 0, 0);
+//                        mHeadPopupclly = new PopupWindow(inflate, AbsListView.LayoutParams.MATCH_PARENT, AbsListView.LayoutParams.MATCH_PARENT, true);
+//                        mHeadPopupclly.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+//                        mHeadPopupclly.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+//                        mHeadPopupclly.setBackgroundDrawable(new BitmapDrawable());
+//                        mHeadPopupclly.setOutsideTouchable(true);
+//                        mHeadPopupclly.showAsDropDown(binding_btn_2, 0, 0);
+                        final AlertDialog alertDialog = builder1.create();
+                        alertDialog.show();
                         item_binding_btn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 finish();
+                                alertDialog.dismiss();
                             }
                         });
                     }

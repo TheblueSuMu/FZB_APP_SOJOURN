@@ -1022,6 +1022,20 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             });
                 }
             }.start();
+        }else {
+            if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7")) {
+                initData();
+            } else if (FinalContents.getIdentity().equals("60")) {
+                initDataTDZ();
+            } else if (FinalContents.getIdentity().equals("61")) {
+                initDataTDZ();
+            } else if (FinalContents.getIdentity().equals("62")) {
+                initDataTDZ();
+            } else if (FinalContents.getIdentity().equals("63")) {
+                initDataTDZ();
+            } else {
+                initData();
+            }
         }
 
     }

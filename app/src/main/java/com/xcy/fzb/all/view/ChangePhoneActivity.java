@@ -46,7 +46,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -158,6 +158,9 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+        Log.i("MyCL", "FinalContents.getUserID():" + FinalContents.getUserID());
+        Log.i("MyCL", "yanzhengma:" + yanzhengma);
+        Log.i("MyCL", "phone:" + phone);
         Observable<ChangePhoneBean> changePhone = fzbInterface.getChangePhone(yanzhengma, phone, FinalContents.getUserID());
         changePhone.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -171,8 +174,8 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                     public void onNext(ChangePhoneBean changeBean) {
                         ChangePhoneBean.DataBean data = changeBean.getData();
                         Toast.makeText(ChangePhoneActivity.this, data.getMessage(), Toast.LENGTH_SHORT).show();
-                        if (data.getMessage().equals("修改成功")) {
-                            finish();
+                        if (data.getStatus().equals("1")) {
+                            ChangePhoneActivity.this.finish();
                         }
                     }
 
