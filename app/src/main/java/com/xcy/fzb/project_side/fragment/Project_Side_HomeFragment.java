@@ -302,11 +302,11 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
         time1_home_the_project_end.setText("<" + string);
         time2_home_the_project_end.setText("-" + string + " >");
-        dateTimePickerView.setStartDate(new GregorianCalendar(year-2, month, dayOfMonth));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
         // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(2019, 0, 1));
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
 
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
 
         home_picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override

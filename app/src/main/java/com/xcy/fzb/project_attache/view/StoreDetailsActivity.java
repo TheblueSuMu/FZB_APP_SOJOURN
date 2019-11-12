@@ -1,7 +1,6 @@
 package com.xcy.fzb.project_attache.view;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -307,9 +306,11 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         store_details_tv5.setText(string);
         store_details_tv8.setText(string);
         store_details_tv9.setText(string);
-        dateTimePickerView.setStartDate(Calendar.getInstance());
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
 
         report_ensure.setOnClickListener(new View.OnClickListener() {
             @Override

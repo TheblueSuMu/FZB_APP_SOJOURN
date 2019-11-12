@@ -329,10 +329,10 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
         market_time_time_tv5.setText(string);
         market_time_time_tv6.setText(string);
 
-        dateTimePickerView.setStartDate(new GregorianCalendar(year-2, month, dayOfMonth));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
 
 //        market_time_rl1.setOnClickListener(this);
 //        market_time_rl2.setOnClickListener(this);

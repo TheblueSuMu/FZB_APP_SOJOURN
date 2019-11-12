@@ -65,10 +65,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import in.srain.cube.views.ptr.PtrClassicFrameLayout;
-import in.srain.cube.views.ptr.PtrDefaultHandler;
-import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrHandler;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -318,9 +314,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         time1_modulebroker.setText(string);
         time2_modulebroker.setText(string);
 
-        dateTimePickerView.setStartDate(Calendar.getInstance());
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
 
         modulebroke_rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

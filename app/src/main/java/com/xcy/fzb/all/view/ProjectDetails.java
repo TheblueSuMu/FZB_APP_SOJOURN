@@ -838,7 +838,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("error", "项目详情内数据错误信息：" + e.getMessage());
+                        Log.i("error", "项目详情内数据错误信息1：" + e.getMessage());
+                        Log.i("error", "项目详情内数据错误信息2：" + e.getLocalizedMessage());
+                        Log.i("error", "项目详情内数据错误信息3：" + e.getCause());
                     }
 
                     @Override

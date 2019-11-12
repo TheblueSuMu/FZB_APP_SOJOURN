@@ -279,9 +279,10 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         broker_tv5.setText(string);
         broker_tv13.setText(string);
         broker_tv14.setText(string);
-        dateTimePickerView.setStartDate(Calendar.getInstance());
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
 
         broker_tv4.setOnClickListener(new View.OnClickListener() {
             @Override

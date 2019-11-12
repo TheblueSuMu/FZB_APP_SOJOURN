@@ -121,6 +121,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     private PopupWindow p;
     private String string;
     private String title;
+    private int index = -1;
 
     /**
      * 版本下载数据
@@ -151,7 +152,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         setContentView(R.layout.activity_login);
         editor = getSharedPreferences("data", MODE_PRIVATE).edit();
         pref = getSharedPreferences("data", MODE_PRIVATE);
-
+        index = pref.getInt("index",0);
 
         if (FinalContents.getClean().equals("")) {
         }else {
@@ -250,16 +251,14 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
         FinalContents.setIFSP("1");
 
-        if (pref.getString("user_name1", "").equals("")) {
-        } else {
-            list.add(new UserSaveBean(pref.getString("user_name1", ""), pref.getString("user_password1", "")));
-            if (pref.getString("user_name2", "").equals("")) {
-            } else {
-                list.add(new UserSaveBean(pref.getString("user_name2", ""), pref.getString("user_password2", "")));
-                if (pref.getString("user_name3", "").equals("")) {
-                } else {
-                    list.add(new UserSaveBean(pref.getString("user_name3", ""), pref.getString("user_password3", "")));
+
+        if (index > 0) {
+            if (!pref.getString("user_name"+(index-1), "").equals("")) {
+                for (int i = 0;i < index;i++){
+                    list.add(new UserSaveBean(pref.getString("user_name"+i, ""), pref.getString("user_password"+i, "")));
+                    Log.i("正在储存","index："+list.get(index-1).getUserName());
                 }
+
             }
         }
 
@@ -285,7 +284,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     private void initDengLu() {
         Log.i("登录", "数据：" + pref.getString("DengLu", ""));
         if (pref.getString("denglu", "").equals("经纪人")) {
-            if (pref.getString("user_name1", "").equals("")) {
+            if (pref.getString("user_name"+(index-1), "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -303,7 +302,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("销售")) {
-            if (pref.getString("user_name1", "").equals("")) {
+            if (pref.getString("user_name"+(index-1), "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -321,7 +320,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("顾问")) {
-            if (pref.getString("user_name1", "").equals("")) {
+            if (pref.getString("user_name"+(index-1), "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -339,7 +338,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("团队长")) {
-            if (pref.getString("user_name1", "").equals("")) {
+            if (pref.getString("user_name"+(index-1), "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -357,7 +356,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("团助")) {
-            if (pref.getString("user_name1", "").equals("")) {
+            if (pref.getString("user_name"+(index-1), "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -375,7 +374,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("专员")) {
-            if (pref.getString("user_name1", "").equals("")) {
+            if (pref.getString("user_name"+(index-1), "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -394,7 +393,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("专案")) {
-            if (pref.getString("user_name1", "").equals("")) {
+            if (pref.getString("user_name"+(index-1), "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -412,7 +411,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 }
             }
         } else if (pref.getString("denglu", "").equals("导购")) {
-            if (pref.getString("user_name1", "").equals("")) {
+            if (pref.getString("user_name"+(index-1), "").equals("")) {
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
@@ -725,30 +724,28 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     @Override
                     public void onNext(LoginUserBean loginUserBean1) {
                         loginUserBean = loginUserBean1;
-                        if (pref.getString("user_name1", "").equals("")) {
-                            editor.putString("user_name1", userName);
-                            editor.putString("user_password1", passWord);
-                            editor.commit();
-                        } else if (pref.getString("user_name1", "").equals(userName)) {
-                        } else {
-                            if (pref.getString("user_name2", "").equals("")) {
-                                editor.putString("user_name2", userName);
-                                editor.putString("user_password2", passWord);
-                                editor.commit();
-                            } else if (pref.getString("user_name2", "").equals(userName)) {
-                            } else {
-                                if (pref.getString("user_name3", "").equals("")) {
-                                    editor.putString("user_name3", userName);
-                                    editor.putString("user_password3", passWord);
-                                    editor.commit();
-                                } else if (pref.getString("user_name3", "").equals(userName)) {
-                                } else {
-                                    editor.putString("user_name1", userName);
-                                    editor.putString("user_password1", passWord);
-                                    editor.commit();
-                                }
+                        boolean add = true;
+
+                        for (int i = index-4;i < index;i++){
+                            if (pref.getString("user_name"+i, "").equals(userName)) {
+                                add = false;
                             }
                         }
+
+                        if (add) {
+                            editor.putString("user_name"+index, userName);
+                            editor.putString("user_password"+index, passWord);
+                            editor.putInt("index", pref.getInt("index",0)+1);
+                            editor.commit();
+                            Log.i("正在储存","数据："+pref.getString("user_name"+index, ""));
+                            if (index > 5) {
+                                for (int i = 0;i < index-4;i++){
+                                    editor.remove("user_name"+i);
+                                }
+                                editor.commit();
+                            }
+                        }
+
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
                             Intent intent = new Intent(LoginActivity.this, Broker_MainActivity.class);
@@ -806,30 +803,28 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     @Override
                     public void onNext(ExemplaryUserBean exemplaryUserBean) {
                         ExemplaryUserBean userBean = exemplaryUserBean;
-                        if (pref.getString("user_name1", "").equals("")) {
-                            editor.putString("user_name1", userName);
-                            editor.putString("user_password1", passWord);
-                            editor.commit();
-                        } else if (pref.getString("user_name1", "").equals(userName)) {
-                        } else {
-                            if (pref.getString("user_name2", "").equals("")) {
-                                editor.putString("user_name2", userName);
-                                editor.putString("user_password2", passWord);
-                                editor.commit();
-                            } else if (pref.getString("user_name2", "").equals(userName)) {
-                            } else {
-                                if (pref.getString("user_name3", "").equals("")) {
-                                    editor.putString("user_name3", userName);
-                                    editor.putString("user_password3", passWord);
-                                    editor.commit();
-                                } else if (pref.getString("user_name3", "").equals(userName)) {
-                                } else {
-                                    editor.putString("user_name1", userName);
-                                    editor.putString("user_password1", passWord);
-                                    editor.commit();
-                                }
+                        boolean add = true;
+
+                        for (int i = index-4;i < index;i++){
+                            if (pref.getString("user_name"+i, "").equals(userName)) {
+                                add = false;
                             }
                         }
+
+                        if (add) {
+                            editor.putString("user_name"+index, userName);
+                            editor.putString("user_password"+index, passWord);
+                            editor.putInt("index", pref.getInt("index",0)+1);
+                            editor.commit();
+                            Log.i("正在储存","数据："+pref.getString("user_name"+index, ""));
+                            if (index > 5) {
+                                for (int i = 0;i < index-4;i++){
+                                    editor.remove("user_name"+i);
+                                }
+                                editor.commit();
+                            }
+                        }
+
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
                             if (userBean.getData().getIdentity().equals("5")) {
@@ -938,30 +933,29 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     @Override
                     public void onNext(CaptainBean captainBean) {
                         CaptainBean userBean = captainBean;
-                        if (pref.getString("user_name1", "").equals("")) {
-                            editor.putString("user_name1", userName);
-                            editor.putString("user_password1", passWord);
-                            editor.commit();
-                        } else if (pref.getString("user_name1", "").equals(userName)) {
-                        } else {
-                            if (pref.getString("user_name2", "").equals("")) {
-                                editor.putString("user_name2", userName);
-                                editor.putString("user_password2", passWord);
-                                editor.commit();
-                            } else if (pref.getString("user_name2", "").equals(userName)) {
-                            } else {
-                                if (pref.getString("user_name3", "").equals("")) {
-                                    editor.putString("user_name3", userName);
-                                    editor.putString("user_password3", passWord);
-                                    editor.commit();
-                                } else if (pref.getString("user_name3", "").equals(userName)) {
-                                } else {
-                                    editor.putString("user_name1", userName);
-                                    editor.putString("user_password1", passWord);
-                                    editor.commit();
-                                }
+
+                        boolean add = true;
+
+                        for (int i = index-4;i < index;i++){
+                            if (pref.getString("user_name"+i, "").equals(userName)) {
+                                add = false;
                             }
                         }
+
+                        if (add) {
+                            editor.putString("user_name"+index, userName);
+                            editor.putString("user_password"+index, passWord);
+                            editor.putInt("index", pref.getInt("index",0)+1);
+                            editor.commit();
+                            Log.i("正在储存","数据："+pref.getString("user_name"+index, ""));
+                            if (index > 5) {
+                                for (int i = 0;i < index-4;i++){
+                                    editor.remove("user_name"+i);
+                                }
+                                editor.commit();
+                            }
+                        }
+
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
                             if (userBean.getData().getIdentity().equals("60")) {
@@ -1094,72 +1088,54 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     //获取历史账号
     private void handleListView(View contentView) {
         RecyclerView recyclerView = contentView.findViewById(R.id.rv_user);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
 
-//        xlist = new ArrayList<>();
-//
-//        for (int i = 0;i < list.size();i++){
-//            xlist.add(list.get(i));
-//        }
-//
-//
-//        if (list.size() >= 4) {
-//            xlist = new ArrayList<>();
-//            for (int i = list.size()-3; i < list.size(); i++){
-//                xlist.add(list.get(i));
-////                Log.i("size","数据："+arrayList.get(i));
-//            }
-////            listAdapter = new ListAdapter(xlist);
-//        }else {
-////            listAdapter = new ListAdapter(arrayList);
-//
-//        }
-//
-//        list = new ArrayList<>();
-//        for (int i = 0;i < xlist.size();i++){
-//            list.add(xlist.get(i));
-//        }
+        xlist = new ArrayList<>();
+
+        for (int i = 0;i < list.size();i++){
+            xlist.add(list.get(i));
+        }
 
 
+        if (list.size() >= 4) {
+            xlist = new ArrayList<>();
+            for (int i = list.size()-3; i < list.size(); i++){
+                xlist.add(list.get(i));
+//                Log.i("size","数据："+arrayList.get(i));
+            }
+        }
 
-
-        popAdapter = new PopAdapter(list);
+        popAdapter = new PopAdapter(xlist);
         recyclerView.setAdapter(popAdapter);
 
         popAdapter.setOnItemClickListener(new PopAdapter.OnItemClickLisenter() {
             @Override
             public void onItemClick(int postion) {
                 if (FinalContents.getDelete().equals("填充")) {
-                    login_et_username.setText(list.get(postion).getUserName());
-                    login_et_password.setText(list.get(postion).getUserPassword());
+                    login_et_username.setText(xlist.get(postion).getUserName());
+                    login_et_password.setText(xlist.get(postion).getUserPassword());
                     p.dismiss();
                 } else if (FinalContents.getDelete().equals("删除")) {
-                    if (pref.getString("user_name1", "").equals(list.get(postion).getUserName())) {
-                        Toast.makeText(LoginActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
-                        editor.remove("user_name1");
-                        editor.remove("user_password1");
-                    } else {
-                        if (pref.getString("user_name2", "").equals(list.get(postion).getUserName())) {
-                            editor.remove("user_name2");
-                            editor.remove("user_password2");
-                        } else {
-                            if (pref.getString("user_name3", "").equals(list.get(postion).getUserName())) {
-                                editor.remove("user_name3");
-                                editor.remove("user_password3");
-                            } else {
-                                Toast.makeText(LoginActivity.this, "删除失败", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                    list.remove(postion);
-                    popAdapter.notifyItemRemoved(postion);
-                    popAdapter.notifyDataSetChanged();
-                    if (list.size() == 0) {
-                        Toast.makeText(LoginActivity.this, "存储清零", Toast.LENGTH_SHORT).show();
-                        editor.clear().commit();
-                        list.clear();
-                    }
+                    Toast.makeText(LoginActivity.this, "相关功能维护中", Toast.LENGTH_SHORT).show();
+//                    if (xlist.size() > 1) {
+//                        for (int i = 0;i < index;i++){
+//                            if (xlist.get(postion).getUserName().equals(pref.getString("user_name"+i, ""))) {
+//                                editor.remove("user_name"+i);
+//                                editor.remove("user_password"+i);
+//                                editor.commit();
+//                                xlist.remove(postion);
+//                                popAdapter.notifyItemRemoved(postion);
+//                                popAdapter.notifyDataSetChanged();
+//                                Toast.makeText(LoginActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+//                                return;
+//                            }
+//                        }
+//                    }
                 }
             }
         });
@@ -1170,8 +1146,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
         Gson gson = new Gson();
         String fieldbeanlist = gson.toJson(hashMap);
-
-
     }
 
     @Override

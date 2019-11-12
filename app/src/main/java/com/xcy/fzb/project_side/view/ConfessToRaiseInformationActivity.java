@@ -246,6 +246,7 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
             case R.id.confess_to_raise_information_rl3:
                 if (ifnum3 == 0) {
                     ifnum3 = 1;
+                    picker.setVisibility(View.VISIBLE);
                     initDate();
                     ifnum3 = 0;
                 }
