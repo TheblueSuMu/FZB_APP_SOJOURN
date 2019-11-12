@@ -11,7 +11,7 @@ public class AdministrationAuthority {
     private static String[] PERMISSIONS_STORAGE = {
             "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.WRITE_EXTERNAL_STORAGE"};
-//TODO 相机权限
+    //TODO 相机权限
     public void CameraPermissions(Context context) {
 
         try {
