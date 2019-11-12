@@ -292,7 +292,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
                             @Override
                             public void onNext(AddBrokerBean addBrokerBean) {
-                                if (addBrokerBean.getData().getMessage().equals("保存成功")) {
+                                if (addBrokerBean.getData().getStatus()==1) {
                                     Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                     finish();
                                 } else {
@@ -346,7 +346,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
                             @Override
                             public void onNext(AddBrokerBean addBrokerBean) {
-                                if (addBrokerBean.getData().getMessage().equals("保存成功")) {
+                                if (addBrokerBean.getData().getStatus()==1) {
                                     Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                     FinalContents.setAddtype1("");
                                     FinalContents.setAddtype2("");
