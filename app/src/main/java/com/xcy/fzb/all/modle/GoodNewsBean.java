@@ -2479,5 +2479,3 @@ public class GoodNewsBean {
         }
     }
 }
-
-

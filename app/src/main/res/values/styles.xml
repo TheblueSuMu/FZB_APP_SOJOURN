@@ -14,6 +14,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:focusableInTouchMode">true</item>
     </style>
     <style name="ContentOverlay" parent="@android:style/Theme.Light">
         <item name="android:windowNoTitle">true</item>

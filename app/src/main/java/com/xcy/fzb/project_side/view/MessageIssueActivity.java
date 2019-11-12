@@ -314,7 +314,7 @@ public class MessageIssueActivity extends AllActivity {
 
                                     }
                                 } else if (i == 1) {
-                                    Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
+                                    Intent getAlbum = new Intent(Intent.ACTION_PICK);
                                     getAlbum.setType(IMAGE_TYPE);
                                     startActivityForResult(getAlbum, IMAGE_CODE);
                                 }
@@ -359,14 +359,12 @@ public class MessageIssueActivity extends AllActivity {
             try {
 
                 Uri originalUri = data.getData();        //获得图片的uri
-
                 bm = MediaStore.Images.Media.getBitmap(resolver, originalUri);        //显得到bitmap图片
 //TODO bitmap图片转换成file类型的 start
 
                 long l = System.currentTimeMillis();
 
                 final File san = saveFile(bm, "" + l + ".png");
-
                 new Thread() {
                     @Override
                     public void run() {

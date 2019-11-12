@@ -185,7 +185,7 @@ public class FeedbackActivity extends AllActivity {
 
                                     }
                                 } else if (i == 1) {
-                                    Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
+                                    Intent getAlbum = new Intent(Intent.ACTION_PICK);
                                     getAlbum.setType(IMAGE_TYPE);
                                     startActivityForResult(getAlbum, IMAGE_CODE);
                                 }
@@ -414,7 +414,7 @@ public class FeedbackActivity extends AllActivity {
 
                     MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
 
-                    Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "经济圈图片", part);
+                    Observable<AddPhotoBean> addPhoto = fzbInterface.getAddPhoto(FinalContents.getUserID(), "linkelist", part);
                     addPhoto.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(new Observer<AddPhotoBean>() {

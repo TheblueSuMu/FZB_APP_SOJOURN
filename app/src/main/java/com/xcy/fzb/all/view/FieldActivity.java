@@ -444,7 +444,7 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
 
                     }
                 } else if (i == 1) {
-                    Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
+                    Intent getAlbum = new Intent(Intent.ACTION_PICK);
                     getAlbum.setType(IMAGE_TYPE);
                     startActivityForResult(getAlbum, IMAGE_CODE);
                 }

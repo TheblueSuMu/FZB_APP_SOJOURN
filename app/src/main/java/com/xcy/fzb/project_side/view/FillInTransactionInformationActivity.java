@@ -1,11 +1,13 @@
 package com.xcy.fzb.project_side.view;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -210,7 +212,31 @@ public class FillInTransactionInformationActivity extends AllActivity implements
         fill_in_transaction_information_rl5.setOnClickListener(this);
         fill_in_transaction_information_rl6.setOnClickListener(this);
 
-
+//        fill_in_transaction_information_et5.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View view, boolean b) {
+//                if (b) {
+//                    // 此处为得到焦点时的处理内容
+//                    Log.i("焦点事件", "此处为得到焦点时的处理内容");
+//                } else {
+//                    // 此处为失去焦点时的处理内容
+//                    String s1 = fill_in_transaction_information_et4.getText().toString();
+//                    String s2 = fill_in_transaction_information_et5.getText().toString();
+//                    if (s1.equals("") && s2.equals("")) {
+//
+//                    } else {
+//                        double area = Double.parseDouble(s1);
+//                        double price = Double.parseDouble(s2);
+//                        sum = (area * price);
+//                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
+//                        str = myformat.format(sum);
+//                        fill_in_transaction_information_et6.setText(str + "元");
+//                        fill_in_transaction_information_tishi.setVisibility(View.GONE);
+//                        Log.i("焦点事件", "此处为失去焦点时的处理内容");
+//                    }
+//                }
+//            }
+//        });
         fill_in_transaction_information_et5.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
@@ -376,7 +402,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                         public void onNext(TradeSaveBean tradeSaveBean) {
                             Toast.makeText(FillInTransactionInformationActivity.this, tradeSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                             finish();
-                            Log.i("判断","shuju2："+ifnum6);
+                            Log.i("判断", "shuju2：" + ifnum6);
                         }
 
                         @Override
@@ -428,7 +454,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                             finish();
                         }
 
-                        Log.i("判断","shuju3："+ifnum6);
+                        Log.i("判断", "shuju3：" + ifnum6);
                     }
 
                     @Override
@@ -524,7 +550,7 @@ public class FillInTransactionInformationActivity extends AllActivity implements
                         if (FinalContents.getTiaodan().equals("调单")) {
                             initAdjustApplySave();
                         } else if (FinalContents.getTiaodan().equals("成交")) {
-                            Log.i("判断","shuju："+ifnum6);
+                            Log.i("判断", "shuju：" + ifnum6);
                             initTradeSave();
                         }
                     }
