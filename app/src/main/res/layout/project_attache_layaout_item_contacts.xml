@@ -43,7 +43,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:text=""
-                android:textColor="#ff666666"
+                android:background="@drawable/x_color"
+                android:textColor="#334485"
                 android:textSize="13sp" />
 
             <ImageView

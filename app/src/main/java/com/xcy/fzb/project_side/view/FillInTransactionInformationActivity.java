@@ -654,9 +654,9 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
         project_time.setText(dateString);
-        dateTimePickerView.setStartDate(new GregorianCalendar(year - 2, 01, 01));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year - 2, month - 1, dayOfMonth));
         // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(2019, 01, 01));
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(2019, month - 1, dayOfMonth));
         dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {
