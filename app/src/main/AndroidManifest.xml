@@ -104,16 +104,16 @@
         <activity android:name=".all.view.RecyclerViewActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.EconomicCircleParticularsActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 经济圈详情-->
         <activity android:name=".FinMag" android:theme="@style/LunchTheme">       <!--TODO 域名-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".BaseUrl" android:theme="@style/LunchTheme">       <!--TODO 启动页-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".BaseUrl" android:theme="@style/LunchTheme">       <!--TODO 启动页-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".Introduction" android:launchMode="singleTop"/>       <!--TODO 引导页-->
         <activity android:name=".Login.LoginActivity" android:launchMode="singleTop"/>  <!--TODO 登录页-->
@@ -172,13 +172,13 @@
         <activity android:name=".project_side.view.CommissionTheProjectEndActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 佣金-->
         <activity android:name=".project_side.view.ConfessToRaiseInformationActivity" android:windowSoftInputMode="stateVisible|adjustResize" android:screenOrientation="portrait"/>       <!--TODO 专案 填写认筹信息-->
         <activity android:name=".project_side.view.DetailsTheProjectEndActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 项目详情-->
-        <activity android:name=".project_side.view.FillInTransactionInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 填写成交信息-->
+        <activity android:name=".project_side.view.FillInTransactionInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>       <!--TODO 专案 填写成交信息-->
         <activity android:name=".project_side.view.InitiatedActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 项目进度-->
         <activity android:name=".project_side.view.InitiatedTheReviewActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 发起审核-->
         <activity android:name=".project_side.view.ListOfBackActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 填写退单说明-->
         <activity android:name=".project_side.view.MessageIssueActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 消息发布-->
-        <activity android:name=".project_side.view.ModifyTheRecognitionToRaiseActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 修改认筹信息-->
-        <activity android:name=".project_side.view.VisitingScheduleActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 专案 修改成交信息-->
+        <activity android:name=".project_side.view.ModifyTheRecognitionToRaiseActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>       <!--TODO 专案 修改认筹信息-->
+        <activity android:name=".project_side.view.VisitingScheduleActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>    <!--TODO 专案 修改成交信息-->
         <activity android:name=".project_side.view.MyClientActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 我的客户-->
         <activity android:name=".project_side.view.MyProjectActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 我的项目-->
         <activity android:name=".project_side.view.RefuseTheProjectEndActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 发起审核 拒绝记录-->
