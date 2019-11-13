@@ -581,7 +581,6 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                         } else {
                             Glide.with(ToApplyForAnlsland2Activity.this).load(FinalContents.getImageUrl() + landBean.getData().getLandingImg()).into(to_apply_for_an_island2_img3);
                         }
-                        colleagueUserNum = Integer.parseInt(to_apply_for_an_island2_tv1.getText().toString());
                         routeid = landBean.getData().getRouteId();
                         if (landBean.getData().getColleagues().size() == 0) {
                             to_apply_for_an_island2_ll1.setVisibility(View.GONE);
@@ -590,6 +589,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                         } else {
                             to_apply_for_an_island2_ll1.setVisibility(View.VISIBLE);
                             to_apply_for_an_island2_rl4.setVisibility(View.GONE);
+                            colleagueUserNum = Integer.parseInt(landBean.getData().getColleagueUserNum());
                             MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(ToApplyForAnlsland2Activity.this);
                             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                             to_apply_for_an_island2_rv.setLayoutManager(layoutManager);

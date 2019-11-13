@@ -1,6 +1,7 @@
 package com.xcy.fzb.project_side.view;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
@@ -21,11 +24,9 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.modle.ConfessBean;
-import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
-import com.xcy.fzb.all.view.AllActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,7 +44,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import top.defaults.view.DateTimePickerView;
 
 //TODO 填写认筹信息
-public class ConfessToRaiseInformationActivity extends AllActivity implements View.OnClickListener {
+public class ConfessToRaiseInformationActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView confess_to_raise_information_tv1;
     TextView confess_to_raise_information_tv2;
@@ -103,6 +104,9 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_side_activity_confess_to_raise_information);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);      //  TODO    始终竖屏
+        //设置透明状态栏
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         init_No_Network();
     }
 
@@ -127,8 +131,6 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
     }
 
     private void initView() {
-
-        StatusBar.makeStatusBarTransparent(this);
 
         confess_to_raise_information_tv1 = findViewById(R.id.confess_to_raise_information_tv1);
         confess_to_raise_information_tv2 = findViewById(R.id.confess_to_raise_information_tv2);
@@ -428,6 +430,5 @@ public class ConfessToRaiseInformationActivity extends AllActivity implements Vi
                 });
             }
         });
-
     }
 }

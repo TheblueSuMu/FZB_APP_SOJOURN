@@ -100,8 +100,6 @@ public class EFragment extends Fragment implements View.OnClickListener {
         my_about.setOnClickListener(this);
         my_empty.setOnClickListener(this);
         my_exit.setOnClickListener(this);
-//        根据用户Id获取用户信息
-        initUserMessage();
 
     }
 

@@ -66,19 +66,15 @@ public class ComprehensiveFragment extends Fragment {
                 if(comprehensive_rb_1.isChecked() == true){
                     Log.i("MyCL","默认排序");
                     FinalContents.setComprehensiveSorting("10");
-//                    eventUrl = url + "&comprehensiveSorting=10";
                 }else if(comprehensive_rb_2.isChecked() == true){
                     FinalContents.setComprehensiveSorting("20");
                     Log.i("MyCL","价格降序");
-//                    eventUrl = url + "&comprehensiveSorting=20";
                 }else if(comprehensive_rb_3.isChecked() == true){
                     FinalContents.setComprehensiveSorting("30");
                     Log.i("MyCL","价格升序");
-//                    eventUrl = url + "&comprehensiveSorting=30";
                 }else if(comprehensive_rb_4.isChecked() == true){
                     FinalContents.setComprehensiveSorting("40");
                     Log.i("MyCL","成交排序");
-//                    eventUrl = url + "&comprehensiveSorting=40";
                 }
             }
         });

@@ -147,10 +147,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             title = findViewById(R.id.oversea_title);
-
             mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
             vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
             seview = findViewById(R.id.seview);
 
             initfvb();
@@ -531,7 +529,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private void initcity() {
 
         if (nationlist.size() == 0) {
-
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
             builder.addConverterFactory(GsonConverterFactory.create());
@@ -558,35 +555,9 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                                 nationRv.setAdapter(recyclerAdapter);
                                 recyclerAdapter.notifyDataSetChanged();
                             } else if (FinalContents.getProjectType().equals("3")) {
-//                                final List<String> cityName = new ArrayList<>();
-//                                for (int i = 0; i < nationlist.size(); i++) {
-//                                    cityName.add(nationlist.get(i).getNationName());
-//                                }
-//                                tagView.setTheme(ColorFactory.RANDOM);
-//                                tagView.setTags(cityName);
-//                                tagView.setOnTagClickListener(new TagView.OnTagClickListener() {
-//                                    @Override
-//                                    public void onTagClick(int position, String text) {
-//                                        // ...点击事件
-//                                        Intent intent = new Intent(OverSeaActivity.this, RecyclerViewActivity.class);
-//                                        intent.putExtra("nation", cityName.get(position));
-//                                        startActivity(intent);
-//                                    }
-//
-//                                    @Override
-//                                    public void onTagLongClick(final int position, String text) {
-//                                        // ...长按事件
-//                                    }
-//                                });
-//                                if (nationlist.size() > 4) {
-//                                    GridLayoutManager layoutManager = new GridLayoutManager(OverSeaActivity.this,4);
-//                                    layoutManager.setOrientation(GridLayoutManager.VERTICAL);
-//                                    nationRv.setLayoutManager(layoutManager);
-//                                } else if (nationlist.size() <= 4 && nationlist.size() != 0) {
                                 LinearLayoutManager layoutManager = new LinearLayoutManager(OverSeaActivity.this);
                                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                                 nationRv.setLayoutManager(layoutManager);
-//                                }
                                 CityAdapter recyclerAdapter = new CityAdapter(nationlist);
                                 nationRv.setAdapter(recyclerAdapter);
                                 recyclerAdapter.notifyDataSetChanged();

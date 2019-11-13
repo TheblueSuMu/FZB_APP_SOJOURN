@@ -170,7 +170,7 @@
         <activity android:name=".project_side.view.CheckPendingActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 项目进度-->
         <activity android:name=".project_side.view.CheckPendingTheProjectEndActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 待我审核-->
         <activity android:name=".project_side.view.CommissionTheProjectEndActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 佣金-->
-        <activity android:name=".project_side.view.ConfessToRaiseInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 填写认筹信息-->
+        <activity android:name=".project_side.view.ConfessToRaiseInformationActivity" android:windowSoftInputMode="stateVisible|adjustResize" android:screenOrientation="portrait"/>       <!--TODO 专案 填写认筹信息-->
         <activity android:name=".project_side.view.DetailsTheProjectEndActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 项目详情-->
         <activity android:name=".project_side.view.FillInTransactionInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 填写成交信息-->
         <activity android:name=".project_side.view.InitiatedActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 项目进度-->

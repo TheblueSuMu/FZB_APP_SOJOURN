@@ -92,7 +92,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
 
-        initUser();
         guide_rl.setOnClickListener(this);
         collect_my_the_project_end.setOnClickListener(this);
         comment_my_the_project_end.setOnClickListener(this);

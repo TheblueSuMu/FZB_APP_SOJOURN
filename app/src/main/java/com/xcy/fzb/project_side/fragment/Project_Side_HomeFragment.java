@@ -241,7 +241,6 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
             }
         });
 
-        initData();
     }
 
     //TODO 赋值

@@ -76,7 +76,6 @@ public class CountryFragment extends Fragment {
 
     @SuppressLint("WrongConstant")
     private void init() {
-
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -155,11 +154,6 @@ public class CountryFragment extends Fragment {
                     }
                 });
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
 }

@@ -122,6 +122,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     private String string;
     private String title;
     private int index = -1;
+    private int size = 0;
+
 
     /**
      * 版本下载数据
@@ -256,7 +258,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
             if (!pref.getString("user_name"+(index-1), "").equals("")) {
                 for (int i = 0;i < index;i++){
                     list.add(new UserSaveBean(pref.getString("user_name"+i, ""), pref.getString("user_password"+i, "")));
-                    Log.i("正在储存","index："+list.get(index-1).getUserName());
+//                    Log.i("正在储存","index："+list.get(index-1).getUserName());
                 }
 
             }
@@ -1159,6 +1161,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     }
 
     private void initDaown(){
+        Log.i("查询次数","次数：" +size++);
         String versionName = APKVersionCodeUtils.getVerName(this);
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());

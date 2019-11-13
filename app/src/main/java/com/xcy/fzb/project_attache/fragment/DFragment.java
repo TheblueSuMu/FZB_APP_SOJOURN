@@ -542,9 +542,6 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                     public void onNext(DBean dBean) {
                         dataMap = dBean.getData().getDataMap();
 
-                        Log.i("广播", "广播数据：" + dBean.getData().getStoreCount());
-                        Log.i("广播", "广播数据：" + dBean.getData().getPeopleCount());
-
                         EventBus.getDefault().post(new Fragnemt_SS(dBean.getData().getStoreCount() + "", dBean.getData().getPeopleCount() + "", "", "", ""));
 
 //                        tv1_modulebroker.setText(dBean.getData().getStoreCount() + "");

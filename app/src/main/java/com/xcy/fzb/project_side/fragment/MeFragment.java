@@ -99,8 +99,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         empty_my_the_project_end.setOnClickListener(this);
         exit_my_the_project_end.setOnClickListener(this);
 
-
-        initUser();
     }
 
     @Override
