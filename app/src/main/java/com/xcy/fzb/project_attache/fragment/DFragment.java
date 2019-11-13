@@ -162,8 +162,8 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         if (FinalContents.getFragmentSS().equals("0")) {
             mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
             FinalContents.setFragmentSS("1");
-            aList.add(new MyFragment1());
             aList.add(new MyFragment2());
+            aList.add(new MyFragment1());
             aList.add(new MyFragment3());
 
             mAdapter.setListfragment(aList);
@@ -908,12 +908,12 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         Log.i("广播", "点击：");
         int currentItem = vpager_one.getCurrentItem();
         Log.i("广播", "广播currentItem：" + currentItem);
-        if (vpager_one.getCurrentItem() == 0) {
+        if (vpager_one.getCurrentItem() == 1) {
             intent = new Intent(getContext(), StoreListActivity.class);
             FinalContents.setCompanyId("");
             FinalContents.setMyAddType("");
             startActivity(intent);
-        } else if (vpager_one.getCurrentItem() == 1) {
+        } else if (vpager_one.getCurrentItem() == 0) {
             FinalContents.setStoreId("");
             FinalContents.setCompanyId("");
             intent = new Intent(getContext(), BrokersListActivity.class);
