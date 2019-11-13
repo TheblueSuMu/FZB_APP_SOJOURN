@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/lll"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="45dp"
         android:background="@drawable/the_project_end_brokerage">
 
         <RelativeLayout
@@ -426,7 +426,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="38dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="38dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/points_dialog_but"

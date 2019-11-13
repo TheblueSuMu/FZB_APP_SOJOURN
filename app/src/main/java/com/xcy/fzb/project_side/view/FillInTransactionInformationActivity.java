@@ -1,13 +1,15 @@
 package com.xcy.fzb.project_side.view;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -17,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,12 +38,10 @@ import com.xcy.fzb.all.modle.FindAdjustApplyBean;
 import com.xcy.fzb.all.modle.FindTradeBean;
 import com.xcy.fzb.all.modle.TradeSaveBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
-import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.KeyUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
-import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.adapter.TimeRangeAdapter;
 
 import java.util.ArrayList;
@@ -58,7 +60,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import top.defaults.view.DateTimePickerView;
 
 //TODO 填写成交信息
-public class FillInTransactionInformationActivity extends AllActivity implements View.OnClickListener {
+public class FillInTransactionInformationActivity extends AppCompatActivity implements View.OnClickListener {
 
     RelativeLayout fill_in_transaction_information_return;
     Button fill_in_transaction_information_btn;
@@ -121,17 +123,21 @@ public class FillInTransactionInformationActivity extends AllActivity implements
 
     int ifnum6 = 0;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_side_activity_fill_in_transaction_information);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);      //  TODO    始终竖屏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setStatusBarColor(Color.parseColor("#ff546da6"));
         init_No_Network();
     }
 
     private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
-            StatusBar.makeStatusBarTransparent(this);
             initView();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);

@@ -16,7 +16,7 @@
             android:layout_height="match_parent">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="45dp"
                 android:background="@drawable/the_project_end_brokerage">
 
                 <RelativeLayout
@@ -53,8 +53,7 @@
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="10dp"
-                    android:layout_marginBottom="80dp">
+                    android:paddingBottom="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -712,7 +711,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="15dp"
-                            android:background="#EEEEEE"></LinearLayout>
+                            android:background="#EEEEEE"/>
 
                         <RelativeLayout
                             android:id="@+id/fill_in_transaction_information_rl6"
@@ -754,26 +753,24 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_marginTop="15dp"
-                            android:background="#EEEEEE"></LinearLayout>
+                            android:background="#EEEEEE"/>
+
+                        <Button
+                            android:id="@+id/fill_in_transaction_information_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="38dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="38dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/points_dialog_but"
+                            android:text="提交"
+                            android:textColor="#FFFFFF" />
                         <!--TODO 底层LinearLayout-->
                     </LinearLayout>
 
                 </ScrollView>
-
-                <Button
-                    android:id="@+id/fill_in_transaction_information_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="38dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginRight="38dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/points_dialog_but"
-                    android:text="提交"
-                    android:textColor="#FFFFFF" />
-
 
             </RelativeLayout>
         </LinearLayout>

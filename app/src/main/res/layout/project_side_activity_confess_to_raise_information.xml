@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/confess_to_raise_information_title"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="45dp"
         android:background="@drawable/the_project_end_brokerage">
 
         <RelativeLayout

@@ -1,9 +1,13 @@
 package com.xcy.fzb.project_side.view;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -12,6 +16,9 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
@@ -22,11 +29,9 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ConfessBean;
 import com.xcy.fzb.all.modle.DictListBean;
 import com.xcy.fzb.all.modle.EarnestMoneyAuditBean;
-import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
-import com.xcy.fzb.all.view.AllActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,7 +49,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import top.defaults.view.DateTimePickerView;
 
 //TODO 修改认筹信息
-public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
+public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
 
     RelativeLayout modify_the_recognition_to_raise_return;
 
@@ -78,10 +83,15 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
 
     int isnum1 = 0;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_side_activity_modify_the_recognition_to_raise);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);      //  TODO    始终竖屏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setStatusBarColor(Color.parseColor("#ff546da6"));
         init_No_Network();
     }
 
@@ -106,8 +116,6 @@ public class ModifyTheRecognitionToRaiseActivity extends AllActivity {
     }
 
     private void initView() {
-
-        StatusBar.makeStatusBarTransparent(this);
 
         modify_the_recognition_to_raise_return = findViewById(R.id.modify_the_recognition_to_raise_return);
         modify_the_recognition_to_raise_rg1 = findViewById(R.id.modify_the_recognition_to_raise_rg1);
