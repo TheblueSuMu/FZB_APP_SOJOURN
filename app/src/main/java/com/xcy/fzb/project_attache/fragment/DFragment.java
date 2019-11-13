@@ -310,15 +310,16 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
-        time1_modulebroker.setText(string);
-        time2_modulebroker.setText(string);
+        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth - 1);
+        String string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        time1_modulebroker.setText(string1);
+        time2_modulebroker.setText(string2);
 
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
         // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
 
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
         modulebroke_rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -338,6 +339,8 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 } else if (i == R.id.rb4_modulebroke) {
                     String s = time1_modulebroker.getText().toString();
                     String s1 = time2_modulebroker.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
                     NewlyIncreased.setTag("3");
                     initDataNum("3", s, s1);
                     ll1_modulebroker.setVisibility(View.VISIBLE);
@@ -488,6 +491,10 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
+        Log.i("专员","FinalContents.getUserID():" + FinalContents.getUserID());
+        Log.i("专员","type:" + type);
+        Log.i("专员","startTime:" + startTime);
+        Log.i("专员","endTime:" + endTime);
         Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), "", "", type, startTime, endTime);
         dataNum.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

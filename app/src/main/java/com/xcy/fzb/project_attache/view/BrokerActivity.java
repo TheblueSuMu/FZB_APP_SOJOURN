@@ -239,7 +239,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                     NewlyIncreased.setTag("2");
                     broker_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb4) {
-                    initDataNum("3", "", "");
+                    String s = broker_tv4.getText().toString();
+                    String s1 = broker_tv4.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    initDataNum("3", s, s1);
                     NewlyIncreased.setTag("3");
                     broker_ll1.setVisibility(View.VISIBLE);
                 }
@@ -261,7 +265,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                     NewlyIncreased.setYJType("2");
                     broker_ll9.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb8) {
-                    initFinanceNum("3", "", "");
+                    String s = broker_tv13.getText().toString();
+                    String s1 = broker_tv14.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    initFinanceNum("3", s, s1);
                     NewlyIncreased.setYJType("3");
                     broker_ll9.setVisibility(View.VISIBLE);
                 }
@@ -274,11 +282,12 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
-        broker_tv4.setText(string);
-        broker_tv5.setText(string);
-        broker_tv13.setText(string);
-        broker_tv14.setText(string);
+        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth - 1);
+        String string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        broker_tv4.setText(string1);
+        broker_tv5.setText(string2);
+        broker_tv13.setText(string1);
+        broker_tv14.setText(string2);
         dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));

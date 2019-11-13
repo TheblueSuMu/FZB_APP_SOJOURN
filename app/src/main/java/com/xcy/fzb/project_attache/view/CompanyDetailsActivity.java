@@ -239,11 +239,12 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
-        company_details_tv4.setText(string);
-        company_details_tv5.setText(string);
-        company_details_tv8.setText(string);
-        company_details_tv9.setText(string);
+        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth - 1);
+        String string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        company_details_tv4.setText(string1);
+        company_details_tv5.setText(string2);
+        company_details_tv8.setText(string1);
+        company_details_tv9.setText(string2);
         dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
@@ -363,7 +364,11 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                     NewlyIncreased.setTag("2");
                     company_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb4) {
-                    initDataNum("3", "", "");
+                    String s = company_details_tv4.getText().toString();
+                    String s1 = company_details_tv5.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    initDataNum("3", s, s1);
                     NewlyIncreased.setTag("3");
                     company_details_ll1.setVisibility(View.VISIBLE);
                 }
@@ -385,7 +390,11 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                     NewlyIncreased.setYJType("2");
                     company_details_ll2.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb8) {
-                    initFinanceNum("3", "", "");
+                    String s = company_details_tv8.getText().toString();
+                    String s1 = company_details_tv9.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    initFinanceNum("3", s, s1);
                     NewlyIncreased.setYJType("3");
                     company_details_ll2.setVisibility(View.VISIBLE);
                 }
