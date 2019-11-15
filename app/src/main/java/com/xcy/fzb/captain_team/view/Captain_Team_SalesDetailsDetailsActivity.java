@@ -506,6 +506,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
             //      TODO 数据统计 自定义
             case R.id.sales_details_details_rb4:
                 sales_details_details_ll1.setVisibility(View.VISIBLE);
+                initDate();
                 type = "3";
                 NewlyIncreased.setTag("3");
                 break;
@@ -709,10 +710,10 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
         sales_details_details_time1.setText("<" + string);
         sales_details_details_time2.setText("-" + string + " >");
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
         sales_details_details_ensure.setOnClickListener(new View.OnClickListener() {
             @Override

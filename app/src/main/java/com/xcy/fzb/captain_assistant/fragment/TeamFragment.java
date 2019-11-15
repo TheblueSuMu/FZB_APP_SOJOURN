@@ -329,10 +329,10 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
         market_time_time_tv5.setText(string);
         market_time_time_tv6.setText(string);
 
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
 //        market_time_rl1.setOnClickListener(this);
 //        market_time_rl2.setOnClickListener(this);
@@ -499,7 +499,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         int year = date.get(Calendar.YEAR);
                         int month = date.get(Calendar.MONTH);
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month - 1, dayOfMonth);
                         market_time_time_tv1.setText(dateString);
                         startDate1 = dateString;
                         NewlyIncreased.setStartDate(dateString);
@@ -516,7 +516,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         int year = date.get(Calendar.YEAR);
                         int month = date.get(Calendar.MONTH);
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
                         market_time_time_tv2.setText(dateString);
                         endDate1 = dateString;
                         NewlyIncreased.setEndDate(dateString);
@@ -533,7 +533,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         int year = date.get(Calendar.YEAR);
                         int month = date.get(Calendar.MONTH);
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
                         market_time_time_tv3.setText(dateString);
                         startDate2 = dateString;
                         NewlyIncreased.setYJstartDate(dateString);
@@ -549,7 +549,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         int year = date.get(Calendar.YEAR);
                         int month = date.get(Calendar.MONTH);
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
                         market_time_time_tv4.setText(dateString);
                         endDate2 = dateString;
                         NewlyIncreased.setYJendDate(dateString);
@@ -566,7 +566,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         int year = date.get(Calendar.YEAR);
                         int month = date.get(Calendar.MONTH);
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
                         market_time_time_tv5.setText(dateString);
                         startDate3 = dateString;
                     }
@@ -581,7 +581,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         int year = date.get(Calendar.YEAR);
                         int month = date.get(Calendar.MONTH);
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
                         market_time_time_tv6.setText(dateString);
                         endDate3 = dateString;
                     }
