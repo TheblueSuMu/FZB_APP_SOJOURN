@@ -76,6 +76,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
 
 
         if (rowsBeanList.get(position).getMoneyStatus() == 0) {
+            holder.the_project_end_tv8.setVisibility(View.GONE);
             if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
 
             } else {
@@ -146,6 +147,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
 
         } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {
             holder.the_project_end_tv4.setVisibility(View.GONE);
+            holder.the_project_end_tv2.setVisibility(View.GONE);
             if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
                 holder.the_project_end_tv1.setVisibility(View.GONE);
             } else {

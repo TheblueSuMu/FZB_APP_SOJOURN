@@ -131,11 +131,12 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
             holder.item_commission_list_img.setImageResource(R.mipmap.tdr);
 
             if(rows.get(position).getStatus().equals("1")){
+                holder.item_commission_list_tv12.setVisibility(View.GONE);
+                holder.item_commission_list_tv8.setVisibility(View.GONE);
                 holder.item_commission_list_tv10.setVisibility(View.VISIBLE);
                 holder.item_commission_list_tv11.setVisibility(View.VISIBLE);
                 holder.item_commission_list_tv11.setText(rows.get(position).getClosingTime());
             }else if(rows.get(position).getStatus().equals("0")){
-
                 if (rows.get(position).getTotalAmount().equals("") || rows.get(position).getTotalAmount().equals("0") || rows.get(position).getTotalAmount().equals("0.00")) {
                     holder.item_commission_list_tv6.setVisibility(View.GONE);
                 } else {
