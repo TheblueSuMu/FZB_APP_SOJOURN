@@ -712,7 +712,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_time2.setText("-" + string + " >");
         dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
         // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
         dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
         sales_details_details_ensure.setOnClickListener(new View.OnClickListener() {

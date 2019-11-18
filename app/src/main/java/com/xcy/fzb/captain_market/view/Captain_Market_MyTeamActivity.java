@@ -242,7 +242,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
 
         dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
         // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
         dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
         my_team_img.setOnClickListener(this);
         market_time_rl2.setOnClickListener(this);

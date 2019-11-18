@@ -171,7 +171,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             NewlyIncreased.setTag("0");
@@ -333,25 +333,25 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页时间赋值
-    private void initDate(){
+    private void initDate() {
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH)+1;
+        month = calendar.get(Calendar.MONTH) + 1;
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
-        details_the_project_end_time1.setText("<"+string);
-        details_the_project_end_time2.setText("-"+string+" >");
-        details_the_project_end_time3.setText("<"+string);
-        details_the_project_end_time4.setText("-"+string+" >");
-        details_the_project_end_time5.setText("<"+string);
-        details_the_project_end_time6.setText("-"+string+" >");
+        details_the_project_end_time1.setText("<" + string);
+        details_the_project_end_time2.setText("-" + string + " >");
+        details_the_project_end_time3.setText("<" + string);
+        details_the_project_end_time4.setText("-" + string + " >");
+        details_the_project_end_time5.setText("<" + string);
+        details_the_project_end_time6.setText("-" + string + " >");
 
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
         // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
 
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth + 15));
 
         particulars_picker_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -378,8 +378,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth + 15));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -389,7 +389,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         beforeDate1 = dateString;
-                        details_the_project_end_time1.setText("<"+dateString);
+                        details_the_project_end_time1.setText("<" + dateString);
                         NewlyIncreased.setStartDate(dateString);
 
                     }
@@ -400,8 +400,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth + 15));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -411,7 +411,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         afterDate1 = dateString;
-                        details_the_project_end_time2.setText("-"+dateString+" >");
+                        details_the_project_end_time2.setText("-" + dateString + " >");
                         NewlyIncreased.setEndDate(dateString);
 
                         initViewData1();
@@ -424,8 +424,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth + 15));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -435,7 +435,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         beforeDate2 = dateString;
-                        details_the_project_end_time3.setText("<"+dateString);
+                        details_the_project_end_time3.setText("<" + dateString);
                         NewlyIncreased.setYJstartDate(dateString);
                     }
                 });
@@ -445,8 +445,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth + 15));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -456,7 +456,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         afterDate2 = dateString;
-                        details_the_project_end_time4.setText("-"+dateString+" >");
+                        details_the_project_end_time4.setText("-" + dateString + " >");
                         NewlyIncreased.setYJendDate(dateString);
                         initViewData2();
                     }
@@ -468,8 +468,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth + 15));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -479,24 +479,24 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         dayOfMonth3 = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year3, month3 + 1, dayOfMonth3);
                         beforeDate3 = dateString;
-                        details_the_project_end_time5.setText("<"+dateString);
+                        details_the_project_end_time5.setText("<" + dateString);
                     }
                 });
             }
         });
-         year3 = calendar.get(Calendar.YEAR);
-         month3 = calendar.get(Calendar.MONTH)+1;
-         dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
-         initDate3();
+        year3 = calendar.get(Calendar.YEAR);
+        month3 = calendar.get(Calendar.MONTH) + 1;
+        dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
+        initDate3();
     }
 
-    private void initDate3(){
+    private void initDate3() {
         //                TODO 结束时间
         details_the_project_end_time6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dateTimePickerView.setStartDate(new GregorianCalendar(year3, month3 - 1, dayOfMonth3));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year3, month3 - 1, dayOfMonth3+5));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year3, month3 - 1, dayOfMonth3 + 5));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -506,7 +506,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         afterDate3 = dateString;
-                        details_the_project_end_time6.setText("-"+dateString+" >");
+                        details_the_project_end_time6.setText("-" + dateString + " >");
                         initViewData3();
                     }
                 });
@@ -515,14 +515,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页财务数据赋值
-    private void initData(){
+    private void initData() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DetailsBean> userMessage = fzbInterface.getDetailsBeanList(FinalContents.getUserID(),FinalContents.getProjectID());
+        Observable<DetailsBean> userMessage = fzbInterface.getDetailsBeanList(FinalContents.getUserID(), FinalContents.getProjectID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DetailsBean>() {
@@ -535,10 +535,10 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                     @Override
                     public void onNext(DetailsBean detailsBean) {
                         FinalContents.setProjectID(detailsBean.getData().getProject().getId());
-                        Glide.with(DetailsTheProjectEndActivity.this).load(FinalContents.getImageUrl() +detailsBean.getData().getProject().getProjectImg()).into(details_the_project_end_img);
-                        details_the_project_end_tv1.setText("["+detailsBean.getData().getProject().getCityName()+"]"+detailsBean.getData().getProject().getProjectName());
-                        details_the_project_end_tv2.setText("项目地址："+detailsBean.getData().getProject().getAddress());
-                        details_the_project_end_tv3.setText(Html.fromHtml("报备(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getReportAmount() + "</font>"+")  "+"关注(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getBrowseNum() + "</font>"+")  "+"收藏(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getCollectionNum() + "</font>"+")  "+"转发(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getForwardingAmount() + "</font>"+")  "));
+                        Glide.with(DetailsTheProjectEndActivity.this).load(FinalContents.getImageUrl() + detailsBean.getData().getProject().getProjectImg()).into(details_the_project_end_img);
+                        details_the_project_end_tv1.setText("[" + detailsBean.getData().getProject().getCityName() + "]" + detailsBean.getData().getProject().getProjectName());
+                        details_the_project_end_tv2.setText("项目地址：" + detailsBean.getData().getProject().getAddress());
+                        details_the_project_end_tv3.setText(Html.fromHtml("报备(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getReportAmount() + "</font>" + ")  " + "关注(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getBrowseNum() + "</font>" + ")  " + "收藏(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getCollectionNum() + "</font>" + ")  " + "转发(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getForwardingAmount() + "</font>" + ")  "));
                         List<Integer> integers = detailsBean.getData().getGsonOption().getSeries().get(0).getData();
                         indexList = detailsBean.getData().getGsonOption().getXAxis().getData();
                         init(integers);
@@ -546,7 +546,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -557,14 +557,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页财务数据赋值
-    private void initViewData1(){
+    private void initViewData1() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<OperationBean> userMessage = fzbInterface.getOperationList(FinalContents.getUserID(),FinalContents.getProjectID(),beforeDate2,afterDate2,type2);
+        Observable<OperationBean> userMessage = fzbInterface.getOperationList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate2, afterDate2, type2);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<OperationBean>() {
@@ -576,15 +576,15 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(OperationBean operationBean) {
-                        details_the_project_end_tv12.setText(""+operationBean.getData().getReceivableMoney());
-                        details_the_project_end_tv13.setText(""+operationBean.getData().getBackMoney());
-                        details_the_project_end_tv14.setText(""+operationBean.getData().getInvoiceMoney());
-                        details_the_project_end_tv15.setText(""+operationBean.getData().getSurplusMoney());
+                        details_the_project_end_tv12.setText("" + operationBean.getData().getReceivableMoney());
+                        details_the_project_end_tv13.setText("" + operationBean.getData().getBackMoney());
+                        details_the_project_end_tv14.setText("" + operationBean.getData().getInvoiceMoney());
+                        details_the_project_end_tv15.setText("" + operationBean.getData().getSurplusMoney());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -595,14 +595,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页运营数据赋值
-    private void initViewData2(){
+    private void initViewData2() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<FinanceBean> userMessage = fzbInterface.getFinanceList(FinalContents.getUserID(),FinalContents.getProjectID(),beforeDate1,afterDate1,type1);
+        Observable<FinanceBean> userMessage = fzbInterface.getFinanceList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate1, afterDate1, type1);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -614,19 +614,19 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(FinanceBean financeBean) {
-                        details_the_project_end_tv4.setText(""+financeBean.getData().getReportNumber());
-                        details_the_project_end_tv5.setText(""+financeBean.getData().getReportOk());
-                        details_the_project_end_tv6.setText(""+financeBean.getData().getAccessingNumber());
-                        details_the_project_end_tv8.setText(""+financeBean.getData().getIsIslandNumber());
-                        details_the_project_end_tv9.setText(""+financeBean.getData().getEarnestMoneyNumber());
-                        details_the_project_end_tv10.setText(""+financeBean.getData().getTradeNumber());
-                        details_the_project_end_tv11.setText(""+financeBean.getData().getInvalidNum());
+                        details_the_project_end_tv4.setText("" + financeBean.getData().getReportNumber());
+                        details_the_project_end_tv5.setText("" + financeBean.getData().getReportOk());
+                        details_the_project_end_tv6.setText("" + financeBean.getData().getAccessingNumber());
+                        details_the_project_end_tv8.setText("" + financeBean.getData().getIsIslandNumber());
+                        details_the_project_end_tv9.setText("" + financeBean.getData().getEarnestMoneyNumber());
+                        details_the_project_end_tv10.setText("" + financeBean.getData().getTradeNumber());
+                        details_the_project_end_tv11.setText("" + financeBean.getData().getInvalidNum());
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -637,14 +637,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页趋势数据赋值
-    private void initViewData3(){
+    private void initViewData3() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<BusinessBean> userMessage = fzbInterface.getBusinesseList(FinalContents.getUserID(),FinalContents.getProjectID(),beforeDate3,afterDate3,type3,status);
+        Observable<BusinessBean> userMessage = fzbInterface.getBusinesseList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate3, afterDate3, type3, status);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BusinessBean>() {
@@ -663,7 +663,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -674,7 +674,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页趋势图绘制
-    private void init(final List<Integer> list){
+    private void init(final List<Integer> list) {
 
         //显示边界
         details_chart.setDrawBorders(false);
@@ -917,43 +917,43 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 //                TODO  报备审核
             case R.id.details_the_project_end_ll1:
                 intent = new Intent(DetailsTheProjectEndActivity.this, CheckPendingTheProjectEndActivity.class);
-                intent.putExtra("client","1");
+                intent.putExtra("client", "1");
                 startActivity(intent);
                 break;
 //                TODO  报备
             case R.id.details_the_project_end_ll2:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client","1");
+                intent.putExtra("client", "1");
                 startActivity(intent);
                 break;
 //                TODO  到访
             case R.id.details_the_project_end_ll3:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client","2");
+                intent.putExtra("client", "2");
                 startActivity(intent);
                 break;
 //               TODO  登岛
             case R.id.details_the_project_end_ll5:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client","3");
+                intent.putExtra("client", "3");
                 startActivity(intent);
                 break;
 //                TODO  认筹
             case R.id.details_the_project_end_ll6:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client","4");
+                intent.putExtra("client", "4");
                 startActivity(intent);
                 break;
 //                TODO  成交
             case R.id.details_the_project_end_ll7:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client","5");
+                intent.putExtra("client", "5");
                 startActivity(intent);
                 break;
 //                TODO  失效
             case R.id.details_the_project_end_ll8:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client","6");
+                intent.putExtra("client", "6");
                 startActivity(intent);
                 break;
 //                TODO  应收

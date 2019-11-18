@@ -290,7 +290,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         broker_tv14.setText(string2);
         dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
         // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
         dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
         broker_tv4.setOnClickListener(new View.OnClickListener() {

@@ -247,7 +247,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         company_details_tv9.setText(string2);
         dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
         // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
         dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
         company_details_tv4.setOnClickListener(new View.OnClickListener() {
