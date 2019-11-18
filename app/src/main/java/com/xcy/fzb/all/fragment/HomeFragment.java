@@ -122,6 +122,10 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
         fvbId(view);
         mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+
+        initView();
+
+        initHotList();
         tvBanner();
         return view;
     }
@@ -171,9 +175,6 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
     @Override
     public void onResume() {
         super.onResume();
-        initView();
-
-        initHotList();
 
         tvBanner2.startFlipping();
         city.setText(FinalContents.getCityName());
@@ -582,16 +583,4 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
         super.onDetach();
         listterner = null;
     }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
-        }
-    }
-
 }

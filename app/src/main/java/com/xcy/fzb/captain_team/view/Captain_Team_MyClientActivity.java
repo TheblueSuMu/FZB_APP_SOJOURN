@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.fragment.MyClientFragment2;
 import com.xcy.fzb.all.fragment.MyClientFragment3;
 import com.xcy.fzb.all.fragment.MyClientFragment4;
@@ -138,15 +139,16 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
         my_client_11_7.setOnClickListener(this);
 
         initClient();
-
         my_client_ss.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (KeyEvent.KEYCODE_ENTER == i && KeyEvent.ACTION_DOWN == keyEvent.getAction()) {
                     //处理事件
                     String s = my_client_ss.getText().toString();
-                    EventBus.getDefault().post(new MyClientName(s));
-                    return true;
+                    if (NewlyIncreased.isTest()) {
+                        EventBus.getDefault().post(new MyClientName(s));
+                        return true;
+                    }
                 }
                 return false;
             }

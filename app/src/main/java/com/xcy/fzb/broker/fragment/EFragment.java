@@ -23,7 +23,9 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.Login.LoginActivity;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.ClientCommissionsBean;
 import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.modle.UserMessageBean;
@@ -124,6 +126,11 @@ public class EFragment extends AllFragment implements View.OnClickListener {
         my_about.setOnClickListener(this);
         my_empty.setOnClickListener(this);
         my_exit.setOnClickListener(this);
+
+        //        根据用户Id获取用户信息
+        initUserMessage();
+//        我的佣金和客户数量
+        initClientCommissions();
     }
 
     private void initUserMessage() {
@@ -162,6 +169,8 @@ public class EFragment extends AllFragment implements View.OnClickListener {
                         me_store.setText(storeManage.getStoreName());
                         me_tv_name.setText(data.getStoreManageName());
                         me_tv_phone.setText(data.getStoreManagePhone());
+
+                        Connector.setUserMessageBean(userMessageBean);
                     }
 
                     @Override
@@ -294,27 +303,31 @@ public class EFragment extends AllFragment implements View.OnClickListener {
 
                     }
                 });
+    }
 
+
+    private void init(){
+        UserMessageBean.DataBean data = Connector.getUserMessageBean().getData();
+
+        Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getPhoto()).into(me_photo);
+
+        me_name.setText(data.getName());
+        if (data.getIdentity().equals("1") || data.getIdentity().equals("2") || data.getIdentity().equals("3")) {
+            me_identity.setText("经纪人");
+        }
+        me_city.setText(data.getCity());
+        UserMessageBean.DataBean.StoreManageBean storeManage = data.getStoreManage();
+        me_store.setText(storeManage.getStoreName());
+        me_tv_name.setText(data.getStoreManageName());
+        me_tv_phone.setText(data.getStoreManagePhone());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//        根据用户Id获取用户信息
-        initUserMessage();
-//        我的佣金和客户数量
-        initClientCommissions();
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
+        if (NewlyIncreased.getUserMessage().equals("123")){
+            init();
+            NewlyIncreased.setUserMessage("");
         }
     }
-
 }

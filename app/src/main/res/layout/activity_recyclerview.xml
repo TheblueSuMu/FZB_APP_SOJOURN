@@ -12,6 +12,7 @@
             android:id="@+id/web_linear"
             android:layout_width="match_parent"
             android:layout_height="64dp"
+            android:paddingBottom="5dp"
             android:layout_alignParentTop="true"
             android:background="@drawable/my_brokerage"
             android:orientation="horizontal">

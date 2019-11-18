@@ -98,15 +98,4 @@ public class DFragment extends AllFragment implements View.OnClickListener {
 
 
     }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            //TODO now visible to user 不显示fragment
-        } else {
-            totalFragment.onResume();
-            //TODO now invisible to user 显示fragment
-        }
-    }
 }

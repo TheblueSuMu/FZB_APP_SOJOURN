@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.fragment.AllFragment;
@@ -240,7 +241,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
             }
         });
-
+        initData();
     }
 
     //TODO 赋值
@@ -277,6 +278,8 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                         shop_home_the_project_end.setText(userBean.getData().getCityName());
                         position_home_the_project_end.setText("专案");
                         FinalContents.setCityID(userBean.getData().getCityId());
+
+                        Connector.setUserBean(userBean);
                     }
 
                     @Override
@@ -585,20 +588,21 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        initData();
+
+    private void init(){
+        UserBean userBean = Connector.getUserBean();
+        Glide.with(getActivity()).load(FinalContents.getImageUrl() + userBean.getData().getPhoto()).into(img_home_the_project_end);
+        name_home_the_project_end.setText(userBean.getData().getName());
+        city_home_the_project_end.setText(userBean.getData().getCity());
+        shop_home_the_project_end.setText(userBean.getData().getCityName());
+        position_home_the_project_end.setText("专案");
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
+    public void onResume() {
+        super.onResume();
+        if (NewlyIncreased.getUserMessage().equals("7")){
+            init();
         }
     }
 }

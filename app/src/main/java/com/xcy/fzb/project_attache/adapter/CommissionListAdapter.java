@@ -1,6 +1,5 @@
 package com.xcy.fzb.project_attache.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,11 +112,15 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
             } else if (rows.get(position).getMoneyStatus() == 2) {
 
                 holder.item_commission_list_tv6.setVisibility(View.GONE);
-                holder.item_commission_list_tv9.setVisibility(View.VISIBLE);
 
                 holder.item_commission_list_img.setImageResource(R.mipmap.tdr);
+                if (rows.get(position).getReturnedMoney().equals("") || rows.get(position).getReturnedMoney().equals("0") || rows.get(position).getReturnedMoney().equals("0.00") ) {
+                    holder.item_commission_list_tv12.setVisibility(View.GONE);
+                }else {
+                    holder.item_commission_list_tv12.setVisibility(View.VISIBLE);
+                    holder.item_commission_list_tv12.setText("需退还："+rows.get(position).getReturnedMoney());
+                }
                 holder.item_commission_list_tv6.setText("总佣金：￥" + rows.get(position).getTotalAmount() + "");
-                holder.item_commission_list_tv9.setText("需退还：￥" + rows.get(position).getReturnedMoney() + "");
             }
         } else {
 
@@ -133,8 +136,10 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
             }
 
             if (rows.get(position).getSecondsAmount().equals("")  || rows.get(position).getSecondsAmount().equals("0") || rows.get(position).getSecondsAmount().equals("0.00")) {
+                holder.item_commission_list_tv7.setVisibility(View.GONE);
                 holder.item_commission_list_tv7.setText("无秒结");
             }else {
+                holder.item_commission_list_tv7.setVisibility(View.VISIBLE);
                 holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
             }
 

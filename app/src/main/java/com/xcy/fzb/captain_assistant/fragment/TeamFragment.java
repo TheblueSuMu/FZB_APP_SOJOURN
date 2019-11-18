@@ -175,6 +175,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initView();
     }
 
     //  TODO 声明
@@ -701,7 +702,6 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
 
     // TODO 数据统计
     private void initDataStatistics() {
-
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -827,6 +827,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
 
     // TODO 我的团队显示数据
     private void initMyTeamData() {
+        Log.i("加载次数", "加载:");
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -893,16 +895,6 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     @Override
     public void onResume() {
         super.onResume();
-        initView();
-        NewlyIncreased.setTag("0");
-        NewlyIncreased.setStartDate("");
-        NewlyIncreased.setEndDate("");
-        NewlyIncreased.setYJType("0");
-        NewlyIncreased.setYJstartDate("");
-        NewlyIncreased.setYJendDate("");
-        market_time_rb1.setChecked(true);
-        market_time_rb5.setChecked(true);
-        market_time_rb9.setChecked(true);
     }
 
     @Override

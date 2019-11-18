@@ -8,11 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -42,9 +41,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MoreInformationActivity extends AllActivity implements View.OnClickListener {
     private LinearLayout more_img;
 
-    FragmentManager manager;
-    FragmentTransaction transaction;
-
     MoreInformationFragment moreInformationFragment = new MoreInformationFragment();
     MoreTypeFragment moreTypeFragment= new MoreTypeFragment();
     MoreProjectFragment moreProjectFragment = new MoreProjectFragment();
@@ -54,6 +50,9 @@ public class MoreInformationActivity extends AllActivity implements View.OnClick
     private String[] mTitles = new String[]{
             "基本信息", "产品类型", "项目规划"
     };
+    private RelativeLayout information_relative1;
+    private RelativeLayout information_relative2;
+    private TextView more_qt_call;
 
 
     @Override
@@ -89,8 +88,26 @@ public class MoreInformationActivity extends AllActivity implements View.OnClick
         more_img = findViewById(R.id.more_img);
         more_report = findViewById(R.id.more_report);
         more_call = findViewById(R.id.more_call);
+        information_relative1 = findViewById(R.id.information_relative1);
+        information_relative2 = findViewById(R.id.information_relative2);
+        more_qt_call = findViewById(R.id.more_qt_call);
 
+        if (FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5")|| FinalContents.getIdentity().equals("63")|| FinalContents.getIdentity().equals("7")) {
+            information_relative1.setVisibility(View.GONE);
+            information_relative2.setVisibility(View.VISIBLE);
+        }else {
+            information_relative1.setVisibility(View.VISIBLE);
+            information_relative2.setVisibility(View.GONE);
+        }
         initData();
+
+        more_qt_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + FinalContents.getIPhone()));//跳转到拨号界面，同时传递电话号码
+                startActivity(dialIntent);
+            }
+        });
 
         more_img.setOnClickListener(this);
 

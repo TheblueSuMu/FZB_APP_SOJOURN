@@ -32,6 +32,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.Dynamic2Adapter;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.Dynamic2Bean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -141,7 +142,7 @@ public class DynamicFragment extends Fragment {
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
             }
         });
-
+        initView();
     }
 
     @SuppressLint("WrongConstant")
@@ -166,7 +167,7 @@ public class DynamicFragment extends Fragment {
                     public void onNext(Dynamic2Bean dynamicBean) {
                         Dynamic2Bean.DataBean dynamicBeanData = dynamicBean.getData();
                         list = dynamicBeanData.getRows();
-
+                        Log.i("楼盘动态列表数据加载", "次数" );
                         if (list.size() != 0) {
                             all_no_information.setVisibility(View.GONE);
                             recyclerView.setVisibility(View.VISIBLE);
@@ -345,7 +346,10 @@ public class DynamicFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        initView();
+        if (!NewlyIncreased.isTest()) {
+            initView();
+            NewlyIncreased.setTest(true);
+        }
     }
 
     /**

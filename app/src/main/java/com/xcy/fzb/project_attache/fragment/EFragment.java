@@ -22,7 +22,9 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.Login.LoginActivity;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ZYDataBean;
 import com.xcy.fzb.all.persente.CleanDataUtils;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -100,6 +102,7 @@ public class EFragment extends Fragment implements View.OnClickListener {
         my_about.setOnClickListener(this);
         my_empty.setOnClickListener(this);
         my_exit.setOnClickListener(this);
+        initUserMessage();
 
     }
 
@@ -131,11 +134,14 @@ public class EFragment extends Fragment implements View.OnClickListener {
                         Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getPhoto()).into(me_photo);
 
                         me_name.setText(data.getName());
+
                         if (userMessageBean.getData().getIdentity().equals("5")) {
                             me_identity.setText("专员");
                         }
                         me_city.setText(data.getCity());
                         me_store.setText(data.getStoreManage() + "");
+
+                        Connector.setZyDataBean(userMessageBean);
                     }
 
                     @Override
@@ -224,21 +230,29 @@ public class EFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
 
-        initUserMessage();
+    private void init(){
+        ZYDataBean userMessageBean = Connector.getZyDataBean();
+
+        data = userMessageBean.getData();
+
+        Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getPhoto()).into(me_photo);
+
+        me_name.setText(data.getName());
+
+        if (userMessageBean.getData().getIdentity().equals("5")) {
+            me_identity.setText("专员");
+        }
+        me_city.setText(data.getCity());
+        me_store.setText(data.getStoreManage() + "");
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
+    public void onResume() {
+        super.onResume();
+        if (NewlyIncreased.getUserMessage().equals("5")){
+            init();
+            NewlyIncreased.setUserMessage("");
         }
     }
 }

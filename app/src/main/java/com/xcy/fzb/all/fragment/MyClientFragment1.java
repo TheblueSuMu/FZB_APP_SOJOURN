@@ -19,6 +19,7 @@ import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ContactsAdapter;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
@@ -177,11 +178,16 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     @Subscribe(threadMode = ThreadMode.MAIN, priority = 100, sticky = false) //在ui线程执行，优先级为100
     public void onEvent(MyClientName myClientName) {
         String name = myClientName.getName();
-        Log.i("MyCL", "廣播");
-        inithot(name);
+
+        if (NewlyIncreased.isTest()) {
+            Log.i("廣播", "廣播1");
+            inithot(name);
+            NewlyIncreased.setTest(false);
+        }
     }
 
     private void inithot(String name) {
+        Log.i("廣播", "廣播2");
         mContactModels.clear();
         data.clear();
         Log.i("MyCL", "inithot");
@@ -213,6 +219,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                             mContactModels.add(contactModel);
                         }
                         initDatas();
+                        NewlyIncreased.setTest(true);
                     }
 
                     @Override

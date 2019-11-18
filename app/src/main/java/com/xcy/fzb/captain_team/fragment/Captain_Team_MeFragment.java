@@ -23,7 +23,9 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.Login.LoginActivity;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.MyDataBean;
 import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.modle.ZhangBingDataBean;
@@ -133,6 +135,11 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
         my_empty.setOnClickListener(this);
         my_exit.setOnClickListener(this);
 
+
+//        根据用户Id获取用户信息
+        initUserMessage();
+//        我的佣金和客户数量
+        initClientCommissions();
     }
 
     private void initUserMessage() {
@@ -178,6 +185,8 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
                         my_tv_phone.setText(data.getSysUser().getManager().getPhone());
 
                         FinalContents.setManageFlag(data.getSysUser().getManageFlag());
+
+                        Connector.setZhangBingDataBean(userMessageBean);
 
                     }
 
@@ -327,24 +336,34 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-//        根据用户Id获取用户信息
-        initUserMessage();
-//        我的佣金和客户数量
-        initClientCommissions();
+    private void init(){
+        ZhangBingDataBean.DataBean data = Connector.getZhangBingDataBean().getData();
 
+        if(data.getSysUser().getPhoto().equals("")){
+            Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getSysUser().getManager().getPhoto()).into(me_photo);
+        }else {
+            Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getSysUser().getPhoto()).into(me_photo);
+        }
+
+        me_name.setText(data.getSysUser().getName());
+
+        if (data.getSysUser().getIdentity().equals("60")) {
+            me_identity.setText("团队长");
+        }
+//                        me_identity.setText(data.getSysUser().getStoreManage());
+        me_city.setText(data.getSysUser().getCity());
+        me_store.setText(data.getSysUser().getCounty());
+
+        my_tv_name.setText(data.getSysUser().getManager().getName());
+        my_tv_phone.setText(data.getSysUser().getManager().getPhone());
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
+    public void onResume() {
+        super.onResume();
+        if (NewlyIncreased.getUserMessage().equals("60")){
+            init();
+            NewlyIncreased.setUserMessage("");
         }
     }
 }

@@ -69,6 +69,9 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
 
     int isnum1 = 0;
     int isnum2 = 0;
+    private Button check_pending_b1;
+    private Button check_pending_b2;
+    private LinearLayout check_pending_l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +116,10 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
         check_pending_bt1 = findViewById(R.id.check_pending_bt1);
         check_pending_bt2 = findViewById(R.id.check_pending_bt2);
         check_pending_ll = findViewById(R.id.check_pending_ll);
+
+        check_pending_b1 = findViewById(R.id.check_pending_b1);
+        check_pending_b2 = findViewById(R.id.check_pending_b2);
+        check_pending_l = findViewById(R.id.check_pending_l);
 
         if (FinalContents.getJuJue().equals("拒绝记录")) {
             check_pending_ll.setVisibility(View.GONE);

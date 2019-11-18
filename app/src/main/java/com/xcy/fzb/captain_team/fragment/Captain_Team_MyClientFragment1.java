@@ -18,6 +18,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
@@ -85,6 +86,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
         all_no_information = getActivity().findViewById(R.id.all_no_information);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         decoration = new PinnedHeaderDecoration();
+        inithot("");
 
     }
 
@@ -124,7 +126,10 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     public void onEvent(MyClientName myClientName) {
         String name = myClientName.getName();
         Log.i("MyCL", "廣播");
-        inithot(name);
+        if (NewlyIncreased.isTest()) {
+            inithot(name);
+            NewlyIncreased.setTest(false);
+        }
     }
 
     private void inithot(String name) {
@@ -164,7 +169,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                             all_no_information.setVisibility(View.VISIBLE);
                             mRecyclerView.setVisibility(View.GONE);
                         }
-
+                        NewlyIncreased.setTest(true);
                     }
 
                     @Override
@@ -216,11 +221,6 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        inithot("");
-    }
 
     @Override
     public void onDestroy() {
