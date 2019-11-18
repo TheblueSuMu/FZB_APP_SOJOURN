@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".all.view.ATestActivity">
+    <EditText
+        android:id="@+id/dataBase_7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
+    <EditText
+        android:id="@+id/dataBase_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
+    <Button
+        android:id="@+id/dataBase_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="增加"></Button>
+    <EditText
+        android:id="@+id/dataBase_9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
+
+    <Button
+        android:id="@+id/dataBase_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除"></Button>
+    <EditText
+        android:id="@+id/dataBase_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
+    <EditText
+        android:id="@+id/dataBase_11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
+    <Button
+        android:id="@+id/dataBase_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改"></Button>
+
+    <EditText
+        android:id="@+id/dataBase_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
+
+    <Button
+        android:id="@+id/dataBase_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查找"></Button>
+
+    <TextView
+        android:id="@+id/dataBase_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"></TextView>
+
+    <TextView
+        android:id="@+id/dataBase_66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"></TextView>
+
+</LinearLayout>

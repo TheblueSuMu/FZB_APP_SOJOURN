@@ -80,6 +80,8 @@
             android:enabled="true"
             android:process=":remote" />
         <!--TODO 百度地图 end-->
+
+        <activity android:name=".all.view.ATestActivity"></activity><!--TODO 数据库测试数据-->
         <activity android:name=".all.view.MessageCommentActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 楼盘动态详情-->
         <activity android:name=".all.view.MapActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.BannerPhotoActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
@@ -110,10 +112,10 @@
 <!--            </intent-filter>-->
         </activity>
         <activity android:name=".BaseUrl" android:theme="@style/LunchTheme">       <!--TODO 启动页-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                        <intent-filter>
+                            <action android:name="android.intent.action.MAIN" />
+                            <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
         </activity>
         <activity android:name=".Introduction" android:launchMode="singleTop"/>       <!--TODO 引导页-->
         <activity android:name=".Login.LoginActivity" android:launchMode="singleTop"/>  <!--TODO 登录页-->
