@@ -306,7 +306,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         time2_home_the_project_end.setText("-" + string + " >");
         dateTimePickerView.setStartDate(new GregorianCalendar(year, month-1, dayOfMonth-15));
         // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
 
         dateTimePickerView.setEndDate(new GregorianCalendar(year, month-1, dayOfMonth+15));
 

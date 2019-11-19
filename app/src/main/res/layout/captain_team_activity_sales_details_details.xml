@@ -86,6 +86,7 @@
                         android:id="@+id/sales_details_details_img"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
+                        android:scaleType="fitXY"
                         app:riv_oval="true" />
 
                     <TextView
