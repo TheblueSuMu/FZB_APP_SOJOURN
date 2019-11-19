@@ -71,9 +71,9 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
                 if (rows.get(position).getAlreadyAmount().equals("") || rows.get(position).getAlreadyAmount().equals("0") || rows.get(position).getAlreadyAmount().equals("0.00")) {
                     holder.item_commission_list_tv8.setVisibility(View.GONE);
                 } else {
-//                    holder.item_commission_list_tv8.setVisibility(View.VISIBLE);
-//                    holder.item_commission_list_tv8.setText("已结：￥" + rows.get(position).getAlreadyAmount() + "");
-                    holder.item_commission_list_tv8.setVisibility(View.GONE);
+                    holder.item_commission_list_tv8.setVisibility(View.VISIBLE);
+                    holder.item_commission_list_tv8.setText("已结：￥" + rows.get(position).getAlreadyAmount() + "");
+//                    holder.item_commission_list_tv8.setVisibility(View.GONE);
                 }
             }
             if (rows.get(position).getNotAmount().equals("") || rows.get(position).getNotAmount().equals("0") || rows.get(position).getNotAmount().equals("0.00")) {
@@ -92,8 +92,9 @@ public class CommissionListAdapter extends RecyclerView.Adapter<CommissionListAd
             }
 
             if (rows.get(position).getSecondsAmount().equals("") || rows.get(position).getSecondsAmount().equals("0") || rows.get(position).getSecondsAmount().equals("0.00")) {
-
+                holder.item_commission_list_tv7.setVisibility(View.GONE);
             } else {
+                holder.item_commission_list_tv7.setVisibility(View.VISIBLE);
                 holder.item_commission_list_tv7.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
             }
             if (rows.get(position).getStatus().equals("1")) {
