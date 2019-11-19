@@ -27,6 +27,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 
+import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.APKVersionCodeUtils;
@@ -83,6 +84,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
     private String mVersion_name = FinalContents.getVersionNumBer();
     //  请求链接
     private String url = "http://test.fangzuobiao.com:88/fangfang/static/down/fangzuobiao.apk";
+    private ImageView fzb_img;
 
     //https://download.dgstaticresources.net/fusion/android/app-c6-release.apk
     @Override
@@ -120,9 +122,12 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
         fzb_fx = findViewById(R.id.fzb_fx);
         fzb_jc = findViewById(R.id.fzb_jc);
         fzb_mz = findViewById(R.id.fzb_mz);
+        fzb_img = findViewById(R.id.fzb_img);
         About_Version_NumBer = findViewById(R.id.About_Version_NumBer);
 
         About_Version_NumBer.setText("当前版本" + FinalContents.getVersionNumBer());
+
+        Glide.with(AboutFZBActivity.this).load(FinalContents.getImageUrl() + "/fangfang/static/down/appTwoCode.png").into(fzb_img);
 
         fzb_return.setOnClickListener(this);
         fzb_fx.setOnClickListener(this);

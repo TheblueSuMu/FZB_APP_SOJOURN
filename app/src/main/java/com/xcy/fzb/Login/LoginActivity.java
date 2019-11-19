@@ -157,11 +157,10 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         index = pref.getInt("index",0);
 
         if (FinalContents.getClean().equals("")) {
+
         }else {
             editor.clear();
         }
-
-
 
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {

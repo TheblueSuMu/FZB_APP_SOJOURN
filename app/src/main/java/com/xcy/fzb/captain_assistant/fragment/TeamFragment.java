@@ -14,12 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -64,7 +66,7 @@ import top.defaults.view.DateTimePickerView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeamFragment extends Fragment implements View.OnClickListener, MyViewPager.OnSingleTouchListener {
+public class TeamFragment extends Fragment implements View.OnClickListener, MyViewPager.OnSingleTouchListener , SwipeRefreshLayout.OnRefreshListener{
 
     LinearLayout market_time_ll1;
     LinearLayout market_time_ll2;
@@ -154,11 +156,13 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     LinearLayout fragment_lls_2;
     LinearLayout fragment_lls_3;
 
+    private SwipeRefreshLayout team_srl;
     private MyViewPager vpager_one;
     private ArrayList<Fragment> aList = new ArrayList<>();
     private MyFragmentPagerAdapter mAdapter;
     private PtrClassicFrameLayout ptrClassicFrameLayout;
     private MyTeam2Bean.DataBean data;
+    private ScrollView team_scroll;
 
     public TeamFragment() {
         // Required empty public constructor
@@ -183,6 +187,10 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
 
         StatusBar.makeStatusBarTransparent(getActivity());
 
+
+        team_scroll = getActivity().findViewById(R.id.team_scroll);
+        team_scroll.smoothScrollTo(0,20);
+        team_srl = getActivity().findViewById(R.id.team_srl);
         ptrClassicFrameLayout = getActivity().findViewById(R.id.PtrClassic_modulebroke);
         fragment_lls_3 = getActivity().findViewById(R.id.fragment_lls_3);
         fragment_lls_2 = getActivity().findViewById(R.id.fragment_lls_2);
@@ -200,6 +208,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             vpager_one.setCurrentItem(0);
             FinalContents.setFragmentSS("1");
         }
+
+        team_srl.setOnRefreshListener(this);
 
         vpager_one.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -310,7 +320,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
 //        market_time_rl3 = getActivity().findViewById(R.id.team_rl3);
 
         market_time_rv = getActivity().findViewById(R.id.team_rv);
-
+        market_time_rv.setFocusable(false);
 
         dateTimePickerView = getActivity().findViewById(R.id.team_pickerView);
         report_picker = getActivity().findViewById(R.id.team_picker);
@@ -924,6 +934,15 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             intent = new Intent(getContext(), Assistant_Teams_Activity.class);
             intent.putExtra("Iftz", "3");
             startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onRefresh() {
+        if (team_srl.isRefreshing()) {//如果正在刷新
+            initView();
+            initView();
+            team_srl.setRefreshing(false);//取消刷新
         }
     }
 

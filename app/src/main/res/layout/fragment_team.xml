@@ -31,12 +31,19 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <com.xcy.fzb.all.utils.SuperSwipeRefreshLayout
+        android:id="@+id/team_srl"
+        android:layout_marginTop="75dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="75dp">
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ScrollView
+            android:id="@+id/team_scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -987,6 +994,8 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    </com.xcy.fzb.all.utils.SuperSwipeRefreshLayout>
 
 
 </RelativeLayout>

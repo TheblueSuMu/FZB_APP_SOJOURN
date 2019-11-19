@@ -4,11 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class DataBaseUtil {
@@ -28,13 +26,13 @@ public class DataBaseUtil {
         if (cursor.moveToFirst()) {
             do {
                 if (selectData.equals("")) {
-                    String username = cursor.getString(cursor.getColumnIndex("username"));
-                    String userpassword = cursor.getString(cursor.getColumnIndex("userpassword"));
+                    String username = cursor.getString(cursor.getColumnIndex("USER_NAME"));
+                    String userpassword = cursor.getString(cursor.getColumnIndex("USER_PASSWORD"));
                     DataBase dataBase = new DataBase(username, userpassword);
                     list.add(dataBase);
                 } else {
-                    String username = cursor.getString(cursor.getColumnIndex("username"));
-                    String userpassword = cursor.getString(cursor.getColumnIndex("userpassword"));
+                    String username = cursor.getString(cursor.getColumnIndex("USER_NAME"));
+                    String userpassword = cursor.getString(cursor.getColumnIndex("USER_PASSWORD"));
                     if (username.equals(selectData)) {
                         DataBase dataBase = new DataBase(username, userpassword);
                         list.add(dataBase);
@@ -49,6 +47,7 @@ public class DataBaseUtil {
 
     }
 
+
     //TODO 改
     public static int initUpData(Context context, String userName, String userPassword) {
 
@@ -58,7 +57,7 @@ public class DataBaseUtil {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.USER_NAME, userName);
 
-        String conditions = "username=?";
+        String conditions = "USER_NAME=?";
         String[] valueStr = {userPassword};
 
         int affectNum = mSqLiteDatabase.update(DatabaseHelper.USER_TABLE_NAME, contentValues, conditions, valueStr);
@@ -72,7 +71,7 @@ public class DataBaseUtil {
         mDatabaseHelper = new DatabaseHelper(context);
         mSqLiteDatabase = mDatabaseHelper.getWritableDatabase();
 
-        String conditions = "username=?";
+        String conditions = "USER_NAME=?";
         String[] args = {userName};
         int numbers = mSqLiteDatabase.delete(DatabaseHelper.USER_TABLE_NAME, conditions, args);
         return numbers;
@@ -84,6 +83,24 @@ public class DataBaseUtil {
         mDatabaseHelper = new DatabaseHelper(context);
         mSqLiteDatabase = mDatabaseHelper.getWritableDatabase();
 
+        int indexDelete = 0;
+        Cursor cursor = mSqLiteDatabase.query(mDatabaseHelper.USER_TABLE_NAME, null, null, null, null, null, null, null);
+        int count = cursor.getCount();
+        if (count == 3) {
+            if (cursor.moveToFirst()) {
+                do {
+                    String username = cursor.getString(cursor.getColumnIndex("USER_NAME"));
+                    String userpassword = cursor.getString(cursor.getColumnIndex("USER_PASSWORD"));
+                    if (indexDelete == 0) {
+                        String conditions = "USER_NAME=?";
+                        String[] args = {username};
+                        mSqLiteDatabase.delete(DatabaseHelper.USER_TABLE_NAME, conditions, args);
+                        break;
+                    }
+                } while (cursor.moveToNext());
+            }
+        }
+
         ContentValues values = new ContentValues();
         values.put(mDatabaseHelper.USER_NAME, userName);
         values.put(mDatabaseHelper.USER_PASSWORD, userPassword);
@@ -93,7 +110,7 @@ public class DataBaseUtil {
         if (index != -1) {
             Toast.makeText(context, "插入成功", Toast.LENGTH_LONG).show();
         }
-
+        cursor.close();
         return index;
 
     }

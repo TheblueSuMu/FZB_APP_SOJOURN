@@ -133,6 +133,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private Vibrator vibrator;
     private RecyclerView project_lable_rv;
     private SwipeRefreshLayout oversea_ptrclass;
+    private ImageView banner_img;
     //    private DemoApplication application;
 
     @Override
@@ -253,6 +254,17 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             seview.setVisibility(View.VISIBLE);
             initcity();
             inithot();
+         }else if (FinalContents.getProjectType().equals("1")) {
+            title.setText("城市房产");
+            arrposid = "3";
+            arrpos = "6";
+            oversea_linear.setVisibility(View.GONE);
+            nationRv.setVisibility(View.VISIBLE);
+            oversea_rb_2s.setText("城市");
+            state.setText("城市");
+            seview.setVisibility(View.VISIBLE);
+            initcity();
+            inithot();
         }
     }
 
@@ -341,6 +353,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         oversea_rg = findViewById(R.id.oversea_rg);
         oversea_ll = findViewById(R.id.oversea_ll);
         oversea_lll = findViewById(R.id.oversea_lll);
+
+        banner_img = findViewById(R.id.banner_img);
 
         all_no_information = findViewById(R.id.all_no_information);
 
@@ -638,27 +652,35 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                     public void onNext(ImgData imgData) {
                         imglist = imgData.getData();
 
-                        for (int i = 0; i < imglist.size(); i++) {
-                            list_img.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
+                        if (imglist.size() != 0) {
+                            banner_img.setVisibility(View.GONE);
+                            banner.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < imglist.size(); i++) {
+                                list_img.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
+                            }
+                            banner.initBanner(list_img, false)//关闭3D画廊效果
+                                    .addPageMargin(10, 50)//参数1page之间的间距,参数2中间item距离边界的间距
+                                    .addStartTimer(8)//自动轮播5秒间隔
+                                    .addPointBottom(7)
+                                    .addRoundCorners(12)//圆角
+                                    .finishConfig()//这句必须加
+                                    .addBannerListener(new BannerViewPager.OnClickBannerListener() {
+                                        @Override
+                                        public void onBannerClick(int position) {
+                                            FinalContents.setProjectID(imglist.get(position).getProject().getId());
+                                            FinalContents.setNewID(imglist.get(position).getId());
+                                            //点击item
+                                            Intent intent = new Intent(OverSeaActivity.this, WebViewActivity.class);
+                                            intent.putExtra("title", "新闻详情");
+                                            intent.putExtra("webview", imglist.get(position).getContent());
+                                            startActivity(intent);
+                                        }
+                                    });
+                        }else {
+                            banner_img.setVisibility(View.VISIBLE);
+                            banner.setVisibility(View.GONE);
                         }
-                        banner.initBanner(list_img, false)//关闭3D画廊效果
-                                .addPageMargin(10, 50)//参数1page之间的间距,参数2中间item距离边界的间距
-                                .addStartTimer(8)//自动轮播5秒间隔
-                                .addPointBottom(7)
-                                .addRoundCorners(12)//圆角
-                                .finishConfig()//这句必须加
-                                .addBannerListener(new BannerViewPager.OnClickBannerListener() {
-                                    @Override
-                                    public void onBannerClick(int position) {
-                                        FinalContents.setProjectID(imglist.get(position).getProject().getId());
-                                        FinalContents.setNewID(imglist.get(position).getId());
-                                        //点击item
-                                        Intent intent = new Intent(OverSeaActivity.this, WebViewActivity.class);
-                                        intent.putExtra("title", "新闻详情");
-                                        intent.putExtra("webview", imglist.get(position).getContent());
-                                        startActivity(intent);
-                                    }
-                                });
+
                     }
 
                     @Override

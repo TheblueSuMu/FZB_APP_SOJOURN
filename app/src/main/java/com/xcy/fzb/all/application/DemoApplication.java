@@ -1,13 +1,16 @@
 package com.xcy.fzb.all.application;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import androidx.multidex.MultiDex;
 
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.mob.MobSDK;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.XCrashHandlerUtils;
 import com.xcy.fzb.all.fragment.ComprehensiveFragment;
@@ -26,6 +29,9 @@ import com.xcy.fzb.all.modle.NewsBean;
 import com.xcy.fzb.broker.fragment.DFragment;
 import com.xcy.fzb.broker.fragment.EFragment;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,8 +71,18 @@ public class DemoApplication extends Application {
 
         SDKInitializer.initialize(getApplicationContext());
 
-        XCrashHandlerUtils xCrashHandlerUtils = new XCrashHandlerUtils();
-        xCrashHandlerUtils.init(this);
+        Context context = getApplicationContext();
+// 获取当前包名
+        String packageName = context.getPackageName();
+// 获取当前进程名
+        String processName = getProcessName(android.os.Process.myPid());
+// 设置是否为上报进程
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+        strategy.setUploadProcess(processName == null || processName.equals(packageName));
+        // 初始化Bugly
+        CrashReport.initCrashReport(context, "注册时申请的APPID", false, strategy);
+
+        XCrashHandlerUtils.getInstance().init(this);
 //        CrashHandler crashHandler = new CrashHandler();
 //        crashHandler.init(this);
         MobSDK.init(this);
@@ -90,6 +106,35 @@ public class DemoApplication extends Application {
         setScreeningFragment(new ScreeningFragment());
         setNationlist(new ArrayList<NationBean.DataBean>());
         setImagelist(new ArrayList<ImgData.DataBean>());
+    }
+
+    /**
+     * 获取进程号对应的进程名
+     *
+     * @param pid 进程号
+     * @return 进程名
+     */
+    private static String getProcessName(int pid) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = reader.readLine();
+            if (!TextUtils.isEmpty(processName)) {
+                processName = processName.trim();
+            }
+            return processName;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return null;
     }
 
     public ComprehensiveFragment getComprehensiveFragment() {

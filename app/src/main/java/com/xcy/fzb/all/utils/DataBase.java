@@ -2,6 +2,7 @@ package com.xcy.fzb.all.utils;
 
 public class DataBase {
 
+    int ID;
     String userName;
     String userPassword;
 
@@ -11,6 +12,14 @@ public class DataBase {
     public DataBase(String userName, String userPassword) {
         this.userName = userName;
         this.userPassword = userPassword;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getUserName() {

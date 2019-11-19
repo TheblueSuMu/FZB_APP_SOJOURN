@@ -1,10 +1,5 @@
 package com.xcy.fzb.all.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,19 +8,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.utils.DataBase;
 import com.xcy.fzb.all.utils.DataBaseUtil;
-import com.xcy.fzb.all.utils.DatabaseHelper;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class ATestActivity extends AppCompatActivity {
 

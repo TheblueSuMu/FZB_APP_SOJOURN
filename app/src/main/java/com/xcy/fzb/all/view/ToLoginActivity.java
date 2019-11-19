@@ -2,25 +2,25 @@ package com.xcy.fzb.all.view;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.modle.CodeBean;
 import com.xcy.fzb.all.modle.WechatBindingBean;
-import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.CountDownTimerUtils;
 
 import org.json.JSONObject;
 
@@ -48,6 +48,8 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
     ImageView to_login_img_3;
     ImageView to_login_img_4;
     private String s;
+    private boolean login = false;
+    private JSONObject json;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,20 +90,9 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
         to_login_img_4 = findViewById(R.id.to_login_img_4);
 
         to_return.setOnClickListener(this);
-        to_login_rl.setOnClickListener(this);
-
-    }
-
-    @SuppressLint("InflateParams")
-    @Override
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-            case R.id.to_return:
-                finish();
-                break;
-            case R.id.to_login_rl:
-
+        to_login_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 if (to_login_img_1.getVisibility() == View.GONE) {
 //TODO 绑定
                     Platform plat = ShareSDK.getPlatform(Wechat.NAME);
@@ -110,9 +101,17 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
                     plat.setPlatformActionListener(new PlatformActionListener() {
                         @Override
                         public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-                            JSONObject json = new JSONObject(hashMap);
-                            Log.i("json","授权成功"+json.getClass());
-                            initL();
+                            login = true;
+                            Log.i("json","授权成功");
+                            json = new JSONObject(hashMap);
+                            Log.i("json","授权成功"+ json.getClass());
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //此时已在主线程中，更新UI
+                                    onResume();
+                                }
+                            });
                         }
 
                         @Override
@@ -150,17 +149,17 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
                     }
                     if (plat.isAuthValid()) {
                         //判断是否已经存在授权状态，可以根据自己的登录逻辑设置
-                        Toast.makeText(this, "已经授权过了", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ToLoginActivity.this, "已经授权过了", Toast.LENGTH_SHORT).show();
                         return;
                     } else {
-                        Toast.makeText(this, "正在授权", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ToLoginActivity.this, "正在授权", Toast.LENGTH_SHORT).show();
                     }
-                    ShareSDK.setActivity(this);//抖音登录适配安卓9.0
+                    ShareSDK.setActivity(ToLoginActivity.this);//抖音登录适配安卓9.0
                     plat.showUser(null);    //要数据不要功能，主要体现在不会重复出现授权界面
                 } else {
 //TODO 解除绑定
                     AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
-                    View inflate = LayoutInflater.from(this).inflate(R.layout.binding_popout, null, false);
+                    View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_popout, null, false);
                     builder.setView(inflate);
                     Button button = inflate.findViewById(R.id.btn);
                     final AlertDialog show = builder.show();
@@ -176,6 +175,17 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
                         }
                     });
                 }
+            }
+        });
+    }
+
+    @SuppressLint("InflateParams")
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+            case R.id.to_return:
+                finish();
                 break;
         }
 
@@ -183,18 +193,15 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
 
     private void initL(){
         Log.i("json","加载运行");
-
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
-        builder.setTitle("退出完成");
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Log.i("json","授权成功获取到数据");
-            }
-        });
-        builder.show();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
+//        builder.setTitle("退出完成");
+//        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                Log.i("json","授权成功获取到数据");
+//            }
+//        });
+//        builder.show();
         Log.i("json","成功获取到数据");
 //                            AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
 //                            View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_succeed, null, false);
@@ -211,84 +218,80 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
 //                                    show.dismiss();
 //                                }
 //                            });
-//        AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
-//
-//        View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_output, null, false);
-//        builder.setView(inflate);
-//        final AlertDialog show = builder.show();
-//        final EditText et1 = inflate.findViewById(R.id.item_binding_outpot_et1);
-//        final EditText et2 = inflate.findViewById(R.id.item_binding_outpot_et2);
-//        final Button item_binding_outpot_fs_tbn = inflate.findViewById(R.id.item_binding_outpot_fs_tbn);
-//        Button item_binding_outpot_btn = inflate.findViewById(R.id.item_binding_outpot_btn);
-//
-//        item_binding_outpot_fs_tbn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                s = et1.getText().toString();
-//                if (s.equals("")) {
-//                    Toast.makeText(ToLoginActivity.this, "手机号不能为空", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Retrofit.Builder builder = new Retrofit.Builder();
-//                    builder.baseUrl(FinalContents.getBaseUrl());
-//                    builder.addConverterFactory(GsonConverterFactory.create());
-//                    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-//                    Retrofit build = builder.build();
-//                    MyService fzbInterface = build.create(MyService.class);
-//                    Observable<CodeBean> userMessage = fzbInterface.getSendCode(s);
-//                    userMessage.subscribeOn(Schedulers.io())
-//                            .observeOn(AndroidSchedulers.mainThread())
-//                            .subscribe(new Observer<CodeBean>() {
-//                                @Override
-//                                public void onSubscribe(Disposable d) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onNext(CodeBean codeBean) {
-//                                    CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(item_binding_outpot_fs_tbn, 60000, 1000);
-//                                    mCountDownTimerUtils.start();
-//                                    Toast.makeText(ToLoginActivity.this, codeBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-//                                }
-//
-//                                @Override
-//                                public void onError(Throwable e) {
-//                                    Toast.makeText(ToLoginActivity.this, "您输入的手机号有误", Toast.LENGTH_SHORT).show();
-//                                    Log.i("wsw", "返回的数据" + e.getMessage());
-//                                }
-//
-//                                @Override
-//                                public void onComplete() {
-//
-//                                }
-//                            });
-//                }
-//            }
-//        });
-//        item_binding_outpot_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String s2 = et1.getText().toString();
-//                String s1 = et2.getText().toString();
-////                initData(s2, s1,"");
-//                show.dismiss();
-//            }
-//        });
+        AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
+
+        View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_output, null, false);
+        builder.setView(inflate);
+        final AlertDialog show = builder.show();
+        final EditText et1 = inflate.findViewById(R.id.item_binding_outpot_et1);
+        final EditText et2 = inflate.findViewById(R.id.item_binding_outpot_et2);
+        final Button item_binding_outpot_fs_tbn = inflate.findViewById(R.id.item_binding_outpot_fs_tbn);
+        Button item_binding_outpot_btn = inflate.findViewById(R.id.item_binding_outpot_btn);
+
+        item_binding_outpot_fs_tbn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                s = et1.getText().toString();
+                if (s.equals("")) {
+                    Toast.makeText(ToLoginActivity.this, "手机号不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    Retrofit.Builder builder = new Retrofit.Builder();
+                    builder.baseUrl(FinalContents.getBaseUrl());
+                    builder.addConverterFactory(GsonConverterFactory.create());
+                    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                    Retrofit build = builder.build();
+                    MyService fzbInterface = build.create(MyService.class);
+                    Observable<CodeBean> userMessage = fzbInterface.getSendCode(s);
+                    userMessage.subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<CodeBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+
+                                }
+
+                                @Override
+                                public void onNext(CodeBean codeBean) {
+                                    CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(item_binding_outpot_fs_tbn, 60000, 1000);
+                                    mCountDownTimerUtils.start();
+                                    Toast.makeText(ToLoginActivity.this, codeBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Toast.makeText(ToLoginActivity.this, "您输入的手机号有误", Toast.LENGTH_SHORT).show();
+                                    Log.i("wsw", "返回的数据" + e.getMessage());
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+                }
+            }
+        });
+        item_binding_outpot_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s2 = et1.getText().toString();
+                String s1 = et2.getText().toString();
+                initData(s2, s1,"1");
+                show.dismiss();
+            }
+        });
+
+        login = false;
     }
 
     private void initData(String s, String s1, String s2) {
-
-        String url =  FinalContents.getImageUrl()+"/fangfang/app/v1/commonSelect/wechatBinding?" + "userPhone=" + s + "&captcha=" + s1;
-
-        OkHttpPost okHttpPost = new OkHttpPost(url);
-        String data = okHttpPost.post();
-
         Retrofit.Builder builder1 = new Retrofit.Builder();
         builder1.baseUrl(FinalContents.getBaseUrl());
         builder1.addConverterFactory(GsonConverterFactory.create());
         builder1.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder1.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<WechatBindingBean> userMessage = fzbInterface.getWechatBinding(s,s1,s2,"");
+        Observable<WechatBindingBean> userMessage = fzbInterface.getWechatBinding(s+"",s1+"",s2+"",json.toString());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<WechatBindingBean>() {
@@ -299,12 +302,28 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
 
                     @Override
                     public void onNext(WechatBindingBean wechatBindingBean) {
-
+                        if (wechatBindingBean.getData().getMessage().equals("绑定成功")) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
+                            View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_succeed, null, false);
+                            builder.setView(inflate);
+                            Button button = inflate.findViewById(R.id.item_binding_btn);
+                            final AlertDialog show = builder.show();
+                            button.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    to_login_img_1.setVisibility(View.VISIBLE);
+                                    to_login_img_2.setVisibility(View.GONE);
+                                    to_login_img_3.setVisibility(View.VISIBLE);
+                                    to_login_img_4.setVisibility(View.GONE);
+                                    show.dismiss();
+                                }
+                            });
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(ToLoginActivity.this, "您输入的手机号有误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ToLoginActivity.this, "您输入的手机号或验证码有误", Toast.LENGTH_SHORT).show();
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
@@ -314,23 +333,33 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
                     }
                 });
 
-        Gson gson = new Gson();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
-        View inflate = LayoutInflater.from(this).inflate(R.layout.binding_succeed, null, false);
-        builder.setView(inflate);
-        Button button = inflate.findViewById(R.id.item_binding_btn);
-        final AlertDialog show = builder.show();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                to_login_img_1.setVisibility(View.VISIBLE);
-                to_login_img_2.setVisibility(View.GONE);
-                to_login_img_3.setVisibility(View.VISIBLE);
-                to_login_img_4.setVisibility(View.GONE);
-                show.dismiss();
-            }
-        });
+//        AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
+//        View inflate = LayoutInflater.from(this).inflate(R.layout.binding_succeed, null, false);
+//        builder.setView(inflate);
+//        Button button = inflate.findViewById(R.id.item_binding_btn);
+//        final AlertDialog show = builder.show();
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                to_login_img_1.setVisibility(View.VISIBLE);
+//                to_login_img_2.setVisibility(View.GONE);
+//                to_login_img_3.setVisibility(View.VISIBLE);
+//                to_login_img_4.setVisibility(View.GONE);
+//                show.dismiss();
+//            }
+//        });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (login) {
+            Log.i("json","进入数据加载");
+            initL();
+        }else {
+            Log.i("json","不进入数据加载");
+        }
     }
 }
