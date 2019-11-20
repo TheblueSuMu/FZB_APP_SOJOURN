@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.modle.TotalBean;
@@ -308,8 +309,10 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
     @Override
     public void onResume() {
         super.onResume();
-
-        initView();
+        if (Connector.isJJQ()) {
+            initView();
+            Connector.setJJQ(false);
+        }
     }
 
 

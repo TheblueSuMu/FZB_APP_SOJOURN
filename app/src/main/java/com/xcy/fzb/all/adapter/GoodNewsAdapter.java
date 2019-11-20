@@ -1,6 +1,5 @@
 package com.xcy.fzb.all.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +50,6 @@ public class GoodNewsAdapter extends RecyclerView.Adapter<GoodNewsAdapter.GoodNe
                 stringBuffer.replace(i, i + 2, "\n");
             }
         }
-        Log.i("MyCL", stringBuffer.toString());
         holder.news_message.setText(stringBuffer.toString());
 
 

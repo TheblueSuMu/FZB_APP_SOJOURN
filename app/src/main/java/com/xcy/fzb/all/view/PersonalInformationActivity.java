@@ -15,7 +15,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +34,9 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.modle.ChangeNameBean;
 import com.xcy.fzb.all.modle.ChangeSexBean;
@@ -43,7 +44,6 @@ import com.xcy.fzb.all.modle.GWDataBean;
 import com.xcy.fzb.all.modle.PersonalPhotoBean;
 import com.xcy.fzb.all.modle.UserBean;
 import com.xcy.fzb.all.modle.UserMessageBean;
-import com.xcy.fzb.all.modle.XSDataBean;
 import com.xcy.fzb.all.modle.ZYDataBean;
 import com.xcy.fzb.all.modle.ZhangBingDataBean;
 import com.xcy.fzb.all.persente.OkHttpPost;
@@ -189,328 +189,224 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
             initData();
         }
 
+
+
+        if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
+
+        } else if (FinalContents.getIdentity().equals("4")  || FinalContents.getIdentity().equals("7")) {
+
+        } else if (FinalContents.getIdentity().equals("5")) {
+
+        } else if (FinalContents.getIdentity().equals("60")) {
+
+        } else if (FinalContents.getIdentity().equals("61")) {
+
+        } else if (FinalContents.getIdentity().equals("62")) {
+
+        } else if (FinalContents.getIdentity().equals("63")) {
+
+        }
+
     }
 
     private void initData() {
-
-
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
         if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
-            Observable<UserMessageBean> userMessage = fzbInterface.getUserMessage(FinalContents.getUserID());
-            userMessage.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<UserMessageBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
 
-                        }
+            UserMessageBean userMessageBean = Connector.getUserMessageBean();
 
-                        @Override
-                        public void onNext(UserMessageBean userMessageBean) {
+            information_rl.setVisibility(View.VISIBLE);
+            information_ll.setVisibility(View.VISIBLE);
+            UserMessageBean.DataBean data = userMessageBean.getData();
+            Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + data.getPhoto()).into(personal_photo);
+            personal_name.setText(data.getName());
+            personal_identity.setText("经纪人");
+            personal_city.setText(data.getCity());
+            if (data.getSex().equals("")) {
+                personal_sex.setText("男");
+                s = "男";
+            } else {
+                personal_sex.setText(data.getSex());
+                s = data.getSex();
+            }
+            personal_phone.setText(data.getPhone());
 
-                            information_rl.setVisibility(View.VISIBLE);
-                            information_ll.setVisibility(View.VISIBLE);
-                            UserMessageBean.DataBean data = userMessageBean.getData();
-                            Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + data.getPhoto()).into(personal_photo);
-                            personal_name.setText(data.getName());
-                            personal_identity.setText("经纪人");
-                            personal_city.setText(data.getCity());
-                            if (data.getSex().equals("")) {
-                                personal_sex.setText("男");
-                                s = "男";
-                            } else {
-                                personal_sex.setText(data.getSex());
-                                s = data.getSex();
-                            }
-                            personal_phone.setText(data.getPhone());
+            UserMessageBean.DataBean.StoreManageBean storeManage = data.getStoreManage();
+            if(storeManage.getStoreName().equals("")){
+                information_rl.setVisibility(View.GONE);
+                information_ll.setVisibility(View.GONE);
+            }else {
+                personal_store.setText(storeManage.getStoreName());
+            }
 
-                            UserMessageBean.DataBean.StoreManageBean storeManage = data.getStoreManage();
-                            if(storeManage.getStoreName().equals("")){
-                                information_rl.setVisibility(View.GONE);
-                                information_ll.setVisibility(View.GONE);
-                            }else {
-                                personal_store.setText(storeManage.getStoreName());
-                            }
-
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.i("MyCL", "根据用户id获取用户信息错误:" + e.getMessage());
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
         } else if (FinalContents.getIdentity().equals("4")) {
-            Observable<XSDataBean> userMessage = fzbInterface.getXSDataBean(FinalContents.getUserID());
-            userMessage.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<XSDataBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
+            UserBean userMessageBean = Connector.getUserBean();
 
-                        }
+            UserBean.DataBean data = userMessageBean.getData();
+            Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + data.getPhoto()).into(personal_photo);
+            personal_name.setText(data.getName());
+            personal_identity.setText("专案");
+            personal_city.setText(data.getCity());
+            if (data.getSex().equals("")) {
+                personal_sex.setText("男");
+                s = "男";
+            } else {
+                personal_sex.setText(data.getSex());
+                s = data.getSex();
+            }
+            personal_phone.setText(data.getPhone());
+            s = data.getSex();
+            String storeManage = data.getStoreManage();
+            personal_store.setText(storeManage);
 
-                        @Override
-                        public void onNext(XSDataBean userMessageBean) {
-//                            information_rl.setVisibility(View.GONE);
-//                            information_ll.setVisibility(View.GONE);
-                            XSDataBean.DataBean data = userMessageBean.getData();
-                            Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + data.getPhoto()).into(personal_photo);
-                            personal_name.setText(data.getName());
-                            personal_identity.setText("专案");
-                            personal_city.setText(data.getCity());
-                            if (data.getSex().equals("")) {
-                                personal_sex.setText("男");
-                                s = "男";
-                            } else {
-                                personal_sex.setText(data.getSex());
-                                s = data.getSex();
-                            }
-                            personal_phone.setText(data.getPhone());
-                            s = data.getSex();
-                            String storeManage = data.getStoreManage();
-                            personal_store.setText(storeManage);
+        } else if (FinalContents.getIdentity().equals("5")) {
+            ZYDataBean userMessageBean = Connector.getZyDataBean();
 
-                        }
+            ZYDataBean.DataBean data = userMessageBean.getData();
+            Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + data.getPhoto()).into(personal_photo);
+            personal_name.setText(data.getName());
+            if (data.getIdentity().equals("5")) {
+                personal_identity.setText("专员");
+            } else if (data.getIdentity().equals("7")) {
+                personal_identity.setText("导购");
+            }
+            personal_city.setText(data.getCity());
+            if (data.getSex().equals("")) {
+                personal_sex.setText("男");
+                s = "男";
+            } else {
+                personal_sex.setText(data.getSex());
+                s = data.getSex();
+            }
+            personal_phone.setText(data.getPhone());
+            s = data.getSex();
+            String storeManage = data.getStoreManage();
+            personal_store.setText(storeManage);
+        } else if (FinalContents.getIdentity().equals("7")) {
+            UserBean userMessageBean = Connector.getUserBean();
 
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.i("MyCL", "根据用户id获取用户信息错误:" + e.getMessage());
-                        }
+            UserBean.DataBean data = userMessageBean.getData();
 
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
-        } else if (FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7")) {
-            Observable<ZYDataBean> userMessage = fzbInterface.getZYDataBean(FinalContents.getUserID());
-            userMessage.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<ZYDataBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
-
-                        }
-
-                        @Override
-                        public void onNext(ZYDataBean userMessageBean) {
-//                            information_rl.setVisibility(View.GONE);
-//                            information_ll.setVisibility(View.GONE);
-                            ZYDataBean.DataBean data = userMessageBean.getData();
-                            Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + data.getPhoto()).into(personal_photo);
-                            personal_name.setText(data.getName());
-                            if (data.getIdentity().equals("5")) {
-                                personal_identity.setText("专员");
-                            } else if (data.getIdentity().equals("7")) {
-                                personal_identity.setText("导购");
-                            }
-                            personal_city.setText(data.getCity());
-                            if (data.getSex().equals("")) {
-                                personal_sex.setText("男");
-                                s = "男";
-                            } else {
-                                personal_sex.setText(data.getSex());
-                                s = data.getSex();
-                            }
-                            personal_phone.setText(data.getPhone());
-                            s = data.getSex();
-                            String storeManage = data.getStoreManage();
-                            personal_store.setText(storeManage);
-
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.i("MyCL", "根据用户id获取用户信息错误:" + e.getMessage());
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
+            Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + data.getPhoto()).into(personal_photo);
+            personal_name.setText(data.getName());
+            if (data.getIdentity().equals("5")) {
+                personal_identity.setText("专员");
+            } else if (data.getIdentity().equals("7")) {
+                personal_identity.setText("导购");
+            }
+            personal_city.setText(data.getCity());
+            if (data.getSex().equals("")) {
+                personal_sex.setText("男");
+                s = "男";
+            } else {
+                personal_sex.setText(data.getSex());
+                s = data.getSex();
+            }
+            personal_phone.setText(data.getPhone());
+            s = data.getSex();
+            String storeManage = data.getStoreManage();
+            personal_store.setText(storeManage);
         }
     }
 
     private void initDataTDZ() {
-
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
         if (FinalContents.getIdentity().equals("60")) {
-            Observable<ZhangBingDataBean> userMessage = fzbInterface.getZhangBingBean(FinalContents.getUserID(), FinalContents.getUserID());
-            userMessage.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<ZhangBingDataBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
 
-                        }
+            ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
 
-                        @Override
-                        public void onNext(ZhangBingDataBean userMessageBean) {
+            if (userMessageBean.getData().getSysUser().getPhoto().equals("")) {
+                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
+            } else {
+                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
+            }
 
-                            if (userMessageBean.getData().getSysUser().getPhoto().equals("")) {
-                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
-                            } else {
-                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
-                            }
+            personal_name.setText(userMessageBean.getData().getSysUser().getName());
+            if (userMessageBean.getData().getSysUser().getIdentity().equals("60")) {
+                personal_identity.setText("团队长");
+            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("61")) {
+                personal_identity.setText("销售");
+            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("62")) {
+                personal_identity.setText("顾问");
+            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("63")) {
+                personal_identity.setText("团助");
+            }
 
-                            personal_name.setText(userMessageBean.getData().getSysUser().getName());
-                            if (userMessageBean.getData().getSysUser().getIdentity().equals("60")) {
-                                personal_identity.setText("团队长");
-                            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("61")) {
-                                personal_identity.setText("销售");
-                            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("62")) {
-                                personal_identity.setText("顾问");
-                            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("63")) {
-                                personal_identity.setText("团助");
-                            }
+            personal_city.setText(userMessageBean.getData().getSysUser().getCity());
+            if (userMessageBean.getData().getSysUser().getSex().equals("")) {
+                personal_sex.setText("男");
+                s = "男";
+            } else {
+                personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
+                s = userMessageBean.getData().getSysUser().getSex();
+            }
+            personal_phone.setText(userMessageBean.getData().getSysUser().getPhone());
+            s = userMessageBean.getData().getSysUser().getSex();
+            personal_store.setText(userMessageBean.getData().getSysUser().getStoreManage());
 
-                            personal_city.setText(userMessageBean.getData().getSysUser().getCity());
-                            if (userMessageBean.getData().getSysUser().getSex().equals("")) {
-                                personal_sex.setText("男");
-                                s = "男";
-                            } else {
-                                personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
-                                s = userMessageBean.getData().getSysUser().getSex();
-                            }
-                            personal_phone.setText(userMessageBean.getData().getSysUser().getPhone());
-                            s = userMessageBean.getData().getSysUser().getSex();
-                            personal_store.setText(userMessageBean.getData().getSysUser().getStoreManage());
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.i("MyCL", "根据用户id获取用户信息错误:" + e.getMessage());
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
         } else if (FinalContents.getIdentity().equals("61") || FinalContents.getIdentity().equals("62")) {
-            Observable<GWDataBean> userMessage = fzbInterface.getGWDataBean(FinalContents.getUserID(), FinalContents.getUserID());
-            userMessage.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<GWDataBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
+            GWDataBean userMessageBean = Connector.getGwDataBean();
 
-                        }
-
-                        @Override
-                        public void onNext(GWDataBean userMessageBean) {
-
-                            if (userMessageBean.getData().getSysUser().getPhoto().equals("")) {
-                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
-                            } else {
-                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
-                            }
+            if (userMessageBean.getData().getSysUser().getPhoto().equals("")) {
+                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getManager().getPhoto()).into(personal_photo);
+            } else {
+                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getSysUser().getPhoto()).into(personal_photo);
+            }
 
 
-                            personal_name.setText(userMessageBean.getData().getSysUser().getName());
-                            if (userMessageBean.getData().getSysUser().getIdentity().equals("60")) {
-                                personal_identity.setText("团队长");
-                            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("61")) {
-                                personal_identity.setText("销售");
-                            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("62")) {
-                                personal_identity.setText("顾问");
-                            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("63")) {
-                                personal_identity.setText("团助");
-                            }
+            personal_name.setText(userMessageBean.getData().getSysUser().getName());
+            if (userMessageBean.getData().getSysUser().getIdentity().equals("60")) {
+                personal_identity.setText("团队长");
+            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("61")) {
+                personal_identity.setText("销售");
+            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("62")) {
+                personal_identity.setText("顾问");
+            } else if (userMessageBean.getData().getSysUser().getIdentity().equals("63")) {
+                personal_identity.setText("团助");
+            }
 
-                            personal_city.setText(userMessageBean.getData().getSysUser().getCity());
-                            if (userMessageBean.getData().getSysUser().getSex().equals("")) {
-                                personal_sex.setText("男");
-                                s = "男";
-                            } else {
-                                personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
-                                s = userMessageBean.getData().getSysUser().getSex();
-                            }
-                            personal_phone.setText(userMessageBean.getData().getSysUser().getPhone());
-                            s = userMessageBean.getData().getSysUser().getSex();
-                            personal_store.setText(userMessageBean.getData().getSysUser().getStoreManage());
-                        }
+            personal_city.setText(userMessageBean.getData().getSysUser().getCity());
+            if (userMessageBean.getData().getSysUser().getSex().equals("")) {
+                personal_sex.setText("男");
+                s = "男";
+            } else {
+                personal_sex.setText(userMessageBean.getData().getSysUser().getSex());
+                s = userMessageBean.getData().getSysUser().getSex();
+            }
+            personal_phone.setText(userMessageBean.getData().getSysUser().getPhone());
+            s = userMessageBean.getData().getSysUser().getSex();
+            personal_store.setText(userMessageBean.getData().getSysUser().getStoreManage());
 
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.i("MyCL", "根据用户id获取用户信息错误:" + e.getMessage());
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
         } else if (FinalContents.getIdentity().equals("63")) {
-            Observable<UserBean> userMessage = fzbInterface.getUserBean(FinalContents.getUserID());
-            userMessage.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<UserBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
 
-                        }
+            UserBean userMessageBean = Connector.getUserBean();
 
-                        @Override
-                        public void onNext(UserBean userMessageBean) {
+            if (userMessageBean.getData().getPhoto().equals("")) {
+                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getPhoto()).into(personal_photo);
+            } else {
+                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getPhoto()).into(personal_photo);
+            }
 
-                            if (userMessageBean.getData().getPhoto().equals("")) {
-                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getPhoto()).into(personal_photo);
-                            } else {
-                                Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + userMessageBean.getData().getPhoto()).into(personal_photo);
-                            }
+            personal_name.setText(userMessageBean.getData().getName());
+            if (userMessageBean.getData().getIdentity().equals("60")) {
+                personal_identity.setText("团队长");
+            } else if (userMessageBean.getData().getIdentity().equals("61")) {
+                personal_identity.setText("销售");
+            } else if (userMessageBean.getData().getIdentity().equals("62")) {
+                personal_identity.setText("顾问");
+            } else if (userMessageBean.getData().getIdentity().equals("63")) {
+                personal_identity.setText("团助");
+            }
 
-
-                            personal_name.setText(userMessageBean.getData().getName());
-                            if (userMessageBean.getData().getIdentity().equals("60")) {
-                                personal_identity.setText("团队长");
-                            } else if (userMessageBean.getData().getIdentity().equals("61")) {
-                                personal_identity.setText("销售");
-                            } else if (userMessageBean.getData().getIdentity().equals("62")) {
-                                personal_identity.setText("顾问");
-                            } else if (userMessageBean.getData().getIdentity().equals("63")) {
-                                personal_identity.setText("团助");
-                            }
-
-                            personal_city.setText(userMessageBean.getData().getCity());
-                            if (userMessageBean.getData().getSex().equals("")) {
-                                personal_sex.setText("男");
-                                s = "男";
-                            } else {
-                                personal_sex.setText(userMessageBean.getData().getSex());
-                                s = userMessageBean.getData().getSex();
-                            }
-                            personal_phone.setText(userMessageBean.getData().getPhone());
-                            s = userMessageBean.getData().getSex();
-                            personal_store.setText(userMessageBean.getData().getStoreManage());
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.i("MyCL", "根据用户id获取用户信息错误:" + e.getMessage());
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
+            personal_city.setText(userMessageBean.getData().getCity());
+            if (userMessageBean.getData().getSex().equals("")) {
+                personal_sex.setText("男");
+                s = "男";
+            } else {
+                personal_sex.setText(userMessageBean.getData().getSex());
+                s = userMessageBean.getData().getSex();
+            }
+            personal_phone.setText(userMessageBean.getData().getPhone());
+            s = userMessageBean.getData().getSex();
+            personal_store.setText(userMessageBean.getData().getStoreManage());
         }
 
     }
@@ -616,6 +512,63 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                 personal_name.setVisibility(View.VISIBLE);
                                 personal_name.setText(s);
                                 Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
+                                    UserMessageBean userMessageBean = Connector.getUserMessageBean();
+                                    UserMessageBean.DataBean dataBean = userMessageBean.getData();
+                                    dataBean.setName(personal_et_name.getText().toString());
+                                    userMessageBean.setData(dataBean);
+                                    Connector.setUserMessageBean(userMessageBean);
+                                    NewlyIncreased.setUserMessage("123");
+                                } else if (FinalContents.getIdentity().equals("4")  || FinalContents.getIdentity().equals("7")) {
+                                    UserBean userMessageBean = Connector.getUserBean();
+                                    UserBean.DataBean dataBean = userMessageBean.getData();
+                                    dataBean.setName(personal_et_name.getText().toString());
+                                    userMessageBean.setData(dataBean);
+                                    Connector.setUserBean(userMessageBean);
+                                    NewlyIncreased.setUserMessage("7");
+                                } else if (FinalContents.getIdentity().equals("5")) {
+                                    ZYDataBean userMessageBean = Connector.getZyDataBean();
+                                    ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                                    dataBean.setName(personal_et_name.getText().toString());
+                                    userMessageBean.setData(dataBean);
+                                    Connector.setZyDataBean(userMessageBean);
+                                    NewlyIncreased.setUserMessage("5");
+                                } else if (FinalContents.getIdentity().equals("60")) {
+                                    ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
+                                    ZhangBingDataBean.DataBean dataBean = userMessageBean.getData();
+                                    ZhangBingDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                    sysUserBean.setName(personal_et_name.getText().toString());
+                                    dataBean.setSysUser(sysUserBean);
+                                    userMessageBean.setData(dataBean);
+                                    Connector.setZhangBingDataBean(userMessageBean);
+                                    NewlyIncreased.setUserMessage("60");
+                                } else if (FinalContents.getIdentity().equals("61")) {
+                                    GWDataBean userMessageBean = Connector.getGwDataBean();
+                                    GWDataBean.DataBean dataBean = userMessageBean.getData();
+                                    GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                    sysUserBean.setName(personal_et_name.getText().toString());
+                                    dataBean.setSysUser(sysUserBean);
+                                    userMessageBean.setData(dataBean);
+                                    Connector.setGwDataBean(userMessageBean);
+                                    NewlyIncreased.setUserMessage("61");
+                                } else if (FinalContents.getIdentity().equals("62")) {
+                                    GWDataBean userMessageBean = Connector.getGwDataBean();
+                                    GWDataBean.DataBean dataBean = userMessageBean.getData();
+                                    GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                    sysUserBean.setName(personal_et_name.getText().toString());
+                                    dataBean.setSysUser(sysUserBean);
+                                    userMessageBean.setData(dataBean);
+                                    Connector.setGwDataBean(userMessageBean);
+                                    NewlyIncreased.setUserMessage("61");
+                                } else if (FinalContents.getIdentity().equals("63")) {
+                                    UserBean userMessageBean = Connector.getUserBean();
+                                    UserBean.DataBean dataBean = userMessageBean.getData();
+                                    dataBean.setName(personal_et_name.getText().toString());
+                                    userMessageBean.setData(dataBean);
+                                    Connector.setUserBean(userMessageBean);
+                                    NewlyIncreased.setUserMessage("63");
+                                }
                                 initData();
                             } else {
                                 Toast.makeText(PersonalInformationActivity.this, "修改昵称失败", Toast.LENGTH_SHORT).show();
@@ -633,75 +586,6 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 
 
                 initRatioByOwnerId();
-
-
-//                String s2 = personal_sex.getText().toString();
-//                s = personal_sex.getText().toString();
-//                final AlertDialog.Builder builder1 = new AlertDialog.Builder(PersonalInformationActivity.this);
-//                builder1.setTitle("性别");
-//                final String[] items = {"男", "女"};
-//                if (s2.equals("男")) {
-//                    builder1.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
-//
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            s = items[i].toString();
-////                        Toast.makeText(PersonalInformationActivity.this, items[i], Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                } else if (s2.equals("女")) {
-//                    builder1.setSingleChoiceItems(items, 1, new DialogInterface.OnClickListener() {
-//
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            s = items[i].toString();
-////                        Toast.makeText(PersonalInformationActivity.this, items[i], Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                } else if (s2.equals("")) {
-//                    builder1.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
-//
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            s = items[0].toString();
-////                        Toast.makeText(PersonalInformationActivity.this, items[i], Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }
-//
-//                Log.i("修改性别","2 shuju + xingbie："+s);
-//                Log.i("修改性别","2 shuju + xingbie："+personal_sex.getText().toString());
-//                builder1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                        String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonUpdate/updateSex?" + "userId=" + FinalContents.getUserID() + "&sex=" + s;
-////                        修改性别成功
-//                        OkHttpPost okHttpPost = new OkHttpPost(url);
-//                        String data = okHttpPost.post();
-//                        Gson gson = new Gson();
-//                        ChangeSexBean changeSexBean = gson.fromJson(data, ChangeSexBean.class);
-//                        ChangeSexBean.DataBean data1 = changeSexBean.getData();
-//                        if (data1.getMessage().equals("修改性别成功")) {
-//                            Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
-//                            Log.i("修改性别","xingbie："+s);
-//                            personal_sex.setText(s);
-//                            Log.i("修改性别","shuju + xingbie："+personal_sex.getText().toString());
-//                        } else {
-//                            Toast.makeText(PersonalInformationActivity.this, "性别修改失败", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    }
-//                });
-//                builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                    }
-//                });
-//
-//                builder1.show();
-
 
                 break;
 //手机号
@@ -749,6 +633,55 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                 if (data1.getMessage().equals("修改性别成功")) {
                     Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
                     personal_sex.setText(list1.get(options1));
+                    if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
+                        UserMessageBean userMessageBean = Connector.getUserMessageBean();
+                        UserMessageBean.DataBean dataBean = userMessageBean.getData();
+                        dataBean.setSex(personal_sex.getText().toString());
+                        userMessageBean.setData(dataBean);
+                        Connector.setUserMessageBean(userMessageBean);
+                    } else if (FinalContents.getIdentity().equals("4")  || FinalContents.getIdentity().equals("7")) {
+                        UserBean userMessageBean = Connector.getUserBean();
+                        UserBean.DataBean dataBean = userMessageBean.getData();
+                        dataBean.setName(personal_sex.getText().toString());
+                        userMessageBean.setData(dataBean);
+                        Connector.setUserBean(userMessageBean);
+                    } else if (FinalContents.getIdentity().equals("5")) {
+                        ZYDataBean userMessageBean = Connector.getZyDataBean();
+                        ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                        dataBean.setName(personal_sex.getText().toString());
+                        userMessageBean.setData(dataBean);
+                        Connector.setZyDataBean(userMessageBean);
+                    } else if (FinalContents.getIdentity().equals("60")) {
+                        ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
+                        ZhangBingDataBean.DataBean dataBean = userMessageBean.getData();
+                        ZhangBingDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                        sysUserBean.setName(personal_sex.getText().toString());
+                        dataBean.setSysUser(sysUserBean);
+                        userMessageBean.setData(dataBean);
+                        Connector.setZhangBingDataBean(userMessageBean);
+                    } else if (FinalContents.getIdentity().equals("61")) {
+                        GWDataBean userMessageBean = Connector.getGwDataBean();
+                        GWDataBean.DataBean dataBean = userMessageBean.getData();
+                        GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                        sysUserBean.setName(personal_sex.getText().toString());
+                        dataBean.setSysUser(sysUserBean);
+                        userMessageBean.setData(dataBean);
+                        Connector.setGwDataBean(userMessageBean);
+                    } else if (FinalContents.getIdentity().equals("62")) {
+                        GWDataBean userMessageBean = Connector.getGwDataBean();
+                        GWDataBean.DataBean dataBean = userMessageBean.getData();
+                        GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                        sysUserBean.setName(personal_sex.getText().toString());
+                        dataBean.setSysUser(sysUserBean);
+                        userMessageBean.setData(dataBean);
+                        Connector.setGwDataBean(userMessageBean);
+                    } else if (FinalContents.getIdentity().equals("63")) {
+                        UserBean userMessageBean = Connector.getUserBean();
+                        UserBean.DataBean dataBean = userMessageBean.getData();
+                        dataBean.setName(personal_sex.getText().toString());
+                        userMessageBean.setData(dataBean);
+                        Connector.setUserBean(userMessageBean);
+                    }
                 } else {
                     Toast.makeText(PersonalInformationActivity.this, "性别修改失败", Toast.LENGTH_SHORT).show();
                 }
@@ -773,7 +706,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable final Intent data) {
 //TODO  获取相册图片地址
         if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
             Log.e("MyCL", "ActivityResult resultCode error");
@@ -825,6 +758,57 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         imgStr = addPhotoBean.getData().getUrl();
                                         Glide.with(PersonalInformationActivity.this).load(FinalContents.getImageUrl() + imgStr).into(personal_photo);
+
+                                        if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
+                                            UserMessageBean userMessageBean = Connector.getUserMessageBean();
+                                            UserMessageBean.DataBean dataBean = userMessageBean.getData();
+                                            dataBean.setPhoto(imgStr);
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setUserMessageBean(userMessageBean);
+                                        } else if (FinalContents.getIdentity().equals("4")  || FinalContents.getIdentity().equals("7")) {
+                                            UserBean userMessageBean = Connector.getUserBean();
+                                            UserBean.DataBean dataBean = userMessageBean.getData();
+                                            dataBean.setPhoto(imgStr);
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setUserBean(userMessageBean);
+                                        } else if (FinalContents.getIdentity().equals("5")) {
+                                            ZYDataBean userMessageBean = Connector.getZyDataBean();
+                                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                                            dataBean.setPhoto(imgStr);
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setZyDataBean(userMessageBean);
+                                        } else if (FinalContents.getIdentity().equals("60")) {
+                                            ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
+                                            ZhangBingDataBean.DataBean dataBean = userMessageBean.getData();
+                                            ZhangBingDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                            sysUserBean.setPhoto(imgStr);
+                                            dataBean.setSysUser(sysUserBean);
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setZhangBingDataBean(userMessageBean);
+                                        } else if (FinalContents.getIdentity().equals("61")) {
+                                            GWDataBean userMessageBean = Connector.getGwDataBean();
+                                            GWDataBean.DataBean dataBean = userMessageBean.getData();
+                                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                            sysUserBean.setPhoto(imgStr);
+                                            dataBean.setSysUser(sysUserBean);
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setGwDataBean(userMessageBean);
+                                        } else if (FinalContents.getIdentity().equals("62")) {
+                                            GWDataBean userMessageBean = Connector.getGwDataBean();
+                                            GWDataBean.DataBean dataBean = userMessageBean.getData();
+                                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                            sysUserBean.setPhoto(imgStr);
+                                            dataBean.setSysUser(sysUserBean);
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setGwDataBean(userMessageBean);
+                                        } else if (FinalContents.getIdentity().equals("63")) {
+                                            UserBean userMessageBean = Connector.getUserBean();
+                                            UserBean.DataBean dataBean = userMessageBean.getData();
+                                            dataBean.setPhoto(imgStr);
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setUserBean(userMessageBean);
+                                        }
+
                                         Retrofit.Builder builder = new Retrofit.Builder();
                                         builder.baseUrl(FinalContents.getBaseUrl());
                                         builder.addConverterFactory(GsonConverterFactory.create());
@@ -992,6 +976,55 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                                     if (personalPhotoBean.getData().getStatus().equals("1")) {
                                                         Toast.makeText(PersonalInformationActivity.this, personalPhotoBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                                         isPhoto = "";
+                                                        if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
+                                                            UserMessageBean userMessageBean = Connector.getUserMessageBean();
+                                                            UserMessageBean.DataBean dataBean = userMessageBean.getData();
+                                                            dataBean.setPhoto(imgStr);
+                                                            userMessageBean.setData(dataBean);
+                                                            Connector.setUserMessageBean(userMessageBean);
+                                                        } else if (FinalContents.getIdentity().equals("4")  || FinalContents.getIdentity().equals("7")) {
+                                                            UserBean userMessageBean = Connector.getUserBean();
+                                                            UserBean.DataBean dataBean = userMessageBean.getData();
+                                                            dataBean.setPhoto(imgStr);
+                                                            userMessageBean.setData(dataBean);
+                                                            Connector.setUserBean(userMessageBean);
+                                                        } else if (FinalContents.getIdentity().equals("5")) {
+                                                            ZYDataBean userMessageBean = Connector.getZyDataBean();
+                                                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                                                            dataBean.setPhoto(imgStr);
+                                                            userMessageBean.setData(dataBean);
+                                                            Connector.setZyDataBean(userMessageBean);
+                                                        } else if (FinalContents.getIdentity().equals("60")) {
+                                                            ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
+                                                            ZhangBingDataBean.DataBean dataBean = userMessageBean.getData();
+                                                            ZhangBingDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                                            sysUserBean.setPhoto(imgStr);
+                                                            dataBean.setSysUser(sysUserBean);
+                                                            userMessageBean.setData(dataBean);
+                                                            Connector.setZhangBingDataBean(userMessageBean);
+                                                        } else if (FinalContents.getIdentity().equals("61")) {
+                                                            GWDataBean userMessageBean = Connector.getGwDataBean();
+                                                            GWDataBean.DataBean dataBean = userMessageBean.getData();
+                                                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                                            sysUserBean.setPhoto(imgStr);
+                                                            dataBean.setSysUser(sysUserBean);
+                                                            userMessageBean.setData(dataBean);
+                                                            Connector.setGwDataBean(userMessageBean);
+                                                        } else if (FinalContents.getIdentity().equals("62")) {
+                                                            GWDataBean userMessageBean = Connector.getGwDataBean();
+                                                            GWDataBean.DataBean dataBean = userMessageBean.getData();
+                                                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                                            sysUserBean.setPhoto(imgStr);
+                                                            dataBean.setSysUser(sysUserBean);
+                                                            userMessageBean.setData(dataBean);
+                                                            Connector.setGwDataBean(userMessageBean);
+                                                        } else if (FinalContents.getIdentity().equals("63")) {
+                                                            UserBean userMessageBean = Connector.getUserBean();
+                                                            UserBean.DataBean dataBean = userMessageBean.getData();
+                                                            dataBean.setPhoto(imgStr);
+                                                            userMessageBean.setData(dataBean);
+                                                            Connector.setUserBean(userMessageBean);
+                                                        }
                                                     } else {
                                                         Toast.makeText(PersonalInformationActivity.this, personalPhotoBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                                     }

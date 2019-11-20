@@ -71,16 +71,17 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/information_relative1"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:background="#ffffffff">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#F0F0F0"></LinearLayout>
+            android:background="#F0F0F0"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -109,6 +110,29 @@
                 android:textSize="13sp" />
         </LinearLayout>
 
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/information_relative2"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffffff">
+
+        <TextView
+            android:id="@+id/more_qt_call"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="55dp"
+            android:background="@drawable/points_dialog_but"
+            android:gravity="center"
+            android:text="项目专线"
+            android:textColor="#fff"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 

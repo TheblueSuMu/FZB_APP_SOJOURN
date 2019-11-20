@@ -94,8 +94,6 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
-            initData();
-            initDataBean();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
             Button all_no_reload = findViewById(R.id.all_no_reload);

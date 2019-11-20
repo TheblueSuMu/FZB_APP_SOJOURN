@@ -120,17 +120,11 @@ public class NoticeFragment extends Fragment {
         notice_rv = getActivity().findViewById(R.id.notice_rv);
         all_no_information = getActivity().findViewById(R.id.all_no_information_notice);
 
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         notice_rv.setLayoutManager(manager);
-
         ptrClassicFrameLayout = (PtrClassicFrameLayout) getActivity().findViewById(R.id.store_house_ptr_frame_12);
+
         ptrClassicFrameLayout.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
@@ -175,6 +169,7 @@ public class NoticeFragment extends Fragment {
                     public void onNext(MessageBean messageBean) {
                         MessageBean.DataBean data1 = messageBean.getData();
                         rows = data1.getRows();
+                        Log.i("列表数据加载", "加载");
                         if (rows.size() != 0) {
                             all_no_information.setVisibility(View.GONE);
                             notice_rv.setVisibility(View.VISIBLE);
@@ -360,6 +355,17 @@ public class NoticeFragment extends Fragment {
         }
         Log.i("MyCL", "11");
         return bitmap;
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
+        } else {
+            initData();
+            //TODO now invisible to user 显示fragment
+        }
     }
 
 }

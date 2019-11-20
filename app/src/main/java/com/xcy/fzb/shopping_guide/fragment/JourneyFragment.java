@@ -39,6 +39,11 @@ public class JourneyFragment extends AllFragment {
     private View view;
     private ImageView all_no_information;
     private PtrClassicFrameLayout journey_ptrclass;
+    private TaskDetailsBean taskDetailsBean;
+
+    public JourneyFragment(TaskDetailsBean taskDetailsBean) {
+        this.taskDetailsBean = taskDetailsBean;
+    }
 
     @Nullable
     @Override
@@ -67,10 +72,25 @@ public class JourneyFragment extends AllFragment {
             }
         });
 
-        initData();
+        initData2();
         return view;
     }
 
+    private void initData2(){
+        if (taskDetailsBean.getData().getRouteInfo().size() != 0) {
+            all_no_information.setVisibility(View.GONE);
+            journey_rv.setVisibility(View.VISIBLE);
+            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
+            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            journey_rv.setLayoutManager(layoutManager);
+            JourneyAdapter recyclerAdapter = new JourneyAdapter(taskDetailsBean.getData().getRouteInfo());
+            journey_rv.setAdapter(recyclerAdapter);
+            recyclerAdapter.notifyDataSetChanged();
+        }else {
+            all_no_information.setVisibility(View.VISIBLE);
+            journey_rv.setVisibility(View.GONE);
+        }
+    }
 
     private void initData(){
         Retrofit.Builder builder = new Retrofit.Builder();

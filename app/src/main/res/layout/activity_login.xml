@@ -10,6 +10,7 @@
 
         <LinearLayout
             android:id="@+id/wll1"
+            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -18,13 +19,13 @@
                 android:layout_width="154dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="65dp"
+                android:layout_marginTop="85dp"
                 android:src="@mipmap/ic_login_logo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="90dp"
                 android:orientation="vertical">
 
                 <LinearLayout

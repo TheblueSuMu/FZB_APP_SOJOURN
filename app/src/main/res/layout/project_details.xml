@@ -235,7 +235,7 @@
                         android:layout_height="27dp"
                         android:layout_alignParentRight="true"
                         android:background="@drawable/pingtuan_background"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:gravity="center"
                         android:paddingLeft="15dp"
                         android:text="拼团"

@@ -85,10 +85,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/banner_img"
+                                android:src="@mipmap/banner_img"
+                                android:layout_width="match_parent"
+                                android:layout_height="140dp"/>
 
                             <com.lzj.gallery.library.views.BannerViewPager
                                 android:id="@+id/banner_2"
@@ -98,7 +104,7 @@
 
                             </com.lzj.gallery.library.views.BannerViewPager>
 
-                        </LinearLayout>
+                        </RelativeLayout>
                     </androidx.core.widget.NestedScrollView>
 
                     <RelativeLayout

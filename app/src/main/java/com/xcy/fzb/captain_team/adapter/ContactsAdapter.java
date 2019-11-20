@@ -36,6 +36,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
     public void setContacts(List<ContactModel> contacts) {
         this.contacts = contacts;
+        notifyDataSetChanged();
     }
 
 
@@ -43,7 +44,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public ContactsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.layaout_item_contacts, null);
+        View view = inflater.inflate(R.layout.layaout_item_contacts, parent,false);
         return new ContactsViewHolder(view);
     }
 

@@ -9,6 +9,26 @@ public class NewlyIncreased {
     static String YJstartDate = "";
     static String YJendDate = "";
 
+    static boolean test = true;
+
+    static String UserMessage = "";
+
+    public static String getUserMessage() {
+        return UserMessage;
+    }
+
+    public static void setUserMessage(String userMessage) {
+        UserMessage = userMessage;
+    }
+
+    public static boolean isTest() {
+        return test;
+    }
+
+    public static void setTest(boolean test) {
+        NewlyIncreased.test = test;
+    }
+
     public static String getYJType() {
         return YJType;
     }

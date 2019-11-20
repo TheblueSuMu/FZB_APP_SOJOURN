@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.modle.CustomerListBean;
@@ -45,6 +46,9 @@ public class ClientFragment extends AllFragment {
     int isnum = 0;
     private ImageView all_no_information;
     private PtrClassicFrameLayout client_ptrclass;
+
+    private CustomerListBean customerList;
+
 
     @Nullable
     @Override
@@ -91,7 +95,31 @@ public class ClientFragment extends AllFragment {
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
             }
         });
+
+        customerList = Connector.getCustomerListBean();
+
+        search = "";
+        client_search.setText("");
+        initData2();
         return view;
+    }
+
+    private void initData2(){
+        Log.i("客户数据查询", "次数");
+        if (customerList.getData().getRows().size() != 0) {
+            all_no_information.setVisibility(View.GONE);
+            client_rv.setVisibility(View.VISIBLE);
+            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(view.getContext());
+            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            client_rv.setLayoutManager(layoutManager);
+            ClientAdapter recyclerAdapter = new ClientAdapter(customerList.getData().getRows());
+            client_rv.setAdapter(recyclerAdapter);
+            recyclerAdapter.notifyDataSetChanged();
+        }else {
+            all_no_information.setVisibility(View.VISIBLE);
+            client_rv.setVisibility(View.GONE);
+
+        }
     }
 
     private void initData() {
@@ -114,6 +142,7 @@ public class ClientFragment extends AllFragment {
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(CustomerListBean customerListBean) {
+                        Log.i("列表数据查询", "次数");
                         if (customerListBean.getData().getRows().size() != 0) {
                             all_no_information.setVisibility(View.GONE);
                             client_rv.setVisibility(View.VISIBLE);
@@ -128,6 +157,8 @@ public class ClientFragment extends AllFragment {
                             client_rv.setVisibility(View.GONE);
 
                         }
+                        Connector.setCustomerListBean(customerListBean);
+                        customerList = Connector.getCustomerListBean();
                         isnum = 0;
                     }
 
@@ -145,22 +176,4 @@ public class ClientFragment extends AllFragment {
                 });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        search = "";
-        client_search.setText("");
-        initData();
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
-        }
-    }
 }

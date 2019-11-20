@@ -23,7 +23,9 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.Login.LoginActivity;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.UserBean;
 import com.xcy.fzb.all.persente.CleanDataUtils;
 import com.xcy.fzb.all.service.MyService;
@@ -98,6 +100,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         about_my_the_project_end.setOnClickListener(this);
         empty_my_the_project_end.setOnClickListener(this);
         exit_my_the_project_end.setOnClickListener(this);
+
+        initUser();
+
     }
 
     @Override
@@ -204,6 +209,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                             position_my_the_project_end.setText("导购");
                         }
                         FinalContents.setCityID(userBean.getData().getCityId());
+
+                        Connector.setUserBean(userBean);
                     }
 
                     @Override
@@ -218,20 +225,23 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        initUser();
+    private void init(){
+        UserBean userBean = Connector.getUserBean();
+        Glide.with(getActivity()).load(FinalContents.getImageUrl() + userBean.getData().getPhoto()).into(img_my_the_project_end);
+        name_my_the_project_end.setText(userBean.getData().getName());
+        city_my_the_project_end.setText(userBean.getData().getCity());
+        shop_my_the_project_end.setText(userBean.getData().getCityName());
+        if (userBean.getData().getIdentity().equals("7")) {
+            position_my_the_project_end.setText("导购");
+        }
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
+    public void onResume() {
+        super.onResume();
+        if (NewlyIncreased.getUserMessage().equals("7")){
+            init();
+            NewlyIncreased.setUserMessage("");
         }
     }
 

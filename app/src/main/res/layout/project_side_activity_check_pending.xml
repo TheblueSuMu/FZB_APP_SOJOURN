@@ -173,6 +173,39 @@
                     android:textColor="#666666" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/check_pending_l"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/check_pending_b1"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="7.5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="通过"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/check_pending_b2"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="7.5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="拒绝"
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
         </RelativeLayout>
 
 

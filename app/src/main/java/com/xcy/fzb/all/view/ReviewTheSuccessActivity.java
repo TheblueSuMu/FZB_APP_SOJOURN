@@ -71,7 +71,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     TextView review_the_success_bt3;
     TextView review_the_success_bt4;
     TextView review_the_success_bt5;
-
     TextView review_the_success_bt6;
     TextView review_the_success_bt7;
     TextView review_the_success_bt8;
@@ -81,6 +80,20 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     TextView review_the_success_bt12;
     TextView review_the_success_bt13;
 
+    Button review_the_success_b1;
+    Button review_the_success_b2;
+    Button review_the_success_b3;
+    Button review_the_success_b4;
+    Button review_the_success_b5;
+
+    Button review_the_success_b6;
+    Button review_the_success_b7;
+    Button review_the_success_b8;
+    Button review_the_success_b9;
+    Button review_the_success_b10;
+    Button review_the_success_b11;
+    Button review_the_success_b12;
+    Button review_the_success_b13;
 
     private Intent intent;
     private String url;
@@ -105,6 +118,8 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     private LinearLayout success_linear11;
     private LinearLayout success_linear12;
     private LinearLayout success_linear13;
+    private LinearLayout linearlayout_ll;
+    private LinearLayout linearlayout_l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +175,8 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         review_the_success_tv2 = findViewById(R.id.review_the_success_tv2);
         review_the_success_tv3 = findViewById(R.id.review_the_success_tv3);
         review_the_success_rv = findViewById(R.id.review_the_success_rv);
+
+        linearlayout_ll = findViewById(R.id.linearlayout_ll);
         review_the_success_bt1 = findViewById(R.id.review_the_success_bt1);
         review_the_success_bt2 = findViewById(R.id.review_the_success_bt2);
         review_the_success_bt3 = findViewById(R.id.review_the_success_bt3);
@@ -173,6 +190,21 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         review_the_success_bt11 = findViewById(R.id.review_the_success_bt11);
         review_the_success_bt12 = findViewById(R.id.review_the_success_bt12);
         review_the_success_bt13 = findViewById(R.id.review_the_success_bt13);
+
+        linearlayout_l = findViewById(R.id.linearlayout_l);
+        review_the_success_b1 = findViewById(R.id.review_the_success_b1);
+        review_the_success_b2 = findViewById(R.id.review_the_success_b2);
+        review_the_success_b3 = findViewById(R.id.review_the_success_b3);
+        review_the_success_b4 = findViewById(R.id.review_the_success_b4);
+        review_the_success_b5 = findViewById(R.id.review_the_success_b5);
+        review_the_success_b6 = findViewById(R.id.review_the_success_b6);
+        review_the_success_b7 = findViewById(R.id.review_the_success_b7);
+        review_the_success_b8 = findViewById(R.id.review_the_success_b8);
+        review_the_success_b9 = findViewById(R.id.review_the_success_b9);
+        review_the_success_b10 = findViewById(R.id.review_the_success_b10);
+        review_the_success_b11 = findViewById(R.id.review_the_success_b11);
+        review_the_success_b12 = findViewById(R.id.review_the_success_b12);
+        review_the_success_b13 = findViewById(R.id.review_the_success_b13);
         review_the_success_nameRv = findViewById(R.id.review_the_success_NameRv);
 
         success_linear1 = findViewById(R.id.success_linear1);
@@ -207,6 +239,23 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         review_the_success_bt11.setOnClickListener(this);
         review_the_success_bt12.setOnClickListener(this);
         review_the_success_bt13.setOnClickListener(this);
+
+
+        review_the_success_b1.setOnClickListener(this);
+        review_the_success_b2.setOnClickListener(this);
+        review_the_success_b3.setOnClickListener(this);
+        review_the_success_b4.setOnClickListener(this);
+        review_the_success_b5.setOnClickListener(this);
+
+        review_the_success_b6.setOnClickListener(this);
+        review_the_success_b7.setOnClickListener(this);
+        review_the_success_b8.setOnClickListener(this);
+        review_the_success_b9.setOnClickListener(this);
+        review_the_success_b10.setOnClickListener(this);
+
+        review_the_success_b11.setOnClickListener(this);
+        review_the_success_b12.setOnClickListener(this);
+        review_the_success_b13.setOnClickListener(this);
 
         review_the_success_bt1.setVisibility(View.GONE);
         review_the_success_bt2.setVisibility(View.GONE);
@@ -252,72 +301,134 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                     public void onNext(ReportProcessDetailsBean reportProcessDetailsBean) {
                         lien.setVisibility(View.VISIBLE);
                         all_no_information.setVisibility(View.GONE);
-                        for (int i = 0;i < reportProcessDetailsBean.getData().getMenuData().size();i++){
-                            if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("0")) {
-                                //  TODO    失效
-                                review_the_success_bt1.setVisibility(View.VISIBLE);
-                                success_linear1.setVisibility(View.VISIBLE);
-                                review_the_success_bt1.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("40")) {
-                                //  TODO    申请登岛
-                                review_the_success_bt2.setVisibility(View.VISIBLE);
-                                success_linear2.setVisibility(View.VISIBLE);
-                                review_the_success_bt2.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("20")) {
-                                //  TODO    申请到访
-                                review_the_success_bt3.setVisibility(View.VISIBLE);
-                                success_linear3.setVisibility(View.VISIBLE);
-                                review_the_success_bt3.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("50")) {
-                                //  TODO    认筹
-                                review_the_success_bt4.setVisibility(View.VISIBLE);
-                                success_linear4.setVisibility(View.VISIBLE);
-                                review_the_success_bt4.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("60")) {
-                                //  TODO    成交
-                                review_the_success_bt5.setVisibility(View.VISIBLE);
-                                success_linear5.setVisibility(View.VISIBLE);
-                                review_the_success_bt5.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("402")) {
-                                //  TODO    未成交
-                                review_the_success_bt6.setVisibility(View.VISIBLE);
-                                success_linear6.setVisibility(View.VISIBLE);
-                                review_the_success_bt6.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("500")) {
-                                //  TODO    修改信息
-                                review_the_success_bt7.setVisibility(View.VISIBLE);
-                                success_linear7.setVisibility(View.VISIBLE);
-                                review_the_success_bt7.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("501")) {
-                                //  TODO    退筹
-                                review_the_success_bt8.setVisibility(View.VISIBLE);
-                                success_linear8.setVisibility(View.VISIBLE);
-                                review_the_success_bt8.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("601")) {
-                                //  TODO    调单
-                                review_the_success_bt9.setVisibility(View.VISIBLE);
-                                success_linear9.setVisibility(View.VISIBLE);
-                                review_the_success_bt9.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("602")) {
-                                //  TODO    退单
-                                review_the_success_bt10.setVisibility(View.VISIBLE);
-                                success_linear10.setVisibility(View.VISIBLE);
-                                review_the_success_bt10.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("5")) {
-                                //  TODO    通过
-                                review_the_success_bt11.setVisibility(View.VISIBLE);
-                                success_linear11.setVisibility(View.VISIBLE);
-                                review_the_success_bt11.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("6")) {
-                                //  TODO    拒绝
-                                review_the_success_bt12.setVisibility(View.VISIBLE);
-                                success_linear12.setVisibility(View.VISIBLE);
-                                review_the_success_bt12.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
-                            } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("400")) {
-                                //  TODO    补全信息
-                                review_the_success_bt13.setVisibility(View.VISIBLE);
-                                success_linear13.setVisibility(View.VISIBLE);
-                                review_the_success_bt13.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                        if (reportProcessDetailsBean.getData().getMenuData().size() > 1) {
+                            linearlayout_ll.setVisibility(View.VISIBLE);
+                            linearlayout_l.setVisibility(View.GONE);
+                            for (int i = 0;i < reportProcessDetailsBean.getData().getMenuData().size();i++){
+                                if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("0")) {
+                                    //  TODO    失效
+                                    review_the_success_bt1.setVisibility(View.VISIBLE);
+                                    success_linear1.setVisibility(View.VISIBLE);
+                                    review_the_success_bt1.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("40")) {
+                                    //  TODO    申请登岛
+                                    review_the_success_bt2.setVisibility(View.VISIBLE);
+                                    success_linear2.setVisibility(View.VISIBLE);
+                                    review_the_success_bt2.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("20")) {
+                                    //  TODO    申请到访
+                                    review_the_success_bt3.setVisibility(View.VISIBLE);
+                                    success_linear3.setVisibility(View.VISIBLE);
+                                    review_the_success_bt3.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("50")) {
+                                    //  TODO    认筹
+                                    review_the_success_bt4.setVisibility(View.VISIBLE);
+                                    success_linear4.setVisibility(View.VISIBLE);
+                                    review_the_success_bt4.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("60")) {
+                                    //  TODO    成交
+                                    review_the_success_bt5.setVisibility(View.VISIBLE);
+                                    success_linear5.setVisibility(View.VISIBLE);
+                                    review_the_success_bt5.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("402")) {
+                                    //  TODO    未成交
+                                    review_the_success_bt6.setVisibility(View.VISIBLE);
+                                    success_linear6.setVisibility(View.VISIBLE);
+                                    review_the_success_bt6.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("500")) {
+                                    //  TODO    修改信息
+                                    review_the_success_bt7.setVisibility(View.VISIBLE);
+                                    success_linear7.setVisibility(View.VISIBLE);
+                                    review_the_success_bt7.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("501")) {
+                                    //  TODO    退筹
+                                    review_the_success_bt8.setVisibility(View.VISIBLE);
+                                    success_linear8.setVisibility(View.VISIBLE);
+                                    review_the_success_bt8.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("601")) {
+                                    //  TODO    调单
+                                    review_the_success_bt9.setVisibility(View.VISIBLE);
+                                    success_linear9.setVisibility(View.VISIBLE);
+                                    review_the_success_bt9.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("602")) {
+                                    //  TODO    退单
+                                    review_the_success_bt10.setVisibility(View.VISIBLE);
+                                    success_linear10.setVisibility(View.VISIBLE);
+                                    review_the_success_bt10.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("5")) {
+                                    //  TODO    通过
+                                    review_the_success_bt11.setVisibility(View.VISIBLE);
+                                    success_linear11.setVisibility(View.VISIBLE);
+                                    review_the_success_bt11.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("6")) {
+                                    //  TODO    拒绝
+                                    review_the_success_bt12.setVisibility(View.VISIBLE);
+                                    success_linear12.setVisibility(View.VISIBLE);
+                                    review_the_success_bt12.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("400")) {
+                                    //  TODO    补全信息
+                                    review_the_success_bt13.setVisibility(View.VISIBLE);
+                                    success_linear13.setVisibility(View.VISIBLE);
+                                    review_the_success_bt13.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                }
+                            }
+                        } else if (reportProcessDetailsBean.getData().getMenuData().size() == 1){
+                            linearlayout_ll.setVisibility(View.GONE);
+                            linearlayout_l.setVisibility(View.VISIBLE);
+                            for (int i = 0;i < reportProcessDetailsBean.getData().getMenuData().size();i++){
+                                if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("0")) {
+                                    //  TODO    失效
+                                    review_the_success_b1.setVisibility(View.VISIBLE);
+                                    review_the_success_b1.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("40")) {
+                                    //  TODO    申请登岛
+                                    review_the_success_b2.setVisibility(View.VISIBLE);
+                                    review_the_success_b2.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("20")) {
+                                    //  TODO    申请到访
+                                    review_the_success_b3.setVisibility(View.VISIBLE);
+                                    review_the_success_b3.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("50")) {
+                                    //  TODO    认筹
+                                    review_the_success_b4.setVisibility(View.VISIBLE);
+                                    review_the_success_b4.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("60")) {
+                                    //  TODO    成交
+                                    review_the_success_b5.setVisibility(View.VISIBLE);
+                                    review_the_success_b5.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("402")) {
+                                    //  TODO    未成交
+                                    review_the_success_b6.setVisibility(View.VISIBLE);
+                                    review_the_success_b6.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("500")) {
+                                    //  TODO    修改信息
+                                    review_the_success_b7.setVisibility(View.VISIBLE);
+                                    review_the_success_b7.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("501")) {
+                                    //  TODO    退筹
+                                    review_the_success_b8.setVisibility(View.VISIBLE);
+                                    review_the_success_b8.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("601")) {
+                                    //  TODO    调单
+                                    review_the_success_b9.setVisibility(View.VISIBLE);
+                                    review_the_success_b9.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("602")) {
+                                    //  TODO    退单
+                                    review_the_success_b10.setVisibility(View.VISIBLE);
+                                    review_the_success_b10.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("5")) {
+                                    //  TODO    通过
+                                    review_the_success_b11.setVisibility(View.VISIBLE);
+                                    review_the_success_b11.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("6")) {
+                                    //  TODO    拒绝
+                                    review_the_success_b12.setVisibility(View.VISIBLE);
+                                    review_the_success_b12.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                } else if (reportProcessDetailsBean.getData().getMenuData().get(i).getMeunkey().equals("400")) {
+                                    //  TODO    补全信息
+                                    review_the_success_b13.setVisibility(View.VISIBLE);
+                                    review_the_success_b13.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
+                                }
                             }
                         }
 
@@ -480,9 +591,105 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 ProjectProgressApi.setComplemented("1");
                 startActivity(intent);
                 finish();
-
                 break;
 
+
+            //            TODO 失效
+            case R.id.review_the_success_b1:
+                initShiXiao();
+                break;
+            //            TODO 申请登岛
+            case R.id.review_the_success_b2:
+                intent = new Intent(ReviewTheSuccessActivity.this, ToApplyForAnIslandActivity.class);
+                ProjectProgressApi.setCustomerName(infoData.getCustomerName());
+                ProjectProgressApi.setComplemented("0");
+                startActivity(intent);
+                finish();
+                break;
+            //            TODO 申请到访
+            case R.id.review_the_success_b3:
+                intent = new Intent(ReviewTheSuccessActivity.this, ConfirmTheVisitActivity.class);
+                ProjectProgressApi.setCustomerName(infoData.getCustomerName());
+                ProjectProgressApi.setProjectName(infoData.getProjectName());
+                startActivity(intent);
+                finish();
+
+                break;
+            //            TODO 认筹
+            case R.id.review_the_success_b4:
+                FinalContents.setPreparationId(infoData.getPreparationId());
+                FinalContents.setProjectID(infoData.getProjectId());
+                FinalContents.setCustomerID(infoData.getCustomerId());
+                intent = new Intent(ReviewTheSuccessActivity.this, ConfessToRaiseInformationActivity.class);
+                ProjectProgressApi.setCustomerName(infoData.getCustomerName());
+                ProjectProgressApi.setProjectName(infoData.getProjectName());
+                ProjectProgressApi.setCustomerPhone(infoData.getCustomerPhone());
+                startActivity(intent);
+                finish();
+
+                break;
+            //            TODO 成交
+            case R.id.review_the_success_b5:
+                FinalContents.setProjectID(infoData.getProjectId());
+                intent = new Intent(ReviewTheSuccessActivity.this, FillInTransactionInformationActivity.class);
+                FinalContents.setTiaodan("成交");
+                startActivity(intent);
+                finish();
+
+                break;
+            //            TODO 未成交
+            case R.id.review_the_success_b6:
+                finish();
+                break;
+            //            TODO 修改信息
+            case R.id.review_the_success_b7:
+                intent = new Intent(ReviewTheSuccessActivity.this, ModifyTheRecognitionToRaiseActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            //            TODO 退筹
+            case R.id.review_the_success_b8:
+                intent = new Intent(ReviewTheSuccessActivity.this, BackToRaiseThatActivity.class);
+                startActivity(intent);
+                finish();
+
+                break;
+            //            TODO 调单
+            case R.id.review_the_success_b9:
+                intent = new Intent(ReviewTheSuccessActivity.this, FillInTransactionInformationActivity.class);
+                FinalContents.setTiaodan("调单");
+                startActivity(intent);
+                finish();
+                break;
+            //            TODO 退单
+            case R.id.review_the_success_b10:
+                intent = new Intent(ReviewTheSuccessActivity.this, ListOfBackActivity.class);
+                startActivity(intent);
+                finish();
+
+                break;
+            //            TODO 通过
+            case R.id.review_the_success_b11:
+                initBTN();
+                finish();
+
+                break;
+            //            TODO 拒绝
+            case R.id.review_the_success_b12:
+                intent = new Intent(ReviewTheSuccessActivity.this, TheReasonForRefusalActivity.class);
+                startActivity(intent);
+                finish();
+
+                break;
+            //            TODO 补全信息
+            case R.id.review_the_success_b13:
+                intent = new Intent(ReviewTheSuccessActivity.this, ToApplyForAnIslandActivity.class);
+                ProjectProgressApi.setCustomerName(infoData.getCustomerName());
+                ProjectProgressApi.setComplemented("1");
+                startActivity(intent);
+                finish();
+
+                break;
         }
 
     }

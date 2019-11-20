@@ -147,6 +147,10 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:support-v4:26.1.0'
 
+
+    //TODO Bugly使用
+    implementation 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
+
     implementation 'me.jessyan:autosize:1.1.2'
     implementation project(path: ':gallery')
 

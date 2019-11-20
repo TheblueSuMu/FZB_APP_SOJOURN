@@ -149,6 +149,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initView();
 
     }
 
@@ -159,17 +160,6 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         fragment_ll_1 = getActivity().findViewById(R.id.fragment_ll_1);
         vpager_one = getActivity().findViewById(R.id.vpager_one);
         vpager_one.setOnSingleTouchListener(this);
-        if (FinalContents.getFragmentSS().equals("0")) {
-            mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
-            FinalContents.setFragmentSS("1");
-            aList.add(new MyFragment2());
-            aList.add(new MyFragment1());
-            aList.add(new MyFragment3());
-
-            mAdapter.setListfragment(aList);
-            vpager_one.setAdapter(mAdapter);
-            vpager_one.setCurrentItem(0);
-        }
 
         vpager_one.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -549,8 +539,22 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                     public void onNext(DBean dBean) {
                         dataMap = dBean.getData().getDataMap();
 
+                        Log.i("广播数据","数据：" + dBean.getData().getStoreCount());
+                        Log.i("广播数据","数据：" + dBean.getData().getPeopleCount());
+
                         EventBus.getDefault().post(new Fragnemt_SS(dBean.getData().getStoreCount() + "", dBean.getData().getPeopleCount() + "", "", "", ""));
 
+                        if (FinalContents.getFragmentSS().equals("0")) {
+                            mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
+                            FinalContents.setFragmentSS("1");
+                            aList.add(new MyFragment2());
+                            aList.add(new MyFragment1());
+                            aList.add(new MyFragment3());
+
+                            mAdapter.setListfragment(aList);
+                            vpager_one.setAdapter(mAdapter);
+                            vpager_one.setCurrentItem(0);
+                        }
 //                        tv1_modulebroker.setText(dBean.getData().getStoreCount() + "");
 //                        tv2_modulebroker.setText(dBean.getData().getPeopleCount() + "");
                         tv4_modulebroker.setText(dataMap.getReportNumber() + "");
@@ -883,33 +887,6 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        if (NewlyIncreased.getTag().equals("0")) {
-
-        } else if (NewlyIncreased.getTag().equals("1")){
-
-        } else if (NewlyIncreased.getTag().equals("2")){
-
-        } else if (NewlyIncreased.getTag().equals("3")){
-
-        } else {
-            initView();
-        }
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (hidden) {
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
-        }
-    }
-
-    @Override
     public void onSingleTouch() {
 
         Log.i("广播", "点击：");
@@ -947,6 +924,8 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     public void onRefresh() {
 
         if (ptrClassicFrameLayout.isRefreshing()) {//如果正在刷新
+            rb1_modulebroker.setChecked(true);
+            rb5_modulebroker.setChecked(true);
             initView();
             initData();
             ptrClassicFrameLayout.setRefreshing(false);//取消刷新

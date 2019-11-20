@@ -48,6 +48,10 @@
 -dontwarn vi.com.**
 -dontwarn pvi.com.**
 
+#-------------------------------------Bugly-----------------------------------------------------------------
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+
 #-------------------------------------GSON-----------------------------------------------------------------
 # removes such information by default, so configure it to keep all of it.
 -keepattributes Signature

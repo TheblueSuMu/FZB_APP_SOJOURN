@@ -444,7 +444,7 @@ public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
         modify_the_recognition_to_raise_tv8.setText(dateString);
         pickerView.setStartDate(new GregorianCalendar(year - 2, month - 1, dayOfMonth));
         // 注意：月份是从0开始计数的
-        pickerView.setSelectedDate(new GregorianCalendar(2019, month - 1, dayOfMonth));
+        pickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
         pickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {

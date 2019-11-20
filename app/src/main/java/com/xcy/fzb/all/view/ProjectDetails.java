@@ -739,11 +739,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                                 if (SharItOff.getShar().equals("显")) {
                                     linear2.setVisibility(View.VISIBLE);
-                                    linear0.setVisibility(View.VISIBLE);
 
                                 } else if (SharItOff.getShar().equals("隐")) {
                                     linear2.setVisibility(View.GONE);
-                                    linear0.setVisibility(View.GONE);
 
                                 }
                             }

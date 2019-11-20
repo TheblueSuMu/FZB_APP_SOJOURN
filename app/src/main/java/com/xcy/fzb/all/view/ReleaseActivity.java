@@ -29,6 +29,7 @@ import androidx.core.app.ActivityCompat;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.GridViewAdapter;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.modle.DiscussBean;
@@ -236,6 +237,7 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
                     @Override
                     public void onNext(DiscussBean discussBean) {
                         Toast.makeText(ReleaseActivity.this, discussBean.getMsg(), Toast.LENGTH_SHORT).show();
+                        Connector.setJJQ(true);
                         finish();
                     }
 

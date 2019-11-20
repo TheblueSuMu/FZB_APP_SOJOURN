@@ -25,6 +25,7 @@ import com.github.androidprogresslayout.ProgressLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.AppPackageBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -248,16 +249,11 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
         return 667;
     }
 
-
     @Override
-    protected void onResume() {
-        super.onResume();
-
-
-//        initDaown();
-
+    protected void onPause() {
+        super.onPause();
+        NewlyIncreased.setUserMessage("");
     }
-
 
     private void initDaown(){
         Retrofit.Builder builder = new Retrofit.Builder();

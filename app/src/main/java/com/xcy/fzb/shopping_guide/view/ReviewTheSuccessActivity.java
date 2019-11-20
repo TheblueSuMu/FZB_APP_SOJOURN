@@ -75,6 +75,12 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     private LinearLayout success_layout3;
     private LinearLayout success_layout4;
     private LinearLayout success_layout5;
+    private Button review_the_success_b1;
+    private Button review_the_success_b3;
+    private Button review_the_success_b4;
+    private Button review_the_success_b5;
+    private LinearLayout linearlayout_l;
+    private LinearLayout linearlayout_ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,11 +125,18 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         review_the_success_bt4 = findViewById(R.id.review_the_success_bt4);
         review_the_success_bt5 = findViewById(R.id.review_the_success_bt5);
 
+        review_the_success_b1 = findViewById(R.id.review_the_success_b1);
+        review_the_success_b3 = findViewById(R.id.review_the_success_b3);
+        review_the_success_b4 = findViewById(R.id.review_the_success_b4);
+        review_the_success_b5 = findViewById(R.id.review_the_success_b5);
+
         success_layout1 = findViewById(R.id.success_layout1);
         success_layout3 = findViewById(R.id.success_layout3);
         success_layout4 = findViewById(R.id.success_layout4);
         success_layout5 = findViewById(R.id.success_layout5);
 
+        linearlayout_l = findViewById(R.id.linearlayout_l);
+        linearlayout_ll = findViewById(R.id.linearlayout_ll);
 
         review_the_success_return.setOnClickListener(this);
         review_the_success_bt1.setOnClickListener(this);
@@ -131,6 +144,11 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         review_the_success_bt4.setOnClickListener(this);
         review_the_success_bt5.setOnClickListener(this);
         review_the_success_img2.setOnClickListener(this);
+
+        review_the_success_b1.setOnClickListener(this);
+        review_the_success_b3.setOnClickListener(this);
+        review_the_success_b4.setOnClickListener(this);
+        review_the_success_b5.setOnClickListener(this);
 
         review_the_success_bt5.setVisibility(View.GONE);
         review_the_success_bt4.setVisibility(View.GONE);
@@ -158,21 +176,41 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
                     @Override
                     public void onNext(MyClientFragmentBean myClientFragmentBean) {
-                        for (int i = 0; i < myClientFragmentBean.getData().getMenuData().size(); i++) {
-                            if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("60")) {
-                                review_the_success_bt5.setVisibility(View.VISIBLE);//申请成交
-                                success_layout5.setVisibility(View.VISIBLE);
-                            } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("50")) {
-                                review_the_success_bt4.setVisibility(View.VISIBLE);//申请认筹
-                                success_layout4.setVisibility(View.VISIBLE);
-                            } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("400")) {
-                                review_the_success_bt1.setVisibility(View.VISIBLE);//补全信息
-                                success_layout1.setVisibility(View.VISIBLE);
-                            } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("402")) {
-                                review_the_success_bt3.setVisibility(View.VISIBLE);//未成交
-                                success_layout3.setVisibility(View.VISIBLE);
+
+                        if (myClientFragmentBean.getData().getMenuData().size() > 1) {
+                            linearlayout_ll.setVisibility(View.GONE);
+                            linearlayout_l.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < myClientFragmentBean.getData().getMenuData().size(); i++) {
+                                if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("60")) {
+                                    review_the_success_bt5.setVisibility(View.VISIBLE);//申请成交
+                                    success_layout5.setVisibility(View.VISIBLE);
+                                } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("50")) {
+                                    review_the_success_bt4.setVisibility(View.VISIBLE);//申请认筹
+                                    success_layout4.setVisibility(View.VISIBLE);
+                                } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("400")) {
+                                    review_the_success_bt1.setVisibility(View.VISIBLE);//补全信息
+                                    success_layout1.setVisibility(View.VISIBLE);
+                                } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("402")) {
+                                    review_the_success_bt3.setVisibility(View.VISIBLE);//未成交
+                                    success_layout3.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        } else if (myClientFragmentBean.getData().getMenuData().size() == 1) {
+                            linearlayout_ll.setVisibility(View.VISIBLE);
+                            linearlayout_l.setVisibility(View.GONE);
+                            for (int i = 0; i < myClientFragmentBean.getData().getMenuData().size(); i++) {
+                                if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("60")) {
+                                    review_the_success_b5.setVisibility(View.VISIBLE);//申请成交
+                                } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("50")) {
+                                    review_the_success_b4.setVisibility(View.VISIBLE);//申请认筹
+                                } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("400")) {
+                                    review_the_success_b1.setVisibility(View.VISIBLE);//补全信息
+                                } else if (myClientFragmentBean.getData().getMenuData().get(i).getMeunkey().equals("402")) {
+                                    review_the_success_b3.setVisibility(View.VISIBLE);//未成交
+                                }
                             }
                         }
+
 
 
                         infoData = myClientFragmentBean.getData().getInfoData();
@@ -270,6 +308,58 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 }
 
                 break;
+
+
+            //            TODO 补全信息
+            case R.id.review_the_success_b1:
+                if (isnum1 == 0) {
+                    isnum1 = 1;
+                    finish();
+                    intent = new Intent(ReviewTheSuccessActivity.this, ToApplyForAnIslandActivity.class);
+                    intent.putExtra("name", infoData.getCustomerName());
+                    startActivity(intent);
+                    isnum1 = 0;
+                }
+
+                break;
+            //            TODO 未成交
+            case R.id.review_the_success_b3:
+                if (isnum2 == 0) {
+                    isnum2 = 1;
+                    finish();
+                    intent = new Intent(ReviewTheSuccessActivity.this, WCJActivity.class);
+                    startActivity(intent);
+                    isnum2 = 0;
+                }
+
+                break;
+            //            TODO 申请认筹
+            case R.id.review_the_success_b4:
+                if (isnum3 == 0) {
+                    isnum3 = 1;
+                    finish();
+                    intent = new Intent(ReviewTheSuccessActivity.this, ConfessToRaiseInformationActivity.class);
+                    ProjectProgressApi.setCustomerName(infoData.getCustomerName());
+                    ProjectProgressApi.setProjectName(infoData.getProjectName());
+                    ProjectProgressApi.setCustomerPhone(infoData.getCustomerPhone());
+                    startActivity(intent);
+                    isnum3 = 0;
+                }
+
+                break;
+            //            TODO 申请成交
+            case R.id.review_the_success_b5:
+                if (isnum4 == 0) {
+                    isnum4 = 1;
+                    finish();
+                    intent = new Intent(ReviewTheSuccessActivity.this, FillInTransactionInformationActivity.class);
+                    FinalContents.setPreparationId(infoData.getPreparationId());
+                    FinalContents.setTiaodan("成交");
+                    startActivity(intent);
+                    isnum4 = 0;
+                }
+
+                break;
             //            TODO 项目负责人电话
             case R.id.review_the_success_img2:
                 if (infoData.getCustomerPhone().equals("")) {
@@ -288,4 +378,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         super.onResume();
         initData();
     }
+
+
 }

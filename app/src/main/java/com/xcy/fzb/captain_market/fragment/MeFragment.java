@@ -23,7 +23,9 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.Login.LoginActivity;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.MyDataBean;
 import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.modle.GWDataBean;
@@ -139,6 +141,11 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
         my_about.setOnClickListener(this);
         my_empty.setOnClickListener(this);
         my_exit.setOnClickListener(this);
+
+        //        根据用户Id获取用户信息
+        initUserMessage();
+//        我的佣金和客户数量
+        initClientCommissions();
     }
 
     private void initUserMessage() {
@@ -192,6 +199,8 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
 
                         my_tv_name.setText(data.getSysUser().getManager().getName());
                         my_tv_phone.setText(data.getSysUser().getManager().getPhone());
+
+                        Connector.setGwDataBean(userMessageBean);
 
                     }
 
@@ -337,24 +346,48 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
 
     }
 
+    private void init(){
+        GWDataBean userMessageBean = Connector.getGwDataBean();
+        data = userMessageBean.getData();
+
+        String s = data.getSysUser().getPhoto().toString();
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(s);
+
+        if(data.getSysUser().getPhoto().equals("")){
+            Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getSysUser().getManager().getPhoto()).into(me_photo);
+        }else {
+            Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getSysUser().getPhoto()).into(me_photo);
+        }
+
+
+        me_name.setText(data.getSysUser().getName());
+        if (data.getSysUser().getIdentity().equals("61")) {
+            me_identity.setText("销售");
+        } else if (data.getSysUser().getIdentity().equals("62")) {
+            me_identity.setText("顾问");
+        } else if (data.getSysUser().getIdentity().equals("63")) {
+            me_identity.setText("团助");
+        }
+        me_city.setText(data.getSysUser().getCity());
+        me_store.setText(data.getSysUser().getCounty());
+//                        FinalContents.setUserName(data.getSysUser().getName());
+//                        FinalContents.setParentName(data.getLayerTeamVo().getTeamLeader().getParent().getName());
+        Log.i("名字","销售名字："+FinalContents.getUserName());
+        Log.i("名字","团队长名字："+FinalContents.getParentName());
+//                        me_tv_name.setText(data.getSysUser().getStoreManage());
+//                        me_tv_phone.setText(data.getSysUser().getPhone());
+
+        my_tv_name.setText(data.getSysUser().getManager().getName());
+        my_tv_phone.setText(data.getSysUser().getManager().getPhone());
+    }
 
     @Override
     public void onResume() {
         super.onResume();
-//        根据用户Id获取用户信息
-        initUserMessage();
-//        我的佣金和客户数量
-        initClientCommissions();
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
+        if (NewlyIncreased.getUserMessage().equals("61")){
+            init();
+            NewlyIncreased.setUserMessage("");
         }
     }
 }

@@ -125,7 +125,9 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         tvBanner();
+        initView();
 
+        initHotList();
         return view;
     }
 
@@ -177,9 +179,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     @Override
     public void onResume() {
         super.onResume();
-        initView();
 
-        initHotList();
         tvBanner2.startFlipping();
         //TODO 获取加速传感器
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
@@ -613,16 +613,5 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     public void onDetach() {
         super.onDetach();
         listterner = null;
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            //TODO now visible to user 不显示fragment
-        } else {
-            onResume();
-            //TODO now invisible to user 显示fragment
-        }
     }
 }

@@ -584,7 +584,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
         project_time.setText(dateString);
         dateTimePickerView.setStartDate(new GregorianCalendar(year - 2, month - 1, dayOfMonth));
         // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(2019, month - 1, dayOfMonth));
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
         dateTimePickerView.setEndDate(new GregorianCalendar(year + 2, month - 1, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {

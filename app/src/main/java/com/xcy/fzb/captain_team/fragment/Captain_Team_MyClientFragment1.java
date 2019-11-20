@@ -18,6 +18,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
@@ -58,6 +59,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     private List<ClientBean.DataBean> data;
     private Context context;
     private ImageView all_no_information;
+    private int size = 0;
 
 
     public Captain_Team_MyClientFragment1() {
@@ -79,12 +81,12 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mContactModels = new ArrayList<>();
+
         mWaveSideBarView = getActivity().findViewById(R.id.main_side_bar);
         mRecyclerView = getActivity().findViewById(R.id.main_recycler);
         all_no_information = getActivity().findViewById(R.id.all_no_information);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        decoration = new PinnedHeaderDecoration();
+
+        inithot("");
 
     }
 
@@ -97,8 +99,18 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                 return true;
             }
         });
-        mRecyclerView.addItemDecoration(decoration);
+        Log.i("MyCL", "集合长度：" + mContactModels.size());
+
         mAdapter = new ContactsAdapter();
+        mRecyclerView.addItemDecoration(decoration);
+        Collections.sort(mContactModels, new LetterComparator());
+        mAdapter.setContacts(mContactModels);
+        mAdapter.setItemOnClick(this);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+
+        mAdapter = new ContactsAdapter();
+        mRecyclerView.addItemDecoration(decoration);
         Collections.sort(mContactModels, new LetterComparator());
         mAdapter.setContacts(mContactModels);
         mAdapter.setItemOnClick(this);
@@ -117,17 +129,26 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                 }
             }
         });
+        Log.i("MyCL", "5555");
+        NewlyIncreased.setTest(true);
 
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, priority = 100, sticky = false) //在ui线程执行，优先级为100
     public void onEvent(MyClientName myClientName) {
         String name = myClientName.getName();
-        Log.i("MyCL", "廣播");
-        inithot(name);
+        Log.i("MyCL", "廣播:" + name);
+//        if (NewlyIncreased.isTest()) {
+            size++;
+            inithot(name);
+            NewlyIncreased.setTest(false);
+//        }
     }
 
     private void inithot(String name) {
+        mContactModels = new ArrayList<>();
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        decoration = new PinnedHeaderDecoration();
         Log.i("MyCL", "inithot");
         Retrofit.Builder builder = new Retrofit.Builder();
         Log.i("MyCL", "4");
@@ -149,7 +170,6 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
 
                     @Override
                     public void onNext(ClientBean clientBean) {
-                        Log.i("MyCL", "1");
                         mContactModels.clear();
                         data = clientBean.getData();
                         if (data.size() != 0) {
@@ -164,7 +184,6 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                             all_no_information.setVisibility(View.VISIBLE);
                             mRecyclerView.setVisibility(View.GONE);
                         }
-
                     }
 
                     @Override
@@ -216,11 +235,6 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        inithot("");
-    }
 
     @Override
     public void onDestroy() {
