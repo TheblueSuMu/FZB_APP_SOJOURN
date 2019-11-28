@@ -287,8 +287,10 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
 
                 equals("")) {
             if (ifMG == 0) {
+                map_house_check.setText("门店");
                 initMapData();//门店数据
             } else if (ifMG == 1) {
+                map_house_check.setText("公司");
                 initMapDataS();//公司数据
             }
         } else {
