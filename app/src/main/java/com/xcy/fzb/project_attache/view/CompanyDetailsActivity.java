@@ -98,6 +98,11 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
     LinearLayout details_ll7;
     LinearLayout ll1;
 
+    LinearLayout project_attache_ll1;
+    LinearLayout project_attache_ll2;
+    LinearLayout project_attache_ll3;
+    LinearLayout project_attache_ll4;
+
     TextView details_tv1;
     TextView details_tv2;
     TextView details_tv3;
@@ -107,6 +112,10 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
     TextView details_tv7;
     TextView details_tv8;
     TextView tv1;
+    TextView company_details_new_tv1;
+    TextView company_details_new_tv2;
+    TextView company_details_ttv;
+    TextView company_details_ttcall;
 
     private LineChart details_chart;
     private List<Integer> integers;
@@ -121,7 +130,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
     TextView report_cancel;
     TextView report_ensure;
     private CompanyDetailsBean.DataBean.StoreInfoBean storeInfo;
-    String type = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,6 +172,11 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         company_details_return = findViewById(R.id.company_details_return);
         company_details_call = findViewById(R.id.company_details_call);
         details_change = findViewById(R.id.details_change);
+        company_details_ttcall = findViewById(R.id.company_details_ttcall);
+        company_details_ttv = findViewById(R.id.company_details_ttv);
+
+        company_details_new_tv1 = findViewById(R.id.company_details_new_tv1);
+        company_details_new_tv2 = findViewById(R.id.company_details_new_tv2);
 
         details_rg1 = findViewById(R.id.details_rg1);
         details_rg2 = findViewById(R.id.details_rg2);
@@ -220,12 +233,21 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         report_cancel = findViewById(R.id.details_report_picker_cancel);
         report_ensure = findViewById(R.id.details_report_picker_ensure);
 
+        project_attache_ll1 = findViewById(R.id.project_attache_ll1);
+        project_attache_ll2 = findViewById(R.id.project_attache_ll2);
+        project_attache_ll3 = findViewById(R.id.project_attache_ll3);
+        project_attache_ll4 = findViewById(R.id.project_attache_ll4);
+
         company_details_return.setOnClickListener(this);
         company_details_call.setOnClickListener(this);
-        company_details_ll3.setOnClickListener(this);
-        company_details_ll4.setOnClickListener(this);
-        company_details_ll5.setOnClickListener(this);
+        project_attache_ll1.setOnClickListener(this);
+        project_attache_ll3.setOnClickListener(this);
+//        company_details_ll3.setOnClickListener(this);
+//        company_details_ll4.setOnClickListener(this);
+//        company_details_ll5.setOnClickListener(this);
 
+        company_details_new_tv1.setOnClickListener(this);
+        company_details_new_tv2.setOnClickListener(this);
         details_change.setOnClickListener(this);
         details_ll1.setOnClickListener(this);
         details_ll2.setOnClickListener(this);
@@ -234,6 +256,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         details_ll5.setOnClickListener(this);
         details_ll6.setOnClickListener(this);
         details_ll7.setOnClickListener(this);
+        company_details_ttcall.setOnClickListener(this);
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -246,10 +269,10 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         company_details_tv5.setText(string2);
         company_details_tv8.setText(string1);
         company_details_tv9.setText(string2);
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth + 15));
 
         company_details_tv4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -263,7 +286,16 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         company_details_tv4.setText(dateString);
+                        String s = company_details_tv4.getText().toString();
+                        String s1 = company_details_tv5.getText().toString();
                         NewlyIncreased.setStartDate(dateString);
+                        if (project_attache_ll2.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "1");
+                        } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "2");
+                        }
+
+
                     }
                 });
             }
@@ -280,8 +312,15 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         company_details_tv5.setText(dateString);
+                        String s = company_details_tv4.getText().toString();
+                        String s1 = company_details_tv5.getText().toString();
                         NewlyIncreased.setEndDate(dateString);
-                        type = "1";
+                        if (project_attache_ll2.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "1");
+                        } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "2");
+                        }
+
                     }
                 });
             }
@@ -289,11 +328,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         report_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (type.equals("1")) {
-                    initDataNum("3", company_details_tv4.getText().toString(), company_details_tv5.getText().toString());
-                } else if (type.equals("2")) {
-                    initFinanceNum("3", company_details_tv8.getText().toString(), company_details_tv9.getText().toString());
-                }
                 report_picker.setVisibility(View.GONE);
             }
         });
@@ -316,7 +350,16 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         company_details_tv8.setText(dateString);
+                        String s = company_details_tv8.getText().toString();
+                        String s1 = company_details_tv9.getText().toString();
                         NewlyIncreased.setYJstartDate(dateString);
+                        if (project_attache_ll2.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "1");
+                        } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "2");
+                        }
+
+
                     }
                 });
             }
@@ -334,8 +377,15 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         company_details_tv9.setText(dateString);
                         Log.d("wsw", "new date: " + dateString);
+                        String s = company_details_tv8.getText().toString();
+                        String s1 = company_details_tv9.getText().toString();
                         NewlyIncreased.setYJendDate(dateString);
-                        type = "2";
+                        if (project_attache_ll2.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "1");
+                        } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "2");
+                        }
+
                     }
                 });
             }
@@ -346,18 +396,39 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.company_details_rb1) {
-                    initDataNum("0", "", "");
+                    if (project_attache_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("0", "", "", "1");
+                    } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("0", "", "", "2");
+                    }
                     NewlyIncreased.setTag("0");
                     company_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb2) {
-                    initDataNum("1", "", "");
+                    if (project_attache_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("1", "", "", "1");
+                    } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("1", "", "", "2");
+                    }
                     NewlyIncreased.setTag("1");
                     company_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb3) {
-                    initDataNum("2", "", "");
+                    if (project_attache_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("2", "", "", "1");
+                    } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("2", "", "", "2");
+                    }
                     NewlyIncreased.setTag("2");
                     company_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb4) {
+                    String s = company_details_tv4.getText().toString();
+                    String s1 = company_details_tv5.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    if (project_attache_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("3", s, s1, "1");
+                    } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("3", s, s1, "2");
+                    }
                     NewlyIncreased.setTag("3");
                     company_details_ll1.setVisibility(View.VISIBLE);
                 }
@@ -379,6 +450,11 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                     NewlyIncreased.setYJType("2");
                     company_details_ll2.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb8) {
+                    String s = company_details_tv8.getText().toString();
+                    String s1 = company_details_tv9.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    initFinanceNum("3", s, s1);
                     NewlyIncreased.setYJType("3");
                     company_details_ll2.setVisibility(View.VISIBLE);
                 }
@@ -394,7 +470,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(),"", FinalContents.getStoreId(), "", type, startTime, endTime);
+        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), "", FinalContents.getStoreId(), "", type, startTime, endTime);
         financeBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -424,7 +500,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
 
     }
 
-    private void initDataNum(String type, String startTime, String endTime) {
+    private void initDataNum(String type, String startTime, String endTime, String tag) {
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -432,7 +508,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), FinalContents.getStoreId(), "", type, startTime, endTime);
+        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), FinalContents.getStoreId(), "", tag, type, startTime, endTime);
         dataNum.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataNumBean>() {
@@ -449,6 +525,8 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         details_tv5.setText(dataNumBean.getData().getEarnestMoneyNumber() + "");
                         details_tv6.setText(dataNumBean.getData().getTradeNumber() + "");
                         details_tv7.setText(dataNumBean.getData().getLandingNumber() + "");
+
+
                     }
 
                     @Override
@@ -500,6 +578,23 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                                 company_details_call.setVisibility(View.VISIBLE);
                                 company_details_call.setText(storeInfo.getShopownerPhone());
                             }
+                        }
+                        if (storeInfo.getAttacheName().equals("")) {
+                            company_details_ttv.setVisibility(View.GONE);
+                            company_details_ttcall.setVisibility(View.GONE);
+                        } else {
+                            company_details_ttv.setVisibility(View.VISIBLE);
+                            company_details_ttcall.setVisibility(View.VISIBLE);
+                            if (storeInfo.getAttacheIdentity().equals("5")) {
+                                company_details_ttv.setVisibility(View.GONE);
+                                company_details_ttcall.setVisibility(View.GONE);
+//                                company_details_ttv.setText("负责专员:" + storeInfo.getAttacheName());
+                            } else if (storeInfo.getAttacheIdentity().equals("8")) {
+                                company_details_ttv.setText("负责专员:" + storeInfo.getAttacheName());
+                            } else if (storeInfo.getAttacheIdentity().equals("9")) {
+                                company_details_ttv.setText("负责经理:" + storeInfo.getAttacheName());
+                            }
+                            company_details_ttcall.setText(storeInfo.getAttachePhone());
                         }
 //                        TODO 数据统计
                         CompanyDetailsBean.DataBean.StoreDataStatisticsBean storeDataStatistics = companyDetailsBean.getData().getStoreDataStatistics();
@@ -636,6 +731,92 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 FinalContents.setStoreChange("修改");
                 startActivity(intent);
                 finish();
+                break;
+            case R.id.company_details_ttcall:
+                Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + storeInfo.getAttachePhone()));//跳转到拨号界面，同时传递电话号码
+                startActivity(callIntent);
+                break;
+            case R.id.company_details_new_tv1://电话拜访
+                if (storeInfo.getShopownerPhone().equals("")) {
+                    Toast.makeText(CompanyDetailsActivity.this, "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + storeInfo.getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
+                    startActivity(dialIntent);
+                }
+                break;
+            case R.id.company_details_new_tv2://门店打卡
+                if (storeInfo.getLocation().equals("")) {
+                    Toast.makeText(CompanyDetailsActivity.this, "没有经纬度无法打卡", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(CompanyDetailsActivity.this, ClockStoresActivity.class);
+                    intent.putExtra("MyStoreRise", storeInfo.getStoreRise());
+                    intent.putExtra("MyStoreName", storeInfo.getStoreName());
+                    intent.putExtra("MyLocation", storeInfo.getLocation());
+                    intent.putExtra("MyStoreId", storeInfo.getStoreId());
+                    startActivity(intent);
+                }
+                break;
+            case R.id.project_attache_ll1://实时
+                project_attache_ll2.setVisibility(View.VISIBLE);
+                project_attache_ll4.setVisibility(View.INVISIBLE);
+                details_ll2.setClickable(true);
+                details_ll3.setClickable(true);
+                details_ll4.setClickable(true);
+                details_ll5.setClickable(true);
+                details_ll6.setClickable(true);
+                details_ll7.setClickable(true);
+                if (company_details_rb1.isChecked() == true) {
+                    initDataNum("0", "", "", "1");
+                    NewlyIncreased.setTag("0");
+                    company_details_ll1.setVisibility(View.GONE);
+                } else if (company_details_rb2.isChecked() == true) {
+                    initDataNum("1", "", "", "1");
+                    NewlyIncreased.setTag("1");
+                    company_details_ll1.setVisibility(View.GONE);
+                } else if (company_details_rb3.isChecked() == true) {
+                    initDataNum("2", "", "", "1");
+                    NewlyIncreased.setTag("2");
+                    company_details_ll1.setVisibility(View.GONE);
+                } else if (company_details_rb4.isChecked() == true) {
+                    String s = company_details_tv4.getText().toString();
+                    String s1 = company_details_tv5.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    initDataNum("3", s, s1, "1");
+                    NewlyIncreased.setTag("3");
+                    company_details_ll1.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.project_attache_ll3://总体
+                project_attache_ll2.setVisibility(View.INVISIBLE);
+                project_attache_ll4.setVisibility(View.VISIBLE);
+                details_ll2.setClickable(false);
+                details_ll3.setClickable(false);
+                details_ll4.setClickable(false);
+                details_ll5.setClickable(false);
+                details_ll6.setClickable(false);
+                details_ll7.setClickable(false);
+                if (company_details_rb1.isChecked() == true) {
+                    initDataNum("0", "", "", "2");
+                    NewlyIncreased.setTag("0");
+                    company_details_ll1.setVisibility(View.GONE);
+                } else if (company_details_rb2.isChecked() == true) {
+                    initDataNum("1", "", "", "2");
+                    NewlyIncreased.setTag("1");
+                    company_details_ll1.setVisibility(View.GONE);
+                } else if (company_details_rb3.isChecked() == true) {
+                    initDataNum("2", "", "", "2");
+                    NewlyIncreased.setTag("2");
+                    company_details_ll1.setVisibility(View.GONE);
+                } else if (company_details_rb4.isChecked() == true) {
+                    String s = company_details_tv4.getText().toString();
+                    String s1 = company_details_tv5.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    initDataNum("3", s, s1, "2");
+                    NewlyIncreased.setTag("3");
+                    company_details_ll1.setVisibility(View.VISIBLE);
+                }
                 break;
         }
 

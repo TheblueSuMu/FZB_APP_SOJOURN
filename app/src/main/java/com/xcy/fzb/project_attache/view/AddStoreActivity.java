@@ -78,6 +78,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     RadioButton add_broker_rb1;
     RadioButton add_broker_rb2;
     RadioButton add_broker_rb3;
+    RadioButton add_broker_rb4;
 
     RelativeLayout add_broker_rl1;
     RelativeLayout add_store_rl2;
@@ -144,6 +145,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
         add_broker_rb1 = findViewById(R.id.add_broker_rb1);
         add_broker_rb2 = findViewById(R.id.add_broker_rb2);
         add_broker_rb3 = findViewById(R.id.add_broker_rb3);
+        add_broker_rb4 = findViewById(R.id.add_broker_rb4);
         add_broker_rl1 = findViewById(R.id.add_broker_rl1);
         add_store_rl2 = findViewById(R.id.add_store_rl2);
 
@@ -166,6 +168,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             add_broker_tvs.setText("修改门店");
 
             add_broker_rb3.setVisibility(View.VISIBLE);
+            add_broker_rb4.setVisibility(View.VISIBLE);
 
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
@@ -194,11 +197,13 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
                             } else {
                                 Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + storeChangeBean.getData().getStoreManage().getStoreRise()).into(add_broker_img1);
+                                url1 = storeChangeBean.getData().getStoreManage().getStoreRise();
                             }
                             if (storeChangeBean.getData().getStoreManage().getStoreImg().equals("")) {
 
                             } else {
                                 Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + storeChangeBean.getData().getStoreManage().getStoreImg()).into(add_broker_img2);
+                                url2 = storeChangeBean.getData().getStoreManage().getStoreImg();
                             }
 
                             FinalContents.setCompanyManageId(storeManage.getCompany().getId());
@@ -210,6 +215,8 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                 add_broker_rb1.setChecked(true);
                             } else if (storeChangeBean.getData().getStoreManage().getFlag().equals("2")) {
                                 add_broker_rb3.setChecked(true);
+                            }else if (storeChangeBean.getData().getStoreManage().getFlag().equals("3")) {
+                                add_broker_rb4.setChecked(true);
                             }
 
                         }
@@ -227,6 +234,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
         } else {
             add_broker_tvs.setText("添加门店");
             add_broker_rb3.setVisibility(View.GONE);
+            add_broker_rb4.setVisibility(View.GONE);
             String storeUrl = FinalContents.getBaseUrl() + "commissionerUpdate/setStoreNum?userId=" + FinalContents.getUserID();
             OkHttpPost okHttpPost = new OkHttpPost(storeUrl);
             String post = okHttpPost.post();
@@ -409,6 +417,9 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             if (add_broker_rb3.isChecked()) {
                 flag = 2;
             }
+            if (add_broker_rb4.isChecked()) {
+                flag = 3;
+            }
 
             if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
                 Toast.makeText(AddStoreActivity.this, "带*号的数据请填写完整", Toast.LENGTH_SHORT).show();
@@ -469,6 +480,9 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             if (add_broker_rb3.isChecked()) {
                 flag = 2;
             }
+            if (add_broker_rb4.isChecked()) {
+                flag = 3;
+            }
             if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
                 Toast.makeText(AddStoreActivity.this, "带*号的数据请填写完整", Toast.LENGTH_SHORT).show();
             } else {
@@ -478,6 +492,16 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                 builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
                 Retrofit build = builder.build();
                 MyService fzbInterface = build.create(MyService.class);
+                Log.i("MyCL","storeManage.getId():" + storeManage.getId());
+                Log.i("MyCL","s:" + s);
+                Log.i("MyCL","s1:" + s1);
+                Log.i("MyCL","s2:" + s2);
+                Log.i("MyCL","s3:" + s3);
+                Log.i("MyCL","url1:" + url1);
+                Log.i("MyCL","url2:" + url2);
+                Log.i("MyCL","flag:" + flag);
+                Log.i("MyCL","FinalContents.getCompanyManageId():" + FinalContents.getCompanyManageId());
+                Log.i("MyCL","FinalContents.getUserID():" + FinalContents.getUserID());
                 Observable<AddStoreBean> addStoreBean = fzbInterface.getAddStoreBean(storeManage.getId(), s, s1, s2, s3, "", url1, url2, flag + "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
                 addStoreBean.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:paddingBottom="13dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/pop_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#ff111111"
+        android:textSize="16sp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地   址："
+            android:textColor="#ff111111"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:id="@+id/pop_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text=""
+            android:textColor="#ff111111"
+            android:textSize="14sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pop_ll_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="负责人："
+            android:textColor="#ff111111"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:id="@+id/pop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text=""
+            android:textColor="#ff111111"
+            android:textSize="14sp"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/pop_btn"
+        android:layout_width="83dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_gravity="right"
+        android:text="路线"
+        android:textSize="14sp"
+        android:textColor="#ffffffff"
+        android:background="@drawable/pop_five_bottom_layout"></Button>
+
+</LinearLayout>

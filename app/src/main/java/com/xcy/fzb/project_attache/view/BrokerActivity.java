@@ -89,6 +89,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
     LinearLayout broker_ll11;
     LinearLayout broker_ll12;
 
+    LinearLayout project_attache_broker_ll1;
+    LinearLayout project_attache_broker_ll2;
+    LinearLayout project_attache_broker_ll3;
+    LinearLayout project_attache_broker_ll4;
+
     RelativeLayout broker_return;
     ImageView broker_change;
 
@@ -117,8 +122,6 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
     TextView report_cancel;
     TextView report_ensure;
     private BrokerBean.DataBean.AgentInfoBean agentInfo;
-    String type = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,6 +171,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         broker_rl = findViewById(R.id.broker_rl);
         broker_tv = findViewById(R.id.broker_tv);
 
+        project_attache_broker_ll1 = findViewById(R.id.project_attache_broker_ll1);
+        project_attache_broker_ll2 = findViewById(R.id.project_attache_broker_ll2);
+        project_attache_broker_ll3 = findViewById(R.id.project_attache_broker_ll3);
+        project_attache_broker_ll4 = findViewById(R.id.project_attache_broker_ll4);
+
         broker_rg1 = findViewById(R.id.broker_rg1);
         broker_rg2 = findViewById(R.id.broker_rg2);
 
@@ -211,6 +219,9 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         report_cancel = findViewById(R.id.broker_report_picker_cancel);
         report_ensure = findViewById(R.id.broker_report_picker_ensure);
 
+        project_attache_broker_ll1.setOnClickListener(this);
+        project_attache_broker_ll3.setOnClickListener(this);
+
         broker_return.setOnClickListener(this);
         broker_change.setOnClickListener(this);
         broker_ll2.setOnClickListener(this);
@@ -219,9 +230,9 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         broker_ll5.setOnClickListener(this);
         broker_ll6.setOnClickListener(this);
         broker_ll7.setOnClickListener(this);
-        broker_ll10.setOnClickListener(this);
-        broker_ll11.setOnClickListener(this);
-        broker_ll12.setOnClickListener(this);
+//        broker_ll10.setOnClickListener(this);
+//        broker_ll11.setOnClickListener(this);
+//        broker_ll12.setOnClickListener(this);
 
         initData();
 
@@ -229,15 +240,29 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.broker_rb1) {
-                    initDataNum("0", "", "");
+                    if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("0", "", "", "1");
+                    } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("0", "", "", "2");
+                    }
                     NewlyIncreased.setTag("0");
                     broker_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb2) {
-                    initDataNum("1", "", "");
+                    if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("1", "", "", "1");
+                    } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("1", "", "", "2");
+                    }
+
                     NewlyIncreased.setTag("1");
                     broker_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb3) {
-                    initDataNum("2", "", "");
+                    if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("2", "", "", "1");
+                    } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("2", "", "", "2");
+                    }
+
                     NewlyIncreased.setTag("2");
                     broker_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb4) {
@@ -245,7 +270,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                     String s1 = broker_tv4.getText().toString();
                     NewlyIncreased.setStartDate(s);
                     NewlyIncreased.setEndDate(s1);
-                    initDataNum("3", s, s1);
+                    if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("3", s, s1, "1");
+                    } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("3", s, s1, "2");
+                    }
                     NewlyIncreased.setTag("3");
                     broker_ll1.setVisibility(View.VISIBLE);
                 }
@@ -290,11 +319,10 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         broker_tv5.setText(string2);
         broker_tv13.setText(string1);
         broker_tv14.setText(string2);
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
-
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth + 15));
 
         broker_tv4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -308,6 +336,14 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         broker_tv4.setText(dateString);
+                        String s = broker_tv4.getText().toString();
+                        String s1 = broker_tv5.getText().toString();
+                        if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "1");
+                        } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "2");
+                        }
+
                         NewlyIncreased.setStartDate(dateString);
                     }
                 });
@@ -325,6 +361,14 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         broker_tv5.setText(dateString);
+                        String s = broker_tv4.getText().toString();
+                        String s1 = broker_tv5.getText().toString();
+                        if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "1");
+                        } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "2");
+                        }
+
                         NewlyIncreased.setEndDate(dateString);
                     }
                 });
@@ -342,7 +386,15 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         broker_tv13.setText(dateString);
+                        String s = broker_tv13.getText().toString();
+                        String s1 = broker_tv14.getText().toString();
                         NewlyIncreased.setYJstartDate(dateString);
+                        if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "1");
+                        } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "2");
+                        }
+
 
                     }
                 });
@@ -360,7 +412,15 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         broker_tv14.setText(dateString);
+                        String s = broker_tv13.getText().toString();
+                        String s1 = broker_tv14.getText().toString();
                         NewlyIncreased.setYJendDate(dateString);
+                        if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "1");
+                        } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "2");
+                        }
+
                     }
                 });
             }
@@ -368,11 +428,6 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         report_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (type.equals("1")) {
-                    initDataNum("3", broker_tv4.getText().toString(), broker_tv5.getText().toString());
-                } else if (type.equals("2")) {
-                    initFinanceNum("3", broker_tv13.getText().toString(), broker_tv14.getText().toString());
-                }
                 report_picker.setVisibility(View.GONE);
             }
         });
@@ -421,7 +476,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), "", "",FinalContents.getAgentId(), type, startTime, endTime);
+        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), "", "", FinalContents.getAgentId(), type, startTime, endTime);
         financeBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -451,7 +506,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
 
     }
 
-    private void initDataNum(String type, String startTime, String endTime) {
+    private void initDataNum(String type, String startTime, String endTime, String tag) {
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -459,7 +514,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), "", FinalContents.getAgentId(), type, startTime, endTime);
+        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), "", FinalContents.getAgentId(), tag, type, startTime, endTime);
         dataNum.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataNumBean>() {
@@ -646,6 +701,76 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                 FinalContents.setAgentId(agentInfo.getAgentId());
                 FinalContents.setBorkerChange("修改");
                 startActivity(intent);
+                break;
+            case R.id.project_attache_broker_ll1:
+                project_attache_broker_ll2.setVisibility(View.VISIBLE);
+                project_attache_broker_ll4.setVisibility(View.INVISIBLE);
+                broker_ll2.setClickable(true);
+                broker_ll3.setClickable(true);
+                broker_ll4.setClickable(true);
+                broker_ll5.setClickable(true);
+                broker_ll6.setClickable(true);
+                broker_ll7.setClickable(true);
+//                if (broker_ll1.getVisibility() == View.VISIBLE) {
+                    if (broker_rb1.isChecked() == true) {
+                        initDataNum("0", "", "", "1");
+                        NewlyIncreased.setTag("0");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb2.isChecked() == true) {
+                        initDataNum("1", "", "", "1");
+                        NewlyIncreased.setTag("1");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb3.isChecked() == true) {
+                        initDataNum("2", "", "", "1");
+                        NewlyIncreased.setTag("2");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb4.isChecked() == true) {
+                        String s = broker_tv4.getText().toString();
+                        String s1 = broker_tv4.getText().toString();
+                        NewlyIncreased.setStartDate(s);
+                        NewlyIncreased.setEndDate(s1);
+                        initDataNum("3", s, s1, "1");
+                        NewlyIncreased.setTag("3");
+                        broker_ll1.setVisibility(View.VISIBLE);
+                    }
+//                } else {
+//                    initDataNum("", "", "", "1");
+//                }
+                break;
+            case R.id.project_attache_broker_ll3:
+                project_attache_broker_ll2.setVisibility(View.INVISIBLE);
+                project_attache_broker_ll4.setVisibility(View.VISIBLE);
+                broker_ll2.setClickable(false);
+                broker_ll3.setClickable(false);
+                broker_ll4.setClickable(false);
+                broker_ll5.setClickable(false);
+                broker_ll6.setClickable(false);
+                broker_ll7.setClickable(false);
+//                if (broker_ll1.getVisibility() == View.VISIBLE) {
+                    if (broker_rb1.isChecked() == true) {
+                        initDataNum("0", "", "", "2");
+                        NewlyIncreased.setTag("0");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb2.isChecked() == true) {
+                        initDataNum("1", "", "", "2");
+                        NewlyIncreased.setTag("1");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb3.isChecked() == true) {
+                        initDataNum("2", "", "", "2");
+                        NewlyIncreased.setTag("2");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb4.isChecked() == true) {
+                        String s = broker_tv4.getText().toString();
+                        String s1 = broker_tv4.getText().toString();
+                        NewlyIncreased.setStartDate(s);
+                        NewlyIncreased.setEndDate(s1);
+                        initDataNum("3", s, s1, "2");
+                        NewlyIncreased.setTag("3");
+                        broker_ll1.setVisibility(View.VISIBLE);
+                    }
+//                }else {
+//                    initDataNum("", "", "", "2");
+//                }
                 break;
         }
 

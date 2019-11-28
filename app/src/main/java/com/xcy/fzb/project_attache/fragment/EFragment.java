@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,9 @@ import com.xcy.fzb.all.view.AboutFZBActivity;
 import com.xcy.fzb.all.view.CollectActivity;
 import com.xcy.fzb.all.view.FeedbackActivity;
 import com.xcy.fzb.all.view.PersonalInformationActivity;
+import com.xcy.fzb.project_attache.adapter.MyDataStoreBean;
+import com.xcy.fzb.project_attache.view.CommissionActivity;
+import com.xcy.fzb.project_attache.view.PunchingCardRecordActivity;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -61,6 +65,11 @@ public class EFragment extends Fragment implements View.OnClickListener {
     private Intent intent;
     private ZYDataBean.DataBean data;
 
+    LinearLayout attache_ll_1;
+    LinearLayout attache_ll_2;
+    TextView attache_tv_1;
+    TextView attache_tv_2;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,6 +91,11 @@ public class EFragment extends Fragment implements View.OnClickListener {
         my_empty = getActivity().findViewById(R.id.my_empty);//清空缓存
         my_exit = getActivity().findViewById(R.id.my_exit);//退出登录
 
+        attache_ll_1 = getActivity().findViewById(R.id.attache_ll_1);
+        attache_ll_2 = getActivity().findViewById(R.id.attache_ll_2);
+        attache_tv_1 = getActivity().findViewById(R.id.attache_tv_1);
+        attache_tv_2 = getActivity().findViewById(R.id.attache_tv_2);
+
         my_rl_1 = getActivity().findViewById(R.id.my_rl_1);
         me_photo = getActivity().findViewById(R.id.me_photo);
         me_name = getActivity().findViewById(R.id.me_name);
@@ -102,7 +116,45 @@ public class EFragment extends Fragment implements View.OnClickListener {
         my_about.setOnClickListener(this);
         my_empty.setOnClickListener(this);
         my_exit.setOnClickListener(this);
+        attache_ll_1.setOnClickListener(this);
+        attache_ll_2.setOnClickListener(this);
         initUserMessage();
+        initMyDataStore();
+    }
+
+    private void initMyDataStore() {
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<MyDataStoreBean> userMessage = fzbInterface.getMyDataStore(FinalContents.getUserID());
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MyDataStoreBean>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+
+                    }
+
+                    @Override
+                    public void onNext(MyDataStoreBean myDataStoreBean) {
+                        attache_tv_1.setText(myDataStoreBean.getData().getRecordNum());
+                        attache_tv_2.setText(myDataStoreBean.getData().getTotalAmountStr());
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
 
@@ -155,21 +207,32 @@ public class EFragment extends Fragment implements View.OnClickListener {
                     }
                 });
 
+
+
+
     }
 
     //点击事件
 
     @Override
     public void onClick(View view) {
-
+        Log.i("MyCL","onClick");
         int id = view.getId();
         if (id == R.id.my_collect) {
 //            TODO 我的收藏
             intent = new Intent(getContext(), CollectActivity.class);
-
             startActivity(intent);
-        } else if (id == R.id.my_rl_1) {
+        } else if(id == R.id.attache_ll_1){
+            Log.i("MyCL","attache_ll_1");
+            intent = new Intent(getContext(), PunchingCardRecordActivity.class);
+            startActivity(intent);
+        } else if(id == R.id.attache_ll_2){
+            Log.i("MyCL","attache_ll_1");
+            intent = new Intent(getContext(), CommissionActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.my_rl_1) {
 //            TODO 个人信息
+            Log.i("MyCL","my_rl_1");
             intent = new Intent(getContext(), PersonalInformationActivity.class);
 
             startActivity(intent);

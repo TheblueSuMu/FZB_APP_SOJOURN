@@ -1,3 +1,4 @@
+
 package com.xcy.fzb.all.modle;
 
 //TODO 详情页运营数据类

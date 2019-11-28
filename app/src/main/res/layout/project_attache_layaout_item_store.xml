@@ -18,6 +18,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
         android:background="#FFFFFF">
 
         <LinearLayout
@@ -66,7 +67,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -77,7 +78,6 @@
                     android:text=""
                     android:textColor="#ff666666"
                     android:textSize="13sp" />
-
 <!--                <ImageView-->
 <!--                    android:id="@+id/store_call"-->
 <!--                    android:layout_width="15dp"-->
@@ -86,6 +86,16 @@
 <!--                    android:layout_marginLeft="7dp"-->
 <!--                    android:src="@mipmap/icon_mine_call" />-->
             </LinearLayout>
+            <TextView
+                android:id="@+id/store_new_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:visibility="gone"
+                android:layout_marginBottom="5dp"
+                android:text=""
+                android:textColor="#ff666666"
+                android:textSize="13sp" />
         </LinearLayout>
 
         <ImageView

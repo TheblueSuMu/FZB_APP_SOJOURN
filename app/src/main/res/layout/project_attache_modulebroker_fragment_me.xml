@@ -7,7 +7,7 @@
     android:background="#E9EBEB"
     tools:ignore="MissingDefaultResource,ResourceName">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E9EBEB"
@@ -16,7 +16,7 @@
         <RelativeLayout
             android:id="@+id/my_rl_1"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:background="@drawable/my_brokerage">
 
             <RelativeLayout
@@ -96,11 +96,97 @@
             </RelativeLayout>
 
         </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/my_ll_1"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="148dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/my_e_fragment"
+            android:orientation="horizontal">
 
+            <LinearLayout
+                android:id="@+id/attache_ll_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/attache_tv_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text=""
+                        android:textColor="#334485"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="打卡记录(套)"
+                        android:textColor="#111111"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0.5dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:background="#A0A0A0"></LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/attache_ll_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/attache_tv_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text=""
+                        android:textColor="#334485"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="佣金跟进(万元)"
+                        android:textColor="#111111"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="260dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -319,5 +405,5 @@
             </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </ScrollView>

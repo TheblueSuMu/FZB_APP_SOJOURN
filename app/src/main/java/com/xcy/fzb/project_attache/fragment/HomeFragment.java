@@ -52,6 +52,7 @@ import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.view.MapHouseActivity;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
@@ -262,7 +263,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
 //                startActivity(intent_overseas);
             }else if (view.getId() == R.id.home_item_brokerage) {
                 FinalContents.setStoreId("");
-                Intent intent_overseas = new Intent(view.getContext(), BrokersListActivity.class);
+                Intent intent_overseas = new Intent(view.getContext(), MapHouseActivity.class);
                 startActivity(intent_overseas);
             }
         }else {
