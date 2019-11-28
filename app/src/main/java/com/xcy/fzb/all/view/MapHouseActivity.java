@@ -317,7 +317,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getIfCity(), "", "", "3", "", "", "", "", "", "", "", "", "", "", "1000");
+        Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getIfCity(), "", "", "1", "", "", "", "", "", "", "", "", "", "", "1000");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HotBean>() {
