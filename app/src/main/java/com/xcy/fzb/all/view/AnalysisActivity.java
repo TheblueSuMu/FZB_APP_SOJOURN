@@ -1,12 +1,14 @@
 package com.xcy.fzb.all.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -66,6 +68,8 @@ public class AnalysisActivity extends AllActivity {
     float quarterly1 = 35;
     float quarterly2 = 34;
     float quarterly3 = 34;
+    private LinearLayout all_activity_analysis_linear;
+    private LinearLayout all_activity_analysis_analysis_linear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,9 @@ public class AnalysisActivity extends AllActivity {
     private void initfvb(){
         all_activity_analysis_scrollview = findViewById(R.id.all_activity_analysis_scrollview);
         all_activity_analysis_scrollview.setVisibility(View.GONE);
+
+        all_activity_analysis_linear = findViewById(R.id.all_activity_analysis_linear);
+        all_activity_analysis_analysis_linear = findViewById(R.id.all_activity_analysis_analysis_linear);
 
         all_activity_analysis_return = findViewById(R.id.all_activity_analysis_return);
         all_activity_analysis_share = findViewById(R.id.all_activity_analysis_share);
@@ -124,13 +131,6 @@ public class AnalysisActivity extends AllActivity {
         });         //      TODO    分享
 
 
-        all_activity_analysis_backImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });         //      TODO    进入图片轮播图
-
         all_activity_analysis_site.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -157,7 +157,7 @@ public class AnalysisActivity extends AllActivity {
 
                     @SuppressLint("WrongConstant")
                     @Override
-                    public void onNext(FamilyInfoBean familyInfoBean) {
+                    public void onNext(final FamilyInfoBean familyInfoBean) {
                         all_activity_analysis_scrollview.setVisibility(View.VISIBLE);
                         Glide.with(AnalysisActivity.this).load(FinalContents.getImageUrl()+familyInfoBean.getData().getFloorPlan()).into(all_activity_analysis_backImage);
                         all_activity_analysis_salestatus.setText(familyInfoBean.getData().getText());
@@ -192,19 +192,54 @@ public class AnalysisActivity extends AllActivity {
                         all_activity_analysis_analysis_title.setText(familyInfoBean.getData().getTitle());
                         all_activity_analysis_analysis_content.setText(familyInfoBean.getData().getText());
 
-                        all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly());
-                        all_activity_analysis_total_price.setText(familyInfoBean.getData().getTotal());
+                        if (familyInfoBean.getData().getYears().equals("")) {
+                            all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly()+"元");
+                        }else {
+                            all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly()+"元"+"("+familyInfoBean.getData().getYears()+"年)");
+                        }
 
-                        all_activity_analysis_down_payment.setText(familyInfoBean.getData().getDownpayment());
-                        all_activity_analysis_loans.setText(familyInfoBean.getData().getLoan());
-                        all_activity_analysis_interest.setText(familyInfoBean.getData().getInterest());
+                        if (familyInfoBean.getData().getTitle().equals("") && familyInfoBean.getData().getText().equals("")) {
+                            all_activity_analysis_analysis_linear.setVisibility(View.GONE);
+                        }else{
+                            all_activity_analysis_analysis_linear.setVisibility(View.VISIBLE);
+                        }
 
-                        // 饼图数据
-                        quarterly1 = Float.parseFloat(familyInfoBean.getData().getDownpayment());
-                        quarterly2 = Float.parseFloat(familyInfoBean.getData().getLoan());
-                        quarterly3 = Float.parseFloat(familyInfoBean.getData().getInterest());
 
-                        showChart(getPieData());
+
+                        all_activity_analysis_total_price.setText(familyInfoBean.getData().getTotal()+"元");
+
+                        all_activity_analysis_down_payment.setText(familyInfoBean.getData().getDownpayment()+"元");
+                        all_activity_analysis_loans.setText(familyInfoBean.getData().getLoan()+"元");
+                        all_activity_analysis_interest.setText(familyInfoBean.getData().getInterest()+"元");
+
+                        if (familyInfoBean.getData().getDownpayment().equals("") || familyInfoBean.getData().getLoan().equals("") || familyInfoBean.getData().getInterest().equals("") || familyInfoBean.getData().getMonthly().equals("") || familyInfoBean.getData().getTotal().equals("")) {
+                            all_activity_analysis_linear.setVisibility(View.GONE);
+                        }else {
+                            all_activity_analysis_linear.setVisibility(View.VISIBLE);
+                        }
+
+                        if (familyInfoBean.getData().getDownpayment().equals("") || familyInfoBean.getData().getLoan().equals("") || familyInfoBean.getData().getInterest().equals("")) {
+                            mChart.setVisibility(View.GONE);
+                        }else {
+                            mChart.setVisibility(View.VISIBLE);
+                            // 饼图数据
+                            quarterly1 = Float.parseFloat(familyInfoBean.getData().getDownpayment());
+                            quarterly2 = Float.parseFloat(familyInfoBean.getData().getLoan());
+                            quarterly3 = Float.parseFloat(familyInfoBean.getData().getInterest());
+                            showChart(getPieData());
+                        }
+
+                        all_activity_analysis_backImage.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(AnalysisActivity.this, BigPhotoActivity.class);
+                                intent.putExtra("index", 0);
+                                intent.putExtra("bigPhotoimg", familyInfoBean.getData().getFloorPlan());// -1  -1  -1
+                                startActivity(intent);
+                            }
+                        });         //      TODO    进入图片轮播图
+
+
                     }
 
                     @Override

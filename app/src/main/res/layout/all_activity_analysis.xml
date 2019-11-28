@@ -366,6 +366,7 @@
                 android:layout_height="1dp"/>
 
             <LinearLayout
+                android:id="@+id/all_activity_analysis_analysis_linear"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -396,15 +397,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:background="#EEEEEE"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="20dp"
-                android:background="#EEEEEE"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
-
-            <LinearLayout
+                android:id="@+id/all_activity_analysis_linear"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

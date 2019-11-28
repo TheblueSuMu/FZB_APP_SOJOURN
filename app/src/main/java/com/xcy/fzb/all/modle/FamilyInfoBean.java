@@ -5,7 +5,7 @@ public class FamilyInfoBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"id":"903e8ffaec724c8a9f683d73af782cbb","remarks":"","createBy":"","createDate":"2019-07-30 14:01:08","updateBy":"","updateDate":"2019-07-30 14:01:08","project":{"id":"5a9b45bf1d5d41afb93efc670e11115d","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"天泰·大理十畝","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"云南省大理下关南涧路47号","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"familyName":"E6","productType":"1","room":3,"hall":2,"toilet":2,"familyArea":125.22,"familyOrientation":"2","getHouseRate":90,"modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/7/E6.png","modelHouseChart":"","familySlideImgList":"","average":"","total":"","downpayment":"","loan":"","monthly":"","years":"","interest":"","title":"","text":"","build":"南麓二、三期栋"}
+     * data : {"id":"c96f0e838b224e26ae9b262ab12d3d2d","remarks":"","createBy":"","createDate":"2019-10-28 17:44:53","updateBy":"","updateDate":"2019-11-20 10:03:08","project":{"id":"f0ba02e953b7423e882ef0ca1fa7ec2c","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"广州融创","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"广东省","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"familyName":"A户型","productType":"1","room":"2","hall":"2","toilet":"1","apartment":"","familyArea":"88","familyOrientation":"2","getHouseRate":"90","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/10/微信图片_20191023190633(1).png","modelHouseChart":"","familySlideImgList":"","average":"","total":"","downpayment":"","loan":"","monthly":"","years":"","interest":"","title":"","text":"","build":"1栋","saleStatus":""}
      */
 
     private String code;
@@ -38,23 +38,24 @@ public class FamilyInfoBean {
 
     public static class DataBean {
         /**
-         * id : 903e8ffaec724c8a9f683d73af782cbb
+         * id : c96f0e838b224e26ae9b262ab12d3d2d
          * remarks :
          * createBy :
-         * createDate : 2019-07-30 14:01:08
+         * createDate : 2019-10-28 17:44:53
          * updateBy :
-         * updateDate : 2019-07-30 14:01:08
-         * project : {"id":"5a9b45bf1d5d41afb93efc670e11115d","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"天泰·大理十畝","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"云南省大理下关南涧路47号","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""}
-         * familyName : E6
+         * updateDate : 2019-11-20 10:03:08
+         * project : {"id":"f0ba02e953b7423e882ef0ca1fa7ec2c","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"广州融创","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"广东省","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""}
+         * familyName : A户型
          * productType : 1
-         * room : 3
+         * room : 2
          * hall : 2
-         * toilet : 2
-         * familyArea : 125.22
+         * toilet : 1
+         * apartment :
+         * familyArea : 88
          * familyOrientation : 2
          * getHouseRate : 90
          * modelHouse : 2
-         * floorPlan : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/7/E6.png
+         * floorPlan : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/10/微信图片_20191023190633(1).png
          * modelHouseChart :
          * familySlideImgList :
          * average :
@@ -66,7 +67,8 @@ public class FamilyInfoBean {
          * interest :
          * title :
          * text :
-         * build : 南麓二、三期栋
+         * build : 1栋
+         * saleStatus :
          */
 
         private String id;
@@ -78,12 +80,13 @@ public class FamilyInfoBean {
         private ProjectBean project;
         private String familyName;
         private String productType;
-        private int room;
-        private int hall;
-        private int toilet;
-        private double familyArea;
+        private String room;
+        private String hall;
+        private String toilet;
+        private String apartment;
+        private String familyArea;
         private String familyOrientation;
-        private int getHouseRate;
+        private String getHouseRate;
         private String modelHouse;
         private String floorPlan;
         private String modelHouseChart;
@@ -98,6 +101,7 @@ public class FamilyInfoBean {
         private String title;
         private String text;
         private String build;
+        private String saleStatus;
 
         public String getId() {
             return id;
@@ -171,35 +175,43 @@ public class FamilyInfoBean {
             this.productType = productType;
         }
 
-        public int getRoom() {
+        public String getRoom() {
             return room;
         }
 
-        public void setRoom(int room) {
+        public void setRoom(String room) {
             this.room = room;
         }
 
-        public int getHall() {
+        public String getHall() {
             return hall;
         }
 
-        public void setHall(int hall) {
+        public void setHall(String hall) {
             this.hall = hall;
         }
 
-        public int getToilet() {
+        public String getToilet() {
             return toilet;
         }
 
-        public void setToilet(int toilet) {
+        public void setToilet(String toilet) {
             this.toilet = toilet;
         }
 
-        public double getFamilyArea() {
+        public String getApartment() {
+            return apartment;
+        }
+
+        public void setApartment(String apartment) {
+            this.apartment = apartment;
+        }
+
+        public String getFamilyArea() {
             return familyArea;
         }
 
-        public void setFamilyArea(double familyArea) {
+        public void setFamilyArea(String familyArea) {
             this.familyArea = familyArea;
         }
 
@@ -211,11 +223,11 @@ public class FamilyInfoBean {
             this.familyOrientation = familyOrientation;
         }
 
-        public int getGetHouseRate() {
+        public String getGetHouseRate() {
             return getHouseRate;
         }
 
-        public void setGetHouseRate(int getHouseRate) {
+        public void setGetHouseRate(String getHouseRate) {
             this.getHouseRate = getHouseRate;
         }
 
@@ -331,26 +343,34 @@ public class FamilyInfoBean {
             this.build = build;
         }
 
+        public String getSaleStatus() {
+            return saleStatus;
+        }
+
+        public void setSaleStatus(String saleStatus) {
+            this.saleStatus = saleStatus;
+        }
+
         public static class ProjectBean {
             /**
-             * id : 5a9b45bf1d5d41afb93efc670e11115d
+             * id : f0ba02e953b7423e882ef0ca1fa7ec2c
              * remarks :
              * createBy :
              * createDate :
              * updateBy :
              * updateDate :
-             * projectName : 天泰·大理十畝
+             * projectName : 广州融创
              * developer :
              * houseCompany :
              * cityCompany :
              * projectType :
              * cityType :
-             * showroom :
+             * showroom : 1
              * attache :
              * cooperationState :
              * onlineState :
              * belongsArea :
-             * address : 云南省大理下关南涧路47号
+             * address : 广东省
              * location :
              * totalBuildings :
              * hot :

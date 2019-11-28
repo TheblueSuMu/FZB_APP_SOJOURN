@@ -1302,6 +1302,10 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 }
                             }
 
+                            indexList = projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthList();
+                            initChart(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthPriceList());
+
+
                             project_details_tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                                 @Override
                                 public void onTabSelected(TabLayout.Tab tab) {
