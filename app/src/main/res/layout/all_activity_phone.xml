@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/all_activity_phone_relative"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:background="@drawable/my_brokerage">
+
+        <TextView
+            android:id="@+id/all_activity_phone_cancle"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="取消"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/all_activity_phone_search"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="59dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="56dp"
+            android:background="@drawable/edittext_shape"
+            android:gravity="center"
+            android:hint="搜索"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textColorHint="#ff333333" />
+
+        <TextView
+            android:id="@+id/all_activity_phone_ensure"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="15dp"
+            android:text="完成"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/all_activity_phone_relative"
+        android:layout_above="@id/all_activity_phone_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/all_activity_phone_Rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!--字母导航栏-->
+        <com.nanchen.wavesidebar.WaveSideBarView
+            android:id="@+id/all_activity_phone_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:sidebar_lazy_respond="false"
+            app:sidebar_text_color="#344586"/>
+
+        <ImageView
+            android:id="@+id/all_activity_phone_no_information"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:src="@mipmap/no_information"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/all_activity_phone_linear"
+        android:background="@drawable/linearlayout_back"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <CheckBox
+            android:id="@+id/all_activity_phone_checkbox_all"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:button="@null"
+            android:text="全选"
+            android:textSize="18sp"
+            android:textColor="#334485"
+            android:drawablePadding="15dp"
+            android:drawableLeft="@drawable/item_phone_check_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/all_activity_phone_checkbox_all_number"
+            android:text="已选"
+            android:textSize="15sp"
+            android:textColor="#666666"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

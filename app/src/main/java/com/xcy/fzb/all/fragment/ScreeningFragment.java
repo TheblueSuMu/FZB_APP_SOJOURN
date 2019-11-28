@@ -477,6 +477,7 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
                 for (int i = 0;i < stateMap.size();i++){
                     fitmentState = fitmentState + stateMap.get(i);
                 }
+
                 eventUrl = url+ "&areaSection="+areaSection+"&ffProjectTrait="+projectLabel+"&procuctType="+procuctType+"&fitmentState="+fitmentState;
                 FinalContents.setAreaSection(areaSection);
                 FinalContents.setFfProjectTrait(projectLabel);

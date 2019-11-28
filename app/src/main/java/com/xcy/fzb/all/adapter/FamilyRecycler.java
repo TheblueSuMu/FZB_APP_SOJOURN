@@ -13,15 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ProjectDetailsBean;
-import com.xcy.fzb.all.view.BigPhotoActivity;
+import com.xcy.fzb.all.view.AnalysisActivity;
 
 import java.util.List;
 
 public class FamilyRecycler extends RecyclerView.Adapter<FamilyRecycler.ViewHolder>{
 
-    private List<ProjectDetailsBean.DataBean.FamilyInfomationsBean> list;
+    private List<ProjectDetailsBean.DataBean.FamilyInfomationsBean.ValueBean> list;
     private String sales;
     private String price;
     final StringBuffer s = new StringBuffer();
@@ -44,7 +45,7 @@ public class FamilyRecycler extends RecyclerView.Adapter<FamilyRecycler.ViewHold
 
     private Context context;
 
-    public FamilyRecycler(List<ProjectDetailsBean.DataBean.FamilyInfomationsBean> list) {
+    public FamilyRecycler(List<ProjectDetailsBean.DataBean.FamilyInfomationsBean.ValueBean> list) {
         this.list = list;
     }
 
@@ -62,7 +63,6 @@ public class FamilyRecycler extends RecyclerView.Adapter<FamilyRecycler.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(context).load(FinalContents.getImageUrl()+list.get(position).getFloorPlan()).into(holder.imageAvatar);
 
-
         if(position == 0){
             s.append(list.get(position).getFloorPlan());
         }else {
@@ -72,50 +72,55 @@ public class FamilyRecycler extends RecyclerView.Adapter<FamilyRecycler.ViewHold
         holder.imageAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,BigPhotoActivity.class);
-                intent.putExtra("index",position);
-                intent.putExtra("bigPhotoimg",s.toString());
+                CityContents.setFamilyId(list.get(position).getId());
+                Intent intent = new Intent(context, AnalysisActivity.class);
                 context.startActivity(intent);
+//                Intent intent = new Intent(context,BigPhotoActivity.class);
+//                intent.putExtra("index",position);
+//                intent.putExtra("bigPhotoimg",s.toString());
+//                context.startActivity(intent);
             }
         });
 
-        if (list.get(position).getHall().equals("")) {
-            if (list.get(position).getHall().equals("") && list.get(position).getToilet().equals("")) {
-                holder.room.setText(list.get(position).getRoom()+"室");
+        if (list.get(position).getHall() != null) {
+            if (list.get(position).getHall().equals("")) {
+                if (list.get(position).getHall().equals("") && list.get(position).getToilet().equals("")) {
+                    holder.room.setText(list.get(position).getRoom()+"室");
+                }else {
+                    holder.room.setText(list.get(position).getRoom()+"室"+list.get(position).getToilet()+"卫");
+                }
+            } else if (list.get(position).getToilet().equals("")) {
+                if (list.get(position).getHall().equals("") && list.get(position).getToilet().equals("")) {
+                    holder.room.setText(list.get(position).getRoom()+"室");
+                }else {
+                    holder.room.setText(list.get(position).getRoom()+"室"+list.get(position).getHall()+"厅");
+                }
             }else {
-                holder.room.setText(list.get(position).getRoom()+"室"+list.get(position).getToilet()+"卫");
+                holder.room.setText(list.get(position).getRoom()+"室"+list.get(position).getHall()+"厅"+list.get(position).getToilet()+"卫");
             }
-        } else if (list.get(position).getToilet().equals("")) {
-            if (list.get(position).getHall().equals("") && list.get(position).getToilet().equals("")) {
-                holder.room.setText(list.get(position).getRoom()+"室");
-            }else {
-                holder.room.setText(list.get(position).getRoom()+"室"+list.get(position).getHall()+"厅");
-            }
-        }else {
-            holder.room.setText(list.get(position).getRoom()+"室"+list.get(position).getHall()+"厅"+list.get(position).getToilet()+"卫");
-        }
-        holder.sales.setText(sales);
-        holder.area.setText("面积约："+list.get(position).getFamilyArea());
-        holder.orientation.setText("朝向："+list.get(position).getFamilyOrientation());
+            holder.sales.setText(sales);
+            holder.area.setText("面积约："+list.get(position).getFamilyArea());
+            holder.orientation.setText("朝向："+list.get(position).getFamilyOrientation());
 
-        switch (list.get(position).getProductType()){
-            case "1":
-                holder.type.setText("住宅");
-                break;
-            case "2":
-                holder.type.setText("公寓");
-                break;
-            case "3":
-                holder.type.setText("写字楼");
-                break;
-            case "4":
-                holder.type.setText("商铺");
-                break;
-            case "5":
-                holder.type.setText("别墅");
-                break;
+            switch (list.get(position).getProductType()){
+                case "1":
+                    holder.type.setText("住宅");
+                    break;
+                case "2":
+                    holder.type.setText("公寓");
+                    break;
+                case "3":
+                    holder.type.setText("写字楼");
+                    break;
+                case "4":
+                    holder.type.setText("商铺");
+                    break;
+                case "5":
+                    holder.type.setText("别墅");
+                    break;
+            }
+            holder.price.setText(price+"万元/套");
         }
-        holder.price.setText(price+"万元/套");
     }
 
     @Override

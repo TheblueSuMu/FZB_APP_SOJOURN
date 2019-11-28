@@ -117,6 +117,8 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
     TextView report_cancel;
     TextView report_ensure;
     private BrokerBean.DataBean.AgentInfoBean agentInfo;
+    String type = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -293,6 +295,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
         dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
+
         broker_tv4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -305,9 +308,6 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         broker_tv4.setText(dateString);
-                        String s = broker_tv4.getText().toString();
-                        String s1 = broker_tv5.getText().toString();
-                        initDataNum("3", s, s1);
                         NewlyIncreased.setStartDate(dateString);
                     }
                 });
@@ -325,9 +325,6 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         broker_tv5.setText(dateString);
-                        String s = broker_tv4.getText().toString();
-                        String s1 = broker_tv5.getText().toString();
-                        initDataNum("3", s, s1);
                         NewlyIncreased.setEndDate(dateString);
                     }
                 });
@@ -345,10 +342,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         broker_tv13.setText(dateString);
-                        String s = broker_tv13.getText().toString();
-                        String s1 = broker_tv14.getText().toString();
                         NewlyIncreased.setYJstartDate(dateString);
-                        initDataNum("3", s, s1);
 
                     }
                 });
@@ -366,10 +360,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         broker_tv14.setText(dateString);
-                        String s = broker_tv13.getText().toString();
-                        String s1 = broker_tv14.getText().toString();
                         NewlyIncreased.setYJendDate(dateString);
-                        initDataNum("3", s, s1);
                     }
                 });
             }
@@ -377,6 +368,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         report_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (type.equals("1")) {
+                    initDataNum("3", broker_tv4.getText().toString(), broker_tv5.getText().toString());
+                } else if (type.equals("2")) {
+                    initFinanceNum("3", broker_tv13.getText().toString(), broker_tv14.getText().toString());
+                }
                 report_picker.setVisibility(View.GONE);
             }
         });

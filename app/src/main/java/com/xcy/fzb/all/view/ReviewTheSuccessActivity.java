@@ -24,12 +24,14 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ReviewTheSuccessAdapter;
 import com.xcy.fzb.all.adapter.ReviewTheSuccessPhoneAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.database.FieldBean;
 import com.xcy.fzb.all.modle.CBean;
 import com.xcy.fzb.all.modle.CheckBean;
 import com.xcy.fzb.all.modle.FailureAlertBean;
+import com.xcy.fzb.all.modle.ReadRecordBean;
 import com.xcy.fzb.all.modle.ReportProcessDetailsBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.OkHttpPost;
@@ -151,6 +153,8 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     private void initView() {
 
         StatusBar.makeStatusBarTransparent(this);
+
+        initReadRecord();
 
         FieldBean fieldBean = new FieldBean();
         ProjectProgressApi.setFieldBean(fieldBean);
@@ -476,7 +480,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
     @SuppressLint("WrongConstant")
     private void initRV() {
-
         MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.setScrollEnabled(false);
@@ -694,7 +697,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
     }
 
-
     @SuppressLint("WrongConstant")
     private void initBTN() {
         Log.i("MyCL", "getUserID：" + FinalContents.getUserID());
@@ -770,6 +772,39 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             }
         });
         builder.show();
+    }
+
+    private void initReadRecord(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ReadRecordBean> clientFragment = fzbInterface.getReadRecord(FinalContents.getUserID(),FinalContents.getPreparationId(), CityContents.getReadRecordStatus());
+        clientFragment.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ReadRecordBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ReadRecordBean readRecordBean) {
+                        Log.i("MyCL", "项目进度中未浏览信息"+readRecordBean.getData().getMessage());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "项目进度中未浏览错误信息" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @Override

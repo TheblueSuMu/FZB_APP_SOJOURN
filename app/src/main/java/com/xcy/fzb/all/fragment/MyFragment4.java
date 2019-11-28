@@ -2,17 +2,17 @@ package com.xcy.fzb.all.fragment;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.persente.Fragnemt_SS;
 
 import org.greenrobot.eventbus.EventBus;
@@ -46,7 +46,7 @@ public class MyFragment4 extends Fragment {
 //        EventBus.getDefault().register(this);
 
         textView = getActivity().findViewById(R.id.fragment4_tv_name);
-
+        name = NewlyIncreased.getLeaderNum();
         textView.setText(name);
     }
 
@@ -54,6 +54,7 @@ public class MyFragment4 extends Fragment {
     public void onEvent(Fragnemt_SS fragnemt_ss) {
         name = fragnemt_ss.getName3();
         Log.i("MyCL", "廣播");
+
         textView.setText(name);
     }
     @Override

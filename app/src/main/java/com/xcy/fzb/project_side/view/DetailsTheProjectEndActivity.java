@@ -163,6 +163,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private int year;
     private int month;
     private int dayOfMonth;
+    String type = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -363,6 +364,13 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         particulars_picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (type.equals("1")) {
+                    initViewData1();
+                } else if (type.equals("2")) {
+                    initViewData2();
+                } else if (type.equals("3")) {
+                    initViewData3();
+                }
                 particulars_picker.setVisibility(View.GONE);
             }
         });
@@ -391,7 +399,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         beforeDate1 = dateString;
                         details_the_project_end_time1.setText("<" + dateString);
                         NewlyIncreased.setStartDate(dateString);
-
                     }
                 });
             }
@@ -413,8 +420,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         afterDate1 = dateString;
                         details_the_project_end_time2.setText("-" + dateString + " >");
                         NewlyIncreased.setEndDate(dateString);
-
-                        initViewData1();
+                        type = "1";
                     }
                 });
             }
@@ -458,7 +464,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         afterDate2 = dateString;
                         details_the_project_end_time4.setText("-" + dateString + " >");
                         NewlyIncreased.setYJendDate(dateString);
-                        initViewData2();
+                        type = "2";
                     }
                 });
             }
@@ -507,7 +513,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         afterDate3 = dateString;
                         details_the_project_end_time6.setText("-" + dateString + " >");
-                        initViewData3();
+                        type = "3";
                     }
                 });
             }
@@ -743,8 +749,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
         LineDataSet set1;
 
-        if (details_chart.getData() != null &&
-                details_chart.getData().getDataSetCount() > 0) {
+        if (details_chart.getData() != null && details_chart.getData().getDataSetCount() > 0) {
             set1 = (LineDataSet) details_chart.getData().getDataSetByIndex(0);
             set1.setValues(values);
             details_chart.getData().notifyDataChanged();

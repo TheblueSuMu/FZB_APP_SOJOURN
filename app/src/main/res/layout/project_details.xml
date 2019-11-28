@@ -9,9 +9,9 @@
     tools:ignore="ResourceName">
 
     <ScrollView
+        android:id="@+id/project_details_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -235,7 +235,7 @@
                         android:layout_height="27dp"
                         android:layout_alignParentRight="true"
                         android:background="@drawable/pingtuan_background"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:gravity="center"
                         android:paddingLeft="15dp"
                         android:text="拼团"
@@ -361,11 +361,14 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/project_details_trend"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             android:gravity="center"
+                            android:drawableRight="@mipmap/project_details_trend"
+                            android:drawablePadding="3dp"
                             android:text="参考均价"
                             android:textColor="#111"
                             android:textSize="12sp" />
@@ -452,7 +455,6 @@
                         android:text=" 开盘通知"
                         android:textSize="14sp" />
 
-
                 </RelativeLayout>
 
                 <View
@@ -464,64 +466,176 @@
                     android:background="#fff3f2f7" />
 
                 <LinearLayout
-                    android:id="@+id/linear1"
+                    android:id="@+id/linear"
+                    android:visibility="gone"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:descendantFocusability="blocksDescendants"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="15dp"
-                        android:text="导客规则"
-                        android:textColor="#111"
+                        android:text="优惠活动"
                         android:textSize="19sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="#111111"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/project_details_report_rv"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="17dp">
+                        android:layout_height="wrap_content">
 
-                    </androidx.recyclerview.widget.RecyclerView>
+                        <ImageView
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/project_details_discounts"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginRight="15dp"
-                        android:background="#fff3f2f7" />
+                        <TextView
+                            android:id="@+id/project_details_discounts_nummer"
+                            android:text="0.0001元"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="#111111"
+                            android:layout_marginTop="38dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linear2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="19dp"
+                    android:id="@+id/project_details_layout"
+                    android:layout_marginTop="25dp"
                     android:orientation="vertical"
-                    android:paddingLeft="15dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="佣金规则"
-                        android:textColor="#111"
-                        android:textSize="19sp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/project_details_commission"
+                        <LinearLayout
+                            android:id="@+id/project_details_layout1"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/project_details_layout1_checkbox"
+                                android:text="佣金规则"
+                                android:textSize="15sp"
+                                android:textColor="#111111"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <View
+                                android:id="@+id/project_details_layout1_view"
+                                android:layout_marginTop="12dp"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@drawable/project_details_sanheyi_view_background"
+                                android:layout_width="60dp"
+                                android:layout_height="3dp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/project_details_layout2"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/project_details_layout2_checkbox"
+                                android:button="@null"
+                                android:text="导客规则"
+                                android:textSize="15sp"
+                                android:textColor="#111111"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <View
+                                android:id="@+id/project_details_layout2_view"
+                                android:layout_marginTop="12dp"
+                                android:visibility="invisible"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@drawable/project_details_sanheyi_view_background"
+                                android:layout_width="60dp"
+                                android:layout_height="3dp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/project_details_layout3"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/project_details_layout3_checkbox"
+                                android:button="@null"
+                                android:text="奖励规则"
+                                android:textSize="15sp"
+                                android:textColor="#111111"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <View
+                                android:id="@+id/project_details_layout3_view"
+                                android:layout_marginTop="12dp"
+                                android:visibility="invisible"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@drawable/project_details_sanheyi_view_background"
+                                android:layout_width="60dp"
+                                android:layout_height="3dp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_marginLeft="15dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="21dp">
+                        android:layout_height="wrap_content">
 
-                    </androidx.recyclerview.widget.RecyclerView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_marginTop="20dp"
+                            android:id="@+id/project_details_commission"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/project_details_report_rv"
+                            android:layout_marginTop="20dp"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"/>
+
+                        <TextView
+                            android:id="@+id/project_details_award"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="15dp"
+                            android:text="2019-03-15到2019-03-29期间，成功带看4人奖励100元"
+                            android:textColor="#111"
+                            android:textSize="14sp" />
+
+
+                    </RelativeLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -533,42 +647,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/project_details_award_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="21dp"
-                    android:orientation="vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="17dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="奖励规则"
-                        android:textColor="#111"
-                        android:textSize="19sp"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/project_details_award"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="2019-03-15到2019-03-29期间，成功带看4人奖励100元"
-                        android:textColor="#111"
-                        android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginRight="15dp"
-                        android:background="#fff3f2f7" />
-
-                </LinearLayout>
 
 
                 <LinearLayout
@@ -662,24 +740,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="vertical"
-                    android:paddingLeft="15dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
                         android:text="户型介绍"
                         android:textColor="#000"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/project_details_family"
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
+                        android:layout_height="wrap_content">
 
-                    </androidx.recyclerview.widget.RecyclerView>
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/project_details_family_tablayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="#00000000"
+                            app:tabIndicatorColor="#fff"
+                            app:tabMode="scrollable"
+                            app:tabSelectedTextColor="#334485"
+                            app:tabTextColor="#111111"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/project_details_family"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </LinearLayout>
+
+
 
                     <View
                         android:layout_width="match_parent"
@@ -899,7 +996,6 @@
                         android:id="@+id/project_details_message"
                         android:layout_width="match_parent"
                         android:lineSpacingMultiplier="1.2"
-                        android:textScaleX="1.1"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:text="周边信息"
@@ -1082,6 +1178,241 @@
             android:textColor="#334485"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/project_details_relative"
+        android:visibility="visible"
+        android:background="#88323232"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/project_details_linear_city0"
+            android:layout_alignParentBottom="true"
+            android:background="#FFF"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/project_details_villa_title"
+                    android:layout_marginTop="20dp"
+                    android:textSize="16sp"
+                    android:textColor="#111111"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_marginTop="20dp"
+                    android:background="#EEEEEE"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/project_details_villa_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"/>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/project_details_villa"
+                            android:layout_centerHorizontal="true"
+                            android:text="别墅均价"
+                            android:textSize="12sp"
+                            android:textColor="#666666"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/project_details_villa_price"
+                            android:layout_below="@id/project_details_villa"
+                            android:layout_marginTop="15dp"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="15sp"
+                            android:textColor="#AC1E26"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:background="#EEEEEE"
+                        android:layout_width="1dp"
+                        android:layout_height="45dp"/>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/project_details_villa_compare"
+                            android:layout_centerHorizontal="true"
+                            android:text="同比上月"
+                            android:textSize="12sp"
+                            android:textColor="#666666"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/project_details_villa_price_compare"
+                            android:layout_below="@id/project_details_villa_compare"
+                            android:drawableLeft="@mipmap/project_details_decline"
+                            android:drawablePadding="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="15sp"
+                            android:textColor="#111111"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/project_details_residence"
+                            android:layout_centerHorizontal="true"
+                            android:text="住宅均价"
+                            android:textSize="12sp"
+                            android:textColor="#666666"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/project_details_residence_price"
+                            android:layout_below="@id/project_details_residence"
+                            android:layout_marginTop="15dp"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="15sp"
+                            android:textColor="#AC1E26"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:background="#EEEEEE"
+                        android:layout_width="1dp"
+                        android:layout_height="45dp"/>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/project_details_residence_compare"
+                            android:layout_centerHorizontal="true"
+                            android:text="同比上月"
+                            android:textSize="12sp"
+                            android:textColor="#666666"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/project_details_residence_price_compare"
+                            android:layout_below="@id/project_details_residence_compare"
+                            android:drawableLeft="@mipmap/project_details_rise"
+                            android:drawablePadding="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="15sp"
+                            android:textColor="#111111"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="20dp"
+                android:background="#EEEEEE"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/project_details_tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabSelectedTextColor="#334485"
+                        app:tabIndicatorFullWidth="false"
+                        app:tabIndicatorHeight="3dp"
+                        app:tabTextColor="#111111"/>
+
+                </LinearLayout>
+
+                <View
+                    android:background="#EEEEEE"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <TextView
+                    android:layout_marginTop="19dp"
+                    android:text="价格走势"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/project_details_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:scaleType="fitXY" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </RelativeLayout>
 

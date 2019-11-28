@@ -170,27 +170,15 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-//                    fragment_ll_1.setBackgroundColor(Color.parseColor("#334485"));
-//                    fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
-//                    fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
-
                     fragment_ll_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
                     fragment_ll_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
                     fragment_ll_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
 
                 } else if (position == 1) {
-//                    fragment_ll_2.setBackgroundColor(Color.parseColor("#334485"));
-//                    fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
-//                    fragment_ll_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
-
                     fragment_ll_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
                     fragment_ll_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
                     fragment_ll_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
                 } else if (position == 2) {
-//                    fragment_ll_3.setBackgroundColor(Color.parseColor("#334485"));
-//                    fragment_ll_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
-//                    fragment_ll_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
-
                     fragment_ll_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
                     fragment_ll_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
                     fragment_ll_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
@@ -202,33 +190,6 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
             }
         });
-
-
-//        vpager_one.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.i("广播","点击：");
-//                int currentItem = vpager_one.getCurrentItem();
-//                Log.i("广播","广播currentItem：" + currentItem);
-//                if (vpager_one.getCurrentItem() == 0) {
-//                    intent = new Intent(getContext(), StoreListActivity.class);
-//                    FinalContents.setCompanyId("");
-//                    FinalContents.setMyAddType("");
-//                    startActivity(intent);
-//                } else if (vpager_one.getCurrentItem() == 1) {
-//                    FinalContents.setStoreId("");
-//                    FinalContents.setCompanyId("");
-//                    intent = new Intent(getContext(), BrokersListActivity.class);
-//                    startActivity(intent);
-//                } else if (vpager_one.getCurrentItem() == 2) {
-//                    intent = new Intent(getContext(), CommissionActivity.class);
-//                    FinalContents.setCompanyId("");
-//                    FinalContents.setStoreId("");
-//                    FinalContents.setAgentId("");
-//                    startActivity(intent);
-//                }
-//            }
-//        });
 
         ll1_modulebroker = getActivity().findViewById(R.id.ll1_modulebroke);
         ll2_modulebroker = getActivity().findViewById(R.id.ll2_modulebroke);
@@ -353,8 +314,6 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         String s = time1_modulebroker.getText().toString();
                         String s1 = time2_modulebroker.getText().toString();
                         NewlyIncreased.setStartDate(dateString);
-                        initDataNum("3", s, s1);
-
                     }
                 });
             }
@@ -371,10 +330,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         time2_modulebroker.setText(dateString);
-                        String s = time1_modulebroker.getText().toString();
-                        String s1 = time2_modulebroker.getText().toString();
                         NewlyIncreased.setEndDate(dateString);
-                        initDataNum("3", s, s1);
                     }
                 });
             }
@@ -383,6 +339,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         report_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString());
                 report_picker.setVisibility(View.GONE);
             }
         });
@@ -543,6 +500,9 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         Log.i("广播数据","数据：" + dBean.getData().getPeopleCount());
 
                         EventBus.getDefault().post(new Fragnemt_SS(dBean.getData().getStoreCount() + "", dBean.getData().getPeopleCount() + "", "", "", ""));
+
+                        NewlyIncreased.setStoreCount(dBean.getData().getStoreCount()+"");
+                        NewlyIncreased.setPeopleCount(dBean.getData().getPeopleCount()+"");
 
                         if (FinalContents.getFragmentSS().equals("0")) {
                             mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());

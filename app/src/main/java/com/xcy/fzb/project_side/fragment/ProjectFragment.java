@@ -55,7 +55,6 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
-import com.xcy.fzb.project_side.view.MyClientActivity;
 import com.xcy.fzb.project_side.view.MyProjectActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -253,9 +252,13 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
                 Intent intent = new Intent(view.getContext(), MyProjectActivity.class);
                 startActivity(intent);
             }else if (view.getId() == R.id.home_item_client) {
-                Intent intent = new Intent(view.getContext(), MyClientActivity.class);
-                intent.putExtra("client","1");
+                FinalContents.setProjectType("1");
+                Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent);
+
+//                Intent intent = new Intent(view.getContext(), MyClientActivity.class);
+//                intent.putExtra("client","1");
+//                startActivity(intent);
             }
         }else {
             if(view.getId() == R.id.project_city_selector){

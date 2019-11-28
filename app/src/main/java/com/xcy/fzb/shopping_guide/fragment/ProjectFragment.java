@@ -251,9 +251,11 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                 Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent);
             } else if (view.getId() == R.id.home_item_brokerage) {
-                initTaskDetails();
-            } else if (view.getId() == R.id.home_item_client) {
                 listterner.process("660"); // 3.1 执行回调
+            } else if (view.getId() == R.id.home_item_client) {
+                FinalContents.setProjectType("1");
+                Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
+                startActivity(intent);
             }
         }else {
             if(view.getId() == R.id.project_city_selector){

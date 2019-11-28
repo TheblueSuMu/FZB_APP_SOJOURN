@@ -68,6 +68,8 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
     LinearLayout commission_the_project_end_l2;
     LinearLayout commission_the_project_end_l3;
     LinearLayout commission_the_project_end_l4;
+    LinearLayout commission_the_project_end_l5;
+    LinearLayout commission_the_project_end_l6;
 
     RelativeLayout commission_the_project_end_rl;
     RecyclerView commission_the_project_end_rv;
@@ -147,6 +149,8 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
         commission_the_project_end_l2 = findViewById(R.id.commission_the_project_end_l2);
         commission_the_project_end_l3 = findViewById(R.id.commission_the_project_end_l3);
         commission_the_project_end_l4 = findViewById(R.id.commission_the_project_end_l4);
+        commission_the_project_end_l5 = findViewById(R.id.commission_the_project_end_l5);
+        commission_the_project_end_l6 = findViewById(R.id.commission_the_project_end_l6);
         commission_the_project_end_rl = findViewById(R.id.commission_the_project_end_rl);
         commission_the_project_end_rv = findViewById(R.id.commission_the_project_end_rv);
 
@@ -215,6 +219,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
         commission_the_project_end_screen.setOnClickListener(this);
         commission_the_project_end_l1.setOnClickListener(this);
         commission_the_project_end_l3.setOnClickListener(this);
+        commission_the_project_end_l5.setOnClickListener(this);
 
         commission_the_project_end_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -256,6 +261,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
 
                 commission_the_project_end_l2.setVisibility(View.VISIBLE);
                 commission_the_project_end_l4.setVisibility(View.GONE);
+                commission_the_project_end_l6.setVisibility(View.GONE);
                 projectType = "3";
                 initDataBean();
 
@@ -265,7 +271,18 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
 
                 commission_the_project_end_l2.setVisibility(View.GONE);
                 commission_the_project_end_l4.setVisibility(View.VISIBLE);
+                commission_the_project_end_l6.setVisibility(View.GONE);
                 projectType = "2";
+                initDataBean();
+
+                break;
+//                TODO 城市房产
+            case R.id.commission_the_project_end_l5:
+
+                commission_the_project_end_l2.setVisibility(View.GONE);
+                commission_the_project_end_l4.setVisibility(View.GONE);
+                commission_the_project_end_l6.setVisibility(View.VISIBLE);
+                projectType = "1";
                 initDataBean();
 
                 break;

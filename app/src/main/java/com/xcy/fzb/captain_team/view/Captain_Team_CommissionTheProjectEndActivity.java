@@ -68,6 +68,8 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
     LinearLayout commission_the_project_end_l2;
     LinearLayout commission_the_project_end_l3;
     LinearLayout commission_the_project_end_l4;
+    LinearLayout commission_the_project_end_l5;
+    LinearLayout commission_the_project_end_l6;
 
     ImageView all_no_information;
     RecyclerView commission_the_project_end_rv;
@@ -122,6 +124,8 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
         commission_the_project_end_l2 = findViewById(R.id.commission_the_project_end_l2);
         commission_the_project_end_l3 = findViewById(R.id.commission_the_project_end_l3);
         commission_the_project_end_l4 = findViewById(R.id.commission_the_project_end_l4);
+        commission_the_project_end_l5 = findViewById(R.id.commission_the_project_end_l5);
+        commission_the_project_end_l6 = findViewById(R.id.commission_the_project_end_l6);
         all_no_information = findViewById(R.id.all_no_information);
         commission_the_project_end_rv = findViewById(R.id.commission_the_project_end_rv);
         commission_the_project_end_all = findViewById(R.id.commission_the_project_end_all);
@@ -170,6 +174,7 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
         commission_the_project_end_screen.setOnClickListener(this);
         commission_the_project_end_l1.setOnClickListener(this);
         commission_the_project_end_l3.setOnClickListener(this);
+        commission_the_project_end_l5.setOnClickListener(this);
         commission_the_project_end_all.setOnClickListener(this);
 
         commission_the_project_end_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -208,6 +213,7 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
 
                 commission_the_project_end_l2.setVisibility(View.VISIBLE);
                 commission_the_project_end_l4.setVisibility(View.GONE);
+                commission_the_project_end_l6.setVisibility(View.GONE);
                 projectType = "3";
                 initDataBean();
 
@@ -217,9 +223,18 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
 
                 commission_the_project_end_l2.setVisibility(View.GONE);
                 commission_the_project_end_l4.setVisibility(View.VISIBLE);
+                commission_the_project_end_l6.setVisibility(View.GONE);
                 projectType = "2";
                 initDataBean();
+                break;
+//                TODO 城市房产
+            case R.id.commission_the_project_end_l5:
 
+                commission_the_project_end_l2.setVisibility(View.GONE);
+                commission_the_project_end_l4.setVisibility(View.GONE);
+                commission_the_project_end_l6.setVisibility(View.VISIBLE);
+                projectType = "1";
+                initDataBean();
                 break;
 //                TODO 佣金状态
             case R.id.commission_the_project_end_all:

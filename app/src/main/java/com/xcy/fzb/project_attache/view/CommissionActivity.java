@@ -57,6 +57,8 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     LinearLayout commission_ll2;
     LinearLayout commission_ll3;
     LinearLayout commission_ll4;
+    LinearLayout commission_ll5;
+    LinearLayout commission_ll6;
 
     CheckBox commission_cb;
     String ifCheckBox = "";
@@ -109,6 +111,8 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         commission_ll2 = findViewById(R.id.commission_ll2);
         commission_ll3 = findViewById(R.id.commission_ll3);
         commission_ll4 = findViewById(R.id.commission_ll4);
+        commission_ll5 = findViewById(R.id.commission_ll5);
+        commission_ll6 = findViewById(R.id.commission_ll6);
         commission_et = findViewById(R.id.commission_et);
         commission_cb = findViewById(R.id.commission_cb);
         myBrokerage_rl = findViewById(R.id.myBrokerage_rl);
@@ -120,7 +124,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         commission_return.setOnClickListener(this);
         commission_ll1.setOnClickListener(this);
         commission_ll3.setOnClickListener(this);
-
+        commission_ll5.setOnClickListener(this);
         initDataUp();
 
         commission_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -170,15 +174,19 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                     ifCheckBox = "0";
                     if(commission_ll2.getVisibility() == View.VISIBLE){
                         initData("3", s);
-                    }else {
+                    }else if (commission_ll4.getVisibility() == View.VISIBLE){
                         initData("2", s);
+                    }else if (commission_ll6.getVisibility() == View.VISIBLE){
+                        initData("1", s);
                     }
                 }else {
                     ifCheckBox = "";
                     if(commission_ll2.getVisibility() == View.VISIBLE){
                         initData("3", s);
-                    }else {
+                    }else if (commission_ll4.getVisibility() == View.VISIBLE){
                         initData("2", s);
+                    }else if (commission_ll6.getVisibility() == View.VISIBLE){
+                        initData("1", s);
                     }
                 }
             }
@@ -236,6 +244,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                 s = commission_et.getText().toString();
                 commission_ll2.setVisibility(View.VISIBLE);
                 commission_ll4.setVisibility(View.INVISIBLE);
+                commission_ll6.setVisibility(View.INVISIBLE);
                 projecttype = "3";
                 initData("3", s);
 
@@ -244,11 +253,20 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                 s = commission_et.getText().toString();
                 commission_ll2.setVisibility(View.INVISIBLE);
                 commission_ll4.setVisibility(View.VISIBLE);
+                commission_ll6.setVisibility(View.INVISIBLE);
                 projecttype = "2";
                 initData("2", s);
 
                 break;
+            case R.id.commission_ll5:
+                s = commission_et.getText().toString();
+                commission_ll2.setVisibility(View.INVISIBLE);
+                commission_ll4.setVisibility(View.INVISIBLE);
+                commission_ll6.setVisibility(View.VISIBLE);
+                projecttype = "1";
+                initData("1", s);
 
+                break;
 
         }
 

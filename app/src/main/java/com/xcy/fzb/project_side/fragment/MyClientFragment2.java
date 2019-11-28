@@ -19,6 +19,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ClientFragmentAdapter;
 import com.xcy.fzb.all.adapter.ProcessDataAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ClientFragmentBean;
@@ -221,6 +222,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
 
     @Override
     public void ItemOnClick(int position) {
+        CityContents.setReadRecordStatus("10");
         Intent intent = new Intent(getContext(), ReviewTheSuccessActivity.class);
         FinalContents.setPreparationId(rows.get(position).getPreparationId());
         startActivity(intent);

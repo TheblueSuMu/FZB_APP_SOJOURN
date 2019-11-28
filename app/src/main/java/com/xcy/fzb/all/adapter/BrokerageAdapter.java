@@ -67,9 +67,9 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
         }
 
         if (rows.get(position).getSecondsAmount().equals("")  || rows.get(position).getSecondsAmount().equals("0") || rows.get(position).getSecondsAmount().equals("0.00")) {
-            holder.brokerage_item_secondsAmount.setVisibility(View.VISIBLE);
-            holder.brokerage_item_secondsAmount.setText("无秒结");
+            holder.brokerage_item_secondsAmount.setVisibility(View.GONE);
         } else {
+            holder.brokerage_item_secondsAmount.setVisibility(View.VISIBLE);
             holder.brokerage_item_secondsAmount.setText("秒结：￥" + rows.get(position).getSecondsAmount() + "");
         }
         if(rows.get(position).getAlreadyAmount().equals("") || rows.get(position).getAlreadyAmount().equals("0") || rows.get(position).getAlreadyAmount().equals("0.00")){
@@ -107,9 +107,6 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
             holder.the_project_end_tv6.setVisibility(View.GONE);
             holder.the_project_end_tv7.setVisibility(View.GONE);
         } else if (rows.get(position).getStatus().equals("1")) {
-            holder.brokerage_item_secondsAmount.setVisibility(View.GONE);
-            holder.brokerage_item_alreadyAmount.setVisibility(View.GONE);
-            holder.brokerage_item_notAmount.setVisibility(View.GONE);
             holder.the_project_end_tv6.setVisibility(View.VISIBLE);
             holder.the_project_end_tv7.setVisibility(View.VISIBLE);
             holder.the_project_end_tv7.setText(rows.get(position).getClosingTime());
@@ -162,9 +159,9 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
             brokerage_item_secondsAmount = itemView.findViewById(R.id.brokerage_item_secondsAmount);
             brokerage_item_alreadyAmount = itemView.findViewById(R.id.brokerage_item_alreadyAmount);
             brokerage_item_notAmount = itemView.findViewById(R.id.brokerage_item_notAmount);
-            the_project_end_tv6 = itemView.findViewById(R.id.the_project_end_tv6);
-            the_project_end_tv7 = itemView.findViewById(R.id.the_project_end_tv7);
-            the_project_end_tv8 = itemView.findViewById(R.id.the_project_end_tv8);
+            the_project_end_tv6 = itemView.findViewById(R.id.the_project_end_tv6_S);
+            the_project_end_tv7 = itemView.findViewById(R.id.the_project_end_tv7_S);
+            the_project_end_tv8 = itemView.findViewById(R.id.the_project_end_tv8_S);
         }
 
 

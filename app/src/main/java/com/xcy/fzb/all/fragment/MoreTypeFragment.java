@@ -45,24 +45,31 @@ public class MoreTypeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         StatusBar.makeStatusBarTransparent(getActivity());
-        array = list.get(1).getValue();
+
         view  = inflater.inflate(R.layout.fragment_more_type, container, false);
         recyclerView = view.findViewById(R.id.more_type_rv);
         all_no_information = view.findViewById(R.id.all_no_information);
-
-        if (list.size() != 0) {
-            all_no_information.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-            recyclerView.setLayoutManager(layoutManager);
-            MoreTypeAdapter recyclerAdapter = new MoreTypeAdapter(array);
-            recyclerView.setAdapter(recyclerAdapter);
-        }else {
-            all_no_information.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
-        }
+        init();
         return view;
+    }
+
+    private void init(){
+        for (int i = 0;i < list.size();i++){
+            if (list.get(i).getKey().equals("产品类型")) {
+                array = list.get(i).getValue();
+                all_no_information.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(layoutManager);
+                MoreTypeAdapter recyclerAdapter = new MoreTypeAdapter(array);
+                recyclerView.setAdapter(recyclerAdapter);
+                return ;
+            }else {
+                all_no_information.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+            }
+        }
     }
 
 

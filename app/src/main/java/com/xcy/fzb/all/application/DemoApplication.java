@@ -80,7 +80,7 @@ public class DemoApplication extends Application {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
         // 初始化Bugly
-        CrashReport.initCrashReport(context, "注册时申请的APPID", false, strategy);
+        CrashReport.initCrashReport(context, "f3be6c75bf", false, strategy);
 
         XCrashHandlerUtils.getInstance().init(this);
 //        CrashHandler crashHandler = new CrashHandler();

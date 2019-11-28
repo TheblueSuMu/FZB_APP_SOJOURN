@@ -155,4 +155,6 @@ dependencies {
     implementation project(path: ':gallery')
 
     implementation files('D:\\lib\\pinyin4j-2.5.0.jar')
+    implementation project(path: ':azlist')
+    implementation project(path: ':fuzzysearchlibrary')
 }

@@ -115,6 +115,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     private DemoApplication application;
     private TextView home_item_yongjin;
     private ImageView all_no_information;
+    private TextView home_item_text4;
+    private ImageView home_item_img4;
 
     @Nullable
     @Override
@@ -201,6 +203,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         recyclerView = view.findViewById(R.id.home_recycler_vertical);
 
         all_no_information = view.findViewById(R.id.all_no_information_p);
+        home_item_text4 = view.findViewById(R.id.home_item_text4);
+        home_item_img4 = view.findViewById(R.id.home_item_img4);
 
         banner = view.findViewById(R.id.home_banner);
 
@@ -258,16 +262,17 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                 Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent);
             } else if (view.getId() == R.id.home_item_brokerage) {
+                FinalContents.setProjectType("1");
+                Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
+                startActivity(intent);
 
-                FinalContents.setStoreId("");
-                FinalContents.setAgentId(FinalContents.getUserID());
-                Intent intent_overseas = new Intent(getContext(), Captain_Team_MyClientActivity.class);
-                FinalContents.setQuanceng("1");
-                FinalContents.setMySelf("0");
-                intent_overseas.putExtra("client", "1");
-                startActivity(intent_overseas);
-
-
+//                FinalContents.setStoreId("");
+//                FinalContents.setAgentId(FinalContents.getUserID());
+//                Intent intent_overseas = new Intent(getContext(), Captain_Team_MyClientActivity.class);
+//                FinalContents.setQuanceng("1");
+//                FinalContents.setMySelf("0");
+//                intent_overseas.putExtra("client", "1");
+//                startActivity(intent_overseas);
             } else if (view.getId() == R.id.home_item_client) {
                 //  TODO    判断不同的身份进入不同的佣金界面
                 if (FinalContents.getIdentity().equals("60")) {

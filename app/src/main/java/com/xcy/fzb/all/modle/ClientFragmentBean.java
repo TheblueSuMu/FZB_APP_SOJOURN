@@ -3,12 +3,10 @@ package com.xcy.fzb.all.modle;
 import java.util.List;
 
 public class ClientFragmentBean {
-
-
     /**
      * code : 1
      * msg : 成功
-     * data : {"total":5,"rows":[{"date":"报备时间2019-10-19 17:48:51","agentId":"52b294a7098f4137a86f2ace1221f78f","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","agentName":"经纪人：c001","customerName":"川普","customerPhone":"16494648484","customerId":"bd493ffb276b4bdcadc4c7c37d332776","preparationId":"74debff96e0348e88f814b186df2d874","relatedData":"待审核","intentionArea":"","projectName":"丽江项目测试1","projectId":"a2a23fc831c844629a600d2b781570dd","status":"10"},{"date":"报备时间2019-10-19 17:46:18","agentId":"52b294a7098f4137a86f2ace1221f78f","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","agentName":"经纪人：c001","customerName":"多次","customerPhone":"15236952463","customerId":"d6688034b8b540068f7ba35d38d6eaa2","preparationId":"7a745bf2593c4e148cbb3ecb7e91fdbc","relatedData":"保护期剩余18天","intentionArea":"","projectName":"丽江项目测试1","projectId":"a2a23fc831c844629a600d2b781570dd","status":"10"},{"date":"报备时间2019-10-19 17:41:14","agentId":"52b294a7098f4137a86f2ace1221f78f","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","agentName":"经纪人：c001","customerName":"多次","customerPhone":"15236952463","customerId":"d6688034b8b540068f7ba35d38d6eaa2","preparationId":"734cb5f9b29743869ed8aa5819ce9aaf","relatedData":"待审核","intentionArea":"","projectName":"融创孔雀镇","projectId":"a7707dbc70714b7e967a25df7f8008dd","status":"10"},{"date":"报备时间2019-10-19 17:27:14","agentId":"52b294a7098f4137a86f2ace1221f78f","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","agentName":"经纪人：c001","customerName":"嗯ヽ(○^㉨^)ﾉ♪","customerPhone":"2737382882","customerId":"dee20c12ae9a4db6ae89f4212ffa8154","preparationId":"51d9c449326f4e95b306655c0f29587f","relatedData":"待审核","intentionArea":"","projectName":"丽江项目测试1","projectId":"a2a23fc831c844629a600d2b781570dd","status":"10"},{"date":"报备时间2019-10-19 17:22:27","agentId":"52b294a7098f4137a86f2ace1221f78f","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","agentName":"经纪人：c001","customerName":"嗯ヽ(○^㉨^)ﾉ♪","customerPhone":"2737382882","customerId":"dee20c12ae9a4db6ae89f4212ffa8154","preparationId":"ac9c9671a61145dfa8d93b926fb77b20","relatedData":"待审核","intentionArea":"","projectName":"融创孔雀镇","projectId":"a7707dbc70714b7e967a25df7f8008dd","status":"10"}]}
+     * data : {"total":4,"rows":[{"date":"报备时间2019-11-23 09:42:52","agentId":"7b585b28383e485bbbfe1fd35f83d94e","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","isRead":"0","agentName":"经纪人：hh","customerName":"部分结","customerPhone":"18713695566","customerId":"534cfb4f4c584865bb3e6d3a5c9b22ef","preparationId":"f83f75dbfa4d4c03bbc493138fd97d86","relatedData":"报备成功\n保护期剩余30天","intentionArea":"","projectName":"融创孔雀镇","projectId":"a7707dbc70714b7e967a25df7f8008dd","status":"10"},{"date":"报备时间2019-11-25 14:51:39","agentId":"9323691b1f794c37819ba1e7d6e8e366","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","isRead":"1","agentName":"经纪人：happy","customerName":"欧阳娜娜","customerPhone":"15808086363","customerId":"7286288b7f3e4108a67061c68747504a","preparationId":"6043d8b953d84e41aa526fbbdf03062d","relatedData":"报备成功\n保护期剩余30天","intentionArea":"","projectName":"融创孔雀镇","projectId":"a7707dbc70714b7e967a25df7f8008dd","status":"10"},{"date":"报备时间2019-11-25 14:45:49","agentId":"9323691b1f794c37819ba1e7d6e8e366","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","isRead":"0","agentName":"经纪人：happy","customerName":"保护期过期","customerPhone":"186****3366","customerId":"41caf568929147a79ff54b09f3f39a34","preparationId":"f4487b903e1e42b3b9f7564b491bdb6d","relatedData":"报备成功\n保护期剩余1天","intentionArea":"","projectName":"丽江时光","projectId":"ef3f647c7e3643bc882c9fc365634a1a","status":"10"},{"date":"报备时间2019-11-23 10:55:39","agentId":"21d16305c36e4d7a84abd7afa31b0de5","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","isRead":"0","agentName":"经纪人：西毒","customerName":"到访","customerPhone":"158****6652","customerId":"5424bfeecc944b8fb06b855cf1222cd4","preparationId":"16e5057f1bb14d1da4027edc0c18c73f","relatedData":"报备成功\n保护期剩余7天","intentionArea":"","projectName":"大理的小院子","projectId":"7c2eedbf85f149bc95c736653e31ee6b","status":"10"}]}
      */
 
     private String code;
@@ -41,8 +39,8 @@ public class ClientFragmentBean {
 
     public static class DataBean {
         /**
-         * total : 5
-         * rows : [{"date":"报备时间2019-10-19 17:48:51","agentId":"52b294a7098f4137a86f2ace1221f78f","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","agentName":"经纪人：c001","customerName":"川普","customerPhone":"16494648484","customerId":"bd493ffb276b4bdcadc4c7c37d332776","preparationId":"74debff96e0348e88f814b186df2d874","relatedData":"待审核","intentionArea":"","projectName":"丽江项目测试1","projectId":"a2a23fc831c844629a600d2b781570dd","status":"10"},{"date":"报备时间2019-10-19 17:46:18","agentId":"52b294a7098f4137a86f2ace1221f78f","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","agentName":"经纪人：c001","customerName":"多次","customerPhone":"15236952463","customerId":"d6688034b8b540068f7ba35d38d6eaa2","preparationId":"7a745bf2593c4e148cbb3ecb7e91fdbc","relatedData":"保护期剩余18天","intentionArea":"","projectName":"丽江项目测试1","projectId":"a2a23fc831c844629a600d2b781570dd","status":"10"},{"date":"报备时间2019-10-19 17:41:14","agentId":"52b294a7098f4137a86f2ace1221f78f","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","agentName":"经纪人：c001","customerName":"多次","customerPhone":"15236952463","customerId":"d6688034b8b540068f7ba35d38d6eaa2","preparationId":"734cb5f9b29743869ed8aa5819ce9aaf","relatedData":"待审核","intentionArea":"","projectName":"融创孔雀镇","projectId":"a7707dbc70714b7e967a25df7f8008dd","status":"10"},{"date":"报备时间2019-10-19 17:27:14","agentId":"52b294a7098f4137a86f2ace1221f78f","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","agentName":"经纪人：c001","customerName":"嗯ヽ(○^㉨^)ﾉ♪","customerPhone":"2737382882","customerId":"dee20c12ae9a4db6ae89f4212ffa8154","preparationId":"51d9c449326f4e95b306655c0f29587f","relatedData":"待审核","intentionArea":"","projectName":"丽江项目测试1","projectId":"a2a23fc831c844629a600d2b781570dd","status":"10"},{"date":"报备时间2019-10-19 17:22:27","agentId":"52b294a7098f4137a86f2ace1221f78f","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","agentName":"经纪人：c001","customerName":"嗯ヽ(○^㉨^)ﾉ♪","customerPhone":"2737382882","customerId":"dee20c12ae9a4db6ae89f4212ffa8154","preparationId":"ac9c9671a61145dfa8d93b926fb77b20","relatedData":"待审核","intentionArea":"","projectName":"融创孔雀镇","projectId":"a7707dbc70714b7e967a25df7f8008dd","status":"10"}]
+         * total : 4
+         * rows : [{"date":"报备时间2019-11-23 09:42:52","agentId":"7b585b28383e485bbbfe1fd35f83d94e","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","isRead":"0","agentName":"经纪人：hh","customerName":"部分结","customerPhone":"18713695566","customerId":"534cfb4f4c584865bb3e6d3a5c9b22ef","preparationId":"f83f75dbfa4d4c03bbc493138fd97d86","relatedData":"报备成功\n保护期剩余30天","intentionArea":"","projectName":"融创孔雀镇","projectId":"a7707dbc70714b7e967a25df7f8008dd","status":"10"},{"date":"报备时间2019-11-25 14:51:39","agentId":"9323691b1f794c37819ba1e7d6e8e366","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","isRead":"1","agentName":"经纪人：happy","customerName":"欧阳娜娜","customerPhone":"15808086363","customerId":"7286288b7f3e4108a67061c68747504a","preparationId":"6043d8b953d84e41aa526fbbdf03062d","relatedData":"报备成功\n保护期剩余30天","intentionArea":"","projectName":"融创孔雀镇","projectId":"a7707dbc70714b7e967a25df7f8008dd","status":"10"},{"date":"报备时间2019-11-25 14:45:49","agentId":"9323691b1f794c37819ba1e7d6e8e366","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","isRead":"0","agentName":"经纪人：happy","customerName":"保护期过期","customerPhone":"186****3366","customerId":"41caf568929147a79ff54b09f3f39a34","preparationId":"f4487b903e1e42b3b9f7564b491bdb6d","relatedData":"报备成功\n保护期剩余1天","intentionArea":"","projectName":"丽江时光","projectId":"ef3f647c7e3643bc882c9fc365634a1a","status":"10"},{"date":"报备时间2019-11-23 10:55:39","agentId":"21d16305c36e4d7a84abd7afa31b0de5","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","isRead":"0","agentName":"经纪人：西毒","customerName":"到访","customerPhone":"158****6652","customerId":"5424bfeecc944b8fb06b855cf1222cd4","preparationId":"16e5057f1bb14d1da4027edc0c18c73f","relatedData":"报备成功\n保护期剩余7天","intentionArea":"","projectName":"大理的小院子","projectId":"7c2eedbf85f149bc95c736653e31ee6b","status":"10"}]
          */
 
         private int total;
@@ -66,19 +64,21 @@ public class ClientFragmentBean {
 
         public static class RowsBean {
             /**
-             * date : 报备时间2019-10-19 17:48:51
-             * agentId : 52b294a7098f4137a86f2ace1221f78f
+             * date : 报备时间2019-11-23 09:42:52
+             * agentId : 7b585b28383e485bbbfe1fd35f83d94e
              * customerImg : /fangfang/static/common/images/flat-avatar.png
              * projectType : 3
-             * agentName : 经纪人：c001
-             * customerName : 川普
-             * customerPhone : 16494648484
-             * customerId : bd493ffb276b4bdcadc4c7c37d332776
-             * preparationId : 74debff96e0348e88f814b186df2d874
-             * relatedData : 待审核
+             * isRead : 0
+             * agentName : 经纪人：hh
+             * customerName : 部分结
+             * customerPhone : 18713695566
+             * customerId : 534cfb4f4c584865bb3e6d3a5c9b22ef
+             * preparationId : f83f75dbfa4d4c03bbc493138fd97d86
+             * relatedData : 报备成功
+             保护期剩余30天
              * intentionArea :
-             * projectName : 丽江项目测试1
-             * projectId : a2a23fc831c844629a600d2b781570dd
+             * projectName : 融创孔雀镇
+             * projectId : a7707dbc70714b7e967a25df7f8008dd
              * status : 10
              */
 
@@ -86,6 +86,7 @@ public class ClientFragmentBean {
             private String agentId;
             private String customerImg;
             private String projectType;
+            private String isRead;
             private String agentName;
             private String customerName;
             private String customerPhone;
@@ -127,6 +128,14 @@ public class ClientFragmentBean {
 
             public void setProjectType(String projectType) {
                 this.projectType = projectType;
+            }
+
+            public String getIsRead() {
+                return isRead;
+            }
+
+            public void setIsRead(String isRead) {
+                this.isRead = isRead;
             }
 
             public String getAgentName() {

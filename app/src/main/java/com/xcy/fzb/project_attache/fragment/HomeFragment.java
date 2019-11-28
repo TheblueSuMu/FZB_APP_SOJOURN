@@ -56,7 +56,6 @@ import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
 import com.xcy.fzb.project_attache.view.BrokersListActivity;
-import com.xcy.fzb.project_attache.view.StoreListActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -254,9 +253,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                 Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent_overseas);
             }else if (view.getId() == R.id.home_item_client) {
-                Intent intent_overseas = new Intent(view.getContext(), StoreListActivity.class);
-                FinalContents.setMyAddType("");
+                FinalContents.setProjectType("1");
+                Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent_overseas);
+
+//                Intent intent_overseas = new Intent(view.getContext(), StoreListActivity.class);
+//                FinalContents.setMyAddType("");
+//                startActivity(intent_overseas);
             }else if (view.getId() == R.id.home_item_brokerage) {
                 FinalContents.setStoreId("");
                 Intent intent_overseas = new Intent(view.getContext(), BrokersListActivity.class);

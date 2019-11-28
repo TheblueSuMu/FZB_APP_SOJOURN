@@ -39,7 +39,6 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.PopAdapter;
@@ -59,6 +58,7 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.DisclaimerActivity;
 import com.xcy.fzb.all.view.ForgetActivity;
@@ -71,6 +71,8 @@ import com.xcy.fzb.project_attache.view.Project_Attache_MainActivity;
 import com.xcy.fzb.project_side.view.Project_Side_MainActivity;
 import com.xcy.fzb.shopping_guide.view.Shopping_Guide_MainActivity;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -82,6 +84,8 @@ import java.util.List;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.wechat.friends.Wechat;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -90,7 +94,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LoginActivity extends AllActivity implements View.OnClickListener, PlatformActionListener {
+public class LoginActivity extends AllActivity implements View.OnClickListener {
     private TextView login_tv_username;
     private TextView login_tv_password;
     private TextView login_tv_get_code;
@@ -123,7 +127,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     private String title;
     private int index = -1;
     private int size = 0;
-
+    private boolean login = false;
+    private JSONObject json = new JSONObject();
 
     /**
      * 版本下载数据
@@ -170,15 +175,13 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 initfvb();
             }
         } else {
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "当前无网络，请检查网络后再进行登录");
         }
 
         if (ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//未开启定位权限
             //开启定位权限,200是标识码
             ActivityCompat.requestPermissions(LoginActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
         } else {
-//            initMap();
-//            Toast.makeText(LoginActivity.this, "已开启定位权限", Toast.LENGTH_LONG).show();
         }
         AdministrationAuthority administrationAuthority = new AdministrationAuthority();
         administrationAuthority.CameraPermissions(LoginActivity.this);
@@ -213,7 +216,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
 //                    initMap();//开始定位
                 } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                    Toast.makeText(LoginActivity.this, "未开启定位权限,请手动到设置去开启权限", Toast.LENGTH_LONG).show();
+                    ToastUtil.showLongToast(LoginActivity.this, "未开启定位权限,请手动到设置去开启权限");
                 }
                 break;
             default:
@@ -289,7 +292,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
-                    Toast.makeText(this, "用户成功登录" + pref.getString("userID", ""), Toast.LENGTH_SHORT);
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Broker_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -307,7 +309,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
-                    Toast.makeText(this, "用户成功登录" + pref.getString("userID", ""), Toast.LENGTH_SHORT);
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Market_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -325,7 +326,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
-                    Toast.makeText(this, "用户成功登录" + pref.getString("userID", ""), Toast.LENGTH_SHORT);
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Counselor_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -343,7 +343,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
-                    Toast.makeText(this, "用户成功登录" + pref.getString("userID", ""), Toast.LENGTH_SHORT);
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Team_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -361,7 +360,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
-                    Toast.makeText(this, "用户成功登录" + pref.getString("userID", ""), Toast.LENGTH_SHORT);
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Assistant_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -379,7 +377,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
-                    Toast.makeText(this, "用户成功登录" + pref.getString("userID", ""), Toast.LENGTH_SHORT);
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Project_Attache_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -398,7 +395,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
-                    Toast.makeText(this, "用户成功登录" + pref.getString("userID", ""), Toast.LENGTH_SHORT);
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Project_Side_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -416,7 +412,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
             } else {
                 if (pref.getString("login", "").equals("1")) {
-                    Toast.makeText(this, "用户成功登录" + pref.getString("userID", ""), Toast.LENGTH_SHORT);
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Shopping_Guide_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -436,7 +431,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         login_tv_username.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginActivity.this, "点击事件", Toast.LENGTH_SHORT).show();
             }
         });
         login_tv_password.setOnClickListener(this);
@@ -487,28 +481,51 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                         userLoginWithAccount();
                     }
                 } else {
-                    Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(this, "当前无网络，请检查网络后再进行登录");
                 }
 
                 break;
             case R.id.tv_wechat:
+                Platform plat = ShareSDK.getPlatform(Wechat.NAME);
+                plat.removeAccount(true); //移除授权状态和本地缓存，下次授权会重新授权
+                plat.SSOSetting(false); //SSO授权，传false默认是客户端授权，没有客户端授权或者不支持客户端授权会跳web授权
+                plat.setPlatformActionListener(new PlatformActionListener() {
+                    @Override
+                    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+                        login = true;
+                        Log.i("json","授权成功");
+                        json = new JSONObject(hashMap);
+                        Log.i("json","授权成功"+ json.toString());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //此时已在主线程中，更新UI
+                                onResume();
+                            }
+                        });
+                    }
 
-                Toast.makeText(LoginActivity.this, "敬请期待", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onError(Platform platform, int i, Throwable throwable) {
+                        ToastUtil.showLongToast(LoginActivity.this, "授权失败");
+                        Log.i("json","授权失败"+throwable.getMessage());
+                    }
 
-//                Platform plat = ShareSDK.getPlatform(Wechat.NAME);
-//                plat.removeAccount(true); //移除授权状态和本地缓存，下次授权会重新授权
-//                plat.SSOSetting(false); //SSO授权，传false默认是客户端授权，没有客户端授权或者不支持客户端授权会跳web授权
-//                plat.setPlatformActionListener(this);//授权回调监听，监听oncomplete，onerror，oncancel三种状态
-//                if (plat.isClientValid()) {
-//                    //判断是否存在授权凭条的客户端，true是有客户端，false是无
-//                }
-//                if (plat.isAuthValid()) {
-//                    //判断是否已经存在授权状态，可以根据自己的登录逻辑设置
-//                    Toast.makeText(this, "已经授权过了", 0).show();
-//                    return;
-//                }
-//                ShareSDK.setActivity(this);//抖音登录适配安卓9.0
-//                plat.showUser(null);    //要数据不要功能，主要体现在不会重复出现授权界面
+                    @Override
+                    public void onCancel(Platform platform, int i) {
+                        Log.i("json","授权取消");
+                        ToastUtil.showLongToast(LoginActivity.this, "授权取消");
+                    }
+                });//授权回调监听，监听oncomplete，onerror，oncancel三种状态
+                if (plat.isClientValid()) {
+                    //判断是否存在授权凭条的客户端，true是有客户端，false是无
+                }
+                if (plat.isAuthValid()) {
+                    //判断是否已经存在授权状态，可以根据自己的登录逻辑设置
+                    return;
+                }
+                ShareSDK.setActivity(this);//抖音登录适配安卓9.0
+                plat.showUser(null);    //要数据不要功能，主要体现在不会重复出现授权界面
                 break;
             case R.id.iv_user_state:
                 PopWindow();
@@ -540,12 +557,12 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         userName = login_et_username.getText().toString();
 
         if (userName.equals("")) {
-            Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请输入手机号");
             return;
         }
         if (!MatcherUtils.isMobile(userName)) {
             Log.i("aaa", "走一下");
-            Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请输入正确的手机号");
             return;
         } else {
             Log.i("aaa", "不走");
@@ -569,12 +586,12 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                     public void onNext(CodeBean codeBean) {
                         CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(login_tv_get_code, 60000, 1000);
                         mCountDownTimerUtils.start();
-                        Toast.makeText(LoginActivity.this, codeBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(LoginActivity.this, codeBean.getData().getMessage());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(LoginActivity.this, "您输入的手机号有误", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(LoginActivity.this, "您输入的手机号有误");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
@@ -592,11 +609,11 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         userName = login_et_username.getText().toString();
         passWord = login_et_password.getText().toString();
         if (userName.equals("")) {
-            Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请输入手机号");
             return;
         }
         if (passWord.equals("")) {
-            Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请输入验证码");
             return;
         }
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -628,7 +645,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(LoginActivity.this, "请确认您输入的验证码或手机号是否正确", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(LoginActivity.this, "请确认您输入的验证码或手机号是否正确");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
@@ -647,17 +664,17 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         userName = login_et_username.getText().toString();
         passWord = login_et_password.getText().toString();
         if (userName.equals("")) {
-            Toast.makeText(this, "请输入账号", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请输入账号");
             return;
         }
         if (passWord.equals("")) {
-            Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请输入密码");
             return;
         }
         if (checkBoxed.isChecked()) {
             initlogin();
         } else {
-            Toast.makeText(this, "请同意服务条款后进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请同意服务条款后进行登录");
         }
     }
 
@@ -694,7 +711,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(LoginActivity.this, "请输入正确的账户或用户名", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(LoginActivity.this, "请输入正确的账户或用户名");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
@@ -763,9 +780,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                             editor.commit();
                             startActivity(intent);
                             finish();
-                            Toast.makeText(LoginActivity.this, "成功登陆", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(LoginActivity.this, "当前无网络，请检查网络后再重新登录APP", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showLongToast(LoginActivity.this, "当前无网络，请检查网络后再重新登录APP");
                             finish();
                         }
 
@@ -774,7 +790,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(LoginActivity.this, "您输入的账号或密码有误", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
@@ -898,14 +914,14 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 finish();
                             }
                         } else {
-                            Toast.makeText(LoginActivity.this, "当前无网络，请检查网络后再重新登录APP", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showLongToast(LoginActivity.this, "当前无网络，请检查网络后再重新登录APP");
                             finish();
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(LoginActivity.this, "您输入的账号或密码有误", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
@@ -1015,7 +1031,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
                                 finish();
                             }
                         } else {
-                            Toast.makeText(LoginActivity.this, "当前无网络，请检查网络后再重新登录APP", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showLongToast(LoginActivity.this, "当前无网络，请检查网络后再重新登录APP");
                             finish();
                         }
 
@@ -1024,7 +1040,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(LoginActivity.this, "您输入的账号或密码有误", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
@@ -1144,22 +1160,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
     }
 
-    @Override
-    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-        Gson gson = new Gson();
-        String fieldbeanlist = gson.toJson(hashMap);
-    }
-
-    @Override
-    public void onError(Platform platform, int i, Throwable throwable) {
-
-    }
-
-    @Override
-    public void onCancel(Platform platform, int i) {
-        Toast.makeText(LoginActivity.this, "您已取消微信授权登录", Toast.LENGTH_SHORT).show();
-    }
-
     private void initDaown(){
         Log.i("查询次数","次数：" +size++);
         String versionName = APKVersionCodeUtils.getVerName(this);
@@ -1180,9 +1180,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
 
                     @Override
                     public void onNext(final AppPackageBean appPackageBean) {
-//                        Toast.makeText(AboutFZBActivity.this, appPackageBean.getData().getComment(), Toast.LENGTH_SHORT).show();
                         if(appPackageBean.getData().getIsUpgrade().equals("0")){
-//                            Toast.makeText(LoginActivity.this,"当前版本已是最新版本",Toast.LENGTH_SHORT).show();
                             initfvb();
                         }else if(appPackageBean.getData().getIsUpgrade().equals("1")){
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
@@ -1345,16 +1343,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected void installAPK() {
 
-        //兼容8.0
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            boolean hasInstallPermission = AboutFZBActivity.this.getPackageManager().canRequestPackageInstalls();
-//            if (!hasInstallPermission) {
-////                ToastUtil.makeText(MyApplication.getContext(), MyApplication.getContext().getString(R.string.string_install_unknow_apk_note), false);
-//                startInstallPermissionSettingActivity();
-//                return;
-//            }
-//        }
-
         File apkFile = new File(mSavePath, mVersion_name);
         Intent intent = new Intent();
 //跳转下载完成和打开页面
@@ -1407,5 +1395,63 @@ public class LoginActivity extends AllActivity implements View.OnClickListener, 
         Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         LoginActivity.this.startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (login) {
+            Log.i("json","进入数据加载");
+            userLoginWithWX();
+        }else {
+            Log.i("json","不进入数据加载");
+        }
+    }
+
+
+    /**
+     * 验证码登录
+     */
+    private void userLoginWithWX() {
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<UserIdentity> userMessage = fzbInterface.getUserIdentity(json.toString(), "", "3");
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UserIdentity>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(UserIdentity userIdentity) {
+                        type = "3";
+                        userName = json.toString();
+                        passWord = "";
+                        if (userIdentity.getData().getIdentity().equals("1") || userIdentity.getData().getIdentity().equals("2") || userIdentity.getData().getIdentity().equals("3")) {
+                            initBroker();
+                        } else if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63")) {
+                            initExemplary();
+                        } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
+                            initCaptain();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ToastUtil.showLongToast(LoginActivity.this, "请确认您是否微信授权");
+                        Log.i("wsw", "返回的数据" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

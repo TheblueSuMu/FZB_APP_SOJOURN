@@ -18,4 +18,6 @@
     <color name="textcolor2">#334485</color>
     <color name="textcolor3">#999999</color>
     <color name="circlecolor">#5484FF</color>
+    <color name="GridColor">#D6DEE5</color>
+    <color name="LableColor">#C6D0D8</color>
 </resources>

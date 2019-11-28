@@ -313,6 +313,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         home_picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                initViewData();
                 home_picker.setVisibility(View.GONE);
             }
         });
@@ -360,8 +361,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                         time2_home_the_project_end.setText("-" + dateString + " >");
                         Log.d("wsw", "new date: " + dateString);
                         NewlyIncreased.setEndDate(dateString);
-                        NewlyIncreased.setYJstartDate(dateString);
-                        initViewData();
+                        NewlyIncreased.setYJendDate(dateString);
                     }
                 });
             }

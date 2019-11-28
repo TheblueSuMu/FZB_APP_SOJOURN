@@ -152,6 +152,11 @@ public interface MyService {
     @POST("nodeUpdate/tradeSave")
     Observable<TradeSaveBean> getTradeSave(@Query("id") String id, @Query("projectId") String projectId, @Query("economicId") String economicId, @Query("preparationId") String preparationId, @Query("customerId") String customerId, @Query("roomNumber") String roomNumber, @Query("apartment") String apartment, @Query("area") String area, @Query("price") String price, @Query("totalPrice") String totalPrice, @Query("paymentMethod") String paymentMethod, @Query("commissionId") String commissionId, @Query("procuctType") String procuctType, @Query("gender") String gender, @Query("relation") String relation, @Query("fullName") String fullName, @Query("phone") String phone, @Query("idNumber") String idNumber, @Query("userId") String userId, @Query("tradeDateStr") String tradeDateStr);
 
+    //专案端 一键成交添加的数据
+    @POST("specialUpdate/oneKeyTrade")
+    Observable<OneKeyTradeBean> getOneKeyTrade(@Query("procuctType") String procuctType, @Query("fullName") String fullName, @Query("gender") String gender, @Query("phone") String phone, @Query("idNumber") String idNumber, @Query("roomNumber") String roomNumber, @Query("apartment") String apartment, @Query("area") String area, @Query("price") String price, @Query("totalPrice") String totalPrice, @Query("paymentMethod") String paymentMethod, @Query("oneKeyComment") String oneKeyComment, @Query("commissionId") String commissionId, @Query("projectId") String projectId, @Query("userId") String userId, @Query("agentName") String agentName, @Query("agentPhone") String agentPhone, @Query("tradeDateStr") String tradeDateStr);
+
+
     //专案端 填写退单说明
     @POST("specialUpdate/chargebackApply")
     Observable<ListOfBean> getChargebackApply(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("explain") String explain);
@@ -180,6 +185,10 @@ public interface MyService {
     //点击成交回显数据
     @POST("nodeSelect/findTrade")
     Observable<FindTradeBean> getFindTrade(@Query("preparationId") String preparationId);
+
+    //一键成交 查询经纪人信息
+    @POST("commonSelect/getPhoneByUser")
+    Observable<PhoneByUserBean> getPhoneByUser(@Query("userId") String userId,@Query("phone") String phone);
 
     //点击调单回显数据
     @POST("nodeSelect/findAdjustApply")
@@ -253,13 +262,17 @@ public interface MyService {
     @POST("commonSelect/label")
     Observable<LabelBean> getLabel(@Query("projectType") String projectType,@Query("userId") String userId,@Query("type") String type);
 
+    //项目详情 户型解析
+    @POST("commonSelect/familyInfo")
+    Observable<FamilyInfoBean> getFamilyInfo(@Query("familyId") String familyId);
+
     //项目详情相册
     @POST("commonSelect/projectPhoto")
     Observable<PhotoBean> getProjectPhoto(@Query("userId") String userId, @Query("projectId") String projectId);
 
     //列表数据
     @POST("commonSelect/projectList?")
-    Observable<HotBean> getList(@Query("userId") String userId, @Query("city") String city, @Query("comprehensiveSorting") String comprehensiveSorting, @Query("projectLabel") String projectLabel, @Query("projectType") String projectType, @Query("nation") String nation, @Query("projectPriceStart") String projectPriceStart, @Query("projectPriceEnd") String projectPriceEnd, @Query("apartment") String apartment, @Query("areaSection") String areaSection, @Query("ffProjectTrait") String ffProjectTrait, @Query("procuctType") String procuctType, @Query("fitmentState") String fitmentState, @Query("pageSize") String pageSize);
+    Observable<HotBean> getList(@Query("userId") String userId, @Query("city") String city, @Query("comprehensiveSorting") String comprehensiveSorting, @Query("projectLabel") String projectLabel, @Query("projectType") String projectType, @Query("cityType") String cityType, @Query("nation") String nation, @Query("projectPriceStart") String projectPriceStart, @Query("projectPriceEnd") String projectPriceEnd, @Query("apartment") String apartment, @Query("areaSection") String areaSection, @Query("ffProjectTrait") String ffProjectTrait, @Query("procuctType") String procuctType, @Query("fitmentState") String fitmentState, @Query("searchName") String searchName, @Query("pageSize") String pageSize);
 
     //我的登录
     @POST("commonSelect/login")
@@ -276,6 +289,11 @@ public interface MyService {
     //手机绑定微信
     @POST("commonSelect/wechatBinding")
     Observable<WechatBindingBean> getWechatBinding(@Query("userPhone") String userPhone, @Query("captcha") String captcha, @Query("type") String type, @Query("wechatData") String wechatData);
+
+    //手机绑定微信
+    @POST("commonSelect/isWeChat")
+    Observable<WechatBindingBean> getIsWeChat(@Query("userId") String userId);
+
 
     //身份查询
     @POST("commonSelect/userIdentity")
@@ -303,7 +321,7 @@ public interface MyService {
 
     //我的报备数据提交
     @POST("nodeUpdate/reportSave")
-    Observable<ChangePhoneBean> getReportPostBean(@Query("customerId") String customerId, @Query("procuctType") String procuctType, @Query("areaSection") String areaSection, @Query("purpose") String purpose, @Query("projectLabel") String projectLabel, @Query("priceMin") String priceMin, @Query("priceMax") String priceMax, @Query("projectId") String projectId, @Query("intentionalRegion") String intentionalRegion, @Query("guideRuleId") String guideRuleId, @Query("isIsland") String isIsland, @Query("idCard") String idCard, @Query("remarks") String remarks, @Query("landingStartDate") String landingStartDate, @Query("landingEndDate") String landingEndDate, @Query("userId") String userId);
+    Observable<ChangePhoneBean> getReportPostBean(@Query("customerId") String customerId, @Query("procuctType") String procuctType, @Query("areaSection") String areaSection, @Query("purpose") String purpose, @Query("projectLabel") String projectLabel, @Query("priceMin") String priceMin, @Query("priceMax") String priceMax, @Query("projectId") String projectId, @Query("intentionalRegion") String intentionalRegion, @Query("guideRuleId") String guideRuleId, @Query("isIsland") String isIsland, @Query("idCard") String idCard, @Query("remarks") String remarks, @Query("landingStartDate") String landingStartDate, @Query("landingEndDate") String landingEndDate, @Query("userId") String userId, @Query("customerName") String customerName, @Query("customerPhone") String customerPhone);
 
     //我的佣金和客户量
     @POST("ordinarySelect/myDataCount")
@@ -329,6 +347,10 @@ public interface MyService {
     @POST("ordinarySelect/economicCircleDetails")
     Observable<EconomicCircleBean> getEconomicCircle(@Query("userId") String userId, @Query("circleId") String circleId);
 
+    //项目详情 楼盘走势图
+    @POST("commonSelect/projectHousesTrendList")
+    Observable<ProjectHousesTrendListBean> getProjectHousesTrendListBean (@Query("userId") String userId, @Query("projectId") String projectId);
+
     //项目卖点
     @POST("commonSelect/projectTalkToolList")
     Observable<SellingPointsBean> getSellingPoints(@Query("type") String type, @Query("userId") String userId, @Query("projectId") String projectId);
@@ -340,6 +362,14 @@ public interface MyService {
     //客户列表页 报备-到访-登岛-认筹-成交-失效
     @POST("commonSelect/reportProcessList")
     Observable<ClientFragmentBean> getClientFragment(@Query("userId") String userId, @Query("projectId") String projectId, @Query("searchName") String searchName, @Query("type") String type, @Query("pageSize") String pageSize, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
+
+    //未读消息数据
+    @POST("commonSelect/reportNoReadList")
+    Observable<ReportNoReadListBean> getReportNoReadList(@Query("userId") String userId, @Query("projectId") String projectId, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("searchName") String searchName, @Query("teamTag") String teamTag);
+
+    //项目进度未读消息返回数据
+    @POST("nodeUpdate/readRecord")
+    Observable<ReadRecordBean> getReadRecord(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("status") String status);
 
 
 //    //根据用户Id获取用户信息
@@ -518,9 +548,9 @@ public interface MyService {
     @POST("nodeSelect/getColleague")
     Observable<ColleagueBean> getColleague(@Query("userId") String userId, @Query("id") String id);
 
-    //点击补全信息 获取数据回显
+    //待我审核 通过或拒绝
     @POST("specialUpdate/reportAndVisitAudit")
-    Observable<CBean> getReportAndVisitAudit(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("maxStatus") String maxStatus, @Query("minStatus") String minStatus);
+    Observable<CBean> getReportAndVisitAudit(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("maxStatus") String maxStatus, @Query("minStatus") String minStatus, @Query("reason") String reason);
 
     //待我审核 认筹数据
     @POST("specialUpdate/earnestMoneyAudit")
@@ -553,6 +583,10 @@ public interface MyService {
     //圈层 报备流程数据
     @POST("layersSelect/getreportProcess")
     Observable<ReportProcessBean> getReportProcess(@Query("agentId") String agentId, @Query("status") String status, @Query("search") String search, @Query("userId") String userId, @Query("pageSize") String pageSize, @Query("type") String type, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
+
+    //圈层端 团队长详情 项目佣金
+    @POST("layersSelect/teamLeaderAmount")
+    Observable<TeamLeaderAmountBean> getTeamLeaderAmount(@Query("userId") String userId,@Query("search") String search);
 
     //圈层端我的团队 数据统计
     @POST("layersSelect/dataStatistics")

@@ -39,6 +39,70 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
 
     @Override
     public void onBindViewHolder(@NonNull final TheProjectEndCommissionViewHolder holder, final int position) {
+        holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "[" + rowsBeanList.get(position).getCustomerPhone() + "]");
+        holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
+        holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
+
+        holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName() + "(" + rowsBeanList.get(position).getAgentPhone() + ")");  //    TODO    显示职位
+
+        holder.the_project_end_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rowsBeanList.get(position).getCustomerPhone().equals("")) {
+
+                } else {
+                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rowsBeanList.get(position).getCustomerPhone()));//跳转到拨号界面，同时传递电话号码
+                    holder.itemView.getContext().startActivity(dialIntent);
+                }
+            }
+        });
+
+        holder.the_project_end_company.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rowsBeanList.get(position).getAgentPhone().equals("")) {
+
+                } else {
+                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rowsBeanList.get(position).getAgentPhone()));//跳转到拨号界面，同时传递电话号码
+                    holder.itemView.getContext().startActivity(dialIntent);
+                }
+            }
+        });
+
+        if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
+            holder.the_project_end_tv1.setVisibility(View.GONE);
+        } else {
+            holder.the_project_end_tv1.setVisibility(View.VISIBLE);
+            holder.the_project_end_tv1.setText("总佣金：￥" + rowsBeanList.get(position).getTotalAmount());
+        }
+
+        if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0") || rowsBeanList.get(position).getCommission().equals("0.00")) {
+            holder.the_project_end_tv2.setVisibility(View.GONE);
+        } else {
+            holder.the_project_end_tv2.setVisibility(View.VISIBLE);
+            holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getCommission());
+        }
+
+        if (rowsBeanList.get(position).getTradeDate().equals("")) {
+            holder.the_project_end_bargain_time.setVisibility(View.GONE);
+        } else {
+            holder.the_project_end_bargain_time.setVisibility(View.VISIBLE);
+            holder.the_project_end_bargain_time.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
+        }
+
+        if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
+            holder.the_project_end_tv3.setVisibility(View.GONE);
+        } else {
+            holder.the_project_end_tv3.setVisibility(View.VISIBLE);
+            holder.the_project_end_tv3.setText("已结：￥" + rowsBeanList.get(position).getAlreadyAmount());
+        }
+
+        if (rowsBeanList.get(position).getNotAmount().equals("") || rowsBeanList.get(position).getNotAmount().equals("0") || rowsBeanList.get(position).getNotAmount().equals("0.00")) {
+            holder.the_project_end_tv4.setVisibility(View.GONE);
+        } else {
+            holder.the_project_end_tv4.setVisibility(View.VISIBLE);
+            holder.the_project_end_tv4.setText("未结：￥" + rowsBeanList.get(position).getNotAmount());
+        }
 
         if (rowsBeanList.get(position).getMoneyStatus() == 0) {
             holder.the_project_end_img.setVisibility(View.GONE);
@@ -50,383 +114,174 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
             holder.the_project_end_img.setBackgroundResource(R.mipmap.tdr);
         }
 
-        if (FinalContents.getIdentity().equals("63")) {
-            holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "[" + rowsBeanList.get(position).getCustomerPhone() + "]");
-            holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
-            holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
-            holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName() + "(" + rowsBeanList.get(position).getAgentPhone() + ")");
+        // TODO 判断开始
 
-            holder.the_project_end_title.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (rowsBeanList.get(position).getCustomerPhone().equals("")) {
+        if (FinalContents.getIdentity().equals("63")) {         // TODO 团助
+            //      TODO    判断是否调单/退单
 
-                    } else {
-                        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rowsBeanList.get(position).getCustomerPhone()));//跳转到拨号界面，同时传递电话号码
-                        holder.itemView.getContext().startActivity(dialIntent);
-                    }
-                }
-            });
-            holder.the_project_end_company.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (rowsBeanList.get(position).getAgentPhone().equals("")) {
-
-                    } else {
-                        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rowsBeanList.get(position).getAgentPhone()));//跳转到拨号界面，同时传递电话号码
-                        holder.itemView.getContext().startActivity(dialIntent);
-                    }
-                }
-            });
-            if (rowsBeanList.get(position).getTradeDate().equals("")) {
-                holder.the_project_end_bargain_time.setVisibility(View.GONE);
-            } else {
-                holder.the_project_end_bargain_time.setVisibility(View.VISIBLE);
-                holder.the_project_end_bargain_time.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
-            }
-
-            if (rowsBeanList.get(position).getMoneyStatus() == 0) {
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv1.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
-                }
-
-                if (rowsBeanList.get(position).getStatus().equals("1")) {
+            if (rowsBeanList.get(position).getMoneyStatus() == 0) {     // TODO 正常情况
+                // TODO 结清/未结清
+                if (rowsBeanList.get(position).getStatus().equals("0")) {   // TODO 未结清
+                    holder.the_project_end_tv6.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setVisibility(View.GONE);
+                    // TODO 未结清 无改变
+                }else if (rowsBeanList.get(position).getStatus().equals("1")) { // TODO 结清
+                    holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv4.setVisibility(View.GONE);
                     holder.the_project_end_tv6.setVisibility(View.VISIBLE);
                     holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setText("结清时间：" + rowsBeanList.get(position).getClosingTime());
-                } else if (rowsBeanList.get(position).getStatus().equals("0")) {
-                    if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
-                        holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setText(rowsBeanList.get(position).getUpdateDate());
+                }
+            } else if (rowsBeanList.get(position).getMoneyStatus() == 1) {      // TODO 调单
+                // TODO 结清/未结清
+                if (rowsBeanList.get(position).getStatus().equals("0")) {   // TODO 未结清
+                    holder.the_project_end_tv6.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setVisibility(View.GONE);
+                    if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
+                        holder.the_project_end_tv5.setVisibility(View.GONE);
                     } else {
-                        holder.the_project_end_tv3.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv3.setText("已结：￥" + rowsBeanList.get(position).getAlreadyAmount());
-                    }
-                    if (rowsBeanList.get(position).getNotAmount().equals("") || rowsBeanList.get(position).getNotAmount().equals("0") || rowsBeanList.get(position).getNotAmount().equals("0.00")) {
                         holder.the_project_end_tv4.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv4.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv4.setText("未结：￥" + rowsBeanList.get(position).getNotAmount());
+                        holder.the_project_end_tv5.setVisibility(View.VISIBLE);
+                        holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
                     }
-                }
-                if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0") || rowsBeanList.get(position).getCommission().equals("0.00")) {
-                    holder.the_project_end_tv2.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getCommission());
-                }
-            } else if (rowsBeanList.get(position).getMoneyStatus() == 1) {
-
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv1.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
-                }
-
-                if (rowsBeanList.get(position).getStatus().equals("1")) {
+                }else if (rowsBeanList.get(position).getStatus().equals("1")) { // TODO 结清
+                    holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv4.setVisibility(View.GONE);
                     holder.the_project_end_tv6.setVisibility(View.VISIBLE);
                     holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setText("结清时间：" + rowsBeanList.get(position).getClosingTime());
-                } else if (rowsBeanList.get(position).getStatus().equals("0")) {
-                    if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
-                        holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setText(rowsBeanList.get(position).getUpdateDate());
+                }
+                holder.the_project_end_tv4.setVisibility(View.GONE);
+            } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {      // TODO 退单
+                holder.the_project_end_tv4.setVisibility(View.GONE);
+                // TODO 结清/未结清
+                if (rowsBeanList.get(position).getStatus().equals("0")) {   // TODO 未结清
+                    holder.the_project_end_tv6.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setVisibility(View.GONE);
+                    if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
+                        holder.the_project_end_tv5.setVisibility(View.GONE);
                     } else {
-                        holder.the_project_end_tv3.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv3.setText("已结：￥" + rowsBeanList.get(position).getAlreadyAmount());
-                    }
-                    if (rowsBeanList.get(position).getNotAmount().equals("") || rowsBeanList.get(position).getNotAmount().equals("0") || rowsBeanList.get(position).getNotAmount().equals("0.00")) {
                         holder.the_project_end_tv4.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv4.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv4.setText("未结：￥" + rowsBeanList.get(position).getNotAmount());
-                    }
-                    if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
-                        holder.the_project_end_tv5.setVisibility(View.GONE);
-                    } else {
                         holder.the_project_end_tv5.setVisibility(View.VISIBLE);
                         holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
                     }
-                }
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv2.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getTotalAmount());
-                }
-
-            } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv1.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
-                }
-
-                if (rowsBeanList.get(position).getStatus().equals("1")) {
+                }else if (rowsBeanList.get(position).getStatus().equals("1")) { // TODO 结清
+                    holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv4.setVisibility(View.GONE);
                     holder.the_project_end_tv6.setVisibility(View.VISIBLE);
                     holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setText("结清时间：" + rowsBeanList.get(position).getClosingTime());
-                } else if (rowsBeanList.get(position).getStatus().equals("0")) {
-                    if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
-                        holder.the_project_end_tv3.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv3.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv3.setText("已结：￥" + rowsBeanList.get(position).getAlreadyAmount());
-                    }
-                    if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
-                        holder.the_project_end_tv5.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv5.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
-                    }
-                }
-
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv2.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getTotalAmount());
-                }
-            }
-
-        } else if (FinalContents.getIdentity().equals("60")) {
-
-            holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
-            holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "  (" + rowsBeanList.get(position).getCustomerPhone() + ")");
-            holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
-            holder.the_project_end_bargain_time.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
-            if (rowsBeanList.get(position).getIsMy().equals("1")) {
-                holder.the_project_end_company.setText("自己");
-            } else {
-                holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName());
-//                if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0") || rowsBeanList.get(position).getCommission().equals("0.00")) {
-//                    holder.the_project_end_tv2.setVisibility(View.GONE);
-//                } else {
-//                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-//                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getCommission());
-//                }
-            }
-
-            if (rowsBeanList.get(position).getMoneyStatus() == 0) {
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv1.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
-                }
-
-                if (rowsBeanList.get(position).getStatus().equals("1")) {
-                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setText("结清时间：" + rowsBeanList.get(position).getClosingTime());
-                } else if (rowsBeanList.get(position).getStatus().equals("0")) {
-                    if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
-                        holder.the_project_end_tv3.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv3.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv3.setText("已结：￥" + rowsBeanList.get(position).getAlreadyAmount());
-                    }
-                    if (rowsBeanList.get(position).getNotAmount().equals("") || rowsBeanList.get(position).getNotAmount().equals("0") || rowsBeanList.get(position).getNotAmount().equals("0.00")) {
-                        holder.the_project_end_tv4.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv4.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv4.setText("未结：￥" + rowsBeanList.get(position).getNotAmount());
-                    }
-                }
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv2.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getTotalAmount());
-                }
-            } else if (rowsBeanList.get(position).getMoneyStatus() == 1) {
-
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv1.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
-                }
-
-                if (rowsBeanList.get(position).getStatus().equals("1")) {
-                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setText("结清时间：" + rowsBeanList.get(position).getClosingTime());
-                } else if (rowsBeanList.get(position).getStatus().equals("0")) {
-                    if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
-                        holder.the_project_end_tv3.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv3.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv3.setText("已结：￥" + rowsBeanList.get(position).getAlreadyAmount());
-                    }
-                    if (rowsBeanList.get(position).getNotAmount().equals("") || rowsBeanList.get(position).getNotAmount().equals("0") || rowsBeanList.get(position).getNotAmount().equals("0.00")) {
-                        holder.the_project_end_tv4.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv4.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv4.setText("未结：￥" + rowsBeanList.get(position).getNotAmount());
-                    }
-                    if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
-                        holder.the_project_end_tv5.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv5.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
-                    }
-                }
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv2.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getTotalAmount());
-                }
-
-            } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv1.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
-                }
-
-                if (rowsBeanList.get(position).getStatus().equals("1")) {
-                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setText("结清时间：" + rowsBeanList.get(position).getClosingTime());
-                } else if (rowsBeanList.get(position).getStatus().equals("0")) {
-                    if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
-                        holder.the_project_end_tv3.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv3.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv3.setText("已结：￥" + rowsBeanList.get(position).getAlreadyAmount());
-                    }
-                    if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
-                        holder.the_project_end_tv5.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv5.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
-                    }
-                }
-
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv2.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getTotalAmount());
-                }
-            }
-        } else if (FinalContents.getIdentity().equals("61")) {
-            holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
-            holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "  (" + rowsBeanList.get(position).getCustomerPhone() + ")");
-            holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
-            holder.the_project_end_bargain_time.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
-            if (rowsBeanList.get(position).getIsMy().equals("1")) {
-                holder.the_project_end_company.setText("自己");
-            } else {
-                holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName());
-                if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0") || rowsBeanList.get(position).getCommission().equals("0.00")) {
-                    holder.the_project_end_tv2.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getTotalAmount());
-                }
-            }
-
-            if (rowsBeanList.get(position).getMoneyStatus() == 0) {
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv1.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
-                }
-                if(rowsBeanList.get(position).getNotAmount().equals("") || rowsBeanList.get(position).getNotAmount().equals("0.00") || rowsBeanList.get(position).getNotAmount().equals("0")){
-                    if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                        holder.the_project_end_tv2.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getTotalAmount());
-                    }
-                }else {
-                    if (rowsBeanList.get(position).getStatus().equals("1")) {
-                        holder.the_project_end_tv6.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv7.setText("结清时间：" + rowsBeanList.get(position).getClosingTime());
-                    } else if (rowsBeanList.get(position).getStatus().equals("0")) {
-
-                    }
-
-                }
-
-            } else if (rowsBeanList.get(position).getMoneyStatus() == 1) {
-
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv1.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
-                }
-
-                if (rowsBeanList.get(position).getStatus().equals("1")) {
-                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setText("结清时间：" + rowsBeanList.get(position).getClosingTime());
-                } else if (rowsBeanList.get(position).getStatus().equals("0")) {
-                    if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
-                        holder.the_project_end_tv3.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv3.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv3.setText("已结：￥" + rowsBeanList.get(position).getAlreadyAmount());
-                    }
-                    if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
-                        holder.the_project_end_tv5.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv5.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
-                    }
-                }
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv2.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getTotalAmount());
-                }
-
-            } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv1.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv1.setText("佣金：￥" + rowsBeanList.get(position).getTotalAmount());
-                }
-
-                if (rowsBeanList.get(position).getStatus().equals("1")) {
-                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv7.setText("结清时间：" + rowsBeanList.get(position).getClosingTime());
-                } else if (rowsBeanList.get(position).getStatus().equals("0")) {
-                    if (rowsBeanList.get(position).getAlreadyAmount().equals("") || rowsBeanList.get(position).getAlreadyAmount().equals("0") || rowsBeanList.get(position).getAlreadyAmount().equals("0.00")) {
-                        holder.the_project_end_tv3.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv3.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv3.setText("已结：￥" + rowsBeanList.get(position).getAlreadyAmount());
-                    }
-                    if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
-                        holder.the_project_end_tv5.setVisibility(View.GONE);
-                    } else {
-                        holder.the_project_end_tv5.setVisibility(View.VISIBLE);
-                        holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
-                    }
-                }
-
-                if (rowsBeanList.get(position).getTotalAmount().equals("") || rowsBeanList.get(position).getTotalAmount().equals("0") || rowsBeanList.get(position).getTotalAmount().equals("0.00")) {
-                    holder.the_project_end_tv2.setVisibility(View.GONE);
-                } else {
-                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getTotalAmount());
+                    holder.the_project_end_tv7.setText(rowsBeanList.get(position).getUpdateDate());
                 }
             }
         }
+        else if (FinalContents.getIdentity().equals("60")) {         // TODO 团队长
+
+            //      TODO    判断是否调单/退单
+            if (rowsBeanList.get(position).getMoneyStatus() == 0) {     // TODO 正常情况
+                // TODO 结清/未结清
+                if (rowsBeanList.get(position).getStatus().equals("0")) {   // TODO 未结清
+                    holder.the_project_end_tv6.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setVisibility(View.GONE);
+                    // TODO 未结清 无改变
+                }else if (rowsBeanList.get(position).getStatus().equals("1")) { // TODO 结清
+                    holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv4.setVisibility(View.GONE);
+                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setText(rowsBeanList.get(position).getUpdateDate());
+                }
+            } else if (rowsBeanList.get(position).getMoneyStatus() == 1) {      // TODO 调单
+                // TODO 结清/未结清
+                if (rowsBeanList.get(position).getStatus().equals("0")) {   // TODO 未结清
+                    holder.the_project_end_tv6.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setVisibility(View.GONE);
+                    if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
+                        holder.the_project_end_tv5.setVisibility(View.GONE);
+                    } else {
+                        holder.the_project_end_tv4.setVisibility(View.GONE);
+                        holder.the_project_end_tv5.setVisibility(View.VISIBLE);
+                        holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
+                    }
+                }else if (rowsBeanList.get(position).getStatus().equals("1")) { // TODO 结清
+                    holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv4.setVisibility(View.GONE);
+                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setText(rowsBeanList.get(position).getUpdateDate());
+                }
+                holder.the_project_end_tv4.setVisibility(View.GONE);
+            } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {      // TODO 退单
+                holder.the_project_end_tv4.setVisibility(View.GONE);
+                // TODO 结清/未结清
+                if (rowsBeanList.get(position).getStatus().equals("0")) {   // TODO 未结清
+                    holder.the_project_end_tv6.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setVisibility(View.GONE);
+                    if (rowsBeanList.get(position).getReturnedMoney().equals("") || rowsBeanList.get(position).getReturnedMoney().equals("0") || rowsBeanList.get(position).getReturnedMoney().equals("0.00")) {
+                        holder.the_project_end_tv5.setVisibility(View.GONE);
+                    } else {
+                        holder.the_project_end_tv4.setVisibility(View.GONE);
+                        holder.the_project_end_tv5.setVisibility(View.VISIBLE);
+                        holder.the_project_end_tv5.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
+                    }
+                }else if (rowsBeanList.get(position).getStatus().equals("1")) { // TODO 结清
+                    holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv4.setVisibility(View.GONE);
+                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setText(rowsBeanList.get(position).getUpdateDate());
+                }
+            }
+        }
+        else if (FinalContents.getIdentity().equals("61")) {         // TODO 销售
+            //      TODO    判断是否调单/退单
+            if (rowsBeanList.get(position).getMoneyStatus() == 0) {     // TODO 正常情况
+                // TODO 结清/未结清
+                if (rowsBeanList.get(position).getStatus().equals("0")) {   // TODO 未结清
+                    holder.the_project_end_tv6.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setVisibility(View.GONE);
+                    // TODO 未结清 无改变
+                }else if (rowsBeanList.get(position).getStatus().equals("1")) { // TODO 结清
+                    holder.the_project_end_tv2.setVisibility(View.GONE);
+                    holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv4.setVisibility(View.GONE);
+                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setText(rowsBeanList.get(position).getUpdateDate());
+                }
+            }
+            else if (rowsBeanList.get(position).getMoneyStatus() == 1) {      // TODO 调单
+                // TODO 结清/未结清
+                if (rowsBeanList.get(position).getStatus().equals("0")) {   // TODO 未结清
+                    holder.the_project_end_tv6.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setVisibility(View.GONE);
+                }else if (rowsBeanList.get(position).getStatus().equals("1")) { // TODO 结清
+                    holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv4.setVisibility(View.GONE);
+                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setText(rowsBeanList.get(position).getUpdateDate());
+                }
+                holder.the_project_end_tv4.setVisibility(View.GONE);
+            }
+            else if (rowsBeanList.get(position).getMoneyStatus() == 2) {      // TODO 退单
+                holder.the_project_end_tv4.setVisibility(View.GONE);
+                // TODO 结清/未结清
+                if (rowsBeanList.get(position).getStatus().equals("0")) {   // TODO 未结清
+                    holder.the_project_end_tv6.setVisibility(View.GONE);
+                    holder.the_project_end_tv7.setVisibility(View.GONE);
+                }else if (rowsBeanList.get(position).getStatus().equals("1")) { // TODO 结清
+                    holder.the_project_end_tv3.setVisibility(View.GONE);
+                    holder.the_project_end_tv4.setVisibility(View.GONE);
+                    holder.the_project_end_tv6.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setVisibility(View.VISIBLE);
+                    holder.the_project_end_tv7.setText(rowsBeanList.get(position).getUpdateDate());
+                }
+            }
+            holder.the_project_end_tv3.setVisibility(View.GONE);
+            holder.the_project_end_tv4.setVisibility(View.GONE);
+        }
+
+
     }
 
     @Override

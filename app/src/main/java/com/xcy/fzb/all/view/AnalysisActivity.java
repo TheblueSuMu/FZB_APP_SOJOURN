@@ -1,0 +1,284 @@
+package com.xcy.fzb.all.view;
+
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.interfaces.datasets.IDataSet;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
+import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.modle.FamilyInfoBean;
+import com.xcy.fzb.all.service.MyService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class AnalysisActivity extends AllActivity {
+
+    private RelativeLayout all_activity_analysis_return;
+    private RelativeLayout all_activity_analysis_share;
+    private ImageView all_activity_analysis_backImage;
+    private TextView all_activity_analysis_productfeature;
+    private TextView all_activity_analysis_salestatus;
+    private TextView all_activity_analysis_house_type;
+    private TextView all_activity_analysis_price;
+    private TextView all_activity_analysis_acreage_area;
+    private TextView all_activity_analysis_compass_area;
+    private TextView all_activity_analysis_percentage_area;
+    private TextView all_activity_analysis_building;
+    private TextView all_activity_analysis_houses;
+    private TextView all_activity_analysis_site;
+    private TextView all_activity_analysis_analysis_title;
+    private TextView all_activity_analysis_analysis_content;
+    private TextView all_activity_analysis_monthly_installment;
+    private TextView all_activity_analysis_total_price;
+    private TextView all_activity_analysis_down_payment;
+    private TextView all_activity_analysis_loans;
+    private TextView all_activity_analysis_interest;
+    private ScrollView all_activity_analysis_scrollview;
+    private PieChart mChart;
+
+    // 饼图数据
+    float quarterly1 = 35;
+    float quarterly2 = 34;
+    float quarterly3 = 34;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.all_activity_analysis);
+        initfvb();
+    }
+
+    private void initfvb(){
+        all_activity_analysis_scrollview = findViewById(R.id.all_activity_analysis_scrollview);
+        all_activity_analysis_scrollview.setVisibility(View.GONE);
+
+        all_activity_analysis_return = findViewById(R.id.all_activity_analysis_return);
+        all_activity_analysis_share = findViewById(R.id.all_activity_analysis_share);
+        all_activity_analysis_backImage = findViewById(R.id.all_activity_analysis_backImage);
+
+        all_activity_analysis_salestatus = findViewById(R.id.all_activity_analysis_salestatus);
+        all_activity_analysis_productfeature = findViewById(R.id.all_activity_analysis_productfeature);
+        all_activity_analysis_house_type = findViewById(R.id.all_activity_analysis_house_type);
+        all_activity_analysis_price = findViewById(R.id.all_activity_analysis_price);
+
+        all_activity_analysis_acreage_area = findViewById(R.id.all_activity_analysis_acreage_area);
+        all_activity_analysis_compass_area = findViewById(R.id.all_activity_analysis_compass_area);
+        all_activity_analysis_percentage_area = findViewById(R.id.all_activity_analysis_percentage_area);
+
+        all_activity_analysis_building = findViewById(R.id.all_activity_analysis_building);
+        all_activity_analysis_houses = findViewById(R.id.all_activity_analysis_houses);
+        all_activity_analysis_site = findViewById(R.id.all_activity_analysis_site);
+
+        all_activity_analysis_analysis_title = findViewById(R.id.all_activity_analysis_analysis_title);
+        all_activity_analysis_analysis_content = findViewById(R.id.all_activity_analysis_analysis_content);
+
+        mChart = findViewById(R.id.all_activity_analysis_piechart);
+        all_activity_analysis_monthly_installment = findViewById(R.id.all_activity_analysis_monthly_installment);
+        all_activity_analysis_total_price = findViewById(R.id.all_activity_analysis_total_price);
+        all_activity_analysis_down_payment = findViewById(R.id.all_activity_analysis_down_payment);
+        all_activity_analysis_loans = findViewById(R.id.all_activity_analysis_loans);
+        all_activity_analysis_interest = findViewById(R.id.all_activity_analysis_interest);
+        initData();
+        initClick();
+    }
+
+    private void initClick(){
+        all_activity_analysis_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });         //      TODO    退出
+
+        all_activity_analysis_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                FinalContents.showShare();
+            }
+        });         //      TODO    分享
+
+
+        all_activity_analysis_backImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });         //      TODO    进入图片轮播图
+
+        all_activity_analysis_site.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });         //      TODO    进入地图导航页
+    }
+
+    private void initData(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<FamilyInfoBean> spellingMassTimeBean = fzbInterface.getFamilyInfo(CityContents.getFamilyId());
+        spellingMassTimeBean.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<FamilyInfoBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @SuppressLint("WrongConstant")
+                    @Override
+                    public void onNext(FamilyInfoBean familyInfoBean) {
+                        all_activity_analysis_scrollview.setVisibility(View.VISIBLE);
+                        Glide.with(AnalysisActivity.this).load(FinalContents.getImageUrl()+familyInfoBean.getData().getFloorPlan()).into(all_activity_analysis_backImage);
+                        all_activity_analysis_salestatus.setText(familyInfoBean.getData().getText());
+                        switch (familyInfoBean.getData().getProductType()){
+                            case "1":
+                                all_activity_analysis_productfeature.setText("住宅");
+                                break;
+                            case "2":
+                                all_activity_analysis_productfeature.setText("公寓");
+                                break;
+                            case "3":
+                                all_activity_analysis_productfeature.setText("写字楼");
+                                break;
+                            case "4":
+                                all_activity_analysis_productfeature.setText("商铺");
+                                break;
+                            case "5":
+                                all_activity_analysis_productfeature.setText("别墅");
+                                break;
+                        }
+                        all_activity_analysis_house_type.setText(familyInfoBean.getData().getRoom()+"室");
+                        all_activity_analysis_price.setText("¥"+familyInfoBean.getData().getAverage()+"/m²");
+
+                        all_activity_analysis_acreage_area.setText(familyInfoBean.getData().getFamilyArea()+"m²");
+                        all_activity_analysis_compass_area.setText(familyInfoBean.getData().getFamilyOrientation());
+                        all_activity_analysis_percentage_area.setText(familyInfoBean.getData().getGetHouseRate()+"%");
+
+                        all_activity_analysis_building.setText(familyInfoBean.getData().getBuild());
+                        all_activity_analysis_houses.setText(familyInfoBean.getData().getProject().getProjectName());
+                        all_activity_analysis_site.setText(familyInfoBean.getData().getProject().getAddress());
+
+                        all_activity_analysis_analysis_title.setText(familyInfoBean.getData().getTitle());
+                        all_activity_analysis_analysis_content.setText(familyInfoBean.getData().getText());
+
+                        all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly());
+                        all_activity_analysis_total_price.setText(familyInfoBean.getData().getTotal());
+
+                        all_activity_analysis_down_payment.setText(familyInfoBean.getData().getDownpayment());
+                        all_activity_analysis_loans.setText(familyInfoBean.getData().getLoan());
+                        all_activity_analysis_interest.setText(familyInfoBean.getData().getInterest());
+
+                        // 饼图数据
+                        quarterly1 = Float.parseFloat(familyInfoBean.getData().getDownpayment());
+                        quarterly2 = Float.parseFloat(familyInfoBean.getData().getLoan());
+                        quarterly3 = Float.parseFloat(familyInfoBean.getData().getInterest());
+
+                        showChart(getPieData());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("户型解析界面数据获取错误", "错误" + e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void showChart(PieData pieData) {
+        Description description = new Description();
+        description.setText("");
+        mChart.setDescription(description);
+        mChart.setHoleRadius(60f);  //内环半径
+        mChart.setTransparentCircleRadius(60f); // 半透明圈半径
+        mChart.setDrawCenterText(false);  //饼状图中间可以添加文字
+        mChart.setDrawHoleEnabled(true);
+        mChart.setRotationAngle(90); // 初始旋转角度
+        mChart.setRotationEnabled(false); // 可以手动旋转
+        mChart.setUsePercentValues(false);
+        // 设置可触摸
+        mChart.setTouchEnabled(false);
+        // 设置数据
+        mChart.setData(pieData);
+        for (IDataSet<?> set : mChart.getData().getDataSets())
+            set.setDrawValues(false);
+        // 取消高亮显示
+        mChart.highlightValues(null);
+        mChart.invalidate();
+
+        Legend mLegend = mChart.getLegend();  //设置比例图
+        mLegend.setForm(Legend.LegendForm.NONE);  //设置比例图的形状，默认是方形
+        mLegend.setXEntrySpace(0);
+        mLegend.setYEntrySpace(0);
+
+        //设置动画
+        mChart.animateXY(1000, 1000);
+    }
+
+    private PieData getPieData() {
+        // yVals用来表示封装每个饼块的实际数据
+        List<PieEntry> yValues = new ArrayList<PieEntry>();
+
+        yValues.add(new PieEntry(quarterly1, 0));
+        yValues.add(new PieEntry(quarterly2, 1));
+        yValues.add(new PieEntry(quarterly3, 2));
+
+        // y轴集合
+        PieDataSet pieDataSet = new PieDataSet(yValues, "");
+        pieDataSet.setSliceSpace(0f); //设置个饼状图之间的距离
+
+        ArrayList<Integer> colors = new ArrayList<Integer>();
+
+        // 饼图颜色
+        colors.add(Color.parseColor("#5484FF"));
+        colors.add(Color.parseColor("#50DF6B"));
+        colors.add(Color.parseColor("#FF5C0D"));
+
+        // 设置饼图颜色
+        pieDataSet.setColors(colors);
+
+        // 设置选中态多出的长度
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        float px = 5 * (metrics.densityDpi / 160f);
+        pieDataSet.setSelectionShift(px);
+
+        // 创建饼图数据
+        PieData pieData = new PieData(pieDataSet);
+
+        return pieData;
+    }
+}

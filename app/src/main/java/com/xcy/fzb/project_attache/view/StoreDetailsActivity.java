@@ -108,6 +108,8 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
     private String type;
     private String s;
     private String s1;
+    String indextype = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -317,9 +319,16 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
         dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
+
         report_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (indextype.equals("1")) {
+                    initDataNum("3", store_details_tv4.getText().toString(), store_details_tv5.getText().toString());
+                } else if (indextype.equals("2")) {
+                    initFinanceNum("3", store_details_tv8.getText().toString(), store_details_tv9.getText().toString());
+                }
                 report_picker.setVisibility(View.GONE);
             }
         });
@@ -521,10 +530,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         store_details_tv4.setText(dateString);
-                        String s = store_details_tv4.getText().toString();
-                        String s1 = store_details_tv5.getText().toString();
                         NewlyIncreased.setStartDate(dateString);
-                        initDataNum("3", s, s1);
                     }
                 });
                 break;
@@ -538,10 +544,8 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         store_details_tv5.setText(dateString);
-                        String s = store_details_tv4.getText().toString();
-                        String s1 = store_details_tv5.getText().toString();
                         NewlyIncreased.setEndDate(dateString);
-                        initDataNum("3", s, s1);
+                        indextype = "1";
                     }
                 });
                 break;
@@ -564,11 +568,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         store_details_tv8.setText(dateString);
-                        String s = store_details_tv8.getText().toString();
-                        String s1 = store_details_tv9.getText().toString();
                         NewlyIncreased.setYJstartDate(dateString);
-                        initFinanceNum("3", s, s1);
-
                     }
                 });
                 break;
@@ -582,11 +582,8 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         store_details_tv8.setText(dateString);
-                        String s = store_details_tv8.getText().toString();
-                        String s1 = store_details_tv9.getText().toString();
                         NewlyIncreased.setYJendDate(dateString);
-                        initFinanceNum("3", s, s1);
-
+                        indextype = "2";
                     }
                 });
                 break;
@@ -670,9 +667,9 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
             intent.putExtra("starts",s);
             intent.putExtra("ends",s1);
 
-                FinalContents.setMyAddType("");
-                FinalContents.setCompanyId(companyInfo.getCompanyId());
-                startActivity(intent);
+            FinalContents.setMyAddType("");
+            FinalContents.setCompanyId(companyInfo.getCompanyId());
+            startActivity(intent);
         }else if(currentItem == 1){
             initDataS();
         }

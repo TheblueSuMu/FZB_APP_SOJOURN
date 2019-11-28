@@ -163,6 +163,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     private PtrClassicFrameLayout ptrClassicFrameLayout;
     private MyTeam2Bean.DataBean data;
     private ScrollView team_scroll;
+    String type = "";
+
 
     public TeamFragment() {
         // Required empty public constructor
@@ -219,30 +221,18 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-//                    fragment_lls_1.setBackgroundColor(Color.parseColor("#334485"));
-//                    fragment_lls_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
-//                    fragment_lls_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
-
                     fragment_lls_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
                     fragment_lls_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
                     fragment_lls_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
 
                     EventBus.getDefault().post(new Fragnemt_SS("", "", data.getLeaderNum() + "",data.getSalesNum() + "",""));
                 } else if (position == 1) {
-//                    fragment_lls_2.setBackgroundColor(Color.parseColor("#334485"));
-//                    fragment_lls_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
-//                    fragment_lls_3.setBackgroundColor(Color.parseColor("#EEEEEE"));
-
                     fragment_lls_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
                     fragment_lls_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
                     fragment_lls_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
 
                     EventBus.getDefault().post(new Fragnemt_SS("", "", "",data.getSalesNum() + "",data.getCounselorNum() + ""));
                 } else if (position == 2) {
-//                    fragment_lls_3.setBackgroundColor(Color.parseColor("#334485"));
-//                    fragment_lls_2.setBackgroundColor(Color.parseColor("#EEEEEE"));
-//                    fragment_lls_1.setBackgroundColor(Color.parseColor("#EEEEEE"));
-
                     fragment_lls_3.setBackgroundResource(R.drawable.checkbox_underline_shape_s);
                     fragment_lls_2.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
                     fragment_lls_1.setBackgroundResource(R.drawable.checkbox_underline_shape_s_s);
@@ -383,6 +373,13 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
         report_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (type.equals("1")) {
+                    initDataStatistics();
+                } else if (type.equals("2")) {
+                    initTeamCommissions();
+                } else if (type.equals("3")) {
+                    initDailyTurnover();
+                }
                 report_picker.setVisibility(View.GONE);
             }
         });
@@ -531,9 +528,10 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         market_time_time_tv2.setText(dateString);
                         endDate1 = dateString;
                         NewlyIncreased.setEndDate(dateString);
+                        type = "1";
                     }
                 });
-                initDataStatistics();
+
                 break;
 //            TODO 时间选择3
             case R.id.team_time_tv3:
@@ -564,9 +562,9 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         market_time_time_tv4.setText(dateString);
                         endDate2 = dateString;
                         NewlyIncreased.setYJendDate(dateString);
+                        type = "2";
                     }
                 });
-                initTeamCommissions();
                 break;
 //            TODO 时间选择5
             case R.id.team_time_tv5:
@@ -595,9 +593,9 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
                         market_time_time_tv6.setText(dateString);
                         endDate3 = dateString;
+                        type = "3";
                     }
                 });
-                initDailyTurnover();
                 break;
             //            TODO 数据统计 时间选择 全部
             case R.id.team_rb1:
@@ -866,6 +864,10 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         Log.i("广播", "myTeamBean.getData().getData()：" + myTeamBean.getData().getSalesNum());
                         Log.i("广播", "myTeamBean.getData().getCounselorNum()：" + myTeamBean.getData().getCounselorNum());
                         EventBus.getDefault().post(new Fragnemt_SS("", "", myTeamBean.getData().getLeaderNum() + "", myTeamBean.getData().getSalesNum() + "", myTeamBean.getData().getCounselorNum() + ""));
+
+                        NewlyIncreased.setLeaderNum(myTeamBean.getData().getLeaderNum());
+                        NewlyIncreased.setSalesNum(myTeamBean.getData().getSalesNum());
+                        NewlyIncreased.setCounselorNum(myTeamBean.getData().getCounselorNum());
 
                         market_time_tv2.setText(myTeamBean.getData().getDataStatistics().getReportNumber() + "");
                         market_time_tv3.setText(myTeamBean.getData().getDataStatistics().getAccessingNumber() + "");

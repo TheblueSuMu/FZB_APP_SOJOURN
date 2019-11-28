@@ -247,6 +247,13 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                     FinalContents.setClientName(append.substring(0, j));
                     FinalContents.setCustomerID(append.substring(j + 1));
                     FinalContents.setNUM("0");
+                    break;
+                }
+            }
+
+            for (int i = 0;i < data.size();i++){
+                if (FinalContents.getCustomerID().equals(data.get(i).getId())) {
+                    FinalContents.setClientPhone(data.get(i).getContactsPhone1());
                     getActivity().finish();
                     break;
                 }

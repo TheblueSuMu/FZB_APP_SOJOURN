@@ -43,6 +43,8 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
     private EditText search_edit_text;
     private LinearLayout search_l1;
     private LinearLayout search_l2;
+    private LinearLayout search_l3;
+    private LinearLayout search_ll3;
     private LinearLayout search_ll1;
     private LinearLayout search_ll2;
     private RelativeLayout nofound;
@@ -95,6 +97,8 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
         search_edit_text = findViewById(R.id.search_edit_text);
         search_l1 = findViewById(R.id.search_l1);
         search_l2 = findViewById(R.id.search_l2);
+        search_l3 = findViewById(R.id.search_l3);
+        search_ll3 = findViewById(R.id.search_ll3);
         search_ll1 = findViewById(R.id.search_ll1);
         search_ll2 = findViewById(R.id.search_ll2);
         nofound = findViewById(R.id.nofound);
@@ -107,6 +111,7 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
         search_img.setOnClickListener(this);
         search_l1.setOnClickListener(this);
         search_l2.setOnClickListener(this);
+        search_l3.setOnClickListener(this);
 
 
         search_edit_text.setOnKeyListener(new View.OnKeyListener() {
@@ -117,6 +122,8 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
                         recyclerViewData("3");
                     }else if(search_ll2.getVisibility() == View.VISIBLE){
                         recyclerViewData("2");
+                    } else if (search_ll3.getVisibility() == View.VISIBLE) {
+                        recyclerViewData("1");
                     }
                     return true;
                 }
@@ -254,12 +261,20 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
             case R.id.search_l1:
                 search_ll1.setVisibility(View.VISIBLE);
                 search_ll2.setVisibility(View.INVISIBLE);
+                search_ll3.setVisibility(View.INVISIBLE);
                 recyclerViewData("3");
                 break;
             case R.id.search_l2:
                 search_ll2.setVisibility(View.VISIBLE);
                 search_ll1.setVisibility(View.INVISIBLE);
+                search_ll3.setVisibility(View.INVISIBLE);
                 recyclerViewData("2");
+                break;
+            case R.id.search_l3:
+                search_ll2.setVisibility(View.INVISIBLE);
+                search_ll1.setVisibility(View.INVISIBLE);
+                search_ll3.setVisibility(View.VISIBLE);
+                recyclerViewData("1");
                 break;
         }
 

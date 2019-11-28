@@ -30,6 +30,10 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     private ContactModel contact;
     ItemOnClick itemOnClick;
 
+    public interface ItemOnClick {
+        void itemClick(String itemName);
+    }
+
     public void setItemOnClick(ItemOnClick itemOnClick) {
         this.itemOnClick = itemOnClick;
     }
@@ -65,8 +69,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         for (int i = 0; i < append.length(); ++i) {
             if (append.substring(i, i + 1).equals("@")) {
                 holder.tvName.setText(append.substring(0, i));
-//                Log.i("客户","name：" + append.substring(0, i));
-//                Log.i("客户","id：" + append.substring(i + 1));
             }
         }
 
@@ -96,8 +98,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         }
     }
 
-    public interface ItemOnClick {
-        void itemClick(String itemName);
-    }
+
 
 }

@@ -41,8 +41,17 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
         holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
         holder.the_project_end_dong.setText("成交时间：" + rowsBeanList.get(position).getTradeDate());
-        holder.the_project_end_people.setText(rowsBeanList.get(position).getAgentName() + "(" + rowsBeanList.get(position).getAgentPhone() + ")");
-
+        if (rowsBeanList.get(position).getIsMy().equals("1")) {
+            holder.the_project_end_people.setText("自己");
+        } else {
+            holder.the_project_end_people.setText(rowsBeanList.get(position).getAgentName());
+//                if (rowsBeanList.get(position).getCommission().equals("") || rowsBeanList.get(position).getCommission().equals("0") || rowsBeanList.get(position).getCommission().equals("0.00")) {
+//                    holder.the_project_end_tv2.setVisibility(View.GONE);
+//                } else {
+//                    holder.the_project_end_tv2.setVisibility(View.VISIBLE);
+//                    holder.the_project_end_tv2.setText("应付：￥ " + rowsBeanList.get(position).getCommission());
+//                }
+        }
 
         if (rowsBeanList.get(position).getMoneyStatus() == 0) {
             holder.the_project_end_img.setVisibility(View.GONE);

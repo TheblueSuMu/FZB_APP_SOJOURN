@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,17 +27,31 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.Glide;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IFillFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.CommissionRecycler;
 import com.xcy.fzb.all.adapter.FamilyRecycler;
+import com.xcy.fzb.all.adapter.ProjectDetailsVillaAdapter;
 import com.xcy.fzb.all.adapter.ReportAdapter;
 import com.xcy.fzb.all.adapter.TalktoolRecycler;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CollectBean;
 import com.xcy.fzb.all.modle.HouseBean;
 import com.xcy.fzb.all.modle.ProjectDetailsBean;
+import com.xcy.fzb.all.modle.ProjectHousesTrendListBean;
 import com.xcy.fzb.all.modle.RemindBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
@@ -103,10 +119,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
     private RecyclerView family;
 
     private LinearLayout talktool_layout;
-    private LinearLayout award_layout;
     private LinearLayout linear0;
-    private LinearLayout linear1;
-    private LinearLayout linear2;
     private LinearLayout linear3;
     private LinearLayout linear4;
     private LinearLayout linear5;
@@ -119,7 +132,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
     private LinearLayout guowai1;
     private LinearLayout guowai3;
     private View guowai2;
-    private String imagePath = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3055880154,1625749017&fm=26&gp=0.jpg";
 
     private TextView share;
     private TextView project_details_group_booking;
@@ -139,6 +151,32 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
     private LinearLayout project_details_linear1;
     private LinearLayout project_details_linear2;
     private LinearLayout project_details_linear3;
+    private TextView project_details_discounts_nummer;
+    private LinearLayout linear;
+    private ScrollView project_details_scrollview;
+    private TextView project_details_trend;
+    private RelativeLayout project_details_relative;
+    private LinearLayout project_details_linear_city0;
+    private TabLayout project_details_family_tablayout;
+    private FamilyRecycler recyclerAdapter;
+    private LinearLayout project_details_layout1;
+    private TextView project_details_layout1_checkbox;
+    private View project_details_layout1_view;
+    private LinearLayout project_details_layout2;
+    private TextView project_details_layout2_checkbox;
+    private View project_details_layout2_view;
+    private LinearLayout project_details_layout3;
+    private TextView project_details_layout3_checkbox;
+    private View project_details_layout3_view;
+    private TextPaint tp;
+    private LinearLayout project_details_layout;
+    private RecyclerView project_details_villa_rv;
+    private TextView project_details_villa_title;
+
+    private LineChart details_chart;
+    private TabLayout project_details_tab_layout;
+
+    private List<String> indexList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,6 +218,57 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         project_details_kai.setOnClickListener(this);
         project_details_ding.setOnClickListener(this);
 
+        //  TODO    城市新增
+        project_details_discounts_nummer = findViewById(R.id.project_details_discounts_nummer);
+        linear = findViewById(R.id.linear);
+        project_details_trend = findViewById(R.id.project_details_trend);
+        project_details_relative = findViewById(R.id.project_details_relative);
+        project_details_linear_city0 = findViewById(R.id.project_details_linear_city0);
+        project_details_villa_rv = findViewById(R.id.project_details_villa_rv);
+        project_details_family_tablayout = findViewById(R.id.project_details_family_tablayout);
+        project_details_villa_title = findViewById(R.id.project_details_villa_title);
+
+
+        //  TODO    三合一大派对      佣金/报备/奖励
+        project_details_layout = findViewById(R.id.project_details_layout);
+
+        project_details_layout1 = findViewById(R.id.project_details_layout1);
+        project_details_layout1_checkbox = findViewById(R.id.project_details_layout1_checkbox);
+        project_details_layout1_view = findViewById(R.id.project_details_layout1_view);
+
+        project_details_layout2 = findViewById(R.id.project_details_layout2);
+        project_details_layout2_checkbox = findViewById(R.id.project_details_layout2_checkbox);
+        project_details_layout2_view = findViewById(R.id.project_details_layout2_view);
+
+        project_details_layout3 = findViewById(R.id.project_details_layout3);
+        project_details_layout3_checkbox = findViewById(R.id.project_details_layout3_checkbox);
+        project_details_layout3_view = findViewById(R.id.project_details_layout3_view);
+
+        details_chart = findViewById(R.id.project_details_chart);
+
+        project_details_tab_layout = findViewById(R.id.project_details_tab_layout);
+
+        project_details_trend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                project_details_relative.setVisibility(View.VISIBLE);
+            }
+        });//  TODO    打开走势图
+
+        project_details_relative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                project_details_relative.setVisibility(View.GONE);
+            }
+        });//  TODO    关闭走势图
+
+        project_details_linear_city0.setOnClickListener(this);
+
+        project_details_layout1.setOnClickListener(this);
+        project_details_layout2.setOnClickListener(this);
+        project_details_layout3.setOnClickListener(this);
+
+        //  TODO    城市新增    结束
 
         backimg = findViewById(R.id.project_details_backimg);
         back = findViewById(R.id.project_details_back);
@@ -238,13 +327,13 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
 
         linear0 = findViewById(R.id.linear0);
-        linear1 = findViewById(R.id.linear1);
-        linear2 = findViewById(R.id.linear2);
         linear3 = findViewById(R.id.linear3);
         linear4 = findViewById(R.id.linear4);
         linear5 = findViewById(R.id.linear5);
         linear6 = findViewById(R.id.linear6);
         linear7 = findViewById(R.id.linear7);
+
+        project_details_scrollview = findViewById(R.id.project_details_scrollview);
 
         project_details_linear1 = findViewById(R.id.project_details_linear1);
 
@@ -253,7 +342,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         project_details_linear3 = findViewById(R.id.project_details_linear3);
 
         talktool_layout = findViewById(R.id.project_details_talktool_layout);
-        award_layout = findViewById(R.id.project_details_award_layout);
+        project_details_scrollview.setVisibility(View.GONE);
 
         back.setOnClickListener(this);
         backimg.setOnClickListener(this);
@@ -503,6 +592,63 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
             case R.id.project_details_kai:
                 initRemind(2);
                 break;
+            case R.id.project_details_layout3:
+                project_details_layout3_checkbox.setTextSize(19);
+                tp = project_details_layout3_checkbox.getPaint();
+                tp.setFakeBoldText(true);
+                project_details_layout3_view.setVisibility(View.VISIBLE);
+
+                project_details_layout2_checkbox.setTextSize(15);
+                tp = project_details_layout2_checkbox.getPaint();
+                tp.setFakeBoldText(false);
+                project_details_layout2_view.setVisibility(View.INVISIBLE);
+                project_details_layout1_checkbox.setTextSize(15);
+                tp = project_details_layout1_checkbox.getPaint();
+                tp.setFakeBoldText(false);
+                project_details_layout1_view.setVisibility(View.INVISIBLE);
+                award.setVisibility(View.VISIBLE);
+                report_rv.setVisibility(View.GONE);
+                commissionRv.setVisibility(View.GONE);
+                Log.i("三合一","点击事件");
+                break;
+            case R.id.project_details_layout2:
+                project_details_layout2_checkbox.setTextSize(19);
+                tp = project_details_layout2_checkbox.getPaint();
+                tp.setFakeBoldText(true);
+                project_details_layout2_view.setVisibility(View.VISIBLE);
+
+                project_details_layout3_checkbox.setTextSize(15);
+                tp = project_details_layout3_checkbox.getPaint();
+                tp.setFakeBoldText(false);
+                project_details_layout3_view.setVisibility(View.INVISIBLE);
+                project_details_layout1_checkbox.setTextSize(15);
+                tp = project_details_layout1_checkbox.getPaint();
+                tp.setFakeBoldText(false);
+                project_details_layout1_view.setVisibility(View.INVISIBLE);
+                award.setVisibility(View.GONE);
+                report_rv.setVisibility(View.VISIBLE);
+                commissionRv.setVisibility(View.GONE);
+                Log.i("三合一","点击事件");
+                break;
+            case R.id.project_details_layout1:
+                project_details_layout1_checkbox.setTextSize(19);
+                tp = project_details_layout1_checkbox.getPaint();
+                tp.setFakeBoldText(true);
+                project_details_layout1_view.setVisibility(View.VISIBLE);
+
+                project_details_layout2_checkbox.setTextSize(15);
+                tp = project_details_layout2_checkbox.getPaint();
+                tp.setFakeBoldText(false);
+                project_details_layout2_view.setVisibility(View.INVISIBLE);
+                project_details_layout3_checkbox.setTextSize(15);
+                tp = project_details_layout3_checkbox.getPaint();
+                tp.setFakeBoldText(false);
+                project_details_layout3_view.setVisibility(View.INVISIBLE);
+                award.setVisibility(View.GONE);
+                report_rv.setVisibility(View.GONE);
+                commissionRv.setVisibility(View.VISIBLE);
+                Log.i("三合一","点击事件");
+                break;
         }
     }
 
@@ -571,7 +717,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                     }
                 });
-
     }
 
     @SuppressLint({"CheckResult", "WrongConstant"})
@@ -594,6 +739,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                     @SuppressLint("ResourceAsColor")
                     @Override
                     public void onNext(final ProjectDetailsBean projectDetailsBean) {
+                        project_details_scrollview.setVisibility(View.VISIBLE);
                         projectDetailsBeanData = projectDetailsBean.getData();
                         Log.i("wsm", "fdsafd:" + projectDetailsBeanData.getProjectListVo().getProjectImg());
                         Glide.with(ProjectDetails.this).load(FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg()).into(backimg);
@@ -672,6 +818,14 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                             }
                         });
 
+                        //     TODO     优惠活动
+                        if (!projectDetailsBean.getData().getProjectListVo().getSaleDiscounts().equals("")) {
+                            linear.setVisibility(View.VISIBLE);
+                            project_details_discounts_nummer.setText(projectDetailsBean.getData().getProjectListVo().getSaleDiscounts());
+                        }else {
+                            linear.setVisibility(View.GONE);
+                        }
+
 
                         //地图
                         String ids = projectDetailsBeanData.getProjectListVo().getLocation();//从pd里取出字符串
@@ -691,11 +845,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         FinalContents.setD(d);
                         Log.i("经纬度", "查看项目详情经纬度" + FinalContents.getO() + "---" + FinalContents.getD());
 
-                        //报备规则
+                        //导客规则
                         if (projectDetailsBeanData.getGuideRules().size() == 0) {
-                            linear1.setVisibility(View.GONE);
+                            project_details_layout2.setVisibility(View.GONE);
                         } else {
-                            linear1.setVisibility(View.VISIBLE);
+                            project_details_layout2.setVisibility(View.VISIBLE);
                             MyLinearLayoutManager layout = new MyLinearLayoutManager(ProjectDetails.this);
                             layout.setOrientation(LinearLayoutManager.VERTICAL);
                             layout.setScrollEnabled(false);
@@ -724,13 +878,18 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         areainterval.setText(projectDetailsBeanData.getProjectListVo().getAreaInterval());
 
                         if (FinalContents.getIdentity().equals("63")) {
-                            linear2.setVisibility(View.GONE);
+                            project_details_layout1.setVisibility(View.GONE);
                         } else {
                             //佣金规则
                             if (projectDetailsBeanData.getAmountIncentiveList().size() == 0) {
-                                linear2.setVisibility(View.GONE);
+                                project_details_layout1.setVisibility(View.GONE);
                             } else {
-                                linear2.setVisibility(View.VISIBLE);
+                                project_details_layout1_checkbox.setTextSize(19);
+                                tp = project_details_layout1_checkbox.getPaint();
+                                tp.setFakeBoldText(true);
+                                project_details_layout1_view.setVisibility(View.VISIBLE);
+                                commissionRv.setVisibility(View.VISIBLE);
+                                project_details_layout1.setVisibility(View.VISIBLE);
                                 LinearLayoutManager layoutManager = new LinearLayoutManager(ProjectDetails.this);
                                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                                 commissionRv.setLayoutManager(layoutManager);
@@ -738,11 +897,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 commissionRv.setAdapter(commissionRecycler);
 
                                 if (SharItOff.getShar().equals("显")) {
-                                    linear2.setVisibility(View.VISIBLE);
-
+                                    project_details_layout1.setVisibility(View.VISIBLE);
+                                    commissionRv.setVisibility(View.VISIBLE);
                                 } else if (SharItOff.getShar().equals("隐")) {
-                                    linear2.setVisibility(View.GONE);
-
+                                    project_details_layout1.setVisibility(View.GONE);
+                                    commissionRv.setVisibility(View.GONE);
                                 }
                             }
                         }
@@ -767,10 +926,104 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                             linear4.setVisibility(View.GONE);
                         } else {
                             linear4.setVisibility(View.VISIBLE);
+
+                            for (int i = 0;i < projectDetailsBeanData.getFamilyInfomations().size();i++){
+                                project_details_family_tablayout.addTab(project_details_family_tablayout.newTab().setText(projectDetailsBeanData.getFamilyInfomations().get(i).getKey()));
+                            }
+
+                            project_details_family_tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                                @Override
+                                public void onTabSelected(TabLayout.Tab tab) {
+                                    for (int i = 0;i < projectDetailsBeanData.getFamilyInfomations().size();i++){
+                                        if (projectDetailsBeanData.getFamilyInfomations().get(i).getKey().equals(tab.getText().toString())) {
+                                            LinearLayoutManager layoutManager_family = new LinearLayoutManager(ProjectDetails.this);
+                                            layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                            family.setLayoutManager(layoutManager_family);
+                                            recyclerAdapter = new FamilyRecycler(projectDetailsBeanData.getFamilyInfomations().get(i).getValue());
+                                            Log.i("户型信息", "户型信息"+projectDetailsBeanData.getFamilyInfomations().get(i).getKey()+"::"+tab.getText().toString());
+                                            Log.i("户型信息", "户型信息走向1");
+                                            switch (projectDetailsBeanData.getProjectListVo().getSaleStatus()) {
+                                                case "1":
+                                                    salestatus.setText("待售");
+                                                    recyclerAdapter.setSales("待售");
+                                                    break;
+                                                case "2":
+                                                    salestatus.setText("认筹");
+                                                    recyclerAdapter.setSales("认筹");
+                                                    break;
+                                                case "3":
+                                                    salestatus.setText("在售");
+                                                    recyclerAdapter.setSales("在售");
+                                                    break;
+                                                case "4":
+                                                    salestatus.setText("尾盘");
+                                                    recyclerAdapter.setSales("尾盘");
+                                                    break;
+                                                case "5":
+                                                    salestatus.setText("特房");
+                                                    recyclerAdapter.setSales("特房");
+                                                    break;
+                                            }
+                                            recyclerAdapter.setPrice("" + projectDetailsBeanData.getProjectListVo().getProductTotalPrice());
+                                            family.setAdapter(recyclerAdapter);
+                                            recyclerAdapter.notifyDataSetChanged();
+                                            Log.i("户型信息", "户型信息走向1");
+                                            return;
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onTabUnselected(TabLayout.Tab tab) {
+                                    //                添加未选中Tab的逻辑
+                                }
+
+                                @Override
+                                public void onTabReselected(TabLayout.Tab tab) {
+                                    for (int i = 0;i < projectDetailsBeanData.getFamilyInfomations().size();i++){
+                                        if (projectDetailsBeanData.getFamilyInfomations().get(i).getKey().equals(tab.getText().toString())) {
+                                            LinearLayoutManager layoutManager_family = new LinearLayoutManager(ProjectDetails.this);
+                                            layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                            family.setLayoutManager(layoutManager_family);
+                                            recyclerAdapter = new FamilyRecycler(projectDetailsBeanData.getFamilyInfomations().get(i).getValue());
+                                            Log.i("户型信息", "户型信息"+projectDetailsBeanData.getFamilyInfomations().get(i).getKey()+"::"+tab.getText().toString());
+                                            Log.i("户型信息", "户型信息走向1");
+                                            switch (projectDetailsBeanData.getProjectListVo().getSaleStatus()) {
+                                                case "1":
+                                                    salestatus.setText("待售");
+                                                    recyclerAdapter.setSales("待售");
+                                                    break;
+                                                case "2":
+                                                    salestatus.setText("认筹");
+                                                    recyclerAdapter.setSales("认筹");
+                                                    break;
+                                                case "3":
+                                                    salestatus.setText("在售");
+                                                    recyclerAdapter.setSales("在售");
+                                                    break;
+                                                case "4":
+                                                    salestatus.setText("尾盘");
+                                                    recyclerAdapter.setSales("尾盘");
+                                                    break;
+                                                case "5":
+                                                    salestatus.setText("特房");
+                                                    recyclerAdapter.setSales("特房");
+                                                    break;
+                                            }
+                                            recyclerAdapter.setPrice("" + projectDetailsBeanData.getProjectListVo().getProductTotalPrice());
+                                            family.setAdapter(recyclerAdapter);
+                                            recyclerAdapter.notifyDataSetChanged();
+                                            Log.i("户型信息", "户型信息走向1");
+                                            return;
+                                        }
+                                    }
+                                }
+                            });
+
                             LinearLayoutManager layoutManager_family = new LinearLayoutManager(ProjectDetails.this);
                             layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
                             family.setLayoutManager(layoutManager_family);
-                            FamilyRecycler recyclerAdapter = new FamilyRecycler(projectDetailsBeanData.getFamilyInfomations());
+                            recyclerAdapter = new FamilyRecycler(projectDetailsBeanData.getFamilyInfomations().get(0).getValue());
                             switch (projectDetailsBeanData.getProjectListVo().getSaleStatus()) {
                                 case "1":
                                     salestatus.setText("待售");
@@ -795,13 +1048,15 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                             }
                             recyclerAdapter.setPrice("" + projectDetailsBeanData.getProjectListVo().getProductTotalPrice());
                             family.setAdapter(recyclerAdapter);
+                            recyclerAdapter.notifyDataSetChanged();
+
                         }
 
-
+                        //奖励规则
                         if (projectDetailsBeanData.getProjectListVo().getAwardRules().equals("")) {
-                            award_layout.setVisibility(View.GONE);
+                            project_details_layout3.setVisibility(View.GONE);
                         } else {
-                            award_layout.setVisibility(View.VISIBLE);
+                            project_details_layout3.setVisibility(View.VISIBLE);
                             award.setText(projectDetailsBeanData.getProjectListVo().getAwardRules());
                         }
 
@@ -831,6 +1086,26 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                     startActivity(buildingInformationintent);
                                 }
                             });
+                        }
+
+                        if (project_details_layout1.getVisibility() == View.GONE) {
+                            if (project_details_layout2.getVisibility() == View.GONE) {
+                                if (project_details_layout3.getVisibility() == View.GONE) {
+                                    project_details_layout.setVisibility(View.GONE);
+                                }else {
+                                    project_details_layout3_checkbox.setTextSize(19);
+                                    tp = project_details_layout3_checkbox.getPaint();
+                                    tp.setFakeBoldText(true);
+                                    project_details_layout3_view.setVisibility(View.VISIBLE);
+                                    award.setVisibility(View.VISIBLE);
+                                }
+                            }else {
+                                project_details_layout2_checkbox.setTextSize(19);
+                                tp = project_details_layout2_checkbox.getPaint();
+                                tp.setFakeBoldText(true);
+                                project_details_layout2_view.setVisibility(View.VISIBLE);
+                                report_rv.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
 
@@ -972,6 +1247,267 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                     }
                 });
+
+
+        Retrofit.Builder builder2 = new Retrofit.Builder();
+        builder2.baseUrl(FinalContents.getBaseUrl());
+        builder2.addConverterFactory(GsonConverterFactory.create());
+        builder2.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build2 = builder2.build();
+        MyService fzbInterface2 = build2.create(MyService.class);
+        Observable<ProjectHousesTrendListBean> projectHousesTrendListBeanObservable = fzbInterface2.getProjectHousesTrendListBean(FinalContents.getUserID(), FinalContents.getProjectID());
+        projectHousesTrendListBeanObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ProjectHousesTrendListBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @SuppressLint("ResourceAsColor")
+                    @Override
+                    public void onNext(final ProjectHousesTrendListBean projectHousesTrendListBean) {
+                        project_details_villa_title.setText(projectHousesTrendListBean.getData().getHouseTrendResult().getProjectName());
+                        if (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendRatioVoList().size() != 0) {
+                            project_details_villa_rv.setVisibility(View.VISIBLE);
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ProjectDetails.this);
+                            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            project_details_villa_rv.setLayoutManager(linearLayoutManager);
+                            ProjectDetailsVillaAdapter projectDetailsVillaAdapter = new ProjectDetailsVillaAdapter(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendRatioVoList());
+                            project_details_villa_rv.setAdapter(projectDetailsVillaAdapter);
+                            projectDetailsVillaAdapter.notifyDataSetChanged();
+                        }else {
+                            project_details_villa_rv.setVisibility(View.GONE);
+                        }
+
+                        if (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size() != 0) {
+                            project_details_tab_layout.setSelectedTabIndicator(R.drawable.tab_indicator);
+                            for (int i = 0;i < projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size();i++){
+                                switch (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getProcuctType()) {
+                                    case "1":
+                                        project_details_tab_layout.addTab(project_details_tab_layout.newTab().setText("住宅"));
+                                        break;
+                                    case "2":
+                                        project_details_tab_layout.addTab(project_details_tab_layout.newTab().setText("公寓"));
+                                        break;
+                                    case "3":
+                                        project_details_tab_layout.addTab(project_details_tab_layout.newTab().setText("写字楼"));
+                                        break;
+                                    case "4":
+                                        project_details_tab_layout.addTab(project_details_tab_layout.newTab().setText("商铺"));
+                                        break;
+                                    case "5":
+                                        project_details_tab_layout.addTab(project_details_tab_layout.newTab().setText("别墅"));
+                                        break;
+                                }
+                            }
+
+                            project_details_tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                                @Override
+                                public void onTabSelected(TabLayout.Tab tab) {
+                                    //                添加选中Tab的逻辑
+                                    String tabName = "";
+                                    for (int i = 0;i < projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size();i++){
+                                        switch (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getProcuctType()) {
+                                            case "1":
+                                                tabName = "住宅";
+                                                break;
+                                            case "2":
+                                                tabName = "公寓";
+                                                break;
+                                            case "3":
+                                                tabName = "写字楼";
+                                                break;
+                                            case "4":
+                                                tabName = "商铺";
+                                                break;
+                                            case "5":
+                                                tabName = "别墅";
+                                                break;
+                                        }
+                                        if (tabName.equals(tab.getText().toString())) {
+                                            indexList = projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthList();
+                                            initChart(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthPriceList());
+                                        }
+                                    }
+
+                                }
+
+                                @Override
+                                public void onTabUnselected(TabLayout.Tab tab) {
+                                    //                添加未选中Tab的逻辑
+                                }
+
+                                @Override
+                                public void onTabReselected(TabLayout.Tab tab) {
+                                    //                再次选中tab的逻辑
+                                    String tabName = "";
+                                    for (int i = 0;i < projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size();i++){
+                                        switch (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getProcuctType()) {
+                                            case "1":
+                                                tabName = "住宅";
+                                                break;
+                                            case "2":
+                                                tabName = "公寓";
+                                                break;
+                                            case "3":
+                                                tabName = "写字楼";
+                                                break;
+                                            case "4":
+                                                tabName = "商铺";
+                                                break;
+                                            case "5":
+                                                tabName = "别墅";
+                                                break;
+                                        }
+                                        if (tabName.equals(tab.getText().toString())) {
+                                            indexList = projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthList();
+                                            initChart(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthPriceList());
+                                        }
+                                    }
+                                }
+                            });
+
+                        }else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "项目详情错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    //TODO 详情页趋势图绘制
+    private void initChart(final List<Integer> list) {
+
+        //显示边界
+        details_chart.setDrawBorders(false);
+        //无数据时显示的文字
+        details_chart.setNoDataText("暂无数据");
+        details_chart.setBorderColor(R.color.GridColor);
+        //折线图不显示数值
+//        data.setDrawValues(false);
+        //得到X轴
+        XAxis xAxis = details_chart.getXAxis();
+        //设置X轴的位置（默认在上方)
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        //设置X轴坐标之间的最小间隔
+        xAxis.setGranularity(1);
+        //设置X轴的刻度数量，第二个参数为true,将会画出明确数量（带有小数点），但是可能值导致不均匀，默认（6，false）
+        xAxis.setLabelCount(list.size(), false);
+        //设置X轴的值（最小值、最大值、然后会根据设置的刻度数量自动分配刻度显示）
+        xAxis.setAxisMinimum(0f);
+        xAxis.setAxisMaximum(list.size());
+        xAxis.setTextColor(R.color.LableColor);
+        //不显示网格线
+        xAxis.setDrawGridLines(false);
+        // 标签倾斜
+        xAxis.setLabelRotationAngle(0);
+        //设置X轴值为字符串
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(indexList));
+
+        //得到Y轴
+        YAxis yAxis = details_chart.getAxisLeft();
+        YAxis rightYAxis = details_chart.getAxisRight();
+        //设置Y轴是否显示
+        rightYAxis.setEnabled(false); //右侧Y轴不显示
+        // yAxis.setEnabled(false);
+        //设置y轴坐标之间的最小间隔
+        //不显示网格线
+        yAxis.setGridColor(R.color.GridColor);
+        yAxis.setTextColor(R.color.LableColor);
+        yAxis.setDrawGridLines(true);
+        //设置Y轴坐标之间的最小间隔
+        yAxis.setGranularity(1);
+        //设置y轴的刻度数量
+        //+2：最大值n就有n+1个刻度，在加上y轴多一个单位长度，为了好看，so+2
+        yAxis.setLabelCount(4, false);
+        //设置从Y轴值
+        yAxis.setAxisMinimum(0f);
+        //图例：得到Lengend
+        Legend legend = details_chart.getLegend();
+        //隐藏Lengend
+        legend.setEnabled(false);
+        //隐藏描述
+        Description description = new Description();
+        description.setEnabled(false);
+        details_chart.setDescription(description);
+        //图标刷新
+        details_chart.invalidate();
+        details_chart.animateXY(2000, 2000);
+        setData(list);
+
+        // don't forget to refresh the drawing
+        details_chart.invalidate();
+    }
+
+    //TODO 详情页趋势图数据填充
+    private void setData(final List<Integer> list) {
+
+        ArrayList<Entry> values = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            values.add(new Entry(i, list.get(i)));
+        }
+
+        LineDataSet set1;
+
+        if (details_chart.getData() != null && details_chart.getData().getDataSetCount() > 0) {
+            set1 = (LineDataSet) details_chart.getData().getDataSetByIndex(0);
+            set1.setValues(values);
+            details_chart.getData().notifyDataChanged();
+            details_chart.notifyDataSetChanged();
+        } else {
+            // create a dataset and give it a type
+            set1 = new LineDataSet(values, "DataSet");
+
+            set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set1.setCubicIntensity(0.2f);
+
+            set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set1.setCubicIntensity(0.2f);
+            set1.setDrawFilled(false);
+            set1.setDrawCircles(true);
+            set1.setLineWidth(1.8f);
+            set1.setCircleRadius(3f);
+            set1.setValueTextSize(9f);
+            set1.setHighlightEnabled(!set1.isHighlightEnabled());
+            set1.setCircleColor(Color.parseColor("#FFFFFF"));
+            set1.setCircleHoleColor(Color.parseColor("#5484FF"));
+            set1.setHighLightColor(Color.BLACK);
+            set1.setColor(Color.parseColor("#5484FF"));
+//            set1.setFillColor(R.color.mian);
+            set1.setFillAlpha(20);
+            set1.setDrawValues(!set1.isDrawValuesEnabled());
+            set1.setDrawHorizontalHighlightIndicator(false);
+            set1.setFillFormatter(new IFillFormatter() {
+                @Override
+                public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
+                    return details_chart.getAxisLeft().getAxisMinimum();
+                }
+            });
+
+
+            // create a data object with the data sets
+            LineData data = new LineData(set1);
+            data.setValueTextSize(9f);
+            data.setDrawValues(false);
+
+            // set data
+            details_chart.setData(data);
+            // 设置放大限制
+            details_chart.getViewPortHandler().setMaximumScaleX(1.0f); // 限制X轴放大限制
+            details_chart.getViewPortHandler().setMaximumScaleY(1.0f); // 限制Y轴放大限制
+        }
+        details_chart.animateXY(2000, 2000);
 
     }
 }

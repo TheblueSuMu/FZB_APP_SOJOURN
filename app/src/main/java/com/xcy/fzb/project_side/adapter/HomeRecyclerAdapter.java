@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.SideHomeBean;
 import com.xcy.fzb.all.persente.SharItOff;
@@ -118,25 +119,31 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (FinalContents.getMessageIssueNum().equals("1")) {
+                if (CityContents.getOneKey().equals("一键成交")) {
                     if (onItemClickLisenter != null){
                         onItemClickLisenter.onItemClick(position);
                     }
-                } else {
-                    if (project.equals("1")) {
+                }else {
+                    if (FinalContents.getMessageIssueNum().equals("1")) {
                         if (onItemClickLisenter != null){
                             onItemClickLisenter.onItemClick(position);
                         }
-                    }else {
-                        FinalContents.setProjectID(beanList.get(position).getProjectId());
-                        String ids = beanList.get(position).getLocation();//从pd里取出字符串
-                        List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
-                        double d = Double.parseDouble(tags.get(0).toString());
-                        double o = Double.parseDouble(tags.get(1).toString());
-                        FinalContents.setD(d);
-                        FinalContents.setO(o);
-                        Intent intent = new Intent(context, DetailsTheProjectEndActivity.class);
-                        context.startActivity(intent);
+                    } else {
+                        if (project.equals("1")) {
+                            if (onItemClickLisenter != null){
+                                onItemClickLisenter.onItemClick(position);
+                            }
+                        }else {
+                            FinalContents.setProjectID(beanList.get(position).getProjectId());
+                            String ids = beanList.get(position).getLocation();//从pd里取出字符串
+                            List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
+                            double d = Double.parseDouble(tags.get(0).toString());
+                            double o = Double.parseDouble(tags.get(1).toString());
+                            FinalContents.setD(d);
+                            FinalContents.setO(o);
+                            Intent intent = new Intent(context, DetailsTheProjectEndActivity.class);
+                            context.startActivity(intent);
+                        }
                     }
                 }
             }

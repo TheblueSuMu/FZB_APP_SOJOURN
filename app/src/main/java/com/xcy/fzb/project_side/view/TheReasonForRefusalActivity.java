@@ -98,7 +98,7 @@ public class TheReasonForRefusalActivity extends AllActivity {
                         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
                         Retrofit build = builder.build();
                         MyService fzbInterface = build.create(MyService.class);
-                        Observable<CBean> clientFragmentBean = fzbInterface.getReportAndVisitAudit(FinalContents.getUserID(), FinalContents.getPreparationId(), FinalContents.getStatus(), "1");
+                        Observable<CBean> clientFragmentBean = fzbInterface.getReportAndVisitAudit(FinalContents.getUserID(), FinalContents.getPreparationId(), FinalContents.getStatus(), "2",message);
                         clientFragmentBean.subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(new Observer<CBean>() {

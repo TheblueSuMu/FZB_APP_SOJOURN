@@ -39,6 +39,7 @@ import com.xcy.fzb.all.adapter.IssueAdapter;
 import com.xcy.fzb.all.adapter.OverseaCityAdapter;
 import com.xcy.fzb.all.adapter.ProjectLabelAdapter;
 import com.xcy.fzb.all.adapter.RecyclerAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.application.DemoApplication;
 import com.xcy.fzb.all.fragment.ComprehensiveFragment;
@@ -65,9 +66,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import co.lujun.androidtagview.ColorFactory;
-import co.lujun.androidtagview.TagContainerLayout;
-import co.lujun.androidtagview.TagView;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -106,7 +104,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     FrameLayout oversea_fl;
     private String projectLabel = "";
 
-    private TagContainerLayout tagView;
     private LinearLayout oversea_linear;
 
 
@@ -134,6 +131,10 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private RecyclerView project_lable_rv;
     private SwipeRefreshLayout oversea_ptrclass;
     private ImageView banner_img;
+    private ImageView oversea_city_wide_img;
+    private ImageView oversea_across_the_city_img;
+    private ImageView oversea_map_img;
+    private LinearLayout oversea_linear_issue;
     //    private DemoApplication application;
 
     @Override
@@ -155,7 +156,9 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             initfvb();
             init();
             initView();
-            initissue();
+            if (!FinalContents.getProjectType().equals("1")) {
+                initissue();
+            }
             EventBus.getDefault().register(this);
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -257,13 +260,12 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
          }else if (FinalContents.getProjectType().equals("1")) {
             title.setText("城市房产");
             arrposid = "3";
-            arrpos = "6";
-            oversea_linear.setVisibility(View.GONE);
-            nationRv.setVisibility(View.VISIBLE);
+            oversea_linear.setVisibility(View.VISIBLE);
+            nationRv.setVisibility(View.GONE);
+            oversea_linear_issue.setVisibility(View.GONE);
             oversea_rb_2s.setText("城市");
             state.setText("城市");
             seview.setVisibility(View.VISIBLE);
-            initcity();
             inithot();
         }
     }
@@ -287,32 +289,43 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
         initvoid();
 
+        //  TODO    城市房产
+
+        oversea_city_wide_img = findViewById(R.id.oversea_city_wide_img);
+        oversea_across_the_city_img = findViewById(R.id.oversea_across_the_city_img);
+        oversea_map_img = findViewById(R.id.oversea_map_img);
+        oversea_linear_issue = findViewById(R.id.oversea_linear_issue);
+
+        oversea_city_wide_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CityContents.setCityType("1");
+                Intent intent = new Intent(OverSeaActivity.this,CityWideActivity.class);
+                startActivity(intent);
+            }
+        });
+        oversea_across_the_city_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CityContents.setCityType("2");
+                Intent intent = new Intent(OverSeaActivity.this,CityWideActivity.class);
+                startActivity(intent);
+            }
+        });
+        oversea_map_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(OverSeaActivity.this,CityWideActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+
+        //  TODO    城市房产    结束
+
         oversea_ptrclass = findViewById(R.id.oversea_ptrclass);
 
         oversea_ptrclass.setOnRefreshListener(this);
-
-//        oversea_ptrclass.disableWhenHorizontalMove(true);
-//        oversea_ptrclass.setPtrHandler(new PtrHandler() {
-//            @Override
-//            public void onRefreshBegin(PtrFrameLayout frame) {
-//                frame.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        oversea_ptrclass.refreshComplete();
-//                        oversea_ptrclass.setLastUpdateTimeKey("2017-2-10");
-//                        initfvb();
-//                        initView();
-//                        initissue();
-//                        init();
-//                    }
-//                }, 1000);
-//            }
-//
-//            @Override
-//            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-//                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
-//            }
-//        });
 
         application = (DemoApplication) getApplication();
         comprehensiveFragment = application.getComprehensiveFragment();
@@ -335,8 +348,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         hotRv = findViewById(R.id.overseas_hot);
 
         oversea_linear = findViewById(R.id.oversea_linear);
-
-        tagView = findViewById(R.id.oversea_tagview);
 
         sort = findViewById(R.id.overseas_sort);
         screen = findViewById(R.id.overseas_screen);
@@ -597,26 +608,12 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 nationRv.setAdapter(recyclerAdapter);
                 recyclerAdapter.notifyDataSetChanged();
             } else if (FinalContents.getProjectType().equals("3")) {
-                final List<String> cityName = new ArrayList<>();
-                for (int i = 0; i < nationlist.size(); i++) {
-                    cityName.add(nationlist.get(i).getNationName());
-                }
-                tagView.setTheme(ColorFactory.RANDOM);
-                tagView.setTags(cityName);
-                tagView.setOnTagClickListener(new TagView.OnTagClickListener() {
-                    @Override
-                    public void onTagClick(int position, String text) {
-                        // ...点击事件
-                        Intent intent = new Intent(OverSeaActivity.this, RecyclerViewActivity.class);
-                        intent.putExtra("nation", cityName.get(position));
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onTagLongClick(final int position, String text) {
-                        // ...长按事件
-                    }
-                });
+                LinearLayoutManager layoutManager = new LinearLayoutManager(OverSeaActivity.this);
+                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                nationRv.setLayoutManager(layoutManager);
+                CityAdapter recyclerAdapter = new CityAdapter(nationlist);
+                nationRv.setAdapter(recyclerAdapter);
+                recyclerAdapter.notifyDataSetChanged();
             }
         }
 
@@ -751,7 +748,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getCityID(), FinalContents.getComprehensiveSorting(), FinalContents.getProjectLabel(), FinalContents.getProjectType(), FinalContents.getNation(), FinalContents.getProjectPriceStart(), FinalContents.getProjectPriceEnd(), FinalContents.getApartment(), FinalContents.getAreaSection(), FinalContents.getFfProjectTrait(), FinalContents.getProcuctType(), FinalContents.getFitmentState(), "1000");
+        Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getCityID(), FinalContents.getComprehensiveSorting(), FinalContents.getProjectLabel(), FinalContents.getProjectType(),"", FinalContents.getNation(), FinalContents.getProjectPriceStart(), FinalContents.getProjectPriceEnd(), FinalContents.getApartment(), FinalContents.getAreaSection(), FinalContents.getFfProjectTrait(), FinalContents.getProcuctType(), FinalContents.getFitmentState(),"","1000");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HotBean>() {
@@ -854,7 +851,9 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         if (oversea_ptrclass.isRefreshing()) {//如果正在刷新
             initfvb();
             initView();
-            initissue();
+            if (!FinalContents.getProjectType().equals("1")) {
+                initissue();
+            }
             init();
             oversea_ptrclass.setRefreshing(false);//取消刷新
         }

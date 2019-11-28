@@ -107,7 +107,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
     private EditText fill_in_transaction_information_et4;
     private EditText fill_in_transaction_information_et3;
     private String gender = "";     //  TODO    性别
-    private double sum = 0;
+    private int sum = 0;
     private String projecttype;
     private RecyclerView fill_in_transaction_information_rv;
     private TextView fill_in_transaction_information_tishi;
@@ -237,8 +237,8 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                     } else {
                         double area = Double.parseDouble(s1);
                         double price = Double.parseDouble(s2);
-                        sum = (area * price);
-                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
+                        sum = (int)(area * price);
+                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
                         str = myformat.format(sum);
                         fill_in_transaction_information_et6.setText(str + "元");
                         fill_in_transaction_information_tishi.setVisibility(View.GONE);
@@ -268,8 +268,8 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                         } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
-                            sum = (area * price);
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
+                            sum = (int)(area * price);
+                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
                             str = myformat.format(sum);
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
@@ -300,8 +300,8 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                         } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
-                            sum = (area * price);
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
+                            sum = (int)(area * price);
+                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
                             str = myformat.format(sum);
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
@@ -795,7 +795,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                         fill_in_transaction_information_et4.setText(tradeAuditBean.getData().getArea());
                         fill_in_transaction_information_et5.setText(tradeAuditBean.getData().getPrice());
                         fill_in_transaction_information_et6.setText(tradeAuditBean.getData().getTotalPrice() + "元");
-                        sum = Double.parseDouble(tradeAuditBean.getData().getTotalPrice());
+                        sum = Integer.parseInt(tradeAuditBean.getData().getTotalPrice());
                         str = tradeAuditBean.getData().getTotalPrice();
                         payment_way.setText(tradeAuditBean.getData().getPaymentMethod());
                         project_time.setText(tradeAuditBean.getData().getTradeDate());

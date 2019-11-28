@@ -44,12 +44,14 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.AgentDetailsBean;
 import com.xcy.fzb.all.database.DataStatisticsBean;
+import com.xcy.fzb.all.modle.TeamLeaderAmountBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_assistant.view.Assistant_Addteam_Activity;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_PopAdapter;
+import com.xcy.fzb.captain_team.adapter.Captain_Team_YongAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -119,6 +121,9 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private ImageView sales_details_details_xiugai;
     private AgentDetailsBean agentDetails;
     private PopupWindow p;
+    private RecyclerView sales_details_details_rv;
+    private LinearLayout sales_details_details_linear1;
+    private ImageView sales_details_details_access;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -154,6 +159,13 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private void initfvb() {
 
         StatusBar.makeStatusBarTransparent(this);
+
+        //      TODO    城市版
+        sales_details_details_rv = findViewById(R.id.sales_details_details_rv);
+        sales_details_details_linear1 = findViewById(R.id.sales_details_details_linear1);
+        sales_details_details_access = findViewById(R.id.sales_details_details_access);
+
+        //      TODO    城市版
 
         sales_details_details_ll1 = findViewById(R.id.sales_details_details_ll1);
         sales_details_details_ll2 = findViewById(R.id.sales_details_details_ll2);
@@ -232,8 +244,23 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     sales_details_details_amend.setVisibility(View.VISIBLE);
                 }
             }
-
         }
+        initData();
+
+        if (FinalContents.getIdentity().equals("63")) {
+            sales_details_details_linear1.setVisibility(View.VISIBLE);
+            init();
+        }else {
+            sales_details_details_linear1.setVisibility(View.GONE);
+        }
+
+        sales_details_details_access.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, CommissionDetailsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         sales_details_details_tv2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,8 +270,53 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
             }
         });
 
-        initData();
     }
+
+    private void init(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<TeamLeaderAmountBean> clientCommissions = fzbInterface.getTeamLeaderAmount(FinalContents.getAgentId(),"");
+        clientCommissions.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<TeamLeaderAmountBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(TeamLeaderAmountBean teamLeaderAmountBean) {
+                        List<TeamLeaderAmountBean.DataBean> list = teamLeaderAmountBean.getData();
+                        if (list.size() != 0) {
+                            sales_details_details_linear1.setVisibility(View.VISIBLE);
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Captain_Team_SalesDetailsDetailsActivity.this);
+                            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                            sales_details_details_rv.setLayoutManager(linearLayoutManager);
+                            Captain_Team_YongAdapter captain_team_yongAdapter = new Captain_Team_YongAdapter(list);
+                            sales_details_details_rv.setAdapter(captain_team_yongAdapter);
+                            captain_team_yongAdapter.notifyDataSetChanged();
+                        }else {
+                            sales_details_details_linear1.setVisibility(View.GONE);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "销售详情页佣金数据:" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
 
 
     private void initData() {
@@ -407,7 +479,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                             }
                             sales_details_details_tv10.setText("他的销售");
                         }
-
                         List<Integer> integers = agentDetailsBean.getData().getGsonOption().getSeries().get(0).getData();
                         indexList = agentDetailsBean.getData().getGsonOption().getXAxis().getData();
                         init(integers);
@@ -718,6 +789,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                initDataStatistics();
                 sales_details_details_picker.setVisibility(View.GONE);
             }
         });
@@ -764,7 +836,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         endTime = dateString;
                         sales_details_details_time2.setText("-" + dateString + " >");
                         NewlyIncreased.setEndDate(dateString);
-                        initDataStatistics();
                     }
                 });
 

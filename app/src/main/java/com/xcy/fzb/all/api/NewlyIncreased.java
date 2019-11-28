@@ -9,6 +9,53 @@ public class NewlyIncreased {
     static String YJstartDate = "";
     static String YJendDate = "";
 
+    static String LeaderNum = "";
+    static String SalesNum = "";
+    static String CounselorNum = "";
+
+    static String StoreCount = "";
+    static String PeopleCount = "";
+
+    public static String getStoreCount() {
+        return StoreCount;
+    }
+
+    public static void setStoreCount(String storeCount) {
+        StoreCount = storeCount;
+    }
+
+    public static String getPeopleCount() {
+        return PeopleCount;
+    }
+
+    public static void setPeopleCount(String peopleCount) {
+        PeopleCount = peopleCount;
+    }
+
+    public static String getLeaderNum() {
+        return LeaderNum;
+    }
+
+    public static void setLeaderNum(String leaderNum) {
+        LeaderNum = leaderNum;
+    }
+
+    public static String getSalesNum() {
+        return SalesNum;
+    }
+
+    public static void setSalesNum(String salesNum) {
+        SalesNum = salesNum;
+    }
+
+    public static String getCounselorNum() {
+        return CounselorNum;
+    }
+
+    public static void setCounselorNum(String counselorNum) {
+        CounselorNum = counselorNum;
+    }
+
     static boolean test = true;
 
     static String UserMessage = "";

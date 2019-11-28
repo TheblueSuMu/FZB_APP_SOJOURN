@@ -3,6 +3,8 @@ package com.xcy.fzb.all.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,14 +20,20 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.tuacy.azlist.LettersComparator;
+import com.tuacy.fuzzysearchlibrary.PinyinUtil;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.FuzzySearchAdapter;
 import com.xcy.fzb.all.adapter.ReportItemAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ChangePhoneBean;
+import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.modle.IdNumberBean;
+import com.xcy.fzb.all.modle.ItemEntity;
 import com.xcy.fzb.all.modle.ReportBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -32,6 +41,7 @@ import com.xcy.fzb.all.utils.CommonUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -96,7 +106,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
     private TextView ensure;
 
-    private TextView client_name;
+    private ImageView report_client_name_img;
+    private EditText report_client_name_et;
     private TextView project_name;
 
     private String areaSection = "";
@@ -133,6 +144,13 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     int ifnum1 = 0;
     private LinearLayout report_linear;
     boolean blean = false;
+    private EditText report_client_phone;
+    private FuzzySearchAdapter fuzzySearchAdapter;
+    private RecyclerView report_associating_inputing_rv;
+    private RelativeLayout report_relative;
+    private List<ClientBean.DataBean> list;
+    private String customerID = "";
+    private LinearLayout report_nosearch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -171,6 +189,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         StatusBar.makeStatusBarTransparent(this);
         report_linear = findViewById(R.id.report_linear);
 
+        report_nosearch = findViewById(R.id.report_nosearch);
+        report_associating_inputing_rv = findViewById(R.id.report_associating_inputing_rv);
+        report_relative = findViewById(R.id.report_relative);
+
         report_btn_s = findViewById(R.id.report_btn_yes);
         report_btn_f = findViewById(R.id.report_btn_no);
         report_tv_timer = findViewById(R.id.report_tv_timer);
@@ -188,9 +210,11 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         price_start = findViewById(R.id.report_price_start);
         price_end = findViewById(R.id.report_price_end);
         report_remarks = findViewById(R.id.report_remarks);
-        client_name = findViewById(R.id.report_client_name);
+        report_client_name_img = findViewById(R.id.report_client_name_img);
+        report_client_name_et = findViewById(R.id.report_client_name_et);
+        report_client_phone = findViewById(R.id.report_client_phone);
         project_name = findViewById(R.id.report_project_name);
-        client_name.setOnClickListener(this);
+        report_client_name_img.setOnClickListener(this);
         project_name.setOnClickListener(this);
 
         back = findViewById(R.id.report_back);
@@ -204,8 +228,37 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             }
         });
 
+        report_client_name_et.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                report_associating_inputing_rv.setVisibility(View.VISIBLE);
+            }
+        });
+
+        report_relative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                report_associating_inputing_rv.setVisibility(View.GONE);
+            }
+        });
+
+        report_nosearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                report_associating_inputing_rv.setVisibility(View.GONE);
+            }
+        });
+
+        report_client_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                report_associating_inputing_rv.setVisibility(View.GONE);
+            }
+        });
+
         if (FinalContents.isChecked()) {
-            client_name.setText(FinalContents.getClientName());
+            report_client_name_et.setText(FinalContents.getClientName());
+            report_client_phone.setText(FinalContents.getClientPhone());
         } else {
             project_name.setText("");
         }
@@ -279,7 +332,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         goal8.setOnClickListener(this);
         ensure.setOnClickListener(this);
 
-
+        initAssociatingInputing();
     }
 
     private void initData(){
@@ -675,7 +728,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     goalMap.put(7,"");
                 }
                 break;
-            case R.id.report_client_name:
+            case R.id.report_client_name_img:
                 Intent clientIntent = new Intent(ReportActivity.this,MyClientActivity.class);
                 FinalContents.setNUM("1");
                 startActivity(clientIntent);
@@ -735,9 +788,94 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         }
     }
 
+    private void initAssociatingInputing(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ClientBean> client = fzbInterface.getClient("", FinalContents.getUserID(), "1000");
+        client.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ClientBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ClientBean clientBean) {
+                        list = clientBean.getData();
+                        if (list.size() != 0) {
+                            report_associating_inputing_rv.setVisibility(View.VISIBLE);
+                            initSearch();
+                        }else {
+                            report_associating_inputing_rv.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "客户列表错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void initSearch(){
+        List<ItemEntity> dateList = fillData(list);
+        Collections.sort(dateList, new LettersComparator<ItemEntity>());
+        report_associating_inputing_rv.setLayoutManager(new LinearLayoutManager(ReportActivity.this));
+        fuzzySearchAdapter = new FuzzySearchAdapter(dateList);
+        report_associating_inputing_rv.setAdapter(fuzzySearchAdapter);
+        fuzzySearchAdapter.notifyDataSetChanged();
+
+        report_client_name_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                fuzzySearchAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        fuzzySearchAdapter.setItemOnClick(new FuzzySearchAdapter.ItemOnClick() {
+            @Override
+            public void itemClick(int position, String phone) {
+                Log.i("显示","模糊："+phone);
+                for (int i = 0;i < list.size();i++){
+                    if (phone.equals(list.get(i).getContactsPhone1())){
+                        report_associating_inputing_rv.setVisibility(View.GONE);
+                        FinalContents.setClientPhone(list.get(i).getContactsPhone1());
+                        FinalContents.setClientName(list.get(i).getCustomerName());
+                        FinalContents.setCustomerID(list.get(i).getId());
+                        customerID = list.get(i).getId();
+                        report_client_name_et.setText(FinalContents.getClientName());
+                        report_client_phone.setText(FinalContents.getClientPhone());
+                        break;
+                    }
+                }
+
+            }
+        });
+    }
+
     private void initReport(){
         
-        if (client_name.getText().toString().equals("")) {
+        if (report_client_name_et.getText().toString().equals("")) {
             Toast.makeText(this, "请选择客户", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -747,13 +885,22 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             return;
         }
 
+        if (FinalContents.getClientPhone().equals(report_client_phone.getText().toString()) && FinalContents.getClientName().equals(report_client_name_et.getText().toString())) {
+            customerID = FinalContents.getCustomerID();
+        }else {
+            customerID = "";
+        }
+        FinalContents.setCustomerID(customerID);
+        FinalContents.setClientPhone(report_client_phone.getText().toString());
+        FinalContents.setClientName(report_client_name_et.getText().toString());
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ChangePhoneBean> userMessage = fzbInterface.getReportPostBean(FinalContents.getCustomerID(),procuctType,areaSection,fitmentState,ffProjectTrait,price_start.getText().toString(),price_end.getText().toString(),FinalContents.getProjectID(),"",FinalContents.getGuideRuleId(),isIsland,IDcard.getText().toString(),report_remarks.getText().toString(),timeStart,timeEnd,FinalContents.getUserID());
+        Observable<ChangePhoneBean> userMessage = fzbInterface.getReportPostBean(FinalContents.getCustomerID(),procuctType,areaSection,fitmentState,ffProjectTrait,price_start.getText().toString(),price_end.getText().toString(),FinalContents.getProjectID(),"",FinalContents.getGuideRuleId(),isIsland,IDcard.getText().toString(),report_remarks.getText().toString(),timeStart,timeEnd,FinalContents.getUserID(),FinalContents.getClientName(),FinalContents.getClientPhone());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ChangePhoneBean>() {
@@ -768,6 +915,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                         Toast.makeText(ReportActivity.this, changePhoneBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                         finish();
                         FinalContents.setClientName("");
+                        FinalContents.setClientPhone("");
                         FinalContents.setCustomerID("");
                         FinalContents.setProjectName("");
                         FinalContents.setProjectSearchID("");
@@ -786,6 +934,30 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
                     }
                 });
+    }
+
+    private List<ItemEntity> fillData(List<ClientBean.DataBean> list) {
+        List<ItemEntity> sortList = new ArrayList<>();
+        for (ClientBean.DataBean item : list) {
+            String letter;
+            //汉字转换成拼音
+            List<String> pinyinList = PinyinUtil.getPinYinList(item.getCustomerName()+"@"+item.getContactsPhone1());
+            if (pinyinList != null && !pinyinList.isEmpty()) {
+                // A-Z导航
+                String letters = pinyinList.get(0).substring(0, 1).toUpperCase();
+                // 正则表达式，判断首字母是否是英文字母
+                if (letters.matches("[A-Z]")) {
+                    letter = letters.toUpperCase();
+                } else {
+                    letter = "#";
+                }
+            } else {
+                letter = "#";
+            }
+            sortList.add(new ItemEntity(item.getCustomerName()+"@"+item.getContactsPhone1(), letter, pinyinList));
+        }
+        return sortList;
+
     }
 
     @Override
@@ -833,7 +1005,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     protected void onRestart() {
         super.onRestart();
         if (FinalContents.isChecked()) {
-            client_name.setText(FinalContents.getClientName());
+            report_client_name_et.setText(FinalContents.getClientName());
+            report_client_phone.setText(FinalContents.getClientPhone());
         } else {
             project_name.setText("");
         }

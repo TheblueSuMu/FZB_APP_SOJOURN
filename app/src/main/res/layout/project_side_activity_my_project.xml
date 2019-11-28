@@ -103,7 +103,7 @@
                     android:id="@+id/my_project_l3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_marginLeft="70dp"
                     android:orientation="vertical">
 
@@ -122,7 +122,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/the_project_end_underline"
                         android:orientation="vertical"
-                        android:visibility="invisible"></LinearLayout>
+                        android:visibility="invisible"/>
                 </LinearLayout>
 
 

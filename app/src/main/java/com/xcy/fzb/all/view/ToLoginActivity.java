@@ -49,7 +49,7 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
     ImageView to_login_img_4;
     private String s;
     private boolean login = false;
-    private JSONObject json;
+    private JSONObject json = new JSONObject();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +79,6 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
     }
 
     private void initView() {
-
         StatusBar.makeStatusBarTransparent(ToLoginActivity.this);
 
         to_return = findViewById(R.id.to_return);
@@ -89,12 +88,14 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
         to_login_img_3 = findViewById(R.id.to_login_img_3);
         to_login_img_4 = findViewById(R.id.to_login_img_4);
 
+        init();
+
         to_return.setOnClickListener(this);
         to_login_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (to_login_img_1.getVisibility() == View.GONE) {
-//TODO 绑定
+                    //TODO 绑定
                     Platform plat = ShareSDK.getPlatform(Wechat.NAME);
                     plat.removeAccount(true); //移除授权状态和本地缓存，下次授权会重新授权
                     plat.SSOSetting(false); //SSO授权，传false默认是客户端授权，没有客户端授权或者不支持客户端授权会跳web授权
@@ -104,7 +105,7 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
                             login = true;
                             Log.i("json","授权成功");
                             json = new JSONObject(hashMap);
-                            Log.i("json","授权成功"+ json.getClass());
+                            Log.i("json","授权成功"+ json.toString());
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -124,22 +125,6 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
                         public void onCancel(Platform platform, int i) {
                             Log.i("json","授权取消");
                             Toast.makeText(ToLoginActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
-                            View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_popout, null, false);
-                            builder.setView(inflate);
-                            Button button = inflate.findViewById(R.id.btn);
-                            final AlertDialog show = builder.show();
-                            button.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Log.i("MyCL", "确定");
-                                    to_login_img_1.setVisibility(View.GONE);
-                                    to_login_img_2.setVisibility(View.VISIBLE);
-                                    to_login_img_3.setVisibility(View.GONE);
-                                    to_login_img_4.setVisibility(View.VISIBLE);
-                                    show.dismiss();
-                                }
-                            });
                         }
                     });//授权回调监听，监听oncomplete，onerror，oncancel三种状态
 
@@ -158,25 +143,54 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
                     plat.showUser(null);    //要数据不要功能，主要体现在不会重复出现授权界面
                 } else {
 //TODO 解除绑定
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
-                    View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_popout, null, false);
-                    builder.setView(inflate);
-                    Button button = inflate.findViewById(R.id.btn);
-                    final AlertDialog show = builder.show();
-                    button.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Log.i("MyCL", "确定");
+                    initL("0");
+
+                }
+            }
+        });
+    }
+
+    private void init(){
+        Retrofit.Builder builder1 = new Retrofit.Builder();
+        builder1.baseUrl(FinalContents.getBaseUrl());
+        builder1.addConverterFactory(GsonConverterFactory.create());
+        builder1.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder1.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<WechatBindingBean> userMessage = fzbInterface.getIsWeChat(FinalContents.getUserID());
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<WechatBindingBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(WechatBindingBean wechatBindingBean) {
+                        if (wechatBindingBean.getData().getMessage().equals("1")) {
+                            to_login_img_1.setVisibility(View.VISIBLE);
+                            to_login_img_2.setVisibility(View.GONE);
+                            to_login_img_3.setVisibility(View.VISIBLE);
+                            to_login_img_4.setVisibility(View.GONE);
+                        }else if (wechatBindingBean.getData().getMessage().equals("0")){
                             to_login_img_1.setVisibility(View.GONE);
                             to_login_img_2.setVisibility(View.VISIBLE);
                             to_login_img_3.setVisibility(View.GONE);
                             to_login_img_4.setVisibility(View.VISIBLE);
-                            show.dismiss();
                         }
-                    });
-                }
-            }
-        });
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("wsw", "查询是否绑定微信返回的数据" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @SuppressLint("InflateParams")
@@ -191,33 +205,9 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
 
     }
 
-    private void initL(){
+    private void initL(final String type){
         Log.i("json","加载运行");
-//        AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
-//        builder.setTitle("退出完成");
-//        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                Log.i("json","授权成功获取到数据");
-//            }
-//        });
-//        builder.show();
         Log.i("json","成功获取到数据");
-//                            AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
-//                            View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_succeed, null, false);
-//                            builder.setView(inflate);
-//                            Button button = inflate.findViewById(R.id.item_binding_btn);
-//                            final AlertDialog show = builder.show();
-//                            button.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View view) {
-//                                    to_login_img_1.setVisibility(View.VISIBLE);
-//                                    to_login_img_2.setVisibility(View.GONE);
-//                                    to_login_img_3.setVisibility(View.VISIBLE);
-//                                    to_login_img_4.setVisibility(View.GONE);
-//                                    show.dismiss();
-//                                }
-//                            });
         AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
 
         View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_output, null, false);
@@ -276,7 +266,7 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
             public void onClick(View view) {
                 String s2 = et1.getText().toString();
                 String s1 = et2.getText().toString();
-                initData(s2, s1,"1");
+                initData(s2, s1,type,json.toString());
                 show.dismiss();
             }
         });
@@ -284,14 +274,14 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
         login = false;
     }
 
-    private void initData(String s, String s1, String s2) {
+    private void initData(String s, String s1, String s2,String json) {
         Retrofit.Builder builder1 = new Retrofit.Builder();
         builder1.baseUrl(FinalContents.getBaseUrl());
         builder1.addConverterFactory(GsonConverterFactory.create());
         builder1.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder1.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<WechatBindingBean> userMessage = fzbInterface.getWechatBinding(s+"",s1+"",s2+"",json.toString());
+        Observable<WechatBindingBean> userMessage = fzbInterface.getWechatBinding(s+"",s1+"",s2+"",json);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<WechatBindingBean>() {
@@ -302,7 +292,7 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
 
                     @Override
                     public void onNext(WechatBindingBean wechatBindingBean) {
-                        if (wechatBindingBean.getData().getMessage().equals("绑定成功")) {
+                        if (wechatBindingBean.getData().getMessage().equals("绑定微信成功")) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
                             View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_succeed, null, false);
                             builder.setView(inflate);
@@ -315,6 +305,23 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
                                     to_login_img_2.setVisibility(View.GONE);
                                     to_login_img_3.setVisibility(View.VISIBLE);
                                     to_login_img_4.setVisibility(View.GONE);
+                                    show.dismiss();
+                                }
+                            });
+                        } else if (wechatBindingBean.getData().getMessage().equals("解绑微信成功")) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ToLoginActivity.this);
+                            View inflate = LayoutInflater.from(ToLoginActivity.this).inflate(R.layout.binding_popout, null, false);
+                            builder.setView(inflate);
+                            Button button = inflate.findViewById(R.id.btn);
+                            final AlertDialog show = builder.show();
+                            button.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Log.i("MyCL", "确定");
+                                    to_login_img_1.setVisibility(View.GONE);
+                                    to_login_img_2.setVisibility(View.VISIBLE);
+                                    to_login_img_3.setVisibility(View.GONE);
+                                    to_login_img_4.setVisibility(View.VISIBLE);
                                     show.dismiss();
                                 }
                             });
@@ -357,7 +364,7 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
         super.onResume();
         if (login) {
             Log.i("json","进入数据加载");
-            initL();
+            initL("1");
         }else {
             Log.i("json","不进入数据加载");
         }

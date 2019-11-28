@@ -51,6 +51,8 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
     private RelativeLayout collect_img;
     private LinearLayout collect_l1;
     private LinearLayout collect_l2;
+    private LinearLayout collect_l3;
+    private LinearLayout collect_ll3;
     private LinearLayout collect_ll1;
     private LinearLayout collect_ll2;
 
@@ -104,6 +106,8 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
         collect_img = findViewById(R.id.collect_img);
         collect_l1 = findViewById(R.id.collect_l1);
         collect_l2 = findViewById(R.id.collect_l2);
+        collect_l3 = findViewById(R.id.collect_l3);
+        collect_ll3 = findViewById(R.id.collect_ll3);
         collect_ll1 = findViewById(R.id.collect_ll1);
         collect_ll2 = findViewById(R.id.collect_ll2);
 
@@ -113,6 +117,7 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
         collect_img.setOnClickListener(this);
         collect_l1.setOnClickListener(this);
         collect_l2.setOnClickListener(this);
+        collect_l3.setOnClickListener(this);
 
 
         ptrClassicFrameLayout = findViewById(R.id.store_house_ptr_frame_9);
@@ -128,6 +133,8 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
                             recyclerViewData("3");
                         }else if(collect_ll2.getVisibility() == View.VISIBLE){
                             recyclerViewData("2");
+                        }else if(collect_ll3.getVisibility() == View.VISIBLE){
+                            recyclerViewData("1");
                         }
                     }
                 }, 1000);
@@ -206,12 +213,20 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
             case R.id.collect_l1:
                 collect_ll1.setVisibility(View.VISIBLE);
                 collect_ll2.setVisibility(View.INVISIBLE);
+                collect_ll3.setVisibility(View.INVISIBLE);
                 recyclerViewData("3");
                 break;
             case R.id.collect_l2:
                 collect_ll1.setVisibility(View.INVISIBLE);
                 collect_ll2.setVisibility(View.VISIBLE);
+                collect_ll3.setVisibility(View.INVISIBLE);
                 recyclerViewData("2");
+                break;
+            case R.id.collect_l3:
+                collect_ll1.setVisibility(View.INVISIBLE);
+                collect_ll2.setVisibility(View.INVISIBLE);
+                collect_ll3.setVisibility(View.VISIBLE);
+                recyclerViewData("1");
                 break;
         }
     }
@@ -223,6 +238,8 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
             recyclerViewData("3");
         }else if(collect_ll2.getVisibility() == View.VISIBLE){
             recyclerViewData("2");
+        }else if(collect_ll3.getVisibility() == View.VISIBLE){
+            recyclerViewData("1");
         }
     }
 
@@ -257,6 +274,8 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
                         recyclerViewData("3");
                     }else if(collect_ll2.getVisibility() == View.VISIBLE){
                         recyclerViewData("2");
+                    }else if(collect_ll3.getVisibility() == View.VISIBLE){
+                        recyclerViewData("1");
                     }
 
 

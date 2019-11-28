@@ -108,7 +108,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
     private EditText fill_in_transaction_information_et4;
     private EditText fill_in_transaction_information_et3;
     private String gender = "";     //  TODO    性别
-    private double sum = 0;
+    private int sum = 0;
     private String projecttype;
     private RecyclerView fill_in_transaction_information_rv;
     private TextView fill_in_transaction_information_tishi;
@@ -218,31 +218,6 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
         fill_in_transaction_information_rl5.setOnClickListener(this);
         fill_in_transaction_information_rl6.setOnClickListener(this);
 
-//        fill_in_transaction_information_et5.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View view, boolean b) {
-//                if (b) {
-//                    // 此处为得到焦点时的处理内容
-//                    Log.i("焦点事件", "此处为得到焦点时的处理内容");
-//                } else {
-//                    // 此处为失去焦点时的处理内容
-//                    String s1 = fill_in_transaction_information_et4.getText().toString();
-//                    String s2 = fill_in_transaction_information_et5.getText().toString();
-//                    if (s1.equals("") && s2.equals("")) {
-//
-//                    } else {
-//                        double area = Double.parseDouble(s1);
-//                        double price = Double.parseDouble(s2);
-//                        sum = (area * price);
-//                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
-//                        str = myformat.format(sum);
-//                        fill_in_transaction_information_et6.setText(str + "元");
-//                        fill_in_transaction_information_tishi.setVisibility(View.GONE);
-//                        Log.i("焦点事件", "此处为失去焦点时的处理内容");
-//                    }
-//                }
-//            }
-//        });
         fill_in_transaction_information_et5.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
@@ -259,8 +234,8 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                     } else {
                         double area = Double.parseDouble(s1);
                         double price = Double.parseDouble(s2);
-                        sum = (area * price);
-                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
+                        sum = (int)(area * price);
+                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
                         str = myformat.format(sum);
                         fill_in_transaction_information_et6.setText(str + "元");
                         fill_in_transaction_information_tishi.setVisibility(View.GONE);
@@ -290,8 +265,8 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                         } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
-                            sum = (area * price);
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
+                            sum = (int)(area * price);
+                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
                             str = myformat.format(sum);
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
@@ -322,8 +297,8 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                         } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
-                            sum = (area * price);
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
+                            sum = (int)(area * price);
+                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
                             str = myformat.format(sum);
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
@@ -478,7 +453,6 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
 
     @Override
     public void onClick(View view) {
-
         switch (view.getId()) {
 //            TODO 返回上一层
             case R.id.fill_in_transaction_information_return:
@@ -690,7 +664,6 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                 });
             }
         });
-
     }
 
     private void initTimeData() {
@@ -875,7 +848,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                         fill_in_transaction_information_et4.setText(findTradeBean.getData().getFfServerTrade().getArea());
                         fill_in_transaction_information_et5.setText(findTradeBean.getData().getFfServerTrade().getPrice());
                         fill_in_transaction_information_et6.setText(findTradeBean.getData().getFfServerTrade().getTotalPrice() + "元");
-                        sum = Double.parseDouble(findTradeBean.getData().getFfServerTrade().getTotalPrice());
+                        sum = Integer.parseInt(findTradeBean.getData().getFfServerTrade().getTotalPrice());
                         str = findTradeBean.getData().getFfServerTrade().getTotalPrice();
                         payment_way.setText(findTradeBean.getData().getFfServerTrade().getPaymentMethod());
                         project_time.setText(findTradeBean.getData().getFfServerTrade().getTradeDate());

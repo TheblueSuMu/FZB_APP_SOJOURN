@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.SideHomeBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
@@ -198,11 +199,18 @@ public class MyProjectActivity extends AllActivity implements View.OnClickListen
                                 recyclerAdapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickLisenter() {
                                     @Override
                                     public void onItemClick(int postion) {
-                                        if (FinalContents.getMessageIssueNum().equals("1")) {
+                                        if(CityContents.getOneKey().equals("一键成交")){
                                             FinalContents.setProjectID(homeListBeanDataRows.get(postion).getProjectId());
                                             FinalContents.setProjectName(homeListBeanDataRows.get(postion).getProjectName());
                                             finish();
+                                        }else {
+                                            if (FinalContents.getMessageIssueNum().equals("1")) {
+                                                FinalContents.setProjectID(homeListBeanDataRows.get(postion).getProjectId());
+                                                FinalContents.setProjectName(homeListBeanDataRows.get(postion).getProjectName());
+                                                finish();
+                                            }
                                         }
+
                                     }
                                 });
                                 recyclerAdapter.notifyDataSetChanged();

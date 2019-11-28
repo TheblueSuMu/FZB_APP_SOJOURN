@@ -68,10 +68,6 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
         } else if (rowsBeanList.get(position).getMoneyStatus() == 2) {
             holder.the_project_end_img.setVisibility(View.VISIBLE);
             holder.the_project_end_img.setBackgroundResource(R.mipmap.tdr);
-//            holder.the_project_end_tv2.setVisibility(View.GONE);
-//            holder.the_project_end_tv3.setVisibility(View.GONE);
-//            holder.the_project_end_tv4.setVisibility(View.GONE);
-
         }
 
 
@@ -135,7 +131,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
                     holder.the_project_end_tv8.setVisibility(View.GONE);
                 } else {
                     holder.the_project_end_tv8.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv8.setText("需退还：" + rowsBeanList.get(position).getReturnedMoney());
+                    holder.the_project_end_tv8.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
                 }
 //                if (rowsBeanList.get(position).getInvoiceMoney().equals("") || rowsBeanList.get(position).getInvoiceMoney().equals("0") || rowsBeanList.get(position).getInvoiceMoney().equals("0.00")) {
 //                    holder.the_project_end_tv3.setVisibility(View.GONE);
@@ -183,7 +179,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
                     holder.the_project_end_tv8.setVisibility(View.GONE);
                 } else {
                     holder.the_project_end_tv8.setVisibility(View.VISIBLE);
-                    holder.the_project_end_tv8.setText("需退还：" + rowsBeanList.get(position).getReturnedMoney());
+                    holder.the_project_end_tv8.setText("需退还：￥" + rowsBeanList.get(position).getReturnedMoney());
                 }
             }
             if (rowsBeanList.get(position).getSecondsAmount().equals("") || rowsBeanList.get(position).getSecondsAmount().equals("0") || rowsBeanList.get(position).getSecondsAmount().equals("0.00")) {

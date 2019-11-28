@@ -2,23 +2,20 @@ package com.xcy.fzb.all.fragment;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.xcy.fzb.R;
-import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.adapter.More_Information_Fragment1_Adapter;
 import com.xcy.fzb.all.modle.MoreBean;
 import com.xcy.fzb.all.persente.StatusBar;
-import com.xcy.fzb.all.view.MapActivity;
 
 import java.util.List;
 
@@ -28,18 +25,11 @@ import java.util.List;
 public class MoreInformationFragment extends AllFragment {
     private View view;
     private List<MoreBean.DataBean> list;
-    private TextView projectName;
-    private TextView feature;
-    private TextView site;
-    private TextView location;
-    private TextView developersName;
-    private TextView developersBrand;
-    private TextView state;
-    private RelativeLayout office_location;
-    private RelativeLayout project_location;
+    private List<MoreBean.DataBean.ValueBeanX> array;
 
     private Context context;
     private ImageView all_no_information;
+    private RecyclerView more_information_rv;
 
     public MoreInformationFragment(List<MoreBean.DataBean> list) {
         this.list = list;
@@ -61,54 +51,31 @@ public class MoreInformationFragment extends AllFragment {
     }
 
     private void initfvb(){
-        projectName = view.findViewById(R.id.more_information_project_name);
-        feature = view.findViewById(R.id.more_information_feature);
-        site = view.findViewById(R.id.more_information_site);
-        location = view.findViewById(R.id.more_information_location);
-        developersName = view.findViewById(R.id.more_information_developers_name);
-        developersBrand = view.findViewById(R.id.more_information_developers_brand);
-        state = view.findViewById(R.id.more_information_state);
-        project_location = view.findViewById(R.id.project_location);
-        office_location = view.findViewById(R.id.office_location);
         all_no_information = view.findViewById(R.id.all_no_information);
+        more_information_rv = view.findViewById(R.id.more_information_Rv);
 
-        Log.i("经纬度","查看更多信息经纬度"+ FinalContents.getO1()+"---"+FinalContents.getD1());
-        project_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(context, MapActivity.class);
-                intent.putExtra("office","1");
-                startActivity(intent);
+        for (int i = 0;i < list.size();i++){
+            if (list.get(i).getKey().equals("基本信息")) {
+                array = list.get(i).getValue();
+                initView();
+                all_no_information.setVisibility(View.GONE);
+                more_information_rv.setVisibility(View.VISIBLE);
+                return;
+            }else {
+                all_no_information.setVisibility(View.VISIBLE);
+                more_information_rv.setVisibility(View.GONE);
             }
-        });
-
-        office_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, MapActivity.class);
-                intent.putExtra("office","0");
-                startActivity(intent);
-            }
-        });
-
-        if (list.size() != 0) {
-            initView();
-            all_no_information.setVisibility(View.GONE);
-        }else {
-            all_no_information.setVisibility(View.VISIBLE);
         }
 
     }
 
     private void initView(){
-        projectName.setText(list.get(0).getValue().get(0).getValue().get(0).getValue());
-        feature.setText(list.get(0).getValue().get(0).getValue().get(1).getValue());
-        site.setText(list.get(0).getValue().get(0).getValue().get(2).getValue());
-        location.setText(list.get(0).getValue().get(0).getValue().get(3).getValue());
-        developersName.setText(list.get(0).getValue().get(0).getValue().get(4).getValue());
-        developersBrand.setText(list.get(0).getValue().get(0).getValue().get(5).getValue());
-        state.setText(list.get(0).getValue().get(0).getValue().get(6).getValue());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        more_information_rv.setLayoutManager(linearLayoutManager);
+        More_Information_Fragment1_Adapter more_information_fragment1_adapter = new More_Information_Fragment1_Adapter(array.get(0).getValue());
+        more_information_rv.setAdapter(more_information_fragment1_adapter);
+        more_information_fragment1_adapter.notifyDataSetChanged();
     }
 
 }

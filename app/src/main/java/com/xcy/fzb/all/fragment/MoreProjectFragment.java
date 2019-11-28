@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.More_Information_Fragment1_Adapter;
 import com.xcy.fzb.all.modle.MoreBean;
 import com.xcy.fzb.all.persente.StatusBar;
 
@@ -23,15 +25,9 @@ import java.util.List;
 public class MoreProjectFragment extends Fragment {
 
     private List<MoreBean.DataBean> list;
-    private TextView value1;
-    private TextView value2;
-    private TextView value3;
-    private TextView value4;
-    private TextView value5;
-    private TextView value6;
-    private TextView value7;
-    private TextView value8;
     private ImageView all_no_information;
+    private RecyclerView more_project_fragment_rv;
+    private List<MoreBean.DataBean.ValueBeanX> array;
 
 
     public MoreProjectFragment(List<MoreBean.DataBean> list) {
@@ -55,30 +51,31 @@ public class MoreProjectFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        value1 = getActivity().findViewById(R.id.value1);
-        value2 = getActivity().findViewById(R.id.value2);
-        value3 = getActivity().findViewById(R.id.value3);
-        value4 = getActivity().findViewById(R.id.value4);
-        value5 = getActivity().findViewById(R.id.value5);
-        value6 = getActivity().findViewById(R.id.value6);
-        value7 = getActivity().findViewById(R.id.value7);
-        value8 = getActivity().findViewById(R.id.value8);
         all_no_information = getActivity().findViewById(R.id.all_no_information);
+        more_project_fragment_rv = getActivity().findViewById(R.id.more_project_fragment_Rv);
 
-        if (list.size() != 0) {
-            all_no_information.setVisibility(View.GONE);
-            value1.setText(list.get(2).getValue().get(0).getValue().get(0).getValue());
-            value2.setText(list.get(2).getValue().get(0).getValue().get(1).getValue());
-            value3.setText(list.get(2).getValue().get(0).getValue().get(2).getValue());
-            value4.setText(list.get(2).getValue().get(0).getValue().get(3).getValue());
-            value5.setText(list.get(2).getValue().get(0).getValue().get(4).getValue());
-            value6.setText(list.get(2).getValue().get(0).getValue().get(5).getValue());
-            value7.setText(list.get(2).getValue().get(0).getValue().get(6).getValue());
-            value8.setText(list.get(2).getValue().get(0).getValue().get(7).getValue());
-
-        }else {
-            all_no_information.setVisibility(View.VISIBLE);
+        for (int i = 0;i < list.size();i++){
+            if (list.get(i).getKey().equals("项目规划")) {
+                array = list.get(i).getValue();
+                all_no_information.setVisibility(View.GONE);
+                more_project_fragment_rv.setVisibility(View.VISIBLE);
+                initView();
+            }else {
+                all_no_information.setVisibility(View.VISIBLE);
+                more_project_fragment_rv.setVisibility(View.GONE);
+            }
         }
 
+
+
+    }
+
+    private void initView(){
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        more_project_fragment_rv.setLayoutManager(linearLayoutManager);
+        More_Information_Fragment1_Adapter more_information_fragment1_adapter = new More_Information_Fragment1_Adapter(array.get(0).getValue());
+        more_project_fragment_rv.setAdapter(more_information_fragment1_adapter);
+        more_information_fragment1_adapter.notifyDataSetChanged();
     }
 }

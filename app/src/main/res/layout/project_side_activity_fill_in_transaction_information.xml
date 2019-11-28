@@ -223,7 +223,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:button="@null"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginLeft="45dp"
                                     android:drawableLeft="@drawable/checkbox_check_s"
                                     android:text="女" />
                             </RadioGroup>
@@ -385,7 +385,7 @@
                                     android:imeOptions="actionNext"
                                     android:singleLine="true"
                                     android:id="@+id/fang_hao_et1"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="45dp"
                                     android:layout_height="wrap_content"/>
 
                                 <TextView
@@ -400,7 +400,7 @@
                                     android:imeOptions="actionNext"
                                     android:singleLine="true"
                                     android:id="@+id/fang_hao_et2"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="45dp"
                                     android:layout_height="wrap_content"/>
 
                                 <TextView
@@ -415,7 +415,7 @@
                                     android:imeOptions="actionNext"
                                     android:singleLine="true"
                                     android:id="@+id/fang_hao_et3"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="45dp"
                                     android:layout_height="wrap_content"/>
 
                                 <TextView
@@ -593,7 +593,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:text="成交总价"
+                                android:text="成交参考总价"
                                 android:textColor="#ff666666"
                                 android:textSize="15sp" />
 

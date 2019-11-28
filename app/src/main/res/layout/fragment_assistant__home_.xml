@@ -156,14 +156,14 @@
 
                         <ImageView
                             android:layout_gravity="center"
-                            android:src="@mipmap/home_item_client"
+                            android:src="@mipmap/city_icon"
                             android:layout_width="43dp"
                             android:layout_height="43dp"/>
 
                         <TextView
                             android:layout_margin="10dp"
                             android:layout_weight="1"
-                            android:text="我的团队"
+                            android:text="城市房产"
                             android:textSize="12sp"
                             android:textColor="#111"
                             android:gravity="center"
@@ -184,14 +184,14 @@
 
                         <ImageView
                             android:layout_gravity="center"
-                            android:src="@mipmap/home_item_brokerage"
+                            android:src="@mipmap/home_item_client"
                             android:layout_width="43dp"
                             android:layout_height="43dp"/>
 
                         <TextView
                             android:layout_margin="10dp"
                             android:layout_weight="1"
-                            android:text="数据统计"
+                            android:text="我的团队"
                             android:textSize="12sp"
                             android:textColor="#111"
                             android:gravity="center"

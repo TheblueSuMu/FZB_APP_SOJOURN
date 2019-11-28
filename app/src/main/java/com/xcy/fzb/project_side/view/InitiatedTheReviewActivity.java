@@ -49,6 +49,8 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
     LinearLayout initiated_the_review_ll4;
     LinearLayout initiated_the_review_ll5;
     LinearLayout initiated_the_review_ll6;
+    LinearLayout initiated_the_review_ll7;
+    LinearLayout initiated_the_review_ll8;
     RecyclerView initiated_the_review_rv;
 
     InitiatedAdapter adapter;
@@ -93,6 +95,8 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
         initiated_the_review_ll4 = findViewById(R.id.initiated_the_review_ll4);
         initiated_the_review_ll5 = findViewById(R.id.initiated_the_review_ll5);
         initiated_the_review_ll6 = findViewById(R.id.initiated_the_review_ll6);
+        initiated_the_review_ll7 = findViewById(R.id.initiated_the_review_ll7);
+        initiated_the_review_ll8 = findViewById(R.id.initiated_the_review_ll8);
         initiated_the_review_rv = findViewById(R.id.initiated_the_review_rv);
 
         initiated_the_review_return.setOnClickListener(this);
@@ -100,6 +104,7 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
         initiated_the_review_ll1.setOnClickListener(this);
         initiated_the_review_ll3.setOnClickListener(this);
         initiated_the_review_ll5.setOnClickListener(this);
+        initiated_the_review_ll7.setOnClickListener(this);
 
         ptrClassicFrameLayout = (PtrClassicFrameLayout) findViewById(R.id.store_house_ptr_frame_15);
         ptrClassicFrameLayout.setPtrHandler(new PtrHandler() {
@@ -153,7 +158,7 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                 initiated_the_review_ll2.setVisibility(View.VISIBLE);
                 initiated_the_review_ll4.setVisibility(View.GONE);
                 initiated_the_review_ll6.setVisibility(View.GONE);
-
+                initiated_the_review_ll8.setVisibility(View.GONE);
                 break;
             //            TODO 调单
             case R.id.initiated_the_review_ll3:
@@ -162,6 +167,7 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                 initiated_the_review_ll2.setVisibility(View.GONE);
                 initiated_the_review_ll4.setVisibility(View.VISIBLE);
                 initiated_the_review_ll6.setVisibility(View.GONE);
+                initiated_the_review_ll8.setVisibility(View.GONE);
                 break;
             //            TODO 退单
             case R.id.initiated_the_review_ll5:
@@ -170,6 +176,16 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                 initiated_the_review_ll2.setVisibility(View.GONE);
                 initiated_the_review_ll4.setVisibility(View.GONE);
                 initiated_the_review_ll6.setVisibility(View.VISIBLE);
+                initiated_the_review_ll8.setVisibility(View.GONE);
+                break;
+            //            TODO 成交
+            case R.id.initiated_the_review_ll7:
+
+                initData(4);
+                initiated_the_review_ll2.setVisibility(View.GONE);
+                initiated_the_review_ll4.setVisibility(View.GONE);
+                initiated_the_review_ll6.setVisibility(View.GONE);
+                initiated_the_review_ll8.setVisibility(View.VISIBLE);
                 break;
         }
 

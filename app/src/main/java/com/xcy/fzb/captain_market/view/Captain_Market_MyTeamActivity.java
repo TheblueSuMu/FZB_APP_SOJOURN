@@ -130,6 +130,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
     String type3 = "";
     String startDate3 = "";
     String endDate3 = "";
+
+    String type = "";
     private PtrClassicFrameLayout ptrClassicFrameLayout;
 
     @Override
@@ -297,6 +299,13 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
         report_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (type.equals("1")) {
+                    initDataStatistics();
+                } else if (type.equals("2")) {
+                    initTeamCommissions();
+                } else if (type.equals("3")) {
+                    initDailyTurnover();
+                }
                 report_picker.setVisibility(View.GONE);
             }
         });
@@ -424,9 +433,10 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                         market_time_time_tv2.setText(dateString);
                         endDate1 = dateString;
                         NewlyIncreased.setEndDate(dateString);
+                        type = "1";
                     }
                 });
-                initDataStatistics();
+
                 break;
 //            TODO 时间选择3
             case R.id.my_team_time_tv3:
@@ -455,9 +465,9 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv4.setText(dateString);
                         endDate2 = dateString;
+                        type = "2";
                     }
                 });
-                initTeamCommissions();
                 break;
 //            TODO 时间选择5
             case R.id.my_team_time_tv5:
@@ -486,9 +496,9 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv6.setText(dateString);
                         endDate3 = dateString;
+                        type = "3";
                     }
                 });
-                initDailyTurnover();
                 break;
             //            TODO 数据统计 时间选择 全部
             case R.id.my_team_rb1:

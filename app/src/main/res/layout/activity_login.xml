@@ -325,11 +325,12 @@
                     <TextView
                         android:id="@+id/fuwu"
                         android:layout_toRightOf="@id/checkboxed"
-                        android:text="《房坐标用户服务条款》"
+                        android:text="《房坐标用户服务条款(包含隐私条款)》"
                         android:textColor="#334485"
                         android:textSize="9sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+
 
                 </RelativeLayout>
 

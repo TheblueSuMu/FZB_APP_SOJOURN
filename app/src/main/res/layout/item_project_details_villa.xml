@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/project_details_villa"
+                android:layout_centerHorizontal="true"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/project_details_villa_price"
+                android:layout_below="@id/project_details_villa"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"
+                android:textSize="15sp"
+                android:textColor="#AC1E26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <View
+            android:background="#EEEEEE"
+            android:layout_width="1dp"
+            android:layout_height="45dp"/>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/project_details_villa_compare"
+                android:layout_centerHorizontal="true"
+                android:text="同比上月"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/project_details_decline_img"
+                android:layout_below="@id/project_details_villa_compare"
+                android:layout_toLeftOf="@id/project_details_villa_compare"
+                android:src="@mipmap/project_details_decline"
+                android:visibility="visible"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/project_details_villa_price_compare"
+                android:layout_below="@id/project_details_villa_compare"
+                android:layout_toRightOf="@id/project_details_decline_img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="15dp"
+                android:text="好多钱"
+                android:textSize="15sp"
+                android:textColor="#111111"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

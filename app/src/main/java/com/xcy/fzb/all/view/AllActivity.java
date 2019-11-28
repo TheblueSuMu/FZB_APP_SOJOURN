@@ -1,10 +1,12 @@
 package com.xcy.fzb.all.view;
 
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -12,14 +14,21 @@ import com.xcy.fzb.all.persente.StatusBar;
 public class AllActivity extends AppCompatActivity {
 
     public static boolean exit = false;
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);      //  TODO    始终竖屏
-
-
+//检测是否有写的权限
+        int permission = ActivityCompat.checkSelfPermission(AllActivity.this, "android.permission.WRITE_EXTERNAL_STORAGE");
+        if (permission != PackageManager.PERMISSION_GRANTED) {// 没有写的权限，去申请写的权限，
+            ActivityCompat.requestPermissions(AllActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+        }
         initView();
 
     }
@@ -42,59 +51,5 @@ public class AllActivity extends AppCompatActivity {
         }
 
     }
-//
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-//            View v = getCurrentFocus();
-//            if (isShouldHideKeyboard(v, ev)) {
-//                boolean res=hideKeyboard(v.getWindowToken());
-//                if(res){
-//                    //隐藏了输入法，则不再分发事件
-//                    return true;
-//                }
-//            }
-//        }
-//        return super.dispatchTouchEvent(ev);
-//    }
-//
-//    /**
-//     * 根据EditText所在坐标和用户点击的坐标相对比，来判断是否隐藏键盘，因为当用户点击EditText时则不能隐藏
-//     *
-//     * @param v
-//     * @param event
-//     * @return
-//     */
-//    private boolean isShouldHideKeyboard(View v, MotionEvent event) {
-//        if (v != null && (v instanceof EditText)) {
-//            int[] l = {0, 0};
-//            v.getLocationInWindow(l);
-//            int left = l[0],
-//                    top = l[1],
-//                    bottom = top + v.getHeight(),
-//                    right = left + v.getWidth();
-//            if (event.getX() > left && event.getX() < right
-//                    && event.getY() > top && event.getY() < bottom) {
-//                // 点击EditText的事件，忽略它。
-//                return false;
-//            } else {
-//                return true;
-//            }
-//        }
-//        // 如果焦点不是EditText则忽略，这个发生在视图刚绘制完，第一个焦点不在EditText上，和用户用轨迹球选择其他的焦点
-//        return false;
-//    }
-//
-//    /**
-//     * 获取InputMethodManager，隐藏软键盘
-//     * @param token
-//     */
-//    private boolean hideKeyboard(IBinder token) {
-//        if (token != null) {
-//            InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//            return im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
-//        }
-//        return false;
-//    }
 
 }
