@@ -751,7 +751,21 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+
         Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getCityID(), FinalContents.getComprehensiveSorting(), FinalContents.getProjectLabel(), FinalContents.getProjectType(), FinalContents.getNation(), FinalContents.getProjectPriceStart(), FinalContents.getProjectPriceEnd(), FinalContents.getApartment(), FinalContents.getAreaSection(), FinalContents.getFfProjectTrait(), FinalContents.getProcuctType(), FinalContents.getFitmentState(), "1000");
+        Log.i("MyCL","1:" + FinalContents.getUserID());
+        Log.i("MyCL","2:" + FinalContents.getCityID());
+        Log.i("MyCL","3:" + FinalContents.getComprehensiveSorting());
+        Log.i("MyCL","4:" + FinalContents.getProjectLabel());
+        Log.i("MyCL","5:" + FinalContents.getProjectType());
+        Log.i("MyCL","6:" + FinalContents.getProjectPriceStart());
+        Log.i("MyCL","7:" + FinalContents.getProjectPriceEnd());
+        Log.i("MyCL","8:" + FinalContents.getApartment());
+        Log.i("MyCL","9:" + FinalContents.getAreaSection());
+        Log.i("MyCL","10:" + FinalContents.getFfProjectTrait());
+        Log.i("MyCL","11:" + FinalContents.getProcuctType());
+        Log.i("MyCL","12:" + FinalContents.getFitmentState());
+
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HotBean>() {

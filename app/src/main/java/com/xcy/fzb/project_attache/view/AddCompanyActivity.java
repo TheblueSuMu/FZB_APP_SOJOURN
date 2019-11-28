@@ -69,6 +69,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     RadioButton add_company_rb1;
     RadioButton add_company_rb2;
     RadioButton add_company_rb3;
+    RadioButton add_company_rb4;
 
 
     private String num;
@@ -139,6 +140,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         add_company_rb1 = findViewById(R.id.add_company_rb1);
         add_company_rb2 = findViewById(R.id.add_company_rb2);
         add_company_rb3 = findViewById(R.id.add_company_rb3);
+        add_company_rb4 = findViewById(R.id.add_company_rb4);
         add_company_tvs = findViewById(R.id.tvs);
         rl1 = findViewById(R.id.rl1);
         rl2 = findViewById(R.id.rl2);
@@ -162,6 +164,8 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             rl2.setVisibility(View.GONE);
             rl3.setVisibility(View.GONE);
             rl4.setVisibility(View.GONE);
+
+            add_company_rb4.setVisibility(View.VISIBLE);
 
             add_company_tvs.setText("修改公司");
             Retrofit.Builder builder = new Retrofit.Builder();
@@ -202,6 +206,8 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                                 add_company_rb2.setChecked(true);
                             } else if (companyManage.getFlag().equals("2")) {
                                 add_company_rb3.setChecked(true);
+                            }else if (companyManage.getFlag().equals("3")) {
+                                add_company_rb4.setChecked(true);
                             }
 
                         }
@@ -223,6 +229,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             rl2.setVisibility(View.VISIBLE);
             rl3.setVisibility(View.VISIBLE);
             rl4.setVisibility(View.VISIBLE);
+            add_company_rb4.setVisibility(View.GONE);
             add_company_tvs.setText("添加公司");
             add_company_tv1.setText(FinalContents.getCityName());
         }
@@ -286,6 +293,8 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                     num = "1";
                 } else if (add_company_rb3.isChecked()) {
                     num = "2";
+                } else if (add_company_rb4.isChecked()) {
+                    num = "3";
                 }
                 if (add_company_et6.getText().toString().equals("")) {
                     s8 = "123456";

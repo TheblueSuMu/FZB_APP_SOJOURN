@@ -76,7 +76,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
             if ((listData.get(i).getCompanyName() + listData.get(i).getStoreName()).equals(contact.getName())) {
 
                 final int FinID = i;
-
+//TODO 门店
                 if (FinalContents.getStoreList().equals("1")) {
                     holder.tvName.setText(listData.get(i).getCompanyName());
                     holder.store_tv.setText("-" + listData.get(i).getStoreName());
@@ -88,7 +88,20 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                     } else {
                         holder.contacts_name.setText("店长：" + listData.get(i).getShopownerName() + " " + listData.get(i).getShopownerPhone());
                     }
-
+                    //负责专员
+                    if(listData.get(i).getAttacheName().equals("")){
+                        holder.store_new_add.setVisibility(View.GONE);
+                    }else {
+                        holder.store_new_add.setVisibility(View.VISIBLE);
+                        if(listData.get(i).getAttacheIdentity().equals("5")){
+                            holder.store_new_add.setVisibility(View.GONE);
+//                            holder.store_new_add.setText("负责专员：" + listData.get(i).getAttacheName()+ " " + listData.get(i).getAttachePhone());
+                        }else if(listData.get(i).getAttacheIdentity().equals("8")){
+                            holder.store_new_add.setText("负责专员：" + listData.get(i).getAttacheName()+ " " + listData.get(i).getAttachePhone());
+                        }else if(listData.get(i).getAttacheIdentity().equals("9")){
+                            holder.store_new_add.setText("负责经理：" + listData.get(i).getAttacheName()+ " " + listData.get(i).getAttachePhone());
+                        }
+                    }
 
                     holder.contacts_name.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -104,7 +117,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                             }
                         }
                     });
-
+//TODO 公司
                 } else if (FinalContents.getStoreList().equals("2")) {
                     holder.tvName.setText(listData.get(i).getCompanyName());
                     holder.store_tv.setText("");
@@ -130,15 +143,30 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
 
                 }
 
-                if (listData.get(i).getStatus().equals("0")) {
+                if (listData.get(i).getStatus().equals("0")) {//未合作
                     holder.contacts_img.setVisibility(View.VISIBLE);
                     Glide.with(holder.itemView.getContext()).load(R.mipmap.wwc).into(holder.contacts_img);
-                } else if (listData.get(i).getStatus().equals("2")) {
+                } else if (listData.get(i).getStatus().equals("2")) {//取消合作
                     holder.contacts_img.setVisibility(View.VISIBLE);
                     Glide.with(holder.itemView.getContext()).load(R.mipmap.wwc2).into(holder.contacts_img);
-                } else if (listData.get(i).getStatus().equals("3")) {
+                } else if (listData.get(i).getStatus().equals("3")) {//倒闭
                     holder.contacts_img.setVisibility(View.VISIBLE);
                     Glide.with(holder.itemView.getContext()).load(R.mipmap.wwc3).into(holder.contacts_img);
+                }else if(listData.get(i).getStatus().equals("1")){//合作
+                    holder.contacts_img.setVisibility(View.GONE);
+                    if(listData.get(i).getState().equals("2")){//装机
+                        holder.contacts_img.setVisibility(View.VISIBLE);
+                        Glide.with(holder.itemView.getContext()).load(R.mipmap.wwc4).into(holder.contacts_img);
+                    }else if(listData.get(i).getState().equals("3")){//培训
+                        holder.contacts_img.setVisibility(View.VISIBLE);
+                        Glide.with(holder.itemView.getContext()).load(R.mipmap.wwwc5).into(holder.contacts_img);
+                    }else if(listData.get(i).getState().equals("1")){//签约
+                        holder.contacts_img.setVisibility(View.VISIBLE);
+                        Glide.with(holder.itemView.getContext()).load(R.mipmap.qianyue).into(holder.contacts_img);
+                    }else if(listData.get(i).getState().equals("4")){//维护
+                        holder.contacts_img.setVisibility(View.VISIBLE);
+                        Glide.with(holder.itemView.getContext()).load(R.mipmap.weihu).into(holder.contacts_img);
+                    }
                 }
             }
 
@@ -174,6 +202,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
         TextView contacts_name;
         TextView store_id;
         TextView store_num;
+        TextView store_new_add;
 
         //        ImageView contacts_call;
         ImageView contacts_img;
@@ -187,6 +216,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
             store_id = itemView.findViewById(R.id.store_id);
             contacts_name = itemView.findViewById(R.id.store_name);
             store_num = itemView.findViewById(R.id.store_num);
+            store_new_add = itemView.findViewById(R.id.store_new_add);
 
 //            contacts_call = itemView.findViewById(R.id.store_call);
             contacts_img = itemView.findViewById(R.id.store_img);

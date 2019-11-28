@@ -32,6 +32,7 @@ import com.xcy.fzb.all.database.TeamMemberBean;
 import com.xcy.fzb.all.database.TradeAuditBean;
 import com.xcy.fzb.all.modle.*;
 import com.xcy.fzb.all.persente.LevelBean;
+import com.xcy.fzb.project_attache.adapter.MyDataStoreBean;
 
 import org.json.JSONObject;
 
@@ -675,7 +676,7 @@ public interface MyService {
 
     //数据切换
     @POST("commissionerSelect/dataStatistics")
-    Observable<DataNumBean> getDataNum(@Query("userId") String userId, @Query("storeId") String storeId, @Query("agentId") String agentId, @Query("type") String type,
+    Observable<DataNumBean> getDataNum(@Query("userId") String userId, @Query("storeId") String storeId, @Query("agentId") String agentId, @Query("tag") String tag, @Query("type") String type,
                                        @Query("startDate") String startDate, @Query("endDate") String endDate);
 
     //佣金数据切换
@@ -757,4 +758,16 @@ public interface MyService {
     //经纬度转坐标
     @POST("commonSelect/toAddress")
     Observable<ChangeAddress> getChangeAddress(@Query("longitude") String longitude, @Query("latitude") String latitude);
+
+    //经纪门店打卡
+    @POST("commissionerUpdate/storeClock")
+    Observable<ClockInBean> getClockIn(@Query("storeId") String storeId, @Query("address") String address, @Query("location") String location, @Query("img") String img, @Query("type") String type, @Query("userId") String userId);
+
+    //获取打卡记录
+    @POST("commissionerSelect/storeClockRecord")
+    Observable<RecordBean> getRecord(@Query("userId") String userId, @Query("storeId") String storeId, @Query("search") String search, @Query("tag") String tag);
+
+    //我的界面/打卡记录
+    @POST("commissionerSelect/myDate")
+    Observable<MyDataStoreBean> getMyDataStore(@Query("userId") String userId);
 }

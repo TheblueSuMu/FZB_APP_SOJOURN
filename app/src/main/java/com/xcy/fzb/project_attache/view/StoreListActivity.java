@@ -79,6 +79,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         setContentView(R.layout.project_attache_activity_store_list);
         init_No_Network();
     }
+
     private void init_No_Network(){
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
@@ -196,7 +197,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         store_list_rv.setLayoutManager(new LinearLayoutManager(this));
         decoration = new PinnedHeaderDecoration();
 
-
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -238,6 +238,10 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                     storeListData.setStoreIdCode(rows.get(i).getStoreIdCode());
                                     storeListData.setCompanyAddress(rows.get(i).getCompanyAddress());
                                     storeListData.setStoreNum(rows.get(i).getStoreNum());
+                                    storeListData.setAttacheName(rows.get(i).getAttacheName());
+                                    storeListData.setAttachePhone(rows.get(i).getAttachePhone());
+                                    storeListData.setAttacheIdentity(rows.get(i).getAttacheIdentity());
+                                    storeListData.setState(rows.get(i).getState());
 
                                     mContactModels.add(contactModel);
                                     listData.add(storeListData);
@@ -285,7 +289,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         mAdapter.notifyDataSetChanged();
 
     }
-
 
     @Override
     public void onClick(View view) {
@@ -400,6 +403,10 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                     storeListData.setStoreIdCode(rows.get(i).getStoreIdCode());
                                     storeListData.setCompanyAddress(rows.get(i).getCompanyAddress());
                                     storeListData.setStoreNum(rows.get(i).getStoreNum());
+                                    storeListData.setAttacheName(rows.get(i).getAttacheName());
+                                    storeListData.setAttachePhone(rows.get(i).getAttachePhone());
+                                    storeListData.setAttacheIdentity(rows.get(i).getAttacheIdentity());
+                                    storeListData.setState(rows.get(i).getState());
 
                                     mContactModels.add(contactModel);
                                     listData.add(storeListData);
@@ -426,7 +433,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                     }
                 });
-
     }
 
     @Override
@@ -466,11 +472,15 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                 if (listData.get(i).getCompanyId().equals(itemName)) {
                     for (int j = 0; j < listData.size(); ++j) {
                         if (mContactModels.get(i).getName().equals(listData.get(j).getCompanyName())) {
-                            FinalContents.setStoreId(listData.get(j).getStoreId());
-                            FinalContents.setCompanyId(listData.get(j).getCompanyId());
-                            Intent intent = new Intent(StoreListActivity.this, StoreDetailsActivity.class);
-                            FinalContents.setMyAddType("公司");
-                            startActivity(intent);
+                            if(FinalContents.getIdentity().equals("9")){
+                                FinalContents.setStoreId(listData.get(j).getStoreId());
+                                FinalContents.setCompanyId(listData.get(j).getCompanyId());
+                                Intent intent = new Intent(StoreListActivity.this, StoreDetailsActivity.class);
+                                FinalContents.setMyAddType("公司");
+                                startActivity(intent);
+                            }else if(FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("8")){
+                                Toast.makeText(StoreListActivity.this,"没有权限",Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 }
@@ -496,7 +506,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
     @Override
     protected void onRestart() {
         super.onRestart();
-
 
         if (FinalContents.getMyAddType().equals("公司")) {
             store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));

@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +58,15 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
     EditText add_store_et4;
 
     RelativeLayout add_store_return;
+
+    RelativeLayout add_rl4;
+    LinearLayout add_rl4_s;
+
+    RadioGroup add_rg;
+    RadioButton add_rb1;
+    RadioButton add_rb2;
+
+
     private String s;
     private String s2;
     private String s1;
@@ -118,6 +130,15 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
         add_store_et4 = findViewById(R.id.add_et4);
         add_store_return = findViewById(R.id.add_return);
 
+        add_rl4 = findViewById(R.id.add_rl4);
+        add_rl4_s = findViewById(R.id.add_ll4_s);
+        add_rg = findViewById(R.id.add_rg);
+        add_rb1 = findViewById(R.id.add_rb1);
+        add_rb2 = findViewById(R.id.add_rb2);
+
+        add_rl4.setVisibility(View.GONE);
+        add_rl4_s.setVisibility(View.GONE);
+
         add_store_return.setOnClickListener(this);
         add_store_rl1.setOnClickListener(this);
         add_store_rl2.setOnClickListener(this);
@@ -127,6 +148,8 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
         if (FinalContents.getBorkerChange().equals("修改")) {
             initChangeData();
             add_title.setText("修改经纪人");
+            add_rl4.setVisibility(View.VISIBLE);
+            add_rl4_s.setVisibility(View.VISIBLE);
         }
 
     }
@@ -156,6 +179,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                         FinalContents.setAddtype1(brokerChangeBean.getData().getStoreManage().getStoreName());
                         FinalContents.setAddtype2(brokerChangeBean.getData().getCompanyManage().getCompanyName());
                         String identity = brokerChangeBean.getData().getIdentity();
+
                         if (identity.equals("1")) {
                             add_store_tv3.setText("经纪公司管理者");
                         } else if (identity.equals("2")) {
@@ -310,6 +334,13 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                         });
             }
         } else if (FinalContents.getBorkerChange().equals("修改")) {
+
+//            if(add_rb1.isChecked() == true){
+//
+//            }else if(add_rb2.isChecked() == true){
+//
+//            }
+
             if (s11.equals("经纪公司管理者")) {
                 num = "1";
             } else if (s11.equals("经纪门店管理者")) {

@@ -57,6 +57,8 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     LinearLayout commission_ll2;
     LinearLayout commission_ll3;
     LinearLayout commission_ll4;
+    LinearLayout commission_ll1S;
+    LinearLayout commission_ll2S;
 
     CheckBox commission_cb;
     String ifCheckBox = "";
@@ -67,7 +69,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     private String s = "";
     private RelativeLayout myBrokerage_rl;
     private PtrClassicFrameLayout commission_ptrclass;
-    String projecttype = "3";
+    String projecttype = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +107,8 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         commission_tv2 = findViewById(R.id.commission_tv2);
         commission_tv3 = findViewById(R.id.commission_tv3);
         commission_rv = findViewById(R.id.commission_rv);
+        commission_ll1S = findViewById(R.id.commission_ll1S);
+        commission_ll2S = findViewById(R.id.commission_ll2S);
         commission_ll1 = findViewById(R.id.commission_ll1);
         commission_ll2 = findViewById(R.id.commission_ll2);
         commission_ll3 = findViewById(R.id.commission_ll3);
@@ -120,6 +124,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         commission_return.setOnClickListener(this);
         commission_ll1.setOnClickListener(this);
         commission_ll3.setOnClickListener(this);
+        commission_ll1S.setOnClickListener(this);
 
         initDataUp();
 
@@ -170,15 +175,19 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                     ifCheckBox = "0";
                     if(commission_ll2.getVisibility() == View.VISIBLE){
                         initData("3", s);
-                    }else {
+                    }else if(commission_ll4.getVisibility() == View.VISIBLE){
                         initData("2", s);
+                    }else  if(commission_ll1S.getVisibility() == View.VISIBLE){
+                        initData("1", s);
                     }
                 }else {
                     ifCheckBox = "";
                     if(commission_ll2.getVisibility() == View.VISIBLE){
                         initData("3", s);
-                    }else {
+                    }else  if(commission_ll4.getVisibility() == View.VISIBLE){
                         initData("2", s);
+                    }else  if(commission_ll1S.getVisibility() == View.VISIBLE){
+                        initData("1", s);
                     }
                 }
             }
@@ -220,7 +229,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                     }
                 });
 
-        initData("3", s);
+        initData("1", s);
 
     }
 
@@ -236,16 +245,26 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                 s = commission_et.getText().toString();
                 commission_ll2.setVisibility(View.VISIBLE);
                 commission_ll4.setVisibility(View.INVISIBLE);
+                commission_ll2S.setVisibility(View.INVISIBLE);
                 projecttype = "3";
                 initData("3", s);
-
                 break;
             case R.id.commission_ll3:
                 s = commission_et.getText().toString();
                 commission_ll2.setVisibility(View.INVISIBLE);
                 commission_ll4.setVisibility(View.VISIBLE);
+                commission_ll2S.setVisibility(View.INVISIBLE);
                 projecttype = "2";
                 initData("2", s);
+
+                break;
+            case R.id.commission_ll1S:
+                s = commission_et.getText().toString();
+                commission_ll2.setVisibility(View.INVISIBLE);
+                commission_ll4.setVisibility(View.INVISIBLE);
+                commission_ll2S.setVisibility(View.VISIBLE);
+                projecttype = "1";
+                initData("1", s);
 
                 break;
 

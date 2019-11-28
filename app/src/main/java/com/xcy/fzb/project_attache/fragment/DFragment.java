@@ -88,6 +88,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     LinearLayout fragment_ll_2;
     LinearLayout fragment_ll_3;
 
+    LinearLayout project_attache_fragment_ll4;
+    LinearLayout project_attache_fragment_ll3;
+    LinearLayout project_attache_fragment_ll2;
+    LinearLayout project_attache_fragment_ll1;
+
     RadioButton rb1_modulebroker;
     RadioButton rb2_modulebroker;
     RadioButton rb3_modulebroker;
@@ -238,6 +243,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         ll6_modulebroker = getActivity().findViewById(R.id.ll6_modulebroke);
         ll7_modulebroker = getActivity().findViewById(R.id.ll7_modulebroke);
 
+        project_attache_fragment_ll4 = getActivity().findViewById(R.id.project_attache_fragment_ll4);
+        project_attache_fragment_ll3 = getActivity().findViewById(R.id.project_attache_fragment_ll3);
+        project_attache_fragment_ll2 = getActivity().findViewById(R.id.project_attache_fragment_ll2);
+        project_attache_fragment_ll1 = getActivity().findViewById(R.id.project_attache_fragment_ll1);
+
         rb1_modulebroker = getActivity().findViewById(R.id.rb1_modulebroke);
         rb2_modulebroker = getActivity().findViewById(R.id.rb2_modulebroke);
         rb3_modulebroker = getActivity().findViewById(R.id.rb3_modulebroke);
@@ -275,26 +285,6 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
         ptrClassicFrameLayout.setOnRefreshListener(this);
 
-//        ptrClassicFrameLayout.setPtrHandler(new PtrHandler() {
-//            @Override
-//            public void onRefreshBegin(PtrFrameLayout frame) {
-//                frame.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        ptrClassicFrameLayout.refreshComplete();
-//                        ptrClassicFrameLayout.setLastUpdateTimeKey("2017-2-10");
-//                        initData();
-//                        rb1_modulebroker.setChecked(true);
-//                    }
-//                }, 1000);
-//            }
-//
-//            @Override
-//            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-//                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
-//            }
-//        });
-
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1;
@@ -305,11 +295,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         time1_modulebroker.setText(string1);
         time2_modulebroker.setText(string2);
 
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
 
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth + 15));
 
         modulebroke_rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -317,13 +307,26 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 if (i == R.id.rb1_modulebroke) {
                     ll1_modulebroker.setVisibility(View.GONE);
                     NewlyIncreased.setTag("0");
-                    initDataNum("0", "", "");
+                    if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("0", "", "", "1");
+                    } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("0", "", "", "2");
+                    }
                 } else if (i == R.id.rb2_modulebroke) {
-                    initDataNum("1", "", "");
+                    if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("1", "", "", "1");
+                    } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("1", "", "", "2");
+                    }
+
                     NewlyIncreased.setTag("1");
                     ll1_modulebroker.setVisibility(View.GONE);
                 } else if (i == R.id.rb3_modulebroke) {
-                    initDataNum("2", "", "");
+                    if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("2", "", "", "1");
+                    } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("2", "", "", "2");
+                    }
                     NewlyIncreased.setTag("2");
                     ll1_modulebroker.setVisibility(View.GONE);
                 } else if (i == R.id.rb4_modulebroke) {
@@ -332,7 +335,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                     NewlyIncreased.setStartDate(s);
                     NewlyIncreased.setEndDate(s1);
                     NewlyIncreased.setTag("3");
-                    initDataNum("3", s, s1);
+                    if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("3", s, s1, "1");
+                    } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("3", s, s1, "2");
+                    }
                     ll1_modulebroker.setVisibility(View.VISIBLE);
                 }
             }
@@ -353,7 +360,12 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         String s = time1_modulebroker.getText().toString();
                         String s1 = time2_modulebroker.getText().toString();
                         NewlyIncreased.setStartDate(dateString);
-                        initDataNum("3", s, s1);
+                        if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "1");
+                        } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "2");
+                        }
+
 
                     }
                 });
@@ -374,7 +386,12 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         String s = time1_modulebroker.getText().toString();
                         String s1 = time2_modulebroker.getText().toString();
                         NewlyIncreased.setEndDate(dateString);
-                        initDataNum("3", s, s1);
+                        if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "1");
+                        } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                            initDataNum("3", s, s1, "2");
+                        }
+
                     }
                 });
             }
@@ -429,6 +446,8 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 //        rl2_modulebroke.setOnClickListener(this);
 //        rl3_modulebroke.setOnClickListener(this);
         modulebroke_tv_type.setOnClickListener(this);
+        project_attache_fragment_ll3.setOnClickListener(this);
+        project_attache_fragment_ll1.setOnClickListener(this);
 
         initData();
     }
@@ -473,7 +492,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
     }
 
-    private void initDataNum(String type, String startTime, String endTime) {
+    private void initDataNum(String type, String startTime, String endTime, String tag) {
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -481,11 +500,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Log.i("专员","FinalContents.getUserID():" + FinalContents.getUserID());
-        Log.i("专员","type:" + type);
-        Log.i("专员","startTime:" + startTime);
-        Log.i("专员","endTime:" + endTime);
-        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), "", "", type, startTime, endTime);
+        Log.i("专员", "FinalContents.getUserID():" + FinalContents.getUserID());
+        Log.i("专员", "type:" + type);
+        Log.i("专员", "startTime:" + startTime);
+        Log.i("专员", "endTime:" + endTime);
+        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), "", "", tag, type, startTime, endTime);
         dataNum.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataNumBean>() {
@@ -539,8 +558,8 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                     public void onNext(DBean dBean) {
                         dataMap = dBean.getData().getDataMap();
 
-                        Log.i("广播数据","数据：" + dBean.getData().getStoreCount());
-                        Log.i("广播数据","数据：" + dBean.getData().getPeopleCount());
+                        Log.i("广播数据", "数据：" + dBean.getData().getStoreCount());
+                        Log.i("广播数据", "数据：" + dBean.getData().getPeopleCount());
 
                         EventBus.getDefault().post(new Fragnemt_SS(dBean.getData().getStoreCount() + "", dBean.getData().getPeopleCount() + "", "", "", ""));
 
@@ -660,65 +679,84 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
                 initPopWindow();
 
-//                popupWindow = new PopupWindow(getContext());
-//                inflate = LayoutInflater.from(getContext()).inflate(R.layout.project_attache_item_popwindow, null);
-//                popupWindow.setContentView(inflate);
-//
-//                popupWindow.setWidth(modulebroke_tv_type.getMeasuredWidth());
-//                popupWindow.setHeight(modulebroke_tv_type.getMeasuredHeight() * 3 + 20);
-//
-//                final TextView item_popwindoe_1 = inflate.findViewById(R.id.item_popwindoe_1);
-//                final TextView item_popwindoe_2 = inflate.findViewById(R.id.item_popwindoe_2);
-//                final TextView item_popwindoe_3 = inflate.findViewById(R.id.item_popwindoe_3);
-//
-//                item_popwindoe_1.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        modulebroke_tv_type.setText("近七天的活动度   ");
-//                        if (rb5_modulebroker.isChecked()) {
-//                            initDatatTendency("0", "0");
-//                        } else if (rb6_modulebroker.isChecked()) {
-//                            initDatatTendency("0", "1");
-//                        }
-//                        popupWindow.dismiss();
-//                    }
-//                });
-//                item_popwindoe_2.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        modulebroke_tv_type.setText("近七天的新增量   ");
-//                        if (rb5_modulebroker.isChecked()) {
-//                            initDatatTendency("1", "0");
-//                        } else if (rb6_modulebroker.isChecked()) {
-//                            initDatatTendency("1", "1");
-//                        }
-//                        popupWindow.dismiss();
-//                    }
-//                });
-//                item_popwindoe_3.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        modulebroke_tv_type.setText("近七天的递减量   ");
-//                        if (rb5_modulebroker.isChecked()) {
-//                            initDatatTendency("2", "0");
-//                        } else if (rb6_modulebroker.isChecked()) {
-//                            initDatatTendency("2", "1");
-//                        }
-//                        popupWindow.dismiss();
-//                    }
-//                });
-//
-//                popupWindow.setFocusable(true); //设置PopupWindow可获得焦点
-//                popupWindow.setTouchable(true); //设置PopupWindow可触摸
-//                popupWindow.setOutsideTouchable(true);
-//                popupWindow.showAsDropDown(modulebroke_tv_type, 0, 0);
+                break;
+            case R.id.project_attache_fragment_ll1://实时
+                project_attache_fragment_ll2.setVisibility(View.VISIBLE);
+                project_attache_fragment_ll4.setVisibility(View.INVISIBLE);
+                ll2_modulebroker.setClickable(true);
+                ll3_modulebroker.setClickable(true);
+                ll4_modulebroker.setClickable(true);
+                ll5_modulebroker.setClickable(true);
+                ll6_modulebroker.setClickable(true);
+                ll7_modulebroker.setClickable(true);
 
+//                if (ll1_modulebroker.getVisibility() == View.VISIBLE) {
+                    if (rb1_modulebroker.isChecked() == true) {
+                        ll1_modulebroker.setVisibility(View.GONE);
+                        NewlyIncreased.setTag("0");
+                        initDataNum("0", "", "", "1");
+                    } else if (rb2_modulebroker.isChecked() == true) {
+                        initDataNum("1", "", "", "1");
+                        NewlyIncreased.setTag("1");
+                        ll1_modulebroker.setVisibility(View.GONE);
+                    } else if (rb3_modulebroker.isChecked() == true) {
+                        initDataNum("2", "", "", "1");
+                        NewlyIncreased.setTag("2");
+                        ll1_modulebroker.setVisibility(View.GONE);
+                    } else if (rb4_modulebroker.isChecked() == true) {
+                        String s = time1_modulebroker.getText().toString();
+                        String s1 = time2_modulebroker.getText().toString();
+                        NewlyIncreased.setStartDate(s);
+                        NewlyIncreased.setEndDate(s1);
+                        NewlyIncreased.setTag("3");
+                        initDataNum("3", s, s1, "1");
+                        ll1_modulebroker.setVisibility(View.VISIBLE);
+                    }
+//                } else {
+//                    initDataNum("", "", "", "1");
+//                }
 
+                break;
+            case R.id.project_attache_fragment_ll3://总体
+                project_attache_fragment_ll2.setVisibility(View.INVISIBLE);
+                project_attache_fragment_ll4.setVisibility(View.VISIBLE);
+                ll2_modulebroker.setClickable(false);
+                ll3_modulebroker.setClickable(false);
+                ll4_modulebroker.setClickable(false);
+                ll5_modulebroker.setClickable(false);
+                ll6_modulebroker.setClickable(false);
+                ll7_modulebroker.setClickable(false);
+//                if (ll1_modulebroker.getVisibility() == View.VISIBLE) {
+                    if (rb1_modulebroker.isChecked() == true) {
+                        ll1_modulebroker.setVisibility(View.GONE);
+                        NewlyIncreased.setTag("0");
+                        initDataNum("0", "", "", "2");
+                    } else if (rb2_modulebroker.isChecked() == true) {
+                        initDataNum("1", "", "", "2");
+                        NewlyIncreased.setTag("1");
+                        ll1_modulebroker.setVisibility(View.GONE);
+                    } else if (rb3_modulebroker.isChecked() == true) {
+                        initDataNum("2", "", "", "2");
+                        NewlyIncreased.setTag("2");
+                        ll1_modulebroker.setVisibility(View.GONE);
+                    } else if (rb4_modulebroker.isChecked() == true) {
+                        String s = time1_modulebroker.getText().toString();
+                        String s1 = time2_modulebroker.getText().toString();
+                        NewlyIncreased.setStartDate(s);
+                        NewlyIncreased.setEndDate(s1);
+                        NewlyIncreased.setTag("3");
+                        initDataNum("3", s, s1, "2");
+                        ll1_modulebroker.setVisibility(View.VISIBLE);
+                    }
+//                } else {
+//                    initDataNum("", "", "", "2");
+//                }
                 break;
         }
 
     }
 
+    //弹窗
     private void initPopWindow() {
 
 
@@ -732,19 +770,19 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
                 modulebroke_tv_type.setText(list1.get(options1) + "   ");
 
-                if(options1 == 0){
+                if (options1 == 0) {
                     if (rb5_modulebroker.isChecked()) {
                         initDatatTendency("0", "0");
                     } else if (rb6_modulebroker.isChecked()) {
                         initDatatTendency("0", "1");
                     }
-                }else if(options1 == 1){
+                } else if (options1 == 1) {
                     if (rb5_modulebroker.isChecked()) {
                         initDatatTendency("1", "0");
                     } else if (rb6_modulebroker.isChecked()) {
                         initDatatTendency("1", "1");
                     }
-                }else if(options1 == 2){
+                } else if (options1 == 2) {
                     if (rb5_modulebroker.isChecked()) {
                         initDatatTendency("2", "0");
                     } else if (rb6_modulebroker.isChecked()) {

@@ -242,9 +242,9 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 //        store_details_rl2.setOnClickListener(this);
         store_details_tv8.setOnClickListener(this);
         store_details_tv9.setOnClickListener(this);
-        store_details_ll3.setOnClickListener(this);
-        store_details_ll4.setOnClickListener(this);
-        store_details_ll5.setOnClickListener(this);
+//        store_details_ll3.setOnClickListener(this);
+//        store_details_ll4.setOnClickListener(this);
+//        store_details_ll5.setOnClickListener(this);
         store_details_call.setOnClickListener(this);
 
         store_details_rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
