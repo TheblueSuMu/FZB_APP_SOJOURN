@@ -51,7 +51,7 @@
             android:layout_marginBottom="7dp"
             android:drawableRight="@mipmap/ic_stat_name"
             android:gravity="center"
-            android:text="门店  "
+            android:text="  "
             android:textColor="#fff"
             android:textSize="15sp"
             />
