@@ -238,10 +238,10 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         project_attache_ll3 = findViewById(R.id.project_attache_ll3);
         project_attache_ll4 = findViewById(R.id.project_attache_ll4);
 
-        company_details_return.setOnClickListener(this);
-        company_details_call.setOnClickListener(this);
         project_attache_ll1.setOnClickListener(this);
         project_attache_ll3.setOnClickListener(this);
+        company_details_return.setOnClickListener(this);
+        company_details_call.setOnClickListener(this);
 //        company_details_ll3.setOnClickListener(this);
 //        company_details_ll4.setOnClickListener(this);
 //        company_details_ll5.setOnClickListener(this);

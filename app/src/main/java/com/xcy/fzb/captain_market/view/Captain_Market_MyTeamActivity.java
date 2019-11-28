@@ -133,6 +133,12 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
 
     String type = "";
     private PtrClassicFrameLayout ptrClassicFrameLayout;
+    String tag = "1";
+
+    LinearLayout project_attache_ll1;
+    LinearLayout project_attache_ll2;
+    LinearLayout project_attache_ll3;
+    LinearLayout project_attache_ll4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,6 +173,13 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
 		StatusBar.makeStatusBarTransparent(this);
 
         ptrClassicFrameLayout = findViewById(R.id.my_team_FrameLayout);
+        project_attache_ll1 = findViewById(R.id.project_attache_ll1);
+        project_attache_ll2 = findViewById(R.id.project_attache_ll2);
+        project_attache_ll3 = findViewById(R.id.project_attache_ll3);
+        project_attache_ll4 = findViewById(R.id.project_attache_ll4);
+
+        project_attache_ll1.setOnClickListener(this);
+        project_attache_ll3.setOnClickListener(this);
 
         market_time_ll1 = findViewById(R.id.my_team_ll1);
         all_no_information_S = findViewById(R.id.all_no_information_S);
@@ -602,7 +615,80 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                 market_time_ll12.setVisibility(View.VISIBLE);
                 type3 = "3";
                 break;
-
+            case R.id.project_attache_ll1://实时
+                tag = "1";
+                project_attache_ll2.setVisibility(View.VISIBLE);
+                project_attache_ll4.setVisibility(View.INVISIBLE);
+                market_time_ll1.setClickable(true);
+                market_time_ll2.setClickable(true);
+                market_time_ll3.setClickable(true);
+                market_time_ll4.setClickable(true);
+                market_time_ll5.setClickable(true);
+                market_time_ll6.setClickable(true);
+                if (market_time_rb1.isChecked() == true) {
+                    NewlyIncreased.setTag("0");
+                    type1 = "0";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDataStatistics();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb2.isChecked() == true) {
+                    NewlyIncreased.setTag("1");
+                    type1 = "1";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDataStatistics();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb3.isChecked() == true) {
+                    NewlyIncreased.setTag("2");
+                    type1 = "2";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDataStatistics();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb4.isChecked() == true) {
+                    type1 = "3";
+                    NewlyIncreased.setTag("3");
+                    market_time_ll10.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.project_attache_ll3://总体
+                tag = "2";
+                project_attache_ll2.setVisibility(View.INVISIBLE);
+                project_attache_ll4.setVisibility(View.VISIBLE);
+                market_time_ll1.setClickable(false);
+                market_time_ll2.setClickable(false);
+                market_time_ll3.setClickable(false);
+                market_time_ll4.setClickable(false);
+                market_time_ll5.setClickable(false);
+                market_time_ll6.setClickable(false);
+                if (market_time_rb1.isChecked() == true) {
+                    NewlyIncreased.setTag("0");
+                    type1 = "0";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDataStatistics();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb2.isChecked() == true) {
+                    NewlyIncreased.setTag("1");
+                    type1 = "1";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDataStatistics();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb3.isChecked() == true) {
+                    NewlyIncreased.setTag("2");
+                    type1 = "2";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDataStatistics();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb4.isChecked() == true) {
+                    type1 = "3";
+                    NewlyIncreased.setTag("3");
+                    market_time_ll10.setVisibility(View.VISIBLE);
+                }
+                break;
         }
 
     }
@@ -617,7 +703,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(),FinalContents.getUserID(),type1,startDate1,endDate1);
+        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(),FinalContents.getUserID(),type1,startDate1,endDate1,tag);
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataStatisticsBean>() {

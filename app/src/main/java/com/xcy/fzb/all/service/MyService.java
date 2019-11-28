@@ -94,7 +94,7 @@ public interface MyService {
 
     //专案端详情财务数据
     @POST("specialSelect/operationSingle?")
-    Observable<FinanceBean> getFinanceList(@Query("userId") String userId, @Query("projectId") String projectId, @Query("beforeDate") String beforeDate, @Query("afterDate") String afterDate, @Query("type") String type);
+    Observable<FinanceBean> getFinanceList(@Query("userId") String userId, @Query("projectId") String projectId, @Query("beforeDate") String beforeDate, @Query("afterDate") String afterDate, @Query("type") String type, @Query("tag") String tag);
 
     //专案端详情趋势图数据
     @POST("specialSelect/businessTrendSingle?")
@@ -403,6 +403,10 @@ public interface MyService {
                                            @Query("contactsPhone1") String contactsPhone1, @Query("contacts2") String contacts2, @Query("contactsPhone2") String contactsPhone2,
                                            @Query("contacts3") String contacts3, @Query("contactsPhone3") String contactsPhone3, @Query("userId") String userId);
 
+    //导入通讯录
+    @POST("commonUpdate/customerImport")
+    Observable<AddPhoneBean> getCustomerImport(@Query("jsonStr") String jsonStr, @Query("userId") String userId);
+
     //客户列表
     @POST("commonSelect/customerList")
     Observable<ClientBean> getClient(@Query("searchName") String searchName, @Query("userId") String userId, @Query("pageSize") String pageSize);
@@ -591,7 +595,7 @@ public interface MyService {
 
     //圈层端我的团队 数据统计
     @POST("layersSelect/dataStatistics")
-    Observable<DataStatisticsBean> getDataStatistics(@Query("userId") String userId, @Query("agentId") String agentId, @Query("type") String type, @Query("startDate") String startDate, @Query("endDate") String endDate);
+    Observable<DataStatisticsBean> getDataStatistics(@Query("userId") String userId, @Query("agentId") String agentId, @Query("type") String type, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("tag") String tag);
 
     //圈层端我的团队 成交TOP5单
     @POST("layersSelect/dailyTurnover")

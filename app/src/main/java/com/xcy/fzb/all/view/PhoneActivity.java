@@ -16,13 +16,14 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ContactsAdapter;
 import com.xcy.fzb.all.adapter.PhoneAdapter;
 import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.all.modle.AddClientBean;
+import com.xcy.fzb.all.modle.AddPhoneBean;
 import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.modle.PhoneDto;
 import com.xcy.fzb.all.persente.ContactModel;
@@ -61,6 +62,8 @@ public class PhoneActivity extends AllActivity{
     private List<ClientBean.DataBean> data;
     private ContactsAdapter mAdapter;
     private boolean aBoolean = true;
+    private List<PhoneDto> jsonList = new ArrayList<>();
+    private String fieldbeanlist = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +102,18 @@ public class PhoneActivity extends AllActivity{
                 phoneDtos = phoneAdapter.getList();
                 for (int i = 0;i < phoneDtos.size();i++){
                     if (phoneDtos.get(i).isStatus()) {
-                        initadd(phoneDtos.get(i).getName(),phoneDtos.get(i).getTelPhone());
+                        //  TODO    导入通讯录
+                        jsonList.add(phoneDtos.get(i));
+                        Log.i("每次","添加显示的数据"+phoneDtos.get(i).getName());
+                    }
+                    Log.i("每次","显示的数据"+phoneDtos.get(i).getName());
+                    if (i == phoneDtos.size()-1) {
+                        Log.i("每次","最后显示的数据"+phoneDtos.get(i).getName());
+                        if (jsonList.size() != 0) {
+                            initadd();
+                        }else {
+                            finish();
+                        }
                     }
                 }
             }
@@ -219,30 +233,33 @@ public class PhoneActivity extends AllActivity{
         });
     }
 
-    private void initadd(String name,String phone){
+    private void initadd(){
+        Gson gson = new Gson();
+        fieldbeanlist = gson.toJson(jsonList);
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<AddClientBean> addClient = fzbInterface.getAddClient(name,"","本人手机",phone,"","","","",FinalContents.getUserID());
+        Observable<AddPhoneBean> addClient = fzbInterface.getCustomerImport(fieldbeanlist,FinalContents.getUserID());
         addClient.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<AddClientBean>() {
+                .subscribe(new Observer<AddPhoneBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(AddClientBean addClientBean) {
-                        String msg = addClientBean.getMsg();
-                        if (msg.equals("成功")) {
-                            Toast.makeText(PhoneActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
+                    public void onNext(AddPhoneBean addPhoneBean) {
+                        String msg = addPhoneBean.getData().getMessage();
+                        if (msg.equals("添加成功")) {
+                            Toast.makeText(PhoneActivity.this, addPhoneBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
-                            Toast.makeText(PhoneActivity.this, addClientBean.getMsg(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PhoneActivity.this, addPhoneBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
 

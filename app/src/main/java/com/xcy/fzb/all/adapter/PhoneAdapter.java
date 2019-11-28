@@ -97,8 +97,10 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ViewHolder>{
 
         if (all.equals("1")) {
             holder.phone_CheckBox.setChecked(true);
+            list.get(position).setStatus(true);
         } else if (all.equals("2")) {
             holder.phone_CheckBox.setChecked(false);
+            list.get(position).setStatus(false);
         }
     }
 

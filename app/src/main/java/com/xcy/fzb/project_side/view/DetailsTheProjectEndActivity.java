@@ -165,6 +165,13 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private int dayOfMonth;
     String type = "";
 
+    LinearLayout project_attache_ll1;
+    LinearLayout project_attache_ll2;
+    LinearLayout project_attache_ll3;
+    LinearLayout project_attache_ll4;
+    String tag = "1";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,6 +209,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private void initView() {
         FinalContents.setDetails("项目详情");
         StatusBar.makeStatusBarTransparent(this);
+
+        project_attache_ll1 = findViewById(R.id.project_attache_ll1);
+        project_attache_ll2 = findViewById(R.id.project_attache_ll2);
+        project_attache_ll3 = findViewById(R.id.project_attache_ll3);
+        project_attache_ll4 = findViewById(R.id.project_attache_ll4);
+
+        project_attache_ll1.setOnClickListener(this);
+        project_attache_ll3.setOnClickListener(this);
 
         details_the_project_end_img = findViewById(R.id.details_the_project_end_img);
         details_the_project_end_return = findViewById(R.id.details_the_project_end_return);
@@ -608,7 +623,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<FinanceBean> userMessage = fzbInterface.getFinanceList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate1, afterDate1, type1);
+        Observable<FinanceBean> userMessage = fzbInterface.getFinanceList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate1, afterDate1, type1,tag);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -981,7 +996,82 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 intent = new Intent(DetailsTheProjectEndActivity.this, CommissionTheProjectEndActivity.class);
                 startActivity(intent);
                 break;
-
+            case R.id.project_attache_ll1://实时
+                tag = "1";
+                project_attache_ll2.setVisibility(View.VISIBLE);
+                project_attache_ll4.setVisibility(View.INVISIBLE);
+                details_the_project_end_ll1.setClickable(true);
+                details_the_project_end_ll2.setClickable(true);
+                details_the_project_end_ll3.setClickable(true);
+                details_the_project_end_ll5.setClickable(true);
+                details_the_project_end_ll6.setClickable(true);
+                details_the_project_end_ll7.setClickable(true);
+                details_the_project_end_ll8.setClickable(true);
+                if (details_the_project_end_rb1.isChecked() == true) {
+                    beforeDate1 = "";
+                    afterDate1 = "";
+                    type1 = "0";
+                    NewlyIncreased.setTag("0");
+                    initViewData2();
+                    details_the_project_end_time_ll1.setVisibility(View.GONE);
+                } else if (details_the_project_end_rb2.isChecked() == true) {
+                    beforeDate1 = "";
+                    afterDate1 = "";
+                    type1 = "1";
+                    NewlyIncreased.setTag("1");
+                    initViewData2();
+                    details_the_project_end_time_ll1.setVisibility(View.GONE);
+                } else if (details_the_project_end_rb3.isChecked() == true) {
+                    beforeDate1 = "";
+                    afterDate1 = "";
+                    type1 = "2";
+                    NewlyIncreased.setTag("2");
+                    initViewData2();
+                    details_the_project_end_time_ll1.setVisibility(View.GONE);
+                } else if (details_the_project_end_rb4.isChecked() == true) {
+                    type1 = "3";
+                    NewlyIncreased.setTag("3");
+                    details_the_project_end_time_ll1.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.project_attache_ll3://总体
+                tag = "2";
+                project_attache_ll2.setVisibility(View.INVISIBLE);
+                project_attache_ll4.setVisibility(View.VISIBLE);
+                details_the_project_end_ll1.setClickable(true);
+                details_the_project_end_ll2.setClickable(true);
+                details_the_project_end_ll3.setClickable(true);
+                details_the_project_end_ll5.setClickable(true);
+                details_the_project_end_ll6.setClickable(true);
+                details_the_project_end_ll7.setClickable(true);
+                details_the_project_end_ll8.setClickable(true);
+                if (details_the_project_end_rb1.isChecked() == true) {
+                    beforeDate1 = "";
+                    afterDate1 = "";
+                    type1 = "0";
+                    NewlyIncreased.setTag("0");
+                    initViewData2();
+                    details_the_project_end_time_ll1.setVisibility(View.GONE);
+                } else if (details_the_project_end_rb2.isChecked() == true) {
+                    beforeDate1 = "";
+                    afterDate1 = "";
+                    type1 = "1";
+                    NewlyIncreased.setTag("1");
+                    initViewData2();
+                    details_the_project_end_time_ll1.setVisibility(View.GONE);
+                } else if (details_the_project_end_rb3.isChecked() == true) {
+                    beforeDate1 = "";
+                    afterDate1 = "";
+                    type1 = "2";
+                    NewlyIncreased.setTag("2");
+                    initViewData2();
+                    details_the_project_end_time_ll1.setVisibility(View.GONE);
+                } else if (details_the_project_end_rb4.isChecked() == true) {
+                    type1 = "3";
+                    NewlyIncreased.setTag("3");
+                    details_the_project_end_time_ll1.setVisibility(View.VISIBLE);
+                }
+                break;
         }
     }
 

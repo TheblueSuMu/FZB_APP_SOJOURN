@@ -85,6 +85,9 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     LinearLayout market_time_ll15;
     LinearLayout market_time_ll16;
 
+    LinearLayout team_ll13_1;
+    LinearLayout team_ll14_1;
+
     TextView market_time_tv1;
     TextView market_time_tv2;
     TextView market_time_tv3;
@@ -99,6 +102,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     TextView market_time_tv12;
     TextView market_time_tv13;
     TextView market_time_tv14;
+
+    TextView team_tv12_1;
 
     TextView market_time_time_tv1;
     TextView market_time_time_tv2;
@@ -144,7 +149,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     String startDate2 = "";
     String endDate2 = "";
 
-    String state = "2";
+    String state = "1";
 
     String type3 = "0";
     String startDate3 = "";
@@ -164,7 +169,11 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     private MyTeam2Bean.DataBean data;
     private ScrollView team_scroll;
     String type = "";
-
+    LinearLayout project_attache_ll1;
+    LinearLayout project_attache_ll2;
+    LinearLayout project_attache_ll3;
+    LinearLayout project_attache_ll4;
+    String tag = "1";
 
     public TeamFragment() {
         // Required empty public constructor
@@ -189,6 +198,13 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
 
         StatusBar.makeStatusBarTransparent(getActivity());
 
+        project_attache_ll1 = getActivity().findViewById(R.id.project_attache_ll1);
+        project_attache_ll2 = getActivity().findViewById(R.id.project_attache_ll2);
+        project_attache_ll3 = getActivity().findViewById(R.id.project_attache_ll3);
+        project_attache_ll4 = getActivity().findViewById(R.id.project_attache_ll4);
+
+        project_attache_ll1.setOnClickListener(this);
+        project_attache_ll3.setOnClickListener(this);
 
         team_scroll = getActivity().findViewById(R.id.team_scroll);
         team_scroll.smoothScrollTo(0,20);
@@ -266,6 +282,9 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
         market_time_ll15 = getActivity().findViewById(R.id.team_ll15);
         market_time_ll16 = getActivity().findViewById(R.id.team_ll16);
 
+        team_ll13_1 = getActivity().findViewById(R.id.team_ll13_1);
+        team_ll14_1 = getActivity().findViewById(R.id.team_ll14_1);
+
 //        market_time_tv1 = getActivity().findViewById(R.id.team_tv1);
         market_time_tv2 = getActivity().findViewById(R.id.team_tv2);
         market_time_tv3 = getActivity().findViewById(R.id.team_tv3);
@@ -280,6 +299,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
         market_time_tv12 = getActivity().findViewById(R.id.team_tv12);
         market_time_tv13 = getActivity().findViewById(R.id.team_tv13);
 //        market_time_tv14 = getActivity().findViewById(R.id.team_tv14);
+
+        team_tv12_1 = getActivity().findViewById(R.id.team_tv12_1);
 
         market_time_time_tv1 = getActivity().findViewById(R.id.team_time_tv1);
         market_time_time_tv2 = getActivity().findViewById(R.id.team_time_tv2);
@@ -354,6 +375,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
         market_time_time_tv4.setOnClickListener(this);
         market_time_time_tv5.setOnClickListener(this);
         market_time_time_tv6.setOnClickListener(this);
+
+        team_ll13_1.setOnClickListener(this);
 
         market_time_rb1.setOnClickListener(this);
         market_time_rb2.setOnClickListener(this);
@@ -479,10 +502,24 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
                 startActivity(intent);
                 break;
+//            TODO 团队长（下）
+            case R.id.team_ll13_1:
+                team_ll14_1.setVisibility(View.VISIBLE);
+                market_time_ll14.setVisibility(View.GONE);
+                market_time_ll16.setVisibility(View.GONE);
+                team_tv12_1.setTextColor(Color.parseColor("#334485"));
+                market_time_tv12.setTextColor(Color.parseColor("#333333"));
+                market_time_tv13.setTextColor(Color.parseColor("#333333"));
+                state = "1";
+                initDailyTurnover();
+                break;
+
 //            TODO 销售（下）
             case R.id.team_ll13:
+                team_ll14_1.setVisibility(View.GONE);
                 market_time_ll14.setVisibility(View.VISIBLE);
                 market_time_ll16.setVisibility(View.GONE);
+                team_tv12_1.setTextColor(Color.parseColor("#333333"));
                 market_time_tv12.setTextColor(Color.parseColor("#334485"));
                 market_time_tv13.setTextColor(Color.parseColor("#333333"));
                 state = "2";
@@ -490,8 +527,10 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 break;
 //            TODO 顾问（下）
             case R.id.team_ll15:
+                team_ll14_1.setVisibility(View.GONE);
                 market_time_ll14.setVisibility(View.GONE);
                 market_time_ll16.setVisibility(View.VISIBLE);
+                team_tv12_1.setTextColor(Color.parseColor("#333333"));
                 market_time_tv13.setTextColor(Color.parseColor("#334485"));
                 market_time_tv12.setTextColor(Color.parseColor("#333333"));
                 state = "3";
@@ -703,20 +742,94 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 market_time_ll12.setVisibility(View.VISIBLE);
                 type3 = "3";
                 break;
-
+            case R.id.project_attache_ll1://实时
+                tag = "1";
+                project_attache_ll2.setVisibility(View.VISIBLE);
+                project_attache_ll4.setVisibility(View.INVISIBLE);
+                market_time_ll1.setClickable(true);
+                market_time_ll2.setClickable(true);
+                market_time_ll3.setClickable(true);
+                market_time_ll4.setClickable(true);
+                market_time_ll5.setClickable(true);
+                market_time_ll6.setClickable(true);
+                if (market_time_rb1.isChecked() == true) {
+                    NewlyIncreased.setTag("0");
+                    type1 = "0";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDailyTurnover();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb2.isChecked() == true) {
+                    NewlyIncreased.setTag("1");
+                    type1 = "1";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDailyTurnover();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb3.isChecked() == true) {
+                    NewlyIncreased.setTag("2");
+                    type1 = "2";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDailyTurnover();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb4.isChecked() == true) {
+                    type1 = "3";
+                    NewlyIncreased.setTag("3");
+                    market_time_ll10.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.project_attache_ll3://总体
+                tag = "2";
+                project_attache_ll2.setVisibility(View.INVISIBLE);
+                project_attache_ll4.setVisibility(View.VISIBLE);
+                market_time_ll1.setClickable(false);
+                market_time_ll2.setClickable(false);
+                market_time_ll3.setClickable(false);
+                market_time_ll4.setClickable(false);
+                market_time_ll5.setClickable(false);
+                market_time_ll6.setClickable(false);
+                if (market_time_rb1.isChecked() == true) {
+                    NewlyIncreased.setTag("0");
+                    type1 = "0";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDailyTurnover();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb2.isChecked() == true) {
+                    NewlyIncreased.setTag("1");
+                    type1 = "1";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDailyTurnover();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb3.isChecked() == true) {
+                    NewlyIncreased.setTag("2");
+                    type1 = "2";
+                    startDate1 = "";
+                    endDate1 = "";
+                    initDailyTurnover();
+                    market_time_ll10.setVisibility(View.GONE);
+                } else if (market_time_rb4.isChecked() == true) {
+                    type1 = "3";
+                    NewlyIncreased.setTag("3");
+                    market_time_ll10.setVisibility(View.VISIBLE);
+                }
+                break;
         }
 
     }
 
     // TODO 数据统计
     private void initDataStatistics() {
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(), FinalContents.getUserID(), type1, startDate1, endDate1);
+        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(), FinalContents.getUserID(), type1, startDate1, endDate1,tag);
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataStatisticsBean>() {

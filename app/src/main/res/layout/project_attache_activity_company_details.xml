@@ -319,7 +319,7 @@
                                     android:layout_height="3dp"
                                     android:layout_marginTop="4dp"
                                     android:background="@drawable/project_attache_s"
-                                    android:orientation="horizontal"></LinearLayout>
+                                    android:orientation="horizontal"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -344,7 +344,7 @@
                                     android:layout_marginTop="4dp"
                                     android:background="@drawable/project_attache_s"
                                     android:orientation="horizontal"
-                                    android:visibility="invisible"></LinearLayout>
+                                    android:visibility="invisible"/>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -355,7 +355,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="20dp"
                             android:layout_marginRight="15dp"
-                            android:background="#EEEEED"></LinearLayout>
+                            android:background="#EEEEED"/>
 
                         <!--TODO 我的项目-->
                         <LinearLayout

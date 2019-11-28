@@ -125,6 +125,14 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private LinearLayout sales_details_details_linear1;
     private ImageView sales_details_details_access;
 
+    LinearLayout project_attache_ll1;
+    LinearLayout project_attache_ll2;
+    LinearLayout project_attache_ll3;
+    LinearLayout project_attache_ll4;
+
+    String tag = "1";
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,6 +172,14 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_rv = findViewById(R.id.sales_details_details_rv);
         sales_details_details_linear1 = findViewById(R.id.sales_details_details_linear1);
         sales_details_details_access = findViewById(R.id.sales_details_details_access);
+
+        project_attache_ll1 = findViewById(R.id.project_attache_ll1);
+        project_attache_ll2 = findViewById(R.id.project_attache_ll2);
+        project_attache_ll3 = findViewById(R.id.project_attache_ll3);
+        project_attache_ll4 = findViewById(R.id.project_attache_ll4);
+
+        project_attache_ll1.setOnClickListener(this);
+        project_attache_ll3.setOnClickListener(this);
 
         //      TODO    城市版
 
@@ -729,6 +745,83 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
 
                 }
                 break;
+            case R.id.project_attache_ll1://实时
+                tag = "1";
+                project_attache_ll2.setVisibility(View.VISIBLE);
+                project_attache_ll4.setVisibility(View.INVISIBLE);
+                sales_details_details_ll2.setClickable(true);
+                sales_details_details_ll3.setClickable(true);
+                sales_details_details_ll4.setClickable(true);
+                sales_details_details_ll5.setClickable(true);
+                sales_details_details_ll6.setClickable(true);
+                sales_details_details_ll7.setClickable(true);
+                if (sales_details_details_rb1.isChecked() == true) {
+                    type = "0";
+                    startTime = "";
+                    endTime = "";
+                    initDataStatistics();
+                    NewlyIncreased.setTag("0");
+                    sales_details_details_ll1.setVisibility(View.GONE);
+                } else if (sales_details_details_rb2.isChecked() == true) {
+                    type = "1";
+                    startTime = "";
+                    endTime = "";
+                    initDataStatistics();
+                    NewlyIncreased.setTag("1");
+                    sales_details_details_ll1.setVisibility(View.GONE);
+                } else if (sales_details_details_rb3.isChecked() == true) {
+                    type = "2";
+                    startTime = "";
+                    endTime = "";
+                    initDataStatistics();
+                    NewlyIncreased.setTag("2");
+                    sales_details_details_ll1.setVisibility(View.GONE);
+                } else if (sales_details_details_rb4.isChecked() == true) {
+                    initDate();
+                    type = "3";
+                    initDataStatistics();
+                    NewlyIncreased.setTag("3");
+                    sales_details_details_ll1.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.project_attache_ll3://总体
+                tag = "2";
+                project_attache_ll2.setVisibility(View.INVISIBLE);
+                project_attache_ll4.setVisibility(View.VISIBLE);
+                sales_details_details_ll2.setClickable(false);
+                sales_details_details_ll3.setClickable(false);
+                sales_details_details_ll4.setClickable(false);
+                sales_details_details_ll5.setClickable(false);
+                sales_details_details_ll6.setClickable(false);
+                sales_details_details_ll7.setClickable(false);
+                if (sales_details_details_rb1.isChecked() == true) {
+                    type = "0";
+                    startTime = "";
+                    endTime = "";
+                    initDataStatistics();
+                    NewlyIncreased.setTag("0");
+                    sales_details_details_ll1.setVisibility(View.GONE);
+                } else if (sales_details_details_rb2.isChecked() == true) {
+                    type = "1";
+                    startTime = "";
+                    endTime = "";
+                    initDataStatistics();
+                    NewlyIncreased.setTag("1");
+                    sales_details_details_ll1.setVisibility(View.GONE);
+                } else if (sales_details_details_rb3.isChecked() == true) {
+                    type = "2";
+                    startTime = "";
+                    endTime = "";
+                    initDataStatistics();
+                    NewlyIncreased.setTag("2");
+                    sales_details_details_ll1.setVisibility(View.GONE);
+                } else if (sales_details_details_rb4.isChecked() == true) {
+                    initDate();
+                    type = "3";
+                    NewlyIncreased.setTag("3");
+                    sales_details_details_ll1.setVisibility(View.VISIBLE);
+                }
+                break;
         }
     }
 
@@ -740,7 +833,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(), FinalContents.getAgentId(), type, startTime, endTime);
+        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(), FinalContents.getAgentId(), type, startTime, endTime,tag);
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataStatisticsBean>() {

@@ -16,6 +16,9 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
@@ -32,10 +35,15 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
+import com.xcy.fzb.all.view.MyClientActivity;
 import com.xcy.fzb.all.view.MyClientAddActivity;
+import com.xcy.fzb.all.view.PhoneActivity;
 import com.xcy.fzb.captain_team.fragment.Captain_Team_MyClientFragment1;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -387,8 +395,32 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
                 finish();
                 break;
             case R.id.client_add:
-                Intent intent = new Intent(Captain_Team_MyClientActivity.this, MyClientAddActivity.class);
-                startActivity(intent);
+                final List<String> list = new ArrayList<>();
+                list.add("手动添加");
+                list.add("通讯录导入");
+
+                //      监听选中
+                OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_MyClientActivity.this, new OnOptionsSelectListener() {
+                    @Override
+                    public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                        //               返回的分别是三个级别的选中位置
+                        //              展示选中数据
+                        if (list.get(options1).equals("手动添加")) {
+                            Intent intent = new Intent(Captain_Team_MyClientActivity.this, MyClientAddActivity.class);
+                            startActivity(intent);
+                        }else if (list.get(options1).equals("通讯录导入")){
+                            Intent intent = new Intent(Captain_Team_MyClientActivity.this, PhoneActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                })
+                        .setSelectOptions(0)//设置选择第一个
+                        .setOutSideCancelable(false)//点击背的地方不消失
+                        .build();//创建
+                //      把数据绑定到控件上面
+                pvOptions.setPicker(list);
+                //      展示
+                pvOptions.show();
                 break;
             case R.id.my_client_ll_1:
                 my_client_tv.setVisibility(View.GONE);
