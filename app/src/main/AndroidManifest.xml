@@ -151,6 +151,8 @@
         <activity android:name=".all.view.SpellingMassTimeActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 拼团-->
         <activity android:name=".all.view.SpellingMassActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 拼团时间-->
         <activity android:name=".all.view.TestMapActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 百度定位返回经纬度-->
+        <activity android:name=".all.view.MapHouseActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan" /> <!-- TODO 地图找房 start -->
+
 
         <!--TODO 可能会修改区域 start-->
         <activity android:name=".all.view.ReviewTheSuccessActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 公用 项目进度-->
@@ -219,6 +221,8 @@
         <activity android:name=".project_attache.view.AddStoreActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专员 添加门店-->
         <activity android:name=".project_attache.view.ContentActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专员 添加-->
         <activity android:name=".project_attache.view.StoreDetailsActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专员 公司详情-->
+        <activity android:name=".project_attache.view.ClockStoresActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan" /> <!-- TODO 门店打卡 start -->
+        <activity android:name=".project_attache.view.PunchingCardRecordActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity><!-- TODO 打卡记录 start -->
 
         <!--TODO 圈层 顾问-->
         <activity android:name=".captain_counselor.view.Captain_Counselor_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 顾问 主页-->

@@ -1,19 +1,5 @@
 package com.xcy.fzb.all.view;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import co.lujun.androidtagview.ColorFactory;
-import co.lujun.androidtagview.TagContainerLayout;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -35,6 +21,11 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -45,7 +36,6 @@ import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.route.BaiduMapRoutePlan;
@@ -58,21 +48,27 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.StoreListBean;
 import com.xcy.fzb.all.modle.CityBean;
 import com.xcy.fzb.all.modle.HotBean;
-import com.xcy.fzb.all.persente.MyClientName;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.project_attache.adapter.ClusterItem;
 import com.xcy.fzb.project_attache.adapter.ClusterManager;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import co.lujun.androidtagview.ColorFactory;
+import co.lujun.androidtagview.TagContainerLayout;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MapHouseActivity extends AppCompatActivity implements View.OnClickListener, BaiduMap.OnMapLoadedCallback {
 
@@ -209,27 +205,45 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                             //提示用户输入内容再搜索
                             Toast.makeText(MapHouseActivity.this, "输入框为空，请输入内容再进行查找", Toast.LENGTH_SHORT).show();
                         } else {
-                            if (ifMG == 0) {//门店
-                                for (int p = 0; p < rows.size(); ++p) {
-                                    if (s.equals(rows.get(p).getStoreName())) {
-                                        StringBuffer stringBuffer = new StringBuffer();
-                                        StringBuffer append = stringBuffer.append(rows.get(p).getLocation());
-                                        for (int j = 0; j < append.length(); ++j) {
-                                            if (append.substring(j, j + 1).equals(",")) {
-                                                //lo 后
-                                                ssv = Double.parseDouble(append.substring(0, j));
-                                                //la 前
-                                                ssvs = Double.parseDouble(append.substring(j + 1));
-                                                ifKeyListener = 1;
+                            if (FinalContents.getIfCity().equals("")) {
+                                if (ifMG == 0) {//门店
+                                    for (int p = 0; p < rows.size(); ++p) {
+                                        if (s.equals(rows.get(p).getStoreName())) {
+                                            StringBuffer stringBuffer = new StringBuffer();
+                                            StringBuffer append = stringBuffer.append(rows.get(p).getLocation());
+                                            for (int j = 0; j < append.length(); ++j) {
+                                                if (append.substring(j, j + 1).equals(",")) {
+                                                    //lo 后
+                                                    ssv = Double.parseDouble(append.substring(0, j));
+                                                    //la 前
+                                                    ssvs = Double.parseDouble(append.substring(j + 1));
+                                                    ifKeyListener = 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else if (ifMG == 1) {//公司
+                                    for (int p = 0; p < rows1.size(); ++p) {
+                                        if (s.equals(rows1.get(p).getCompanyName())) {
+                                            StringBuffer stringBuffer = new StringBuffer();
+                                            StringBuffer append = stringBuffer.append(rows1.get(p).getComLocation());
+                                            for (int j = 0; j < append.length(); ++j) {
+                                                if (append.substring(j, j + 1).equals(",")) {
+                                                    ssv = Double.parseDouble(append.substring(0, j));//lo 后
+
+                                                    ssvs = Double.parseDouble(append.substring(j + 1));//la 前
+
+                                                    ifKeyListener = 1;
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            } else if (ifMG == 1) {//公司
-                                for (int p = 0; p < rows1.size(); ++p) {
-                                    if (s.equals(rows1.get(p).getCompanyName())) {
+                            } else {
+                                for (int p = 0; p < rows2.size(); ++p) {
+                                    if (s.equals(rows2.get(p).getProjectName())) {
                                         StringBuffer stringBuffer = new StringBuffer();
-                                        StringBuffer append = stringBuffer.append(rows1.get(p).getComLocation());
+                                        StringBuffer append = stringBuffer.append(rows2.get(p).getLocation());
                                         for (int j = 0; j < append.length(); ++j) {
                                             if (append.substring(j, j + 1).equals(",")) {
                                                 ssv = Double.parseDouble(append.substring(0, j));//lo 后
@@ -257,7 +271,9 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         // 开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
         // 定位初始化
-        mLocClient = new LocationClient(this);
+        mLocClient = new
+
+                LocationClient(this);
         mLocClient.registerLocationListener(myListener);
         LocationClientOption option = new LocationClientOption();
         option.setOpenGps(true); // 打开gps
@@ -267,7 +283,9 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         mLocClient.setLocOption(option);
         mLocClient.start();
 
-        if (FinalContents.getIfCity().equals("")) {
+        if (FinalContents.getIfCity().
+
+                equals("")) {
             if (ifMG == 0) {
                 initMapData();//门店数据
             } else if (ifMG == 1) {
@@ -299,7 +317,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getIfCity(), "", "", "3", "", "", "", "", "", "", "", "", "1000");
+        Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getIfCity(), "", "", "3", "", "", "", "", "", "", "", "", "", "", "1000");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HotBean>() {

@@ -1,6 +1,7 @@
 package com.xcy.fzb.all.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -67,7 +68,9 @@ public class CityWideActivity extends AllActivity {
         city_wide_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                FinalContents.setIfCity(FinalContents.getCityID());
+                Intent intent_overseas = new Intent(view.getContext(), MapHouseActivity.class);
+                startActivity(intent_overseas);
             }
         });     //      TODO    地图定位
 

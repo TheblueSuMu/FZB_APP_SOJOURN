@@ -192,7 +192,7 @@
                         <TextView
                             android:layout_margin="10dp"
                             android:layout_weight="1"
-                            android:text="我的客户"
+                            android:text="业务信息"
                             android:textSize="12sp"
                             android:textColor="#111"
                             android:gravity="center"

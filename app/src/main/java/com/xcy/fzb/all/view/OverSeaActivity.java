@@ -315,8 +315,9 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         oversea_map_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(OverSeaActivity.this,CityWideActivity.class);
-//                startActivity(intent);
+                FinalContents.setIfCity(FinalContents.getCityID());
+                Intent intent_overseas = new Intent(view.getContext(), MapHouseActivity.class);
+                startActivity(intent_overseas);
             }
         });
 

@@ -195,7 +195,7 @@
                             android:id="@+id/home_item_text4"
                             android:layout_margin="10dp"
                             android:layout_weight="1"
-                            android:text="团队佣金"
+                            android:text="业务信息"
                             android:textSize="12sp"
                             android:textColor="#111"
                             android:gravity="center"

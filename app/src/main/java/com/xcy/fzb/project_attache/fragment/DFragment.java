@@ -563,6 +563,9 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
                         EventBus.getDefault().post(new Fragnemt_SS(dBean.getData().getStoreCount() + "", dBean.getData().getPeopleCount() + "", "", "", ""));
 
+                        NewlyIncreased.setStoreCount(dBean.getData().getStoreCount()+"");
+                        NewlyIncreased.setPeopleCount(dBean.getData().getPeopleCount()+"");
+
                         if (FinalContents.getFragmentSS().equals("0")) {
                             mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
                             FinalContents.setFragmentSS("1");

@@ -183,6 +183,16 @@ public class FinalContents {
 
     static String ClientPhone = "";
 
+    static String IfCity = "";
+
+    public static String getIfCity() {
+        return IfCity;
+    }
+
+    public static void setIfCity(String ifCity) {
+        IfCity = ifCity;
+    }
+
     public static String getClientPhone() {
         return ClientPhone;
     }
