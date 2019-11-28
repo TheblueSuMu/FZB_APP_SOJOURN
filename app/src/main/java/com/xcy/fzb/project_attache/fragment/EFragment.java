@@ -313,9 +313,11 @@ public class EFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+        initMyDataStore();
         if (NewlyIncreased.getUserMessage().equals("5")){
             init();
             NewlyIncreased.setUserMessage("");
         }
+
     }
 }

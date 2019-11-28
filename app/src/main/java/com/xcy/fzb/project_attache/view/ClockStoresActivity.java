@@ -362,11 +362,16 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                         data = recordBean.getData();
                         Log.i("MyCL", "门店打卡记录数据：" + data.getTotal());
                         Log.i("MyCL", "门店打卡记录数据：" + data.getRows().toString());
-
                         adapter1.setRows(data.getRows());
                         store_details_rv.setAdapter(adapter1);
+                        if(data.getRows().size() == 2){
+                            store_details_check.setVisibility(View.GONE);
+                            store_details_check_S.setVisibility(View.GONE);
+                            confirm_the_visit_gv.setVisibility(View.GONE);
+                        }else {
+                            initDataS();
+                        }
 
-                        initDataS();
                     }
 
                     @Override
