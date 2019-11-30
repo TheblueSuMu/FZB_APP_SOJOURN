@@ -43,11 +43,13 @@ import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.CommissionRecycler;
+import com.xcy.fzb.all.adapter.DetailsAdapter;
 import com.xcy.fzb.all.adapter.FamilyRecycler;
 import com.xcy.fzb.all.adapter.ProjectDetailsVillaAdapter;
 import com.xcy.fzb.all.adapter.ReportAdapter;
 import com.xcy.fzb.all.adapter.TalktoolRecycler;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.modle.BuildingBean;
 import com.xcy.fzb.all.modle.CollectBean;
 import com.xcy.fzb.all.modle.HouseBean;
 import com.xcy.fzb.all.modle.ProjectDetailsBean;
@@ -58,6 +60,7 @@ import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.DetailsData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,7 +76,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProjectDetails extends AllActivity implements View.OnClickListener {
+public class ProjectDetails extends AllActivity implements View.OnClickListener, DetailsAdapter.DetailsItem {
     private ImageView backimg;
     private LinearLayout back;
     private ImageView building;
@@ -134,6 +137,8 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
     private View guowai2;
 
     private TextView share;
+    private RecyclerView details_rv;
+    private TextView details_tv_S;
     private TextView project_details_group_booking;
 
     private ProjectDetailsBean.DataBean projectDetailsBeanData;
@@ -161,6 +166,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
     private FamilyRecycler recyclerAdapter;
     private LinearLayout project_details_layout1;
     private TextView project_details_layout1_checkbox;
+    private TextView project_details_family_tvs;
     private View project_details_layout1_view;
     private LinearLayout project_details_layout2;
     private TextView project_details_layout2_checkbox;
@@ -177,6 +183,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
     private TabLayout project_details_tab_layout;
 
     private List<String> indexList;
+    int num = 0;
+
+    List<DetailsData> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,17 +215,90 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         }
     }
 
+    //楼栋查看全部信息
+    private void initDetails() {
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        details_rv.setLayoutManager(manager);
+        final DetailsAdapter adapter = new DetailsAdapter();
+        list = new ArrayList<>();
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        final Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<BuildingBean> buildingBean = fzbInterface.getBuildingBean(FinalContents.getUserID(), FinalContents.getProjectID());
+        buildingBean.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BuildingBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BuildingBean buildingBean) {
+                        List<BuildingBean.DataBean> data = buildingBean.getData();
+                        Log.i("MyCL","data:" + data.size());
+                        list.clear();
+                        if (data.size() == 0) {
+                            details_tv_S.setVisibility(View.GONE);
+                            details_rv.setVisibility(View.GONE);
+                        } else if (data.size() == 1) {
+                            details_tv_S.setVisibility(View.VISIBLE);
+                            details_rv.setVisibility(View.VISIBLE);
+                            list.add(new DetailsData(data.get(0).getBuildingName() + "", data.get(0).getElementNumber() + "", data.get(0).getHouseNumber() + "", "1"));
+                            details_tv_S.setText("查看全部" + data.size() + "栋楼信息");
+                            adapter.setList(list);
+                            details_rv.setAdapter(adapter);
+                            adapter.setDetailsItem(ProjectDetails.this);
+                        } else if (data.size() > 1) {
+                            details_tv_S.setVisibility(View.VISIBLE);
+                            details_rv.setVisibility(View.VISIBLE);
+                            list.add(new DetailsData(data.get(0).getBuildingName() + "", data.get(0).getElementNumber() + "", data.get(0).getHouseNumber() + "", "1"));
+                            list.add(new DetailsData(data.get(1).getBuildingName() + "", data.get(1).getElementNumber() + "", data.get(1).getHouseNumber() + "", "2"));
+                            details_tv_S.setText("查看全部" + data.size() + "栋楼信息");
+                            adapter.setList(list);
+                            details_rv.setAdapter(adapter);
+                            adapter.setDetailsItem(ProjectDetails.this);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "楼栋信息错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+        details_rv.setAdapter(adapter);
+
+    }
+
     //命名区域
     private void initfvb() {
 
         StatusBar.makeStatusBarTransparent(this);
 
         project_details_kai = findViewById(R.id.project_details_kai);
+        project_details_family_tvs = findViewById(R.id.project_details_family_tvs);
         project_details_ding = findViewById(R.id.project_details_ding);
         project_details_qt_call = findViewById(R.id.project_details_qt_call);
+        details_rv = findViewById(R.id.details_rv);
+        details_tv_S = findViewById(R.id.details_tv_S);
 
         project_details_kai.setOnClickListener(this);
         project_details_ding.setOnClickListener(this);
+        details_tv_S.setOnClickListener(this);
+        details_rv.setOnClickListener(this);
 
         //  TODO    城市新增
         project_details_discounts_nummer = findViewById(R.id.project_details_discounts_nummer);
@@ -344,6 +426,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         talktool_layout = findViewById(R.id.project_details_talktool_layout);
         project_details_scrollview.setVisibility(View.GONE);
 
+        linear5.setOnClickListener(this);
         back.setOnClickListener(this);
         backimg.setOnClickListener(this);
         more.setOnClickListener(this);
@@ -499,7 +582,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                 pvOptions.show();
             }
         });
-         tabLayout.addTab(tabLayout.newTab().setText("交通出行"), true);
+        tabLayout.addTab(tabLayout.newTab().setText("交通出行"), true);
         tabLayout.addTab(tabLayout.newTab().setText("教育教学"));
         tabLayout.addTab(tabLayout.newTab().setText("医疗健康"));
         tabLayout.addTab(tabLayout.newTab().setText("商场购物"));
@@ -549,6 +632,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                 }
             }
         });
+
+        initDetails();//楼栋查看全部信息
+
     }
 
     //点击事件
@@ -609,7 +695,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                 award.setVisibility(View.VISIBLE);
                 report_rv.setVisibility(View.GONE);
                 commissionRv.setVisibility(View.GONE);
-                Log.i("三合一","点击事件");
+                Log.i("三合一", "点击事件");
                 break;
             case R.id.project_details_layout2:
                 project_details_layout2_checkbox.setTextSize(19);
@@ -628,7 +714,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                 award.setVisibility(View.GONE);
                 report_rv.setVisibility(View.VISIBLE);
                 commissionRv.setVisibility(View.GONE);
-                Log.i("三合一","点击事件");
+                Log.i("三合一", "点击事件");
                 break;
             case R.id.project_details_layout1:
                 project_details_layout1_checkbox.setTextSize(19);
@@ -647,7 +733,20 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                 award.setVisibility(View.GONE);
                 report_rv.setVisibility(View.GONE);
                 commissionRv.setVisibility(View.VISIBLE);
-                Log.i("三合一","点击事件");
+                Log.i("三合一", "点击事件");
+                break;
+            case R.id.details_tv_S://查看全部栋楼信息
+                Intent buildingInformationintent = new Intent(ProjectDetails.this, BuildingInformationActivity.class);
+                buildingInformationintent.putExtra("pic", FinalContents.getImageUrl() + projectDetailsBeanData.getBuildingImg());
+                startActivity(buildingInformationintent);
+                break;
+            case R.id.details_rv://查看全部栋楼信息
+
+                break;
+            case R.id.linear5:
+//                Intent buildingInformationintentS = new Intent(ProjectDetails.this, BuildingInformationActivity.class);
+//                buildingInformationintentS.putExtra("pic", FinalContents.getImageUrl() + projectDetailsBeanData.getBuildingImg());
+//                startActivity(buildingInformationintentS);
                 break;
         }
     }
@@ -756,11 +855,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 //                        if (FinalContents.getZyHome().equals("1")) {
 //                            project_details_group_booking.setVisibility(View.GONE);
 //                        } else {
-                            if (projectDetailsBeanData.getProjectListVo().getIsgroup().equals("1")) {
-                                project_details_group_booking.setVisibility(View.VISIBLE);
-                            } else {
-                                project_details_group_booking.setVisibility(View.GONE);
-                            }
+                        if (projectDetailsBeanData.getProjectListVo().getIsgroup().equals("1")) {
+                            project_details_group_booking.setVisibility(View.VISIBLE);
+                        } else {
+                            project_details_group_booking.setVisibility(View.GONE);
+                        }
 //                        }
 
                         message.setText(projectDetailsBeanData.getMatingInformation().getTraffic());
@@ -807,14 +906,14 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         share.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl()+"/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl()+"/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), ProjectDetails.this);
+                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), ProjectDetails.this);
                             }
                         });
 
                         project_details_share_all.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl()+"/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl()+"/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), ProjectDetails.this);
+                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID(), ProjectDetails.this);
                             }
                         });
 
@@ -822,7 +921,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         if (!projectDetailsBean.getData().getProjectListVo().getSaleDiscounts().equals("")) {
                             linear.setVisibility(View.VISIBLE);
                             project_details_discounts_nummer.setText(projectDetailsBean.getData().getProjectListVo().getSaleDiscounts());
-                        }else {
+                        } else {
                             linear.setVisibility(View.GONE);
                         }
 
@@ -862,7 +961,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         List tags2 = Arrays.asList(ids2.split(","));//根据逗号分隔转化为list
                         if (projectDetailsBeanData.getProjectListVo().getProductFeature().equals("")) {
                             productfeature.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             productfeature.setVisibility(View.VISIBLE);
                             productfeature.setTheme(ColorFactory.NONE);
                             productfeature.setTags(tags2);
@@ -907,18 +1006,16 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         }
 
 
-
-
 //                        if (FinalContents.getIdentity().equals("63")) {
 //                            linear3.setVisibility(View.GONE);
 //                        } else {
-                            if (projectDetailsBeanData.getHousesDynamics().size() == 0) {
-                                linear3.setVisibility(View.GONE);
-                            } else {
-                                linear3.setVisibility(View.VISIBLE);
-                                house_title.setText(projectDetailsBeanData.getHousesDynamics().get(0).getContent());
-                                house_time.setText(projectDetailsBeanData.getHousesDynamics().get(0).getCreateDate());
-                            }
+                        if (projectDetailsBeanData.getHousesDynamics().size() == 0) {
+                            linear3.setVisibility(View.GONE);
+                        } else {
+                            linear3.setVisibility(View.VISIBLE);
+                            house_title.setText(projectDetailsBeanData.getHousesDynamics().get(0).getContent());
+                            house_time.setText(projectDetailsBeanData.getHousesDynamics().get(0).getCreateDate());
+                        }
 //                        }
 
                         //户型信息
@@ -927,20 +1024,23 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                         } else {
                             linear4.setVisibility(View.VISIBLE);
 
-                            for (int i = 0;i < projectDetailsBeanData.getFamilyInfomations().size();i++){
+                            for (int i = 0; i < projectDetailsBeanData.getFamilyInfomations().size(); i++) {
                                 project_details_family_tablayout.addTab(project_details_family_tablayout.newTab().setText(projectDetailsBeanData.getFamilyInfomations().get(i).getKey()));
+                                num = num + projectDetailsBeanData.getFamilyInfomations().get(i).getValue().size();
                             }
+
+                            project_details_family_tvs.setText("户型介绍(" + num + ")");
 
                             project_details_family_tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                                 @Override
                                 public void onTabSelected(TabLayout.Tab tab) {
-                                    for (int i = 0;i < projectDetailsBeanData.getFamilyInfomations().size();i++){
+                                    for (int i = 0; i < projectDetailsBeanData.getFamilyInfomations().size(); i++) {
                                         if (projectDetailsBeanData.getFamilyInfomations().get(i).getKey().equals(tab.getText().toString())) {
                                             LinearLayoutManager layoutManager_family = new LinearLayoutManager(ProjectDetails.this);
                                             layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
                                             family.setLayoutManager(layoutManager_family);
                                             recyclerAdapter = new FamilyRecycler(projectDetailsBeanData.getFamilyInfomations().get(i).getValue());
-                                            Log.i("户型信息", "户型信息"+projectDetailsBeanData.getFamilyInfomations().get(i).getKey()+"::"+tab.getText().toString());
+                                            Log.i("户型信息", "户型信息" + projectDetailsBeanData.getFamilyInfomations().get(i).getKey() + "::" + tab.getText().toString());
                                             Log.i("户型信息", "户型信息走向1");
                                             switch (projectDetailsBeanData.getProjectListVo().getSaleStatus()) {
                                                 case "1":
@@ -980,13 +1080,13 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
 
                                 @Override
                                 public void onTabReselected(TabLayout.Tab tab) {
-                                    for (int i = 0;i < projectDetailsBeanData.getFamilyInfomations().size();i++){
+                                    for (int i = 0; i < projectDetailsBeanData.getFamilyInfomations().size(); i++) {
                                         if (projectDetailsBeanData.getFamilyInfomations().get(i).getKey().equals(tab.getText().toString())) {
                                             LinearLayoutManager layoutManager_family = new LinearLayoutManager(ProjectDetails.this);
                                             layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
                                             family.setLayoutManager(layoutManager_family);
                                             recyclerAdapter = new FamilyRecycler(projectDetailsBeanData.getFamilyInfomations().get(i).getValue());
-                                            Log.i("户型信息", "户型信息"+projectDetailsBeanData.getFamilyInfomations().get(i).getKey()+"::"+tab.getText().toString());
+                                            Log.i("户型信息", "户型信息" + projectDetailsBeanData.getFamilyInfomations().get(i).getKey() + "::" + tab.getText().toString());
                                             Log.i("户型信息", "户型信息走向1");
                                             switch (projectDetailsBeanData.getProjectListVo().getSaleStatus()) {
                                                 case "1":
@@ -1092,14 +1192,14 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                             if (project_details_layout2.getVisibility() == View.GONE) {
                                 if (project_details_layout3.getVisibility() == View.GONE) {
                                     project_details_layout.setVisibility(View.GONE);
-                                }else {
+                                } else {
                                     project_details_layout3_checkbox.setTextSize(19);
                                     tp = project_details_layout3_checkbox.getPaint();
                                     tp.setFakeBoldText(true);
                                     project_details_layout3_view.setVisibility(View.VISIBLE);
                                     award.setVisibility(View.VISIBLE);
                                 }
-                            }else {
+                            } else {
                                 project_details_layout2_checkbox.setTextSize(19);
                                 tp = project_details_layout2_checkbox.getPaint();
                                 tp.setFakeBoldText(true);
@@ -1141,98 +1241,103 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                     public void onNext(HouseBean houseBean) {
                         final HouseBean.DataBean houseDataData = houseBean.getData();
 //
-                        if (houseDataData.getPropertyHouseList().size() == 0) {
+                        if (FinalContents.getProjectType().equals("1")) {
                             linear6.setVisibility(View.GONE);
-                        } else {
+                        } else if (FinalContents.getProjectType().equals("2") || FinalContents.getProjectType().equals("3")) {
                             linear6.setVisibility(View.VISIBLE);
-                            String ids = houseDataData.getPropertyHouseList().get(0).getContent();//从pd里取出字符串
-                            List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
+                            if (houseDataData.getPropertyHouseList().size() == 0) {
+                                linear6.setVisibility(View.GONE);
+                            } else {
+                                linear6.setVisibility(View.VISIBLE);
+                                String ids = houseDataData.getPropertyHouseList().get(0).getContent();//从pd里取出字符串
+                                List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
 
-                            repast_content.setTheme(ColorFactory.NONE);
-                            repast_content.setTags(tags);
-                            if (houseDataData.getPropertyHouseList().size() == 1) {
-                                project_details_linear1.setVisibility(View.VISIBLE);
-                                project_details_linear2.setVisibility(View.GONE);
-                                project_details_linear3.setVisibility(View.GONE);
-                                repast.setText(houseDataData.getPropertyHouseList().get(0).getType());
-                                repast.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
-                                        intent.putExtra("title", houseDataData.getPropertyHouseList().get(0).getType());
-                                        intent.putExtra("time", houseDataData.getPropertyHouseList().get(0).getCreateDate());
-                                        intent.putExtra("content", houseDataData.getPropertyHouseList().get(0).getContent());
-                                        startActivity(intent);
-                                    }
-                                });
-                            } else if (houseDataData.getPropertyHouseList().size() == 2) {
-                                project_details_linear1.setVisibility(View.VISIBLE);
-                                project_details_linear2.setVisibility(View.VISIBLE);
-                                project_details_linear3.setVisibility(View.GONE);
-                                repast.setText(houseDataData.getPropertyHouseList().get(0).getType());
-                                repast.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
-                                        intent.putExtra("title", houseDataData.getPropertyHouseList().get(0).getType());
-                                        intent.putExtra("time", houseDataData.getPropertyHouseList().get(0).getCreateDate());
-                                        intent.putExtra("content", houseDataData.getPropertyHouseList().get(0).getContent());
-                                        startActivity(intent);
-                                    }
-                                });
+                                repast_content.setTheme(ColorFactory.NONE);
+                                repast_content.setTags(tags);
+                                if (houseDataData.getPropertyHouseList().size() == 1) {
+                                    project_details_linear1.setVisibility(View.VISIBLE);
+                                    project_details_linear2.setVisibility(View.GONE);
+                                    project_details_linear3.setVisibility(View.GONE);
+                                    repast.setText(houseDataData.getPropertyHouseList().get(0).getType());
+                                    repast.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
+                                            intent.putExtra("title", houseDataData.getPropertyHouseList().get(0).getType());
+                                            intent.putExtra("time", houseDataData.getPropertyHouseList().get(0).getCreateDate());
+                                            intent.putExtra("content", houseDataData.getPropertyHouseList().get(0).getContent());
+                                            startActivity(intent);
+                                        }
+                                    });
+                                } else if (houseDataData.getPropertyHouseList().size() == 2) {
+                                    project_details_linear1.setVisibility(View.VISIBLE);
+                                    project_details_linear2.setVisibility(View.VISIBLE);
+                                    project_details_linear3.setVisibility(View.GONE);
+                                    repast.setText(houseDataData.getPropertyHouseList().get(0).getType());
+                                    repast.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
+                                            intent.putExtra("title", houseDataData.getPropertyHouseList().get(0).getType());
+                                            intent.putExtra("time", houseDataData.getPropertyHouseList().get(0).getCreateDate());
+                                            intent.putExtra("content", houseDataData.getPropertyHouseList().get(0).getContent());
+                                            startActivity(intent);
+                                        }
+                                    });
 
-                                recuperate.setText(houseDataData.getPropertyHouseList().get(1).getType());
-                                recuperate.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
-                                        intent.putExtra("title", houseDataData.getPropertyHouseList().get(1).getType());
-                                        intent.putExtra("time", houseDataData.getPropertyHouseList().get(1).getCreateDate());
-                                        intent.putExtra("content", houseDataData.getPropertyHouseList().get(1).getContent());
-                                        startActivity(intent);
-                                    }
-                                });
-                                recuperate_content.setText(houseDataData.getPropertyHouseList().get(1).getContent());
-                            } else if (houseDataData.getPropertyHouseList().size() == 3) {
-                                project_details_linear1.setVisibility(View.VISIBLE);
-                                project_details_linear2.setVisibility(View.VISIBLE);
-                                project_details_linear3.setVisibility(View.VISIBLE);
-                                repast.setText(houseDataData.getPropertyHouseList().get(0).getType());
-                                repast.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
-                                        intent.putExtra("title", houseDataData.getPropertyHouseList().get(0).getType());
-                                        intent.putExtra("time", houseDataData.getPropertyHouseList().get(0).getCreateDate());
-                                        intent.putExtra("content", houseDataData.getPropertyHouseList().get(0).getContent());
-                                        startActivity(intent);
-                                    }
-                                });
+                                    recuperate.setText(houseDataData.getPropertyHouseList().get(1).getType());
+                                    recuperate.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
+                                            intent.putExtra("title", houseDataData.getPropertyHouseList().get(1).getType());
+                                            intent.putExtra("time", houseDataData.getPropertyHouseList().get(1).getCreateDate());
+                                            intent.putExtra("content", houseDataData.getPropertyHouseList().get(1).getContent());
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    recuperate_content.setText(houseDataData.getPropertyHouseList().get(1).getContent());
+                                } else if (houseDataData.getPropertyHouseList().size() == 3) {
+                                    project_details_linear1.setVisibility(View.VISIBLE);
+                                    project_details_linear2.setVisibility(View.VISIBLE);
+                                    project_details_linear3.setVisibility(View.VISIBLE);
+                                    repast.setText(houseDataData.getPropertyHouseList().get(0).getType());
+                                    repast.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
+                                            intent.putExtra("title", houseDataData.getPropertyHouseList().get(0).getType());
+                                            intent.putExtra("time", houseDataData.getPropertyHouseList().get(0).getCreateDate());
+                                            intent.putExtra("content", houseDataData.getPropertyHouseList().get(0).getContent());
+                                            startActivity(intent);
+                                        }
+                                    });
 
-                                recuperate.setText(houseDataData.getPropertyHouseList().get(1).getType());
-                                recuperate.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
-                                        intent.putExtra("title", houseDataData.getPropertyHouseList().get(1).getType());
-                                        intent.putExtra("time", houseDataData.getPropertyHouseList().get(1).getCreateDate());
-                                        intent.putExtra("content", houseDataData.getPropertyHouseList().get(1).getContent());
-                                        startActivity(intent);
-                                    }
-                                });
-                                recuperate_content.setText(houseDataData.getPropertyHouseList().get(1).getContent());
-                                business.setText(houseDataData.getPropertyHouseList().get(2).getType());
-                                business.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
-                                        intent.putExtra("title", houseDataData.getPropertyHouseList().get(2).getType());
-                                        intent.putExtra("time", houseDataData.getPropertyHouseList().get(2).getCreateDate());
-                                        intent.putExtra("content", houseDataData.getPropertyHouseList().get(2).getContent());
-                                        startActivity(intent);
-                                    }
-                                });
-                                business_content.setText(houseDataData.getPropertyHouseList().get(2).getContent());
+                                    recuperate.setText(houseDataData.getPropertyHouseList().get(1).getType());
+                                    recuperate.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
+                                            intent.putExtra("title", houseDataData.getPropertyHouseList().get(1).getType());
+                                            intent.putExtra("time", houseDataData.getPropertyHouseList().get(1).getCreateDate());
+                                            intent.putExtra("content", houseDataData.getPropertyHouseList().get(1).getContent());
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    recuperate_content.setText(houseDataData.getPropertyHouseList().get(1).getContent());
+                                    business.setText(houseDataData.getPropertyHouseList().get(2).getType());
+                                    business.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(ProjectDetails.this, WebViewActivity.class);
+                                            intent.putExtra("title", houseDataData.getPropertyHouseList().get(2).getType());
+                                            intent.putExtra("time", houseDataData.getPropertyHouseList().get(2).getCreateDate());
+                                            intent.putExtra("content", houseDataData.getPropertyHouseList().get(2).getContent());
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    business_content.setText(houseDataData.getPropertyHouseList().get(2).getContent());
+                                }
                             }
                         }
                     }
@@ -1276,13 +1381,13 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                             ProjectDetailsVillaAdapter projectDetailsVillaAdapter = new ProjectDetailsVillaAdapter(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendRatioVoList());
                             project_details_villa_rv.setAdapter(projectDetailsVillaAdapter);
                             projectDetailsVillaAdapter.notifyDataSetChanged();
-                        }else {
+                        } else {
                             project_details_villa_rv.setVisibility(View.GONE);
                         }
 
                         if (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size() != 0) {
                             project_details_tab_layout.setSelectedTabIndicator(R.drawable.tab_indicator);
-                            for (int i = 0;i < projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size();i++){
+                            for (int i = 0; i < projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size(); i++) {
                                 switch (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getProcuctType()) {
                                     case "1":
                                         project_details_tab_layout.addTab(project_details_tab_layout.newTab().setText("住宅"));
@@ -1311,7 +1416,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 public void onTabSelected(TabLayout.Tab tab) {
                                     //                添加选中Tab的逻辑
                                     String tabName = "";
-                                    for (int i = 0;i < projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size();i++){
+                                    for (int i = 0; i < projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size(); i++) {
                                         switch (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getProcuctType()) {
                                             case "1":
                                                 tabName = "住宅";
@@ -1346,7 +1451,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 public void onTabReselected(TabLayout.Tab tab) {
                                     //                再次选中tab的逻辑
                                     String tabName = "";
-                                    for (int i = 0;i < projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size();i++){
+                                    for (int i = 0; i < projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size(); i++) {
                                         switch (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getProcuctType()) {
                                             case "1":
                                                 tabName = "住宅";
@@ -1372,7 +1477,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
                                 }
                             });
 
-                        }else {
+                        } else {
 
                         }
                     }
@@ -1513,5 +1618,12 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener 
         }
         details_chart.animateXY(2000, 2000);
 
+    }
+
+    @Override
+    public void MyItems(int position) {
+        Intent buildingInformationintent = new Intent(ProjectDetails.this, BuildingInformationActivity.class);
+        buildingInformationintent.putExtra("pic", FinalContents.getImageUrl() + projectDetailsBeanData.getBuildingImg());
+        startActivity(buildingInformationintent);
     }
 }

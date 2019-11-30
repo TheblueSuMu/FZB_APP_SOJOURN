@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FBFAFA"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:ignore="ResourceName">
 
@@ -235,12 +235,12 @@
                         android:layout_height="27dp"
                         android:layout_alignParentRight="true"
                         android:background="@drawable/pingtuan_background"
-                        android:visibility="gone"
                         android:gravity="center"
                         android:paddingLeft="15dp"
                         android:text="拼团"
                         android:textColor="#fff"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -261,13 +261,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:drawableRight="@mipmap/location"
-                    android:paddingRight="15dp"
-                    android:lineSpacingMultiplier="1.2"
-                    android:textScaleX="1.1"
                     android:drawablePadding="10dp"
+                    android:lineSpacingMultiplier="1.2"
                     android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:text=""
                     android:textColor="#111"
+                    android:textScaleX="1.1"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -366,9 +366,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
-                            android:gravity="center"
                             android:drawableRight="@mipmap/project_details_trend"
                             android:drawablePadding="3dp"
+                            android:gravity="center"
                             android:text="参考均价"
                             android:textColor="#111"
                             android:textSize="12sp" />
@@ -451,8 +451,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="79dp"
                         android:drawableLeft="@mipmap/inform"
-                        android:textColor="#111111"
                         android:text=" 开盘通知"
+                        android:textColor="#111111"
                         android:textSize="14sp" />
 
                 </RelativeLayout>
@@ -467,42 +467,42 @@
 
                 <LinearLayout
                     android:id="@+id/linear"
-                    android:visibility="gone"
-                    android:layout_marginTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginRight="15dp"
                     android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:visibility="gone">
 
                     <TextView
-                        android:text="优惠活动"
-                        android:textSize="19sp"
-                        android:textStyle="bold"
-                        android:textColor="#111111"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="优惠活动"
+                        android:textColor="#111111"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/project_details_discounts"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/project_details_discounts" />
 
                         <TextView
                             android:id="@+id/project_details_discounts_nummer"
-                            android:text="0.0001元"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:textColor="#111111"
-                            android:layout_marginTop="38dp"
-                            android:layout_marginLeft="30dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="38dp"
+                            android:text="0.0001元"
+                            android:textColor="#111111"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                     </RelativeLayout>
 
@@ -510,10 +510,10 @@
 
                 <LinearLayout
                     android:id="@+id/project_details_layout"
-                    android:layout_marginTop="25dp"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -521,118 +521,118 @@
 
                         <LinearLayout
                             android:id="@+id/project_details_layout1"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/project_details_layout1_checkbox"
-                                android:text="佣金规则"
-                                android:textSize="15sp"
-                                android:textColor="#111111"
-                                android:layout_gravity="center_horizontal"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="佣金规则"
+                                android:textColor="#111111"
+                                android:textSize="15sp" />
 
                             <View
                                 android:id="@+id/project_details_layout1_view"
-                                android:layout_marginTop="12dp"
-                                android:layout_gravity="center_horizontal"
-                                android:background="@drawable/project_details_sanheyi_view_background"
                                 android:layout_width="60dp"
-                                android:layout_height="3dp"/>
+                                android:layout_height="3dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="12dp"
+                                android:background="@drawable/project_details_sanheyi_view_background" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/project_details_layout2"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/project_details_layout2_checkbox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:button="@null"
                                 android:text="导客规则"
-                                android:textSize="15sp"
                                 android:textColor="#111111"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:textSize="15sp" />
 
                             <View
                                 android:id="@+id/project_details_layout2_view"
-                                android:layout_marginTop="12dp"
-                                android:visibility="invisible"
-                                android:layout_gravity="center_horizontal"
-                                android:background="@drawable/project_details_sanheyi_view_background"
                                 android:layout_width="60dp"
-                                android:layout_height="3dp"/>
+                                android:layout_height="3dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="12dp"
+                                android:background="@drawable/project_details_sanheyi_view_background"
+                                android:visibility="invisible" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/project_details_layout3"
-                            android:orientation="vertical"
-                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/project_details_layout3_checkbox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:button="@null"
                                 android:text="奖励规则"
-                                android:textSize="15sp"
                                 android:textColor="#111111"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:textSize="15sp" />
 
                             <View
                                 android:id="@+id/project_details_layout3_view"
-                                android:layout_marginTop="12dp"
-                                android:visibility="invisible"
-                                android:layout_gravity="center_horizontal"
-                                android:background="@drawable/project_details_sanheyi_view_background"
                                 android:layout_width="60dp"
-                                android:layout_height="3dp"/>
+                                android:layout_height="3dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="12dp"
+                                android:background="@drawable/project_details_sanheyi_view_background"
+                                android:visibility="invisible" />
 
                         </LinearLayout>
 
                     </LinearLayout>
 
                     <RelativeLayout
-                        android:layout_marginLeft="15dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp">
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:layout_marginTop="20dp"
                             android:id="@+id/project_details_commission"
-                            android:visibility="gone"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:visibility="gone" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/project_details_report_rv"
-                            android:layout_marginTop="20dp"
-                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"/>
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="15dp"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/project_details_award"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="gone"
                             android:layout_marginTop="20dp"
                             android:layout_marginRight="15dp"
                             android:text="2019-03-15到2019-03-29期间，成功带看4人奖励100元"
                             android:textColor="#111"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:visibility="gone" />
 
 
                     </RelativeLayout>
@@ -646,7 +646,6 @@
                         android:background="#fff3f2f7" />
 
                 </LinearLayout>
-
 
 
                 <LinearLayout
@@ -743,6 +742,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/project_details_family_tvs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
@@ -752,9 +752,9 @@
                         android:textStyle="bold" />
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <com.google.android.material.tabs.TabLayout
                             android:id="@+id/project_details_family_tablayout"
@@ -765,7 +765,7 @@
                             app:tabIndicatorColor="#fff"
                             app:tabMode="scrollable"
                             app:tabSelectedTextColor="#334485"
-                            app:tabTextColor="#111111"/>
+                            app:tabTextColor="#111111" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/project_details_family"
@@ -775,7 +775,6 @@
                         </androidx.recyclerview.widget.RecyclerView>
 
                     </LinearLayout>
-
 
 
                     <View
@@ -814,6 +813,71 @@
                         android:scaleType="fitXY"
                         android:src="@mipmap/logo_garden" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="楼栋名称"
+                                android:textColor="#ff666666"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="单元"
+                                android:textColor="#ff666666"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="17dp"
+                                android:text="户数"
+                                android:textColor="#ff666666"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/details_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+                    <TextView
+                        android:id="@+id/details_tv_S"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:text="查看全部20栋楼信息"
+                        android:textSize="14sp"
+                        android:textColor="#334485"
+                        android:background="@drawable/details_shape"></TextView>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -843,9 +907,9 @@
 
                     <LinearLayout
                         android:id="@+id/project_details_linear1"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/project_details_repast"
@@ -885,9 +949,9 @@
 
                     <LinearLayout
                         android:id="@+id/project_details_linear2"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/project_details_recuperate"
@@ -920,9 +984,9 @@
 
                     <LinearLayout
                         android:id="@+id/project_details_linear3"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/project_details_business"
@@ -995,9 +1059,9 @@
                     <TextView
                         android:id="@+id/project_details_message"
                         android:layout_width="match_parent"
-                        android:lineSpacingMultiplier="1.2"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:lineSpacingMultiplier="1.2"
                         android:text="周边信息"
                         android:textColor="#111"
                         android:textSize="14sp" />
@@ -1155,88 +1219,88 @@
 
     <RelativeLayout
         android:id="@+id/all_no_network"
-        android:background="#fff"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageimage"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network" />
 
         <Button
-            android:layout_below="@id/imageimage"
             android:id="@+id/all_no_reload"
-            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageimage"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
             android:background="@drawable/button_back"
             android:text="重新加载"
-            android:textSize="12sp"
             android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/project_details_relative"
-        android:visibility="gone"
-        android:background="#88323232"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#88323232"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/project_details_linear_city0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#FFF"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:paddingRight="15dp">
 
                 <TextView
                     android:id="@+id/project_details_villa_title"
-                    android:layout_marginTop="20dp"
-                    android:textSize="16sp"
-                    android:textColor="#111111"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textColor="#111111"
+                    android:textSize="16sp" />
 
                 <View
-                    android:layout_marginTop="20dp"
-                    android:background="#EEEEEE"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#EEEEEE" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/project_details_villa_rv"
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"/>
+                    android:layout_height="130dp" />
 
             </LinearLayout>
 
             <View
-                android:layout_marginTop="20dp"
-                android:background="#EEEEEE"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"/>
+                android:layout_height="10dp"
+                android:layout_marginTop="20dp"
+                android:background="#EEEEEE" />
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:paddingRight="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1246,26 +1310,25 @@
                         android:id="@+id/project_details_tab_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:tabSelectedTextColor="#334485"
                         app:tabIndicatorFullWidth="false"
                         app:tabIndicatorHeight="3dp"
-                        app:tabTextColor="#111111"/>
+                        app:tabSelectedTextColor="#334485"
+                        app:tabTextColor="#111111" />
 
                 </LinearLayout>
 
                 <View
-                    android:background="#EEEEEE"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="19dp"
                     android:text="价格走势"
-                    android:textSize="16sp"
                     android:textColor="#000000"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
+                    android:textSize="16sp" />
 
 
                 <com.github.mikephil.charting.charts.LineChart

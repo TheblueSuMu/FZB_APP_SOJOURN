@@ -333,7 +333,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
 //            TODO 返回上一层
-            case R.id.fill_in_transaction_information_return:
+            case R.id.one_key_return:
                 finish();
                 break;
             //            TODO 提交

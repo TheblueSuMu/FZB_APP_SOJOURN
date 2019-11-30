@@ -69,7 +69,7 @@ public class FamilyRecycler extends RecyclerView.Adapter<FamilyRecycler.ViewHold
             s.append("|" + list.get(position).getFloorPlan());
         }
 
-        holder.imageAvatar.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CityContents.setFamilyId(list.get(position).getId());

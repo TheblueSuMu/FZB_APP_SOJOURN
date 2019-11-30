@@ -134,6 +134,8 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
     private String ifType = "";
     private RecordAdapter adapter1;
 
+    private int IfNum = 0;
+
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
 
@@ -168,6 +170,8 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
             }
         };
     };
+    private String addrStr;
+    private String s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -508,8 +512,13 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 
     //门店打卡接口
     private void initClockIn() {
-
-        String s = mlocation.getAddrStr();//从百度地图获取地址
+        //从百度地图获取地址
+        if(IfNum == 0){
+            s = addrStr;
+            IfNum = 1;
+        }else {
+            s = mlocation.getAddrStr();
+        }
         if (data.getTotal() == 0) {
             ifType = "1";
         } else if (data.getTotal() == 1) {
@@ -553,6 +562,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                                 store_details_check.setVisibility(View.GONE);
                                 store_details_check_S.setVisibility(View.GONE);
                                 confirm_the_visit_gv.setVisibility(View.GONE);
+                                store_details_img_btn.setVisibility(View.GONE);
                                 stringBuffer.setLength(0);
                                 mDatas.clear();
                                 adapter.notifyDataSetChanged();
@@ -676,6 +686,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 //            mBaiduMap.setMyLocationData(locData);
             if (isFirstLoc) {
                 isFirstLoc = false;
+                addrStr = mlocation.getAddrStr();
                 ll = new LatLng(location.getLatitude(),
                         location.getLongitude());
                 MapStatus.Builder builder = new MapStatus.Builder();

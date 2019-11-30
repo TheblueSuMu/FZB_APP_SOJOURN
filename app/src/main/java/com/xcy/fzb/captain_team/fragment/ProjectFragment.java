@@ -217,11 +217,11 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         textView4 = view.findViewById(R.id.home_item_brokerage);
         city = view.findViewById(R.id.project_city_selector);
 
-        if (FinalContents.getDengLu().equals("顾问")) {
-            home_item_yongjin.setText("我的客户");
-        } else {
-            home_item_yongjin.setText("我的团队");
-        }
+//        if (FinalContents.getDengLu().equals("顾问")) {
+//            home_item_yongjin.setText("我的客户");
+//        } else {
+//            home_item_yongjin.setText("我的团队");
+//        }
 
         layout.setOnRefreshListener(this);
         search = view.findViewById(R.id.home_search);
@@ -261,7 +261,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                 FinalContents.setProjectType("2");
                 Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent);
-            } else if (view.getId() == R.id.home_item_brokerage) {
+            } else if (view.getId() == R.id.home_item_client) {
                 FinalContents.setProjectType("1");
                 Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent);
@@ -273,14 +273,13 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 //                FinalContents.setMySelf("0");
 //                intent_overseas.putExtra("client", "1");
 //                startActivity(intent_overseas);
-            } else if (view.getId() == R.id.home_item_client) {
+            } else if (view.getId() == R.id.home_item_brokerage) {
                 //  TODO    判断不同的身份进入不同的佣金界面
                 if (FinalContents.getIdentity().equals("60")) {
                     //  TODO    团队长
 //                Intent intent = new Intent(view.getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
 //                startActivity(intent);
                     Intent intent = new Intent(getContext(), Captain_Team_MyTeamActivity.class);
-                    startActivity(intent);
                 } else if (FinalContents.getIdentity().equals("61")) {
                     //  TODO    销售
 //                Intent intent = new Intent(view.getContext(), Captain_Team_CommissionTheProjectEndActivity.class);

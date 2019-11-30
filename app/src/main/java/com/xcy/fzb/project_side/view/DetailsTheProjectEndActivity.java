@@ -489,7 +489,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
+                dateTimePickerView.setStartDate(new GregorianCalendar(year - 2, month - 1, dayOfMonth));
                 dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth + 15));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
@@ -506,7 +506,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             }
         });
         year3 = calendar.get(Calendar.YEAR);
-        month3 = calendar.get(Calendar.MONTH) + 1;
+        month3 = calendar.get(Calendar.MONTH);
         dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
         initDate3();
     }
@@ -516,8 +516,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year3, month3 - 1, dayOfMonth3));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year3, month3 - 1, dayOfMonth3 + 5));
+                dateTimePickerView.setStartDate(new GregorianCalendar(year3, month3, dayOfMonth3));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year3, month3, dayOfMonth3 + 15));
                 particulars_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
@@ -1038,13 +1038,13 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 tag = "2";
                 project_attache_ll2.setVisibility(View.INVISIBLE);
                 project_attache_ll4.setVisibility(View.VISIBLE);
-                details_the_project_end_ll1.setClickable(true);
-                details_the_project_end_ll2.setClickable(true);
-                details_the_project_end_ll3.setClickable(true);
-                details_the_project_end_ll5.setClickable(true);
-                details_the_project_end_ll6.setClickable(true);
-                details_the_project_end_ll7.setClickable(true);
-                details_the_project_end_ll8.setClickable(true);
+                details_the_project_end_ll1.setClickable(false);
+                details_the_project_end_ll2.setClickable(false);
+                details_the_project_end_ll3.setClickable(false);
+                details_the_project_end_ll5.setClickable(false);
+                details_the_project_end_ll6.setClickable(false);
+                details_the_project_end_ll7.setClickable(false);
+                details_the_project_end_ll8.setClickable(false);
                 if (details_the_project_end_rb1.isChecked() == true) {
                     beforeDate1 = "";
                     afterDate1 = "";

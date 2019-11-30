@@ -32,25 +32,34 @@
             android:id="@+id/map_house_search"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginBottom="7dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
+            android:layout_marginBottom="7dp"
             android:background="@drawable/comment"
-            android:imeOptions="actionSearch"
-            android:singleLine="true"
             android:gravity="center"
             android:hint="搜索（经纪门店/打卡人姓名）"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
             android:textColor="#333333"
             android:textSize="12sp" />
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/punching_rv"
+    <com.xcy.fzb.all.utils.SuperSwipeRefreshLayout
         android:layout_marginTop="15dp"
+        android:id="@+id/home_srl_S"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ></androidx.recyclerview.widget.RecyclerView>
+        android:layout_below="@id/icon_c"
+        android:background="#FFF">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/punching_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></androidx.recyclerview.widget.RecyclerView>
+    </com.xcy.fzb.all.utils.SuperSwipeRefreshLayout>
+
 
 </LinearLayout>

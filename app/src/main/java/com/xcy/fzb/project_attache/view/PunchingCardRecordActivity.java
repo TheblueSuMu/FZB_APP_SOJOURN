@@ -3,6 +3,7 @@ package com.xcy.fzb.project_attache.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -27,12 +28,14 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.project_attache.adapter.PunchingCardAdapter;
 
-public class PunchingCardRecordActivity extends AppCompatActivity {
+public class PunchingCardRecordActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     RelativeLayout punching_card_record_return;
     RecyclerView punching_rv;
     PunchingCardAdapter adapter;
     EditText map_house_search;
+    private SwipeRefreshLayout layout;
+
 
     int ifnum = 0;
 
@@ -52,6 +55,8 @@ public class PunchingCardRecordActivity extends AppCompatActivity {
         punching_card_record_return = findViewById(R.id.punching_card_record_return);
         map_house_search = findViewById(R.id.map_house_search);
         punching_rv = findViewById(R.id.punching_rv);
+        layout = findViewById(R.id.home_srl_S);
+        layout.setOnRefreshListener(this);
 
         punching_card_record_return.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +74,7 @@ public class PunchingCardRecordActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if ((keyEvent != null && KeyEvent.KEYCODE_ENTER == keyEvent.getKeyCode() && KeyEvent.ACTION_DOWN == keyEvent.getAction())) {
-                    if(ifnum == 0){
+                    if (ifnum == 0) {
                         ifnum = 1;
                         String s = map_house_search.getText().toString();
                         initData(s);
@@ -91,7 +96,7 @@ public class PunchingCardRecordActivity extends AppCompatActivity {
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<RecordBean> financeBean = myService.getRecord(FinalContents.getUserID(), "",search, "2");
+        Observable<RecordBean> financeBean = myService.getRecord(FinalContents.getUserID(), "", search, "2");
         financeBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<RecordBean>() {
@@ -119,5 +124,13 @@ public class PunchingCardRecordActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    @Override
+    public void onRefresh() {
+        if (layout.isRefreshing()) {//如果正在刷新
+            initView();
+            layout.setRefreshing(false);//取消刷新
+        }
     }
 }
