@@ -97,7 +97,7 @@
         <activity android:name=".all.view.ReportActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/> <!--TODO 公用 报备 (adjustResize)-->
         <activity android:name=".all.view.OverSeaActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/> <!--TODO 公用 旅居或海外-->
         <activity android:name=".all.view.SearchInterfaceActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>     <!--TODO 公用 搜索-->
-        <activity android:name=".all.view.BuildingInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".all.view.BuildingInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/> <!--TODO 公用 楼栋信息-->
         <activity android:name=".all.view.PhotoActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.MoreInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/><!--TODO 公用 更多信息-->
         <activity android:name=".all.view.NickNameActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/><!--TODO 公用 修改昵称-->

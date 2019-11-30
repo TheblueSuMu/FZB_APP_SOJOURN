@@ -89,6 +89,7 @@ public class PhoneActivity extends AllActivity{
     }
 
     private void initClick(){
+
         all_activity_phone_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -236,6 +237,8 @@ public class PhoneActivity extends AllActivity{
     private void initadd(){
         Gson gson = new Gson();
         fieldbeanlist = gson.toJson(jsonList);
+
+        Log.i("MyCL","fieldbeanlist:" + fieldbeanlist);
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());

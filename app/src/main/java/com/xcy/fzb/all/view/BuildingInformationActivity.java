@@ -19,6 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.BuildingInformationAdapter;
+import com.xcy.fzb.all.adapter.FamilyRecycler;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.BuildingBean;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -47,11 +48,14 @@ public class BuildingInformationActivity extends AllActivity {
     private TextView occupancy;
     private TextView buildingCase;
     private TextView standard;
+    private TextView building_standard_S;
     private RecyclerView recyclerView;
     private ImageView pic;
     private TabLayout tabLayout;
+    private TabLayout project_details_family_tablayout;
     private BuildingInformationAdapter buildingInformationAdapter;
     private String picUrl;
+    private int num = 0;
 
 
     @Override
@@ -61,7 +65,7 @@ public class BuildingInformationActivity extends AllActivity {
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             picUrl = getIntent().getStringExtra("pic");
@@ -86,8 +90,10 @@ public class BuildingInformationActivity extends AllActivity {
     private void initView() {
         StatusBar.makeStatusBarTransparent(this);
         name = findViewById(R.id.building_name);
+        building_standard_S = findViewById(R.id.building_standard_S);
         state = findViewById(R.id.building_state);
         ladder = findViewById(R.id.building_ladder);
+        project_details_family_tablayout = findViewById(R.id.project_details_family_tablayout_S);
         tier = findViewById(R.id.building_tier);
         cell = findViewById(R.id.building_cell);
         open = findViewById(R.id.building_open);
@@ -133,6 +139,17 @@ public class BuildingInformationActivity extends AllActivity {
                     @Override
                     public void onNext(BuildingBean buildingBean) {
                         final List<BuildingBean.DataBean> list = buildingBean.getData();
+
+//                        for (int i = 0; i < buildingBean.getData().size(); i++) {
+                            for (int j = 0; j < buildingBean.getData().get(0).getHouseInfoList().size(); ++j) {
+                                project_details_family_tablayout.addTab(project_details_family_tablayout.newTab().setText(buildingBean.getData().get(0).getHouseInfoList().get(j).getKey()));
+                                num = num + buildingBean.getData().get(0).getHouseInfoList().get(j).getSize();
+                            }
+//                        }
+
+                        building_standard_S.setText("包含户型(" + num + ")：");
+
+
                         if (list.size() != 0) {
                             tabLayout.setSelectedTabIndicatorColor(R.color.colorIndicator);
                             tabLayout.setSelectedTabIndicator(R.drawable.tab_indicator);
@@ -140,12 +157,12 @@ public class BuildingInformationActivity extends AllActivity {
                             state.setText(list.get(0).getSaleStatus());
                             if (list.get(0).getElevator().equals("") || list.get(0).getFamily().equals("")) {
                                 ladder.setText("未知");
-                            }else {
+                            } else {
                                 ladder.setText(list.get(0).getElevator() + "梯" + list.get(0).getFamily() + "户");
                             }
                             if (list.get(0).getElementNumber().equals("")) {
                                 cell.setText("未知");
-                            }else {
+                            } else {
                                 cell.setText(list.get(0).getElementNumber() + "");
                             }
 
@@ -154,10 +171,12 @@ public class BuildingInformationActivity extends AllActivity {
                             occupancy.setText(list.get(0).getCheckInTime());
                             buildingCase.setText(list.get(0).getFitmentState());
                             standard.setText(list.get(0).getFitmentStandardStr());
-                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(0).getHouseInfoList());
+                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(0).getHouseInfoList().get(0).getValue());
 
                             String imageUrl = "";
-                            buildingInformationAdapter.setImageUrl(list.get(0).getHouseInfoList().get(0).getFloorPlan());
+
+                            buildingInformationAdapter.setImageUrl(list.get(0).getHouseInfoList().get(0).getValue().get(0).getFloorPlan());
+
                             recyclerView.setAdapter(buildingInformationAdapter);
                             buildingInformationAdapter.notifyDataSetChanged();
                             for (int i = 0; i < list.size(); i++) {
@@ -167,43 +186,30 @@ public class BuildingInformationActivity extends AllActivity {
                                     tabLayout.addTab(tabLayout.newTab().setText(list.get(i).getBuildingName()));
                                 }
                             }
-                            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                            project_details_family_tablayout.removeAllTabs();
+                            for (int s = 0; s < list.get(0).getHouseInfoList().size(); ++s){
+                                project_details_family_tablayout.addTab(project_details_family_tablayout.newTab().setText(list.get(0).getHouseInfoList().get(s).getKey()));
+                                num = num + list.get(0).getHouseInfoList().get(s).getSize();
+                            }
+                            building_standard_S.setText("包含户型(" + num + ")：");
+
+                            final int index = 0;
+                            project_details_family_tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                                 @Override
                                 public void onTabSelected(TabLayout.Tab tab) {
-                                    //                添加选中Tab的逻辑
-                                    for (int j = 0; j < list.size(); j++) {
-                                        if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
-                                            name.setText(list.get(j).getProject().getProjectName());
-                                            state.setText(list.get(j).getSaleStatus());
-                                            if (list.get(j).getElevator().equals("") || list.get(j).getFamily().equals("")) {
-                                                ladder.setText("未知");
-                                            }else {
-                                                ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
-                                            }
-                                            if (list.get(j).getElementNumber().equals("")) {
-                                                cell.setText("未知");
-                                            }else {
-                                                cell.setText(list.get(j).getElementNumber() + "");
-                                            }
-                                            tier.setText(list.get(j).getPliesNumber() + "层");
-                                            open.setText(list.get(j).getBuildTime());
-                                            occupancy.setText(list.get(j).getCheckInTime());
-                                            buildingCase.setText(list.get(j).getFitmentState());
-                                            standard.setText(list.get(j).getFitmentStandardStr());
-                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(j).getHouseInfoList());
+                                    for (int i = 0; i < list.get(index).getHouseInfoList().size(); i++) {
+                                        if (list.get(index).getHouseInfoList().get(i).getKey().equals(tab.getText().toString())) {
+                                            LinearLayoutManager layoutManager_family = new LinearLayoutManager(BuildingInformationActivity.this);
+                                            layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                            recyclerView.setLayoutManager(layoutManager_family);
+                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(index).getHouseInfoList().get(i).getValue());
+                                            Log.i("户型信息", "户型信息走向1");
                                             recyclerView.setAdapter(buildingInformationAdapter);
                                             buildingInformationAdapter.notifyDataSetChanged();
+                                            Log.i("户型信息", "户型信息走向1");
+                                            return;
                                         }
                                     }
-
-                                    if (tab.getText().equals("交通出行")) {
-                                    } else if (tab.getText().equals("教育教学")) {
-                                    } else if (tab.getText().equals("医疗健康")) {
-                                    } else if (tab.getText().equals("商场购物")) {
-                                    } else if (tab.getText().equals("生活娱乐")) {
-                                    } else if (tab.getText().equals("著名景点")) {
-                                    }
-
                                 }
 
                                 @Override
@@ -213,29 +219,186 @@ public class BuildingInformationActivity extends AllActivity {
 
                                 @Override
                                 public void onTabReselected(TabLayout.Tab tab) {
-                                    //                再次选中tab的逻辑
-                                    for (int j = 0; j < list.size(); j++) {
-                                        if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
-                                            name.setText(list.get(j).getProject().getProjectName());
-                                            state.setText(list.get(j).getSaleStatus());
-                                            if (list.get(j).getElevator().equals("") || list.get(j).getFamily().equals("")) {
-                                                ladder.setText("未知");
-                                            }else {
-                                                ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
-                                            }
-                                            if (list.get(j).getElementNumber().equals("")) {
-                                                cell.setText("未知");
-                                            }else {
-                                                cell.setText(list.get(j).getElementNumber() + "");
-                                            }
-                                            tier.setText(list.get(j).getPliesNumber() + "层");
-                                            open.setText(list.get(j).getBuildTime());
-                                            occupancy.setText(list.get(j).getCheckInTime());
-                                            buildingCase.setText(list.get(j).getFitmentState());
-                                            standard.setText(list.get(j).getFitmentStandardStr());
-                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(j).getHouseInfoList());
+                                    for (int i = 0; i < list.get(index).getHouseInfoList().size(); i++) {
+                                        if (list.get(index).getHouseInfoList().get(i).getKey().equals(tab.getText().toString())) {
+                                            LinearLayoutManager layoutManager_family = new LinearLayoutManager(BuildingInformationActivity.this);
+                                            layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                            recyclerView.setLayoutManager(layoutManager_family);
+                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(index).getHouseInfoList().get(i).getValue());
+                                            Log.i("户型信息", "户型信息走向1");
                                             recyclerView.setAdapter(buildingInformationAdapter);
                                             buildingInformationAdapter.notifyDataSetChanged();
+                                            Log.i("户型信息", "户型信息走向1");
+                                            return;
+                                        }
+                                    }
+                                }
+                            });
+
+                            tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                                @Override
+                                public void onTabSelected(TabLayout.Tab tab) {
+                                    num = 0;
+//                                    project_details_family_tablayout
+                                    //                添加选中Tab的逻辑
+                                    for (int j = 0; j < list.size(); j++) {
+                                        if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
+//                                            name.setText(list.get(j).getProject().getProjectName());
+//                                            state.setText(list.get(j).getSaleStatus());
+//                                            if (list.get(j).getElevator().equals("") || list.get(j).getFamily().equals("")) {
+//                                                ladder.setText("未知");
+//                                            } else {
+//                                                ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
+//                                            }
+//                                            if (list.get(j).getElementNumber().equals("")) {
+//                                                cell.setText("未知");
+//                                            } else {
+//                                                cell.setText(list.get(j).getElementNumber() + "");
+//                                            }
+//                                            tier.setText(list.get(j).getPliesNumber() + "层");
+//                                            open.setText(list.get(j).getBuildTime());
+//                                            occupancy.setText(list.get(j).getCheckInTime());
+//                                            buildingCase.setText(list.get(j).getFitmentState());
+//                                            standard.setText(list.get(j).getFitmentStandardStr());
+//                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(j).getHouseInfoList());
+//                                            recyclerView.setAdapter(buildingInformationAdapter);
+//                                            buildingInformationAdapter.notifyDataSetChanged();
+
+
+                                            project_details_family_tablayout.removeAllTabs();
+                                            for (int s = 0; s < list.get(j).getHouseInfoList().size(); ++s){
+                                                project_details_family_tablayout.addTab(project_details_family_tablayout.newTab().setText(list.get(j).getHouseInfoList().get(s).getKey()));
+                                                num = num + list.get(j).getHouseInfoList().get(s).getSize();
+                                            }
+                                            building_standard_S.setText("包含户型(" + num + ")：");
+
+                                            final int index = j;
+                                            project_details_family_tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                                                @Override
+                                                public void onTabSelected(TabLayout.Tab tab) {
+                                                    for (int i = 0; i < list.get(index).getHouseInfoList().size(); i++) {
+                                                        if (list.get(index).getHouseInfoList().get(i).getKey().equals(tab.getText().toString())) {
+                                                            LinearLayoutManager layoutManager_family = new LinearLayoutManager(BuildingInformationActivity.this);
+                                                            layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                                            recyclerView.setLayoutManager(layoutManager_family);
+                                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(index).getHouseInfoList().get(i).getValue());
+                                                            Log.i("户型信息", "户型信息走向1");
+                                                            recyclerView.setAdapter(buildingInformationAdapter);
+                                                            buildingInformationAdapter.notifyDataSetChanged();
+                                                            Log.i("户型信息", "户型信息走向1");
+                                                            return;
+                                                        }
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onTabUnselected(TabLayout.Tab tab) {
+                                                    //                添加未选中Tab的逻辑
+                                                }
+
+                                                @Override
+                                                public void onTabReselected(TabLayout.Tab tab) {
+                                                    for (int i = 0; i < list.get(index).getHouseInfoList().size(); i++) {
+                                                        if (list.get(index).getHouseInfoList().get(i).getKey().equals(tab.getText().toString())) {
+                                                            LinearLayoutManager layoutManager_family = new LinearLayoutManager(BuildingInformationActivity.this);
+                                                            layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                                            recyclerView.setLayoutManager(layoutManager_family);
+                                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(index).getHouseInfoList().get(i).getValue());
+                                                            Log.i("户型信息", "户型信息走向1");
+                                                            recyclerView.setAdapter(buildingInformationAdapter);
+                                                            buildingInformationAdapter.notifyDataSetChanged();
+                                                            Log.i("户型信息", "户型信息走向1");
+                                                            return;
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onTabUnselected(TabLayout.Tab tab) {
+                                    //                添加未选中Tab的逻辑
+                                }
+
+                                @Override
+                                public void onTabReselected(TabLayout.Tab tab) {
+                                    num = 0;
+//                                    project_details_family_tablayout
+                                    //                添加选中Tab的逻辑
+                                    for (int j = 0; j < list.size(); j++) {
+                                        if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
+//                                            name.setText(list.get(j).getProject().getProjectName());
+//                                            state.setText(list.get(j).getSaleStatus());
+//                                            if (list.get(j).getElevator().equals("") || list.get(j).getFamily().equals("")) {
+//                                                ladder.setText("未知");
+//                                            } else {
+//                                                ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
+//                                            }
+//                                            if (list.get(j).getElementNumber().equals("")) {
+//                                                cell.setText("未知");
+//                                            } else {
+//                                                cell.setText(list.get(j).getElementNumber() + "");
+//                                            }
+//                                            tier.setText(list.get(j).getPliesNumber() + "层");
+//                                            open.setText(list.get(j).getBuildTime());
+//                                            occupancy.setText(list.get(j).getCheckInTime());
+//                                            buildingCase.setText(list.get(j).getFitmentState());
+//                                            standard.setText(list.get(j).getFitmentStandardStr());
+//                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(j).getHouseInfoList());
+//                                            recyclerView.setAdapter(buildingInformationAdapter);
+//                                            buildingInformationAdapter.notifyDataSetChanged();
+
+
+                                            project_details_family_tablayout.removeAllTabs();
+                                            for (int s = 0; s < list.get(j).getHouseInfoList().size(); ++s){
+                                                project_details_family_tablayout.addTab(project_details_family_tablayout.newTab().setText(list.get(j).getHouseInfoList().get(s).getKey()));
+                                                num = num + list.get(j).getHouseInfoList().get(s).getSize();
+                                            }
+                                            building_standard_S.setText("包含户型(" + num + ")：");
+
+                                            final int index = j;
+                                            project_details_family_tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                                                @Override
+                                                public void onTabSelected(TabLayout.Tab tab) {
+                                                    for (int i = 0; i < list.get(index).getHouseInfoList().size(); i++) {
+                                                        if (list.get(index).getHouseInfoList().get(i).getKey().equals(tab.getText().toString())) {
+                                                            LinearLayoutManager layoutManager_family = new LinearLayoutManager(BuildingInformationActivity.this);
+                                                            layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                                            recyclerView.setLayoutManager(layoutManager_family);
+                                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(index).getHouseInfoList().get(i).getValue());
+                                                            Log.i("户型信息", "户型信息走向1");
+                                                            recyclerView.setAdapter(buildingInformationAdapter);
+                                                            buildingInformationAdapter.notifyDataSetChanged();
+                                                            Log.i("户型信息", "户型信息走向1");
+                                                            return;
+                                                        }
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onTabUnselected(TabLayout.Tab tab) {
+                                                    //                添加未选中Tab的逻辑
+                                                }
+
+                                                @Override
+                                                public void onTabReselected(TabLayout.Tab tab) {
+                                                    for (int i = 0; i < list.get(index).getHouseInfoList().size(); i++) {
+                                                        if (list.get(index).getHouseInfoList().get(i).getKey().equals(tab.getText().toString())) {
+                                                            LinearLayoutManager layoutManager_family = new LinearLayoutManager(BuildingInformationActivity.this);
+                                                            layoutManager_family.setOrientation(LinearLayoutManager.HORIZONTAL);
+                                                            recyclerView.setLayoutManager(layoutManager_family);
+                                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(index).getHouseInfoList().get(i).getValue());
+                                                            Log.i("户型信息", "户型信息走向1");
+                                                            recyclerView.setAdapter(buildingInformationAdapter);
+                                                            buildingInformationAdapter.notifyDataSetChanged();
+                                                            Log.i("户型信息", "户型信息走向1");
+                                                            return;
+                                                        }
+                                                    }
+                                                }
+                                            });
                                         }
                                     }
                                 }

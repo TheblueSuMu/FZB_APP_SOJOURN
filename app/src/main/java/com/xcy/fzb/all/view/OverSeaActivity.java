@@ -260,6 +260,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
          }else if (FinalContents.getProjectType().equals("1")) {
             title.setText("城市房产");
             arrposid = "3";
+            report.setVisibility(View.GONE);
             oversea_linear.setVisibility(View.VISIBLE);
             nationRv.setVisibility(View.GONE);
             oversea_linear_issue.setVisibility(View.GONE);
@@ -300,6 +301,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 CityContents.setCityType("1");
+                FinalContents.setIfCityType("1");
                 Intent intent = new Intent(OverSeaActivity.this,CityWideActivity.class);
                 startActivity(intent);
             }
@@ -308,6 +310,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 CityContents.setCityType("2");
+                FinalContents.setIfCityType("2");
                 Intent intent = new Intent(OverSeaActivity.this,CityWideActivity.class);
                 startActivity(intent);
             }
@@ -316,6 +319,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 FinalContents.setIfCity(FinalContents.getCityID());
+                FinalContents.setIfCityType("");
                 Intent intent_overseas = new Intent(view.getContext(), MapHouseActivity.class);
                 startActivity(intent_overseas);
             }
@@ -379,6 +383,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
         if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
             report.setVisibility(View.GONE);
+        }else {
+            report.setVisibility(View.VISIBLE);
         }
 
         search.setOnClickListener(new View.OnClickListener() {

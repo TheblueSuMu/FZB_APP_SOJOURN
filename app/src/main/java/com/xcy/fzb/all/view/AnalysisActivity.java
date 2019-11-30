@@ -61,6 +61,7 @@ public class AnalysisActivity extends AllActivity {
     private TextView all_activity_analysis_down_payment;
     private TextView all_activity_analysis_loans;
     private TextView all_activity_analysis_interest;
+    private TextView all_activity_analysis_price_title;
     private ScrollView all_activity_analysis_scrollview;
     private PieChart mChart;
 
@@ -78,7 +79,7 @@ public class AnalysisActivity extends AllActivity {
         initfvb();
     }
 
-    private void initfvb(){
+    private void initfvb() {
         all_activity_analysis_scrollview = findViewById(R.id.all_activity_analysis_scrollview);
         all_activity_analysis_scrollview.setVisibility(View.GONE);
 
@@ -93,6 +94,7 @@ public class AnalysisActivity extends AllActivity {
         all_activity_analysis_productfeature = findViewById(R.id.all_activity_analysis_productfeature);
         all_activity_analysis_house_type = findViewById(R.id.all_activity_analysis_house_type);
         all_activity_analysis_price = findViewById(R.id.all_activity_analysis_price);
+        all_activity_analysis_price_title = findViewById(R.id.all_activity_analysis_price_title);
 
         all_activity_analysis_acreage_area = findViewById(R.id.all_activity_analysis_acreage_area);
         all_activity_analysis_compass_area = findViewById(R.id.all_activity_analysis_compass_area);
@@ -115,7 +117,7 @@ public class AnalysisActivity extends AllActivity {
         initClick();
     }
 
-    private void initClick(){
+    private void initClick() {
         all_activity_analysis_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +141,7 @@ public class AnalysisActivity extends AllActivity {
         });         //      TODO    进入地图导航页
     }
 
-    private void initData(){
+    private void initData() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -159,9 +161,9 @@ public class AnalysisActivity extends AllActivity {
                     @Override
                     public void onNext(final FamilyInfoBean familyInfoBean) {
                         all_activity_analysis_scrollview.setVisibility(View.VISIBLE);
-                        Glide.with(AnalysisActivity.this).load(FinalContents.getImageUrl()+familyInfoBean.getData().getFloorPlan()).into(all_activity_analysis_backImage);
+                        Glide.with(AnalysisActivity.this).load(FinalContents.getImageUrl() + familyInfoBean.getData().getFloorPlan()).into(all_activity_analysis_backImage);
                         all_activity_analysis_salestatus.setText(familyInfoBean.getData().getText());
-                        switch (familyInfoBean.getData().getProductType()){
+                        switch (familyInfoBean.getData().getProductType()) {
                             case "1":
                                 all_activity_analysis_productfeature.setText("住宅");
                                 break;
@@ -178,12 +180,20 @@ public class AnalysisActivity extends AllActivity {
                                 all_activity_analysis_productfeature.setText("别墅");
                                 break;
                         }
-                        all_activity_analysis_house_type.setText(familyInfoBean.getData().getRoom()+"室");
-                        all_activity_analysis_price.setText("¥"+familyInfoBean.getData().getAverage()+"/m²");
+                        all_activity_analysis_house_type.setText(familyInfoBean.getData().getRoom() + "室");
+                        if(familyInfoBean.getData().getAverage().equals("")){
+                            all_activity_analysis_price_title.setVisibility(View.GONE);
+                            all_activity_analysis_price.setVisibility(View.GONE);
+                        }else {
+                            all_activity_analysis_price_title.setVisibility(View.VISIBLE);
+                            all_activity_analysis_price.setVisibility(View.VISIBLE);
+                            all_activity_analysis_price.setText("¥" + familyInfoBean.getData().getAverage() + "/m²");
+                        }
 
-                        all_activity_analysis_acreage_area.setText(familyInfoBean.getData().getFamilyArea()+"m²");
+
+                        all_activity_analysis_acreage_area.setText(familyInfoBean.getData().getFamilyArea() + "m²");
                         all_activity_analysis_compass_area.setText(familyInfoBean.getData().getFamilyOrientation());
-                        all_activity_analysis_percentage_area.setText(familyInfoBean.getData().getGetHouseRate()+"%");
+                        all_activity_analysis_percentage_area.setText(familyInfoBean.getData().getGetHouseRate() + "%");
 
                         all_activity_analysis_building.setText(familyInfoBean.getData().getBuild());
                         all_activity_analysis_houses.setText(familyInfoBean.getData().getProject().getProjectName());
@@ -192,30 +202,36 @@ public class AnalysisActivity extends AllActivity {
                         all_activity_analysis_analysis_title.setText(familyInfoBean.getData().getTitle());
                         all_activity_analysis_analysis_content.setText(familyInfoBean.getData().getText());
 
-                        all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly());
+
+                        all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly() + "元");
 
 
                         if (familyInfoBean.getData().getTitle().equals("") && familyInfoBean.getData().getText().equals("")) {
                             all_activity_analysis_analysis_linear.setVisibility(View.GONE);
-                        }else{
+                        } else {
                             all_activity_analysis_analysis_linear.setVisibility(View.VISIBLE);
                         }
 
-                        all_activity_analysis_total_price.setText(familyInfoBean.getData().getTotal());
 
-                        all_activity_analysis_down_payment.setText(familyInfoBean.getData().getDownpayment());
-                        all_activity_analysis_loans.setText(familyInfoBean.getData().getLoan());
-                        all_activity_analysis_interest.setText(familyInfoBean.getData().getInterest());
+                        all_activity_analysis_total_price.setText(familyInfoBean.getData().getTotal() + "万元");
+                        if (familyInfoBean.getData().getPercentage().equals("")) {
+                            all_activity_analysis_down_payment.setText(familyInfoBean.getData().getDownpayment() + "万元");
+                        } else {
+                            all_activity_analysis_down_payment.setText(familyInfoBean.getData().getDownpayment() + "万元(" + familyInfoBean.getData().getPercentage() + "%)");
+                        }
+
+                        all_activity_analysis_loans.setText(familyInfoBean.getData().getLoan() + "万元");
+                        all_activity_analysis_interest.setText(familyInfoBean.getData().getInterest() + "万元");
 
                         if (familyInfoBean.getData().getDownpayment().equals("") || familyInfoBean.getData().getLoan().equals("") || familyInfoBean.getData().getInterest().equals("") || familyInfoBean.getData().getMonthly().equals("") || familyInfoBean.getData().getTotal().equals("")) {
                             all_activity_analysis_linear.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             all_activity_analysis_linear.setVisibility(View.VISIBLE);
                         }
 
                         if (familyInfoBean.getData().getDownpayment().equals("") || familyInfoBean.getData().getLoan().equals("") || familyInfoBean.getData().getInterest().equals("")) {
                             mChart.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             mChart.setVisibility(View.VISIBLE);
                             // 饼图数据
                             quarterly1 = Float.parseFloat(familyInfoBean.getData().getDownpayment());

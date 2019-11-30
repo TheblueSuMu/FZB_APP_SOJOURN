@@ -5,7 +5,7 @@ public class FamilyInfoBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"id":"c96f0e838b224e26ae9b262ab12d3d2d","remarks":"","createBy":"","createDate":"2019-10-28 17:44:53","updateBy":"","updateDate":"2019-11-20 10:03:08","project":{"id":"f0ba02e953b7423e882ef0ca1fa7ec2c","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"广州融创","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"广东省","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"familyName":"A户型","productType":"1","room":"2","hall":"2","toilet":"1","apartment":"","familyArea":"88","familyOrientation":"2","getHouseRate":"90","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/10/微信图片_20191023190633(1).png","modelHouseChart":"","familySlideImgList":"","average":"","total":"","downpayment":"","loan":"","monthly":"","years":"","interest":"","title":"","text":"","build":"1栋","saleStatus":""}
+     * data : {"id":"c96f0e838b224e26ae9b262ab12d3d2d","remarks":"","createBy":"","createDate":"2019-10-28 17:44:53","updateBy":"","updateDate":"2019-11-28 19:39:21","project":{"id":"f0ba02e953b7423e882ef0ca1fa7ec2c","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"广州融创","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"广东省","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"familyName":"A户型,A户型","productType":"1","room":"2","hall":"2","toilet":"1","apartment":"","familyArea":"88","familyOrientation":"2","getHouseRate":"90","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/10/微信图片_20191023190633(1).png","modelHouseChart":"","familySlideImgList":"","average":"10000","total":"100.00","downpayment":"40.00","percentage":"40.0","loan":"60.00","monthly":"3000","years":"1234","interest":"0.23","title":"","text":"","build":"1栋","saleStatus":""}
      */
 
     private String code;
@@ -43,9 +43,9 @@ public class FamilyInfoBean {
          * createBy :
          * createDate : 2019-10-28 17:44:53
          * updateBy :
-         * updateDate : 2019-11-20 10:03:08
+         * updateDate : 2019-11-28 19:39:21
          * project : {"id":"f0ba02e953b7423e882ef0ca1fa7ec2c","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"广州融创","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"广东省","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""}
-         * familyName : A户型
+         * familyName : A户型,A户型
          * productType : 1
          * room : 2
          * hall : 2
@@ -58,13 +58,14 @@ public class FamilyInfoBean {
          * floorPlan : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/10/微信图片_20191023190633(1).png
          * modelHouseChart :
          * familySlideImgList :
-         * average :
-         * total :
-         * downpayment :
-         * loan :
-         * monthly :
-         * years :
-         * interest :
+         * average : 10000
+         * total : 100.00
+         * downpayment : 40.00
+         * percentage : 40.0
+         * loan : 60.00
+         * monthly : 3000
+         * years : 1234
+         * interest : 0.23
          * title :
          * text :
          * build : 1栋
@@ -94,6 +95,7 @@ public class FamilyInfoBean {
         private String average;
         private String total;
         private String downpayment;
+        private String percentage;
         private String loan;
         private String monthly;
         private String years;
@@ -285,6 +287,14 @@ public class FamilyInfoBean {
 
         public void setDownpayment(String downpayment) {
             this.downpayment = downpayment;
+        }
+
+        public String getPercentage() {
+            return percentage;
+        }
+
+        public void setPercentage(String percentage) {
+            this.percentage = percentage;
         }
 
         public String getLoan() {

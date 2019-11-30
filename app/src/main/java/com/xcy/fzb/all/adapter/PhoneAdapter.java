@@ -87,11 +87,21 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ViewHolder>{
             @Override
             public void onClick(View view) {
                 if (holder.phone_CheckBox.isChecked()) {
-                    list.get(position).setStatus(true);
+                    for (int i = 0;i < list.size(); ++i){
+                        if((list.get(i).getName() + "@" + list.get(i).getTelPhone()).equals(contacts.get(position).getName())){
+                            Log.i("MyCL","contacts.get(position).getName():" + contacts.get(position).getName());
+                            list.get(i).setStatus(true);
+                        }
+                    }
                 }else {
-                    list.get(position).setStatus(false);
+                    for (int i = 0;i < list.size(); ++i){
+                        if((list.get(i).getName() + "@" + list.get(i).getTelPhone()).equals(contacts.get(position).getName())){
+                            Log.i("MyCL","contacts.get(position).getName():" + contacts.get(position).getName());
+                            list.get(i).setStatus(false);
+                        }
+                    }
                 }
-                itemOnClick.itemClick(position);
+//                itemOnClick.itemClick(position);
             }
         });
 

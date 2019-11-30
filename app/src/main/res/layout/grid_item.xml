@@ -13,11 +13,11 @@
 
     <ImageView
         android:id="@+id/item_S"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginLeft="90dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="80dp"
         android:scaleType="fitXY"
         android:background="#FFFFFF"
-        android:src="@mipmap/adds"/>
+        android:src="@mipmap/xxx"/>
 
 </RelativeLayout>

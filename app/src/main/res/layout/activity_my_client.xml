@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:text="业务信息"
+                android:text="我的客户"
                 android:textColor="#ffffff"
                 android:textSize="18sp"
                 android:visibility="gone" />

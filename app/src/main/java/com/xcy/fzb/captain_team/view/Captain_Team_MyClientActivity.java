@@ -165,6 +165,7 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
         my_client_unread_6.bringToFront();
 
         if (FinalContents.getIdentity().equals("63")) {
+            my_client_tv.setText("业务信息");
             my_client_ll_1.setVisibility(View.GONE);
             client_add.setVisibility(View.GONE);
         }
