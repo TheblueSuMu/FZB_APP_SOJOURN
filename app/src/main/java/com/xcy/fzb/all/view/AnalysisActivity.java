@@ -192,11 +192,8 @@ public class AnalysisActivity extends AllActivity {
                         all_activity_analysis_analysis_title.setText(familyInfoBean.getData().getTitle());
                         all_activity_analysis_analysis_content.setText(familyInfoBean.getData().getText());
 
-                        if (familyInfoBean.getData().getYears().equals("")) {
-                            all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly()+"元");
-                        }else {
-                            all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly()+"元"+"("+familyInfoBean.getData().getYears()+"年)");
-                        }
+                        all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly());
+
 
                         if (familyInfoBean.getData().getTitle().equals("") && familyInfoBean.getData().getText().equals("")) {
                             all_activity_analysis_analysis_linear.setVisibility(View.GONE);
@@ -204,13 +201,11 @@ public class AnalysisActivity extends AllActivity {
                             all_activity_analysis_analysis_linear.setVisibility(View.VISIBLE);
                         }
 
+                        all_activity_analysis_total_price.setText(familyInfoBean.getData().getTotal());
 
-
-                        all_activity_analysis_total_price.setText(familyInfoBean.getData().getTotal()+"元");
-
-                        all_activity_analysis_down_payment.setText(familyInfoBean.getData().getDownpayment()+"元");
-                        all_activity_analysis_loans.setText(familyInfoBean.getData().getLoan()+"元");
-                        all_activity_analysis_interest.setText(familyInfoBean.getData().getInterest()+"元");
+                        all_activity_analysis_down_payment.setText(familyInfoBean.getData().getDownpayment());
+                        all_activity_analysis_loans.setText(familyInfoBean.getData().getLoan());
+                        all_activity_analysis_interest.setText(familyInfoBean.getData().getInterest());
 
                         if (familyInfoBean.getData().getDownpayment().equals("") || familyInfoBean.getData().getLoan().equals("") || familyInfoBean.getData().getInterest().equals("") || familyInfoBean.getData().getMonthly().equals("") || familyInfoBean.getData().getTotal().equals("")) {
                             all_activity_analysis_linear.setVisibility(View.GONE);
