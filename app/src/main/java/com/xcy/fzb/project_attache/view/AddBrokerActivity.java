@@ -367,7 +367,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 Log.i("经纪人","FinalContents.getCompanyManageId()：" + FinalContents.getCompanyManageId());
                 Log.i("经纪人","FinalContents.getStoreManageId()：" + FinalContents.getStoreManageId());
 
-                Observable<AddBrokerBean> addBrokerBean = fzbInterface.getAddBrokerBean(data.getId(), num, s3, s4, s5, s6, FinalContents.getUserID(), FinalContents.getCompanyManageId(), FinalContents.getStoreManageId(), "1");
+                Observable<AddBrokerBean> addBrokerBean = fzbInterface.getAddBrokerBean(data.getId(), num, s3, s4, s5, s6, FinalContents.getUserID(), FinalContents.getCompanyManageId(), FinalContents.getStoreManageId(), "");
                 addBrokerBean.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Observer<AddBrokerBean>() {

@@ -10,9 +10,16 @@ import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ChangePhoneBean;
+import com.xcy.fzb.all.modle.GWDataBean;
+import com.xcy.fzb.all.modle.UserBean;
+import com.xcy.fzb.all.modle.UserMessageBean;
 import com.xcy.fzb.all.modle.VerificationBean;
+import com.xcy.fzb.all.modle.ZYDataBean;
+import com.xcy.fzb.all.modle.ZhangBingDataBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -175,6 +182,62 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                         ChangePhoneBean.DataBean data = changeBean.getData();
                         Toast.makeText(ChangePhoneActivity.this, data.getMessage(), Toast.LENGTH_SHORT).show();
                         if (data.getStatus().equals("1")) {
+                            if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
+                                UserMessageBean userMessageBean = Connector.getUserMessageBean();
+                                UserMessageBean.DataBean dataBean = userMessageBean.getData();
+                                dataBean.setPhone(change_phone_et.getText().toString());
+                                userMessageBean.setData(dataBean);
+                                Connector.setUserMessageBean(userMessageBean);
+                                NewlyIncreased.setUserMessage("123");
+                            } else if (FinalContents.getIdentity().equals("4")  || FinalContents.getIdentity().equals("7")) {
+                                UserBean userMessageBean = Connector.getUserBean();
+                                UserBean.DataBean dataBean = userMessageBean.getData();
+                                dataBean.setPhone(change_phone_et.getText().toString());
+                                userMessageBean.setData(dataBean);
+                                Connector.setUserBean(userMessageBean);
+                                NewlyIncreased.setUserMessage("7");
+                            } else if (FinalContents.getIdentity().equals("5")) {
+                                ZYDataBean userMessageBean = Connector.getZyDataBean();
+                                ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                                dataBean.setPhone(change_phone_et.getText().toString());
+                                userMessageBean.setData(dataBean);
+                                Connector.setZyDataBean(userMessageBean);
+                                NewlyIncreased.setUserMessage("5");
+                            } else if (FinalContents.getIdentity().equals("60")) {
+                                ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
+                                ZhangBingDataBean.DataBean dataBean = userMessageBean.getData();
+                                ZhangBingDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                sysUserBean.setPhone(change_phone_et.getText().toString());
+                                dataBean.setSysUser(sysUserBean);
+                                userMessageBean.setData(dataBean);
+                                Connector.setZhangBingDataBean(userMessageBean);
+                                NewlyIncreased.setUserMessage("60");
+                            } else if (FinalContents.getIdentity().equals("61")) {
+                                GWDataBean userMessageBean = Connector.getGwDataBean();
+                                GWDataBean.DataBean dataBean = userMessageBean.getData();
+                                GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                sysUserBean.setPhone(change_phone_et.getText().toString());
+                                dataBean.setSysUser(sysUserBean);
+                                userMessageBean.setData(dataBean);
+                                Connector.setGwDataBean(userMessageBean);
+                                NewlyIncreased.setUserMessage("61");
+                            } else if (FinalContents.getIdentity().equals("62")) {
+                                GWDataBean userMessageBean = Connector.getGwDataBean();
+                                GWDataBean.DataBean dataBean = userMessageBean.getData();
+                                GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                sysUserBean.setPhone(change_phone_et.getText().toString());
+                                dataBean.setSysUser(sysUserBean);
+                                userMessageBean.setData(dataBean);
+                                Connector.setGwDataBean(userMessageBean);
+                                NewlyIncreased.setUserMessage("61");
+                            } else if (FinalContents.getIdentity().equals("63")) {
+                                UserBean userMessageBean = Connector.getUserBean();
+                                UserBean.DataBean dataBean = userMessageBean.getData();
+                                dataBean.setPhone(change_phone_et.getText().toString());
+                                userMessageBean.setData(dataBean);
+                                Connector.setUserBean(userMessageBean);
+                                NewlyIncreased.setUserMessage("63");
+                            }
                             ChangePhoneActivity.this.finish();
                         }
                     }

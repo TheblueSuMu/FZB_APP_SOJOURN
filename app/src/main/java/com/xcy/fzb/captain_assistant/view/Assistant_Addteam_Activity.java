@@ -269,8 +269,9 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
         Log.i("添加团队长", FinalContents.getUserID());
         Log.i("添加团队长", type);
 
-        if (add_aconsultant_et1.getText().equals("") || add_aconsultant_et2.getText().equals("") || add_aconsultant_et3.getText().equals("") || loginName.equals("") || add_aconsultant_tv3.getText().equals("")) {
+        if (add_aconsultant_et1.getText().equals("")  || add_aconsultant_et3.getText().equals("") || loginName.equals("") || add_aconsultant_tv3.getText().equals("")) {
             Toast.makeText(Assistant_Addteam_Activity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
+            return;
         } else {
 
             if (add_team_rb1.isChecked()) {

@@ -51,6 +51,7 @@ import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.view.MyBrokerageActivity;
 import com.xcy.fzb.all.view.MyClientActivity;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
@@ -140,27 +141,29 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
     @SuppressLint("MissingPermission")
     @Override
     public void onSensorChanged(SensorEvent event) {
-        int sensortype = event.sensor.getType();
-        float[] values = event.values;
-        if (sensortype == Sensor.TYPE_ACCELEROMETER) {
-            /*因为一般正常情况下，任意轴数值最大就在9.8~10之间，只有在你突然摇动手机
-             *的时候，瞬时加速度才会突然增大或减少。
-             *所以，经过实际测试，只需监听任一轴的加速度大于14的时候，改变你需要的设置
-             *就OK了~~~
-             */
-            if (Math.abs(values[0]) > 20 || Math.abs(values[1]) > 20 || Math.abs(values[2]) > 20) {
+        if (FinalContents.getCityIs().equals("")) {
+            int sensortype = event.sensor.getType();
+            float[] values = event.values;
+            if (sensortype == Sensor.TYPE_ACCELEROMETER) {
+                /*因为一般正常情况下，任意轴数值最大就在9.8~10之间，只有在你突然摇动手机
+                 *的时候，瞬时加速度才会突然增大或减少。
+                 *所以，经过实际测试，只需监听任一轴的加速度大于14的时候，改变你需要的设置
+                 *就OK了~~~
+                 */
+                if (Math.abs(values[0]) > 20 || Math.abs(values[1]) > 20 || Math.abs(values[2]) > 20) {
 
-                if (SharItOff.getShar().equals("隐")) {
-                    SharItOff.setShar("显");
-                    Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
-                } else if (SharItOff.getShar().equals("显")) {
-                    SharItOff.setShar("隐");
-                    Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                    if (SharItOff.getShar().equals("隐")) {
+                        SharItOff.setShar("显");
+                        Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
+                    } else if (SharItOff.getShar().equals("显")) {
+                        SharItOff.setShar("隐");
+                        Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                    }
+                    Log.i("MyCL","摇一摇");
+
+                    initHotList();
+                    vibrator.vibrate(100);
                 }
-                Log.i("MyCL","摇一摇");
-
-                initHotList();
-                vibrator.vibrate(100);
             }
         }
     }
@@ -209,6 +212,7 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
         textView4 = view.findViewById(R.id.home_item_brokerage);
         city = view.findViewById(R.id.home_city_selector);
 
+        city.setText(FinalContents.getCityName());
 
         layout.setOnRefreshListener(this);
         search = view.findViewById(R.id.home_search);
@@ -249,11 +253,10 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
                 Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent_overseas);
             }else if (view.getId() == R.id.home_item_client) {
-                FinalContents.setProjectType("1");
-                Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
+                Intent intent_overseas = new Intent(view.getContext(), MyClientActivity.class);
                 startActivity(intent_overseas);
             }else if (view.getId() == R.id.home_item_brokerage) {
-                Intent intent_overseas = new Intent(view.getContext(), MyClientActivity.class);
+                Intent intent_overseas = new Intent(view.getContext(), MyBrokerageActivity.class);
                 startActivity(intent_overseas);
             }
         }else {
@@ -290,6 +293,9 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
                         final List<String> list = new ArrayList<>();
                         for (int i = 0; i < citylist.size(); i++) {
                             list.add(citylist.get(i).getCity());
+                            if (citylist.get(i).getId().equals(FinalContents.getCityID())) {
+                                city.setText(citylist.get(i).getCity());
+                            }
                         }
                         //      监听选中
                         OptionsPickerView pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
@@ -297,10 +303,17 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
                             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                 //               返回的分别是三个级别的选中位置
                                 //              展示选中数据
+                                if (!citylist.get(options1).getId().equals(FinalContents.getOldCityId())) {
+                                    FinalContents.setCityIs("不是当前城市");
+                                    SharItOff.setShar("隐");
+                                }else {
+                                    FinalContents.setCityIs("");
+                                }
                                 city.setText(list.get(options1));
                                 FinalContents.setCityName(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
                                 Log.i("city",FinalContents.getCityID());
+
                                 initHotList();
                             }
                         })

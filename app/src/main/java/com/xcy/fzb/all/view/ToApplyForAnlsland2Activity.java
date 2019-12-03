@@ -49,6 +49,7 @@ import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -337,8 +338,11 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     @Override
                     public void onNext(GetLandLineBean getLandLineBean) {
                         List<GetLandLineBean.DataBean> list = getLandLineBean.getData();
-
-                        initSelect(list, getlandLine);
+                        if (list.size() != 0) {
+                            initSelect(list, getlandLine);
+                        }else {
+                            ToastUtil.showLongToast(ToApplyForAnlsland2Activity.this,"当前项目暂无路线");
+                        }
                     }
 
                     @Override
@@ -402,7 +406,12 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     @Override
                     public void onNext(GetLandLineTimeBean getLandLineTimeBean) {
                         List<GetLandLineTimeBean.DataBean> list = getLandLineTimeBean.getData();
-                        initSelect2(list, getlandLinetime);
+                        if (list.size() != 0) {
+                            initSelect2(list, getlandLinetime);
+                        }else {
+                            ToastUtil.showLongToast(ToApplyForAnlsland2Activity.this,"当前项目暂无路线时间");
+                        }
+
                     }
 
                     @Override
@@ -846,7 +855,6 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 });
             }
         }
-
     }
 
     @Override

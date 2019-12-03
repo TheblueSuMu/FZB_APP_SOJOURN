@@ -2,6 +2,7 @@ package com.xcy.fzb.project_attache.view;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,9 +12,12 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.IBinder;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -78,7 +82,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     RadioButton add_broker_rb1;
     RadioButton add_broker_rb2;
     RadioButton add_broker_rb3;
-    RadioButton add_broker_rb4;
 
     RelativeLayout add_broker_rl1;
     RelativeLayout add_store_rl2;
@@ -145,7 +148,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
         add_broker_rb1 = findViewById(R.id.add_broker_rb1);
         add_broker_rb2 = findViewById(R.id.add_broker_rb2);
         add_broker_rb3 = findViewById(R.id.add_broker_rb3);
-        add_broker_rb4 = findViewById(R.id.add_broker_rb4);
         add_broker_rl1 = findViewById(R.id.add_broker_rl1);
         add_store_rl2 = findViewById(R.id.add_store_rl2);
 
@@ -168,7 +170,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             add_broker_tvs.setText("修改门店");
 
             add_broker_rb3.setVisibility(View.VISIBLE);
-            add_broker_rb4.setVisibility(View.VISIBLE);
 
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(FinalContents.getBaseUrl());
@@ -197,13 +198,11 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
                             } else {
                                 Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + storeChangeBean.getData().getStoreManage().getStoreRise()).into(add_broker_img1);
-                                url1 = storeChangeBean.getData().getStoreManage().getStoreRise();
                             }
                             if (storeChangeBean.getData().getStoreManage().getStoreImg().equals("")) {
 
                             } else {
                                 Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + storeChangeBean.getData().getStoreManage().getStoreImg()).into(add_broker_img2);
-                                url2 = storeChangeBean.getData().getStoreManage().getStoreImg();
                             }
 
                             FinalContents.setCompanyManageId(storeManage.getCompany().getId());
@@ -215,8 +214,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                 add_broker_rb1.setChecked(true);
                             } else if (storeChangeBean.getData().getStoreManage().getFlag().equals("2")) {
                                 add_broker_rb3.setChecked(true);
-                            }else if (storeChangeBean.getData().getStoreManage().getFlag().equals("3")) {
-                                add_broker_rb4.setChecked(true);
                             }
 
                         }
@@ -234,7 +231,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
         } else {
             add_broker_tvs.setText("添加门店");
             add_broker_rb3.setVisibility(View.GONE);
-            add_broker_rb4.setVisibility(View.GONE);
             String storeUrl = FinalContents.getBaseUrl() + "commissionerUpdate/setStoreNum?userId=" + FinalContents.getUserID();
             OkHttpPost okHttpPost = new OkHttpPost(storeUrl);
             String post = okHttpPost.post();
@@ -417,9 +413,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             if (add_broker_rb3.isChecked()) {
                 flag = 2;
             }
-            if (add_broker_rb4.isChecked()) {
-                flag = 3;
-            }
 
             if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
                 Toast.makeText(AddStoreActivity.this, "带*号的数据请填写完整", Toast.LENGTH_SHORT).show();
@@ -449,7 +442,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                     FinalContents.setStoreChange("");
                                 } else {
                                     Toast.makeText(AddStoreActivity.this, addStoreBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                    finish();
                                 }
                             }
 
@@ -480,9 +472,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             if (add_broker_rb3.isChecked()) {
                 flag = 2;
             }
-            if (add_broker_rb4.isChecked()) {
-                flag = 3;
-            }
             if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
                 Toast.makeText(AddStoreActivity.this, "带*号的数据请填写完整", Toast.LENGTH_SHORT).show();
             } else {
@@ -492,16 +481,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                 builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
                 Retrofit build = builder.build();
                 MyService fzbInterface = build.create(MyService.class);
-                Log.i("MyCL","storeManage.getId():" + storeManage.getId());
-                Log.i("MyCL","s:" + s);
-                Log.i("MyCL","s1:" + s1);
-                Log.i("MyCL","s2:" + s2);
-                Log.i("MyCL","s3:" + s3);
-                Log.i("MyCL","url1:" + url1);
-                Log.i("MyCL","url2:" + url2);
-                Log.i("MyCL","flag:" + flag);
-                Log.i("MyCL","FinalContents.getCompanyManageId():" + FinalContents.getCompanyManageId());
-                Log.i("MyCL","FinalContents.getUserID():" + FinalContents.getUserID());
                 Observable<AddStoreBean> addStoreBean = fzbInterface.getAddStoreBean(storeManage.getId(), s, s1, s2, s3, "", url1, url2, flag + "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
                 addStoreBean.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -519,7 +498,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                     FinalContents.setStoreChange("");
                                 } else {
                                     Toast.makeText(AddStoreActivity.this, addStoreBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                    finish();
                                 }
                             }
 
@@ -776,5 +754,57 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
         }
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (isShouldHideKeyboard(v, ev)) {
+                boolean res=hideKeyboard(v.getWindowToken());
+                if(res){
+                    //隐藏了输入法，则不再分发事件
+                    return true;
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 
+    /**
+     * 根据EditText所在坐标和用户点击的坐标相对比，来判断是否隐藏键盘，因为当用户点击EditText时则不能隐藏
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    private boolean isShouldHideKeyboard(View v, MotionEvent event) {
+        if (v != null && (v instanceof EditText)) {
+            int[] l = {0, 0};
+            v.getLocationInWindow(l);
+            int left = l[0],
+                    top = l[1],
+                    bottom = top + v.getHeight(),
+                    right = left + v.getWidth();
+            if (event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom) {
+                // 点击EditText的事件，忽略它。
+                return false;
+            } else {
+                return true;
+            }
+        }
+        // 如果焦点不是EditText则忽略，这个发生在视图刚绘制完，第一个焦点不在EditText上，和用户用轨迹球选择其他的焦点
+        return false;
+    }
+
+    /**
+     * 获取InputMethodManager，隐藏软键盘
+     * @param token
+     */
+    private boolean hideKeyboard(IBinder token) {
+        if (token != null) {
+            InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            return im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+        return false;
+    }
 }

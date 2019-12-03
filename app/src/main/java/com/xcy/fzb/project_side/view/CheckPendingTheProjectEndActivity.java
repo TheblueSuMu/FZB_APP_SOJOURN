@@ -244,12 +244,6 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
                                 @Override
                                 public void itemItem(int position) {
                                     intent = new Intent(CheckPendingTheProjectEndActivity.this, CheckPendingActivity.class);
-
-//                                    if (rows.get(position).getRelatedData().equals("认筹") || rows.get(position).getRelatedData().equals("成功")) {
-//                                        intent.putExtra("Mycheck", "2");
-//                                    } else {
-//                                        intent.putExtra("Mycheck", "1");
-//                                    }
                                     if (check_pending_the_project_end_ll2.getVisibility() == View.VISIBLE) {
                                         FinalContents.setNumS(1);
                                         intent.putExtra("name", "报备");

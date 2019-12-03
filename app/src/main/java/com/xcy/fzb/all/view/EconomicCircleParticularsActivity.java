@@ -43,12 +43,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class EconomicCircleParticularsActivity extends AllActivity implements View.OnClickListener {
 
     ImageView particulars_buddha;
-    ImageView particulars_img_1;
-    ImageView particulars_img_2;
-    ImageView particulars_img_3;
-    ImageView particulars_img_4;
-    ImageView particulars_img_5;
-    ImageView particulars_img_6;
     RelativeLayout particulars_return;
     ImageView particulars_xiao_img;
     ImageView particulars_img_s1;
@@ -61,9 +55,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     TextView particulars_time;
     RecyclerView particulars_rv_comment;
     EditText particulars_et_comment;
-    ImageView particulars_zan;
-    TextView particulars_like;
-    LinearLayout particulars_ll_zan;
     LinearLayout particulars_img_ll;
 
     CommentListAdapter adapter;
@@ -199,23 +190,12 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
         particulars_rv_comment = findViewById(R.id.particulars_rv_comment);
         particulars_et_comment = findViewById(R.id.particulars_et_comment);
 
-        particulars_img_1 = findViewById(R.id.particulars_img_1);
-        particulars_img_2 = findViewById(R.id.particulars_img_2);
-        particulars_img_3 = findViewById(R.id.particulars_img_3);
-        particulars_img_4 = findViewById(R.id.particulars_img_4);
-        particulars_img_5 = findViewById(R.id.particulars_img_5);
-        particulars_img_6 = findViewById(R.id.particulars_img_6);
 
-        particulars_zan = findViewById(R.id.particulars_zan);
-        particulars_like = findViewById(R.id.particulars_like);
-
-        particulars_ll_zan = findViewById(R.id.particulars_ll_zan);
         particulars_img_ll = findViewById(R.id.particulars_img_ll);
 
         particulars_zan_img.setOnClickListener(this);
         particulars_fb_img.setOnClickListener(this);
         particulars_return.setOnClickListener(this);
-        particulars_ll_zan.setOnClickListener(this);
 
         initData();
 
@@ -277,22 +257,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                         }
 
 
-//        TODO 点赞数
-                        if (circle.getIsLike().equals("0")) {
-                            particulars_zan.setImageResource(zan[0]);
-                            particulars_like.setText(circle.getLikeNum());
-                        } else if (circle.getIsLike().equals("1")) {
-                            particulars_zan.setImageResource(zan[1]);
-                            particulars_like.setText(circle.getLikeNum());
-                        } else {
-                            particulars_zan.setImageResource(zan[0]);
-                            if (circle.getLikeNum().equals("")) {
-                                particulars_like.setText("0");
-                            } else {
-                                particulars_like.setText(circle.getLikeNum());
-                            }
-                        }
-
                         FinalContents.setTargetId(circle.getId());
 //        TODO 头图像
                         Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + circle.getCreateByPhoto()).into(particulars_buddha);
@@ -312,40 +276,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
 
                         } else {
                             initLinear();
-                        }
-//        TODO 点赞头像
-                        List<EconomicCircleBean.DataBean.GiveListBean> giveList = economicCircleBean.getData().getGiveList();
-                        int num = 0;
-                        if (giveList.size() == 0) {
-                            particulars_img_2.setVisibility(View.GONE);
-                        } else if (giveList.size() > 0) {
-                            particulars_img_2.setVisibility(View.GONE);
-                            particulars_img_3.setVisibility(View.GONE);
-                            particulars_img_4.setVisibility(View.GONE);
-                            particulars_img_5.setVisibility(View.GONE);
-                            particulars_img_6.setVisibility(View.GONE);
-
-                            for (int i = 0; i < giveList.size(); ++i) {
-                                num++;
-                                if (num == 1) {
-                                    particulars_img_2.setVisibility(View.VISIBLE);
-                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + giveList.get(i).getUser().getPhoto()).into(particulars_img_2);
-                                } else if (num == 2) {
-                                    particulars_img_3.setVisibility(View.VISIBLE);
-                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + giveList.get(i).getUser().getPhoto()).into(particulars_img_3);
-                                } else if (num == 3) {
-                                    particulars_img_4.setVisibility(View.VISIBLE);
-                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + giveList.get(i).getUser().getPhoto()).into(particulars_img_4);
-                                } else if (num == 4) {
-                                    particulars_img_5.setVisibility(View.VISIBLE);
-                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + giveList.get(i).getUser().getPhoto()).into(particulars_img_5);
-                                } else if (num == 5) {
-                                    particulars_img_6.setVisibility(View.VISIBLE);
-                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + giveList.get(i).getUser().getPhoto()).into(particulars_img_6);
-                                } else if (num >= 6) {
-                                    particulars_img_1.setVisibility(View.VISIBLE);
-                                }
-                            }
                         }
 
                         flag = 0;
@@ -431,45 +361,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
 
 
                 break;
-            case R.id.particulars_ll_zan:
-                Retrofit.Builder builder1 = new Retrofit.Builder();
-                builder1.baseUrl(FinalContents.getBaseUrl());
-                builder1.addConverterFactory(GsonConverterFactory.create());
-                builder1.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                Retrofit build1 = builder1.build();
-                MyService fzbInterface1 = build1.create(MyService.class);
-                Observable<TotalZanBean> totalLikeNum1 = fzbInterface1.getTotalLikeNum(FinalContents.getTargetId(), FinalContents.getUserID(), "1");
-                totalLikeNum1.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<TotalZanBean>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
 
-                            }
-
-                            @Override
-                            public void onNext(TotalZanBean totalZanBean) {
-//                                if (totalZanBean.getData().getStatus().equals("0")) {
-//                                    particulars_like.setText(totalZanBean.getData().getLikeNum() + "");
-//                                    particulars_zan.setImageResource(zan[1]);
-//                                } else {
-//                                    particulars_zan.setImageResource(zan[0]);
-//                                    particulars_like.setText(totalZanBean.getData().getLikeNum() + "");
-//                                }
-                                initData();
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                Log.i("经济圈点赞", "点赞错误信息：" + e.getMessage());
-                            }
-
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        });
-                break;
         }
 
     }

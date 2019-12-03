@@ -29,6 +29,7 @@ public class FinalContents {
 //    static String ImageUrl = "http://yanshi.fangzuobiao.com:88";
 //    static String ImageUrl = "http://39.100.13.183:8080";
 //    static String ImageUrl = "http://39.98.224.67:8080";
+//    static String ImageUrl = "http://admin.fangzuobiao.com:88";
 
     static String AdminUrl = "http://admin.fangzuobiao.com:88";
 //    static String AdminUrl = "http://yanshi.fangzuobiao.com:88";
@@ -55,6 +56,7 @@ public class FinalContents {
 //    static String BaseUrl = "http://yanshi.fangzuobiao.com:88/fangfang/app/v1/";
 //    static String BaseUrl = "http://39.100.13.183:8080/fangfang/app/v1/";
 //    static String BaseUrl = "http://39.98.224.67:8080/fangfang/app/v1/";
+//    static String BaseUrl = "http://admin.fangzuobiao.com:88/fangfang/app/v1/";
 
     static String userID = "";
     static String projectID = "";
@@ -191,6 +193,25 @@ public class FinalContents {
 
     static String IfCityType = "";
 
+    static String CityIs = "";
+
+    static String OldCityId = "";
+
+    public static String getOldCityId() {
+        return OldCityId;
+    }
+
+    public static void setOldCityId(String oldCityId) {
+        OldCityId = oldCityId;
+    }
+
+    public static String getCityIs() {
+        return CityIs;
+    }
+
+    public static void setCityIs(String cityIs) {
+        CityIs = cityIs;
+    }
 
     public static String getIfCityType() {
         return IfCityType;

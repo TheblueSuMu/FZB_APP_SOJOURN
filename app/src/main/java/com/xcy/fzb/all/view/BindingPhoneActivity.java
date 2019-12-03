@@ -1,12 +1,9 @@
 package com.xcy.fzb.all.view;
 
 import android.app.AlertDialog;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
@@ -15,9 +12,16 @@ import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ChangePhoneBean;
+import com.xcy.fzb.all.modle.GWDataBean;
+import com.xcy.fzb.all.modle.UserBean;
+import com.xcy.fzb.all.modle.UserMessageBean;
 import com.xcy.fzb.all.modle.VerificationBean;
+import com.xcy.fzb.all.modle.ZYDataBean;
+import com.xcy.fzb.all.modle.ZhangBingDataBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -150,6 +154,62 @@ public class BindingPhoneActivity extends AllActivity implements View.OnClickLis
                         inflate = View.inflate(BindingPhoneActivity.this, R.layout.binding_succeed, null);
                         builder1.setView(inflate);
                         item_binding_btn = inflate.findViewById(R.id.item_binding_btn);
+                        if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
+                            UserMessageBean userMessageBean = Connector.getUserMessageBean();
+                            UserMessageBean.DataBean dataBean = userMessageBean.getData();
+                            dataBean.setPhone(binding_phone.getText().toString());
+                            userMessageBean.setData(dataBean);
+                            Connector.setUserMessageBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("123");
+                        } else if (FinalContents.getIdentity().equals("4")  || FinalContents.getIdentity().equals("7")) {
+                            UserBean userMessageBean = Connector.getUserBean();
+                            UserBean.DataBean dataBean = userMessageBean.getData();
+                            dataBean.setPhone(binding_phone.getText().toString());
+                            userMessageBean.setData(dataBean);
+                            Connector.setUserBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("7");
+                        } else if (FinalContents.getIdentity().equals("5")) {
+                            ZYDataBean userMessageBean = Connector.getZyDataBean();
+                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                            dataBean.setPhone(binding_phone.getText().toString());
+                            userMessageBean.setData(dataBean);
+                            Connector.setZyDataBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("5");
+                        } else if (FinalContents.getIdentity().equals("60")) {
+                            ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
+                            ZhangBingDataBean.DataBean dataBean = userMessageBean.getData();
+                            ZhangBingDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                            sysUserBean.setPhone(binding_phone.getText().toString());
+                            dataBean.setSysUser(sysUserBean);
+                            userMessageBean.setData(dataBean);
+                            Connector.setZhangBingDataBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("60");
+                        } else if (FinalContents.getIdentity().equals("61")) {
+                            GWDataBean userMessageBean = Connector.getGwDataBean();
+                            GWDataBean.DataBean dataBean = userMessageBean.getData();
+                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                            sysUserBean.setPhone(binding_phone.getText().toString());
+                            dataBean.setSysUser(sysUserBean);
+                            userMessageBean.setData(dataBean);
+                            Connector.setGwDataBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("61");
+                        } else if (FinalContents.getIdentity().equals("62")) {
+                            GWDataBean userMessageBean = Connector.getGwDataBean();
+                            GWDataBean.DataBean dataBean = userMessageBean.getData();
+                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                            sysUserBean.setPhone(binding_phone.getText().toString());
+                            dataBean.setSysUser(sysUserBean);
+                            userMessageBean.setData(dataBean);
+                            Connector.setGwDataBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("61");
+                        } else if (FinalContents.getIdentity().equals("63")) {
+                            UserBean userMessageBean = Connector.getUserBean();
+                            UserBean.DataBean dataBean = userMessageBean.getData();
+                            dataBean.setPhone(binding_phone.getText().toString());
+                            userMessageBean.setData(dataBean);
+                            Connector.setUserBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("63");
+                        }
 //                        mHeadPopupclly = new PopupWindow(inflate, AbsListView.LayoutParams.MATCH_PARENT, AbsListView.LayoutParams.MATCH_PARENT, true);
 //                        mHeadPopupclly.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
 //                        mHeadPopupclly.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);

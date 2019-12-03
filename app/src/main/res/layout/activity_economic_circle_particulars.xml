@@ -61,25 +61,33 @@
                     android:layout_centerVertical="true"
                     android:scaleType="fitXY" />
 
-                <TextView
-                    android:id="@+id/particulars_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_marginLeft="52dp"
-                    android:text=""
-                    android:textColor="#ff334485"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/particulars_time"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:text=""
-                    android:textColor="#ff999999"
-                    android:textSize="11sp" />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/particulars_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text=""
+                        android:textColor="#ff334485"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/particulars_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text=""
+                        android:textColor="#ff999999"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
             </RelativeLayout>
 
             <TextView
@@ -126,113 +134,11 @@
                     android:scaleType="fitXY"></ImageView>
             </LinearLayout>
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="15dp">
-
-                <LinearLayout
-                    android:id="@+id/particulars_ll_zan"
-                    android:layout_width="65dp"
-                    android:layout_height="25dp"
-                    android:background="@drawable/economic_circle_s"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/particulars_zan"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="12dp"
-                        android:src="@mipmap/icon_2" />
-
-                    <TextView
-                        android:id="@+id/particulars_like"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="7dp"
-                        android:text=""
-                        android:textColor="#ff999999"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true">
-
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        app:riv_oval="true"
-                        android:id="@+id/particulars_img_1"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/xq1" />
-
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        app:riv_oval="true"
-                        android:id="@+id/particulars_img_2"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
-                        android:scaleType="fitXY" />
-
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        app:riv_oval="true"
-                        android:id="@+id/particulars_img_3"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="40dp"
-                        android:scaleType="fitXY" />
-
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        app:riv_oval="true"
-                        android:id="@+id/particulars_img_4"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="55dp"
-                        android:scaleType="fitXY" />
-
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        app:riv_oval="true"
-                        android:id="@+id/particulars_img_5"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="70dp"
-                        android:scaleType="fitXY" />
-
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        app:riv_oval="true"
-                        android:id="@+id/particulars_img_6"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="85dp"
-                        android:scaleType="fitXY" />
-
-                </RelativeLayout>
-            </RelativeLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="15dp"
-                android:background="#EEEEEE"></LinearLayout>
+                android:background="#EEEEEE"/>
 
             <TextView
                 android:id="@+id/particulars_xiao_size"

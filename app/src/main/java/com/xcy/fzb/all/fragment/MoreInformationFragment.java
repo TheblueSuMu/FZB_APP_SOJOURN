@@ -3,6 +3,7 @@ package com.xcy.fzb.all.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,8 +61,10 @@ public class MoreInformationFragment extends AllFragment {
                 initView();
                 all_no_information.setVisibility(View.GONE);
                 more_information_rv.setVisibility(View.VISIBLE);
+                Log.i("没有","有数据");
                 return;
             }else {
+                Log.i("没有","没有数据");
                 all_no_information.setVisibility(View.VISIBLE);
                 more_information_rv.setVisibility(View.GONE);
             }

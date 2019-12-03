@@ -252,12 +252,6 @@
                             android:textColor="#ff111111"
                             android:textSize="15sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
                     </LinearLayout>
 
 

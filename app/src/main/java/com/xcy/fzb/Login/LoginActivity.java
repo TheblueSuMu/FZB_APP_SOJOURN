@@ -201,6 +201,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         NewlyIncreased.setYJendDate("");
 
         FinalContents.setQuanceng("");
+        FinalContents.setCityIs("");
+        FinalContents.setOldCityId("");
         FinalContents.setZhuanyuan("");
         FinalContents.setZhuanAn("1");
         FinalContents.setCityName("长春市");
@@ -296,6 +298,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     Intent intent = new Intent(this, Broker_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
                     FinalContents.setCityID(pref.getString("cityID", ""));
+                    FinalContents.setCityName(pref.getString("cityname", ""));
+                    FinalContents.setOldCityId(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
                     finish();
@@ -313,6 +317,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     Intent intent = new Intent(this, Captain_Market_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
                     FinalContents.setCityID(pref.getString("cityID", ""));
+                    FinalContents.setCityName(pref.getString("cityname", ""));
+                    FinalContents.setOldCityId(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
                     finish();
@@ -330,6 +336,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     Intent intent = new Intent(this, Captain_Counselor_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
                     FinalContents.setCityID(pref.getString("cityID", ""));
+                    FinalContents.setCityName(pref.getString("cityname", ""));
+                    FinalContents.setOldCityId(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
                     finish();
@@ -347,6 +355,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     Intent intent = new Intent(this, Captain_Team_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
                     FinalContents.setCityID(pref.getString("cityID", ""));
+                    FinalContents.setCityName(pref.getString("cityname", ""));
+                    FinalContents.setOldCityId(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
                     finish();
@@ -364,6 +374,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     Intent intent = new Intent(this, Captain_Assistant_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
                     FinalContents.setCityID(pref.getString("cityID", ""));
+                    FinalContents.setCityName(pref.getString("cityname", ""));
+                    FinalContents.setOldCityId(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
                     finish();
@@ -381,6 +393,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     Intent intent = new Intent(this, Project_Attache_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
                     FinalContents.setCityID(pref.getString("cityID", ""));
+                    FinalContents.setOldCityId(pref.getString("cityID", ""));
                     FinalContents.setCityName(pref.getString("cityname", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
@@ -399,6 +412,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     Intent intent = new Intent(this, Project_Side_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
                     FinalContents.setCityID(pref.getString("cityID", ""));
+                    FinalContents.setCityName(pref.getString("cityname", ""));
+                    FinalContents.setOldCityId(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
                     finish();
@@ -416,6 +431,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     Intent intent = new Intent(this, Shopping_Guide_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
                     FinalContents.setCityID(pref.getString("cityID", ""));
+                    FinalContents.setCityName(pref.getString("cityname", ""));
+                    FinalContents.setOldCityId(pref.getString("cityID", ""));
                     FinalContents.setIdentity(pref.getString("identity", ""));
                     startActivity(intent);
                     finish();
@@ -769,12 +786,15 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             Intent intent = new Intent(LoginActivity.this, Broker_MainActivity.class);
                             FinalContents.setUserID(loginUserBean.getData().getId());
                             FinalContents.setCityID(loginUserBean.getData().getCityId());
+                            FinalContents.setOldCityId(loginUserBean.getData().getCityId());
+                            FinalContents.setCityName(loginUserBean.getData().getCity());
                             FinalContents.setIdentity(loginUserBean.getData().getIdentity());
                             editor.putString("denglu", "经纪人");
                             editor.commit();
                             Log.i("登录", "数据中：" + pref.getString("denglu", ""));
                             editor.putString("userID", FinalContents.getUserID());
                             editor.putString("cityID", FinalContents.getCityID());
+                            editor.putString("cityname", FinalContents.getCityName());
                             editor.putString("identity", FinalContents.getIdentity());
                             editor.putString("forget", "");
                             editor.commit();
@@ -849,7 +869,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Intent intent = new Intent(LoginActivity.this, Project_Attache_MainActivity.class);
                                 FinalContents.setUserID(userBean.getData().getId());
                                 FinalContents.setCityID(userBean.getData().getCityId());
-                                FinalContents.setCityName(userBean.getData().getCityName());
+                                FinalContents.setOldCityId(userBean.getData().getCityId());
+                                FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
                                 editor.putString("denglu", "专员");
                                 editor.commit();
@@ -868,12 +889,15 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Intent intent = new Intent(LoginActivity.this, Project_Side_MainActivity.class);
                                 FinalContents.setUserID(userBean.getData().getId());
                                 FinalContents.setCityID(userBean.getData().getCityId());
+                                FinalContents.setOldCityId(userBean.getData().getCityId());
+                                FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
                                 editor.putString("denglu", "专案");
                                 editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
+                                editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
                                 editor.putString("forget", "");
                                 editor.commit();
@@ -884,12 +908,15 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Intent intent = new Intent(LoginActivity.this, Shopping_Guide_MainActivity.class);
                                 FinalContents.setUserID(userBean.getData().getId());
                                 FinalContents.setCityID(userBean.getData().getCityId());
+                                FinalContents.setOldCityId(userBean.getData().getCityId());
+                                FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
                                 editor.putString("denglu", "导购");
                                 editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
+                                editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
                                 editor.putString("forget", "");
                                 editor.commit();
@@ -900,6 +927,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Intent intent = new Intent(LoginActivity.this, Captain_Assistant_MainActivity.class);
                                 FinalContents.setUserID(userBean.getData().getId());
                                 FinalContents.setCityID(userBean.getData().getCityId());
+                                FinalContents.setOldCityId(userBean.getData().getCityId());
+                                FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
                                 FinalContents.setXSName(userBean.getData().getName());
                                 editor.putString("denglu", "团助");
@@ -907,6 +936,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
+                                editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
                                 editor.putString("forget", "");
                                 editor.commit();
@@ -981,6 +1011,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Intent intent = new Intent(LoginActivity.this, Captain_Team_MainActivity.class);
                                 FinalContents.setUserID(userBean.getData().getId());
                                 FinalContents.setCityID(userBean.getData().getCityId());
+                                FinalContents.setOldCityId(userBean.getData().getCityId());
+                                FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
                                 FinalContents.setUserName(userBean.getData().getName());
                                 editor.putString("denglu", "团队长");
@@ -988,6 +1020,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
+                                editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
                                 editor.putString("forget", "");
                                 editor.commit();
@@ -998,12 +1031,15 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Intent intent = new Intent(LoginActivity.this, Captain_Counselor_MainActivity.class);
                                 FinalContents.setUserID(userBean.getData().getId());
                                 FinalContents.setCityID(userBean.getData().getCityId());
+                                FinalContents.setOldCityId(userBean.getData().getCityId());
+                                FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
                                 editor.putString("denglu", "顾问");
                                 editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
+                                editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
                                 editor.putString("forget", "");
                                 editor.commit();
@@ -1014,6 +1050,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Intent intent = new Intent(LoginActivity.this, Captain_Market_MainActivity.class);
                                 FinalContents.setUserID(userBean.getData().getId());
                                 FinalContents.setCityID(userBean.getData().getCityId());
+                                FinalContents.setOldCityId(userBean.getData().getCityId());
+                                FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
                                 FinalContents.setXSName(userBean.getData().getName());
                                 FinalContents.setXSTeamName(userBean.getData().getLayerTeamVo().getTeamLeader().getParent().getName());
@@ -1024,6 +1062,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
+                                editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
                                 editor.putString("forget", "");
                                 editor.commit();

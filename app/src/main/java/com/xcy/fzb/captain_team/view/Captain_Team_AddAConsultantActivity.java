@@ -250,25 +250,30 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                         for (int i = 0; i < teamMemberBean.getData().getRows().size(); i++) {
                             list1.add(teamMemberBean.getData().getRows().get(i).getName());
                         }
-                        //      监听选中
-                        OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_AddAConsultantActivity.this, new OnOptionsSelectListener() {
-                            @Override
-                            public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                                //               返回的分别是三个级别的选中位置
-                                //              展示选中数据
-                                add_aconsultant_tv1.setText(teamMemberBean.getData().getRows().get(options1).getName() + "");
-                                FinalContents.setOwnerId002(teamMemberBean.getData().getRows().get(options1).getId());
-                                add_aconsultant_tv2.setText("");
-                                add_aconsultant_tv3.setText("");
-                            }
-                        })
-                                .setSelectOptions(0)//设置选择第一个
-                                .setOutSideCancelable(false)//点击背的地方不消失
-                                .build();//创建
-                        //      把数据绑定到控件上面
-                        pvOptions.setPicker(list1);
-                        //      展示
-                        pvOptions.show();
+
+                        if (list1.size() != 0) {
+                            //      监听选中
+                            OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_AddAConsultantActivity.this, new OnOptionsSelectListener() {
+                                @Override
+                                public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                                    //               返回的分别是三个级别的选中位置
+                                    //              展示选中数据
+                                    add_aconsultant_tv1.setText(teamMemberBean.getData().getRows().get(options1).getName() + "");
+                                    FinalContents.setOwnerId002(teamMemberBean.getData().getRows().get(options1).getId());
+                                    add_aconsultant_tv2.setText("");
+                                    add_aconsultant_tv3.setText("");
+                                }
+                            })
+                                    .setSelectOptions(0)//设置选择第一个
+                                    .setOutSideCancelable(false)//点击背的地方不消失
+                                    .build();//创建
+                            //      把数据绑定到控件上面
+                            pvOptions.setPicker(list1);
+                            //      展示
+                            pvOptions.show();
+                        }else {
+                            Toast.makeText(Captain_Team_AddAConsultantActivity.this, "暂无团队长", Toast.LENGTH_SHORT).show();
+                        }
                         ifnum1 = 0;
                     }
 
@@ -315,24 +320,29 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                             for (int i = 0; i < teamMemberBean.getData().getRows().size(); i++) {
                                 list1.add(teamMemberBean.getData().getRows().get(i).getName());
                             }
-                            //      监听选中
-                            OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_AddAConsultantActivity.this, new OnOptionsSelectListener() {
-                                @Override
-                                public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                                    //               返回的分别是三个级别的选中位置
-                                    //              展示选中数据
-                                    add_aconsultant_tv2.setText(teamMemberBean.getData().getRows().get(options1).getName() + "");
-                                    FinalContents.setOwnerId001(teamMemberBean.getData().getRows().get(options1).getId());
-                                    add_aconsultant_tv3.setText("");
-                                }
-                            })
-                                    .setSelectOptions(0)//设置选择第一个
-                                    .setOutSideCancelable(false)//点击背的地方不消失
-                                    .build();//创建
-                            //      把数据绑定到控件上面
-                            pvOptions.setPicker(list1);
-                            //      展示
-                            pvOptions.show();
+                            if (list1.size() != 0) {
+                                //      监听选中
+                                OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_AddAConsultantActivity.this, new OnOptionsSelectListener() {
+                                    @Override
+                                    public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                                        //               返回的分别是三个级别的选中位置
+                                        //              展示选中数据
+                                        add_aconsultant_tv2.setText(teamMemberBean.getData().getRows().get(options1).getName() + "");
+                                        FinalContents.setOwnerId001(teamMemberBean.getData().getRows().get(options1).getId());
+                                        add_aconsultant_tv3.setText("");
+                                    }
+                                })
+                                        .setSelectOptions(0)//设置选择第一个
+                                        .setOutSideCancelable(false)//点击背的地方不消失
+                                        .build();//创建
+                                //      把数据绑定到控件上面
+                                pvOptions.setPicker(list1);
+                                //      展示
+                                pvOptions.show();
+                            }else {
+                                Toast.makeText(Captain_Team_AddAConsultantActivity.this, "当前团队长暂无销售", Toast.LENGTH_SHORT).show();
+                            }
+
                             ifnum2 = 0;
                         }
 
@@ -500,7 +510,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
             if (FinalContents.getOwnerId001().equals("")) {
                 Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
             } else {
-                if (add_aconsultant_et1.getText().toString().equals("") || add_aconsultant_et2.getText().toString().equals("") || add_aconsultant_et3.getText().toString().equals("") || add_aconsultant_et4.getText().toString().equals("") || add_aconsultant_tv1.getText().toString().equals("") || add_aconsultant_tv2.getText().toString().equals("") || add_aconsultant_tv3.getText().toString().equals("")) {
+                if (add_aconsultant_et1.getText().toString().equals("")  || add_aconsultant_et3.getText().toString().equals("") || add_aconsultant_et4.getText().toString().equals("") || add_aconsultant_tv1.getText().toString().equals("") || add_aconsultant_tv2.getText().toString().equals("") || add_aconsultant_tv3.getText().toString().equals("")) {
                     Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
                 } else {
                     if (txt.getVisibility() == View.VISIBLE) {
@@ -544,7 +554,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                 }
             }
         } else {
-            if (add_aconsultant_et1.getText().toString().equals("") || add_aconsultant_et2.getText().toString().equals("") || add_aconsultant_et3.getText().toString().equals("") || add_aconsultant_et4.getText().toString().equals("") || add_aconsultant_tv1.getText().toString().equals("") || add_aconsultant_tv2.getText().toString().equals("") || add_aconsultant_tv3.getText().toString().equals("")) {
+            if (add_aconsultant_et1.getText().toString().equals("") || add_aconsultant_et3.getText().toString().equals("") || add_aconsultant_et4.getText().toString().equals("") || add_aconsultant_tv1.getText().toString().equals("") || add_aconsultant_tv2.getText().toString().equals("") || add_aconsultant_tv3.getText().toString().equals("")) {
                 Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
             } else {
                 if (txt.getVisibility() == View.VISIBLE) {

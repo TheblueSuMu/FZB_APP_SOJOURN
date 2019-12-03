@@ -62,6 +62,8 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
     private TextView particulars_xiao_pinglun;
     private String isLike;
     int num = 0;
+    private TextView comment_time;
+    private String time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +124,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
         comment_return = findViewById(R.id.comment_return);
         comment_buddha = findViewById(R.id.comment_buddha);
         comment_img = findViewById(R.id.comment_img);
+        comment_time = findViewById(R.id.comment_time);
         comment_title = findViewById(R.id.comment_title);
         comment_message = findViewById(R.id.comment_message);
         comment_rv = findViewById(R.id.comment_rv);
@@ -138,9 +141,11 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
 
         headPortrait = getIntent().getStringExtra("headPortrait");
         title = getIntent().getStringExtra("title");
+        time = getIntent().getStringExtra("time");
         message = getIntent().getStringExtra("message");
         img = getIntent().getStringExtra("img");
         isLike = getIntent().getStringExtra("isLike");
+
 
 //        if (isLike.equals("1")){
 //            Glide.with(MessageCommentActivity.this).load(R.mipmap.icon_2).into(comment_zan_img);
@@ -156,6 +161,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
         }
 
         comment_title.setText(title);
+        comment_time.setText(time);
         comment_message.setText(message);
         if (img.equals("")) {
             comment_img.setVisibility(View.GONE);

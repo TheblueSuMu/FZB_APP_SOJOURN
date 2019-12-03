@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -69,7 +72,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     RadioButton add_company_rb1;
     RadioButton add_company_rb2;
     RadioButton add_company_rb3;
-    RadioButton add_company_rb4;
 
 
     private String num;
@@ -140,7 +142,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         add_company_rb1 = findViewById(R.id.add_company_rb1);
         add_company_rb2 = findViewById(R.id.add_company_rb2);
         add_company_rb3 = findViewById(R.id.add_company_rb3);
-        add_company_rb4 = findViewById(R.id.add_company_rb4);
         add_company_tvs = findViewById(R.id.tvs);
         rl1 = findViewById(R.id.rl1);
         rl2 = findViewById(R.id.rl2);
@@ -164,8 +165,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             rl2.setVisibility(View.GONE);
             rl3.setVisibility(View.GONE);
             rl4.setVisibility(View.GONE);
-
-            add_company_rb4.setVisibility(View.VISIBLE);
 
             add_company_tvs.setText("修改公司");
             Retrofit.Builder builder = new Retrofit.Builder();
@@ -206,8 +205,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                                 add_company_rb2.setChecked(true);
                             } else if (companyManage.getFlag().equals("2")) {
                                 add_company_rb3.setChecked(true);
-                            }else if (companyManage.getFlag().equals("3")) {
-                                add_company_rb4.setChecked(true);
                             }
 
                         }
@@ -229,7 +226,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             rl2.setVisibility(View.VISIBLE);
             rl3.setVisibility(View.VISIBLE);
             rl4.setVisibility(View.VISIBLE);
-            add_company_rb4.setVisibility(View.GONE);
             add_company_tvs.setText("添加公司");
             add_company_tv1.setText(FinalContents.getCityName());
         }
@@ -293,8 +289,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                     num = "1";
                 } else if (add_company_rb3.isChecked()) {
                     num = "2";
-                } else if (add_company_rb4.isChecked()) {
-                    num = "3";
                 }
                 if (add_company_et6.getText().toString().equals("")) {
                     s8 = "123456";
@@ -465,61 +459,113 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-       if(isnum == 1){
-           if (requestCode == 1 && resultCode == RESULT_OK) {
-               add_company_tv3.setText(data.getStringExtra("getLatitude") + "\n" + data.getStringExtra("getLongitude"));
-           }
+        if(isnum == 1){
+            if (requestCode == 1 && resultCode == RESULT_OK) {
+                add_company_tv3.setText(data.getStringExtra("getLatitude") + "\n" + data.getStringExtra("getLongitude"));
+            }
 
-           getLatitude = data.getStringExtra("getLatitude");
-           getLongitude = data.getStringExtra("getLongitude");
+            getLatitude = data.getStringExtra("getLatitude");
+            getLongitude = data.getStringExtra("getLongitude");
 
 
-           StringBuffer stringBuffer1 = new StringBuffer();
-           StringBuffer stringBuffer2 = new StringBuffer();
+            StringBuffer stringBuffer1 = new StringBuffer();
+            StringBuffer stringBuffer2 = new StringBuffer();
 
-           StringBuffer append1 = stringBuffer1.append(getLatitude);
-           StringBuffer append2 = stringBuffer2.append(getLongitude);
+            StringBuffer append1 = stringBuffer1.append(getLatitude);
+            StringBuffer append2 = stringBuffer2.append(getLongitude);
 
-           Retrofit.Builder builder = new Retrofit.Builder();
-           builder.baseUrl(FinalContents.getBaseUrl());
-           builder.addConverterFactory(GsonConverterFactory.create());
-           builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-           Retrofit build = builder.build();
-           MyService fzbInterface = build.create(MyService.class);
+            Retrofit.Builder builder = new Retrofit.Builder();
+            builder.baseUrl(FinalContents.getBaseUrl());
+            builder.addConverterFactory(GsonConverterFactory.create());
+            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+            Retrofit build = builder.build();
+            MyService fzbInterface = build.create(MyService.class);
 
-           Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
-           changeAddress.subscribeOn(Schedulers.io())
-                   .observeOn(AndroidSchedulers.mainThread())
-                   .subscribe(new Observer<ChangeAddress>() {
-                       @Override
-                       public void onSubscribe(Disposable d) {
+            Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
+            changeAddress.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<ChangeAddress>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
 
-                       }
+                        }
 
-                       @Override
-                       public void onNext(ChangeAddress changeAddress) {
+                        @Override
+                        public void onNext(ChangeAddress changeAddress) {
 
-                           add_company_et2.setText(changeAddress.getData().getValue());
+                            add_company_et2.setText(changeAddress.getData().getValue());
 
-                       }
+                        }
 
-                       @Override
-                       public void onError(Throwable e) {
+                        @Override
+                        public void onError(Throwable e) {
 
-                           Log.i("经纬度转坐标","经纬度转坐标错误信息：" + e.getMessage());
+                            Log.i("经纬度转坐标","经纬度转坐标错误信息：" + e.getMessage());
 
-                       }
+                        }
 
-                       @Override
-                       public void onComplete() {
+                        @Override
+                        public void onComplete() {
 
-                       }
-                   });
-       }
+                        }
+                    });
+        }
 
-       isnum = 0;
+        isnum = 0;
 
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (isShouldHideKeyboard(v, ev)) {
+                boolean res=hideKeyboard(v.getWindowToken());
+                if(res){
+                    //隐藏了输入法，则不再分发事件
+                    return true;
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 
+    /**
+     * 根据EditText所在坐标和用户点击的坐标相对比，来判断是否隐藏键盘，因为当用户点击EditText时则不能隐藏
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    private boolean isShouldHideKeyboard(View v, MotionEvent event) {
+        if (v != null && (v instanceof EditText)) {
+            int[] l = {0, 0};
+            v.getLocationInWindow(l);
+            int left = l[0],
+                    top = l[1],
+                    bottom = top + v.getHeight(),
+                    right = left + v.getWidth();
+            if (event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom) {
+                // 点击EditText的事件，忽略它。
+                return false;
+            } else {
+                return true;
+            }
+        }
+        // 如果焦点不是EditText则忽略，这个发生在视图刚绘制完，第一个焦点不在EditText上，和用户用轨迹球选择其他的焦点
+        return false;
+    }
+
+    /**
+     * 获取InputMethodManager，隐藏软键盘
+     * @param token
+     */
+    private boolean hideKeyboard(IBinder token) {
+        if (token != null) {
+            InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            return im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+        return false;
+    }
 }

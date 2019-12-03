@@ -63,15 +63,34 @@
                     android:scaleType="fitXY"
                     app:riv_oval="true" />
 
-                <TextView
-                    android:id="@+id/comment_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+
+
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_marginLeft="52dp"
-                    android:text=""
-                    android:textColor="#ff334485"
-                    android:textSize="15sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/comment_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text=""
+                        android:textColor="#ff334485"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/comment_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="#ff999999"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
             </RelativeLayout>
 
             <TextView

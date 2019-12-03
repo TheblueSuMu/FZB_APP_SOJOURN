@@ -34,16 +34,22 @@ public class CheckPendingTheProjectEndAdapter extends RecyclerView.Adapter<Check
     @NonNull
     @Override
     public CheckPendingTheProjectEndViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.project_side_item_refuse_the_project_end, parent, false);
+
         return new CheckPendingTheProjectEndViewHolder(inflate);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CheckPendingTheProjectEndViewHolder holder, final int position) {
+
         holder.item_refuse_the_project_end_tv4.setText(rows.get(position).getRelatedData());
+        if (rows.get(position).getRelatedData().equals("失效")) {
+            holder.item_refuse_the_project_end_tv4.setText("拒绝");
+        }
         holder.item_refuse_the_project_end_tv4.setTextColor(Color.parseColor("#AC1E26"));
         holder.item_refuse_the_project_end_tv2.setText(rows.get(position).getProjectName());
-        holder.item_refuse_the_project_end_tv1.setText(rows.get(position).getCustomerName()+"("+rows.get(position).getCustomerPhone()+")");
+        holder.item_refuse_the_project_end_tv1.setText(rows.get(position).getCustomerName());
         holder.item_refuse_the_project_end_tv3.setText(rows.get(position).getDate());
         Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + rows.get(position).getCustomerImg()).into(holder.item_refuse_the_project_end_img);
 

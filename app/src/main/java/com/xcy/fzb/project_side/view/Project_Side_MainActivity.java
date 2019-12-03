@@ -93,7 +93,6 @@ public class Project_Side_MainActivity extends AllActivity implements CustomAdap
         setContentView(R.layout.project_side_activity_main);
         FinalContents.setZhuanAn("1");
         initfvb();
-
     }
 
     private void init_No_Network(){

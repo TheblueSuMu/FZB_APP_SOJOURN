@@ -157,8 +157,12 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
         img_backup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Broker_MainActivity.this, ReportActivity.class);
-                startActivity(intent);
+                if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                    Intent intent = new Intent(Broker_MainActivity.this, ReportActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(Broker_MainActivity.this, "该城市不是您的主营城市，请切换到您的主营城市后再报备客户", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -197,8 +201,12 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
                 transaction.hide(eFragment);
                 break;
             case R.id.button_backup:
-                Intent intent = new Intent(Broker_MainActivity.this, ReportActivity.class);
-                startActivity(intent);
+                if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                    Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(Broker_MainActivity.this, ReportActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.button_economics:
                 init_No_Network();
