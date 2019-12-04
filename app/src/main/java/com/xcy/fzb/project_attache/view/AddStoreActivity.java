@@ -9,11 +9,13 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,6 +46,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.modle.AddStoreBean;
 import com.xcy.fzb.all.modle.AddStoreNumBean;
+import com.xcy.fzb.all.modle.ChangeAddress;
 import com.xcy.fzb.all.modle.ChangeSexBean;
 import com.xcy.fzb.all.modle.GWDataBean;
 import com.xcy.fzb.all.modle.StoreChangeBean;
@@ -58,6 +61,7 @@ import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.PersonalInformationActivity;
+import com.xcy.fzb.all.view.TestMapActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
 
 import java.io.BufferedOutputStream;
@@ -88,6 +92,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     TextView add_broker_tv1;
     TextView add_broker_tvs;
     TextView add_broker_tv3;
+    TextView add_broker_tv4;
 
     TextView add_broker_tv2;
     EditText add_broker_et2;
@@ -104,6 +109,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     RelativeLayout add_broker_rl1;
     RelativeLayout add_store_rl2;
     RelativeLayout add_broker_rl2;
+    RelativeLayout add_store_rl4;
     private Intent intent;
 
     RadioGroup add_broker_rg;
@@ -127,6 +133,11 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     int isPhoto = 0;
     String myLocation = "";
     private String state = "";
+
+    int isnum = 0;
+    private String getLatitude = "";
+    private String getLongitude = "";
+    private int GPS_REQUEST_CODE = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,6 +188,8 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
         add_broker_rl2 = findViewById(R.id.add_broker_rl2);
         add_broker_tv3 = findViewById(R.id.add_broker_tv3);
         add_broker_rg = findViewById(R.id.add_broker_rg);
+        add_store_rl4 = findViewById(R.id.add_store_rl4);
+        add_broker_tv4 = findViewById(R.id.add_broker_tv4);
 
         add_broker_return.setOnClickListener(this);
         add_broker_img1.setOnClickListener(this);
@@ -185,6 +198,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
         add_broker_rl1.setOnClickListener(this);
         add_store_rl2.setOnClickListener(this);
         add_broker_rl2.setOnClickListener(this);
+        add_store_rl4.setOnClickListener(this);
 
         add_broker_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -234,13 +248,13 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                             add_broker_et2.setText(storeChangeBean.getData().getStoreManage().getStoreName());
                             add_broker_et3.setText(storeChangeBean.getData().getStoreManage().getArea());
                             add_broker_et4.setText(storeChangeBean.getData().getStoreManage().getAddress());
-                            if(storeChangeBean.getData().getStoreManage().getState().equals("1")){
+                            if (storeChangeBean.getData().getStoreManage().getState().equals("1")) {
                                 add_broker_tv3.setText("签约");
-                            }else if(storeChangeBean.getData().getStoreManage().getState().equals("2")){
+                            } else if (storeChangeBean.getData().getStoreManage().getState().equals("2")) {
                                 add_broker_tv3.setText("装机");
-                            }else if(storeChangeBean.getData().getStoreManage().getState().equals("3")){
+                            } else if (storeChangeBean.getData().getStoreManage().getState().equals("3")) {
                                 add_broker_tv3.setText("培训");
-                            }else if(storeChangeBean.getData().getStoreManage().getState().equals("4")){
+                            } else if (storeChangeBean.getData().getStoreManage().getState().equals("4")) {
                                 add_broker_tv3.setText("维护");
                             }
                             if (storeChangeBean.getData().getStoreManage().getStoreRise().equals("")) {
@@ -270,6 +284,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                 add_broker_rb4.setChecked(true);
                                 add_broker_rl2.setVisibility(View.GONE);
                             }
+                            add_broker_tv4.setText(storeChangeBean.getData().getStoreManage().getLocation());
                             myLocation = storeChangeBean.getData().getStoreManage().getLocation();
                         }
 
@@ -331,9 +346,31 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             case R.id.add_broker_rl2:
                 initState();
                 break;
+            case R.id.add_store_rl4:
+                boolean locServiceEnable = isLocServiceEnable(AddStoreActivity.this);
+                if (locServiceEnable == true) {
+                    Log.i("MyCL", "定位服务已开启");
+                    isnum = 1;
+                    Intent intent = new Intent(AddStoreActivity.this, TestMapActivity.class);
+                    intent.putExtra("La", getLatitude);
+                    intent.putExtra("Lo", getLongitude);
+                    startActivityForResult(intent, 1);
+                } else {
+                    Log.i("MyCL", "定位服务未开启");
+                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivityForResult(intent, GPS_REQUEST_CODE);
+                }
+                break;
 
         }
 
+    }
+
+    public static boolean isLocServiceEnable(Context context) {
+        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        boolean gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        return gps || network;
     }
 
     private void initState() {
@@ -499,6 +536,8 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             String s3 = add_broker_et4.getText().toString();
             String s = add_broker_tv1.getText().toString();
             String s4 = add_broker_tv2.getText().toString();
+            String s5 = add_broker_tv4.getText().toString();
+
             if (add_broker_rb1.isChecked()) {
                 flag = 0;
             }
@@ -511,7 +550,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             if (add_broker_rb4.isChecked()) {
                 flag = 3;
             }
-            if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
+            if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("") || s5.equals("")) {
                 ToastUtil.showLongToast(AddStoreActivity.this, "带*号的数据请填写完整");
             } else {
 
@@ -524,9 +563,9 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                 MyService fzbInterface = build.create(MyService.class);
                 Observable<AddStoreBean> addStoreBean;
                 if (add_broker_rl2.getVisibility() == View.VISIBLE) {
-                    addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, "", url1, url2, flag + "", state, FinalContents.getCompanyManageId(), FinalContents.getUserID());
+                    addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, (getLongitude + "," + getLatitude), url1, url2, flag + "", state, FinalContents.getCompanyManageId(), FinalContents.getUserID());
                 } else {
-                    addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, "", url1, url2, flag + "", "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
+                    addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, (getLongitude + "," + getLatitude), url1, url2, flag + "", "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
                 }
                 addStoreBean.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -565,6 +604,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             String s3 = add_broker_et4.getText().toString();
             String s = add_broker_tv1.getText().toString();
             String s4 = add_broker_tv2.getText().toString();
+            String s5 = add_broker_tv4.getText().toString();
             if (add_broker_rb1.isChecked()) {
                 flag = 0;
             }
@@ -577,7 +617,12 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             if (add_broker_rb4.isChecked()) {
                 flag = 3;
             }
-            if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
+            if (myLocation.equals((getLongitude + "," + getLatitude))) {
+
+            } else {
+                myLocation = (getLongitude + "," + getLatitude);
+            }
+            if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("") || s5.equals("")) {
                 Toast.makeText(AddStoreActivity.this, "带*号的数据请填写完整", Toast.LENGTH_SHORT).show();
             } else {
                 Retrofit.Builder builder = new Retrofit.Builder();
@@ -672,7 +717,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     //TODO 从相册获取图片
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        sum++;
+
 //TODO  获取相册图片地址
         if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
 
@@ -769,6 +814,62 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             }
 
         }
+
+
+        if (isnum == 1) {
+            if (requestCode == 1 && resultCode == RESULT_OK) {
+                add_broker_tv4.setText(data.getStringExtra("getLatitude") + "\n" + data.getStringExtra("getLongitude"));
+            }
+
+            getLatitude = data.getStringExtra("getLatitude");
+            getLongitude = data.getStringExtra("getLongitude");
+
+
+            StringBuffer stringBuffer1 = new StringBuffer();
+            StringBuffer stringBuffer2 = new StringBuffer();
+
+            StringBuffer append1 = stringBuffer1.append(getLatitude);
+            StringBuffer append2 = stringBuffer2.append(getLongitude);
+
+            Retrofit.Builder builder = new Retrofit.Builder();
+            builder.baseUrl(FinalContents.getBaseUrl());
+            builder.addConverterFactory(GsonConverterFactory.create());
+            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+            Retrofit build = builder.build();
+            MyService fzbInterface = build.create(MyService.class);
+
+            Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
+            changeAddress.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<ChangeAddress>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(ChangeAddress changeAddress) {
+
+                            add_broker_et4.setText(changeAddress.getData().getValue());
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+
+                            Log.i("经纬度转坐标", "经纬度转坐标错误信息：" + e.getMessage());
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
+
+        isnum = 0;
+
     }
 
     //TODO 将Uri转换成File
