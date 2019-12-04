@@ -284,7 +284,11 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                 add_broker_rb4.setChecked(true);
                                 add_broker_rl2.setVisibility(View.GONE);
                             }
-                            add_broker_tv4.setText(storeChangeBean.getData().getStoreManage().getLocation());
+                            if(storeChangeBean.getData().getStoreManage().getLocation().equals("")){
+
+                            }else {
+                                add_broker_tv4.setText(storeChangeBean.getData().getStoreManage().getLocation());
+                            }
                             myLocation = storeChangeBean.getData().getStoreManage().getLocation();
                         }
 
