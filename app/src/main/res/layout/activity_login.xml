@@ -244,8 +244,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="41dp"
-                            android:layout_height="44dp"
+                            android:layout_width="39dp"
+                            android:layout_height="39dp"
                             android:layout_gravity="center"
                             android:src="@mipmap/ic_login_wechat" />
 

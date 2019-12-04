@@ -44,7 +44,7 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
         holder.brokerage_item_roomNumber.setText(rows.get(position).getRoomNumber());
         holder.brokerage_item_projectName.setText(rows.get(position).getProjectName());
         holder.brokerage_item_ziji.setText("自己");
-        holder.brokerage_item_tradeDat.setText(rows.get(position).getTradeDate() + "");
+        holder.brokerage_item_tradeDat.setText("成交时间："+rows.get(position).getTradeDate());
         holder.brokerage_item_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,7 +180,14 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
                         if (rows.get(position).getReturnedMoney().equals("") || rows.get(position).getReturnedMoney().equals("0") || rows.get(position).getReturnedMoney().equals("0.00")) {
                             holder.the_project_end_tv8.setVisibility(View.GONE);
                         } else {
-                            holder.brokerage_item_alreadyAmount.setVisibility(View.GONE);
+                            holder.the_project_end_tv6.setVisibility(View.GONE);
+                            holder.the_project_end_tv7.setVisibility(View.GONE);
+                            if(rows.get(position).getAlreadyAmount().equals("") || rows.get(position).getAlreadyAmount().equals("0") || rows.get(position).getAlreadyAmount().equals("0.00")){
+                                holder.brokerage_item_alreadyAmount.setVisibility(View.GONE);
+                            }else {
+                                holder.brokerage_item_alreadyAmount.setVisibility(View.VISIBLE);
+                                holder.brokerage_item_alreadyAmount.setText("已结：￥" + rows.get(position).getAlreadyAmount() + "");
+                            }
                             holder.brokerage_item_notAmount.setVisibility(View.GONE);
                             holder.the_project_end_tv8.setVisibility(View.VISIBLE);
                             holder.the_project_end_tv8.setText("需退还：￥" + rows.get(position).getReturnedMoney());
@@ -198,6 +205,8 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
                             holder.brokerage_item_totalAmount.setVisibility(View.GONE);
                             holder.brokerage_item_secondsAmount.setVisibility(View.GONE);
                         } else {
+                            holder.the_project_end_tv6.setVisibility(View.GONE);
+                            holder.the_project_end_tv7.setVisibility(View.GONE);
                             holder.brokerage_item_alreadyAmount.setVisibility(View.GONE);
                             holder.brokerage_item_notAmount.setVisibility(View.GONE);
                             holder.the_project_end_tv8.setVisibility(View.VISIBLE);
@@ -208,46 +217,6 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
                 }
             }
         }
-//        if (rows.get(position).getStatus().equals("0")) {
-//            holder.the_project_end_tv6.setVisibility(View.GONE);
-//            holder.the_project_end_tv7.setVisibility(View.GONE);
-//        } else if (rows.get(position).getStatus().equals("1")) {
-//            holder.the_project_end_tv6.setVisibility(View.VISIBLE);
-//            holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-//            holder.the_project_end_tv7.setText(rows.get(position).getClosingTime());
-//        }
-//
-//        if (rows.get(position).getReturnedMoney().equals("") || rows.get(position).getReturnedMoney().equals("0") || rows.get(position).getReturnedMoney().equals("0.00") ) {
-//            holder.the_project_end_tv8.setVisibility(View.GONE);
-//        }else {
-//            holder.the_project_end_tv8.setVisibility(View.VISIBLE);
-//            holder.the_project_end_tv8.setText("需退还：￥"+rows.get(position).getReturnedMoney());
-//        }
-//        Log.i("总佣金","佣金"+rows.get(position).getTotalAmount()+" :  " +position);
-//        if (rows.get(position).getStatus().equals("0")) {
-//            holder.the_project_end_tv6.setVisibility(View.GONE);
-//            holder.the_project_end_tv7.setVisibility(View.GONE);
-//        } else if (rows.get(position).getStatus().equals("1")) {
-//            holder.brokerage_item_secondsAmount.setVisibility(View.GONE);
-//            holder.brokerage_item_alreadyAmount.setVisibility(View.GONE);
-//            holder.brokerage_item_notAmount.setVisibility(View.GONE);
-//            holder.the_project_end_tv6.setVisibility(View.VISIBLE);
-//            holder.the_project_end_tv7.setVisibility(View.VISIBLE);
-//            holder.the_project_end_tv7.setText(rows.get(position).getClosingTime());
-//        }
-//
-//        if (rows.get(position).getMoneyStatus() == 0) {
-//            holder.brokerage_item_img.setVisibility(View.GONE);
-//        }else if (rows.get(position).getMoneyStatus() == 1){
-//            holder.brokerage_item_img.setVisibility(View.VISIBLE);
-//            holder.brokerage_item_img.setBackgroundResource(R.mipmap.tdg);
-//        }else if (rows.get(position).getMoneyStatus() == 2){
-//            holder.brokerage_item_img.setVisibility(View.VISIBLE);
-//            holder.brokerage_item_img.setBackgroundResource(R.mipmap.tdr);
-//            holder.brokerage_item_alreadyAmount.setVisibility(View.GONE);
-//            holder.brokerage_item_notAmount.setVisibility(View.GONE);
-//        }
-
     }
 
     @Override

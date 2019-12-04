@@ -297,7 +297,7 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
     protected void onRestart() {
         super.onRestart();
         if (FinalContents.getEndStart().equals("成功")) {
-            finish();
+//            finish();
         }
         initData(FinalContents.getNumS());
     }

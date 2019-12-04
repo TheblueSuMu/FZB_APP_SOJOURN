@@ -49,7 +49,7 @@ public class CheckPendingTheProjectEndAdapter extends RecyclerView.Adapter<Check
         }
         holder.item_refuse_the_project_end_tv4.setTextColor(Color.parseColor("#AC1E26"));
         holder.item_refuse_the_project_end_tv2.setText(rows.get(position).getProjectName());
-        holder.item_refuse_the_project_end_tv1.setText(rows.get(position).getCustomerName());
+        holder.item_refuse_the_project_end_tv1.setText(rows.get(position).getCustomerName()+"("+rows.get(position).getCustomerPhone()+")");
         holder.item_refuse_the_project_end_tv3.setText(rows.get(position).getDate());
         Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + rows.get(position).getCustomerImg()).into(holder.item_refuse_the_project_end_img);
 

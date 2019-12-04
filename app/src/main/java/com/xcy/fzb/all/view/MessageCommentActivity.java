@@ -3,7 +3,6 @@ package com.xcy.fzb.all.view;
 import android.annotation.SuppressLint;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -15,12 +14,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.ImageAdapter;
 import com.xcy.fzb.all.adapter.MessageCommentAdapter;
 import com.xcy.fzb.all.api.AndroidBug5497Workaround;
 import com.xcy.fzb.all.api.FinalContents;
@@ -31,6 +32,7 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -45,7 +47,6 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
 
     RelativeLayout comment_return;
     ImageView comment_buddha;
-    ImageView comment_img;
     TextView comment_title;
     TextView comment_message;
     RecyclerView comment_rv;
@@ -64,6 +65,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
     int num = 0;
     private TextView comment_time;
     private String time;
+    private RecyclerView comment_img_rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,10 +122,10 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
 //        TODO 透明状态栏
         StatusBar.makeStatusBarTransparent(this);
 
+        comment_img_rv = findViewById(R.id.comment_img_rv);
         particulars_xiao_pinglun = findViewById(R.id.particulars_xiao_pinglun);
         comment_return = findViewById(R.id.comment_return);
         comment_buddha = findViewById(R.id.comment_buddha);
-        comment_img = findViewById(R.id.comment_img);
         comment_time = findViewById(R.id.comment_time);
         comment_title = findViewById(R.id.comment_title);
         comment_message = findViewById(R.id.comment_message);
@@ -147,6 +149,23 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
         isLike = getIntent().getStringExtra("isLike");
 
 
+        if (img.equals("")) {
+            comment_img_rv.setVisibility(View.GONE);
+        } else {
+            comment_img_rv.setVisibility(View.VISIBLE);
+            List<String> arraylist = new ArrayList<>();
+            String[] a  = img.split("[|]");
+            for (int i = 0; i < a.length; i++){
+                arraylist.add(a[i]);
+            }
+            GridLayoutManager layoutManager = new GridLayoutManager(MessageCommentActivity.this,3);
+            layoutManager.setOrientation(GridLayoutManager.VERTICAL);
+            comment_img_rv.setLayoutManager(layoutManager);
+            ImageAdapter imageAdapter = new ImageAdapter(arraylist);
+            imageAdapter.setImageUrl(img);
+            comment_img_rv.setAdapter(imageAdapter);
+            imageAdapter.notifyDataSetChanged();
+        }
 //        if (isLike.equals("1")){
 //            Glide.with(MessageCommentActivity.this).load(R.mipmap.icon_2).into(comment_zan_img);
 //        }else {
@@ -163,24 +182,8 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
         comment_title.setText(title);
         comment_time.setText(time);
         comment_message.setText(message);
-        if (img.equals("")) {
-            comment_img.setVisibility(View.GONE);
-        } else {
-            comment_img.setVisibility(View.VISIBLE);
-            Glide.with(MessageCommentActivity.this).load(FinalContents.getImageUrl() + img).into(comment_img);
-        }
 
         initData();
-
-        comment_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MessageCommentActivity.this, BigPhotoActivity.class);
-                intent.putExtra("index", 0);
-                intent.putExtra("bigPhotoimg", img);
-                startActivity(intent);
-            }
-        });
 
     }
 

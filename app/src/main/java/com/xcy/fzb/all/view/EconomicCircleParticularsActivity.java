@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.CommentListAdapter;
+import com.xcy.fzb.all.adapter.ImageAdapter;
 import com.xcy.fzb.all.api.AndroidBug5497Workaround;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CircleBean;
@@ -29,6 +30,7 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -45,9 +47,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     ImageView particulars_buddha;
     RelativeLayout particulars_return;
     ImageView particulars_xiao_img;
-    ImageView particulars_img_s1;
-    ImageView particulars_img_s2;
-    ImageView particulars_img_s3;
     ImageView particulars_zan_img;
     ImageView particulars_fb_img;
     TextView particulars_title;
@@ -55,7 +54,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     TextView particulars_time;
     RecyclerView particulars_rv_comment;
     EditText particulars_et_comment;
-    LinearLayout particulars_img_ll;
 
     CommentListAdapter adapter;
     private List<EconomicCircleBean.DataBean.CommentListBean> commentList;
@@ -68,6 +66,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     private EconomicCircleBean economicCircleBean;
     private TextView particulars_xiao_size;
     private boolean whehter = true;
+    private RecyclerView particulars_img_rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,13 +174,10 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     private void initView() {
 
         particulars_xiao_size = findViewById(R.id.particulars_xiao_size);
-
+        particulars_img_rv = findViewById(R.id.particulars_img_rv);
         particulars_buddha = findViewById(R.id.particulars_buddha);
         particulars_return = findViewById(R.id.particulars_return);
         particulars_xiao_img = findViewById(R.id.particulars_xiao_img);
-        particulars_img_s1 = findViewById(R.id.particulars_img_s1);
-        particulars_img_s2 = findViewById(R.id.particulars_img_s2);
-        particulars_img_s3 = findViewById(R.id.particulars_img_s3);
         particulars_zan_img = findViewById(R.id.particulars_zan_img);
         particulars_fb_img = findViewById(R.id.particulars_fb_img);
         particulars_title = findViewById(R.id.particulars_title);
@@ -189,9 +185,6 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
         particulars_time = findViewById(R.id.particulars_time);
         particulars_rv_comment = findViewById(R.id.particulars_rv_comment);
         particulars_et_comment = findViewById(R.id.particulars_et_comment);
-
-
-        particulars_img_ll = findViewById(R.id.particulars_img_ll);
 
         particulars_zan_img.setOnClickListener(this);
         particulars_fb_img.setOnClickListener(this);
@@ -224,38 +217,25 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
 //        TODO 解析完成后的操作
 
                         String imgUrl = circle.getImgUrl();
-                        StringBuffer stringBuffer = new StringBuffer();
-                        stringBuffer.append(imgUrl);
-                        if (imgUrl.equals("")) {
-                            particulars_img_ll.setVisibility(View.GONE);
-                        } else {
-                            particulars_img_ll.setVisibility(View.VISIBLE);
-                        }
-                        int j = 0;
-                        int sum = 0;
-//        TODO 图片加载
-                        for (int i = 0; i < stringBuffer.length(); ++i) {
-                            if (stringBuffer.substring(i, i + 1).equals("|")) {
-                                if (sum == 0) {
-                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(0, i)).into(particulars_img_s1);
-                                    sum++;
-                                } else if (sum == 1) {
-                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(j, i)).into(particulars_img_s2);
-                                    sum++;
-                                } else if (sum == 2) {
-                                    Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(j, i)).into(particulars_img_s3);
-                                    sum++;
-                                }
-                                j = i + 1;
-                            } else if (sum == 0 && i == stringBuffer.length() - 1) {
-                                Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(0)).into(particulars_img_s1);
-                            } else if (sum == 1 && i == stringBuffer.length() - 1) {
-                                Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(j)).into(particulars_img_s2);
-                            } else if (sum == 2 && i == stringBuffer.length() - 1) {
-                                Glide.with(EconomicCircleParticularsActivity.this).load(FinalContents.getImageUrl() + stringBuffer.substring(j)).into(particulars_img_s3);
-                            }
-                        }
 
+                        //        TODO 图片加载
+                        if (imgUrl.equals("")) {
+                            particulars_img_rv.setVisibility(View.GONE);
+                        } else {
+                            particulars_img_rv.setVisibility(View.VISIBLE);
+                            List<String> arraylist = new ArrayList<>();
+                            String[] a  = imgUrl.split("[|]");
+                            for (int i = 0; i < a.length; i++){
+                                arraylist.add(a[i]);
+                            }
+                            GridLayoutManager layoutManager = new GridLayoutManager(EconomicCircleParticularsActivity.this,3);
+                            layoutManager.setOrientation(GridLayoutManager.VERTICAL);
+                            particulars_img_rv.setLayoutManager(layoutManager);
+                            ImageAdapter imageAdapter = new ImageAdapter(arraylist);
+                            imageAdapter.setImageUrl(imgUrl);
+                            particulars_img_rv.setAdapter(imageAdapter);
+                            imageAdapter.notifyDataSetChanged();
+                        }
 
                         FinalContents.setTargetId(circle.getId());
 //        TODO 头图像
