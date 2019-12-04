@@ -104,20 +104,19 @@
                 android:textColor="#ff666666"
                 android:textSize="14sp" />
 
-            <ImageView
-                android:id="@+id/comment_img"
-                android:layout_width="108dp"
-                android:layout_height="108dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/comment_img_rv"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:scaleType="fitXY"></ImageView>
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="15dp"
-                android:background="#EEEEEE"></LinearLayout>
+                android:background="#EEEEEE"/>
 
             <TextView
                 android:id="@+id/particulars_xiao_pinglun"

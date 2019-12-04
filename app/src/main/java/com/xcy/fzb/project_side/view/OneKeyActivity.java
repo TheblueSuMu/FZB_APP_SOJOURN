@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -40,8 +41,10 @@ import com.xcy.fzb.all.modle.PhoneByUserBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.GetInt;
 import com.xcy.fzb.all.utils.KeyUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.MoneyValueFilter;
 import com.xcy.fzb.project_side.adapter.TimeRangeAdapter;
 
 import java.util.ArrayList;
@@ -200,12 +203,8 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
         fill_in_transaction_information_et1 = findViewById(R.id.fill_in_transaction_information_et1);
         fill_in_transaction_information_et2 = findViewById(R.id.fill_in_transaction_information_et2);
         fill_in_transaction_information_et3 = findViewById(R.id.fill_in_transaction_information_et3);
-        fill_in_transaction_information_et2.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-        fill_in_transaction_information_et3.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         fill_in_transaction_information_et4 = findViewById(R.id.fill_in_transaction_information_et4);
         fill_in_transaction_information_et5 = findViewById(R.id.fill_in_transaction_information_et5);
-        fill_in_transaction_information_et4.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-        fill_in_transaction_information_et5.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         fill_in_transaction_information_et6 = findViewById(R.id.fill_in_transaction_information_et6);
 
         fill_in_transaction_information_tishi = findViewById(R.id.fill_in_transaction_information_tishi);
@@ -213,6 +212,10 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
         fang_hao_et3 = findViewById(R.id.fang_hao_et3);
         fang_hao_et2 = findViewById(R.id.fang_hao_et2);
         fang_hao_et1 = findViewById(R.id.fang_hao_et1);
+
+        //默认两位小数
+        fill_in_transaction_information_et4.setFilters(new InputFilter[]{new MoneyValueFilter()});
+        fill_in_transaction_information_et5.setFilters(new InputFilter[]{new MoneyValueFilter()});
 
         one_key_relative_1.setOnClickListener(this);
         one_key_relative_et3.setOnClickListener(this);
@@ -241,7 +244,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                     } else {
                         double area = Double.parseDouble(s1);
                         double price = Double.parseDouble(s2);
-                        sum = (int)(area * price);
+                        sum = GetInt.getInt((area * price));
                         java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
                         str = myformat.format(sum);
                         fill_in_transaction_information_et6.setText(str + "元");
@@ -272,7 +275,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                         } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
-                            sum = (int)(area * price);
+                            sum = GetInt.getInt((area * price));
                             java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
                             str = myformat.format(sum);
                             fill_in_transaction_information_et6.setText(str + "元");

@@ -211,7 +211,7 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
 
         String s = stringBuffer.toString();
 
-        if (release_message.getText().toString().equals("")) {
+        if (release_message.getText().toString().equals("") && s.equals("")) {
             Toast.makeText(this, "请输入您要发布的内容", Toast.LENGTH_SHORT).show();
             return;
         }

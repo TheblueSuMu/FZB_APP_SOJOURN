@@ -2,7 +2,6 @@ package com.xcy.fzb.project_side.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +12,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.ReviewTheSuccessPhoneAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CBean;
 import com.xcy.fzb.all.modle.CheckBean;
@@ -45,7 +46,6 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
 
     RelativeLayout check_pending_return;
     ImageView check_pending_img1;
-    ImageView check_pending_img2;
 
     TextView check_pending_tv1;
     TextView check_pending_tv2;
@@ -72,6 +72,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
     private Button check_pending_b1;
     private Button check_pending_b2;
     private LinearLayout check_pending_l;
+    private RecyclerView check_pending_nameRv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,9 +107,9 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
         name = getIntent().getStringExtra("name");
 
         mycheck = getIntent().getStringExtra("Mycheck");
+        check_pending_nameRv = findViewById(R.id.check_pending_NameRv);
         check_pending_return = findViewById(R.id.check_pending_return);
         check_pending_img1 = findViewById(R.id.check_pending_img1);
-        check_pending_img2 = findViewById(R.id.check_pending_img2);
         check_pending_tv1 = findViewById(R.id.check_pending_tv1);
         check_pending_tv2 = findViewById(R.id.check_pending_tv2);
         check_pending_tv3 = findViewById(R.id.check_pending_tv3);
@@ -131,7 +132,6 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
         check_pending_return.setOnClickListener(this);
         check_pending_bt1.setOnClickListener(this);
         check_pending_bt2.setOnClickListener(this);
-        check_pending_img2.setOnClickListener(this);
 
         initData();
     }
@@ -170,7 +170,18 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
 
                         processData = reportProcessDetailsBean.getData().getProcessData();
                         check_pending_tv2.setText(infoData.getProjectName());
-                        check_pending_tv3.setText(infoData.getCustomerName() + "[" + infoData.getCustomerPhone() + "]");
+                        if (reportProcessDetailsBean.getData().getAttacheList().size() == 0) {
+                            check_pending_tv3.setVisibility(View.GONE);
+                        }else {
+                            GridLayoutManager gridLayoutManager = new GridLayoutManager(CheckPendingActivity.this,2);
+                            gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+                            check_pending_nameRv.setLayoutManager(gridLayoutManager);
+                            ReviewTheSuccessPhoneAdapter reviewTheSuccessPhoneAdapter = new ReviewTheSuccessPhoneAdapter(reportProcessDetailsBean.getData().getAttacheList());
+                            check_pending_nameRv.setAdapter(reviewTheSuccessPhoneAdapter);
+                            reviewTheSuccessPhoneAdapter.notifyDataSetChanged();
+                            check_pending_tv3.setText("项目负责人：");
+                        }
+//                        check_pending_tv3.setText(infoData.getCustomerName() + "[" + infoData.getCustomerPhone() + "]");
                         FinalContents.setJJrID(infoData.getAgentId());
                         initRV();
                     }
@@ -234,15 +245,6 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                     isnum2 = 0;
                 }
 
-                break;
-            //            TODO 项目负责人电话
-            case R.id.check_pending_img2:
-                if (infoData.getCustomerPhone().equals("")) {
-                    Toast.makeText(this, "负责人暂无电话", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + infoData.getCustomerPhone()));//跳转到拨号界面，同时传递电话号码
-                    startActivity(dialIntent);
-                }
                 break;
         }
 

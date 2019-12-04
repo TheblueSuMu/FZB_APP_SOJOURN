@@ -141,6 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
+            android:visibility="gone"
             android:background="@drawable/linearlayout_back"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal">
@@ -257,6 +258,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:background="@drawable/points_dialog_but"
                 android:text="补全信息"
                 android:textColor="#FFFFFF" />
@@ -268,6 +270,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:background="@drawable/points_dialog_but"
                 android:text="申请认筹"
                 android:textColor="#FFFFFF" />
@@ -279,6 +282,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:background="@drawable/points_dialog_but"
                 android:text="申请成交"
                 android:textColor="#FFFFFF" />
@@ -290,6 +294,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:background="@drawable/points_dialog_but"
                 android:text="未成交"
                 android:textColor="#FFFFFF" />
