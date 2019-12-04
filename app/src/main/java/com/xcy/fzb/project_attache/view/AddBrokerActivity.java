@@ -196,6 +196,10 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                         FinalContents.setCompanyManageId(brokerChangeBean.getData().getCompanyManage().getId());
                         FinalContents.setStoreManageId(brokerChangeBean.getData().getStoreManage().getId());
 
+//                        if(brokerChangeBean.getData().get){
+//
+//                        }
+
                         ifCompanyManageId = brokerChangeBean.getData().getCompanyManage().getId();
 
                     }
@@ -303,7 +307,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 num = "3";
             }
 
-            if (s.equals("") || s2.equals("") || s11.equals("") || s3.equals("") || s4.equals("") || s5.equals("")) {
+            if (s.equals("") || s2.equals("") || s11.equals("") || s3.equals("") || s4.equals("") || s5.equals("") || s6.equals("")) {
                 ToastUtil.showLongToast(this, "带*数据请填写完整");
             } else {
                 Retrofit.Builder builder = new Retrofit.Builder();
@@ -340,9 +344,9 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                         });
             }
         } else if (FinalContents.getBorkerChange().equals("修改")) {
-            if(add_rl4.getVisibility() == View.GONE){
+            if (add_rl4.getVisibility() == View.GONE) {
                 isCover = "0";
-            }else {
+            } else {
                 if (add_rb1.isChecked() == true) {
                     isCover = "1";
                 } else if (add_rb2.isChecked() == true) {
@@ -358,7 +362,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
             } else if (s11.equals("普通经纪人")) {
                 num = "3";
             }
-            if (s.equals("") || s2.equals("") || s11.equals("") || s3.equals("") || s4.equals("") || s5.equals("")) {
+            if (s.equals("") || s2.equals("") || s11.equals("") || s3.equals("") || s4.equals("") || s5.equals("") || s6.equals("")) {
                 ToastUtil.showLongToast(AddBrokerActivity.this, "带*数据请填写完整");
             } else {
                 Retrofit.Builder builder = new Retrofit.Builder();
@@ -421,9 +425,10 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
         add_store_tv2.setText(FinalContents.getAddtype1());
 
         if (FinalContents.getCompanyManageId().equals(ifCompanyManageId)) {
-            add_rl4.setVisibility(View.VISIBLE);
+            add_rb1.setVisibility(View.VISIBLE);
         } else {
-            add_rl4.setVisibility(View.GONE);
+            add_rb1.setVisibility(View.GONE);
+            add_rb2.setChecked(true);
         }
 
     }

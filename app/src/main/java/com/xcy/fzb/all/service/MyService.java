@@ -756,7 +756,7 @@ public interface MyService {
     @POST("commissionerUpdate/storeSave")
     Observable<AddStoreBean> getAddStoreBean(@Query("id") String id, @Query("storeNum") String storeNum, @Query("storeName") String storeName, @Query("area") String area,
                                              @Query("address") String address, @Query("location") String location, @Query("storeRise") String storeRise, @Query("storeImg") String storeImg,
-                                             @Query("flag") String flag, @Query("companyId") String companyId, @Query("userId") String userId);
+                                             @Query("flag") String flag,@Query("state") String state, @Query("companyId") String companyId, @Query("userId") String userId);
 
     //添加经纪人
     @POST("commissionerUpdate/sysUserSave")
