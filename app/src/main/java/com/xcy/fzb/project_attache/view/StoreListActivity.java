@@ -30,6 +30,7 @@ import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_attache.adapter.StoreListAdapter;
 
@@ -96,7 +97,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(StoreListActivity.this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -242,6 +243,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                     storeListData.setAttachePhone(rows.get(i).getAttachePhone());
                                     storeListData.setAttacheIdentity(rows.get(i).getAttacheIdentity());
                                     storeListData.setState(rows.get(i).getState());
+                                    storeListData.setIsMy(rows.get(i).getIsMy());
 
                                     mContactModels.add(contactModel);
                                     listData.add(storeListData);
@@ -407,6 +409,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                     storeListData.setAttachePhone(rows.get(i).getAttachePhone());
                                     storeListData.setAttacheIdentity(rows.get(i).getAttacheIdentity());
                                     storeListData.setState(rows.get(i).getState());
+                                    storeListData.setIsMy(rows.get(i).getIsMy());
 
                                     mContactModels.add(contactModel);
                                     listData.add(storeListData);
@@ -479,7 +482,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                 FinalContents.setMyAddType("公司");
                                 startActivity(intent);
                             }else if(FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("8")){
-                                Toast.makeText(StoreListActivity.this,"没有权限",Toast.LENGTH_SHORT).show();
+                                ToastUtil.showLongToast(StoreListActivity.this,"没有权限");
                             }
                         }
                     }

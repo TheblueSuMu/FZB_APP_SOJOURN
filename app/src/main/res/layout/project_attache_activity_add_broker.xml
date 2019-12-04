@@ -168,6 +168,7 @@
                         android:id="@+id/add_ll4_s"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:orientation="vertical"
                         android:background="#EEEEEE"></LinearLayout>
 
                     <RelativeLayout

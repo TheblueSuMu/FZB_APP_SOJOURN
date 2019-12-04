@@ -63,6 +63,7 @@ import com.xcy.fzb.all.modle.ClockInBean;
 import com.xcy.fzb.all.modle.RecordBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.BigPhotoActivity;
 import com.xcy.fzb.all.view.ConfirmTheVisitActivity;
 import com.xcy.fzb.all.view.MapActivity;
@@ -230,7 +231,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (mDatas.size() == 3) {
-                    Toast.makeText(ClockStoresActivity.this, "图片最多三张", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(ClockStoresActivity.this,"图片最多三张");
                 } else {
                     if (position == parent.getChildCount() - 1) {
 
@@ -277,7 +278,6 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 
                         }
                     } else {
-                        Toast.makeText(ClockStoresActivity.this, "position：" + position, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(ClockStoresActivity.this, BigPhotoActivity.class);
                         intent.putExtra("index", position);
                         intent.putExtra("bigPhotoimg", stringBuffer.toString());// -1  -1  -1
@@ -445,7 +445,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
             store_details_linear1.setVisibility(View.VISIBLE);
             store_details_linear2.setVisibility(View.GONE);
             Glide.with(ClockStoresActivity.this).load(R.mipmap.weidaozhidingquyu).into(store_details_img_btn);//未到指定区域
-            Toast.makeText(ClockStoresActivity.this, "未到指定区域", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(ClockStoresActivity.this,"未到指定区域");
         }
 
     }
@@ -464,7 +464,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                 if (num == 1) {
                     //未开启定位权限
                     Log.i("MyCL", "未开启定位权限");
-                    Toast.makeText(ClockStoresActivity.this, "未开启定位权限，无法打卡", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(ClockStoresActivity.this,"未开启定位权限，无法打卡");
                 } else if (num == 2) {
                     //暂无状态
                     Log.i("MyCL", "暂无状态");
@@ -473,7 +473,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                     Log.i("MyCL", "到店打卡/出店打卡");
                     if (stringBuffer.length() == 0) {
                         Log.i("MyCL", "打卡失败 图片至少一张");
-                        Toast.makeText(ClockStoresActivity.this, "打卡失败 图片至少一张", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(ClockStoresActivity.this,"打卡失败 图片至少一张");
                         //打卡失败 图片至少一张
                     } else {
                         initClockIn();
@@ -493,7 +493,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                 } else if (num == 4) {
                     //未到指定区域
                     Log.i("MyCL", "未到指定区域");
-                    Toast.makeText(ClockStoresActivity.this, "未到指定区域", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(ClockStoresActivity.this,"未到指定区域");
 //                    Intent intent = new Intent(ClockStoresActivity.this, MapHouseActivity.class);
 //                    startActivity(intent);
                 }
@@ -735,7 +735,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
 //                    initMap();//开始定位
                 } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                    Toast.makeText(ClockStoresActivity.this, "未开启定位权限,请手动到设置去开启权限", Toast.LENGTH_LONG).show();
+                    ToastUtil.showLongToast(ClockStoresActivity.this,"未开启定位权限,请手动到设置去开启权限");
                 }
                 Log.i("MyCL", "动态打开gps");
                 mLocClient = new LocationClient(this);

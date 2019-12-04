@@ -26,6 +26,7 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 
 import java.util.ArrayList;
@@ -84,6 +85,8 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
     private TextView add_title;
 
     int ifnum = 0;
+    private String isCover;
+    private String ifCompanyManageId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +95,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -108,7 +111,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -193,6 +196,8 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                         FinalContents.setCompanyManageId(brokerChangeBean.getData().getCompanyManage().getId());
                         FinalContents.setStoreManageId(brokerChangeBean.getData().getStoreManage().getId());
 
+                        ifCompanyManageId = brokerChangeBean.getData().getCompanyManage().getId();
+
                     }
 
                     @Override
@@ -227,7 +232,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 break;
             case R.id.add_rl2:
                 if (add_store_tv1.getText().equals("")) {
-                    Toast.makeText(AddBrokerActivity.this, "请先选择公司", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(this, "请先选择公司");
                 } else {
                     intent = new Intent(AddBrokerActivity.this, StoreListActivity.class);
                     FinalContents.setMyAddType("门店");
@@ -236,7 +241,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
                 break;
             case R.id.add_rl3:
-                if(ifnum == 0){
+                if (ifnum == 0) {
                     ifnum = 1;
                     list = new ArrayList<>();
                     list.add("经纪公司管理者");
@@ -263,7 +268,8 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 break;
             case R.id.add_btn:
                 if (!MatcherUtils.isMobile(add_store_et2.getText().toString())) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(this, "请输入正确的手机号");
+
                     return;
                 }
                 s = add_store_tv1.getText().toString();
@@ -298,7 +304,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
             }
 
             if (s.equals("") || s2.equals("") || s11.equals("") || s3.equals("") || s4.equals("") || s5.equals("")) {
-                Toast.makeText(AddBrokerActivity.this, "带*数据请填写完整", Toast.LENGTH_SHORT).show();
+                ToastUtil.showLongToast(this, "带*数据请填写完整");
             } else {
                 Retrofit.Builder builder = new Retrofit.Builder();
                 builder.baseUrl(FinalContents.getBaseUrl());
@@ -316,11 +322,11 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
                             @Override
                             public void onNext(AddBrokerBean addBrokerBean) {
-                                if (addBrokerBean.getData().getStatus()==1) {
-                                    Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                if (addBrokerBean.getData().getStatus() == 1) {
+                                    ToastUtil.showLongToast(AddBrokerActivity.this, addBrokerBean.getData().getMessage());
                                     finish();
                                 } else {
-                                    Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showLongToast(AddBrokerActivity.this, "" + addBrokerBean.getData().getMessage());
                                 }
                             }
 
@@ -334,12 +340,16 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                         });
             }
         } else if (FinalContents.getBorkerChange().equals("修改")) {
+            if(add_rl4.getVisibility() == View.GONE){
+                isCover = "0";
+            }else {
+                if (add_rb1.isChecked() == true) {
+                    isCover = "1";
+                } else if (add_rb2.isChecked() == true) {
+                    isCover = "0";
+                }
+            }
 
-//            if(add_rb1.isChecked() == true){
-//
-//            }else if(add_rb2.isChecked() == true){
-//
-//            }
 
             if (s11.equals("经纪公司管理者")) {
                 num = "1";
@@ -349,7 +359,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 num = "3";
             }
             if (s.equals("") || s2.equals("") || s11.equals("") || s3.equals("") || s4.equals("") || s5.equals("")) {
-                Toast.makeText(AddBrokerActivity.this, "带*数据请填写完整", Toast.LENGTH_SHORT).show();
+                ToastUtil.showLongToast(AddBrokerActivity.this, "带*数据请填写完整");
             } else {
                 Retrofit.Builder builder = new Retrofit.Builder();
                 builder.baseUrl(FinalContents.getBaseUrl());
@@ -357,17 +367,17 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                 builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
                 Retrofit build = builder.build();
                 MyService fzbInterface = build.create(MyService.class);
-                Log.i("经纪人","data.getId()：" + data.getId());
-                Log.i("经纪人","num：" + num);
-                Log.i("经纪人","s3：" + s3);
-                Log.i("经纪人","s4：" + s4);
-                Log.i("经纪人","s5：" + s5);
-                Log.i("经纪人","s6：" + s6);
-                Log.i("经纪人","FinalContents.getUserID()：" + FinalContents.getUserID());
-                Log.i("经纪人","FinalContents.getCompanyManageId()：" + FinalContents.getCompanyManageId());
-                Log.i("经纪人","FinalContents.getStoreManageId()：" + FinalContents.getStoreManageId());
+                Log.i("经纪人", "data.getId()：" + data.getId());
+                Log.i("经纪人", "num：" + num);
+                Log.i("经纪人", "s3：" + s3);
+                Log.i("经纪人", "s4：" + s4);
+                Log.i("经纪人", "s5：" + s5);
+                Log.i("经纪人", "s6：" + s6);
+                Log.i("经纪人", "FinalContents.getUserID()：" + FinalContents.getUserID());
+                Log.i("经纪人", "FinalContents.getCompanyManageId()：" + FinalContents.getCompanyManageId());
+                Log.i("经纪人", "FinalContents.getStoreManageId()：" + FinalContents.getStoreManageId());
 
-                Observable<AddBrokerBean> addBrokerBean = fzbInterface.getAddBrokerBean(data.getId(), num, s3, s4, s5, s6, FinalContents.getUserID(), FinalContents.getCompanyManageId(), FinalContents.getStoreManageId(), "");
+                Observable<AddBrokerBean> addBrokerBean = fzbInterface.getAddBrokerBean(data.getId(), num, s3, s4, s5, s6, FinalContents.getUserID(), FinalContents.getCompanyManageId(), FinalContents.getStoreManageId(), isCover);
                 addBrokerBean.subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Observer<AddBrokerBean>() {
@@ -377,19 +387,19 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
                             @Override
                             public void onNext(AddBrokerBean addBrokerBean) {
-                                if (addBrokerBean.getData().getStatus()==1) {
-                                    Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                if (addBrokerBean.getData().getStatus() == 1) {
+                                    ToastUtil.showLongToast(AddBrokerActivity.this, addBrokerBean.getData().getMessage());
                                     FinalContents.setAddtype1("");
                                     FinalContents.setAddtype2("");
                                     finish();
                                 } else {
-                                    Toast.makeText(AddBrokerActivity.this, addBrokerBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showLongToast(AddBrokerActivity.this, addBrokerBean.getData().getMessage());
                                 }
                             }
 
                             @Override
                             public void onError(Throwable e) {
-                                Log.i("经纪人","错误信息：" + e.getMessage());
+                                Log.i("经纪人", "错误信息：" + e.getMessage());
                             }
 
                             @Override
@@ -409,6 +419,12 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
         add_store_tv1.setText(FinalContents.getAddtype2());
         add_store_tv2.setText(FinalContents.getAddtype1());
+
+        if (FinalContents.getCompanyManageId().equals(ifCompanyManageId)) {
+            add_rl4.setVisibility(View.VISIBLE);
+        } else {
+            add_rl4.setVisibility(View.GONE);
+        }
 
     }
 }

@@ -47,7 +47,6 @@
     </RelativeLayout>
 
     <com.xcy.fzb.all.utils.SuperSwipeRefreshLayout
-        android:layout_marginTop="15dp"
         android:id="@+id/home_srl_S"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

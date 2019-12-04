@@ -174,6 +174,30 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/commission_ll5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="城市房产"
+                        android:textColor="#ffffffff"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/commission_ll6"
+                        android:layout_width="58dp"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/the_project_end_underline"
+                        android:orientation="vertical"
+                        android:visibility="visible"/>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/commission_ll1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -195,7 +219,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/the_project_end_underline"
                         android:orientation="horizontal"
-                        android:visibility="visible"/>
+                        android:visibility="invisible"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -224,30 +248,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/commission_ll5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="城市房产"
-                        android:textColor="#ffffffff"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:id="@+id/commission_ll6"
-                        android:layout_width="58dp"
-                        android:layout_height="3dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/the_project_end_underline"
-                        android:orientation="vertical"
-                        android:visibility="invisible"/>
-
-                </LinearLayout>
 
             </LinearLayout>
         </RelativeLayout>

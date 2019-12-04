@@ -455,6 +455,8 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
 //                return false;
 //            }
 //        });
+
+
         //每个item点击事件
         mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
 
@@ -517,22 +519,18 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                         }
                     }
                 } else {
-                    layout = (LinearLayout) getLayoutInflater().inflate(R.layout.modulebroker_fragment_recycler_item, null);
-                    imageAvatar = layout.findViewById(R.id.ImageView);
-                    nameText = (TextView) layout.findViewById(R.id.TextViewName);
-                    tagView = layout.findViewById(R.id.tagView);
-                    chick = (TextView) layout.findViewById(R.id.chick);
-                    attention = (TextView) layout.findViewById(R.id.attention);
-                    collect = (TextView) layout.findViewById(R.id.collect);
-                    transmit = (TextView) layout.findViewById(R.id.transmit);
-                    price_money = (TextView) layout.findViewById(R.id.price_money);
-                    price = (TextView) layout.findViewById(R.id.price);
-                    square = (TextView) layout.findViewById(R.id.square);
-                    commission = (TextView) layout.findViewById(R.id.commission);
-                    second = (TextView) layout.findViewById(R.id.second);
-                    modulebroke_ll = (LinearLayout) layout.findViewById(R.id.modulebroke_ll);
-                    group_booking = layout.findViewById(R.id.group_booking_item);
-                    modulebroke_ll.setVisibility(View.GONE);
+                    layout = (LinearLayout) getLayoutInflater().inflate(R.layout.modulebroker_fragment_recycler_item_ss, null);
+                    imageAvatar = layout.findViewById(R.id.ImageViewss);
+                    nameText = (TextView) layout.findViewById(R.id.TextViewNamess);
+                    tagView = layout.findViewById(R.id.tagViewss);
+                    chick = (TextView) layout.findViewById(R.id.chickss);
+                    attention = (TextView) layout.findViewById(R.id.attentionss);
+                    collect = (TextView) layout.findViewById(R.id.collectss);
+                    transmit = (TextView) layout.findViewById(R.id.transmitss);
+                    price_money = (TextView) layout.findViewById(R.id.price_moneyss);
+                    price = (TextView) layout.findViewById(R.id.pricess);
+                    square = (TextView) layout.findViewById(R.id.squaress);
+                    group_booking = layout.findViewById(R.id.group_booking_itemss);
                     for (int i = 0; i < rows2.size(); ++i) {
                         StringBuffer stringBuffer = new StringBuffer();
                         StringBuffer append = stringBuffer.append(rows2.get(i).getLocation());
@@ -724,7 +722,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                                         } else if (rows.get(i).getState().equals("4")) {
                                             sb = new StringBuffer(rows.get(i).getStoreName() + "(维护)");
                                         } else {
-                                            sb = new StringBuffer(rows.get(i).getStoreName());
+                                            sb = new StringBuffer(rows.get(i).getStoreName() + "(合作)");
                                         }
                                     } else if (rows.get(i).getStatus().equals("2")) {
                                         sb = new StringBuffer(rows.get(i).getStoreName() + "(取消合作)");

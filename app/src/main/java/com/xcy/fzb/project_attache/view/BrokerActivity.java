@@ -38,6 +38,7 @@ import com.xcy.fzb.all.database.FinanceBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.view.MyClientActivity;
 
@@ -152,7 +153,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(BrokerActivity.this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -444,7 +445,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
             public void onClick(View view) {
 
                 if (agentInfo.getAgentPhone().equals("")) {
-                    Toast.makeText(BrokerActivity.this, "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(BrokerActivity.this,"暂无电话信息，无法拨打");
                 } else {
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + agentInfo.getAgentPhone()));//跳转到拨号界面，同时传递电话号码
                     startActivity(dialIntent);
@@ -641,36 +642,42 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
             case R.id.broker_ll2:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "1");
                 startActivity(intent);
                 break;
             case R.id.broker_ll3:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "2");
                 startActivity(intent);
                 break;
             case R.id.broker_ll4:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "3");
                 startActivity(intent);
                 break;
             case R.id.broker_ll5:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "4");
                 startActivity(intent);
                 break;
             case R.id.broker_ll6:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "5");
                 startActivity(intent);
                 break;
             case R.id.broker_ll7:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "6");
                 startActivity(intent);
                 break;

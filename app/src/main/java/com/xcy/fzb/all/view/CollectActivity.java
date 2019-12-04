@@ -146,7 +146,7 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
             }
         });
 
-        recyclerViewData("3");
+        recyclerViewData("1");
 
     }
 

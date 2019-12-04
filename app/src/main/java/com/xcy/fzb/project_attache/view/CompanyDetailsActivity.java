@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -38,6 +39,7 @@ import com.xcy.fzb.all.modle.CompanyDetailsBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.view.MyClientActivity;
 
@@ -161,7 +163,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(CompanyDetailsActivity.this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -579,22 +581,31 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                                 company_details_call.setText(storeInfo.getShopownerPhone());
                             }
                         }
-                        if (storeInfo.getAttacheName().equals("")) {
+                        if(storeInfo.getIsMy().equals("1")){
                             company_details_ttv.setVisibility(View.GONE);
                             company_details_ttcall.setVisibility(View.GONE);
-                        } else {
-                            company_details_ttv.setVisibility(View.VISIBLE);
-                            company_details_ttcall.setVisibility(View.VISIBLE);
-                            if (storeInfo.getAttacheIdentity().equals("5")) {
+                        }else {
+                            if (storeInfo.getAttacheName().equals("")) {
                                 company_details_ttv.setVisibility(View.GONE);
                                 company_details_ttcall.setVisibility(View.GONE);
+                            } else {
+                                company_details_ttv.setVisibility(View.VISIBLE);
+                                company_details_ttcall.setVisibility(View.VISIBLE);
+                                if (storeInfo.getAttacheIdentity().equals("5")) {
+                                    company_details_ttv.setVisibility(View.GONE);
+                                    company_details_ttcall.setVisibility(View.GONE);
 //                                company_details_ttv.setText("负责专员:" + storeInfo.getAttacheName());
-                            } else if (storeInfo.getAttacheIdentity().equals("8")) {
-                                company_details_ttv.setText("负责专员:" + storeInfo.getAttacheName());
-                            } else if (storeInfo.getAttacheIdentity().equals("9")) {
-                                company_details_ttv.setText("负责经理:" + storeInfo.getAttacheName());
+                                } else if (storeInfo.getAttacheIdentity().equals("8")) {
+                                    company_details_ttv.setVisibility(View.VISIBLE);
+                                    company_details_ttcall.setVisibility(View.VISIBLE);
+                                    company_details_ttv.setText("负责专员:" + storeInfo.getAttacheName());
+                                } else if (storeInfo.getAttacheIdentity().equals("9")) {
+                                    company_details_ttv.setVisibility(View.VISIBLE);
+                                    company_details_ttcall.setVisibility(View.VISIBLE);
+                                    company_details_ttv.setText("负责经理:" + storeInfo.getAttacheName());
+                                }
+                                company_details_ttcall.setText(storeInfo.getAttachePhone());
                             }
-                            company_details_ttcall.setText(storeInfo.getAttachePhone());
                         }
 //                        TODO 数据统计
                         CompanyDetailsBean.DataBean.StoreDataStatisticsBean storeDataStatistics = companyDetailsBean.getData().getStoreDataStatistics();
@@ -656,7 +667,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 break;
             case R.id.company_details_call:
                 if (storeInfo.getShopownerPhone().equals("")) {
-                    Toast.makeText(CompanyDetailsActivity.this, "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(CompanyDetailsActivity.this,"暂无电话信息，无法拨打");
                 } else {
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + storeInfo.getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
                     startActivity(dialIntent);
@@ -738,7 +749,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 break;
             case R.id.company_details_new_tv1://电话拜访
                 if (storeInfo.getShopownerPhone().equals("")) {
-                    Toast.makeText(CompanyDetailsActivity.this, "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(CompanyDetailsActivity.this,"暂无电话信息，无法拨打");
                 } else {
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + storeInfo.getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
                     startActivity(dialIntent);
@@ -746,7 +757,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 break;
             case R.id.company_details_new_tv2://门店打卡
                 if (storeInfo.getLocation().equals("")) {
-                    Toast.makeText(CompanyDetailsActivity.this, "没有经纬度无法打卡", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(CompanyDetailsActivity.this,"门店暂不支持打卡");
                 } else {
                     Intent intent = new Intent(CompanyDetailsActivity.this, ClockStoresActivity.class);
                     intent.putExtra("MyStoreRise", storeInfo.getStoreRise());

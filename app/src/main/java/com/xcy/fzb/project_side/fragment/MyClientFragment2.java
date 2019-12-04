@@ -181,7 +181,14 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ProcessDataBean> clientFragment = fzbInterface.getProcessData(FinalContents.getStoreId(), "10", name+"",FinalContents.getUserID(),"1000", NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate());
+        Log.i("MyCL","FinalContents.getStoreId():" + FinalContents.getStoreId());
+        Log.i("MyCL","10:" + 10);
+        Log.i("MyCL","name:" + name);
+        Log.i("MyCL","FinalContents.getUserID():" + FinalContents.getUserID());
+        Log.i("MyCL"," NewlyIncreased.getTag():" +  NewlyIncreased.getTag());
+        Log.i("MyCL","NewlyIncreased.getStartDate():" + NewlyIncreased.getStartDate());
+        Log.i("MyCL","NewlyIncreased.getEndDate():" + NewlyIncreased.getEndDate());
+        Observable<ProcessDataBean> clientFragment = fzbInterface.getProcessData(FinalContents.getStoreId(),FinalContents.getAgentId(), "10", name+"",FinalContents.getUserID(),"1000", NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate());
         clientFragment.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ProcessDataBean>() {

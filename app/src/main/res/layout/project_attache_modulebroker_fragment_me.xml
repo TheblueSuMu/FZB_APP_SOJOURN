@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E9EBEB"
     tools:ignore="MissingDefaultResource,ResourceName">
 
@@ -31,18 +31,18 @@
                     android:layout_height="18dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
                     android:layout_marginTop="2dp"
+                    android:layout_marginRight="15dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/white_next" />
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/me_photo"
                     android:layout_width="50dp"
-                    app:riv_oval="true"
                     android:layout_height="50dp"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/logo_garden"
-                    android:scaleType="fitXY"/>
+                    app:riv_oval="true" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -96,6 +96,7 @@
             </RelativeLayout>
 
         </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/my_ll_1"
             android:layout_width="match_parent"
@@ -183,6 +184,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -197,22 +199,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="275dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/my_e_fragment"
                     android:orientation="vertical">
 
                     <RelativeLayout
                         android:id="@+id/my_collect"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:background="#FFFFFF"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/my_img_2"
                             android:layout_width="15dp"
-                            android:layout_marginLeft="15dp"
                             android:layout_height="15dp"
                             android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
                             android:src="@mipmap/sc" />
 
                         <TextView
@@ -229,27 +233,31 @@
                         <ImageView
                             android:layout_width="7dp"
                             android:layout_height="11dp"
-                            android:layout_marginRight="15dp"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
                             android:src="@mipmap/next" />
                     </RelativeLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="12dp"
+                        android:background="#EEEEEE" />
 
                     <RelativeLayout
                         android:id="@+id/my_comment"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#FFFFFF"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/my_img_3"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:layout_marginLeft="15dp"
                             android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
                             android:src="@mipmap/bx" />
 
                         <TextView
@@ -266,9 +274,9 @@
                         <ImageView
                             android:layout_width="7dp"
                             android:layout_height="11dp"
-                            android:layout_marginRight="15dp"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
                             android:src="@mipmap/next" />
                     </RelativeLayout>
 
@@ -277,13 +285,12 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="12dp"
-                        android:background="#EEEEEE"/>
+                        android:background="#EEEEEE" />
 
                     <RelativeLayout
                         android:id="@+id/my_about"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:background="#FFFFFF"
                         android:layout_weight="1">
 
                         <ImageView
@@ -308,9 +315,9 @@
                         <ImageView
                             android:layout_width="7dp"
                             android:layout_height="11dp"
-                            android:layout_marginRight="15dp"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
                             android:src="@mipmap/next" />
                     </RelativeLayout>
 
@@ -319,21 +326,20 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="12dp"
-                        android:background="#EEEEEE"/>
+                        android:background="#EEEEEE" />
 
                     <RelativeLayout
                         android:id="@+id/my_empty"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:background="#FFFFFF"
                         android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/my_img_5"
                             android:layout_width="15dp"
-                            android:layout_marginLeft="15dp"
                             android:layout_height="15dp"
                             android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
                             android:src="@mipmap/sd" />
 
                         <TextView
@@ -351,26 +357,31 @@
                             android:id="@+id/my_tv_huancun"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="30dp"
                             android:textSize="15sp" />
 
                         <ImageView
                             android:layout_width="7dp"
                             android:layout_height="11dp"
-                            android:layout_marginRight="15dp"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
                             android:src="@mipmap/next" />
                     </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="12dp"
+                        android:background="#EEEEEE" />
 
                     <RelativeLayout
                         android:id="@+id/my_exit"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:background="#FFFFFF"
-                        android:layout_marginTop="10dp"
                         android:layout_weight="1">
 
                         <ImageView
@@ -394,10 +405,10 @@
 
                         <ImageView
                             android:layout_width="7dp"
-                            android:layout_marginRight="15dp"
                             android:layout_height="11dp"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
                             android:src="@mipmap/next" />
                     </RelativeLayout>
 

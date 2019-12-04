@@ -21,6 +21,7 @@ public class ContentActivity extends AllActivity {
     LinearLayout content_ll1;
     LinearLayout content_ll2;
     LinearLayout content_ll3;
+    LinearLayout content_ll4;
 
     Intent intent;
 
@@ -38,6 +39,7 @@ public class ContentActivity extends AllActivity {
         content_ll1 = findViewById(R.id.content_ll1);
         content_ll2 = findViewById(R.id.content_ll2);
         content_ll3 = findViewById(R.id.content_ll3);
+        content_ll4 = findViewById(R.id.content_ll4);
 
         Glide.with(this).load(img).into(imageView);
 
@@ -69,6 +71,16 @@ public class ContentActivity extends AllActivity {
             @Override
             public void onClick(View view) {
                 intent = new Intent(ContentActivity.this, AddBrokerActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        content_ll4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(ContentActivity.this, StoreListActivity.class);
+                FinalContents.setCompanyId("");
+                FinalContents.setMyAddType("");
                 startActivity(intent);
                 finish();
             }

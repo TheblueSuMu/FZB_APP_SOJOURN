@@ -20,6 +20,15 @@ public class StoreListData {
 
     String attacheIdentity;
     String state;
+    String IsMy;
+
+    public String getIsMy() {
+        return IsMy;
+    }
+
+    public void setIsMy(String isMy) {
+        IsMy = isMy;
+    }
 
     public String getState() {
         return state;

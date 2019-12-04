@@ -32,6 +32,7 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.TestMapActivity;
 
@@ -117,7 +118,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -266,7 +267,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                 break;
             case R.id.add_company_btn:
                 if (!MatcherUtils.isMobile(add_company_et4.getText().toString())) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(AddCompanyActivity.this,"请输入正确的手机号");
                     return;
                 }
                 s = add_company_tv1.getText().toString();
@@ -316,7 +317,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     private void initdatas2() {
 
         if (s.equals("") || s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("") || s5.equals("") || s6.equals("") || s7.equals("") || s8.equals("")) {
-            Toast.makeText(this, "带*号的数据不能为空，请完成填写再提交", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(AddCompanyActivity.this,"带*号的数据不能为空，请完成填写再提交");
         } else {
 
 //经度117.155243  纬度39.112389
@@ -341,10 +342,10 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                             if (addCompanyBean.getData().getMessage().equals("保存成功")) {
                                 FinalContents.setStoreChange("");
                                 FinalContents.setMyAddType("公司");
-                                Toast.makeText(AddCompanyActivity.this, addCompanyBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showLongToast(AddCompanyActivity.this,addCompanyBean.getData().getMessage());
                                 finish();
                             } else {
-                                Toast.makeText(AddCompanyActivity.this, addCompanyBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showLongToast(AddCompanyActivity.this,addCompanyBean.getData().getMessage());
                                 finish();
                             }
                         }
@@ -366,7 +367,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     private void initDatas1() {
 
         if (s.equals("") || s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
-            Toast.makeText(this, "带*号的数据不能为空，请完成填写再提交", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(AddCompanyActivity.this,"带*号的数据不能为空，请完成填写再提交");
         } else {
 
 //经度117.155243  纬度39.112389
@@ -391,10 +392,10 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                             if (addCompanyBean.getData().getMessage().equals("保存成功")) {
                                 FinalContents.setStoreChange("");
                                 FinalContents.setMyAddType("公司");
-                                Toast.makeText(AddCompanyActivity.this, addCompanyBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showLongToast(AddCompanyActivity.this, addCompanyBean.getData().getMessage());
                                 finish();
                             } else {
-                                Toast.makeText(AddCompanyActivity.this, addCompanyBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showLongToast(AddCompanyActivity.this, addCompanyBean.getData().getMessage());
                                 finish();
                             }
                         }

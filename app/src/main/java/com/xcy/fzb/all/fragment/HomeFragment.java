@@ -253,10 +253,11 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
                 Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent_overseas);
             }else if (view.getId() == R.id.home_item_client) {
-                Intent intent_overseas = new Intent(view.getContext(), MyClientActivity.class);
+                FinalContents.setProjectType("1");
+                Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent_overseas);
             }else if (view.getId() == R.id.home_item_brokerage) {
-                Intent intent_overseas = new Intent(view.getContext(), MyBrokerageActivity.class);
+                Intent intent_overseas = new Intent(view.getContext(), MyClientActivity.class);
                 startActivity(intent_overseas);
             }
         }else {

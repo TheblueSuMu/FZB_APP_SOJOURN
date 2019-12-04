@@ -5,10 +5,11 @@ import java.util.List;
 
 public class CompanyDetailsBean {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"storeMoneyData":{"totalAmount":"2.01","notAmount":"2.01","alreadyAmount":"0.00"},"gsonOption":{"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["19","20","21","22","23","24","25"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,1],"itemStyle":{"color":"#3b82d2"},"type":"line"}]},"storeInfo":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"e636152802b04f72a13ef7c3d3a0b56a","companyName":"幸福冲冲冲公司","companyAddress":"","storeNum":"","storeName":"幸福门店","storeId":"47c8f3b275394ddb89fb3920d45dea0b","storeIdCode":"0000844","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"天津市/天津市/南开区","address":"天津市天津市南开区白堤路222号","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191125142344/2019/11/1574663024424.png","storeImg":"","location":"117.16261,39.117136","comLocation":"125.314240,43.794003","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","reason":"","agentNum":"1","search":"","beforeDate":"","afterDate":""},"storeDataStatistics":{"agentNum":1,"accessingNumber":0,"tradeNumber":2,"reportNumber":2,"isIslandNumber":0,"earnestMoneyNumber":0,"landingNumber":0,"InvalidNum":0}}
+     * data : {"storeMoneyData":{"totalAmount":"0","notAmount":"0","alreadyAmount":"0"},"gsonOption":{"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["26","27","28","29","30","01","02"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]},"storeInfo":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"3db11016e35c4af796f34057cee3d29c","companyName":"测试公司","companyAddress":"","storeNum":"","storeName":"互联网金融","storeId":"efd95b4f26b64f1883cc4f96643eb873","storeIdCode":"0000889","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"江苏省/常州市/天宁区","address":"江南皮革厂","storeRise":"","storeImg":"","location":"","comLocation":"117.386421,39.170700","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""},"storeDataStatistics":{"agentNum":0,"accessingNumber":0,"tradeNumber":0,"reportNumber":0,"isIslandNumber":0,"earnestMoneyNumber":0,"landingNumber":0,"InvalidNum":0}}
      */
 
     private String code;
@@ -41,10 +42,10 @@ public class CompanyDetailsBean {
 
     public static class DataBean {
         /**
-         * storeMoneyData : {"totalAmount":"2.01","notAmount":"2.01","alreadyAmount":"0.00"}
-         * gsonOption : {"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["19","20","21","22","23","24","25"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,1],"itemStyle":{"color":"#3b82d2"},"type":"line"}]}
-         * storeInfo : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"e636152802b04f72a13ef7c3d3a0b56a","companyName":"幸福冲冲冲公司","companyAddress":"","storeNum":"","storeName":"幸福门店","storeId":"47c8f3b275394ddb89fb3920d45dea0b","storeIdCode":"0000844","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"天津市/天津市/南开区","address":"天津市天津市南开区白堤路222号","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191125142344/2019/11/1574663024424.png","storeImg":"","location":"117.16261,39.117136","comLocation":"125.314240,43.794003","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","reason":"","agentNum":"1","search":"","beforeDate":"","afterDate":""}
-         * storeDataStatistics : {"agentNum":1,"accessingNumber":0,"tradeNumber":2,"reportNumber":2,"isIslandNumber":0,"earnestMoneyNumber":0,"landingNumber":0,"InvalidNum":0}
+         * storeMoneyData : {"totalAmount":"0","notAmount":"0","alreadyAmount":"0"}
+         * gsonOption : {"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["26","27","28","29","30","01","02"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]}
+         * storeInfo : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"3db11016e35c4af796f34057cee3d29c","companyName":"测试公司","companyAddress":"","storeNum":"","storeName":"互联网金融","storeId":"efd95b4f26b64f1883cc4f96643eb873","storeIdCode":"0000889","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"江苏省/常州市/天宁区","address":"江南皮革厂","storeRise":"","storeImg":"","location":"","comLocation":"117.386421,39.170700","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""}
+         * storeDataStatistics : {"agentNum":0,"accessingNumber":0,"tradeNumber":0,"reportNumber":0,"isIslandNumber":0,"earnestMoneyNumber":0,"landingNumber":0,"InvalidNum":0}
          */
 
         private StoreMoneyDataBean storeMoneyData;
@@ -86,9 +87,9 @@ public class CompanyDetailsBean {
 
         public static class StoreMoneyDataBean {
             /**
-             * totalAmount : 2.01
-             * notAmount : 2.01
-             * alreadyAmount : 0.00
+             * totalAmount : 0
+             * notAmount : 0
+             * alreadyAmount : 0
              */
 
             private String totalAmount;
@@ -123,8 +124,8 @@ public class CompanyDetailsBean {
         public static class GsonOptionBean {
             /**
              * yAxis : {"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"}
-             * xAxis : {"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["19","20","21","22","23","24","25"],"type":"category","boundaryGap":false}
-             * series : [{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,1],"itemStyle":{"color":"#3b82d2"},"type":"line"}]
+             * xAxis : {"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["26","27","28","29","30","01","02"],"type":"category","boundaryGap":false}
+             * series : [{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]
              */
 
             private YAxisBean yAxis;
@@ -278,7 +279,7 @@ public class CompanyDetailsBean {
             public static class XAxisBean {
                 /**
                  * axisLabel : {"textStyle":{"color":"#a8b6cc"}}
-                 * data : ["19","20","21","22","23","24","25"]
+                 * data : ["26","27","28","29","30","01","02"]
                  * type : category
                  * boundaryGap : false
                  */
@@ -356,7 +357,7 @@ public class CompanyDetailsBean {
             public static class SeriesBean {
                 /**
                  * areaStyle : {"color":"#e6eefe"}
-                 * data : [0,0,0,0,0,0,1]
+                 * data : [0,0,0,0,0,0,0]
                  * itemStyle : {"color":"#3b82d2"}
                  * type : line
                  */
@@ -441,29 +442,33 @@ public class CompanyDetailsBean {
              * updateBy :
              * updateDate :
              * user :
-             * companyId : e636152802b04f72a13ef7c3d3a0b56a
-             * companyName : 幸福冲冲冲公司
+             * companyId : 3db11016e35c4af796f34057cee3d29c
+             * companyName : 测试公司
              * companyAddress :
              * storeNum :
-             * storeName : 幸福门店
-             * storeId : 47c8f3b275394ddb89fb3920d45dea0b
-             * storeIdCode : 0000844
+             * storeName : 互联网金融
+             * storeId : efd95b4f26b64f1883cc4f96643eb873
+             * storeIdCode : 0000889
              * isShopowner : 0
              * shopownerName :
              * shopownerPhone :
              * loginName :
              * status : 1
-             * area : 天津市/天津市/南开区
-             * address : 天津市天津市南开区白堤路222号
-             * storeRise : /fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191125142344/2019/11/1574663024424.png
+             * state :
+             * cmState :
+             * area : 江苏省/常州市/天宁区
+             * address : 江南皮革厂
+             * storeRise :
              * storeImg :
-             * location : 117.16261,39.117136
-             * comLocation : 125.314240,43.794003
+             * location :
+             * comLocation : 117.386421,39.170700
+             * attacheId : badb8e2d394d4841a8376437471970a5
              * attacheName : 文章
              * attachePhone : 13241693578
              * attacheIdentity : 5
+             * isMy : 1
              * reason :
-             * agentNum : 1
+             * agentNum : 0
              * search :
              * beforeDate :
              * afterDate :
@@ -488,15 +493,19 @@ public class CompanyDetailsBean {
             private String shopownerPhone;
             private String loginName;
             private String status;
+            private String state;
+            private String cmState;
             private String area;
             private String address;
             private String storeRise;
             private String storeImg;
             private String location;
             private String comLocation;
+            private String attacheId;
             private String attacheName;
             private String attachePhone;
             private String attacheIdentity;
+            private String isMy;
             private String reason;
             private String agentNum;
             private String search;
@@ -655,6 +664,22 @@ public class CompanyDetailsBean {
                 this.status = status;
             }
 
+            public String getState() {
+                return state;
+            }
+
+            public void setState(String state) {
+                this.state = state;
+            }
+
+            public String getCmState() {
+                return cmState;
+            }
+
+            public void setCmState(String cmState) {
+                this.cmState = cmState;
+            }
+
             public String getArea() {
                 return area;
             }
@@ -703,6 +728,14 @@ public class CompanyDetailsBean {
                 this.comLocation = comLocation;
             }
 
+            public String getAttacheId() {
+                return attacheId;
+            }
+
+            public void setAttacheId(String attacheId) {
+                this.attacheId = attacheId;
+            }
+
             public String getAttacheName() {
                 return attacheName;
             }
@@ -725,6 +758,14 @@ public class CompanyDetailsBean {
 
             public void setAttacheIdentity(String attacheIdentity) {
                 this.attacheIdentity = attacheIdentity;
+            }
+
+            public String getIsMy() {
+                return isMy;
+            }
+
+            public void setIsMy(String isMy) {
+                this.isMy = isMy;
             }
 
             public String getReason() {
@@ -770,10 +811,10 @@ public class CompanyDetailsBean {
 
         public static class StoreDataStatisticsBean {
             /**
-             * agentNum : 1
+             * agentNum : 0
              * accessingNumber : 0
-             * tradeNumber : 2
-             * reportNumber : 2
+             * tradeNumber : 0
+             * reportNumber : 0
              * isIslandNumber : 0
              * earnestMoneyNumber : 0
              * landingNumber : 0
