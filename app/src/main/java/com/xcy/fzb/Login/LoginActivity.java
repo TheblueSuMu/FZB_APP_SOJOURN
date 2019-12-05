@@ -180,17 +180,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         } else {
             ToastUtil.showLongToast(this, "当前无网络，请检查网络后再进行登录");
         }
-
-        if (ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//未开启定位权限
-            //开启定位权限,200是标识码
-            ActivityCompat.requestPermissions(LoginActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
-        } else {
-        }
-        AdministrationAuthority administrationAuthority = new AdministrationAuthority();
-        administrationAuthority.CameraPermissions(LoginActivity.this);
-
-
-
         initClear();
     }
 
@@ -211,22 +200,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         FinalContents.setCityName("长春市");
         FinalContents.setLuo(true);
         SharItOff.setShar("显");
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 200://刚才的识别码
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
-//                    initMap();//开始定位
-                } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                    ToastUtil.showLongToast(LoginActivity.this, "未开启定位权限,请手动到设置去开启权限");
-                }
-                break;
-            default:
-                break;
-        }
     }
 
     //命名区域

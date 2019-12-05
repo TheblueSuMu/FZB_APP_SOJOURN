@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@mipmap/banner_img"
     android:orientation="vertical"
     tools:ignore="ResourceName">
 
     <ScrollView
         android:id="@+id/project_details_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -498,10 +499,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
-                            android:layout_marginTop="38dp"
+                            android:layout_marginTop="60dp"
                             android:text="0.0001元"
                             android:textColor="#111111"
-                            android:textSize="20sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
                     </RelativeLayout>
