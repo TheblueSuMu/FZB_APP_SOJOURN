@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ClientFragmentBean;
@@ -62,6 +63,11 @@ public class ClientFragmentAdapter extends RecyclerView.Adapter<ClientFragmentAd
         holder.client_item_time.setText(rows.get(position).getDate());
         holder.client_item_project_name.setText(rows.get(position).getProjectName());
 
+        if (rows.get(position).getIsRead().equals("0")){
+            holder.client_item_unread.setVisibility(View.VISIBLE);
+        }else if(rows.get(position).getIsRead().equals("1")){
+            holder.client_item_unread.setVisibility(View.GONE);
+        }
 
         Log.i("折行","数据"+rows.get(position).getRelatedData());
         if (!rows.get(position).getRelatedData().equals("")) {
@@ -141,6 +147,7 @@ public class ClientFragmentAdapter extends RecyclerView.Adapter<ClientFragmentAd
         TextView client_item_cg;
         TextView client_item_title;
         TextView client_item_project_add;
+        RoundedImageView client_item_unread;
 
         public ClientFragmentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -153,6 +160,7 @@ public class ClientFragmentAdapter extends RecyclerView.Adapter<ClientFragmentAd
             client_item_cg = itemView.findViewById(R.id.client_item_cg);
             client_item_title = itemView.findViewById(R.id.client_item_title);
             client_item_project_add = itemView.findViewById(R.id.client_item_project_add);
+            client_item_unread = itemView.findViewById(R.id.client_item_unread);
 
         }
     }

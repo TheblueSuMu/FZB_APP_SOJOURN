@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.UserSaveBean;
+import com.xcy.fzb.all.utils.DataBase;
 
 import java.util.List;
 
 public class PopAdapter extends RecyclerView.Adapter<PopAdapter.ViewHolder> {
-    private List<UserSaveBean> list;
+    private List<DataBase> list;
     private OnItemClickLisenter onItemClickLisenter;
 
     public interface  OnItemClickLisenter{
@@ -27,7 +28,7 @@ public class PopAdapter extends RecyclerView.Adapter<PopAdapter.ViewHolder> {
         this.onItemClickLisenter = onItemClickListener;
     }
 
-    public PopAdapter(List<UserSaveBean> list) {
+    public PopAdapter(List<DataBase> list) {
         this.list = list;
     }
 

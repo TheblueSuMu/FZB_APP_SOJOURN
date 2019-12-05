@@ -14,6 +14,7 @@ public class DataBaseUtil {
 
     public static DatabaseHelper mDatabaseHelper;
     public static SQLiteDatabase mSqLiteDatabase;
+    private static long index;
 
     //TODO 查
     public static List<DataBase> initSelect(Context context, String selectData) {
@@ -84,31 +85,61 @@ public class DataBaseUtil {
         mSqLiteDatabase = mDatabaseHelper.getWritableDatabase();
 
         int indexDelete = 0;
+        int ifnum = 0;
         Cursor cursor = mSqLiteDatabase.query(mDatabaseHelper.USER_TABLE_NAME, null, null, null, null, null, null, null);
         int count = cursor.getCount();
-        if (count == 3) {
-            if (cursor.moveToFirst()) {
-                do {
-                    String username = cursor.getString(cursor.getColumnIndex("USER_NAME"));
-                    String userpassword = cursor.getString(cursor.getColumnIndex("USER_PASSWORD"));
-                    if (indexDelete == 0) {
-                        String conditions = "USER_NAME=?";
-                        String[] args = {username};
-                        mSqLiteDatabase.delete(DatabaseHelper.USER_TABLE_NAME, conditions, args);
-                        break;
-                    }
-                } while (cursor.moveToNext());
-            }
+
+        if (cursor.moveToFirst()) {
+            do {
+                String username = cursor.getString(cursor.getColumnIndex("USER_NAME"));
+                String userpassword = cursor.getString(cursor.getColumnIndex("USER_PASSWORD"));
+                if (userName.equals(username)) {
+                    ifnum = 1;
+                    break;
+                } else {
+
+                }
+            } while (cursor.moveToNext());
         }
 
-        ContentValues values = new ContentValues();
-        values.put(mDatabaseHelper.USER_NAME, userName);
-        values.put(mDatabaseHelper.USER_PASSWORD, userPassword);
-
-        long index = mSqLiteDatabase.insert(mDatabaseHelper.USER_TABLE_NAME, null, values);
+        if (ifnum == 1) {
+//            if (count == 3) {
+//                if (cursor.moveToFirst()) {
+//                    do {
+//                        String username = cursor.getString(cursor.getColumnIndex("USER_NAME"));
+//                        String userpassword = cursor.getString(cursor.getColumnIndex("USER_PASSWORD"));
+//                        if (indexDelete == 0) {
+//                            String conditions = "USER_NAME=?";
+//                            String[] args = {username};
+//                            mSqLiteDatabase.delete(DatabaseHelper.USER_TABLE_NAME, conditions, args);
+//                            break;
+//                        }
+//                    } while (cursor.moveToNext());
+//                }
+//            }
+        } else if (ifnum == 0) {
+            if (count == 3) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        String username = cursor.getString(cursor.getColumnIndex("USER_NAME"));
+                        String userpassword = cursor.getString(cursor.getColumnIndex("USER_PASSWORD"));
+                        if (indexDelete == 0) {
+                            String conditions = "USER_NAME=?";
+                            String[] args = {username};
+                            mSqLiteDatabase.delete(DatabaseHelper.USER_TABLE_NAME, conditions, args);
+                            break;
+                        }
+                    } while (cursor.moveToNext());
+                }
+            }
+            ContentValues values = new ContentValues();
+            values.put(mDatabaseHelper.USER_NAME, userName);
+            values.put(mDatabaseHelper.USER_PASSWORD, userPassword);
+            index = mSqLiteDatabase.insert(mDatabaseHelper.USER_TABLE_NAME, null, values);
+        }
 
         if (index != -1) {
-            Toast.makeText(context, "插入成功", Toast.LENGTH_LONG).show();
+
         }
         cursor.close();
         return index;

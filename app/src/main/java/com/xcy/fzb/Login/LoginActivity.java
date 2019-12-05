@@ -57,6 +57,8 @@ import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
+import com.xcy.fzb.all.utils.DataBase;
+import com.xcy.fzb.all.utils.DataBaseUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
@@ -152,6 +154,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
     private TextView fuwu;
     private PopAdapter popAdapter;
     private List<UserSaveBean> xlist;
+    private List<DataBase> list1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -766,7 +769,11 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 add = false;
                             }
                         }
-
+                        DataBaseUtil.initAdd(LoginActivity.this,userName,passWord);
+                        List<DataBase> list = DataBaseUtil.initSelect(LoginActivity.this, "");
+                        for (int i = 0; i < list.size(); ++i){
+                            Log.i("MyCL","数据库数据：" + list.get(i).getUserName());
+                        }
                         if (add) {
                             editor.putString("user_name"+index, userName);
                             editor.putString("user_password"+index, passWord);
@@ -847,8 +854,13 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 add = false;
                             }
                         }
-
+                        DataBaseUtil.initAdd(LoginActivity.this,userName,passWord);
+                        List<DataBase> list = DataBaseUtil.initSelect(LoginActivity.this, "");
+                        for (int i = 0; i < list.size(); ++i){
+                            Log.i("MyCL","数据库数据：" + list.get(i).getUserName());
+                        }
                         if (add) {
+
                             editor.putString("user_name"+index, userName);
                             editor.putString("user_password"+index, passWord);
                             editor.putInt("index", pref.getInt("index",0)+1);
@@ -989,8 +1001,13 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 add = false;
                             }
                         }
-
+                        DataBaseUtil.initAdd(LoginActivity.this,userName,passWord);
+                        List<DataBase> list = DataBaseUtil.initSelect(LoginActivity.this, "");
+                        for (int i = 0; i < list.size(); ++i){
+                            Log.i("MyCL","数据库数据：" + list.get(i).getUserName());
+                        }
                         if (add) {
+
                             editor.putString("user_name"+index, userName);
                             editor.putString("user_password"+index, passWord);
                             editor.putInt("index", pref.getInt("index",0)+1);
@@ -1151,34 +1168,39 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        list1 = DataBaseUtil.initSelect(LoginActivity.this, "");
+//        xlist = new ArrayList<>();
+//
+//        for (int i = 0;i < list.size();i++){
+//            xlist.add(list.get(i));
+//        }
+//
+//
+//        if (list.size() >= 4) {
+//            xlist = new ArrayList<>();
+//            for (int i = list.size()-3; i < list.size(); i++){
+//                xlist.add(list.get(i));
+////                Log.i("size","数据："+arrayList.get(i));
+//            }
+//        }
 
-        xlist = new ArrayList<>();
-
-        for (int i = 0;i < list.size();i++){
-            xlist.add(list.get(i));
-        }
-
-
-        if (list.size() >= 4) {
-            xlist = new ArrayList<>();
-            for (int i = list.size()-3; i < list.size(); i++){
-                xlist.add(list.get(i));
-//                Log.i("size","数据："+arrayList.get(i));
-            }
-        }
-
-        popAdapter = new PopAdapter(xlist);
+        popAdapter = new PopAdapter(list1);
         recyclerView.setAdapter(popAdapter);
 
         popAdapter.setOnItemClickListener(new PopAdapter.OnItemClickLisenter() {
             @Override
             public void onItemClick(int postion) {
                 if (FinalContents.getDelete().equals("填充")) {
-                    login_et_username.setText(xlist.get(postion).getUserName());
-                    login_et_password.setText(xlist.get(postion).getUserPassword());
+                    login_et_username.setText(list1.get(postion).getUserName());
+                    login_et_password.setText(list1.get(postion).getUserPassword());
                     p.dismiss();
                 } else if (FinalContents.getDelete().equals("删除")) {
-                    Toast.makeText(LoginActivity.this, "相关功能维护中", Toast.LENGTH_SHORT).show();
+
+                    List<DataBase> list = DataBaseUtil.initSelect(LoginActivity.this, "");
+
+                    DataBaseUtil.initDelete(LoginActivity.this,list.get(postion).getUserName());
+                    p.dismiss();
+//                    Toast.makeText(LoginActivity.this, "相关功能维护中", Toast.LENGTH_SHORT).show();
 //                    if (xlist.size() > 1) {
 //                        for (int i = 0;i < index;i++){
 //                            if (xlist.get(postion).getUserName().equals(pref.getString("user_name"+i, ""))) {

@@ -45,6 +45,7 @@ import com.xcy.fzb.all.utils.GetInt;
 import com.xcy.fzb.all.utils.KeyUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.utils.MoneyValueFilter;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.project_side.adapter.TimeRangeAdapter;
 
 import java.util.ArrayList;
@@ -643,6 +644,8 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
+        Log.i("MyCL","FinalContents.getUserID():" + FinalContents.getUserID());
+        Log.i("MyCL","one_key_relative_et2.getText().toString():" + one_key_relative_et2.getText().toString());
         Observable<PhoneByUserBean> userMessage = fzbInterface.getPhoneByUser(FinalContents.getUserID(),one_key_relative_et2.getText().toString());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -655,12 +658,17 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(PhoneByUserBean phoneByUserBean) {
+                        Log.i("MyCL","phoneByUserBean:" + phoneByUserBean.getData().getMsg());
                         FinalContents.setJJrID(phoneByUserBean.getData().getData().getUserId());
-                        if (ifnum3 == 0) {
-                            ifnum3 = 1;
-                            picker.setVisibility(View.VISIBLE);
-                            initDate();
-                            ifnum3 = 0;
+                        if (phoneByUserBean.getData().getCode().equals("1")) {
+                            if (ifnum3 == 0) {
+                                ifnum3 = 1;
+                                picker.setVisibility(View.VISIBLE);
+                                initDate();
+                                ifnum3 = 0;
+                            }
+                        }else if (phoneByUserBean.getData().getCode().equals("0")){
+                           ToastUtil.showLongToast(OneKeyActivity.this, "请确保输入的经纪人信息是否正确");
                         }
                     }
 
