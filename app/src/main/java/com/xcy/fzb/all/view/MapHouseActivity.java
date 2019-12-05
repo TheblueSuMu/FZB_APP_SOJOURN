@@ -306,8 +306,6 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
             initMapDataProject();//城市公司项目列表数据
         }
 
-//       initMy();
-
     }
 
     //城市公司项目列表数据
@@ -350,12 +348,6 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 });
 
     }
-
-//    private void initMy() {
-//
-//
-//
-//    }
 
     //公司数据
     private void initMapDataS() {

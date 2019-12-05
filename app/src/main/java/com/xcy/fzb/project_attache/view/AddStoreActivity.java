@@ -275,7 +275,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
                             FinalContents.setCompanyManageId(storeManage.getCompany().getId());
                             url1 = storeChangeBean.getData().getStoreManage().getStoreRise();
-                            url1 = storeChangeBean.getData().getStoreManage().getStoreImg();
+                            url2 = storeChangeBean.getData().getStoreManage().getStoreImg();
                             if (storeChangeBean.getData().getStoreManage().getFlag().equals("1")) {
                                 add_broker_rb2.setChecked(true);
                                 add_broker_rl2.setVisibility(View.VISIBLE);
