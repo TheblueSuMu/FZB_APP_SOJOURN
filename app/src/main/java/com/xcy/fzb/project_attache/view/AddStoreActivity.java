@@ -138,6 +138,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     private String getLatitude = "";
     private String getLongitude = "";
     private int GPS_REQUEST_CODE = 10;
+    int isOne = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,12 +251,16 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                             add_broker_et4.setText(storeChangeBean.getData().getStoreManage().getAddress());
                             if (storeChangeBean.getData().getStoreManage().getState().equals("1")) {
                                 add_broker_tv3.setText("签约");
+                                state = "1";
                             } else if (storeChangeBean.getData().getStoreManage().getState().equals("2")) {
                                 add_broker_tv3.setText("装机");
+                                state = "2";
                             } else if (storeChangeBean.getData().getStoreManage().getState().equals("3")) {
                                 add_broker_tv3.setText("培训");
+                                state = "3";
                             } else if (storeChangeBean.getData().getStoreManage().getState().equals("4")) {
                                 add_broker_tv3.setText("维护");
+                                state = "4";
                             }
                             if (storeChangeBean.getData().getStoreManage().getStoreRise().equals("")) {
 
@@ -284,9 +289,9 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                 add_broker_rb4.setChecked(true);
                                 add_broker_rl2.setVisibility(View.GONE);
                             }
-                            if(storeChangeBean.getData().getStoreManage().getLocation().equals("")){
+                            if (storeChangeBean.getData().getStoreManage().getLocation().equals("")) {
 
-                            }else {
+                            } else {
                                 add_broker_tv4.setText(storeChangeBean.getData().getStoreManage().getLocation());
                             }
                             myLocation = storeChangeBean.getData().getStoreManage().getLocation();
@@ -306,13 +311,19 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             add_broker_tvs.setText("添加门店");
             add_broker_rb3.setVisibility(View.GONE);
             add_broker_rb4.setVisibility(View.GONE);
-            String storeUrl = FinalContents.getBaseUrl() + "commissionerUpdate/setStoreNum?userId=" + FinalContents.getUserID();
-            OkHttpPost okHttpPost = new OkHttpPost(storeUrl);
-            String post = okHttpPost.post();
-            Gson gson = new Gson();
-            AddStoreNumBean addStoreNumBean = gson.fromJson(post, AddStoreNumBean.class);
-            String storeNum = addStoreNumBean.getData().getStoreNum();
-            add_broker_tv1.setText(storeNum);
+            if(isOne == 0){
+                String storeUrl = FinalContents.getBaseUrl() + "commissionerUpdate/setStoreNum?userId=" + FinalContents.getUserID();
+                OkHttpPost okHttpPost = new OkHttpPost(storeUrl);
+                String post = okHttpPost.post();
+                Gson gson = new Gson();
+                AddStoreNumBean addStoreNumBean = gson.fromJson(post, AddStoreNumBean.class);
+                String storeNum = addStoreNumBean.getData().getStoreNum();
+                add_broker_tv1.setText(storeNum);
+                isOne = 1;
+            }else {
+
+            }
+
         }
 
     }
@@ -621,7 +632,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             if (add_broker_rb4.isChecked()) {
                 flag = 3;
             }
-            if (myLocation.equals((getLongitude + "," + getLatitude))) {
+            if (getLongitude.equals("")) {
 
             } else {
                 myLocation = (getLongitude + "," + getLatitude);
@@ -822,7 +833,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
         if (isnum == 1) {
             if (requestCode == 1 && resultCode == RESULT_OK) {
-                add_broker_tv4.setText(data.getStringExtra("getLatitude") + "\n" + data.getStringExtra("getLongitude"));
+                add_broker_tv4.setText(data.getStringExtra("getLongitude") + "," + data.getStringExtra("getLatitude"));
             }
 
             getLatitude = data.getStringExtra("getLatitude");

@@ -636,8 +636,11 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 for (int i = 0; i < rows.size(); ++i) {
                     StringBuffer stringBuffer = new StringBuffer();
                     StringBuffer append = stringBuffer.append(rows.get(i).getLocation());
+                    Log.i("MyCL", "rows.get(i).getLocation():" + rows.get(i).getLocation());
+                    Log.i("MyCL", "rows.get(i).getLocation():" + rows.get(i).getStoreName());
                     for (int j = 0; j < append.length(); ++j) {
                         if (append.substring(j, j + 1).equals(",")) {
+                            Log.i("MyCL", "append.substring(0, j):" + append.substring(0, j));
                             double v = Double.parseDouble(append.substring(0, j));
                             double v1 = Double.parseDouble(append.substring(j + 1));
                             strings.add(rows.get(i).getStoreName());
