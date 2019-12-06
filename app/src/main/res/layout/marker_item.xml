@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="40dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@mipmap/mapb">
+    android:id="@+id/rl_marker">
 
 <!--    <ImageView-->
 <!--        android:id="@+id/iv_marker_icon"-->
@@ -15,12 +15,13 @@
         android:id="@+id/tv_marker_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="123456"
+        android:textColor="#111111"
         android:gravity="center"
-        android:textColor="#ffffffff"
-        android:layout_centerHorizontal="true"
+        android:paddingBottom="10dp"
         android:textSize="12sp"
-        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/mapb"
        ></TextView>
 <!--   android:background="@mipmap/mapb"  -->
 </RelativeLayout>

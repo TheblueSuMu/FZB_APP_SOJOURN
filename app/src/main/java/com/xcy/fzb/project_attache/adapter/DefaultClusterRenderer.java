@@ -771,7 +771,8 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
         BitmapDescriptor descriptor = mIcons.get(bucket);
         Log.i("MyCL","descriptor：" + descriptor);
         if (descriptor == null) {
-            mColoredCircleBackground.getPaint().setColor(getColor(bucket));
+//            mColoredCircleBackground.getPaint().setColor(getColor(bucket));
+            mColoredCircleBackground.getPaint().setColor(Color.TRANSPARENT);
             //TODO 最外层图像上面的文字填充↓
             descriptor = BitmapDescriptorFactory.fromBitmap(mIconGenerator.makeIcon(getClusterText(bucket)));
             mIcons.put(bucket, descriptor);
