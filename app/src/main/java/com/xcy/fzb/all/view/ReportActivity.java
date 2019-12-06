@@ -252,6 +252,26 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             }
         });
 
+        report_client_name_et.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+
+                    // 获得焦点
+
+                } else {
+
+                    // 失去焦点
+                    report_associating_inputing_rv.setVisibility(View.GONE);
+                }
+
+            }
+
+
+        });
+
         report_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

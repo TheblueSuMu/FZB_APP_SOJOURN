@@ -101,6 +101,10 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
             client_particulars_report.setVisibility(View.GONE);
         }
 
+        if (!FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+            client_particulars_report.setVisibility(View.GONE);
+        }
+
         initData();
 
     }
