@@ -266,10 +266,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 //                add_company_tv3.setText("117.155243,39.112389");
                 break;
             case R.id.add_company_btn:
-                if (!MatcherUtils.isMobile(add_company_et4.getText().toString())) {
-                    ToastUtil.showLongToast(AddCompanyActivity.this,"请输入正确的手机号");
-                    return;
-                }
                 s = add_company_tv1.getText().toString();
                 s1 = add_company_tv2.getText().toString();
                 s2 = add_company_tv3.getText().toString();
@@ -278,6 +274,10 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                 if (FinalContents.getStoreChange().equals("修改")) {
 
                 } else {
+                    if (!MatcherUtils.isMobile(add_company_et4.getText().toString())) {
+                        ToastUtil.showLongToast(AddCompanyActivity.this,"请输入正确的手机号");
+                        return;
+                    }
                     s5 = add_company_et3.getText().toString();
                     s6 = add_company_et4.getText().toString();
                     s7 = add_company_et5.getText().toString();
