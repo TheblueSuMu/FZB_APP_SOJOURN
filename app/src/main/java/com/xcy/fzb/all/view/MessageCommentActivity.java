@@ -219,7 +219,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
                                 comment_et.setText("");
                             }
                             initData();
-
+                            hideInput();
                         }
 
                         @Override

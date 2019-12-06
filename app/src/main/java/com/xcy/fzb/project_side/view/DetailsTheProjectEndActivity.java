@@ -363,6 +363,13 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time5.setText("<" + string);
         details_the_project_end_time6.setText("-" + string + " >");
 
+        beforeDate1 = string;
+        afterDate1 = string;
+        beforeDate2 = string;
+        afterDate2 = string;
+        beforeDate3 = string;
+        afterDate3 = string;
+
         dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth - 15));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
@@ -414,6 +421,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         beforeDate1 = dateString;
                         details_the_project_end_time1.setText("<" + dateString);
                         NewlyIncreased.setStartDate(dateString);
+                        type = "1";
                     }
                 });
             }
@@ -458,6 +466,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         beforeDate2 = dateString;
                         details_the_project_end_time3.setText("<" + dateString);
                         NewlyIncreased.setYJstartDate(dateString);
+                        type = "2";
                     }
                 });
             }
@@ -501,6 +510,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year3, month3 + 1, dayOfMonth3);
                         beforeDate3 = dateString;
                         details_the_project_end_time5.setText("<" + dateString);
+                        type = "3";
                     }
                 });
             }
@@ -820,7 +830,21 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     //TODO 点击事件
     @Override
     public void onClick(View view) {
+        if (NewlyIncreased.getTag().equals("3")) {
+            NewlyIncreased.setStartDate(beforeDate1);
+            NewlyIncreased.setEndDate(afterDate1);
+        }else {
+            NewlyIncreased.setStartDate("");
+            NewlyIncreased.setEndDate("");
+        }
 
+        if (NewlyIncreased.getYJType().equals("3")) {
+            NewlyIncreased.setYJstartDate(beforeDate2);
+            NewlyIncreased.setYJendDate(afterDate2);
+        }else {
+            NewlyIncreased.setYJstartDate("");
+            NewlyIncreased.setYJendDate("");
+        }
         switch (view.getId()) {
 //                TODO 返回上一层
             case R.id.details_the_project_end_return:

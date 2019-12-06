@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -305,6 +304,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                             commission_rv.setVisibility(View.GONE);
                             myBrokerage_rl.setVisibility(View.VISIBLE);
                         }
+                        hideInput();
                     }
 
                     @Override

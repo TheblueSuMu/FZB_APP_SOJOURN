@@ -115,10 +115,10 @@
         <activity android:name=".all.view.PhoneActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 通讯录-->
 
         <activity android:name=".FinMag" android:theme="@style/LunchTheme">       <!--TODO 域名-->
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".BaseUrl" android:theme="@style/LunchTheme">       <!--TODO 启动页-->
             <intent-filter>
@@ -224,7 +224,7 @@
         <activity android:name=".project_attache.view.ContentActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专员 添加-->
         <activity android:name=".project_attache.view.StoreDetailsActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专员 公司详情-->
         <activity android:name=".project_attache.view.ClockStoresActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan" /> <!-- TODO 门店打卡 start -->
-        <activity android:name=".project_attache.view.PunchingCardRecordActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"></activity><!-- TODO 打卡记录 start -->
+        <activity android:name=".project_attache.view.PunchingCardRecordActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/><!-- TODO 打卡记录 start -->
 
         <!--TODO 圈层 顾问-->
         <activity android:name=".captain_counselor.view.Captain_Counselor_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 顾问 主页-->

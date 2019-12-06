@@ -235,7 +235,6 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
                                     commission_the_project_end_rl.setVisibility(View.VISIBLE);
                                     commission_the_project_end_rv.setVisibility(View.GONE);
                                 }
-
                             }else {
                                 commission_the_project_end_rv.setVisibility(View.GONE);
                                 commission_the_project_end_rl.setVisibility(View.VISIBLE);
@@ -244,6 +243,7 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
                             commission_the_project_end_rv.setVisibility(View.GONE);
                             commission_the_project_end_rl.setVisibility(View.VISIBLE);
                         }
+                        hideInput();
                     }
 
                     @Override

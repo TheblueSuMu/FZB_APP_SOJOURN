@@ -193,6 +193,7 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
                                 }
                             }
                         });
+                        hideInput();
                     }
 
                     @Override

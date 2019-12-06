@@ -141,33 +141,36 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     @SuppressLint("MissingPermission")
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (FinalContents.getIdentity().equals("7")) {
+        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+            if (FinalContents.getIdentity().equals("7")) {
 
-        }else {
-            int sensortype = event.sensor.getType();
-            float[] values = event.values;
-            if (sensortype == Sensor.TYPE_ACCELEROMETER) {
-                /*因为一般正常情况下，任意轴数值最大就在9.8~10之间，只有在你突然摇动手机
-                 *的时候，瞬时加速度才会突然增大或减少。
-                 *所以，经过实际测试，只需监听任一轴的加速度大于14的时候，改变你需要的设置
-                 *就OK了~~~
-                 */
-                if (Math.abs(values[0]) > 20 || Math.abs(values[1]) > 20 || Math.abs(values[2]) > 20) {
+            }else {
+                int sensortype = event.sensor.getType();
+                float[] values = event.values;
+                if (sensortype == Sensor.TYPE_ACCELEROMETER) {
+                    /*因为一般正常情况下，任意轴数值最大就在9.8~10之间，只有在你突然摇动手机
+                     *的时候，瞬时加速度才会突然增大或减少。
+                     *所以，经过实际测试，只需监听任一轴的加速度大于14的时候，改变你需要的设置
+                     *就OK了~~~
+                     */
+                    if (Math.abs(values[0]) > 20 || Math.abs(values[1]) > 20 || Math.abs(values[2]) > 20) {
 
-                    if (SharItOff.getShar().equals("隐")) {
-                        SharItOff.setShar("显");
-                        Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
-                    } else if (SharItOff.getShar().equals("显")) {
-                        SharItOff.setShar("隐");
-                        Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                        if (SharItOff.getShar().equals("隐")) {
+                            SharItOff.setShar("显");
+                            Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
+                        } else if (SharItOff.getShar().equals("显")) {
+                            SharItOff.setShar("隐");
+                            Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                        }
+
+                        initHotList();
+
+                        vibrator.vibrate(100);
                     }
-
-                    initHotList();
-
-                    vibrator.vibrate(100);
                 }
             }
         }
+
     }
 
     @Override
@@ -340,6 +343,12 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                 //               返回的分别是三个级别的选中位置
                                 //              展示选中数据
+                                if (!citylist.get(options1).getId().equals(FinalContents.getOldCityId())) {
+                                    FinalContents.setCityIs("不是当前城市");
+                                    SharItOff.setShar("隐");
+                                }else {
+                                    FinalContents.setCityIs("");
+                                }
                                 city.setText(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
                                 initHotList();

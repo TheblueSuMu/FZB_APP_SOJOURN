@@ -2,7 +2,6 @@ package com.xcy.fzb.shopping_guide.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,7 +45,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
     RelativeLayout review_the_success_return;
     ImageView review_the_success_img1;
-    ImageView review_the_success_img2;
 
     TextView review_the_success_tv1;
     TextView review_the_success_tv2;
@@ -115,7 +113,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
         review_the_success_return = findViewById(R.id.review_the_success_return);
         review_the_success_img1 = findViewById(R.id.review_the_success_img1);
-        review_the_success_img2 = findViewById(R.id.review_the_success_img2);
         review_the_success_tv1 = findViewById(R.id.review_the_success_tv1);
         review_the_success_tv2 = findViewById(R.id.review_the_success_tv2);
         review_the_success_tv3 = findViewById(R.id.review_the_success_tv3);
@@ -143,7 +140,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         review_the_success_bt3.setOnClickListener(this);
         review_the_success_bt4.setOnClickListener(this);
         review_the_success_bt5.setOnClickListener(this);
-        review_the_success_img2.setOnClickListener(this);
 
         review_the_success_b1.setOnClickListener(this);
         review_the_success_b3.setOnClickListener(this);
@@ -222,6 +218,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                         review_the_success_tv2.setText(infoData.getProjectName());
                         review_the_success_tv3.setText(infoData.getCustomerName() + "[" + infoData.getCustomerPhone() + "]");
 
+                        FinalContents.setProjectType(infoData.getProjectType());
                         initRV();
                     }
 
@@ -263,6 +260,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 if (isnum1 == 0) {
                     isnum1 = 1;
                     finish();
+                    ProjectProgressApi.setComplemented("1");
                     intent = new Intent(ReviewTheSuccessActivity.this, ToApplyForAnIslandActivity.class);
                     intent.putExtra("name", infoData.getCustomerName());
                     startActivity(intent);
@@ -308,13 +306,12 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 }
 
                 break;
-
-
             //            TODO 补全信息
             case R.id.review_the_success_b1:
                 if (isnum1 == 0) {
                     isnum1 = 1;
                     finish();
+                    ProjectProgressApi.setComplemented("1");
                     intent = new Intent(ReviewTheSuccessActivity.this, ToApplyForAnIslandActivity.class);
                     intent.putExtra("name", infoData.getCustomerName());
                     startActivity(intent);
@@ -359,15 +356,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                     isnum4 = 0;
                 }
 
-                break;
-            //            TODO 项目负责人电话
-            case R.id.review_the_success_img2:
-                if (infoData.getCustomerPhone().equals("")) {
-                    Toast.makeText(this, "负责人暂无电话", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + infoData.getCustomerPhone()));//跳转到拨号界面，同时传递电话号码
-                    startActivity(dialIntent);
-                }
                 break;
         }
 

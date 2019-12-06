@@ -152,8 +152,8 @@ public class MessageIssueActivity extends AllActivity {
         message_issue_fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (message_issue_message.getText().toString().equals("")) {
-                    Toast.makeText(MessageIssueActivity.this, "请输入要发布的内容", Toast.LENGTH_SHORT).show();
+                if (message_issue_message.getText().toString().equals("") && stringBuffer.toString().equals("")) {
+                    Toast.makeText(MessageIssueActivity.this, "请输入要发布的内容或图片", Toast.LENGTH_SHORT).show();
                 } else {
                     if (projectID.equals("")) {
                         Toast.makeText(MessageIssueActivity.this, "请选择要发布的项目", Toast.LENGTH_SHORT).show();

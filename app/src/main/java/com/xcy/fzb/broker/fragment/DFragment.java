@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.view.ReleaseActivity;
@@ -95,7 +96,23 @@ public class DFragment extends AllFragment implements View.OnClickListener {
                 transaction.commit();
                 break;
         }
+    }
 
-
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                d_fb.setVisibility(View.VISIBLE);
+            }else {
+                d_fb.setVisibility(View.GONE);
+            }
+        }else {
+            if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                d_fb.setVisibility(View.VISIBLE);
+            }else {
+                d_fb.setVisibility(View.GONE);
+            }
+        }
     }
 }

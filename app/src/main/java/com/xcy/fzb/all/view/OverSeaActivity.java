@@ -197,32 +197,33 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+            if (FinalContents.getIdentity().equals("63")) {
 
-        if (FinalContents.getIdentity().equals("63")) {
+            }else if (FinalContents.getIdentity().equals("7")) {
 
-        }else if (FinalContents.getIdentity().equals("7")) {
+            } else {
+                int sensortype = event.sensor.getType();
+                float[] values = event.values;
+                if (sensortype == Sensor.TYPE_ACCELEROMETER) {
+                    /*因为一般正常情况下，任意轴数值最大就在9.8~10之间，只有在你突然摇动手机
+                     *的时候，瞬时加速度才会突然增大或减少。
+                     *所以，经过实际测试，只需监听任一轴的加速度大于14的时候，改变你需要的设置
+                     *就OK了~~~
+                     */
+                    if (Math.abs(values[0]) > 20 || Math.abs(values[1]) > 20 || Math.abs(values[2]) > 20) {
 
-        } else {
-            int sensortype = event.sensor.getType();
-            float[] values = event.values;
-            if (sensortype == Sensor.TYPE_ACCELEROMETER) {
-                /*因为一般正常情况下，任意轴数值最大就在9.8~10之间，只有在你突然摇动手机
-                 *的时候，瞬时加速度才会突然增大或减少。
-                 *所以，经过实际测试，只需监听任一轴的加速度大于14的时候，改变你需要的设置
-                 *就OK了~~~
-                 */
-                if (Math.abs(values[0]) > 20 || Math.abs(values[1]) > 20 || Math.abs(values[2]) > 20) {
+                        if (SharItOff.getShar().equals("隐")) {
+                            SharItOff.setShar("显");
+                            Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
+                        } else if (SharItOff.getShar().equals("显")) {
+                            SharItOff.setShar("隐");
+                            Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                        }
+                        inithot();
 
-                    if (SharItOff.getShar().equals("隐")) {
-                        SharItOff.setShar("显");
-                        Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
-                    } else if (SharItOff.getShar().equals("显")) {
-                        SharItOff.setShar("隐");
-                        Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                        vibrator.vibrate(100);
                     }
-                    inithot();
-
-                    vibrator.vibrate(100);
                 }
             }
         }
@@ -381,10 +382,15 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         back = findViewById(R.id.oversea_back);
         report = findViewById(R.id.oversea_report);
 
-        if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
-            report.setVisibility(View.GONE);
-        }else {
+        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
             report.setVisibility(View.VISIBLE);
+            if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
+                report.setVisibility(View.GONE);
+            }else {
+                report.setVisibility(View.VISIBLE);
+            }
+        }else {
+            report.setVisibility(View.GONE);
         }
 
         search.setOnClickListener(new View.OnClickListener() {
@@ -420,7 +426,14 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         oversea_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                report.setVisibility(View.VISIBLE);
+                if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                    report.setVisibility(View.VISIBLE);
+                }else {
+                    report.setVisibility(View.GONE);
+                }
+                if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
+                    report.setVisibility(View.GONE);
+                }
                 oversea_ll.setVisibility(View.GONE);
             }
         });
@@ -428,7 +441,14 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         oversea_lll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                report.setVisibility(View.VISIBLE);
+                if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                    report.setVisibility(View.VISIBLE);
+                }else {
+                    report.setVisibility(View.GONE);
+                }
+                if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
+                    report.setVisibility(View.GONE);
+                }
                 oversea_ll.setVisibility(View.GONE);
             }
         });

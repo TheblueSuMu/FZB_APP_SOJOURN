@@ -144,6 +144,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                                                     particulars_et_comment.setText("");
                                                 }
                                                 initData();
+                                                hideInput();
                                             }
 
                                             @Override

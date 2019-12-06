@@ -31,6 +31,7 @@ import com.xcy.fzb.all.fragment.MessageFragment;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.ReportActivity;
 import com.xcy.fzb.captain_market.fragment.MeFragment;
@@ -183,7 +184,7 @@ public class Captain_Market_MainActivity extends AllActivity implements View.OnC
                     Intent intent = new Intent(Captain_Market_MainActivity.this, ReportActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(Captain_Market_MainActivity.this, "该城市不是您的主营城市，请切换到您的主营城市后再报备客户", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(Captain_Market_MainActivity.this, "该城市不是您的主营城市，请切换到您的主营城市后再报备客户");
                 }
             }
         });

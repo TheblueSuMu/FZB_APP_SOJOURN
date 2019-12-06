@@ -6,13 +6,14 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.xcy.fzb.Login.LoginActivity;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.utils.ToastUtil;
@@ -90,6 +91,17 @@ public class AllActivity extends AppCompatActivity {
                 break;
             default:
                 break;
+        }
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
         }
     }
 }

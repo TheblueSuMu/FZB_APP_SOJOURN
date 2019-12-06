@@ -1,13 +1,11 @@
 package com.xcy.fzb.Login;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -29,12 +27,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,7 +46,6 @@ import com.xcy.fzb.all.modle.CodeBean;
 import com.xcy.fzb.all.modle.LoginUserBean;
 import com.xcy.fzb.all.modle.UserIdentity;
 import com.xcy.fzb.all.modle.UserSaveBean;
-import com.xcy.fzb.all.persente.AdministrationAuthority;
 import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -155,6 +148,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
     private PopAdapter popAdapter;
     private List<UserSaveBean> xlist;
     private List<DataBase> list1;
+    private boolean dial = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1201,7 +1195,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
+        final Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
         final Observable<AppPackageBean> appPackage = fzbInterface.getAppPackage("android","com.xcy.fzb", versionName);
         appPackage.subscribeOn(Schedulers.io())
@@ -1229,11 +1223,26 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             builder1.setPositiveButton("更新", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    dial = false;
                                     url = appPackageBean.getData().getAppurl();
                                     showDownloadDialog();
                                 }
                             });
+                            builder1.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialogInterface) {
+                                    if (dial) {
+                                        initfvb();
+                                        Log.i("消失","1事件触发");
+                                    }
+                                    Log.i("消失","事件触发");
+//                                    initfvb();
+                                }
+                            });
                             builder1.show();
+                            Log.i("消失","2事件触发");
+
+
                         }else if(appPackageBean.getData().getIsUpgrade().equals("2")){
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
                             builder1.setTitle("提示");
@@ -1250,6 +1259,13 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 public void onClick(DialogInterface dialog, int which) {
                                     url = appPackageBean.getData().getAppurl();
                                     showDownloadDialog();
+                                }
+                            });
+                            builder1.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialogInterface) {
+                                    AllActivity.exit = true;
+                                    finish();
                                 }
                             });
                             builder1.show();
@@ -1287,6 +1303,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                 dialog.dismiss();
                 // 设置下载状态为取消
                 mIsCancel = true;
+                initfvb();
             }
         });
 
