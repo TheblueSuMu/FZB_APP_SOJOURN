@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Html;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -89,6 +91,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
     private StringBuffer sb;
     private TextView pop_name;
     private TextView pop_title;
+    private TextView pop_address;
     private LinearLayout layout;
     private double vs1;
     private double vs2;
@@ -127,6 +130,14 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
     TextView second;
     LinearLayout modulebroke_ll;
     TextView group_booking;
+    ViewHolder mViewHolder;
+
+    String isName = "";
+
+    int ifStart = 0;
+    private LatLng position;
+    private LatLng mPosition1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,6 +205,11 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         map_house_return = findViewById(R.id.map_house_return);
         map_house_search = findViewById(R.id.map_house_search_S);
         map_house_check = findViewById(R.id.map_house_check);
+        layout = (LinearLayout) getLayoutInflater().inflate(R.layout.pop_five_activity_bottom_layout, null);
+        pop_title = layout.findViewById(R.id.pop_title);
+        pop_address = layout.findViewById(R.id.pop_address);
+        pop_name = layout.findViewById(R.id.pop_name);
+        pop_ll_1 = layout.findViewById(R.id.pop_ll_1);
         //输入框回车事件监听
         map_house_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -425,10 +441,17 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    //maker事件
     private void initMap() {
 
-        mLayoutIn = LayoutInflater.from(MapHouseActivity.this);
-        mMapStatus = new MapStatus.Builder().target(new LatLng(39.914935, 116.403119)).zoom(8).build();
+        if (ifStart == 0) {
+            mLayoutIn = LayoutInflater.from(MapHouseActivity.this);
+            mMapStatus = new MapStatus.Builder().target(new LatLng(39.914935, 116.403119)).zoom(8).build();
+            ifStart = 1;
+        } else {
+            mLayoutIn = LayoutInflater.from(MapHouseActivity.this);
+            mMapStatus = new MapStatus.Builder().target(new LatLng(position.latitude, position.longitude)).zoom(17).build();
+        }
 
         mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(mMapStatus));
         // 定义点聚合管理类ClusterManager
@@ -452,19 +475,14 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         //每个item点击事件
         mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
 
-            private TextView pop_address;
-
             @Override
             public boolean onClusterItemClick(MyItem item) {
 
                 item1 = item;
-
+//                Log.i("地图maker", "item:" + item.getPosition());
+                position = item.getPosition();
+                mBaiduMap.clear();
                 if (FinalContents.getIfCity().equals("")) {
-                    layout = (LinearLayout) getLayoutInflater().inflate(R.layout.pop_five_activity_bottom_layout, null);
-                    pop_title = layout.findViewById(R.id.pop_title);
-                    pop_address = layout.findViewById(R.id.pop_address);
-                    pop_name = layout.findViewById(R.id.pop_name);
-                    pop_ll_1 = layout.findViewById(R.id.pop_ll_1);
                     if (ifMG == 0) {
                         for (int i = 0; i < rows.size(); ++i) {
                             StringBuffer stringBuffer = new StringBuffer();
@@ -474,7 +492,34 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                                     vs1 = Double.parseDouble(append.substring(0, j));
                                     vs2 = Double.parseDouble(append.substring(j + 1));
                                     if (item.getPosition().longitude == vs1) {
-                                        pop_title.setText(rows.get(i).getStoreName());
+                                        if (rows.get(i).getStatus().equals("0")) {
+                                            pop_title.setText(rows.get(i).getStoreName() + "(未合作)");
+                                            isName = rows.get(i).getStoreName() + "(未合作)";
+                                        } else if (rows.get(i).getStatus().equals("1")) {
+                                            if (rows.get(i).getState().equals("1")) {
+                                                pop_title.setText(rows.get(i).getStoreName() + "(签约)");
+                                                isName = rows.get(i).getStoreName() + "(签约)";
+                                            } else if (rows.get(i).getState().equals("2")) {
+                                                pop_title.setText(rows.get(i).getStoreName() + "(装机)");
+                                                isName = rows.get(i).getStoreName() + "(装机)";
+                                            } else if (rows.get(i).getState().equals("3")) {
+                                                pop_title.setText(rows.get(i).getStoreName() + "(培训)");
+                                                isName = rows.get(i).getStoreName() + "(培训)";
+                                            } else if (rows.get(i).getState().equals("4")) {
+                                                pop_title.setText(rows.get(i).getStoreName() + "(维护)");
+                                                isName = rows.get(i).getStoreName() + "(维护)";
+                                            } else {
+                                                pop_title.setText(rows.get(i).getStoreName());
+                                                isName = rows.get(i).getStoreName();
+                                            }
+                                        } else if (rows.get(i).getStatus().equals("2")) {
+                                            pop_title.setText(rows.get(i).getStoreName() + "(取消合作)");
+                                            isName = rows.get(i).getStoreName() + "(取消合作)";
+                                        } else if (rows.get(i).getStatus().equals("3")) {
+                                            pop_title.setText(rows.get(i).getStoreName() + "(倒闭)");
+                                            isName = rows.get(i).getStoreName() + "(倒闭)";
+                                        }
+
                                         pop_address.setText(rows.get(i).getAddress());
                                         if (rows.get(i).getShopownerName().equals("")) {
                                             pop_ll_1.setVisibility(View.GONE);
@@ -495,8 +540,36 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                                 if (append.substring(j, j + 1).equals(",")) {
                                     vs1 = Double.parseDouble(append.substring(0, j));
                                     vs2 = Double.parseDouble(append.substring(j + 1));
-                                    if (item.getPosition().longitude == vs1) {
-                                        pop_title.setText(rows1.get(i).getCompanyName());
+                                    Log.i("地图maker", "item1.getPosition().longitude:" + item1.getPosition().longitude);
+                                    Log.i("地图maker", "vs1:" + vs1);
+                                    if (item1.getPosition().longitude == vs1) {
+                                        Log.i("地图maker", "i:" + i);
+                                        Log.i("地图maker", "rows1.get(i).getStatus():" + rows1.get(i).getStatus());
+                                        if (rows1.get(i).getStatus().equals("0")) {
+                                            pop_title.setText(rows1.get(i).getCompanyName() + "(未合作)");
+                                            isName = rows1.get(i).getCompanyName() + "(未合作)";
+                                        } else if (rows1.get(i).getStatus().equals("1")) {
+//                                            if (rows1.get(i).getState().equals("1")) {
+//                                                pop_title.setText(rows1.get(i).getCompanyName() + "(签约)");
+//                                            } else if (rows1.get(i).getState().equals("2")) {
+//                                                pop_title.setText(rows1.get(i).getCompanyName() + "(装机)");
+//                                            } else if (rows1.get(i).getState().equals("3")) {
+//                                                pop_title.setText(rows1.get(i).getCompanyName() + "(培训)");
+//                                            } else if (rows1.get(i).getState().equals("4")) {
+//                                                pop_title.setText(rows1.get(i).getCompanyName() + "(维护)");
+//                                            } else {
+                                            pop_title.setVisibility(View.VISIBLE);
+                                            Log.i("地图maker", "rows1.get(i).getCompanyName():" + rows1.get(i).getCompanyName());
+                                            pop_title.setText(rows1.get(i).getCompanyName());
+                                            isName = rows1.get(i).getCompanyName();
+//                                            }
+                                        } else if (rows1.get(i).getStatus().equals("2")) {
+                                            pop_title.setText(rows1.get(i).getCompanyName() + "(取消合作)");
+                                            isName = rows1.get(i).getCompanyName() + "(取消合作)";
+                                        } else if (rows1.get(i).getStatus().equals("3")) {
+                                            pop_title.setText(rows1.get(i).getCompanyName() + "(倒闭)");
+                                            isName = rows1.get(i).getCompanyName() + "(倒闭)";
+                                        }
                                         pop_address.setText(rows1.get(i).getCompanyAddress());
                                         if (rows1.get(i).getShopownerName().equals("")) {
                                             pop_ll_1.setVisibility(View.GONE);
@@ -536,7 +609,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
 
                                     String ids = rows2.get(i).getProductFeature();//从pd里取出字符串
                                     List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
-
+                                    isName = rows2.get(i).getProjectName() + rows2.get(i).getProductUnitPrice() + rows2.get(i).getMonetaryUnit();
                                     if (rows2.get(i).getProductFeature().equals("")) {
                                         tagView.setVisibility(View.GONE);
                                     } else {
@@ -602,7 +675,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 //添加pop窗口关闭事件，主要是实现关闭时改变背景的透明度
                 //        popupWindow.setOnDismissListener(new poponDismissListener());
                 //        backgroundAlpha(1f);
-
+                initMap();
                 return false;
             }
         });
@@ -614,6 +687,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
      * 向地图添加Marker点
      */
     public void addMarkers() {
+
         // 添加Marker点
         items = new ArrayList<MyItem>();
         items.clear();
@@ -624,25 +698,25 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
 //        }
         if (FinalContents.getIfCity().equals("")) {
             if (ifMG == 0) {
-                Log.i("MyCL", "添加门店数据");
+//                Log.i("MyCL", "添加门店数据");
                 for (int i = 0; i < rows.size(); ++i) {
                     StringBuffer stringBuffer = new StringBuffer();
                     StringBuffer append = stringBuffer.append(rows.get(i).getLocation());
-                    Log.i("MyCL", "rows.get(i).getLocation():" + rows.get(i).getLocation());
-                    Log.i("MyCL", "rows.get(i).getLocation():" + rows.get(i).getStoreName());
+//                    Log.i("MyCL", "rows.get(i).getLocation():" + rows.get(i).getLocation());
+//                    Log.i("MyCL", "rows.get(i).getLocation():" + rows.get(i).getStoreName());
                     for (int j = 0; j < append.length(); ++j) {
                         if (append.substring(j, j + 1).equals(",")) {
-                            Log.i("MyCL", "append.substring(0, j):" + append.substring(0, j));
+//                            Log.i("MyCL", "append.substring(0, j):" + append.substring(0, j));
                             double v = Double.parseDouble(append.substring(0, j));
                             double v1 = Double.parseDouble(append.substring(j + 1));
+//                            Log.i("地图maker", "添加门店数据:" + v + "," + v1);
                             strings.add(rows.get(i).getStoreName());
                             items.add(new MyItem(new LatLng(v1, v)));
-
                         }
                     }
                 }
             } else if (ifMG == 1) {
-                Log.i("MyCL", "添加公司数据");
+//                Log.i("MyCL", "添加公司数据");
                 for (int i = 0; i < rows1.size(); ++i) {
                     StringBuffer stringBuffer = new StringBuffer();
                     StringBuffer append = stringBuffer.append(rows1.get(i).getComLocation());
@@ -670,7 +744,8 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         }
-        Log.i("MyCL", "items数据长度：" + items.size());
+//        Log.i("MyCL", "items数据长度：" + items.size());
+//        Log.i("地图maker", "items数据长度:" + items.size());
         mClusterManager.addItems(items);
     }
 
@@ -678,11 +753,12 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
      * 每个Marker点，包含Marker点坐标以及图标
      */
     public class MyItem implements ClusterItem {
+
         private final LatLng mPosition;
 
         private MyItem(LatLng latLng) {
             mPosition = latLng;
-            Log.i("MyCL", "mPosition数据：" + mPosition);
+//            Log.i("MyCL", "mPosition数据：" + mPosition);
         }
 
         @Override
@@ -692,8 +768,8 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
 
         @Override
         public BitmapDescriptor getBitmapDescriptor() {
-
             Bitmap bitmap = BitmapFactory.decodeResource(MapHouseActivity.this.getResources(), R.mipmap.mapb);
+            mPosition1 = this.mPosition;
             if (FinalContents.getIfCity().equals("")) {
                 if (ifMG == 0) {
                     Log.i("MyCL", "rows数据长度：" + rows.size());
@@ -704,7 +780,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                             if (append.substring(j, j + 1).equals(",")) {
                                 double v = Double.parseDouble(append.substring(0, j));
                                 double v1 = Double.parseDouble(append.substring(j + 1));
-                                if (mPosition.longitude == v) {
+                                if (this.mPosition.longitude == v) {
                                     if (rows.get(i).getStatus().equals("0")) {
                                         sb = new StringBuffer(rows.get(i).getStoreName() + "(未合作)");
                                     } else if (rows.get(i).getStatus().equals("1")) {
@@ -730,7 +806,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                         }
                     }
                 } else if (ifMG == 1) {
-                    Log.i("MyCL", "rows1数据长度：" + rows1.size());
+//                    Log.i("MyCL", "rows1数据长度：" + rows1.size());
                     for (int i = 0; i < rows1.size(); ++i) {
                         StringBuffer stringBuffer = new StringBuffer();
                         StringBuffer append = stringBuffer.append(rows1.get(i).getComLocation());
@@ -738,21 +814,21 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                             if (append.substring(j, j + 1).equals(",")) {
                                 double v = Double.parseDouble(append.substring(0, j));
                                 double v1 = Double.parseDouble(append.substring(j + 1));
-                                if (mPosition.longitude == v) {
+                                if (this.mPosition.longitude == v) {
                                     if (rows1.get(i).getStatus().equals("0")) {
                                         sb = new StringBuffer(rows1.get(i).getCompanyName() + "(未合作)");
                                     } else if (rows1.get(i).getStatus().equals("1")) {
-                                        if (rows1.get(i).getState().equals("1")) {
-                                            sb = new StringBuffer(rows1.get(i).getCompanyName() + "(签约)");
-                                        } else if (rows1.get(i).getState().equals("2")) {
-                                            sb = new StringBuffer(rows1.get(i).getCompanyName() + "(装机)");
-                                        } else if (rows1.get(i).getState().equals("3")) {
-                                            sb = new StringBuffer(rows1.get(i).getCompanyName() + "(培训)");
-                                        } else if (rows1.get(i).getState().equals("4")) {
-                                            sb = new StringBuffer(rows1.get(i).getCompanyName() + "(维护)");
-                                        } else {
-                                            sb = new StringBuffer(rows1.get(i).getCompanyName());
-                                        }
+//                                        if (rows1.get(i).getState().equals("1")) {
+//                                            sb = new StringBuffer(rows1.get(i).getCompanyName() + "(签约)");
+//                                        } else if (rows1.get(i).getState().equals("2")) {
+//                                            sb = new StringBuffer(rows1.get(i).getCompanyName() + "(装机)");
+//                                        } else if (rows1.get(i).getState().equals("3")) {
+//                                            sb = new StringBuffer(rows1.get(i).getCompanyName() + "(培训)");
+//                                        } else if (rows1.get(i).getState().equals("4")) {
+//                                            sb = new StringBuffer(rows1.get(i).getCompanyName() + "(维护)");
+//                                        } else {
+                                        sb = new StringBuffer(rows1.get(i).getCompanyName());
+//                                        }
                                     } else if (rows1.get(i).getStatus().equals("2")) {
                                         sb = new StringBuffer(rows1.get(i).getCompanyName() + "(取消合作)");
                                     } else if (rows1.get(i).getStatus().equals("3")) {
@@ -772,13 +848,22 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                         if (append.substring(j, j + 1).equals(",")) {
                             double v = Double.parseDouble(append.substring(0, j));
                             double v1 = Double.parseDouble(append.substring(j + 1));
-                            if (mPosition.longitude == v) {
+                            if (this.mPosition.longitude == v) {
                                 sb = new StringBuffer(rows2.get(i).getProjectName() + rows2.get(i).getProductUnitPrice() + rows2.get(i).getMonetaryUnit());
                             }
                         }
                     }
                 }
             }
+//            Log.i("地图maker", "设置文字:" + sb);
+//            Log.i("地图maker", "isName:" + isName);
+//            if(sb.toString().equals(isName)){
+//                String isColor = "";
+//                Log.i("地图maker","文字颜色：111111");
+//            }else {
+//                String isColor = "";
+//                Log.i("地图maker","文字颜色：FFFFFF");
+//            }
 
             return BitmapDescriptorFactory.fromView(getView(bitmap, sb));
         }
@@ -825,23 +910,36 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
 
     private static class ViewHolder {
         public TextView mTextView;
+        public RelativeLayout mRLView;
         public ImageView mImageView;
     }
 
     private View getView(Bitmap resId, StringBuffer str) {
-        ViewHolder mViewHolder;
         if (view == null) {
             //获取布局
             view = mLayoutIn.inflate(R.layout.marker_item, null);
             mViewHolder = new ViewHolder();
 //            mViewHolder.mImageView = view.findViewById(R.id.iv_marker_icon);//图标
             mViewHolder.mTextView = view.findViewById(R.id.tv_marker_text);//文本
+//            mViewHolder.mRLView = view.findViewById(R.id.rl_marker);//文本
             view.setTag(mViewHolder);
         } else {
             mViewHolder = (ViewHolder) view.getTag();
         }
+
 //        mViewHolder.mImageView.setImageBitmap(resId);//设置图片
         mViewHolder.mTextView.setText(str);//设置文字
+//        Log.i("地图maker", "str:" + str);
+//        Log.i("地图maker", "isName:" + isName);
+        if (str.toString().equals(isName)) {
+//            Log.i("地图maker", "文字颜色：111111");
+            mViewHolder.mTextView.setTextColor(Color.parseColor("#FFFFFF"));
+            mViewHolder.mTextView.setBackground(this.getResources().getDrawable(R.mipmap.mapb));
+        } else {
+//            Log.i("地图maker", "文字颜色：FFFFFF");
+            mViewHolder.mTextView.setTextColor(Color.parseColor("#111111"));
+            mViewHolder.mTextView.setBackground(this.getResources().getDrawable(R.mipmap.mapbs));
+        }
         return view;//返回
 
     }
@@ -888,9 +986,11 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                     if (options1 == 1) {//门店
                         ifMG = 0;
 //                    initMy();
+                        ifStart = 0;
                         mBaiduMap.clear();
                         initView();
                     } else if (options1 == 0) {//公司
+                        ifStart = 0;
                         ifMG = 1;
 //                    initMy();
                         mBaiduMap.clear();
@@ -900,6 +1000,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                     for (int i = 0; i < data.size(); ++i) {
                         if (list.get(options1).equals(data.get(i).getCity())) {
                             FinalContents.setIfCity(data.get(i).getId());
+                            ifStart = 0;
                             mBaiduMap.clear();
                             initView();
                         }

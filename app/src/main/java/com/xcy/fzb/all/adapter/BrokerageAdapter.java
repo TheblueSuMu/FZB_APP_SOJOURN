@@ -252,9 +252,9 @@ public class BrokerageAdapter extends RecyclerView.Adapter<BrokerageAdapter.Brok
             brokerage_item_secondsAmount = itemView.findViewById(R.id.brokerage_item_secondsAmount);
             brokerage_item_alreadyAmount = itemView.findViewById(R.id.brokerage_item_alreadyAmount);
             brokerage_item_notAmount = itemView.findViewById(R.id.brokerage_item_notAmount);
-            the_project_end_tv6 = itemView.findViewById(R.id.the_project_end_tv6);
-            the_project_end_tv7 = itemView.findViewById(R.id.the_project_end_tv7);
-            the_project_end_tv8 = itemView.findViewById(R.id.the_project_end_tv8);
+            the_project_end_tv6 = itemView.findViewById(R.id.the_project_end_tv6_S);
+            the_project_end_tv7 = itemView.findViewById(R.id.the_project_end_tv7_S);
+            the_project_end_tv8 = itemView.findViewById(R.id.the_project_end_tv8_S);
         }
 
 
