@@ -340,16 +340,23 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
+        int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+1, dayOfMonth);
         market_time_time_tv1.setText(string);
         market_time_time_tv2.setText(string);
         market_time_time_tv3.setText(string);
         market_time_time_tv4.setText(string);
         market_time_time_tv5.setText(string);
         market_time_time_tv6.setText(string);
+
+        startDate1 = string;
+        endDate1 = string;
+        startDate2 = string;
+        endDate2 = string;
+        startDate3 = string;
+        endDate3 = string;
 
         dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
         // 注意：月份是从0开始计数的
@@ -419,7 +426,21 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
 
     @Override
     public void onClick(View view) {
+        if (NewlyIncreased.getTag().equals("3")) {
+            NewlyIncreased.setStartDate(startDate1);
+            NewlyIncreased.setEndDate(endDate1);
+        }else {
+            NewlyIncreased.setStartDate("");
+            NewlyIncreased.setEndDate("");
+        }
 
+        if (NewlyIncreased.getYJType().equals("3")) {
+            NewlyIncreased.setYJstartDate(startDate2);
+            NewlyIncreased.setYJendDate(endDate2);
+        }else {
+            NewlyIncreased.setYJstartDate("");
+            NewlyIncreased.setYJendDate("");
+        }
         switch (view.getId()) {
 ////            TODO 团队长（上）
 //            case R.id.team_rl3:
@@ -550,6 +571,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         market_time_time_tv1.setText(dateString);
                         startDate1 = dateString;
                         NewlyIncreased.setStartDate(dateString);
+                        type = "1";
                     }
                 });
 
@@ -585,6 +607,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         market_time_time_tv3.setText(dateString);
                         startDate2 = dateString;
                         NewlyIncreased.setYJstartDate(dateString);
+                        type = "2";
                     }
                 });
                 break;
@@ -617,6 +640,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
                         market_time_time_tv5.setText(dateString);
                         startDate3 = dateString;
+                        type = "3";
                     }
                 });
                 break;

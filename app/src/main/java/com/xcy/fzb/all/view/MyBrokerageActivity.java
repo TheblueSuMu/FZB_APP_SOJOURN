@@ -134,9 +134,9 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
                     if (isnum == 0) {
                         s = my_brokerage_et.getText().toString();
                         if (myBrokerageLj.getVisibility() == View.VISIBLE) {
-                            initDataDown("2", s);
-                        } else if (myBrokerageHw.getVisibility() == View.VISIBLE) {
                             initDataDown("3", s);
+                        } else if (myBrokerageHw.getVisibility() == View.VISIBLE) {
+                            initDataDown("2", s);
                         } else if (myBrokerageCs.getVisibility() == View.VISIBLE) {
                             initDataDown("1", s);
                         }
@@ -306,6 +306,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
                             adapter.notifyDataSetChanged();
                         }
                         isnum = 0;
+                        hideInput();
                     }
 
                     @Override

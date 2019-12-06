@@ -298,17 +298,21 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
     private void initDate() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
+        int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+ 1, dayOfMonth);
         time1_home_the_project_end.setText("<" + string);
         time2_home_the_project_end.setText("-" + string + " >");
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month-1, dayOfMonth-15));
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
 
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month-1, dayOfMonth+15));
+        beforeDate = string;
+        afterDate = string;
+
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
+        // 注意：月份是从0开始计数的
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
 
         home_picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -478,6 +482,21 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
     //TODO 点击事件
     @Override
     public void onClick(View view) {
+        if (NewlyIncreased.getTag().equals("3")) {
+            NewlyIncreased.setStartDate(beforeDate);
+            NewlyIncreased.setEndDate(afterDate);
+        }else {
+            NewlyIncreased.setStartDate("");
+            NewlyIncreased.setEndDate("");
+        }
+
+        if (NewlyIncreased.getYJType().equals("3")) {
+            NewlyIncreased.setYJstartDate(beforeDate);
+            NewlyIncreased.setYJendDate(afterDate);
+        }else {
+            NewlyIncreased.setYJstartDate("");
+            NewlyIncreased.setYJendDate("");
+        }
         switch (view.getId()) {
 //                TODO 我的项目
             case R.id.myproject:

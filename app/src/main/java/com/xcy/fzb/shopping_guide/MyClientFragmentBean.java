@@ -7,7 +7,7 @@ public class MyClientFragmentBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"menuData":[{"menuname":"申请成交","meunkey":"60"}],"listData":[{"id":"02b0177ac12f4f5380d39d6923ce3b13","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"createDate":"2019-09-10 15:16:45","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"9fbc438e1b234e33b18deff1c307e5ea","recordType":"50","recordType2":"0","recordName":"认筹信息","jsonData":"","businessId":"64af2b50a46c4b20bf55fb4dcd391907","businessTable":"ff_server_earnest_money","auditId":"","jsonDatas":[{"value":"妲己","key":"客户姓名"},{"value":"女","key":"客户性别"},{"value":"15834325426","key":"客户电话"},{"value":"140525198812125425","key":"身份证号"},{"value":"1212","key":"意向楼栋"},{"value":"一室","key":"意向户型"},{"value":"123㎡","key":"意向面积"},{"value":"2019年10月1日","key":"认筹时间"},{"value":"2019-09-10 15:16:44","key":"操作时间"},{"value":"导购（导购）","key":"操作人员"}],"icon":"/fangfang/static/common/images/earnestMoney2x.png","tradeStatus":"","identity":""},{"id":"861949af5b7f4723b75aa2e8924d1af6","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"createDate":"2019-09-10 15:12:01","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"9fbc438e1b234e33b18deff1c307e5ea","recordType":"40","recordType2":"","recordName":"登岛","jsonData":"","businessId":"9fbc438e1b234e33b18deff1c307e5ea","businessTable":"ff_server_newspaper_preparation","auditId":"","jsonDatas":[{"value":"2019-09-10 15:12:00","key":"到达机场"},{"value":"2019-09-10 15:12:01","key":"登机"},{"value":"2019-09-10 15:12:02","key":"落地"},{"value":"2019-09-10 15:12:02\n西港云上","key":"前往项目地"},{"value":"2019-09-10 15:12:03\n西港云上","key":"到达项目地"},{"value":"2019-09-11 15:54:01","key":"返程"},{"value":"2019-09-11 16:12:19","key":"到达机场"},{"value":"2019-09-11 16:19:16","key":"登机"}],"icon":"/fangfang/static/common/images/island2x.png","tradeStatus":"","identity":""},{"id":"a1c97684a4de4b8b9e89351769cfe395","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"createDate":"2019-08-10 16:03:55","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"9fbc438e1b234e33b18deff1c307e5ea","recordType":"40","recordType2":"0","recordName":"申请登岛","jsonData":"","businessId":"4ceed6b693014aab929a70ff467982d8","businessTable":"ff_server_landing","auditId":"","jsonDatas":[{"value":"123456789123456789","key":"身份证号"},{"value":"70","key":"客户年龄"},{"valueType":"img","value":"/fangfang/userfiles/3a0ee28065a84d548c96ee51849b5222/attachment//ff/server/land/2019/8/1565424199500.jpeg","key":"身份证"},{"value":"长春","key":"所在城市"},{"value":"地产","key":"所在行业"},{"value":"10000000000","key":"家庭收入"},{"value":"1000000","key":"意向价格"},{"value":"10","key":"意向户型"},{"value":"长春-丽江","key":"登岛路线"},{"value":"2019-08-13 - 2019-08-15","key":"登岛时间"},{"value":"10000元","key":"团费金额"},{"value":"无","key":"有无同行人"},{"value":"10000元","key":"合计总费用"},{"valueType":"img","value":"/fangfang/userfiles/3a0ee28065a84d548c96ee51849b5222/attachment//ff/server/land/2019/8/1565424232905.jpeg","key":"团费凭证"},{"value":"已交","key":"是否交纳团费"},{"value":"2019-08-10 16:03:55","key":"操作时间"},{"value":"王珊珊","key":"操作专案"}],"icon":"/fangfang/static/common/images/applyIsland2x.png","tradeStatus":"","identity":""}],"infoData":{"customerPhone":"15647893625","customerImg":"/fangfang/static/common/images/flat-avatar.png","customerId":"84f2d339d8584be4a8f989cb4cfe3cca","preparationId":"9fbc438e1b234e33b18deff1c307e5ea","landingId":"4ceed6b693014aab929a70ff467982d8","projectName":"西港云上","projectId":"603e127528f747b68bee14d37b3f6239","customerName":"妲己"}}
+     * data : {"menuData":[{"menuname":"申请成交","meunkey":"60"}],"listData":[{"id":"f55135d068eb460fb37ac3e32800b38c","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2019-12-04 16:32:56","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"b16377be00cd415597fd95477b395de4","recordType":"50","recordType2":"0","recordName":"认筹信息","jsonData":"","businessId":"303be207f84d47d0875b868124168540","businessTable":"ff_server_earnest_money","auditId":"","jsonDatas":[{"valueType":"","value":"fggg","key":"客户姓名"},{"valueType":"","value":"男","key":"客户性别"},{"valueType":"","value":"18351768756","key":"客户电话"},{"valueType":"","value":"556841589651258878","key":"身份证号"},{"valueType":"","value":"12","key":"意向楼栋"},{"valueType":"","value":"三室","key":"意向户型"},{"valueType":"","value":"123㎡","key":"意向面积"},{"valueType":"","value":"2019-12-04 16:32:56","key":"操作时间"},{"valueType":"","value":"王珊珊（专案人员）","key":"操作人员"}],"icon":"/fangfang/static/common/images/earnestMoney2x.png","tradeStatus":"","identity":""},{"id":"8a3e380eca084ff683613647366b2e50","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2019-12-04 16:31:40","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"b16377be00cd415597fd95477b395de4","recordType":"40","recordType2":"","recordName":"登岛","jsonData":"","businessId":"b16377be00cd415597fd95477b395de4","businessTable":"ff_server_newspaper_preparation","auditId":"","jsonDatas":[{"valueType":"","value":"2019-12-04 16:31:38","key":"到达机场"}],"icon":"/fangfang/static/common/images/island2x.png","tradeStatus":"","identity":""},{"id":"eef09c95dc9f4de0898256d6d70021da","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2019-12-03 14:44:18","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"b16377be00cd415597fd95477b395de4","recordType":"40","recordType2":"3","recordName":"登岛审核成功","jsonData":"","businessId":"b41e9d9d0de049928c488220a4fba940","businessTable":"ff_server_landing","auditId":"","jsonDatas":[{"valueType":"","value":"jhjh","key":"审核说明"},{"valueType":"","value":"导购","key":"操作人员"},{"valueType":"","value":"2019-12-03 14:44:18","key":"操作时间"}],"icon":"/fangfang/staticnull","tradeStatus":"","identity":""},{"id":"c2c061ac53634c71918f346398bbefa2","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2019-12-03 14:43:49","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"b16377be00cd415597fd95477b395de4","recordType":"40","recordType2":"0","recordName":"申请登岛(待审核)","jsonData":"","businessId":"b41e9d9d0de049928c488220a4fba940","businessTable":"ff_server_landing","auditId":"","jsonDatas":[{"valueType":"","value":"123","key":"用户姓名"},{"valueType":"","value":"男","key":"性别"},{"valueType":"","value":"-4561","key":"客户年龄"},{"valueType":"","value":"657657657657657657","key":"身份证号"},{"valueType":"img","value":"/fangfang/userfiles/3a0ee28065a84d548c96ee51849b5222/attachment/myClient/2019/12/1575355420705.jpg","key":"身份证"},{"valueType":"","value":"xxx\u2014\u2014yyy","key":"登岛路线"},{"valueType":"","value":"2019-12-06 - 2019-12-21","key":"登岛时间"},{"valueType":"","value":"31元","key":"团费金额"},{"valueType":"","value":"无","key":"有无同行人"},{"valueType":"","value":"31.00元","key":"合计总费用"},{"valueType":"","value":"2019-12-03 14:43:49","key":"操作时间"},{"valueType":"","value":"王珊珊","key":"操作专案"}],"icon":"/fangfang/staticnull","tradeStatus":"","identity":""}],"infoData":{"customerPhone":"18235164879","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","customerId":"82460ad1d1374ba0a7b3d0edde384654","preparationId":"b16377be00cd415597fd95477b395de4","landingId":"b41e9d9d0de049928c488220a4fba940","projectName":"广州融创","projectId":"f0ba02e953b7423e882ef0ca1fa7ec2c","customerName":"123"}}
      */
 
     private String code;
@@ -41,8 +41,8 @@ public class MyClientFragmentBean {
     public static class DataBean {
         /**
          * menuData : [{"menuname":"申请成交","meunkey":"60"}]
-         * listData : [{"id":"02b0177ac12f4f5380d39d6923ce3b13","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"createDate":"2019-09-10 15:16:45","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"9fbc438e1b234e33b18deff1c307e5ea","recordType":"50","recordType2":"0","recordName":"认筹信息","jsonData":"","businessId":"64af2b50a46c4b20bf55fb4dcd391907","businessTable":"ff_server_earnest_money","auditId":"","jsonDatas":[{"value":"妲己","key":"客户姓名"},{"value":"女","key":"客户性别"},{"value":"15834325426","key":"客户电话"},{"value":"140525198812125425","key":"身份证号"},{"value":"1212","key":"意向楼栋"},{"value":"一室","key":"意向户型"},{"value":"123㎡","key":"意向面积"},{"value":"2019年10月1日","key":"认筹时间"},{"value":"2019-09-10 15:16:44","key":"操作时间"},{"value":"导购（导购）","key":"操作人员"}],"icon":"/fangfang/static/common/images/earnestMoney2x.png","tradeStatus":"","identity":""},{"id":"861949af5b7f4723b75aa2e8924d1af6","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"createDate":"2019-09-10 15:12:01","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"9fbc438e1b234e33b18deff1c307e5ea","recordType":"40","recordType2":"","recordName":"登岛","jsonData":"","businessId":"9fbc438e1b234e33b18deff1c307e5ea","businessTable":"ff_server_newspaper_preparation","auditId":"","jsonDatas":[{"value":"2019-09-10 15:12:00","key":"到达机场"},{"value":"2019-09-10 15:12:01","key":"登机"},{"value":"2019-09-10 15:12:02","key":"落地"},{"value":"2019-09-10 15:12:02\n西港云上","key":"前往项目地"},{"value":"2019-09-10 15:12:03\n西港云上","key":"到达项目地"},{"value":"2019-09-11 15:54:01","key":"返程"},{"value":"2019-09-11 16:12:19","key":"到达机场"},{"value":"2019-09-11 16:19:16","key":"登机"}],"icon":"/fangfang/static/common/images/island2x.png","tradeStatus":"","identity":""},{"id":"a1c97684a4de4b8b9e89351769cfe395","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"createDate":"2019-08-10 16:03:55","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"9fbc438e1b234e33b18deff1c307e5ea","recordType":"40","recordType2":"0","recordName":"申请登岛","jsonData":"","businessId":"4ceed6b693014aab929a70ff467982d8","businessTable":"ff_server_landing","auditId":"","jsonDatas":[{"value":"123456789123456789","key":"身份证号"},{"value":"70","key":"客户年龄"},{"valueType":"img","value":"/fangfang/userfiles/3a0ee28065a84d548c96ee51849b5222/attachment//ff/server/land/2019/8/1565424199500.jpeg","key":"身份证"},{"value":"长春","key":"所在城市"},{"value":"地产","key":"所在行业"},{"value":"10000000000","key":"家庭收入"},{"value":"1000000","key":"意向价格"},{"value":"10","key":"意向户型"},{"value":"长春-丽江","key":"登岛路线"},{"value":"2019-08-13 - 2019-08-15","key":"登岛时间"},{"value":"10000元","key":"团费金额"},{"value":"无","key":"有无同行人"},{"value":"10000元","key":"合计总费用"},{"valueType":"img","value":"/fangfang/userfiles/3a0ee28065a84d548c96ee51849b5222/attachment//ff/server/land/2019/8/1565424232905.jpeg","key":"团费凭证"},{"value":"已交","key":"是否交纳团费"},{"value":"2019-08-10 16:03:55","key":"操作时间"},{"value":"王珊珊","key":"操作专案"}],"icon":"/fangfang/static/common/images/applyIsland2x.png","tradeStatus":"","identity":""}]
-         * infoData : {"customerPhone":"15647893625","customerImg":"/fangfang/static/common/images/flat-avatar.png","customerId":"84f2d339d8584be4a8f989cb4cfe3cca","preparationId":"9fbc438e1b234e33b18deff1c307e5ea","landingId":"4ceed6b693014aab929a70ff467982d8","projectName":"西港云上","projectId":"603e127528f747b68bee14d37b3f6239","customerName":"妲己"}
+         * listData : [{"id":"f55135d068eb460fb37ac3e32800b38c","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2019-12-04 16:32:56","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"b16377be00cd415597fd95477b395de4","recordType":"50","recordType2":"0","recordName":"认筹信息","jsonData":"","businessId":"303be207f84d47d0875b868124168540","businessTable":"ff_server_earnest_money","auditId":"","jsonDatas":[{"valueType":"","value":"fggg","key":"客户姓名"},{"valueType":"","value":"男","key":"客户性别"},{"valueType":"","value":"18351768756","key":"客户电话"},{"valueType":"","value":"556841589651258878","key":"身份证号"},{"valueType":"","value":"12","key":"意向楼栋"},{"valueType":"","value":"三室","key":"意向户型"},{"valueType":"","value":"123㎡","key":"意向面积"},{"valueType":"","value":"2019-12-04 16:32:56","key":"操作时间"},{"valueType":"","value":"王珊珊（专案人员）","key":"操作人员"}],"icon":"/fangfang/static/common/images/earnestMoney2x.png","tradeStatus":"","identity":""},{"id":"8a3e380eca084ff683613647366b2e50","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2019-12-04 16:31:40","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"b16377be00cd415597fd95477b395de4","recordType":"40","recordType2":"","recordName":"登岛","jsonData":"","businessId":"b16377be00cd415597fd95477b395de4","businessTable":"ff_server_newspaper_preparation","auditId":"","jsonDatas":[{"valueType":"","value":"2019-12-04 16:31:38","key":"到达机场"}],"icon":"/fangfang/static/common/images/island2x.png","tradeStatus":"","identity":""},{"id":"eef09c95dc9f4de0898256d6d70021da","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2019-12-03 14:44:18","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"b16377be00cd415597fd95477b395de4","recordType":"40","recordType2":"3","recordName":"登岛审核成功","jsonData":"","businessId":"b41e9d9d0de049928c488220a4fba940","businessTable":"ff_server_landing","auditId":"","jsonDatas":[{"valueType":"","value":"jhjh","key":"审核说明"},{"valueType":"","value":"导购","key":"操作人员"},{"valueType":"","value":"2019-12-03 14:44:18","key":"操作时间"}],"icon":"/fangfang/staticnull","tradeStatus":"","identity":""},{"id":"c2c061ac53634c71918f346398bbefa2","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2019-12-03 14:43:49","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"","preparationId":"b16377be00cd415597fd95477b395de4","recordType":"40","recordType2":"0","recordName":"申请登岛(待审核)","jsonData":"","businessId":"b41e9d9d0de049928c488220a4fba940","businessTable":"ff_server_landing","auditId":"","jsonDatas":[{"valueType":"","value":"123","key":"用户姓名"},{"valueType":"","value":"男","key":"性别"},{"valueType":"","value":"-4561","key":"客户年龄"},{"valueType":"","value":"657657657657657657","key":"身份证号"},{"valueType":"img","value":"/fangfang/userfiles/3a0ee28065a84d548c96ee51849b5222/attachment/myClient/2019/12/1575355420705.jpg","key":"身份证"},{"valueType":"","value":"xxx\u2014\u2014yyy","key":"登岛路线"},{"valueType":"","value":"2019-12-06 - 2019-12-21","key":"登岛时间"},{"valueType":"","value":"31元","key":"团费金额"},{"valueType":"","value":"无","key":"有无同行人"},{"valueType":"","value":"31.00元","key":"合计总费用"},{"valueType":"","value":"2019-12-03 14:43:49","key":"操作时间"},{"valueType":"","value":"王珊珊","key":"操作专案"}],"icon":"/fangfang/staticnull","tradeStatus":"","identity":""}]
+         * infoData : {"customerPhone":"18235164879","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","customerId":"82460ad1d1374ba0a7b3d0edde384654","preparationId":"b16377be00cd415597fd95477b395de4","landingId":"b41e9d9d0de049928c488220a4fba940","projectName":"广州融创","projectId":"f0ba02e953b7423e882ef0ca1fa7ec2c","customerName":"123"}
          */
 
         private InfoDataBean infoData;
@@ -75,18 +75,20 @@ public class MyClientFragmentBean {
 
         public static class InfoDataBean {
             /**
-             * customerPhone : 15647893625
+             * customerPhone : 18235164879
              * customerImg : /fangfang/static/common/images/flat-avatar.png
-             * customerId : 84f2d339d8584be4a8f989cb4cfe3cca
-             * preparationId : 9fbc438e1b234e33b18deff1c307e5ea
-             * landingId : 4ceed6b693014aab929a70ff467982d8
-             * projectName : 西港云上
-             * projectId : 603e127528f747b68bee14d37b3f6239
-             * customerName : 妲己
+             * projectType : 3
+             * customerId : 82460ad1d1374ba0a7b3d0edde384654
+             * preparationId : b16377be00cd415597fd95477b395de4
+             * landingId : b41e9d9d0de049928c488220a4fba940
+             * projectName : 广州融创
+             * projectId : f0ba02e953b7423e882ef0ca1fa7ec2c
+             * customerName : 123
              */
 
             private String customerPhone;
             private String customerImg;
+            private String projectType;
             private String customerId;
             private String preparationId;
             private String landingId;
@@ -108,6 +110,14 @@ public class MyClientFragmentBean {
 
             public void setCustomerImg(String customerImg) {
                 this.customerImg = customerImg;
+            }
+
+            public String getProjectType() {
+                return projectType;
+            }
+
+            public void setProjectType(String projectType) {
+                this.projectType = projectType;
             }
 
             public String getCustomerId() {
@@ -187,21 +197,21 @@ public class MyClientFragmentBean {
 
         public static class ListDataBean {
             /**
-             * id : 02b0177ac12f4f5380d39d6923ce3b13
+             * id : f55135d068eb460fb37ac3e32800b38c
              * remarks :
-             * createBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""}
-             * createDate : 2019-09-10 15:16:45
-             * updateBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""}
+             * createBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""}
+             * createDate : 2019-12-04 16:32:56
+             * updateBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""}
              * updateDate :
-             * preparationId : 9fbc438e1b234e33b18deff1c307e5ea
+             * preparationId : b16377be00cd415597fd95477b395de4
              * recordType : 50
              * recordType2 : 0
              * recordName : 认筹信息
              * jsonData :
-             * businessId : 64af2b50a46c4b20bf55fb4dcd391907
+             * businessId : 303be207f84d47d0875b868124168540
              * businessTable : ff_server_earnest_money
              * auditId :
-             * jsonDatas : [{"value":"妲己","key":"客户姓名"},{"value":"女","key":"客户性别"},{"value":"15834325426","key":"客户电话"},{"value":"140525198812125425","key":"身份证号"},{"value":"1212","key":"意向楼栋"},{"value":"一室","key":"意向户型"},{"value":"123㎡","key":"意向面积"},{"value":"2019年10月1日","key":"认筹时间"},{"value":"2019-09-10 15:16:44","key":"操作时间"},{"value":"导购（导购）","key":"操作人员"}]
+             * jsonDatas : [{"valueType":"","value":"fggg","key":"客户姓名"},{"valueType":"","value":"男","key":"客户性别"},{"valueType":"","value":"18351768756","key":"客户电话"},{"valueType":"","value":"556841589651258878","key":"身份证号"},{"valueType":"","value":"12","key":"意向楼栋"},{"valueType":"","value":"三室","key":"意向户型"},{"valueType":"","value":"123㎡","key":"意向面积"},{"valueType":"","value":"2019-12-04 16:32:56","key":"操作时间"},{"valueType":"","value":"王珊珊（专案人员）","key":"操作人员"}]
              * icon : /fangfang/static/common/images/earnestMoney2x.png
              * tradeStatus :
              * identity :
@@ -400,6 +410,8 @@ public class MyClientFragmentBean {
                  * oldLoginDate :
                  * wechatOpenid :
                  * wechatData :
+                 * industry :
+                 * manageFlag :
                  * role :
                  * sex :
                  * province :
@@ -413,6 +425,9 @@ public class MyClientFragmentBean {
                  * classics : 0
                  * team :
                  * layerTeamVo :
+                 * teamParentId :
+                 * commissionLevelId :
+                 * identityStr :
                  * admin : false
                  * roleNames :
                  */
@@ -445,6 +460,8 @@ public class MyClientFragmentBean {
                 private String oldLoginDate;
                 private String wechatOpenid;
                 private String wechatData;
+                private String industry;
+                private String manageFlag;
                 private String role;
                 private String sex;
                 private String province;
@@ -458,6 +475,9 @@ public class MyClientFragmentBean {
                 private int classics;
                 private String team;
                 private String layerTeamVo;
+                private String teamParentId;
+                private String commissionLevelId;
+                private String identityStr;
                 private boolean admin;
                 private String roleNames;
 
@@ -685,6 +705,22 @@ public class MyClientFragmentBean {
                     this.wechatData = wechatData;
                 }
 
+                public String getIndustry() {
+                    return industry;
+                }
+
+                public void setIndustry(String industry) {
+                    this.industry = industry;
+                }
+
+                public String getManageFlag() {
+                    return manageFlag;
+                }
+
+                public void setManageFlag(String manageFlag) {
+                    this.manageFlag = manageFlag;
+                }
+
                 public String getRole() {
                     return role;
                 }
@@ -787,6 +823,30 @@ public class MyClientFragmentBean {
 
                 public void setLayerTeamVo(String layerTeamVo) {
                     this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getTeamParentId() {
+                    return teamParentId;
+                }
+
+                public void setTeamParentId(String teamParentId) {
+                    this.teamParentId = teamParentId;
+                }
+
+                public String getCommissionLevelId() {
+                    return commissionLevelId;
+                }
+
+                public void setCommissionLevelId(String commissionLevelId) {
+                    this.commissionLevelId = commissionLevelId;
+                }
+
+                public String getIdentityStr() {
+                    return identityStr;
+                }
+
+                public void setIdentityStr(String identityStr) {
+                    this.identityStr = identityStr;
                 }
 
                 public boolean isAdmin() {
@@ -836,6 +896,8 @@ public class MyClientFragmentBean {
                  * oldLoginDate :
                  * wechatOpenid :
                  * wechatData :
+                 * industry :
+                 * manageFlag :
                  * role :
                  * sex :
                  * province :
@@ -849,6 +911,9 @@ public class MyClientFragmentBean {
                  * classics : 0
                  * team :
                  * layerTeamVo :
+                 * teamParentId :
+                 * commissionLevelId :
+                 * identityStr :
                  * admin : false
                  * roleNames :
                  */
@@ -881,6 +946,8 @@ public class MyClientFragmentBean {
                 private String oldLoginDate;
                 private String wechatOpenid;
                 private String wechatData;
+                private String industry;
+                private String manageFlag;
                 private String role;
                 private String sex;
                 private String province;
@@ -894,6 +961,9 @@ public class MyClientFragmentBean {
                 private int classics;
                 private String team;
                 private String layerTeamVo;
+                private String teamParentId;
+                private String commissionLevelId;
+                private String identityStr;
                 private boolean admin;
                 private String roleNames;
 
@@ -1121,6 +1191,22 @@ public class MyClientFragmentBean {
                     this.wechatData = wechatData;
                 }
 
+                public String getIndustry() {
+                    return industry;
+                }
+
+                public void setIndustry(String industry) {
+                    this.industry = industry;
+                }
+
+                public String getManageFlag() {
+                    return manageFlag;
+                }
+
+                public void setManageFlag(String manageFlag) {
+                    this.manageFlag = manageFlag;
+                }
+
                 public String getRole() {
                     return role;
                 }
@@ -1225,6 +1311,30 @@ public class MyClientFragmentBean {
                     this.layerTeamVo = layerTeamVo;
                 }
 
+                public String getTeamParentId() {
+                    return teamParentId;
+                }
+
+                public void setTeamParentId(String teamParentId) {
+                    this.teamParentId = teamParentId;
+                }
+
+                public String getCommissionLevelId() {
+                    return commissionLevelId;
+                }
+
+                public void setCommissionLevelId(String commissionLevelId) {
+                    this.commissionLevelId = commissionLevelId;
+                }
+
+                public String getIdentityStr() {
+                    return identityStr;
+                }
+
+                public void setIdentityStr(String identityStr) {
+                    this.identityStr = identityStr;
+                }
+
                 public boolean isAdmin() {
                     return admin;
                 }
@@ -1244,12 +1354,22 @@ public class MyClientFragmentBean {
 
             public static class JsonDatasBean {
                 /**
-                 * value : 妲己
+                 * valueType :
+                 * value : fggg
                  * key : 客户姓名
                  */
 
+                private String valueType;
                 private String value;
                 private String key;
+
+                public String getValueType() {
+                    return valueType;
+                }
+
+                public void setValueType(String valueType) {
+                    this.valueType = valueType;
+                }
 
                 public String getValue() {
                     return value;

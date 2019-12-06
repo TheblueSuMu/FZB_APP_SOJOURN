@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
     <ImageView
@@ -9,10 +10,12 @@
         android:layout_width="36dp"
         android:layout_height="50dp"/>
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/item_market_img2"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        app:riv_oval="true"
+        android:scaleType="fitXY"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="28dp"/>
 

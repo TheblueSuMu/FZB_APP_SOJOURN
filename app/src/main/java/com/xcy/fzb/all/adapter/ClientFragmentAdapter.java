@@ -73,7 +73,7 @@ public class ClientFragmentAdapter extends RecyclerView.Adapter<ClientFragmentAd
         if (!rows.get(position).getRelatedData().equals("")) {
             if (rows.get(position).getRelatedData().contains("保")) {
                 String[] split = rows.get(position).getRelatedData().split("保");
-                holder.client_item_cg.setText("保"+split[1]);
+                holder.client_item_cg.setText("保"+split[1]+" ");
                 if (split[0].equals("报备成功\n") || split[0].equals("到访成功\n") || split[0].equals("登岛(审核成功)\n")) {
                     holder.client_item_title.setText(Html.fromHtml("<font color='#43987C'>" + split[0] + "</font>"));
 //                holder.client_item_title.setTextColor(R.color.colornn2);

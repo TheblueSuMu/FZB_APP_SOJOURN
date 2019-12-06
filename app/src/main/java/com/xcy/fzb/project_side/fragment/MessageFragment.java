@@ -204,16 +204,36 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
         if (FinalContents.isHidden()) {             //TODO 非消息内部
             if(hidden){
                 type = "1";
+                if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                    message_fb.setVisibility(View.VISIBLE);
+                }else {
+                    message_fb.setVisibility(View.GONE);
+                }
                 //TODO now visible to user 不显示fragment
             } else {
                 onResume();
+                if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                    message_fb.setVisibility(View.VISIBLE);
+                }else {
+                    message_fb.setVisibility(View.GONE);
+                }
                 //TODO now invisible to user 显示fragment
             }
         }else {                                     //TODO  消息内部
             if(hidden){
                 //TODO now visible to user 不显示fragment
+                if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                    message_fb.setVisibility(View.VISIBLE);
+                }else {
+                    message_fb.setVisibility(View.GONE);
+                }
             } else {
                 onResume();
+                if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                    message_fb.setVisibility(View.VISIBLE);
+                }else {
+                    message_fb.setVisibility(View.GONE);
+                }
                 //TODO now invisible to user 显示fragment
             }
         }

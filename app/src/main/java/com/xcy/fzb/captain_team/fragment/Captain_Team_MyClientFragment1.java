@@ -60,7 +60,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     private Context context;
     private ImageView all_no_information;
     private int size = 0;
-
+    int i = 0;
 
     public Captain_Team_MyClientFragment1() {
         // Required empty public constructor
@@ -81,7 +81,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
+        i = 0;
         mWaveSideBarView = getActivity().findViewById(R.id.main_side_bar);
         mRecyclerView = getActivity().findViewById(R.id.main_recycler);
         all_no_information = getActivity().findViewById(R.id.all_no_information);
@@ -139,9 +139,9 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
         String name = myClientName.getName();
         Log.i("MyCL", "廣播:" + name);
 //        if (NewlyIncreased.isTest()) {
-            size++;
-            inithot(name);
-            NewlyIncreased.setTest(false);
+        size++;
+        inithot(name);
+        NewlyIncreased.setTest(false);
 //        }
     }
 
@@ -235,6 +235,15 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (i == 0) {
+            i = 1;
+        } else {
+            inithot("");
+        }
+    }
 
     @Override
     public void onDestroy() {

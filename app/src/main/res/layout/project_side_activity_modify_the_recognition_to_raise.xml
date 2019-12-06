@@ -115,6 +115,7 @@
                         android:id="@+id/modify_the_recognition_to_raise_rb1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="50dp"
                         android:checked="true"
                         android:button="@null"
                         android:drawableLeft="@drawable/checkbox_check_s"

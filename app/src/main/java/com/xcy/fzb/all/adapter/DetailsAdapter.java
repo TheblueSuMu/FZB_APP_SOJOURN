@@ -1,6 +1,5 @@
 package com.xcy.fzb.all.adapter;
 
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,20 +7,18 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.xcy.fzb.R;
-import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.all.utils.DetailsData;
-import com.xcy.fzb.all.view.BuildingInformationActivity;
-import com.xcy.fzb.all.view.ProjectDetails;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.xcy.fzb.R;
+import com.xcy.fzb.all.utils.DetailsData;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder> {
 
-    List<DetailsData> list;
+    List<DetailsData> list = new ArrayList<>();
 
     private DetailsItem detailsItem;
 

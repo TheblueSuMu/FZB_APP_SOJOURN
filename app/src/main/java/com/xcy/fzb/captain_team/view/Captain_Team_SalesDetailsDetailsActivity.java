@@ -4,14 +4,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +22,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -50,7 +50,6 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_assistant.view.Assistant_Addteam_Activity;
-import com.xcy.fzb.captain_team.adapter.Captain_Team_PopAdapter;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_YongAdapter;
 
 import java.util.ArrayList;
@@ -495,6 +494,17 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                             }
                             sales_details_details_tv10.setText("他的销售");
                         }
+
+                        if (FinalContents.getIdentity().equals("60")) {
+                            if (agentDetails.getData().getAgentInfo().getIdentity().equals("61")) {
+                                sales_details_details_xiugai.setVisibility(View.VISIBLE);
+                                sales_details_details_amend.setVisibility(View.VISIBLE);
+                            }else {
+                                sales_details_details_xiugai.setVisibility(View.GONE);
+                                sales_details_details_amend.setVisibility(View.GONE);
+                            }
+                        }
+
                         List<Integer> integers = agentDetailsBean.getData().getGsonOption().getSeries().get(0).getData();
                         indexList = agentDetailsBean.getData().getGsonOption().getXAxis().getData();
                         init(integers);
@@ -1064,47 +1074,17 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
      */
     //TODO 弹窗
     private void PopWindow1() {
-        View contentView = LayoutInflater.from(this).inflate(R.layout.captain_team_item_popup, null);
-        //处理popWindow 显示内容
-        handleListView1(contentView);
-        //创建并显示popWindow
-        p = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        p.setTouchable(true);
-        p.setFocusable(true);
-        p.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color)));
-        p.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        int xOff;
-        int buttonWidth = sales_details_details_xiugai.getWidth();
-        int popupwindowWidth = p.getContentView().getMeasuredWidth();
-        xOff = buttonWidth - popupwindowWidth;
-        p.showAsDropDown(sales_details_details_xiugai, xOff, 0);
-
-        p.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-
-            }
-        });
-    }
-
-    // TODO 填写数据
-    private void handleListView1(View contentView) {
-
-        RecyclerView recyclerView = contentView.findViewById(R.id.rv_user);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
         final List<String> list = new ArrayList<>();
         list.add("修改信息");
         list.add("修改佣金");
 
-        Captain_Team_PopAdapter popAdapter = new Captain_Team_PopAdapter(list);
-        recyclerView.setAdapter(popAdapter);
-
-        popAdapter.setOnItemClickListener(new Captain_Team_PopAdapter.OnItemClickLisenter() {
+        //      监听选中
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_SalesDetailsDetailsActivity.this, new OnOptionsSelectListener() {
             @Override
-            public void onItemClick(int postion) {
-                if (postion == 0) {
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //               返回的分别是三个级别的选中位置
+                //              展示选中数据
+                if (options1 == 0) {
                     if (agentDetails.getData().getAgentInfo().getType().equals("1")) {
                         FinalContents.setOwnerId("");
                         intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Assistant_Addteam_Activity.class);
@@ -1118,7 +1098,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         startActivity(intent);
                         finish();
                     }
-                } else if (postion == 1) {
+                } else if (options1 == 1) {
                     if (agentDetails.getData().getAgentInfo().getType().equals("1")) {
                         FinalContents.setOwnerId("");
                         intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_CommissionLevelActivity.class);
@@ -1135,10 +1115,15 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         finish();
                     }
                 }
-                p.dismiss();
             }
-        });
-
+        })
+                .setSelectOptions(2)//设置选择第一个
+                .setOutSideCancelable(false)//点击背的地方不消失
+                .build();//创建
+        //      把数据绑定到控件上面
+        pvOptions.setPicker(list);
+        //      展示
+        pvOptions.show();
     }
 
     @Override

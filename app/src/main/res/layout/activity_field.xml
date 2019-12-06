@@ -64,13 +64,26 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="15dp">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="姓名："
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="姓名"
+                                android:textColor="#ff111111"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textColor="#AC1E26"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
 
                         <EditText
                             android:id="@+id/field_et1"
@@ -100,13 +113,26 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="15dp">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="性别："
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="性别"
+                                android:textColor="#ff111111"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textColor="#AC1E26"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
 
                         <TextView
                             android:id="@+id/field_tv1"
@@ -134,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="15dp"
-                        android:background="#EEEEEE"></LinearLayout>
+                        android:background="#EEEEEE"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -143,13 +169,26 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="15dp">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="与原客户关系："
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="与原客户关系"
+                                android:textColor="#ff111111"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textColor="#AC1E26"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
 
                         <EditText
                             android:id="@+id/field_et2"
@@ -179,13 +218,26 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="15dp">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="手机号："
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="手机号"
+                                android:textColor="#ff111111"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textColor="#AC1E26"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
 
                         <EditText
                             android:id="@+id/field_et3"
@@ -219,13 +271,27 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="15dp">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="身份证号："
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="身份证号"
+                                android:textColor="#ff111111"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textColor="#AC1E26"
+                                android:textSize="15sp"/>
+
+                        </LinearLayout>
+
 
                         <EditText
                             android:id="@+id/field_et4"
@@ -265,13 +331,26 @@
                             android:layout_marginTop="15dp"
                             android:layout_marginRight="15dp">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:text="护照编号："
-                                android:textColor="#ff111111"
-                                android:textSize="15sp" />
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="护照编号"
+                                    android:textColor="#ff111111"
+                                    android:textSize="15sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="*"
+                                    android:textColor="#AC1E26"
+                                    android:textSize="15sp"/>
+
+                            </LinearLayout>
 
                             <EditText
                                 android:id="@+id/field_et5"
@@ -338,7 +417,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="客户基本信息描摹："
+                            android:text="客户基本信息描摹"
                             android:textColor="#ff111111"
                             android:textSize="15sp" />
 

@@ -54,10 +54,10 @@ public class Captain_Team_SalesDetailsAdapter extends RecyclerView.Adapter<Capta
 
         Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + list.get(position).getPhoto()).into(holder.item_sales_details_img);
         if (identy.equals("顾问")) {
-            holder.item_sales_details_tv1.setText(list.get(position).getName()+"(顾问)");
-            holder.item_sales_details_tv3.setText("销售："+list.get(position).getSaleName());
+            holder.item_sales_details_tv1.setText(list.get(position).getName()+"("+list.get(position).getRatioName()+")");
+            holder.item_sales_details_tv3.setText("团队长："+list.get(position).getLeaderName() +"   销售："+list.get(position).getSaleName());
         } else if (identy.equals("销售")) {
-            holder.item_sales_details_tv1.setText(list.get(position).getName()+"(销售)");
+            holder.item_sales_details_tv1.setText(list.get(position).getName()+"("+list.get(position).getRatioName()+")");
             holder.item_sales_details_tv3.setText("团队长："+list.get(position).getLeaderName());
         }
         holder.item_sales_details_tv2.setText(list.get(position).getPhone());

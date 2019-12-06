@@ -190,9 +190,6 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
                 return false;
             }
         });
-
-
-
     }
 
     @Override
@@ -467,6 +464,7 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
                                 all_no_information.setVisibility(View.VISIBLE);
                                 commission_the_project_end_rv.setVisibility(View.GONE);
                             }
+                            hideInput();
                         } else {
                             all_no_information.setVisibility(View.VISIBLE);
                             commission_the_project_end_rv.setVisibility(View.GONE);

@@ -45,6 +45,7 @@ import com.xcy.fzb.all.modle.HotBean;
 import com.xcy.fzb.all.modle.ImgData;
 import com.xcy.fzb.all.modle.MessageBean2;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.OverSeaActivity;
@@ -311,6 +312,12 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                 //               返回的分别是三个级别的选中位置
                                 //              展示选中数据
+                                if (!citylist.get(options1).getId().equals(FinalContents.getOldCityId())) {
+                                    FinalContents.setCityIs("不是当前城市");
+                                    SharItOff.setShar("隐");
+                                }else {
+                                    FinalContents.setCityIs("");
+                                }
                                 city.setText(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
                                 Log.i("city",FinalContents.getCityID());

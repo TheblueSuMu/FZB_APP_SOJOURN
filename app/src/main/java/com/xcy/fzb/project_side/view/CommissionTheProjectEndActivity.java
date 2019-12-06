@@ -510,6 +510,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
                             commission_the_project_end_rv.setVisibility(View.GONE);
                             commission_the_project_end_rl.setVisibility(View.VISIBLE);
                         }
+                        hideInput();
                     }
 
                     @Override

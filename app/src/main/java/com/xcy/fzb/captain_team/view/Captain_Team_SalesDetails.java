@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class Captain_Team_SalesDetails extends AllActivity {
     Captain_Team_SalesDetailsAdapter adapter;
     TextView sales_tv;
     private String searchName = "";
+    private ImageView all_sales_details_no_information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +70,13 @@ public class Captain_Team_SalesDetails extends AllActivity {
     }
 
     private void initView() {
-		
-		StatusBar.makeStatusBarTransparent(this);
-		
+
+        StatusBar.makeStatusBarTransparent(this);
+
         sales_details_img = findViewById(R.id.sales_details_img);
         sales_details_rv = findViewById(R.id.sales_details_rv);
         sales_tv = findViewById(R.id.sales_tv);
+        all_sales_details_no_information = findViewById(R.id.all_sales_details_no_information);
 
         sales_details_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,28 +115,39 @@ public class Captain_Team_SalesDetails extends AllActivity {
 
                     @Override
                     public void onNext(final TeamMemberBean teamMemberBean) {
-                        LinearLayoutManager manager = new LinearLayoutManager(Captain_Team_SalesDetails.this);
-                        manager.setOrientation(LinearLayoutManager.VERTICAL);
-                        sales_details_rv.setLayoutManager(manager);
-                        adapter = new Captain_Team_SalesDetailsAdapter(teamMemberBean.getData().getRows());
-                        sales_details_rv.setAdapter(adapter);
-                        adapter.setIdenty(searchName);
-                        adapter.notifyDataSetChanged();
+                        Log.i("顾问","从团队长详情页："+FinalContents.getInforId());
+                        if (teamMemberBean.getData().getRows().size() != 0) {
+                            all_sales_details_no_information.setVisibility(View.GONE);
+                            sales_details_rv.setVisibility(View.VISIBLE);
+                            LinearLayoutManager manager = new LinearLayoutManager(Captain_Team_SalesDetails.this);
+                            manager.setOrientation(LinearLayoutManager.VERTICAL);
+                            sales_details_rv.setLayoutManager(manager);
+                            adapter = new Captain_Team_SalesDetailsAdapter(teamMemberBean.getData().getRows());
+                            sales_details_rv.setAdapter(adapter);
+                            adapter.setIdenty(searchName);
+                            adapter.notifyDataSetChanged();
 
-                        adapter.setOnItemClickListener(new Captain_Team_SalesDetailsAdapter.OnItemClickLisenter() {
-                            @Override
-                            public void onItemClick(int postion) {
-                                finish();
-                                FinalContents.setInforId(teamMemberBean.getData().getRows().get(postion).getId());
-                                Log.i("顾问","从团队长详情页获取的ID："+FinalContents.getInforId());
-                                Intent intent = new Intent( Captain_Team_SalesDetails.this, Captain_Team_SalesDetailsDetailsActivity.class);
-                                startActivity(intent);
-                            }
-                        });
+                            adapter.setOnItemClickListener(new Captain_Team_SalesDetailsAdapter.OnItemClickLisenter() {
+                                @Override
+                                public void onItemClick(int postion) {
+                                    finish();
+                                    FinalContents.setInforId(teamMemberBean.getData().getRows().get(postion).getId());
+                                    Log.i("顾问","从团队长详情页获取的ID："+FinalContents.getInforId());
+                                    Intent intent = new Intent( Captain_Team_SalesDetails.this, Captain_Team_SalesDetailsDetailsActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }else {
+                            all_sales_details_no_information.setVisibility(View.VISIBLE);
+                            sales_details_rv.setVisibility(View.GONE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_sales_details_no_information.setVisibility(View.VISIBLE);
+                        sales_details_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "TeamMemberActivity错误信息：" + e.getMessage());
                     }
 
@@ -164,28 +178,37 @@ public class Captain_Team_SalesDetails extends AllActivity {
 
                     @Override
                     public void onNext(final TeamMemberBean teamMemberBean) {
-                        LinearLayoutManager manager = new LinearLayoutManager(Captain_Team_SalesDetails.this);
-                        manager.setOrientation(LinearLayoutManager.VERTICAL);
-                        sales_details_rv.setLayoutManager(manager);
-                        adapter = new Captain_Team_SalesDetailsAdapter(teamMemberBean.getData().getRows());
-                        sales_details_rv.setAdapter(adapter);
-                        adapter.setIdenty(searchName);
-                        adapter.notifyDataSetChanged();
+                        if (teamMemberBean.getData().getRows().size() != 0) {
+                            all_sales_details_no_information.setVisibility(View.GONE);
+                            sales_details_rv.setVisibility(View.VISIBLE);
+                            LinearLayoutManager manager = new LinearLayoutManager(Captain_Team_SalesDetails.this);
+                            manager.setOrientation(LinearLayoutManager.VERTICAL);
+                            sales_details_rv.setLayoutManager(manager);
+                            adapter = new Captain_Team_SalesDetailsAdapter(teamMemberBean.getData().getRows());
+                            sales_details_rv.setAdapter(adapter);
+                            adapter.setIdenty(searchName);
+                            adapter.notifyDataSetChanged();
 
-                        adapter.setOnItemClickListener(new Captain_Team_SalesDetailsAdapter.OnItemClickLisenter() {
-                            @Override
-                            public void onItemClick(int postion) {
-                                finish();
-                                FinalContents.setInforId(teamMemberBean.getData().getRows().get(postion).getId());
-                                Log.i("顾问","从顾问详情页获取的ID："+FinalContents.getInforId());
-                                Intent intent = new Intent( Captain_Team_SalesDetails.this, Captain_Team_SalesDetailsDetailsActivity.class);
-                                startActivity(intent);
-                            }
-                        });
+                            adapter.setOnItemClickListener(new Captain_Team_SalesDetailsAdapter.OnItemClickLisenter() {
+                                @Override
+                                public void onItemClick(int postion) {
+                                    finish();
+                                    FinalContents.setInforId(teamMemberBean.getData().getRows().get(postion).getId());
+                                    Log.i("顾问", "从顾问详情页获取的ID：" + FinalContents.getInforId());
+                                    Intent intent = new Intent(Captain_Team_SalesDetails.this, Captain_Team_SalesDetailsDetailsActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }else {
+                            all_sales_details_no_information.setVisibility(View.VISIBLE);
+                            sales_details_rv.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        all_sales_details_no_information.setVisibility(View.VISIBLE);
+                        sales_details_rv.setVisibility(View.GONE);
                         Log.i("MyCL", "TeamMemberActivity错误信息：" + e.getMessage());
                     }
 

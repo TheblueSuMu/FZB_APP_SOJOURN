@@ -186,6 +186,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
     int num = 0;
 
     List<DetailsData> list;
+    private DetailsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,7 +222,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         details_rv.setLayoutManager(manager);
-        final DetailsAdapter adapter = new DetailsAdapter();
         list = new ArrayList<>();
 
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -250,6 +250,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         } else if (data.size() == 1) {
                             details_tv_S.setVisibility(View.VISIBLE);
                             details_rv.setVisibility(View.VISIBLE);
+                            adapter = new DetailsAdapter();
                             list.add(new DetailsData(data.get(0).getBuildingName() + "", data.get(0).getElementNumber() + "", data.get(0).getHouseNumber() + "", "1"));
                             details_tv_S.setText("查看全部" + data.size() + "栋楼信息");
                             adapter.setList(list);
@@ -258,6 +259,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         } else if (data.size() > 1) {
                             details_tv_S.setVisibility(View.VISIBLE);
                             details_rv.setVisibility(View.VISIBLE);
+                            adapter = new DetailsAdapter();
                             list.add(new DetailsData(data.get(0).getBuildingName() + "", data.get(0).getElementNumber() + "", data.get(0).getHouseNumber() + "", "1"));
                             list.add(new DetailsData(data.get(1).getBuildingName() + "", data.get(1).getElementNumber() + "", data.get(1).getHouseNumber() + "", "2"));
                             details_tv_S.setText("查看全部" + data.size() + "栋楼信息");
@@ -786,15 +788,15 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                                 public void onClick(DialogInterface dialogInterface, int posotion) {
                                     if (i == 1) {
                                         if (remindBean.getData().getMessage().equals("取消订阅")) {
-                                            project_details_ding.setTextColor(Color.parseColor("#111111"));
+                                            project_details_ding.setText(" 变价通知");
                                         } else if (remindBean.getData().getMessage().equals("订阅成功")) {
-                                            project_details_ding.setTextColor(Color.parseColor("#111111"));
+                                            project_details_ding.setText(" 已订阅变价通知");
                                         }
                                     } else {
                                         if (remindBean.getData().getMessage().equals("取消订阅")) {
-                                            project_details_kai.setTextColor(Color.parseColor("#111111"));
+                                            project_details_kai.setText(" 开盘通知");
                                         } else if (remindBean.getData().getMessage().equals("订阅成功")) {
-                                            project_details_kai.setTextColor(Color.parseColor("#111111"));
+                                            project_details_kai.setText(" 已订阅开盘通知");
                                         }
                                     }
                                 }
@@ -885,15 +887,15 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         }
 
                         if (projectDetailsBean.getData().getProjectListVo().getRemindstatus1().equals("1")) {
-                            project_details_ding.setTextColor(Color.parseColor("#111111"));
+                            project_details_ding.setText(" 已订阅变价通知");
                         } else if (projectDetailsBean.getData().getProjectListVo().getRemindstatus1().equals("0")) {
-                            project_details_ding.setTextColor(Color.parseColor("#111111"));
+                            project_details_ding.setText(" 变价通知");
                         }
 
                         if (projectDetailsBean.getData().getProjectListVo().getRemindstatus2().equals("1")) {
-                            project_details_kai.setTextColor(Color.parseColor("#111111"));
+                            project_details_kai.setText(" 已订阅开盘通知");
                         } else if (projectDetailsBean.getData().getProjectListVo().getRemindstatus2().equals("0")) {
-                            project_details_kai.setTextColor(Color.parseColor("#111111"));
+                            project_details_kai.setText(" 开盘通知");
                         }
 
                         number.setText(projectDetailsBeanData.getHouseImgCountNum() + "张");
@@ -1206,6 +1208,22 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                                 project_details_layout2_view.setVisibility(View.VISIBLE);
                                 report_rv.setVisibility(View.VISIBLE);
                             }
+                        }
+
+                        if (!FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                            if (project_details_layout3.getVisibility() == View.GONE) {
+                                project_details_layout.setVisibility(View.GONE);
+                            } else {
+                                project_details_layout3_checkbox.setTextSize(19);
+                                tp = project_details_layout3_checkbox.getPaint();
+                                tp.setFakeBoldText(true);
+                                project_details_layout3_view.setVisibility(View.VISIBLE);
+                                award.setVisibility(View.VISIBLE);
+                            }
+                            project_details_layout2.setVisibility(View.GONE);
+                            report_rv.setVisibility(View.GONE);
+                            project_details_qt.setVisibility(View.VISIBLE);
+                            project_details_all.setVisibility(View.GONE);
                         }
                     }
 
