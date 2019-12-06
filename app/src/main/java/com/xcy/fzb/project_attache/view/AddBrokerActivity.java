@@ -273,7 +273,6 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
             case R.id.add_btn:
                 if (!MatcherUtils.isMobile(add_store_et2.getText().toString())) {
                     ToastUtil.showLongToast(this, "请输入正确的手机号");
-
                     return;
                 }
                 s = add_store_tv1.getText().toString();
@@ -297,7 +296,6 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
     }
 
     private void initData() {
-
         if (FinalContents.getBorkerChange().equals("")) {
             if (s11.equals("经纪公司管理者")) {
                 num = "1";
@@ -399,6 +397,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
                                     finish();
                                 } else {
                                     ToastUtil.showLongToast(AddBrokerActivity.this, addBrokerBean.getData().getMessage());
+                                    FinalContents.setBorkerChange("修改");
                                 }
                             }
 
