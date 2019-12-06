@@ -88,7 +88,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         decoration = new PinnedHeaderDecoration();
 
-        initData();
+//        initData();
     }
 
     private void initData() {

@@ -228,10 +228,27 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             }
         });
 
-        report_client_name_et.setOnClickListener(new View.OnClickListener() {
+
+        report_client_name_et.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                report_associating_inputing_rv.setVisibility(View.VISIBLE);
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+
+            public void afterTextChanged(Editable editable) {
+                //长度发生变化，监听到输入的长度为 editText.getText().length()
+                if (report_client_name_et.getText().toString().length() > 0) {
+                    report_associating_inputing_rv.setVisibility(View.VISIBLE);
+                }else {
+                    report_associating_inputing_rv.setVisibility(View.GONE);
+                }
             }
         });
 
@@ -808,7 +825,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     public void onNext(ClientBean clientBean) {
                         list = clientBean.getData();
                         if (list.size() != 0) {
-                            report_associating_inputing_rv.setVisibility(View.VISIBLE);
                             initSearch();
                         }else {
                             report_associating_inputing_rv.setVisibility(View.GONE);
@@ -868,7 +884,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                         break;
                     }
                 }
-
+                report_associating_inputing_rv.setVisibility(View.GONE);
             }
         });
     }
@@ -894,6 +910,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         FinalContents.setClientPhone(report_client_phone.getText().toString());
         FinalContents.setClientName(report_client_name_et.getText().toString());
 
+        Log.i("报备","客户"+FinalContents.getCustomerID());
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -911,6 +929,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
                     @Override
                     public void onNext(ChangePhoneBean changePhoneBean) {
+                        Log.i("报备","客户"+FinalContents.getCustomerID());
                         Log.i("报备",""+FinalContents.getProjectID());
                         Toast.makeText(ReportActivity.this, changePhoneBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                         finish();

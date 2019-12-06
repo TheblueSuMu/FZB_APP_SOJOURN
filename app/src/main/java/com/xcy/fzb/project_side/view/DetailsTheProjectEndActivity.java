@@ -344,8 +344,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
         initDate();
         initData();
-        initViewData1();
-        initViewData2();
     }
 
     //TODO 详情页时间赋值
@@ -570,6 +568,20 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         details_the_project_end_tv1.setText("[" + detailsBean.getData().getProject().getCityName() + "]" + detailsBean.getData().getProject().getProjectName());
                         details_the_project_end_tv2.setText("项目地址：" + detailsBean.getData().getProject().getAddress());
                         details_the_project_end_tv3.setText(Html.fromHtml("报备(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getReportAmount() + "</font>" + ")  " + "关注(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getBrowseNum() + "</font>" + ")  " + "收藏(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getCollectionNum() + "</font>" + ")  " + "转发(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getForwardingAmount() + "</font>" + ")  "));
+
+                        details_the_project_end_tv12.setText(""+detailsBean.getData().getReceivableMoneyMap().getReceivableMoney());
+                        details_the_project_end_tv13.setText(""+detailsBean.getData().getReceivableMoneyMap().getBackMoney());
+                        details_the_project_end_tv14.setText(""+detailsBean.getData().getReceivableMoneyMap().getInvoiceMoney());
+                        details_the_project_end_tv15.setText(""+detailsBean.getData().getReceivableMoneyMap().getSurplusMoney());
+
+                        details_the_project_end_tv4.setText(""+detailsBean.getData().getOperation().getReportNumber());
+                        details_the_project_end_tv5.setText(""+detailsBean.getData().getOperation().getReportOk());
+                        details_the_project_end_tv6.setText(""+detailsBean.getData().getOperation().getAccessingNumber());
+                        details_the_project_end_tv8.setText(""+detailsBean.getData().getOperation().getIsIslandNumber());
+                        details_the_project_end_tv9.setText(""+detailsBean.getData().getOperation().getEarnestMoneyNumber());
+                        details_the_project_end_tv10.setText(""+detailsBean.getData().getOperation().getTradeNumber());
+                        details_the_project_end_tv11.setText(""+detailsBean.getData().getOperation().getInvalidNum());
+
                         List<Integer> integers = detailsBean.getData().getGsonOption().getSeries().get(0).getData();
                         indexList = detailsBean.getData().getGsonOption().getXAxis().getData();
                         init(integers);
