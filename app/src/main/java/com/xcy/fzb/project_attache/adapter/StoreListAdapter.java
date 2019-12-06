@@ -190,19 +190,23 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                     holder.contacts_img.setVisibility(View.VISIBLE);
                     Glide.with(holder.itemView.getContext()).load(R.mipmap.wwc3).into(holder.contacts_img);
                 } else if (listData.get(i).getStatus().equals("1")) {
-                    if (listData.get(i).getState().equals("1")) {//签约
-                        holder.contacts_img.setVisibility(View.VISIBLE);
-                        Glide.with(holder.itemView.getContext()).load(R.mipmap.qianyue).into(holder.contacts_img);
-                    } else if (listData.get(i).getState().equals("2")) {//装机
-                        holder.contacts_img.setVisibility(View.VISIBLE);
-                        Glide.with(holder.itemView.getContext()).load(R.mipmap.zhuangji).into(holder.contacts_img);
-                    } else if (listData.get(i).getState().equals("3")) {//培训
-                        holder.contacts_img.setVisibility(View.VISIBLE);
-                        Glide.with(holder.itemView.getContext()).load(R.mipmap.peixun).into(holder.contacts_img);
-                    } else if (listData.get(i).getState().equals("4")) {//维护
-                        holder.contacts_img.setVisibility(View.VISIBLE);
-                        Glide.with(holder.itemView.getContext()).load(R.mipmap.weihu).into(holder.contacts_img);
-                    } else {
+                    if(FinalContents.getStoreList().equals("1")){
+                        if (listData.get(i).getState().equals("1")) {//签约
+                            holder.contacts_img.setVisibility(View.VISIBLE);
+                            Glide.with(holder.itemView.getContext()).load(R.mipmap.qianyue).into(holder.contacts_img);
+                        } else if (listData.get(i).getState().equals("2")) {//装机
+                            holder.contacts_img.setVisibility(View.VISIBLE);
+                            Glide.with(holder.itemView.getContext()).load(R.mipmap.zhuangji).into(holder.contacts_img);
+                        } else if (listData.get(i).getState().equals("3")) {//培训
+                            holder.contacts_img.setVisibility(View.VISIBLE);
+                            Glide.with(holder.itemView.getContext()).load(R.mipmap.peixun).into(holder.contacts_img);
+                        } else if (listData.get(i).getState().equals("4")) {//维护
+                            holder.contacts_img.setVisibility(View.VISIBLE);
+                            Glide.with(holder.itemView.getContext()).load(R.mipmap.weihu).into(holder.contacts_img);
+                        } else {
+                            holder.contacts_img.setVisibility(View.GONE);
+                        }
+                    }else if( FinalContents.getStoreList().equals("2")){
                         holder.contacts_img.setVisibility(View.GONE);
                     }
                 }

@@ -346,7 +346,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                                 finish();
                             } else {
                                 ToastUtil.showLongToast(AddCompanyActivity.this,addCompanyBean.getData().getMessage());
-                                finish();
                             }
                         }
 
@@ -396,7 +395,6 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                                 finish();
                             } else {
                                 ToastUtil.showLongToast(AddCompanyActivity.this, addCompanyBean.getData().getMessage());
-                                finish();
                             }
                         }
 

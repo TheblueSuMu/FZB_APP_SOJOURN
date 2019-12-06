@@ -87,11 +87,11 @@ public interface MyService {
     @POST("specialSelect/findData?")
     Observable<HomeBean> getHomeList(@Query("userId") String userId, @Query("beforeDate") String beforeDate, @Query("afterDate") String afterDate, @Query("type") String type, @Query("pageSize") String pageSize);
 
-    //专案端详情运营数据
+    //专案端详情财务数据
     @POST("specialSelect/receivableMoneySingle?")
     Observable<OperationBean> getOperationList(@Query("userId") String userId, @Query("projectId") String projectId, @Query("beforeDate") String beforeDate, @Query("afterDate") String afterDate, @Query("type") String type);
 
-    //专案端详情财务数据
+    //专案端详情运营数据
     @POST("specialSelect/operationSingle?")
     Observable<FinanceBean> getFinanceList(@Query("userId") String userId, @Query("projectId") String projectId, @Query("beforeDate") String beforeDate, @Query("afterDate") String afterDate, @Query("type") String type, @Query("tag") String tag);
 
