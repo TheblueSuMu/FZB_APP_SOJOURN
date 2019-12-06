@@ -344,8 +344,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
         initDate();
         initData();
-        initViewData1();
-        initViewData2();
+//        initViewData1();
+//        initViewData2();
     }
 
     //TODO 详情页时间赋值
@@ -380,11 +380,11 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             @Override
             public void onClick(View view) {
                 if (type.equals("1")) {
-                    initViewData1();
+                    initViewData1();//详情财务数据
                 } else if (type.equals("2")) {
-                    initViewData2();
+                    initViewData2();//详情运营数据
                 } else if (type.equals("3")) {
-                    initViewData3();
+                    initViewData3();//详情趋势图数据
                 }
                 particulars_picker.setVisibility(View.GONE);
             }
@@ -414,6 +414,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         beforeDate1 = dateString;
                         details_the_project_end_time1.setText("<" + dateString);
                         NewlyIncreased.setStartDate(dateString);
+                        type = "2";
                     }
                 });
             }
@@ -435,7 +436,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         afterDate1 = dateString;
                         details_the_project_end_time2.setText("-" + dateString + " >");
                         NewlyIncreased.setEndDate(dateString);
-                        type = "1";
+                        type = "2";
                     }
                 });
             }
@@ -458,6 +459,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         beforeDate2 = dateString;
                         details_the_project_end_time3.setText("<" + dateString);
                         NewlyIncreased.setYJstartDate(dateString);
+                        type = "1";
                     }
                 });
             }
@@ -479,7 +481,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         afterDate2 = dateString;
                         details_the_project_end_time4.setText("-" + dateString + " >");
                         NewlyIncreased.setYJendDate(dateString);
-                        type = "2";
+                        type = "1";
                     }
                 });
             }
@@ -501,6 +503,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year3, month3 + 1, dayOfMonth3);
                         beforeDate3 = dateString;
                         details_the_project_end_time5.setText("<" + dateString);
+                        type = "3";
                     }
                 });
             }
@@ -535,7 +538,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         });
     }
 
-    //TODO 详情页财务数据赋值
+    //TODO 详情页所有数据
     private void initData() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -563,6 +566,20 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         List<Integer> integers = detailsBean.getData().getGsonOption().getSeries().get(0).getData();
                         indexList = detailsBean.getData().getGsonOption().getXAxis().getData();
                         init(integers);
+
+                        details_the_project_end_tv4.setText(detailsBean.getData().getOperation().getReportNumber() + "");
+                        details_the_project_end_tv5.setText(detailsBean.getData().getOperation().getReportOk() + "");
+                        details_the_project_end_tv6.setText(detailsBean.getData().getOperation().getAccessingNumber() + "");
+                        details_the_project_end_tv8.setText(detailsBean.getData().getOperation().getIsIslandNumber() + "");
+                        details_the_project_end_tv9.setText(detailsBean.getData().getOperation().getEarnestMoneyNumber() + "");
+                        details_the_project_end_tv10.setText(detailsBean.getData().getOperation().getTradeNumber() + "");
+                        details_the_project_end_tv11.setText(detailsBean.getData().getOperation().getInvalidNum() + "");
+
+                        details_the_project_end_tv12.setText("" + detailsBean.getData().getReceivableMoneyMap().getReceivableMoney());
+                        details_the_project_end_tv13.setText("" + detailsBean.getData().getReceivableMoneyMap().getBackMoney());
+                        details_the_project_end_tv14.setText("" + detailsBean.getData().getReceivableMoneyMap().getInvoiceMoney());
+                        details_the_project_end_tv15.setText("" + detailsBean.getData().getReceivableMoneyMap().getSurplusMoney());
+
                     }
 
                     @Override
@@ -577,7 +594,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 });
     }
 
-    //TODO 详情页财务数据赋值
+    //TODO 详情财务数据
     private void initViewData1() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -615,7 +632,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 });
     }
 
-    //TODO 详情页运营数据赋值
+    //TODO 详情运营数据
     private void initViewData2() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -623,7 +640,13 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<FinanceBean> userMessage = fzbInterface.getFinanceList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate1, afterDate1, type1,tag);
+        Log.i("专案","FinalContents.getUserID():" + FinalContents.getUserID());
+        Log.i("专案","FinalContents.getUserID():" + FinalContents.getProjectID());
+        Log.i("专案","beforeDate1:" + beforeDate1);
+        Log.i("专案","afterDate1:" + afterDate1);
+        Log.i("专案","type1:" + type1);
+        Log.i("专案","tag:" + tag);
+        Observable<FinanceBean> userMessage = fzbInterface.getFinanceList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate1, afterDate1, type1, tag);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -657,7 +680,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 });
     }
 
-    //TODO 详情页趋势数据赋值
+    //TODO 详情趋势图数据
     private void initViewData3() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -863,6 +886,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             case R.id.details_the_project_end_rb4:
                 details_the_project_end_time_ll1.setVisibility(View.VISIBLE);
                 type1 = "3";
+                type = "2";
                 NewlyIncreased.setTag("3");
                 initDate();
                 break;
@@ -893,6 +917,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             case R.id.details_the_project_end_rb8:
                 details_the_project_end_time_ll2.setVisibility(View.VISIBLE);
                 type2 = "3";
+                type = "1";
                 NewlyIncreased.setYJType("3");
                 initDate();
                 break;
@@ -931,6 +956,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             case R.id.details_the_project_end_rb15:
                 details_the_project_end_time_ll3.setVisibility(View.VISIBLE);
                 type3 = "3";
+                type = "3";
                 initDate();
                 initViewData3();
                 break;
