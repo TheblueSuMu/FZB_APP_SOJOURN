@@ -1,7 +1,5 @@
 package com.xcy.fzb.all.view;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +18,7 @@ import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ContactsAdapter;
 import com.xcy.fzb.all.adapter.PhoneAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.AddPhoneBean;
 import com.xcy.fzb.all.modle.ClientBean;
@@ -84,8 +81,8 @@ public class PhoneActivity extends AllActivity{
         data = new ArrayList<>();
         mContactModels = new ArrayList<>();
         decoration = new PinnedHeaderDecoration();
-        check();
         initClick();
+        initViews();
     }
 
     private void initClick(){
@@ -100,138 +97,114 @@ public class PhoneActivity extends AllActivity{
         all_activity_phone_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                phoneDtos = phoneAdapter.getList();
-                for (int i = 0;i < phoneDtos.size();i++){
-                    if (phoneDtos.get(i).isStatus()) {
-                        //  TODO    导入通讯录
-                        jsonList.add(phoneDtos.get(i));
-                        Log.i("每次","添加显示的数据"+phoneDtos.get(i).getName());
-                    }
-                    Log.i("每次","显示的数据"+phoneDtos.get(i).getName());
-                    if (i == phoneDtos.size()-1) {
-                        Log.i("每次","最后显示的数据"+phoneDtos.get(i).getName());
-                        if (jsonList.size() != 0) {
-                            initadd();
-                        }else {
-                            finish();
+                if (phoneAdapter.getList() != null) {
+                    phoneDtos = phoneAdapter.getList();
+                    for (int i = 0;i < phoneDtos.size();i++){
+                        if (phoneDtos.get(i).isStatus()) {
+                            //  TODO    导入通讯录
+                            jsonList.add(phoneDtos.get(i));
+                            Log.i("每次","添加显示的数据"+phoneDtos.get(i).getName());
+                        }
+                        Log.i("每次","显示的数据"+phoneDtos.get(i).getName());
+                        if (i == phoneDtos.size()-1) {
+                            Log.i("每次","最后显示的数据"+phoneDtos.get(i).getName());
+                            if (jsonList.size() != 0) {
+                                initadd();
+                            }else {
+                                finish();
+                            }
                         }
                     }
                 }
+
             }
         });
     }
 
-    /**
-     * 检查权限
-     */
-    private void check() {
-        //判断是否有权限
-        if(ContextCompat.checkSelfPermission(PhoneActivity.this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(PhoneActivity.this,new String[]{Manifest.permission.READ_CONTACTS},1);
-            Toast.makeText(this, "开启权限", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "已经开启权限", Toast.LENGTH_SHORT).show();
-            initViews();
-        }
-    }
-
-    //回调方法，无论哪种结果，最终都会回调该方法，之后在判断用户是否授权，
-    // 用户同意则调用readContacts（）方法，失败则会弹窗提示失败
-    @Override
-    public void onRequestPermissionsResult(int requestCode,String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case 1:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    initViews();
-                } else {
-                    Toast.makeText(this, "获取联系人权限失败", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-        }
-    }
 
     private void initViews() {
         PhoneUtil phoneUtil = new PhoneUtil(this);
         phoneDtos = phoneUtil.getPhone();
 
-        for (int i = 0; i < phoneDtos.size(); ++i) {
-            ContactModel contactModel = new ContactModel(phoneDtos.get(i).getName() + "@" + phoneDtos.get(i).getTelPhone());
-            mContactModels.add(contactModel);
-        }
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PhoneActivity.this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        all_activity_phone_rv.setLayoutManager(linearLayoutManager);
-
-        // RecyclerView设置相关
-        decoration.registerTypePinnedHeader(1, new PinnedHeaderDecoration.PinnedHeaderCreator() {
-            @Override
-            public boolean create(RecyclerView parent, int adapterPosition) {
-                return true;
+        if (phoneDtos.size() != 0) {
+            for (int i = 0; i < phoneDtos.size(); ++i) {
+                ContactModel contactModel = new ContactModel(phoneDtos.get(i).getName() + "@" + phoneDtos.get(i).getTelPhone());
+                mContactModels.add(contactModel);
             }
-        });
-        all_activity_phone_rv.addItemDecoration(decoration);
-        phoneAdapter = new PhoneAdapter();
-        Collections.sort(mContactModels, new LetterComparator());
-        phoneAdapter.setList(phoneDtos);
-        phoneAdapter.setContacts(mContactModels);
-        all_activity_phone_rv.setAdapter(phoneAdapter);
-        phoneAdapter.notifyDataSetChanged();
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PhoneActivity.this);
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            all_activity_phone_rv.setLayoutManager(linearLayoutManager);
+
+            // RecyclerView设置相关
+            decoration.registerTypePinnedHeader(1, new PinnedHeaderDecoration.PinnedHeaderCreator() {
+                @Override
+                public boolean create(RecyclerView parent, int adapterPosition) {
+                    return true;
+                }
+            });
+            all_activity_phone_rv.addItemDecoration(decoration);
+            phoneAdapter = new PhoneAdapter();
+            Collections.sort(mContactModels, new LetterComparator());
+            phoneAdapter.setList(phoneDtos);
+            phoneAdapter.setContacts(mContactModels);
+            all_activity_phone_rv.setAdapter(phoneAdapter);
+            phoneAdapter.notifyDataSetChanged();
 
 // 侧边设置相关
-        all_activity_phone_bar.setOnSelectIndexItemListener(new WaveSideBarView.OnSelectIndexItemListener() {
-            @Override
-            public void onSelectIndexItem(String letter) {
-                for (int i = 0; i < mContactModels.size(); i++) {
-                    if (mContactModels.get(i).getIndex().equals(letter)) {
-                        ((LinearLayoutManager) all_activity_phone_rv.getLayoutManager()).scrollToPositionWithOffset(i, 0);
-                        return;
+            all_activity_phone_bar.setOnSelectIndexItemListener(new WaveSideBarView.OnSelectIndexItemListener() {
+                @Override
+                public void onSelectIndexItem(String letter) {
+                    for (int i = 0; i < mContactModels.size(); i++) {
+                        if (mContactModels.get(i).getIndex().equals(letter)) {
+                            ((LinearLayoutManager) all_activity_phone_rv.getLayoutManager()).scrollToPositionWithOffset(i, 0);
+                            return;
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        phoneAdapter.setItemOnClick(new PhoneAdapter.ItemOnClick() {
-            @Override
-            public void itemClick(int position) {
-                int size = 0;
-                phoneDtos = phoneAdapter.getList();
-                all_activity_phone_checkbox_all.setChecked(false);
-                all_activity_phone_checkbox_all.setText("全选");
-                for (int i = 0;i < phoneDtos.size();i++){
-                    if (phoneDtos.get(i).isStatus()) {
-                        size++;
-                        all_activity_phone_checkbox_all_number.setText("已选"+size);
-                    }
-                }
-                if (size == 0) {
-                    all_activity_phone_checkbox_all_number.setText("已选0");
-                } else if (size == phoneDtos.size()) {
-                    all_activity_phone_checkbox_all.setChecked(true);
-                    all_activity_phone_checkbox_all.setText("取消全选");
-                    phoneAdapter.setAll("1");
-                    phoneAdapter.notifyDataSetChanged();
-                }
-            }
-        });
-
-        all_activity_phone_checkbox_all.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (all_activity_phone_checkbox_all.getText().toString().equals("取消全选")) {
+            phoneAdapter.setItemOnClick(new PhoneAdapter.ItemOnClick() {
+                @Override
+                public void itemClick(int position) {
+                    int size = 0;
+                    phoneDtos = phoneAdapter.getList();
+                    all_activity_phone_checkbox_all.setChecked(false);
                     all_activity_phone_checkbox_all.setText("全选");
-                    all_activity_phone_checkbox_all_number.setText("已选0");
-                    phoneAdapter.setAll("2");
-                    phoneAdapter.notifyDataSetChanged();
-                }else if (all_activity_phone_checkbox_all.getText().toString().equals("全选")){
-                    all_activity_phone_checkbox_all.setText("取消全选");
-                    all_activity_phone_checkbox_all_number.setText("已选"+mContactModels.size());
-                    phoneAdapter.setAll("1");
-                    phoneAdapter.notifyDataSetChanged();
+                    for (int i = 0;i < phoneDtos.size();i++){
+                        if (phoneDtos.get(i).isStatus()) {
+                            size++;
+                            all_activity_phone_checkbox_all_number.setText("已选"+size);
+                        }
+                    }
+                    if (size == 0) {
+                        all_activity_phone_checkbox_all_number.setText("已选0");
+                    } else if (size == phoneDtos.size()) {
+                        all_activity_phone_checkbox_all.setChecked(true);
+                        all_activity_phone_checkbox_all.setText("取消全选");
+                        phoneAdapter.setAll("1");
+                        phoneAdapter.notifyDataSetChanged();
+                    }
                 }
-            }
-        });
+            });
+
+            all_activity_phone_checkbox_all.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (all_activity_phone_checkbox_all.getText().toString().equals("取消全选")) {
+                        all_activity_phone_checkbox_all.setText("全选");
+                        all_activity_phone_checkbox_all_number.setText("已选0");
+                        phoneAdapter.setAll("2");
+                        phoneAdapter.notifyDataSetChanged();
+                    }else if (all_activity_phone_checkbox_all.getText().toString().equals("全选")){
+                        all_activity_phone_checkbox_all.setText("取消全选");
+                        all_activity_phone_checkbox_all_number.setText("已选"+mContactModels.size());
+                        phoneAdapter.setAll("1");
+                        phoneAdapter.notifyDataSetChanged();
+                    }
+                }
+            });
+        }
     }
 
     private void initadd(){
@@ -260,6 +233,7 @@ public class PhoneActivity extends AllActivity{
                         String msg = addPhoneBean.getData().getMessage();
                         if (msg.equals("添加成功")) {
                             Toast.makeText(PhoneActivity.this, addPhoneBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            CityContents.setAddClient("1");
                             finish();
                         } else {
                             Toast.makeText(PhoneActivity.this, addPhoneBean.getData().getMessage(), Toast.LENGTH_SHORT).show();

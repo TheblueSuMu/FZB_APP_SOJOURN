@@ -21,10 +21,14 @@ import com.xcy.fzb.all.utils.ToastUtil;
 public class AllActivity extends AppCompatActivity {
 
     public static boolean exit = false;
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static final int REQUEST_EXTERNAL_STORAGE = 2;
     private static String[] PERMISSIONS_STORAGE = {
             "android.permission.READ_EXTERNAL_STORAGE",
-            "android.permission.WRITE_EXTERNAL_STORAGE"};
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.READ_CONTACTS",
+            "android.permission.ACCESS_FINE_LOCATION",
+            "android.permission.CAMERA"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,20 +43,26 @@ public class AllActivity extends AppCompatActivity {
         StatusBar.makeStatusBarTransparent(this);
 
         Log.i("MyCL","进入initView");
-
-        if (ContextCompat.checkSelfPermission(AllActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//未开启定位权限
-            //开启定位权限,200是标识码
-            ActivityCompat.requestPermissions(AllActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
-        } else {
-        }
-
-        //检测是否有写的权限
-        int permission = ActivityCompat.checkSelfPermission(AllActivity.this, "android.permission.WRITE_EXTERNAL_STORAGE");
-        if (permission != PackageManager.PERMISSION_GRANTED) {// 没有写的权限，去申请写的权限，
-            ActivityCompat.requestPermissions(AllActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+        if (Build.VERSION.SDK_INT >= 23) {
+            //检测是否有写的权限
+            int permission = ActivityCompat.checkSelfPermission(AllActivity.this, "android.permission.WRITE_EXTERNAL_STORAGE");
+            if (permission != PackageManager.PERMISSION_GRANTED) {// 没有写的权限，去申请写的权限，
+                ActivityCompat.requestPermissions(AllActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+            }
         }
 
         if (Build.VERSION.SDK_INT >= 23) {
+            //判断是否有权限
+            int permission = ActivityCompat.checkSelfPermission(AllActivity.this, "android.permission.READ_CONTACTS");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(AllActivity.this, new String[]{Manifest.permission.READ_CONTACTS}, 1);
+            } else {
+                //已经开启权限
+            }
+            if (ContextCompat.checkSelfPermission(AllActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//未开启定位权限
+                //开启定位权限,200是标识码
+                ActivityCompat.requestPermissions(AllActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
+            }
             //权限不够
             if (ContextCompat.checkSelfPermission(AllActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(AllActivity.this, new String[]{Manifest.permission.CAMERA}, 3);
@@ -61,6 +71,7 @@ public class AllActivity extends AppCompatActivity {
 
             }
         }
+
 
     }
 
@@ -84,9 +95,26 @@ public class AllActivity extends AppCompatActivity {
         switch (requestCode) {
             case 200://刚才的识别码
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
-//                    initMap();//开始定位
                 } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
                     ToastUtil.showLongToast(AllActivity.this, "未开启定位权限,请手动到设置去开启权限");
+                }
+                break;
+            case 3://刚才的识别码
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
+                } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
+//                    ToastUtil.showLongToast(AllActivity.this, "未开启相机权限,请手动到设置去开启相机权限");
+                }
+                break;
+            case 2://刚才的识别码
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
+                } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
+                    ToastUtil.showLongToast(AllActivity.this, "未开启存储权限,请手动到设置去开启权限");
+                }
+                break;
+            case 1://刚才的识别码
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
+                } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
+                    ToastUtil.showLongToast(AllActivity.this, "未开启读取通讯录权限,请手动到设置去开启读取通讯录权限");
                 }
                 break;
             default:

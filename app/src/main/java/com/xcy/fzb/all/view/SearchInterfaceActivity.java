@@ -185,6 +185,7 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
                             @Override
                             public void onItemClick(int postion) {
                                 if (FinalContents.getProject().equals("1")) {
+                                    FinalContents.setProjectType(hotlist.get(postion).getProjectType());
                                     FinalContents.setProjectName(hotlist.get(postion).getProjectName());
                                     FinalContents.setProjectSearchID(hotlist.get(postion).getProjectId());
                                     FinalContents.setGuideRuleId(hotlist.get(postion).getGuideRuleId());

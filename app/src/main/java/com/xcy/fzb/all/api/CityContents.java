@@ -9,6 +9,16 @@ public class CityContents {
 
     static String OneKey = "";
 
+    static String addClient = "";
+
+    public static String getAddClient() {
+        return addClient;
+    }
+
+    public static void setAddClient(String addClient) {
+        CityContents.addClient = addClient;
+    }
+
     public static String getOneKey() {
         return OneKey;
     }

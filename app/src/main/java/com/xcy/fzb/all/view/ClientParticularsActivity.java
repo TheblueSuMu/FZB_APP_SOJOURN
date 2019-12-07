@@ -99,10 +99,14 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
 
         if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
             client_particulars_report.setVisibility(View.GONE);
+        }else {
+            client_particulars_report.setVisibility(View.VISIBLE);
         }
 
         if (!FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
             client_particulars_report.setVisibility(View.GONE);
+        }else {
+            client_particulars_report.setVisibility(View.VISIBLE);
         }
 
         initData();
@@ -226,6 +230,7 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
                             @Override
                             public void onClick(View view) {
                                 finish();
+                                FinalContents.setClientPhone(clientParticularsBean.getData().getInfoData().getContactsPhone1());
                                 FinalContents.setClientName(clientParticularsBean.getData().getInfoData().getCustomerName());
                                 FinalContents.setCustomerID(clientParticularsBean.getData().getInfoData().getId());
                                 FinalContents.setChecked(true);

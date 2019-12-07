@@ -1495,7 +1495,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        ToastUtil.showLongToast(LoginActivity.this, "请确认您是否微信授权");
+                        ToastUtil.showLongToast(LoginActivity.this, "当前微信未绑定");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 

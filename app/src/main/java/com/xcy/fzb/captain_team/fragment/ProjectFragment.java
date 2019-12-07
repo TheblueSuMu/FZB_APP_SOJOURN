@@ -55,9 +55,7 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
-import com.xcy.fzb.captain_market.view.Captain_Market_MyTeamActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
-import com.xcy.fzb.captain_team.view.Captain_Team_MyTeamActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -279,14 +277,17 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                 //  TODO    判断不同的身份进入不同的佣金界面
                 if (FinalContents.getIdentity().equals("60")) {
                     //  TODO    团队长
-//                Intent intent = new Intent(view.getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
-//                startActivity(intent);
-                    Intent intent = new Intent(getContext(), Captain_Team_MyTeamActivity.class);
+                    FinalContents.setMySelf("1");
+                    Intent intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
+                    intent.putExtra("client", "0");
+                    FinalContents.setAgentId(FinalContents.getUserID());
+                    startActivity(intent);
                 } else if (FinalContents.getIdentity().equals("61")) {
                     //  TODO    销售
-//                Intent intent = new Intent(view.getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
-//                startActivity(intent);
-                    Intent intent = new Intent(view.getContext(), Captain_Market_MyTeamActivity.class);
+                    FinalContents.setMySelf("1");
+                    Intent intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
+                    intent.putExtra("client", "0");
+                    FinalContents.setAgentId(FinalContents.getUserID());
                     startActivity(intent);
                 } else if (FinalContents.getIdentity().equals("62")) {
                     //  TODO    顾问

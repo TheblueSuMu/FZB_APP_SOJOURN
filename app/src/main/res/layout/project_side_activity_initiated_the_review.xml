@@ -68,6 +68,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/initiated_the_review_tv1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -82,7 +83,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/the_project_end_underline"
-                        android:orientation="horizontal"></LinearLayout>
+                        android:orientation="horizontal"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -93,6 +94,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/initiated_the_review_tv2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -119,6 +121,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/initiated_the_review_tv3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -145,6 +148,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/initiated_the_review_tv4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"

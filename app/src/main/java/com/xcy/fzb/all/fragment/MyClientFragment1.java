@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,11 +17,11 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ContactsAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.persente.ContactModel;
-import com.xcy.fzb.all.persente.LetterComparator;
 import com.xcy.fzb.all.persente.MyClientName;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -34,7 +33,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -51,14 +49,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemOnClick {
 
     WaveSideBarView mWaveSideBarView;
-    RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
     private ContactsAdapter mAdapter;
-    private List<ContactModel> mContactModels;
+    private List<ContactModel> mContactModels = new ArrayList<>();
     private PinnedHeaderDecoration decoration;
-    private List<ClientBean.DataBean> data;
+    private List<ClientBean.DataBean> data = new ArrayList<>();
     private Context context;
     int i = 0;
     private ImageView all_no_information;
+    private View view;
 
     public MyClientFragment1() {
         // Required empty public constructor
@@ -69,33 +68,29 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        StatusBar.makeStatusBarTransparent(getActivity());
+
+        view = inflater.inflate(R.layout.fragment_my_client_fragment1, container, false);
         context = container.getContext();
-        return inflater.inflate(R.layout.fragment_my_client_fragment1, container, false);
+        StatusBar.makeStatusBarTransparent(getActivity());
+        init();
+        return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
+    private void init(){
         EventBus.getDefault().register(this);
         i = 0;
-        data = new ArrayList<>();
-        mContactModels = new ArrayList<>();
-        mWaveSideBarView = getActivity().findViewById(R.id.main_side_bar);
-        mRecyclerView = getActivity().findViewById(R.id.main_recycler);
-        all_no_information = getActivity().findViewById(R.id.all_no_information);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        decoration = new PinnedHeaderDecoration();
-
-//        initData();
+        mWaveSideBarView = view.findViewById(R.id.main_side_bar);
+        mRecyclerView = view.findViewById(R.id.main_recycler);
+        all_no_information = view.findViewById(R.id.all_no_information);
+        Log.i("客户列表", "oncreate");
+        initData();
     }
 
     private void initData() {
-        Log.i("MyCL", "进入initData");
+        Log.i("客户列表", "进入initData");
         data.clear();
         mContactModels.clear();
-
+        decoration = new PinnedHeaderDecoration();
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -114,7 +109,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                     @Override
                     public void onNext(ClientBean clientBean) {
                         data = clientBean.getData();
-                        Log.i("MyCL", "数据长度：" + data.size());
+                        Log.i("客户列表", "数据长度：" + data.size());
                         if (data.size() != 0) {
                             all_no_information.setVisibility(View.GONE);
                             mRecyclerView.setVisibility(View.VISIBLE);
@@ -133,7 +128,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                     public void onError(Throwable e) {
                         mRecyclerView.setVisibility(View.GONE);
                         all_no_information.setVisibility(View.VISIBLE);
-                        Log.i("MyCL", "客户列表错误信息：" + e.getMessage());
+                        Log.i("客户列表", "客户列表错误信息：" + e.getMessage());
                     }
 
                     @Override
@@ -152,9 +147,10 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                 return true;
             }
         });
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(decoration);
         mAdapter = new ContactsAdapter();
-        Collections.sort(mContactModels, new LetterComparator());
+//        Collections.sort(mContactModels, new LetterComparator());
         mAdapter.setContacts(mContactModels);
         mAdapter.setItemOnClick(this);
         mRecyclerView.setAdapter(mAdapter);
@@ -276,27 +272,21 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("MyCL", "onResume");
-        if (i == 0) {
-            i = 1;
-        } else {
+        Log.i("客户列表","加载");
+        if (CityContents.getAddClient().equals("1")) {
+            Log.i("客户列表","加载成功");
             initData();
+        }else {
+            Log.i("客户列表","加载失败");
         }
     }
 
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.i("MyCL", "onPause");
-        i = 1;
-    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
         EventBus.getDefault().unregister(this);
-
+        CityContents.setAddClient("");
     }
 }

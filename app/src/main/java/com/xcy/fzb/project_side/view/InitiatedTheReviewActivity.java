@@ -19,6 +19,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.InitiatedBean;
+import com.xcy.fzb.all.modle.MyExamineNumBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -56,6 +57,10 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
     InitiatedAdapter adapter;
     private List<InitiatedBean.DataBean.RowsBean> rows;
     private ImageView all_no_information;
+    private TextView initiated_the_review_tv1;
+    private TextView initiated_the_review_tv2;
+    private TextView initiated_the_review_tv3;
+    private TextView initiated_the_review_tv4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +104,11 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
         initiated_the_review_ll8 = findViewById(R.id.initiated_the_review_ll8);
         initiated_the_review_rv = findViewById(R.id.initiated_the_review_rv);
 
+        initiated_the_review_tv1 = findViewById(R.id.initiated_the_review_tv1);
+        initiated_the_review_tv2 = findViewById(R.id.initiated_the_review_tv2);
+        initiated_the_review_tv3 = findViewById(R.id.initiated_the_review_tv3);
+        initiated_the_review_tv4 = findViewById(R.id.initiated_the_review_tv4);
+
         initiated_the_review_return.setOnClickListener(this);
         initiated_the_review_tv.setOnClickListener(this);
         initiated_the_review_ll1.setOnClickListener(this);
@@ -134,7 +144,7 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
 
 
         initData(1);
-
+        initRead();
     }
 
     @Override
@@ -234,6 +244,62 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                         }else {
                             all_no_information.setVisibility(View.VISIBLE);
                             initiated_the_review_rv.setVisibility(View.GONE);
+                        }
+                        initRead();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        initiated_the_review_rv.setVisibility(View.GONE);
+                        Log.i("列表数据获取错误", "错误" + e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void initRead(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<MyExamineNumBean> userMessage = fzbInterface.getMyExamineNum(FinalContents.getUserID(), "1","1000");
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MyExamineNumBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @SuppressLint("WrongConstant")
+                    @Override
+                    public void onNext(MyExamineNumBean initiatedBean) {
+                        if (initiatedBean.getData().getWithdraw() == 0) {
+                            initiated_the_review_tv1.setText("退筹");
+                        }else {
+                            initiated_the_review_tv1.setText("退筹("+initiatedBean.getData().getWithdraw()+")");
+                        }
+                        if (initiatedBean.getData().getOrderSheet() == 0) {
+                            initiated_the_review_tv2.setText("调单");
+                        }else {
+                            initiated_the_review_tv2.setText("调单("+initiatedBean.getData().getOrderSheet()+")");
+                        }
+                        if (initiatedBean.getData().getDocuments() == 0) {
+                            initiated_the_review_tv3.setText("退单");
+                        }else {
+                            initiated_the_review_tv3.setText("退单("+initiatedBean.getData().getDocuments()+")");
+                        }
+                        if (initiatedBean.getData().getTrade() == 0) {
+                            initiated_the_review_tv4.setText("成交");
+                        }else {
+                            initiated_the_review_tv4.setText("成交("+initiatedBean.getData().getTrade()+")");
                         }
                     }
 

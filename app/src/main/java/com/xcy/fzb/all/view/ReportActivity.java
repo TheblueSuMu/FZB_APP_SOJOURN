@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -38,6 +37,8 @@ import com.xcy.fzb.all.modle.ReportBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -151,6 +152,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private List<ClientBean.DataBean> list;
     private String customerID = "";
     private LinearLayout report_nosearch;
+    private LinearLayout report_issure;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -180,7 +182,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -192,6 +194,12 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         report_nosearch = findViewById(R.id.report_nosearch);
         report_associating_inputing_rv = findViewById(R.id.report_associating_inputing_rv);
         report_relative = findViewById(R.id.report_relative);
+
+        //  TODO    城市版
+        report_issure = findViewById(R.id.report_issure);
+
+
+        //  TODO    城市版
 
         report_btn_s = findViewById(R.id.report_btn_yes);
         report_btn_f = findViewById(R.id.report_btn_no);
@@ -258,11 +266,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             public void onFocusChange(View v, boolean hasFocus) {
 
                 if (hasFocus) {
-
                     // 获得焦点
-
                 } else {
-
                     // 失去焦点
                     report_associating_inputing_rv.setVisibility(View.GONE);
                 }
@@ -808,9 +813,9 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     if (IDcard.getText().length() == 18) {
                         initReport();
                     } else if (IDcard.getText().length() == 0){
-                        Toast.makeText(ReportActivity.this, "请输入身份证号码", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(ReportActivity.this, "请输入身份证号码");
                     } else if (IDcard.getText().length() < 18) {
-                        Toast.makeText(ReportActivity.this, "请输入正确的身份证号码", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(ReportActivity.this, "请输入正确的身份证号码");
                     }
                 }else if (report_linear.getVisibility() == View.GONE){
                     initReport();
@@ -912,12 +917,17 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private void initReport(){
         
         if (report_client_name_et.getText().toString().equals("")) {
-            Toast.makeText(this, "请选择客户", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请选择客户");
             return;
         }
 
         if (project_name.getText().toString().equals("")) {
-            Toast.makeText(this, "请选择项目", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请选择项目");
+            return;
+        }
+
+        if (!MatcherUtils.isMobile(report_client_phone.getText().toString())) {
+            ToastUtil.showLongToast(this, "请输入正确的手机号");
             return;
         }
 
@@ -951,7 +961,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     public void onNext(ChangePhoneBean changePhoneBean) {
                         Log.i("报备","客户"+FinalContents.getCustomerID());
                         Log.i("报备",""+FinalContents.getProjectID());
-                        Toast.makeText(ReportActivity.this, changePhoneBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(ReportActivity.this, changePhoneBean.getData().getMessage());
                         finish();
                         FinalContents.setClientName("");
                         FinalContents.setClientPhone("");
@@ -964,7 +974,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(ReportActivity.this, "请选择房源", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(ReportActivity.this, "请选择房源");
                         Log.i("wsw","返回的数据"+e.getMessage());
                     }
 
@@ -1050,6 +1060,11 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             project_name.setText("");
         }
         if (FinalContents.isChecked2()) {
+            if (FinalContents.getProjectType().equals("1")) {
+                report_issure.setVisibility(View.GONE);
+            }else {
+                report_issure.setVisibility(View.VISIBLE);
+            }
             project_name.setText(FinalContents.getProjectName());
         } else {
             project_name.setText("");
@@ -1063,6 +1078,17 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
         }else {
             initIdNumber();
+            if (FinalContents.getProjectType().equals("1")) {
+                report_issure.setVisibility(View.GONE);
+            }else {
+                report_issure.setVisibility(View.VISIBLE);
+            }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FinalContents.setProjectType("");
     }
 }

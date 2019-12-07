@@ -103,9 +103,13 @@ public interface MyService {
     @POST("specialSelect/specialList?")
     Observable<SideHomeBean> getHomeBeanList(@Query("userId") String userId, @Query("projectType") String projectType, @Query("pageSize") String pageSize);
 
-    //专案端首页列表数据
+    //专案端我发起的审核列表数据
     @POST("specialSelect/myExaminelist??")
     Observable<InitiatedBean> getMyExaminelist(@Query("userId") String userId, @Query("type") String type, @Query("status") String status, @Query("pageSize") String pageSize);
+
+    //专案端我发起的审核未处理
+    @POST("specialSelect/myExamineNum??")
+    Observable<MyExamineNumBean> getMyExamineNum(@Query("userId") String userId, @Query("type") String type, @Query("pageSize") String pageSize);
 
     //专案端详情页所有数据
     @POST("specialSelect/specialDetail?")
@@ -217,6 +221,11 @@ public interface MyService {
     //专案端待我审核列表
     @POST("specialSelect/toAuditList?")
     Observable<CheckPendingBean> getToAuditList(@Query("userId") String userId, @Query("projectId") String projectId, @Query("type") String type, @Query("status") int status, @Query("pageSize") String pageSize, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
+
+    //专案端待我审核未处理数量
+    @POST("specialSelect/toAuditNum?")
+    Observable<ToAuditNumBean> getToAuditNum(@Query("userId") String userId, @Query("projectId") String projectId, @Query("type") String type, @Query("pageSize") String pageSize, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
+
 
     //首页城市列表数据
     @POST("commonSelect/findCityForParentId")

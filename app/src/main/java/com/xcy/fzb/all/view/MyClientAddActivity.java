@@ -30,14 +30,12 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.AddClientBean;
 import com.xcy.fzb.all.modle.AddPhotoBean;
-import com.xcy.fzb.all.modle.ChangeSexBean;
-import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -509,6 +507,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                                 String msg = addClientBean.getMsg();
                                 if (msg.equals("成功")) {
                                     Toast.makeText(MyClientAddActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
+                                    CityContents.setAddClient("1");
                                     finish();
                                 } else {
                                     Toast.makeText(MyClientAddActivity.this, "添加客户失败", Toast.LENGTH_SHORT).show();
@@ -551,6 +550,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                                 String msg = addClientBean.getMsg();
                                 if (msg.equals("成功")) {
                                     Toast.makeText(MyClientAddActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
+                                    CityContents.setAddClient("1");
                                     finish();
                                 } else {
                                     Toast.makeText(MyClientAddActivity.this, "添加客户失败", Toast.LENGTH_SHORT).show();
@@ -593,6 +593,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                                 String msg = addClientBean.getMsg();
                                 if (msg.equals("成功")) {
                                     Toast.makeText(MyClientAddActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
+                                    CityContents.setAddClient("1");
                                     finish();
                                 } else {
                                     Toast.makeText(MyClientAddActivity.this, "添加客户失败", Toast.LENGTH_SHORT).show();

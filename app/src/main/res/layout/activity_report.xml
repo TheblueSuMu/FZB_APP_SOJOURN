@@ -61,6 +61,7 @@
 
                 <RelativeLayout
                     android:id="@+id/report_relative"
+                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="44dp">
 
@@ -217,87 +218,95 @@
                         android:layout_height="1dp"
                         android:background="#EEEEEE"/>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="是否计划登岛"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <RadioGroup
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/report_btn_yes"
-                                android:layout_width="82dp"
-                                android:layout_height="28dp"
-                                android:background="@drawable/add_aa"
-                                android:button="@null"
-                                android:gravity="center"
-                                android:text="是"
-                                android:textColor="@drawable/text_back"
-                                android:textSize="15sp" />
-
-                            <RadioButton
-                                android:id="@+id/report_btn_no"
-                                android:layout_width="82dp"
-                                android:layout_height="28dp"
-                                android:background="@drawable/add_bb"
-                                android:button="@null"
-                                android:checked="true"
-                                android:gravity="center"
-                                android:text="否"
-                                android:textColor="@drawable/text_back"
-                                android:textSize="15sp" />
-                        </RadioGroup>
-
-                    </RelativeLayout>
-
                     <LinearLayout
-                        android:id="@+id/report_tv_timer"
+                        android:id="@+id/report_issure"
+                        android:orientation="vertical"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:visibility="gone">
+                        android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/report_start"
-                            android:layout_width="wrap_content"
+                        <RelativeLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="right"
-                            android:text=""
-                            android:textColor="#ff354687"
-                            android:textSize="14sp" />
+                            android:layout_marginTop="15dp">
 
-                        <TextView
-                            android:id="@+id/report_end"
-                            android:layout_width="wrap_content"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="是否计划登岛"
+                                android:textColor="#ff111111"
+                                android:textSize="15sp" />
+
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/report_btn_yes"
+                                    android:layout_width="82dp"
+                                    android:layout_height="28dp"
+                                    android:background="@drawable/add_aa"
+                                    android:button="@null"
+                                    android:gravity="center"
+                                    android:text="是"
+                                    android:textColor="@drawable/text_back"
+                                    android:textSize="15sp" />
+
+                                <RadioButton
+                                    android:id="@+id/report_btn_no"
+                                    android:layout_width="82dp"
+                                    android:layout_height="28dp"
+                                    android:background="@drawable/add_bb"
+                                    android:button="@null"
+                                    android:checked="true"
+                                    android:gravity="center"
+                                    android:text="否"
+                                    android:textColor="@drawable/text_back"
+                                    android:textSize="15sp" />
+                            </RadioGroup>
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/report_tv_timer"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left"
-                            android:text=""
-                            android:textColor="#ff354687"
-                            android:textSize="14sp" />
+                            android:layout_marginTop="15dp"
+                            android:visibility="gone">
 
+                            <TextView
+                                android:id="@+id/report_start"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="right"
+                                android:text=""
+                                android:textColor="#ff354687"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/report_end"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="left"
+                                android:text=""
+                                android:textColor="#ff354687"
+                                android:textSize="14sp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="15dp"
+                            android:background="#EEEEEE"/>
 
                     </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="#EEEEEE"></LinearLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
