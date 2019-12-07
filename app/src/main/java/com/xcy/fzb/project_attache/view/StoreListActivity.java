@@ -482,7 +482,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                 FinalContents.setMyAddType("公司");
                                 startActivity(intent);
                             }else if(FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("8")){
-                                ToastUtil.showLongToast(StoreListActivity.this,"没有权限");
+                                ToastUtil.showLongToast(StoreListActivity.this,"当前用户无查看公司详情权限");
                             }
                         }
                     }
