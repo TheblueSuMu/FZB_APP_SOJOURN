@@ -21,4 +21,6 @@ public interface ClusterItem {
     LatLng getPosition();
 
     BitmapDescriptor getBitmapDescriptor();
+
+    String getString();
 }

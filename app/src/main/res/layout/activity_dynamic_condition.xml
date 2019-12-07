@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".all.view.DynamicConditionActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="64dp"
@@ -31,7 +34,6 @@
             </RelativeLayout>
 
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,23 +52,32 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp">
 
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/my_issue"
+                android:scaleType="fitXY"></ImageView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
                 android:text="我的发布"
                 android:textColor="#333333"
                 android:textSize="15sp" />
 
 
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="14dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/icon_you" />
+<!--            <ImageView-->
+<!--                android:layout_width="8dp"-->
+<!--                android:layout_height="14dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:src="@mipmap/icon_you" />-->
 
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -81,23 +92,32 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp">
 
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/my_message"
+                android:scaleType="fitXY"></ImageView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
                 android:text="我的留言"
                 android:textColor="#333333"
                 android:textSize="15sp" />
 
 
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="14dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/icon_you" />
+<!--            <ImageView-->
+<!--                android:layout_width="8dp"-->
+<!--                android:layout_height="14dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:src="@mipmap/icon_you" />-->
 
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -112,22 +132,31 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp">
 
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/my_like"
+                android:scaleType="fitXY"></ImageView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
                 android:text="我的点赞"
                 android:textColor="#333333"
                 android:textSize="15sp" />
 
 
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="14dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/icon_you" />
+<!--            <ImageView-->
+<!--                android:layout_width="8dp"-->
+<!--                android:layout_height="14dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:src="@mipmap/icon_you" />-->
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -142,23 +171,32 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp">
 
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/my_collect"
+                android:scaleType="fitXY"></ImageView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
                 android:text="我的收藏"
                 android:textColor="#333333"
                 android:textSize="15sp" />
 
 
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="14dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/icon_you" />
+<!--            <ImageView-->
+<!--                android:layout_width="8dp"-->
+<!--                android:layout_height="14dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:src="@mipmap/icon_you" />-->
 
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -169,29 +207,29 @@
 
     <RelativeLayout
         android:id="@+id/dynamic_condition_no_network"
-        android:background="#fff"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/dynamic_condition_img"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network" />
 
         <Button
-            android:layout_below="@id/dynamic_condition_img"
             android:id="@+id/dynamic_condition_reload"
-            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dynamic_condition_img"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
             android:background="@drawable/button_back"
             android:text="重新加载"
-            android:textSize="12sp"
             android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="12sp" />
 
     </RelativeLayout>
 </RelativeLayout>

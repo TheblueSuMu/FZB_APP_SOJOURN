@@ -64,7 +64,7 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
     private final ClusterManager<T> mClusterManager;
     private final float mDensity;
     //    MAX_DISTANCE_AT_ZOOM * MAX_DISTANCE_AT_ZOOM;
-    private static final int[] BUCKETS = {10, 20, 50, 100, 200, 500, 1000};
+    private static final int[] BUCKETS = {2, 4, 6, 8, 10, 20, 50, 100, 200, 500, 1000};
     private ShapeDrawable mColoredCircleBackground;
 
     /**
@@ -86,7 +86,7 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
     /**
      * If cluster size is less than this size, display individual markers.
      */
-    private static final int MIN_CLUSTER_SIZE = 4;
+    private static final int MIN_CLUSTER_SIZE = 2;
 
     /**
      * The currently displayed set of clusters.
@@ -207,7 +207,7 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
     /**
      * ViewModifier ensures only one re-rendering of the view occurs at a time, and schedules
      * re-rendering, which is performed by the RenderTask.
-     *
+     * <p>
      * * ViewModifier确保在同一时间只有一个视图的重新渲染，并且有时间表
      * *重新渲染，由RenderTask执行。
      */
@@ -767,9 +767,9 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
      */
     protected void onBeforeClusterRendered(Cluster<T> cluster, MarkerOptions markerOptions) {
         int bucket = getBucket(cluster);
-        Log.i("MyCL","bucket：" + bucket);
+        Log.i("MyCL", "bucket：" + bucket);
         BitmapDescriptor descriptor = mIcons.get(bucket);
-        Log.i("MyCL","descriptor：" + descriptor);
+        Log.i("MyCL", "descriptor：" + descriptor);
         if (descriptor == null) {
 //            mColoredCircleBackground.getPaint().setColor(getColor(bucket));
             mColoredCircleBackground.getPaint().setColor(Color.TRANSPARENT);
@@ -884,10 +884,13 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
                         if (animateFrom != null) {
                             markerOptions.position(animateFrom);
                             markerOptions.icon(item.getBitmapDescriptor());
-                            Log.i("MyCL", "item.getBitmapDescriptor()+++++++++++++++++++++++++");
+                            Log.i("点聚合区域","animateFrom:mString:" + item.getString());
+                            markerOptions.title(item.getString());
                         } else {
                             markerOptions.position(item.getPosition());
                             markerOptions.icon(item.getBitmapDescriptor());
+                            Log.i("点聚合区域","animateFrom:else:mString:" + item.getString());
+                            markerOptions.title(item.getString());
                         }
                         onBeforeClusterItemRendered(item, markerOptions);
                         marker = mClusterManager.getMarkerCollection().addMarker(markerOptions);

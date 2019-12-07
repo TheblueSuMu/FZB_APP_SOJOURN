@@ -80,22 +80,22 @@ public class DynamicConditionActivity extends AppCompatActivity implements View.
                 finish();
                 break;
             case R.id.dynamic_condition_rl_1:
-                intent = new Intent(DynamicConditionActivity.this, DynamicDetailsActivity.class);
+                intent = new Intent(DynamicConditionActivity.this, DynamicDetailsActivity.class);//我的发布
                 intent.putExtra("DynamicName","我的发布");
                 startActivity(intent);
                 break;
             case R.id.dynamic_condition_rl_2:
-                intent = new Intent(DynamicConditionActivity.this, DynamicDetailsActivity.class);
+                intent = new Intent(DynamicConditionActivity.this, DynamicDetailsActivity.class);//我的留言
                 intent.putExtra("DynamicName","我的留言");
                 startActivity(intent);
                 break;
             case R.id.dynamic_condition_rl_3:
-                intent = new Intent(DynamicConditionActivity.this, DynamicDetailsActivity.class);
+                intent = new Intent(DynamicConditionActivity.this, DynamicDetailsActivity.class);//我的点赞
                 intent.putExtra("DynamicName","我的点赞");
                 startActivity(intent);
                 break;
             case R.id.dynamic_condition_rl_4:
-                intent = new Intent(DynamicConditionActivity.this, CollectActivity.class);
+                intent = new Intent(DynamicConditionActivity.this, CollectActivity.class);//我的收藏
                 startActivity(intent);
                 break;
         }

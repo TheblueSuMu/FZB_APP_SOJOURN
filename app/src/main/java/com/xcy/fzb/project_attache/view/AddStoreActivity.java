@@ -140,6 +140,8 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     private int GPS_REQUEST_CODE = 10;
     int isOne = 0;
 
+    int ifStart = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -274,8 +276,12 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                             }
 
                             FinalContents.setCompanyManageId(storeManage.getCompany().getId());
-                            url1 = storeChangeBean.getData().getStoreManage().getStoreRise();
-                            url2 = storeChangeBean.getData().getStoreManage().getStoreImg();
+                            if(ifStart == 0){
+                                Log.i("修改门店", "ifStart");
+                                url1 = storeChangeBean.getData().getStoreManage().getStoreRise();
+                                url2 = storeChangeBean.getData().getStoreManage().getStoreImg();
+                                ifStart = 1;
+                            }
                             if (storeChangeBean.getData().getStoreManage().getFlag().equals("1")) {
                                 add_broker_rb2.setChecked(true);
                                 add_broker_rl2.setVisibility(View.VISIBLE);
@@ -311,7 +317,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             add_broker_tvs.setText("添加门店");
             add_broker_rb3.setVisibility(View.GONE);
             add_broker_rb4.setVisibility(View.GONE);
-            if(isOne == 0){
+            if (isOne == 0) {
                 String storeUrl = FinalContents.getBaseUrl() + "commissionerUpdate/setStoreNum?userId=" + FinalContents.getUserID();
                 OkHttpPost okHttpPost = new OkHttpPost(storeUrl);
                 String post = okHttpPost.post();
@@ -320,7 +326,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                 String storeNum = addStoreNumBean.getData().getStoreNum();
                 add_broker_tv1.setText(storeNum);
                 isOne = 1;
-            }else {
+            } else {
 
             }
 
@@ -647,6 +653,18 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                 Retrofit build = builder.build();
                 MyService fzbInterface = build.create(MyService.class);
                 Observable<AddStoreBean> addStoreBean;
+                Log.i("修改门店", "storeManage.getId()：" + storeManage.getId());
+                Log.i("修改门店", "s：" + s);
+                Log.i("修改门店", "s1：" + s1);
+                Log.i("修改门店", "s2：" + s2);
+                Log.i("修改门店", "s3：" + s3);
+                Log.i("修改门店", "myLocation：" + myLocation);
+                Log.i("修改门店", "url1：" + url1);
+                Log.i("修改门店", "url2：" + url2);
+                Log.i("修改门店", "flag：" + flag);
+                Log.i("修改门店", "state：" + state);
+                Log.i("修改门店", " FinalContents.getCompanyManageId()：" + FinalContents.getCompanyManageId());
+                Log.i("修改门店", " FinalContents.getUserID()：" + FinalContents.getUserID());
                 if (add_broker_rl2.getVisibility() == View.VISIBLE) {
                     addStoreBean = fzbInterface.getAddStoreBean(storeManage.getId(), s, s1, s2, s3, myLocation, url1, url2, flag + "", state, FinalContents.getCompanyManageId(), FinalContents.getUserID());
                 } else {
@@ -735,7 +753,6 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
 //TODO  获取相册图片地址
         if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
-
             return;
         }
         bm = null;
@@ -786,9 +803,13 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                     public void onNext(AddPhotoBean addPhotoBean) {
                                         if (FinalContents.getImage1().equals("0")) {
                                             url1 = addPhotoBean.getData().getUrl();
+                                            Log.i("修改门店", "url1：" + url1);
+                                            Log.i("修改门店", "url2：" + url2);
                                             Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + url1).into(add_broker_img1);
                                         } else if (FinalContents.getImage1().equals("1")) {
                                             url2 = addPhotoBean.getData().getUrl();
+                                            Log.i("修改门店", "url1：" + url1);
+                                            Log.i("修改门店", "url2：" + url2);
                                             Glide.with(AddStoreActivity.this).load(FinalContents.getImageUrl() + url2).into(add_broker_img2);
                                         }
                                     }
