@@ -20,4 +20,5 @@
     <color name="circlecolor">#5484FF</color>
     <color name="GridColor">#D6DEE5</color>
     <color name="LableColor">#C6D0D8</color>
+    <color name="partTranslucent">#39000000</color>
 </resources>

@@ -19,7 +19,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.BuildingInformationAdapter;
-import com.xcy.fzb.all.adapter.FamilyRecycler;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.BuildingBean;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -197,6 +196,7 @@ public class BuildingInformationActivity extends AllActivity {
                             project_details_family_tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                                 @Override
                                 public void onTabSelected(TabLayout.Tab tab) {
+
                                     for (int i = 0; i < list.get(index).getHouseInfoList().size(); i++) {
                                         if (list.get(index).getHouseInfoList().get(i).getKey().equals(tab.getText().toString())) {
                                             LinearLayoutManager layoutManager_family = new LinearLayoutManager(BuildingInformationActivity.this);
@@ -243,26 +243,23 @@ public class BuildingInformationActivity extends AllActivity {
                                     //                添加选中Tab的逻辑
                                     for (int j = 0; j < list.size(); j++) {
                                         if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
-//                                            name.setText(list.get(j).getProject().getProjectName());
-//                                            state.setText(list.get(j).getSaleStatus());
-//                                            if (list.get(j).getElevator().equals("") || list.get(j).getFamily().equals("")) {
-//                                                ladder.setText("未知");
-//                                            } else {
-//                                                ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
-//                                            }
-//                                            if (list.get(j).getElementNumber().equals("")) {
-//                                                cell.setText("未知");
-//                                            } else {
-//                                                cell.setText(list.get(j).getElementNumber() + "");
-//                                            }
-//                                            tier.setText(list.get(j).getPliesNumber() + "层");
-//                                            open.setText(list.get(j).getBuildTime());
-//                                            occupancy.setText(list.get(j).getCheckInTime());
-//                                            buildingCase.setText(list.get(j).getFitmentState());
-//                                            standard.setText(list.get(j).getFitmentStandardStr());
-//                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(j).getHouseInfoList());
-//                                            recyclerView.setAdapter(buildingInformationAdapter);
-//                                            buildingInformationAdapter.notifyDataSetChanged();
+                                            name.setText(list.get(j).getProject().getProjectName());
+                                            state.setText(list.get(j).getSaleStatus());
+                                            if (list.get(j).getElevator().equals("") || list.get(j).getFamily().equals("")) {
+                                                ladder.setText("未知");
+                                            } else {
+                                                ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
+                                            }
+                                            if (list.get(j).getElementNumber().equals("")) {
+                                                cell.setText("未知");
+                                            } else {
+                                                cell.setText(list.get(j).getElementNumber() + "");
+                                            }
+                                            tier.setText(list.get(j).getPliesNumber() + "层");
+                                            open.setText(list.get(j).getBuildTime());
+                                            occupancy.setText(list.get(j).getCheckInTime());
+                                            buildingCase.setText(list.get(j).getFitmentState());
+                                            standard.setText(list.get(j).getFitmentStandardStr());
 
 
                                             project_details_family_tablayout.removeAllTabs();
@@ -329,26 +326,23 @@ public class BuildingInformationActivity extends AllActivity {
                                     //                添加选中Tab的逻辑
                                     for (int j = 0; j < list.size(); j++) {
                                         if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
-//                                            name.setText(list.get(j).getProject().getProjectName());
-//                                            state.setText(list.get(j).getSaleStatus());
-//                                            if (list.get(j).getElevator().equals("") || list.get(j).getFamily().equals("")) {
-//                                                ladder.setText("未知");
-//                                            } else {
-//                                                ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
-//                                            }
-//                                            if (list.get(j).getElementNumber().equals("")) {
-//                                                cell.setText("未知");
-//                                            } else {
-//                                                cell.setText(list.get(j).getElementNumber() + "");
-//                                            }
-//                                            tier.setText(list.get(j).getPliesNumber() + "层");
-//                                            open.setText(list.get(j).getBuildTime());
-//                                            occupancy.setText(list.get(j).getCheckInTime());
-//                                            buildingCase.setText(list.get(j).getFitmentState());
-//                                            standard.setText(list.get(j).getFitmentStandardStr());
-//                                            buildingInformationAdapter = new BuildingInformationAdapter(list.get(j).getHouseInfoList());
-//                                            recyclerView.setAdapter(buildingInformationAdapter);
-//                                            buildingInformationAdapter.notifyDataSetChanged();
+                                            name.setText(list.get(j).getProject().getProjectName());
+                                            state.setText(list.get(j).getSaleStatus());
+                                            if (list.get(j).getElevator().equals("") || list.get(j).getFamily().equals("")) {
+                                                ladder.setText("未知");
+                                            } else {
+                                                ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
+                                            }
+                                            if (list.get(j).getElementNumber().equals("")) {
+                                                cell.setText("未知");
+                                            } else {
+                                                cell.setText(list.get(j).getElementNumber() + "");
+                                            }
+                                            tier.setText(list.get(j).getPliesNumber() + "层");
+                                            open.setText(list.get(j).getBuildTime());
+                                            occupancy.setText(list.get(j).getCheckInTime());
+                                            buildingCase.setText(list.get(j).getFitmentState());
+                                            standard.setText(list.get(j).getFitmentStandardStr());
 
 
                                             project_details_family_tablayout.removeAllTabs();

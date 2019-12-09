@@ -4,19 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/phone_CheckBox_index"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#EEEEEE"
-        android:paddingLeft="15dp"
-        android:textColor="#333333"
-        android:text="A"
-        android:textSize="15sp" />
-
     <LinearLayout
         android:id="@+id/phone_linear"
-        android:layout_below="@id/phone_CheckBox_index"
         android:orientation="vertical"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"

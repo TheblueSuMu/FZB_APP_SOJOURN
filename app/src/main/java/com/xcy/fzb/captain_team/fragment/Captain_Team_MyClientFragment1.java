@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,19 +16,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.mcxtzhang.indexlib.IndexBar.widget.IndexBar;
+import com.mcxtzhang.indexlib.suspension.SuspensionDecoration;
 import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.LinkmanAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
+import com.xcy.fzb.all.database.LinkmanBean;
 import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.persente.ContactModel;
+import com.xcy.fzb.all.persente.DividerItemDecoration;
 import com.xcy.fzb.all.persente.LetterComparator;
 import com.xcy.fzb.all.persente.MyClientName;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.ClientParticularsActivity;
-import com.xcy.fzb.all.view.ReportActivity;
 import com.xcy.fzb.captain_team.adapter.ContactsAdapter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -61,6 +66,19 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     private ImageView all_no_information;
     private int size = 0;
 
+    /**
+     * 右侧边栏导航区域
+     */
+    private IndexBar main_side_bar;
+
+    /**
+     * 显示指示器DialogText
+     */
+    private TextView main_indexbar;
+    private List<LinkmanBean> list = new ArrayList<>();
+    private LinearLayoutManager linearLayoutManager;
+    private SuspensionDecoration mDecoration;
+    private LinkmanAdapter linkmanAdapter;
 
     public Captain_Team_MyClientFragment1() {
         // Required empty public constructor
@@ -82,9 +100,21 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
         super.onActivityCreated(savedInstanceState);
 
 
-        mWaveSideBarView = getActivity().findViewById(R.id.main_side_bar);
+        linearLayoutManager = new LinearLayoutManager(context);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        main_indexbar = getActivity().findViewById(R.id.main_indexbar);//HintTextView
+        main_side_bar = getActivity().findViewById(R.id.test_side_bar);//IndexBar
         mRecyclerView = getActivity().findViewById(R.id.main_recycler);
         all_no_information = getActivity().findViewById(R.id.all_no_information);
+        main_side_bar.bringToFront();
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(mDecoration = new SuspensionDecoration(context, list));
+        //如果add两个，那么按照先后顺序，依次渲染。
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST));
+        //indexbar初始化
+        main_side_bar.setmPressedShowTextView(main_indexbar)//设置HintTextView
+                .setNeedRealIndex(true)//设置需要真实的索引
+                .setmLayoutManager(linearLayoutManager);//设置RecyclerView的LayoutManager
 
         inithot("");
 
@@ -146,6 +176,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     }
 
     private void inithot(String name) {
+        list = new ArrayList<>();
         mContactModels = new ArrayList<>();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         decoration = new PinnedHeaderDecoration();
@@ -175,11 +206,38 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                         if (data.size() != 0) {
                             all_no_information.setVisibility(View.GONE);
                             mRecyclerView.setVisibility(View.VISIBLE);
-                            for (int i = 0; i < data.size(); ++i) {
-                                ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
-                                mContactModels.add(contactModel);
+                            for (int i = 0; i < data.size(); i++){
+                                list.add(new LinkmanBean(data.get(i).getCustomerName()+"",data.get(i).getId()+"",data.get(i).getContactsPhone1()+""));
                             }
-                            initDatas();
+
+                            linkmanAdapter = new LinkmanAdapter(context,list);
+                            mRecyclerView.setAdapter(linkmanAdapter);
+                            linkmanAdapter.notifyDataSetChanged();
+
+                            main_side_bar.setmSourceDatas(list)//设置数据
+                                    .invalidate();
+                            mDecoration.setmDatas(list);
+
+                            linkmanAdapter.setItemOnClick(new LinkmanAdapter.ItemOnClick() {
+                              @Override
+                              public void itemClick(int position) {
+                                  Log.i("数据对比","1客户名"+list.get(position).getCity());
+                                  if (FinalContents.getNUM().equals("1")) {
+                                      FinalContents.setClientName(list.get(position).getCity());
+                                      FinalContents.setCustomerID(list.get(position).getClientId());
+                                      FinalContents.setClientPhone(list.get(position).getClientPhone());
+                                      Log.i("数据对比","1客户名"+list.get(position).getCity());
+                                      getActivity().finish();
+                                  } else {
+                                      FinalContents.setCustomerID(list.get(position).getClientId());
+                                      Intent intent = new Intent(getContext(), ClientParticularsActivity.class);
+                                      startActivity(intent);
+                                      Log.i("团队长", "contacts.get(position).getName()：" + list.get(position).getCity());
+
+                                  }
+                              }
+                          }
+                            );
                         }else {
                             all_no_information.setVisibility(View.VISIBLE);
                             mRecyclerView.setVisibility(View.GONE);
@@ -215,8 +273,6 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                     FinalContents.setCustomerID(append.substring(j + 1));
                     getActivity().finish();
                     FinalContents.setNUM("0");
-                    Intent intent = new Intent(context, ReportActivity.class);
-                    startActivity(intent);
                     break;
                 }
             }
