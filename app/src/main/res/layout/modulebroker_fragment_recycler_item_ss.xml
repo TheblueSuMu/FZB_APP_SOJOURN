@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+
     android:layout_marginRight="1dp"
     android:background="#fff"
     android:orientation="vertical"
@@ -13,6 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp">
 
         <com.makeramen.roundedimageview.RoundedImageView
@@ -173,6 +174,19 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/item_pop_btn"
+        android:layout_width="83dp"
+        android:layout_height="35dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:visibility="gone"
+        android:background="@drawable/pop_five_bottom_layout"
+        android:text="路线"
+        android:textColor="#ffffffff"
+        android:textSize="14sp"></Button>
 
     <View
         android:layout_width="match_parent"

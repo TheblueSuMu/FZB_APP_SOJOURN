@@ -55,6 +55,8 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
+import com.xcy.fzb.captain_counselor.view.Captain_Counselor_CommissionTheProjectEndActivity;
+import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -278,21 +280,21 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                 if (FinalContents.getIdentity().equals("60")) {
                     //  TODO    团队长
                     FinalContents.setMySelf("1");
-                    Intent intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
+                    Intent intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
                     intent.putExtra("client", "0");
                     FinalContents.setAgentId(FinalContents.getUserID());
                     startActivity(intent);
                 } else if (FinalContents.getIdentity().equals("61")) {
                     //  TODO    销售
                     FinalContents.setMySelf("1");
-                    Intent intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
+                    Intent intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
                     intent.putExtra("client", "0");
                     FinalContents.setAgentId(FinalContents.getUserID());
                     startActivity(intent);
                 } else if (FinalContents.getIdentity().equals("62")) {
                     //  TODO    顾问
                     FinalContents.setMySelf("1");
-                    Intent intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
+                    Intent intent = new Intent(getContext(), Captain_Counselor_CommissionTheProjectEndActivity.class);
                     intent.putExtra("client", "0");
                     FinalContents.setAgentId(FinalContents.getUserID());
                     startActivity(intent);

@@ -141,6 +141,13 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     int isOne = 0;
 
     int ifStart = 0;
+    private String s1;
+    private String s2;
+    private String s3;
+    private String s;
+    private String s4;
+    private String s5;
+    private String s6 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -276,7 +283,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                             }
 
                             FinalContents.setCompanyManageId(storeManage.getCompany().getId());
-                            if(ifStart == 0){
+                            if (ifStart == 0) {
                                 Log.i("修改门店", "ifStart");
                                 url1 = storeChangeBean.getData().getStoreManage().getStoreRise();
                                 url2 = storeChangeBean.getData().getStoreManage().getStoreImg();
@@ -552,13 +559,13 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     private void initDatas() {
 
         if (FinalContents.getStoreChange().equals("")) {
-            String s1 = add_broker_et2.getText().toString();
-            String s2 = add_broker_et3.getText().toString();
-            String s3 = add_broker_et4.getText().toString();
-            String s = add_broker_tv1.getText().toString();
-            String s4 = add_broker_tv2.getText().toString();
-            String s5 = add_broker_tv4.getText().toString();
-
+            s1 = add_broker_et2.getText().toString();
+            s2 = add_broker_et3.getText().toString();
+            s3 = add_broker_et4.getText().toString();
+            s = add_broker_tv1.getText().toString();
+            s4 = add_broker_tv2.getText().toString();
+            s5 = add_broker_tv4.getText().toString();
+            s6 = add_broker_tv3.getText().toString();
             if (add_broker_rb1.isChecked()) {
                 flag = 0;
             }
@@ -574,58 +581,26 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("") || s5.equals("")) {
                 ToastUtil.showLongToast(AddStoreActivity.this, "带*号的数据请填写完整");
             } else {
-
-
-                Retrofit.Builder builder = new Retrofit.Builder();
-                builder.baseUrl(FinalContents.getBaseUrl());
-                builder.addConverterFactory(GsonConverterFactory.create());
-                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                Retrofit build = builder.build();
-                MyService fzbInterface = build.create(MyService.class);
-                Observable<AddStoreBean> addStoreBean;
                 if (add_broker_rl2.getVisibility() == View.VISIBLE) {
-                    addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, (getLongitude + "," + getLatitude), url1, url2, flag + "", state, FinalContents.getCompanyManageId(), FinalContents.getUserID());
+                    if (s6.equals("")) {
+                        ToastUtil.showLongToast(AddStoreActivity.this, "带*号的数据请填写完整");
+                    } else {
+                        initAddData1();
+                    }
                 } else {
-                    addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, (getLongitude + "," + getLatitude), url1, url2, flag + "", "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
+                    initAddData1();
                 }
-                addStoreBean.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<AddStoreBean>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
-
-                            }
-
-                            @Override
-                            public void onNext(AddStoreBean addStoreBean) {
-                                if (addStoreBean.getData().getMessage().equals("保存成功")) {
-                                    ToastUtil.showLongToast(AddStoreActivity.this, addStoreBean.getData().getMessage());
-                                    finish();
-                                    FinalContents.setStoreChange("");
-                                } else {
-                                    ToastUtil.showLongToast(AddStoreActivity.this, addStoreBean.getData().getMessage());
-                                }
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-
-                            }
-
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        });
             }
         } else if (FinalContents.getStoreChange().equals("修改")) {
 
-            String s1 = add_broker_et2.getText().toString();
-            String s2 = add_broker_et3.getText().toString();
-            String s3 = add_broker_et4.getText().toString();
-            String s = add_broker_tv1.getText().toString();
-            String s4 = add_broker_tv2.getText().toString();
-            String s5 = add_broker_tv4.getText().toString();
+            s1 = add_broker_et2.getText().toString();
+            s2 = add_broker_et3.getText().toString();
+            s3 = add_broker_et4.getText().toString();
+            s = add_broker_tv1.getText().toString();
+            s4 = add_broker_tv2.getText().toString();
+            s5 = add_broker_tv4.getText().toString();
+            s6 = add_broker_tv3.getText().toString();
+
             if (add_broker_rb1.isChecked()) {
                 flag = 0;
             }
@@ -646,63 +621,123 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
             if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("") || s5.equals("")) {
                 Toast.makeText(AddStoreActivity.this, "带*号的数据请填写完整", Toast.LENGTH_SHORT).show();
             } else {
-                Retrofit.Builder builder = new Retrofit.Builder();
-                builder.baseUrl(FinalContents.getBaseUrl());
-                builder.addConverterFactory(GsonConverterFactory.create());
-                builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-                Retrofit build = builder.build();
-                MyService fzbInterface = build.create(MyService.class);
-                Observable<AddStoreBean> addStoreBean;
-                Log.i("修改门店", "storeManage.getId()：" + storeManage.getId());
-                Log.i("修改门店", "s：" + s);
-                Log.i("修改门店", "s1：" + s1);
-                Log.i("修改门店", "s2：" + s2);
-                Log.i("修改门店", "s3：" + s3);
-                Log.i("修改门店", "myLocation：" + myLocation);
-                Log.i("修改门店", "url1：" + url1);
-                Log.i("修改门店", "url2：" + url2);
-                Log.i("修改门店", "flag：" + flag);
-                Log.i("修改门店", "state：" + state);
-                Log.i("修改门店", " FinalContents.getCompanyManageId()：" + FinalContents.getCompanyManageId());
-                Log.i("修改门店", " FinalContents.getUserID()：" + FinalContents.getUserID());
                 if (add_broker_rl2.getVisibility() == View.VISIBLE) {
-                    addStoreBean = fzbInterface.getAddStoreBean(storeManage.getId(), s, s1, s2, s3, myLocation, url1, url2, flag + "", state, FinalContents.getCompanyManageId(), FinalContents.getUserID());
+                    if (s6.equals("")) {
+                        Toast.makeText(AddStoreActivity.this, "带*号的数据请填写完整", Toast.LENGTH_SHORT).show();
+                    } else {
+                        initAddData2();
+                    }
                 } else {
-                    addStoreBean = fzbInterface.getAddStoreBean(storeManage.getId(), s, s1, s2, s3, myLocation, url1, url2, flag + "", "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
+                    initAddData2();
                 }
-                addStoreBean.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<AddStoreBean>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
-
-                            }
-
-                            @Override
-                            public void onNext(AddStoreBean addStoreBean) {
-                                if (addStoreBean.getData().getMessage().equals("保存成功")) {
-                                    ToastUtil.showLongToast(AddStoreActivity.this, addStoreBean.getData().getMessage());
-                                    finish();
-                                    FinalContents.setStoreChange("");
-                                } else {
-                                    ToastUtil.showLongToast(AddStoreActivity.this, addStoreBean.getData().getMessage());
-                                }
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-
-                            }
-
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        });
             }
 
         }
 
+
+    }
+
+    private void initAddData2() {
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<AddStoreBean> addStoreBean;
+        Log.i("修改门店", "storeManage.getId()：" + storeManage.getId());
+        Log.i("修改门店", "s：" + s);
+        Log.i("修改门店", "s1：" + s1);
+        Log.i("修改门店", "s2：" + s2);
+        Log.i("修改门店", "s3：" + s3);
+        Log.i("修改门店", "myLocation：" + myLocation);
+        Log.i("修改门店", "url1：" + url1);
+        Log.i("修改门店", "url2：" + url2);
+        Log.i("修改门店", "flag：" + flag);
+        Log.i("修改门店", "state：" + state);
+        Log.i("修改门店", " FinalContents.getCompanyManageId()：" + FinalContents.getCompanyManageId());
+        Log.i("修改门店", " FinalContents.getUserID()：" + FinalContents.getUserID());
+        if (add_broker_rl2.getVisibility() == View.VISIBLE) {
+            addStoreBean = fzbInterface.getAddStoreBean(storeManage.getId(), s, s1, s2, s3, myLocation, url1, url2, flag + "", state, FinalContents.getCompanyManageId(), FinalContents.getUserID());
+        } else {
+            addStoreBean = fzbInterface.getAddStoreBean(storeManage.getId(), s, s1, s2, s3, myLocation, url1, url2, flag + "", "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
+        }
+        addStoreBean.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AddStoreBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(AddStoreBean addStoreBean) {
+                        if (addStoreBean.getData().getMessage().equals("保存成功")) {
+                            ToastUtil.showLongToast(AddStoreActivity.this, addStoreBean.getData().getMessage());
+                            finish();
+                            FinalContents.setStoreChange("");
+                        } else {
+                            ToastUtil.showLongToast(AddStoreActivity.this, addStoreBean.getData().getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+    private void initAddData1() {
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<AddStoreBean> addStoreBean;
+        if (add_broker_rl2.getVisibility() == View.VISIBLE) {
+            addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, (getLongitude + "," + getLatitude), url1, url2, flag + "", state, FinalContents.getCompanyManageId(), FinalContents.getUserID());
+        } else {
+            addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, (getLongitude + "," + getLatitude), url1, url2, flag + "", "", FinalContents.getCompanyManageId(), FinalContents.getUserID());
+        }
+        addStoreBean.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AddStoreBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(AddStoreBean addStoreBean) {
+                        if (addStoreBean.getData().getMessage().equals("保存成功")) {
+                            ToastUtil.showLongToast(AddStoreActivity.this, addStoreBean.getData().getMessage());
+                            finish();
+                            FinalContents.setStoreChange("");
+                        } else {
+                            ToastUtil.showLongToast(AddStoreActivity.this, addStoreBean.getData().getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
 

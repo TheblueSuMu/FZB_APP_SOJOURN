@@ -2,6 +2,7 @@ package com.xcy.fzb.all.view;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -136,6 +137,8 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
     private LatLng mPosition1;
     private LatLng ll1;
     int ifMapStart = 0;
+    private String projectId;
+    private String projectType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,11 +207,6 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         map_house_return = findViewById(R.id.map_house_return);
         map_house_search = findViewById(R.id.map_house_search_S);
         map_house_check = findViewById(R.id.map_house_check);
-        layout = (LinearLayout) getLayoutInflater().inflate(R.layout.pop_five_activity_bottom_layout, null);
-        pop_title = layout.findViewById(R.id.pop_title);
-        pop_address = layout.findViewById(R.id.pop_address);
-        pop_name = layout.findViewById(R.id.pop_name);
-        pop_ll_1 = layout.findViewById(R.id.pop_ll_1);
         //输入框回车事件监听
         map_house_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -279,12 +277,15 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
+
         map_house_return.setOnClickListener(this);
         map_house_check.setOnClickListener(this);
 
         mBaiduMap = mMapView.getMap();
         // 开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
+
+
         // 定位初始化
         mLocClient = new
 
@@ -446,7 +447,6 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
     //maker事件
     private void initMap() {
 
-
         if (ifStart == 0) {
             mLayoutIn = LayoutInflater.from(MapHouseActivity.this);
             if (FinalContents.getIfCity().equals("")) {
@@ -465,7 +465,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
             ifStart = 1;
         } else {
             mLayoutIn = LayoutInflater.from(MapHouseActivity.this);
-            mMapStatus = new MapStatus.Builder().target(new LatLng(position.latitude, position.longitude)).zoom(17).build();
+            mMapStatus = new MapStatus.Builder().target(new LatLng(position.latitude, position.longitude)).zoom(20).build();
         }
 
         mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(mMapStatus));
@@ -477,6 +477,10 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         mBaiduMap.setOnMapStatusChangeListener(mClusterManager);
         // 设置maker点击时的响应
         mBaiduMap.setOnMarkerClickListener(mClusterManager);
+        //手势监听
+//        mBaiduMap.setOnMapStatusChangeListener(listener);
+//        listener.onMapStatusChangeFinish(mMapStatus);
+
 
 //        mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<MyItem>() {
 //            @Override
@@ -490,6 +494,8 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         //每个item点击事件
         mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
 
+            private Button item_pop_btn;
+
             @Override
             public boolean onClusterItemClick(MyItem item) {
 
@@ -498,6 +504,13 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 position = item.getPosition();
                 mBaiduMap.clear();
                 if (FinalContents.getIfCity().equals("")) {
+
+                    layout = (LinearLayout) getLayoutInflater().inflate(R.layout.pop_five_activity_bottom_layout, null);
+                    pop_title = layout.findViewById(R.id.pop_title);
+                    pop_address = layout.findViewById(R.id.pop_address);
+                    pop_name = layout.findViewById(R.id.pop_name);
+                    pop_ll_1 = layout.findViewById(R.id.pop_ll_1);
+
                     if (ifMG == 0) {
                         for (int i = 0; i < rows.size(); ++i) {
                             StringBuffer stringBuffer = new StringBuffer();
@@ -610,7 +623,9 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                     price_money = (TextView) layout.findViewById(R.id.price_moneyss);
                     price = (TextView) layout.findViewById(R.id.pricess);
                     square = (TextView) layout.findViewById(R.id.squaress);
+                    item_pop_btn = (Button) layout.findViewById(R.id.item_pop_btn);
                     group_booking = layout.findViewById(R.id.group_booking_itemss);
+                    item_pop_btn.setVisibility(View.VISIBLE);
                     for (int i = 0; i < rows2.size(); ++i) {
                         StringBuffer stringBuffer = new StringBuffer();
                         StringBuffer append = stringBuffer.append(rows2.get(i).getLocation());
@@ -619,6 +634,8 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                                 vs1 = Double.parseDouble(append.substring(0, j));
                                 vs2 = Double.parseDouble(append.substring(j + 1));
                                 if (item.getPosition().longitude == vs1) {
+                                    projectId = rows2.get(i).getProjectId();
+                                    projectType = rows2.get(i).getProjectType();
                                     Glide.with(MapHouseActivity.this).load(FinalContents.getImageUrl() + rows2.get(i).getProjectImg()).into(imageAvatar);
                                     nameText.setText("[" + rows2.get(i).getArea() + "]" + rows2.get(i).getProjectName());
 
@@ -684,9 +701,9 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 view.getLocationOnScreen(location);
                 popupWindow.showAtLocation(view, Gravity.LEFT | Gravity.BOTTOM, 0, -location[1]);
                 //添加按键事件监听
-                if (FinalContents.getIfCity().equals("")) {
-                    setButtonListeners(layout);
-                }
+//                if (FinalContents.getIfCity().equals("")) {
+                setButtonListeners(layout);
+//                }
                 //添加pop窗口关闭事件，主要是实现关闭时改变背景的透明度
                 //        popupWindow.setOnDismissListener(new poponDismissListener());
                 //        backgroundAlpha(1f);
@@ -694,7 +711,6 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 return false;
             }
         });
-
     }
 
 
@@ -729,7 +745,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                                 double v1 = Double.parseDouble(append.substring(j + 1));
 //                            Log.i("地图maker", "添加门店数据:" + v + "," + v1);
                                 strings.add(rows.get(i).getStoreName());
-                                items.add(new MyItem(new LatLng(v1, v), "长春"));
+                                items.add(new MyItem(new LatLng(v1, v),""));
                             }
                         }
                     }
@@ -747,7 +763,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                                 double v = Double.parseDouble(append.substring(0, j));
                                 double v1 = Double.parseDouble(append.substring(j + 1));
                                 strings.add(rows1.get(i).getCompanyName());
-                                items.add(new MyItem(new LatLng(v1, v), "长春"));
+                                items.add(new MyItem(new LatLng(v1, v), ""));
                             }
                         }
                     }
@@ -762,15 +778,16 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                         double v = Double.parseDouble(append.substring(0, j));
                         double v1 = Double.parseDouble(append.substring(j + 1));
                         strings.add(rows2.get(i).getProjectName());
-                        items.add(new MyItem(new LatLng(v1, v), "长春"));
+                        items.add(new MyItem(new LatLng(v1, v), ""));
                     }
                 }
             }
         }
-//        Log.i("MyCL", "items数据长度：" + items.size());
+        Log.i("MyCL", "items数据长度：" + items.size());
 //        Log.i("地图maker", "items数据长度:" + items.size());
         mClusterManager.addItems(items);
     }
+
 
     /**
      * 每个Marker点，包含Marker点坐标以及图标
@@ -901,14 +918,18 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    //跳转第三方地图 路线规划
+    //跳转第三方地图 路线规划 项目详情
     private void setButtonListeners(LinearLayout layout) {
-
-        Button pop_btn = layout.findViewById(R.id.pop_btn);
+        Button pop_btn = null;
+        if (FinalContents.getIfCity().equals("")) {
+            pop_btn = layout.findViewById(R.id.pop_btn);
+        } else {
+            pop_btn = layout.findViewById(R.id.item_pop_btn);
+        }
         pop_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MapHouseActivity.this, "路线", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MapHouseActivity.this, "路线", Toast.LENGTH_SHORT).show();
                 //定义起终点坐标（天安门和百度大厦）
                 LatLng startPoint = new LatLng(ll.latitude, ll.longitude);
                 LatLng endPoint = new LatLng(item1.getPosition().latitude, item1.getPosition().longitude);
@@ -929,6 +950,20 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 popupWindow.dismiss();
             }
         });
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (FinalContents.getIfCity().equals("")) {
+
+                } else {
+                    FinalContents.setProjectID(projectId);
+                    FinalContents.setProjectType(projectType);
+                    Intent intent = new Intent(MapHouseActivity.this, ProjectDetails.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
 
     //自动生成方法存根
@@ -1135,35 +1170,26 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
     }
 
     //获取地图当前缩放比例
-    class MyMapStatuChangeListen implements BaiduMap.OnMapStatusChangeListener {
+    BaiduMap.OnMapStatusChangeListener listener = new BaiduMap.OnMapStatusChangeListener() {
 
         @Override
         public void onMapStatusChangeStart(MapStatus mapStatus) {
-
         }
 
         @Override
         public void onMapStatusChangeStart(MapStatus mapStatus, int i) {
-
         }
 
         @Override
         public void onMapStatusChange(MapStatus mapStatus) {
-
         }
 
         @Override
         public void onMapStatusChangeFinish(MapStatus mapStatus) {
-            //获取地图缩放级别
             float zoom = mBaiduMap.getMapStatus().zoom;
-            //根据获取到的地图中心点(图标地点)坐标获取地址
-            LatLng ptCenter = mapStatus.target;
-            Log.e("ptCenterFinish", zoom + "---" + ptCenter.toString());
-            if (zoom >= 15.0f) {
-
-            }
+            Log.i("地图缩放级别", "级别：" + zoom);
         }
-    }
+    };
 
     @Override
     protected void onResume() {

@@ -781,21 +781,21 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                     type1 = "0";
                     startDate1 = "";
                     endDate1 = "";
-                    initDailyTurnover();
+                    initDataStatistics();
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb2.isChecked() == true) {
                     NewlyIncreased.setTag("1");
                     type1 = "1";
                     startDate1 = "";
                     endDate1 = "";
-                    initDailyTurnover();
+                    initDataStatistics();
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb3.isChecked() == true) {
                     NewlyIncreased.setTag("2");
                     type1 = "2";
                     startDate1 = "";
                     endDate1 = "";
-                    initDailyTurnover();
+                    initDataStatistics();
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
@@ -818,21 +818,21 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                     type1 = "0";
                     startDate1 = "";
                     endDate1 = "";
-                    initDailyTurnover();
+                    initDataStatistics();
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb2.isChecked() == true) {
                     NewlyIncreased.setTag("1");
                     type1 = "1";
                     startDate1 = "";
                     endDate1 = "";
-                    initDailyTurnover();
+                    initDataStatistics();
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb3.isChecked() == true) {
                     NewlyIncreased.setTag("2");
                     type1 = "2";
                     startDate1 = "";
                     endDate1 = "";
-                    initDailyTurnover();
+                    initDataStatistics();
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";

@@ -2,10 +2,12 @@ package com.xcy.fzb.all.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +42,7 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.utils.ToastUtil;
+import com.xcy.fzb.captain_team.view.Captain_Team_CommissionLevelActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -116,13 +120,13 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private String procuctType = "";
     private String fitmentState = "";
 
-    private String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
+    private String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonSelect/projectList?" + "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
     private String eventUrl;
 
-    private Map<Integer,String> areaMap = new HashMap<>();
-    private Map<Integer,String> traitMap = new HashMap<>();
-    private Map<Integer,String> typeMap = new HashMap<>();
-    private Map<Integer,String> goalMap = new HashMap<>();
+    private Map<Integer, String> areaMap = new HashMap<>();
+    private Map<Integer, String> traitMap = new HashMap<>();
+    private Map<Integer, String> typeMap = new HashMap<>();
+    private Map<Integer, String> goalMap = new HashMap<>();
     private List<ReportBean.DataBean.AreaSectionListBean> areaSectionListBean = new ArrayList<>();
     private List<ReportBean.DataBean.ProductTypeListBean> productTypeListBeans = new ArrayList<>();
     private List<ReportBean.DataBean.ProjectLabelListBean> projectLabelListBeans = new ArrayList<>();
@@ -161,7 +165,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initDataReport();
@@ -186,7 +190,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         }
     }
 
-    private void initView(){
+    private void initView() {
 
         StatusBar.makeStatusBarTransparent(this);
         report_linear = findViewById(R.id.report_linear);
@@ -254,7 +258,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 //长度发生变化，监听到输入的长度为 editText.getText().length()
                 if (report_client_name_et.getText().toString().length() > 0) {
                     report_associating_inputing_rv.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     report_associating_inputing_rv.setVisibility(View.GONE);
                 }
             }
@@ -348,8 +352,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
         ensure = findViewById(R.id.report_ensure);
 
-        Log.i("报备跳转","数据zhon："+FinalContents.getClientName());
-        Log.i("报备跳转","数据zhon："+FinalContents.getCustomerID());
+        Log.i("报备跳转", "数据zhon：" + FinalContents.getClientName());
+        Log.i("报备跳转", "数据zhon：" + FinalContents.getCustomerID());
 
         area1.setOnClickListener(this);
         area2.setOnClickListener(this);
@@ -377,49 +381,49 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         initAssociatingInputing();
     }
 
-    private void initData(){
-        areaMap.put(0,"");
-        areaMap.put(1,"");
-        areaMap.put(2,"");
-        areaMap.put(3,"");
-        areaMap.put(4,"");
-        areaMap.put(5,"");
-        areaMap.put(6,"");
-        areaMap.put(7,"");
+    private void initData() {
+        areaMap.put(0, "");
+        areaMap.put(1, "");
+        areaMap.put(2, "");
+        areaMap.put(3, "");
+        areaMap.put(4, "");
+        areaMap.put(5, "");
+        areaMap.put(6, "");
+        areaMap.put(7, "");
 
-        typeMap.put(0,"");
-        typeMap.put(1,"");
-        typeMap.put(2,"");
-        typeMap.put(3,"");
-        typeMap.put(4,"");
+        typeMap.put(0, "");
+        typeMap.put(1, "");
+        typeMap.put(2, "");
+        typeMap.put(3, "");
+        typeMap.put(4, "");
 
-        goalMap.put(0,"");
-        goalMap.put(1,"");
-        goalMap.put(2,"");
-        goalMap.put(3,"");
-        goalMap.put(4,"");
-        goalMap.put(5,"");
-        goalMap.put(6,"");
-        goalMap.put(7,"");
+        goalMap.put(0, "");
+        goalMap.put(1, "");
+        goalMap.put(2, "");
+        goalMap.put(3, "");
+        goalMap.put(4, "");
+        goalMap.put(5, "");
+        goalMap.put(6, "");
+        goalMap.put(7, "");
 
     }
 
-    private void initDate(){
+    private void initDate() {
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH)+1;
+        final int month = calendar.get(Calendar.MONTH) + 1;
         final int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
 
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
         String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth + 1);
 
-        report_start.setText("<"+string);
-        report_end.setText("-"+string1+" >");
+        report_start.setText("<" + string);
+        report_end.setText("-" + string1 + " >");
         dateTimePickerView.setStartDate(Calendar.getInstance());
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year+3, month, dayOfMonth));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year + 3, month, dayOfMonth));
 
 
         report_ensure.setOnClickListener(new View.OnClickListener() {
@@ -448,12 +452,12 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
                     public void onSelectedDateChanged(Calendar date) {
-                         year1 = date.get(Calendar.YEAR);
-                         month1 = date.get(Calendar.MONTH);
-                         dayOfMonth1 = date.get(Calendar.DAY_OF_MONTH);
+                        year1 = date.get(Calendar.YEAR);
+                        month1 = date.get(Calendar.MONTH);
+                        dayOfMonth1 = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year1, month1 + 1, dayOfMonth1);
                         timeStart = dateString;
-                        report_start.setText("<"+dateString);
+                        report_start.setText("<" + dateString);
                     }
                 });
                 blean = true;
@@ -462,7 +466,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
     }
 
-    private void initDate2(){
+    private void initDate2() {
 
         report_end.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -478,7 +482,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         timeEnd = dateString;
-                        report_end.setText("-"+dateString+" >");
+                        report_end.setText("-" + dateString + " >");
                         Log.d("wsw", "new date: " + dateString);
                     }
                 });
@@ -488,7 +492,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         });
     }
 
-    private void initDataReport(){
+    private void initDataReport() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -511,11 +515,11 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                         projectLabelListBeans = reportBean.getData().getProjectLabelList();
                         purposeListBeans = reportBean.getData().getPurposeList();
 
-                        for (int i = 0;i < projectLabelListBeans.size();i++){
-                            traitMap.put(i,"");
+                        for (int i = 0; i < projectLabelListBeans.size(); i++) {
+                            traitMap.put(i, "");
                         }
 
-                        GridLayoutManager gridLayoutManager = new GridLayoutManager(ReportActivity.this,4);
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(ReportActivity.this, 4);
                         gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
                         report_rv.setLayoutManager(gridLayoutManager);
                         ReportItemAdapter reportItemAdapter = new ReportItemAdapter(projectLabelListBeans);
@@ -525,19 +529,19 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                             @Override
                             public void onItemClick(CheckBox checkBox, int postion) {
                                 if (checkBox.isChecked()) {
-                                    traitMap.put(postion,","+ projectLabelListBeans.get(postion).getId());
-                                    Log.i("楼盘特色","来来来："+traitMap.get(postion)+"名字:"+projectLabelListBeans.get(postion).getLable());
-                                }else {
-                                    traitMap.put(postion,"");
+                                    traitMap.put(postion, "," + projectLabelListBeans.get(postion).getId());
+                                    Log.i("楼盘特色", "来来来：" + traitMap.get(postion) + "名字:" + projectLabelListBeans.get(postion).getLable());
+                                } else {
+                                    traitMap.put(postion, "");
                                 }
-                                Log.i("楼盘特色","数据："+traitMap.get(postion));
+                                Log.i("楼盘特色", "数据：" + traitMap.get(postion));
                             }
                         });
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("wsw","返回的数据"+e.getMessage());
+                        Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
                     @Override
@@ -547,7 +551,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 });
     }
 
-    private void initIdNumber(){
+    private void initIdNumber() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -567,14 +571,14 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     public void onNext(IdNumberBean idNumberBean) {
                         if (idNumberBean.getData().getIsPapers() == 0) {
                             report_linear.setVisibility(View.GONE);
-                        }else if (idNumberBean.getData().getIsPapers() == 1){
+                        } else if (idNumberBean.getData().getIsPapers() == 1) {
                             report_linear.setVisibility(View.VISIBLE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("wsw","报备的数据"+e.getMessage());
+                        Log.i("wsw", "报备的数据" + e.getMessage());
                     }
 
                     @Override
@@ -596,12 +600,12 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 report_tv_timer.setVisibility(View.GONE);
                 break;
             case R.id.report_tv_sq:
-                if(report_ll_start_sq.getVisibility() == View.VISIBLE){
+                if (report_ll_start_sq.getVisibility() == View.VISIBLE) {
                     report_tv_sq.setText("展开");
                     report_ll_start_sq.setVisibility(View.GONE);
                     report_ll_start_sq1.setVisibility(View.GONE);
                     report_ll_start_sq2.setVisibility(View.GONE);
-                }else if (report_ll_start_sq.getVisibility() == View.GONE){
+                } else if (report_ll_start_sq.getVisibility() == View.GONE) {
                     report_tv_sq.setText("收起");
                     report_ll_start_sq.setVisibility(View.VISIBLE);
                     report_ll_start_sq1.setVisibility(View.VISIBLE);
@@ -611,213 +615,213 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             //面积
             case R.id.report_area_1:
                 if (area1.isChecked()) {
-                    areaMap.put(0,",-50");
-                }else {
-                    areaMap.put(0,"");
+                    areaMap.put(0, ",-50");
+                } else {
+                    areaMap.put(0, "");
                 }
                 break;
             case R.id.report_area_2:
                 if (area2.isChecked()) {
-                    areaMap.put(1,",50-70");
-                }else {
-                    areaMap.put(1,"");
+                    areaMap.put(1, ",50-70");
+                } else {
+                    areaMap.put(1, "");
                 }
                 break;
             case R.id.report_area_3:
                 if (area3.isChecked()) {
-                    areaMap.put(2,",70-90");
-                }else {
-                    areaMap.put(2,"");
+                    areaMap.put(2, ",70-90");
+                } else {
+                    areaMap.put(2, "");
                 }
                 break;
             case R.id.report_area_4:
                 if (area4.isChecked()) {
-                    areaMap.put(3,",90-110");
-                }else {
-                    areaMap.put(3,"");
+                    areaMap.put(3, ",90-110");
+                } else {
+                    areaMap.put(3, "");
                 }
                 break;
             case R.id.report_area_5:
                 if (area5.isChecked()) {
-                    areaMap.put(4,",110-130");
-                }else {
-                    areaMap.put(4,"");
+                    areaMap.put(4, ",110-130");
+                } else {
+                    areaMap.put(4, "");
                 }
                 break;
             case R.id.report_area_6:
                 if (area6.isChecked()) {
-                    areaMap.put(5,",130-150");
-                }else {
-                    areaMap.put(5,"");
+                    areaMap.put(5, ",130-150");
+                } else {
+                    areaMap.put(5, "");
                 }
                 break;
             case R.id.report_area_7:
                 if (area7.isChecked()) {
-                    areaMap.put(6,",150-200");
-                }else {
-                    areaMap.put(6,"");
+                    areaMap.put(6, ",150-200");
+                } else {
+                    areaMap.put(6, "");
                 }
                 break;
             case R.id.report_area_8:
                 if (area8.isChecked()) {
-                    areaMap.put(7,",200-");
-                }else {
-                    areaMap.put(7,"");
+                    areaMap.put(7, ",200-");
+                } else {
+                    areaMap.put(7, "");
                 }
                 break;
             //类型
             case R.id.report_type_1:
                 if (type1.isChecked()) {
-                    typeMap.put(0,",1");
-                }else {
-                    typeMap.put(0,"");
+                    typeMap.put(0, ",1");
+                } else {
+                    typeMap.put(0, "");
                 }
 
                 break;
             case R.id.report_type_2:
                 if (type2.isChecked()) {
-                    typeMap.put(1,",2");
-                }else {
-                    typeMap.put(1,"");
+                    typeMap.put(1, ",2");
+                } else {
+                    typeMap.put(1, "");
                 }
 
                 break;
             case R.id.report_type_3:
                 if (type3.isChecked()) {
-                    typeMap.put(2,",3");
-                }else {
-                    typeMap.put(2,"");
+                    typeMap.put(2, ",3");
+                } else {
+                    typeMap.put(2, "");
                 }
 
                 break;
             case R.id.report_type_4:
                 if (type4.isChecked()) {
-                    typeMap.put(3,",4");
-                }else {
-                    typeMap.put(3,"");
+                    typeMap.put(3, ",4");
+                } else {
+                    typeMap.put(3, "");
                 }
 
                 break;
             case R.id.report_type_5:
                 if (type5.isChecked()) {
-                    typeMap.put(4,",5");
-                }else {
-                    typeMap.put(4,"");
+                    typeMap.put(4, ",5");
+                } else {
+                    typeMap.put(4, "");
                 }
 
                 break;
             //目的
             case R.id.report_goal_1:
                 if (goal1.isChecked()) {
-                    goalMap.put(0,",0");
-                }else {
-                    goalMap.put(0,"");
+                    goalMap.put(0, ",0");
+                } else {
+                    goalMap.put(0, "");
                 }
 
                 break;
             case R.id.report_goal_2:
                 if (goal2.isChecked()) {
-                    goalMap.put(1,",1");
-                }else {
-                    goalMap.put(1,"");
+                    goalMap.put(1, ",1");
+                } else {
+                    goalMap.put(1, "");
                 }
 
                 break;
             case R.id.report_goal_3:
                 if (goal3.isChecked()) {
-                    goalMap.put(2,",2");
-                }else {
-                    goalMap.put(2,"");
+                    goalMap.put(2, ",2");
+                } else {
+                    goalMap.put(2, "");
                 }
 
                 break;
             case R.id.report_goal_4:
                 if (goal4.isChecked()) {
-                    goalMap.put(3,",3");
-                }else {
-                    goalMap.put(3,"");
+                    goalMap.put(3, ",3");
+                } else {
+                    goalMap.put(3, "");
                 }
 
                 break;
             case R.id.report_goal_5:
                 if (goal5.isChecked()) {
-                    goalMap.put(4,",4");
-                }else {
-                    goalMap.put(4,"");
+                    goalMap.put(4, ",4");
+                } else {
+                    goalMap.put(4, "");
                 }
 
                 break;
             case R.id.report_goal_6:
                 if (goal6.isChecked()) {
-                    goalMap.put(5,",5");
-                }else {
-                    goalMap.put(5,"");
+                    goalMap.put(5, ",5");
+                } else {
+                    goalMap.put(5, "");
                 }
 
                 break;
             case R.id.report_goal_7:
                 if (goal7.isChecked()) {
-                    goalMap.put(6,",6");
-                }else {
-                    goalMap.put(6,"");
+                    goalMap.put(6, ",6");
+                } else {
+                    goalMap.put(6, "");
                 }
 
                 break;
             case R.id.report_goal_8:
                 if (goal8.isChecked()) {
-                    goalMap.put(7,",7");
-                }else {
-                    goalMap.put(7,"");
+                    goalMap.put(7, ",7");
+                } else {
+                    goalMap.put(7, "");
                 }
                 break;
             case R.id.report_client_name_img:
-                Intent clientIntent = new Intent(ReportActivity.this,MyClientActivity.class);
+                Intent clientIntent = new Intent(ReportActivity.this, MyClientActivity.class);
                 FinalContents.setNUM("1");
                 startActivity(clientIntent);
                 FinalContents.setChecked(true);
                 break;
             case R.id.report_project_name:
-                Intent projectIntent = new Intent(ReportActivity.this,SearchInterfaceActivity.class);
+                Intent projectIntent = new Intent(ReportActivity.this, SearchInterfaceActivity.class);
                 FinalContents.setProject("1");
                 startActivity(projectIntent);
                 FinalContents.setChecked2(true);
                 break;
             case R.id.report_ensure:
-                for (int i = 0;i < areaMap.size();i++){
+                for (int i = 0; i < areaMap.size(); i++) {
                     areaSection = areaSection + areaMap.get(i);
                 }
-                for (int i = 0;i < traitMap.size();i++){
+                for (int i = 0; i < traitMap.size(); i++) {
                     ffProjectTrait = ffProjectTrait + traitMap.get(i);
                 }
-                for (int i = 0;i < typeMap.size();i++){
+                for (int i = 0; i < typeMap.size(); i++) {
                     procuctType = procuctType + typeMap.get(i);
                 }
-                for (int i = 0;i < goalMap.size();i++){
+                for (int i = 0; i < goalMap.size(); i++) {
                     fitmentState = fitmentState + goalMap.get(i);
                 }
 
                 if (areaSection.equals("") || ffProjectTrait.equals("") || procuctType.equals("") || fitmentState.equals("")) {
 
                 } else {
-                    areaSection = areaSection.substring(1,areaSection.length());
-                    ffProjectTrait = ffProjectTrait.substring(1,ffProjectTrait.length());
-                    procuctType = procuctType.substring(1,procuctType.length());
-                    fitmentState = fitmentState.substring(1,fitmentState.length());
+                    areaSection = areaSection.substring(1, areaSection.length());
+                    ffProjectTrait = ffProjectTrait.substring(1, ffProjectTrait.length());
+                    procuctType = procuctType.substring(1, procuctType.length());
+                    fitmentState = fitmentState.substring(1, fitmentState.length());
                 }
 
-                eventUrl = url+ "&areaSection="+areaSection+"&ffProjectTrait="+ffProjectTrait+"&procuctType="+procuctType+"&fitmentState="+fitmentState;
+                eventUrl = url + "&areaSection=" + areaSection + "&ffProjectTrait=" + ffProjectTrait + "&procuctType=" + procuctType + "&fitmentState=" + fitmentState;
 
-                Log.i("楼盘特色","数据："+ffProjectTrait);
+                Log.i("楼盘特色", "数据：" + ffProjectTrait);
 
                 if (report_linear.getVisibility() == View.VISIBLE) {
                     if (IDcard.getText().length() == 18) {
                         initReport();
-                    } else if (IDcard.getText().length() == 0){
+                    } else if (IDcard.getText().length() == 0) {
                         ToastUtil.showLongToast(ReportActivity.this, "请输入身份证号码");
                     } else if (IDcard.getText().length() < 18) {
                         ToastUtil.showLongToast(ReportActivity.this, "请输入正确的身份证号码");
                     }
-                }else if (report_linear.getVisibility() == View.GONE){
+                } else if (report_linear.getVisibility() == View.GONE) {
                     initReport();
                 }
 
@@ -830,7 +834,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         }
     }
 
-    private void initAssociatingInputing(){
+    private void initAssociatingInputing() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -851,7 +855,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                         list = clientBean.getData();
                         if (list.size() != 0) {
                             initSearch();
-                        }else {
+                        } else {
                             report_associating_inputing_rv.setVisibility(View.GONE);
                         }
                     }
@@ -868,7 +872,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 });
     }
 
-    private void initSearch(){
+    private void initSearch() {
         List<ItemEntity> dateList = fillData(list);
         Collections.sort(dateList, new LettersComparator<ItemEntity>());
         report_associating_inputing_rv.setLayoutManager(new LinearLayoutManager(ReportActivity.this));
@@ -896,9 +900,9 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         fuzzySearchAdapter.setItemOnClick(new FuzzySearchAdapter.ItemOnClick() {
             @Override
             public void itemClick(int position, String phone) {
-                Log.i("显示","模糊："+phone);
-                for (int i = 0;i < list.size();i++){
-                    if (phone.equals(list.get(i).getContactsPhone1())){
+                Log.i("显示", "模糊：" + phone);
+                for (int i = 0; i < list.size(); i++) {
+                    if (phone.equals(list.get(i).getContactsPhone1())) {
                         report_associating_inputing_rv.setVisibility(View.GONE);
                         FinalContents.setClientPhone(list.get(i).getContactsPhone1());
                         FinalContents.setClientName(list.get(i).getCustomerName());
@@ -914,8 +918,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         });
     }
 
-    private void initReport(){
-        
+    private void initReport() {
+
         if (report_client_name_et.getText().toString().equals("")) {
             ToastUtil.showLongToast(this, "请选择客户");
             return;
@@ -933,14 +937,14 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
         if (FinalContents.getClientPhone().equals(report_client_phone.getText().toString()) && FinalContents.getClientName().equals(report_client_name_et.getText().toString())) {
             customerID = FinalContents.getCustomerID();
-        }else {
+        } else {
             customerID = "";
         }
         FinalContents.setCustomerID(customerID);
         FinalContents.setClientPhone(report_client_phone.getText().toString());
         FinalContents.setClientName(report_client_name_et.getText().toString());
 
-        Log.i("报备","客户"+FinalContents.getCustomerID());
+        Log.i("报备", "客户" + FinalContents.getCustomerID());
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -948,7 +952,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ChangePhoneBean> userMessage = fzbInterface.getReportPostBean(FinalContents.getCustomerID(),procuctType,areaSection,fitmentState,ffProjectTrait,price_start.getText().toString(),price_end.getText().toString(),FinalContents.getProjectID(),"",FinalContents.getGuideRuleId(),isIsland,IDcard.getText().toString(),report_remarks.getText().toString(),timeStart,timeEnd,FinalContents.getUserID(),FinalContents.getClientName(),FinalContents.getClientPhone());
+        Observable<ChangePhoneBean> userMessage = fzbInterface.getReportPostBean(FinalContents.getCustomerID(), procuctType, areaSection, fitmentState, ffProjectTrait, price_start.getText().toString(), price_end.getText().toString(), FinalContents.getProjectID(), "", FinalContents.getGuideRuleId(), isIsland, IDcard.getText().toString(), report_remarks.getText().toString(), timeStart, timeEnd, FinalContents.getUserID(), FinalContents.getClientName(), FinalContents.getClientPhone());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ChangePhoneBean>() {
@@ -958,24 +962,104 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     }
 
                     @Override
-                    public void onNext(ChangePhoneBean changePhoneBean) {
-                        Log.i("报备","客户"+FinalContents.getCustomerID());
-                        Log.i("报备",""+FinalContents.getProjectID());
-                        ToastUtil.showLongToast(ReportActivity.this, changePhoneBean.getData().getMessage());
-                        finish();
-                        FinalContents.setClientName("");
-                        FinalContents.setClientPhone("");
-                        FinalContents.setCustomerID("");
-                        FinalContents.setProjectName("");
-                        FinalContents.setProjectSearchID("");
-                        FinalContents.setGuideRuleId("");
-                        FinalContents.setProjectID("");
+                    public void onNext(final ChangePhoneBean changePhoneBean) {
+                        Log.i("报备", "客户" + FinalContents.getCustomerID());
+                        Log.i("报备", "" + FinalContents.getProjectID());
+                        if (changePhoneBean.getData().getStatus().equals("1")) {//报备成功
+                            ToastUtil.showLongToast(ReportActivity.this, changePhoneBean.getData().getMessage());
+                            finish();
+                            FinalContents.setClientName("");
+                            FinalContents.setClientPhone("");
+                            FinalContents.setCustomerID("");
+                            FinalContents.setProjectName("");
+                            FinalContents.setProjectSearchID("");
+                            FinalContents.setGuideRuleId("");
+                            FinalContents.setProjectID("");
+                        } else if (changePhoneBean.getData().getStatus().equals("2")) {//已有报备
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ReportActivity.this);
+                            View inflate = LayoutInflater.from(ReportActivity.this).inflate(R.layout.binding_report, null, false);
+                            builder1.setView(inflate);
+                            TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
+                            RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
+                            RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
+                            report_binding_title.setText(changePhoneBean.getData().getMessage());//内容
+                            final AlertDialog show = builder1.show();
+                            report_binding_cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    finish();
+                                    show.dismiss();
+                                }
+                            });
+                            report_binding_confirm.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(ReportActivity.this, ReviewTheSuccessActivity.class);
+//                                    FinalContents.setCustomerID(rows.get(position).getCustomerId());
+                                    FinalContents.setPreparationId(changePhoneBean.getData().getBusiness());
+                                    startActivity(intent);
+                                    finish();
+                                    show.dismiss();
+                                }
+                            });
+                        } else if (changePhoneBean.getData().getStatus().equals("3")) {//报备失败
+
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ReportActivity.this);
+                            View inflate = LayoutInflater.from(ReportActivity.this).inflate(R.layout.binding_report, null, false);
+                            builder1.setView(inflate);
+                            TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
+                            RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
+                            RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
+                            LinearLayout report_binding_confirm_LinearLayout = inflate.findViewById(R.id.report_binding_confirm_LinearLayout);
+                            report_binding_title.setText(changePhoneBean.getData().getMessage());//内容
+                            report_binding_confirm.setVisibility(View.GONE);
+                            report_binding_confirm_LinearLayout.setVisibility(View.GONE);
+
+                            final AlertDialog show = builder1.show();
+                            report_binding_cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    finish();
+                                    show.dismiss();
+                                }
+                            });
+
+                        } else if (changePhoneBean.getData().getStatus().equals("4")) {//联系管理员(前去致电)
+
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ReportActivity.this);
+                            View inflate = LayoutInflater.from(ReportActivity.this).inflate(R.layout.binding_report, null, false);
+                            builder1.setView(inflate);
+                            TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
+                            TextView report_binding_confirm_tv = inflate.findViewById(R.id.report_binding_confirm_tv);
+                            RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
+                            RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
+                            report_binding_title.setText(changePhoneBean.getData().getBusiness());//内容
+                            report_binding_confirm_tv.setText("前去致电");
+                            final AlertDialog show = builder1.show();
+                            report_binding_cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    finish();
+                                    show.dismiss();
+                                }
+                            });
+                            report_binding_confirm.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + changePhoneBean.getData().getBusiness()));//跳转到拨号界面，同时传递电话号码
+                                    startActivity(dialIntent);
+                                    show.dismiss();
+                                }
+                            });
+
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         ToastUtil.showLongToast(ReportActivity.this, "请选择房源");
-                        Log.i("wsw","返回的数据"+e.getMessage());
+                        Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
                     @Override
@@ -990,7 +1074,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         for (ClientBean.DataBean item : list) {
             String letter;
             //汉字转换成拼音
-            List<String> pinyinList = PinyinUtil.getPinYinList(item.getCustomerName()+"@"+item.getContactsPhone1());
+            List<String> pinyinList = PinyinUtil.getPinYinList(item.getCustomerName() + "@" + item.getContactsPhone1());
             if (pinyinList != null && !pinyinList.isEmpty()) {
                 // A-Z导航
                 String letters = pinyinList.get(0).substring(0, 1).toUpperCase();
@@ -1003,7 +1087,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             } else {
                 letter = "#";
             }
-            sortList.add(new ItemEntity(item.getCustomerName()+"@"+item.getContactsPhone1(), letter, pinyinList));
+            sortList.add(new ItemEntity(item.getCustomerName() + "@" + item.getContactsPhone1(), letter, pinyinList));
         }
         return sortList;
 
@@ -1029,9 +1113,9 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         return onTouchEvent(ev);
     }
 
-    public  boolean isShouldHideInput(View v, MotionEvent event) {
+    public boolean isShouldHideInput(View v, MotionEvent event) {
         if (v != null && (v instanceof EditText)) {
-            int[] leftTop = { 0, 0 };
+            int[] leftTop = {0, 0};
             //获取输入框当前的location位置
             v.getLocationInWindow(leftTop);
 
@@ -1062,7 +1146,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         if (FinalContents.isChecked2()) {
             if (FinalContents.getProjectType().equals("1")) {
                 report_issure.setVisibility(View.GONE);
-            }else {
+            } else {
                 report_issure.setVisibility(View.VISIBLE);
             }
             project_name.setText(FinalContents.getProjectName());
@@ -1076,11 +1160,11 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         super.onResume();
         if (FinalContents.getProjectName().equals("")) {
 
-        }else {
+        } else {
             initIdNumber();
             if (FinalContents.getProjectType().equals("1")) {
                 report_issure.setVisibility(View.GONE);
-            }else {
+            } else {
                 report_issure.setVisibility(View.VISIBLE);
             }
         }
