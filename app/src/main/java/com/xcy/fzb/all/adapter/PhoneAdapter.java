@@ -12,19 +12,36 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.database.LinkmanBean;
 import com.xcy.fzb.all.modle.PhoneDto;
-import com.xcy.fzb.all.persente.ContactModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ViewHolder>{
-    private List<PhoneDto> list;
-    private Context context;
+    protected Context context;
+    protected List<LinkmanBean> list;
+    private List<PhoneDto> datas;
     private View view;
-    List<ContactModel> contacts = new ArrayList<>();
-    private ContactModel contact;
     private String all = "";
+
+    public PhoneAdapter(Context context, List<LinkmanBean> list) {
+        this.context = context;
+        this.list = list;
+    }
+
+    public List<PhoneDto> getList() {
+        return datas;
+    }
+
+    public void setAll(String all) {
+        this.all = all;
+        notifyDataSetChanged();
+    }
+
+    public void setList(List<PhoneDto> datas) {
+        this.datas = datas;
+    }
+
     ItemOnClick itemOnClick;
 
     public interface ItemOnClick {
@@ -35,99 +52,62 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ViewHolder>{
         this.itemOnClick = itemOnClick;
     }
 
-    public void setAll(String all) {
-        this.all = all;
-        notifyDataSetChanged();
-    }
-
-    public void setContacts(List<ContactModel> contacts) {
-        this.contacts = contacts;
-    }
-
-    public List<PhoneDto> getList() {
-        return list;
-    }
-
-    public void setList(List<PhoneDto> list) {
-        this.list = list;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_phone_adapter, parent, false);
-        context = parent.getContext();
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        Log.i("MyCL", "集合长度：" + contacts.size());
-        contact = contacts.get(position);
-        Log.e("MyCL", "onBindViewHolder: index:" + contact.getIndex());
-        if (position == 0 || !contacts.get(position - 1).getIndex().equals(contact.getIndex())) {
-            holder.phone_CheckBox_index.setVisibility(View.VISIBLE);
-            holder.phone_CheckBox_index.setText(contact.getIndex());
-        } else {
-            holder.phone_CheckBox_index.setVisibility(View.GONE);
-        }
-
-        StringBuffer stringBuffer = new StringBuffer();
-        StringBuffer append = stringBuffer.append(contact.getName());
-        for (int i = 0; i < append.length(); ++i) {
-            if (append.substring(i, i + 1).equals("@")) {
-                holder.phone_CheckBox.setText(append.substring(0, i));
-                holder.phone_number.setText(append.substring(i+1,append.length()));
-            }
-        }
-
-
+        holder.phone_CheckBox.setText(list.get(position).getCity());
+        holder.phone_number.setText(list.get(position).getClientPhone());
 
         holder.phone_CheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (holder.phone_CheckBox.isChecked()) {
-                    for (int i = 0;i < list.size(); ++i){
-                        if((list.get(i).getName() + "@" + list.get(i).getTelPhone()).equals(contacts.get(position).getName())){
-                            Log.i("MyCL","contacts.get(position).getName():" + contacts.get(position).getName());
-                            list.get(i).setStatus(true);
+                    for (int i = 0;i < datas.size(); ++i){
+                        if((list.get(position).getClientPhone()).equals(datas.get(i).getTelPhone())){
+                            Log.i("MyCL","contacts.get(position).getName():" + datas.get(i).getName());
+                            datas.get(i).setStatus(true);
                         }
                     }
                 }else {
-                    for (int i = 0;i < list.size(); ++i){
-                        if((list.get(i).getName() + "@" + list.get(i).getTelPhone()).equals(contacts.get(position).getName())){
-                            Log.i("MyCL","contacts.get(position).getName():" + contacts.get(position).getName());
-                            list.get(i).setStatus(false);
+                    for (int i = 0;i < datas.size(); ++i){
+                        if((list.get(position).getClientPhone()).equals(datas.get(i).getTelPhone())){
+                            Log.i("MyCL","contacts.get(position).getName():" + datas.get(i).getName());
+                            datas.get(i).setStatus(false);
                         }
                     }
                 }
-//                itemOnClick.itemClick(position);
+                itemOnClick.itemClick(position);
             }
         });
 
+
         if (all.equals("1")) {
             holder.phone_CheckBox.setChecked(true);
-            list.get(position).setStatus(true);
+            datas.get(position).setStatus(true);
         } else if (all.equals("2")) {
             holder.phone_CheckBox.setChecked(false);
-            list.get(position).setStatus(false);
+            datas.get(position).setStatus(false);
         }
     }
 
     @Override
     public int getItemCount() {
-        return contacts.size();
+        return list.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox phone_CheckBox;
-        TextView phone_CheckBox_index;
         TextView phone_number;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             phone_CheckBox = itemView.findViewById(R.id.phone_CheckBox);
-            phone_CheckBox_index = itemView.findViewById(R.id.phone_CheckBox_index);
             phone_number = itemView.findViewById(R.id.phone_number);
         }
 

@@ -731,29 +731,32 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         loginUserBean = loginUserBean1;
                         boolean add = true;
 
-                        for (int i = index-4;i < index;i++){
-                            if (pref.getString("user_name"+i, "").equals(userName)) {
-                                add = false;
-                            }
-                        }
-                        DataBaseUtil.initAdd(LoginActivity.this,userName,passWord);
-                        List<DataBase> list = DataBaseUtil.initSelect(LoginActivity.this, "");
-                        for (int i = 0; i < list.size(); ++i){
-                            Log.i("MyCL","数据库数据：" + list.get(i).getUserName());
-                        }
-                        if (add) {
-                            editor.putString("user_name"+index, userName);
-                            editor.putString("user_password"+index, passWord);
-                            editor.putInt("index", pref.getInt("index",0)+1);
-                            editor.commit();
-                            Log.i("正在储存","数据："+pref.getString("user_name"+index, ""));
-                            if (index > 5) {
-                                for (int i = 0;i < index-4;i++){
-                                    editor.remove("user_name"+i);
+                        if (type.equals("1")) {
+                            for (int i = index-4;i < index;i++){
+                                if (pref.getString("user_name"+i, "").equals(userName)) {
+                                    add = false;
                                 }
+                            }
+                            DataBaseUtil.initAdd(LoginActivity.this,userName,passWord);
+                            List<DataBase> list = DataBaseUtil.initSelect(LoginActivity.this, "");
+                            for (int i = 0; i < list.size(); ++i){
+                                Log.i("MyCL","数据库数据：" + list.get(i).getUserName());
+                            }
+                            if (add) {
+                                editor.putString("user_name"+index, userName);
+                                editor.putString("user_password"+index, passWord);
+                                editor.putInt("index", pref.getInt("index",0)+1);
                                 editor.commit();
+                                Log.i("正在储存","数据："+pref.getString("user_name"+index, ""));
+                                if (index > 5) {
+                                    for (int i = 0;i < index-4;i++){
+                                        editor.remove("user_name"+i);
+                                    }
+                                    editor.commit();
+                                }
                             }
                         }
+
 
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
@@ -814,32 +817,36 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     @Override
                     public void onNext(ExemplaryUserBean exemplaryUserBean) {
                         ExemplaryUserBean userBean = exemplaryUserBean;
-                        boolean add = true;
 
-                        for (int i = index-4;i < index;i++){
-                            if (pref.getString("user_name"+i, "").equals(userName)) {
-                                add = false;
-                            }
-                        }
-                        DataBaseUtil.initAdd(LoginActivity.this,userName,passWord);
-                        List<DataBase> list = DataBaseUtil.initSelect(LoginActivity.this, "");
-                        for (int i = 0; i < list.size(); ++i){
-                            Log.i("MyCL","数据库数据：" + list.get(i).getUserName());
-                        }
-                        if (add) {
+                        if (type.equals("1")) {
+                            boolean add = true;
 
-                            editor.putString("user_name"+index, userName);
-                            editor.putString("user_password"+index, passWord);
-                            editor.putInt("index", pref.getInt("index",0)+1);
-                            editor.commit();
-                            Log.i("正在储存","数据："+pref.getString("user_name"+index, ""));
-                            if (index > 5) {
-                                for (int i = 0;i < index-4;i++){
-                                    editor.remove("user_name"+i);
+                            for (int i = index-4;i < index;i++){
+                                if (pref.getString("user_name"+i, "").equals(userName)) {
+                                    add = false;
                                 }
+                            }
+                            DataBaseUtil.initAdd(LoginActivity.this,userName,passWord);
+                            List<DataBase> list = DataBaseUtil.initSelect(LoginActivity.this, "");
+                            for (int i = 0; i < list.size(); ++i){
+                                Log.i("MyCL","数据库数据：" + list.get(i).getUserName());
+                            }
+                            if (add) {
+
+                                editor.putString("user_name"+index, userName);
+                                editor.putString("user_password"+index, passWord);
+                                editor.putInt("index", pref.getInt("index",0)+1);
                                 editor.commit();
+                                Log.i("正在储存","数据："+pref.getString("user_name"+index, ""));
+                                if (index > 5) {
+                                    for (int i = 0;i < index-4;i++){
+                                        editor.remove("user_name"+i);
+                                    }
+                                    editor.commit();
+                                }
                             }
                         }
+
 
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
@@ -960,33 +967,35 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     @Override
                     public void onNext(CaptainBean captainBean) {
                         CaptainBean userBean = captainBean;
+                        if (type.equals("1")) {
+                            boolean add = true;
 
-                        boolean add = true;
-
-                        for (int i = index-4;i < index;i++){
-                            if (pref.getString("user_name"+i, "").equals(userName)) {
-                                add = false;
-                            }
-                        }
-                        DataBaseUtil.initAdd(LoginActivity.this,userName,passWord);
-                        List<DataBase> list = DataBaseUtil.initSelect(LoginActivity.this, "");
-                        for (int i = 0; i < list.size(); ++i){
-                            Log.i("MyCL","数据库数据：" + list.get(i).getUserName());
-                        }
-                        if (add) {
-
-                            editor.putString("user_name"+index, userName);
-                            editor.putString("user_password"+index, passWord);
-                            editor.putInt("index", pref.getInt("index",0)+1);
-                            editor.commit();
-                            Log.i("正在储存","数据："+pref.getString("user_name"+index, ""));
-                            if (index > 5) {
-                                for (int i = 0;i < index-4;i++){
-                                    editor.remove("user_name"+i);
+                            for (int i = index-4;i < index;i++){
+                                if (pref.getString("user_name"+i, "").equals(userName)) {
+                                    add = false;
                                 }
+                            }
+                            DataBaseUtil.initAdd(LoginActivity.this,userName,passWord);
+                            List<DataBase> list = DataBaseUtil.initSelect(LoginActivity.this, "");
+                            for (int i = 0; i < list.size(); ++i){
+                                Log.i("MyCL","数据库数据：" + list.get(i).getUserName());
+                            }
+                            if (add) {
+
+                                editor.putString("user_name"+index, userName);
+                                editor.putString("user_password"+index, passWord);
+                                editor.putInt("index", pref.getInt("index",0)+1);
                                 editor.commit();
+                                Log.i("正在储存","数据："+pref.getString("user_name"+index, ""));
+                                if (index > 5) {
+                                    for (int i = 0;i < index-4;i++){
+                                        editor.remove("user_name"+i);
+                                    }
+                                    editor.commit();
+                                }
                             }
                         }
+
 
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {

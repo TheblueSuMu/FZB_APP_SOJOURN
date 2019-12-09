@@ -14,23 +14,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.nanchen.wavesidebar.WaveSideBarView;
+import com.mcxtzhang.indexlib.IndexBar.widget.IndexBar;
+import com.mcxtzhang.indexlib.suspension.SuspensionDecoration;
 import com.xcy.fzb.R;
-import com.xcy.fzb.all.adapter.ContactsAdapter;
 import com.xcy.fzb.all.adapter.PhoneAdapter;
 import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.database.LinkmanBean;
 import com.xcy.fzb.all.modle.AddPhoneBean;
-import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.modle.PhoneDto;
 import com.xcy.fzb.all.persente.ContactModel;
-import com.xcy.fzb.all.persente.LetterComparator;
-import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
+import com.xcy.fzb.all.persente.DividerItemDecoration;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.PhoneUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -53,14 +51,22 @@ public class PhoneActivity extends AllActivity{
     private CheckBox all_activity_phone_checkbox_all;
     private TextView all_activity_phone_checkbox_all_number;
     private PhoneAdapter phoneAdapter;
-    private WaveSideBarView all_activity_phone_bar;
     private List<ContactModel> mContactModels;
-    private PinnedHeaderDecoration decoration;
-    private List<ClientBean.DataBean> data;
-    private ContactsAdapter mAdapter;
-    private boolean aBoolean = true;
     private List<PhoneDto> jsonList = new ArrayList<>();
     private String fieldbeanlist = "";
+
+    /**
+     * 右侧边栏导航区域
+     */
+    private IndexBar all_activity_side_bar;
+
+    /**
+     * 显示指示器DialogText
+     */
+    private TextView all_activity_indexbar;
+    private List<LinkmanBean> list = new ArrayList<>();
+    private LinearLayoutManager linearLayoutManager;
+    private SuspensionDecoration mDecoration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +83,21 @@ public class PhoneActivity extends AllActivity{
         all_activity_phone_no_information = findViewById(R.id.all_activity_phone_no_information);
         all_activity_phone_checkbox_all = findViewById(R.id.all_activity_phone_checkbox_all);
         all_activity_phone_checkbox_all_number = findViewById(R.id.all_activity_phone_checkbox_all_number);
-        all_activity_phone_bar = findViewById(R.id.all_activity_phone_bar);
-        data = new ArrayList<>();
+        all_activity_side_bar = findViewById(R.id.all_activity_side_bar);
+        all_activity_indexbar = findViewById(R.id.all_activity_indexbar);
+        linearLayoutManager = new LinearLayoutManager(PhoneActivity.this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        all_activity_phone_rv.setLayoutManager(linearLayoutManager);
+        all_activity_phone_rv.addItemDecoration(mDecoration = new SuspensionDecoration(PhoneActivity.this, list));
+        //如果add两个，那么按照先后顺序，依次渲染。
+        all_activity_phone_rv.addItemDecoration(new DividerItemDecoration(PhoneActivity.this, DividerItemDecoration.VERTICAL_LIST));
+        //indexbar初始化
+        all_activity_side_bar.setmPressedShowTextView(all_activity_indexbar)//设置HintTextView
+                .setNeedRealIndex(true)//设置需要真实的索引
+                .setmLayoutManager(linearLayoutManager);//设置RecyclerView的LayoutManager
+
         mContactModels = new ArrayList<>();
-        decoration = new PinnedHeaderDecoration();
         initClick();
         initViews();
     }
@@ -127,66 +144,46 @@ public class PhoneActivity extends AllActivity{
         phoneDtos = phoneUtil.getPhone();
 
         if (phoneDtos.size() != 0) {
-            for (int i = 0; i < phoneDtos.size(); ++i) {
-                ContactModel contactModel = new ContactModel(phoneDtos.get(i).getName() + "@" + phoneDtos.get(i).getTelPhone());
-                mContactModels.add(contactModel);
+
+            for (int i = 0; i < phoneDtos.size(); i++){
+                list.add(new LinkmanBean(phoneDtos.get(i).getName()+"","",phoneDtos.get(i).getTelPhone()+""));
             }
 
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PhoneActivity.this);
-            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-            all_activity_phone_rv.setLayoutManager(linearLayoutManager);
-
-            // RecyclerView设置相关
-            decoration.registerTypePinnedHeader(1, new PinnedHeaderDecoration.PinnedHeaderCreator() {
-                @Override
-                public boolean create(RecyclerView parent, int adapterPosition) {
-                    return true;
-                }
-            });
-            all_activity_phone_rv.addItemDecoration(decoration);
-            phoneAdapter = new PhoneAdapter();
-            Collections.sort(mContactModels, new LetterComparator());
-            phoneAdapter.setList(phoneDtos);
-            phoneAdapter.setContacts(mContactModels);
+            phoneAdapter = new PhoneAdapter(PhoneActivity.this,list);
             all_activity_phone_rv.setAdapter(phoneAdapter);
+            phoneAdapter.setList(phoneDtos);
             phoneAdapter.notifyDataSetChanged();
 
-// 侧边设置相关
-            all_activity_phone_bar.setOnSelectIndexItemListener(new WaveSideBarView.OnSelectIndexItemListener() {
-                @Override
-                public void onSelectIndexItem(String letter) {
-                    for (int i = 0; i < mContactModels.size(); i++) {
-                        if (mContactModels.get(i).getIndex().equals(letter)) {
-                            ((LinearLayoutManager) all_activity_phone_rv.getLayoutManager()).scrollToPositionWithOffset(i, 0);
-                            return;
-                        }
-                    }
-                }
-            });
+            all_activity_side_bar.setmSourceDatas(list)//设置数据
+                    .invalidate();
+            mDecoration.setmDatas(list);
 
             phoneAdapter.setItemOnClick(new PhoneAdapter.ItemOnClick() {
-                @Override
-                public void itemClick(int position) {
-                    int size = 0;
-                    phoneDtos = phoneAdapter.getList();
-                    all_activity_phone_checkbox_all.setChecked(false);
-                    all_activity_phone_checkbox_all.setText("全选");
-                    for (int i = 0;i < phoneDtos.size();i++){
-                        if (phoneDtos.get(i).isStatus()) {
-                            size++;
-                            all_activity_phone_checkbox_all_number.setText("已选"+size);
-                        }
-                    }
-                    if (size == 0) {
-                        all_activity_phone_checkbox_all_number.setText("已选0");
-                    } else if (size == phoneDtos.size()) {
-                        all_activity_phone_checkbox_all.setChecked(true);
-                        all_activity_phone_checkbox_all.setText("取消全选");
-                        phoneAdapter.setAll("1");
-                        phoneAdapter.notifyDataSetChanged();
-                    }
-                }
-            });
+                  @Override
+                  public void itemClick(int position) {
+                      Log.i("数据对比","1客户名"+list.get(position).getCity());
+                      int size = 0;
+                      phoneDtos = phoneAdapter.getList();
+                      all_activity_phone_checkbox_all.setChecked(false);
+                      all_activity_phone_checkbox_all.setText("全选");
+                      for (int i = 0;i < phoneDtos.size();i++){
+                          if (phoneDtos.get(i).isStatus()) {
+                              size++;
+                              all_activity_phone_checkbox_all_number.setText("已选"+size);
+                          }
+                      }
+                      if (size == 0) {
+                          all_activity_phone_checkbox_all_number.setText("已选0");
+                      } else if (size == phoneDtos.size()) {
+                          all_activity_phone_checkbox_all.setChecked(true);
+                          all_activity_phone_checkbox_all.setText("取消全选");
+                          phoneAdapter.setAll("1");
+                          phoneAdapter.notifyDataSetChanged();
+                      }
+                  }
+              }
+            );
+
 
             all_activity_phone_checkbox_all.setOnClickListener(new View.OnClickListener() {
                 @Override

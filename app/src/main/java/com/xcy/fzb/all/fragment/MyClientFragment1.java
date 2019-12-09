@@ -8,20 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.mcxtzhang.indexlib.IndexBar.widget.IndexBar;
+import com.mcxtzhang.indexlib.suspension.SuspensionDecoration;
 import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ContactsAdapter;
+import com.xcy.fzb.all.adapter.LinkmanAdapter;
 import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
+import com.xcy.fzb.all.database.LinkmanBean;
 import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.persente.ContactModel;
+import com.xcy.fzb.all.persente.DividerItemDecoration;
 import com.xcy.fzb.all.persente.MyClientName;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -59,6 +65,21 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     private ImageView all_no_information;
     private View view;
 
+
+    /**
+     * 右侧边栏导航区域
+     */
+    private IndexBar main_side_bar;
+
+    /**
+     * 显示指示器DialogText
+     */
+    private TextView main_indexbar;
+    private List<LinkmanBean> list = new ArrayList<>();
+    private LinearLayoutManager linearLayoutManager;
+    private SuspensionDecoration mDecoration;
+    private LinkmanAdapter linkmanAdapter;
+
     public MyClientFragment1() {
         // Required empty public constructor
     }
@@ -79,14 +100,31 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
     private void init(){
         EventBus.getDefault().register(this);
         i = 0;
-        mWaveSideBarView = view.findViewById(R.id.main_side_bar);
+//        mWaveSideBarView = view.findViewById(R.id.main_side_bar);
+        //使用indexBar
+        linearLayoutManager = new LinearLayoutManager(context);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        main_indexbar = view.findViewById(R.id.main_indexbar);//HintTextView
+        main_side_bar = view.findViewById(R.id.test_side_bar);//IndexBar
         mRecyclerView = view.findViewById(R.id.main_recycler);
         all_no_information = view.findViewById(R.id.all_no_information);
+
+        main_side_bar.bringToFront();
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.addItemDecoration(mDecoration = new SuspensionDecoration(context, list));
+        //如果add两个，那么按照先后顺序，依次渲染。
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST));
+        //indexbar初始化
+        main_side_bar.setmPressedShowTextView(main_indexbar)//设置HintTextView
+                .setNeedRealIndex(true)//设置需要真实的索引
+                .setmLayoutManager(linearLayoutManager);//设置RecyclerView的LayoutManager
+
         Log.i("客户列表", "oncreate");
         initData();
     }
 
     private void initData() {
+        list = new ArrayList<>();
         Log.i("客户列表", "进入initData");
         data.clear();
         mContactModels.clear();
@@ -113,11 +151,39 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                         if (data.size() != 0) {
                             all_no_information.setVisibility(View.GONE);
                             mRecyclerView.setVisibility(View.VISIBLE);
-                            for (int i = 0; i < data.size(); ++i) {
-                                ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
-                                mContactModels.add(contactModel);
+
+                            for (int i = 0; i < data.size(); i++){
+                                list.add(new LinkmanBean(data.get(i).getCustomerName()+"",data.get(i).getId()+"",data.get(i).getContactsPhone1()+""));
                             }
-                            initDatas();
+
+                            linkmanAdapter = new LinkmanAdapter(context,list);
+                            mRecyclerView.setAdapter(linkmanAdapter);
+                            linkmanAdapter.notifyDataSetChanged();
+
+                            main_side_bar.setmSourceDatas(list)//设置数据
+                                    .invalidate();
+                            mDecoration.setmDatas(list);
+
+                            linkmanAdapter.setItemOnClick(new LinkmanAdapter.ItemOnClick() {
+                                @Override
+                                public void itemClick(int position) {
+                                    Log.i("数据对比","1客户名"+list.get(position).getCity());
+                                    if (FinalContents.getNUM().equals("1")) {
+                                        FinalContents.setClientName(list.get(position).getCity());
+                                        FinalContents.setCustomerID(list.get(position).getClientId());
+                                        Log.i("数据对比","1客户名"+list.get(position).getCity());
+                                        FinalContents.setClientPhone(list.get(position).getClientPhone());
+                                        getActivity().finish();
+                                    } else {
+                                        FinalContents.setCustomerID(list.get(position).getClientId());
+                                        Intent intent = new Intent(getContext(), ClientParticularsActivity.class);
+                                        startActivity(intent);
+                                        Log.i("团队长", "contacts.get(position).getName()：" + list.get(position).getCity());
+
+                                    }
+                                }
+                            }
+                            );
                         }else {
                             mRecyclerView.setVisibility(View.GONE);
                             all_no_information.setVisibility(View.VISIBLE);
@@ -139,37 +205,6 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
 
     }
 
-    private void initDatas() {
-// RecyclerView设置相关
-        decoration.registerTypePinnedHeader(1, new PinnedHeaderDecoration.PinnedHeaderCreator() {
-            @Override
-            public boolean create(RecyclerView parent, int adapterPosition) {
-                return true;
-            }
-        });
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mRecyclerView.addItemDecoration(decoration);
-        mAdapter = new ContactsAdapter();
-//        Collections.sort(mContactModels, new LetterComparator());
-        mAdapter.setContacts(mContactModels);
-        mAdapter.setItemOnClick(this);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
-
-// 侧边设置相关
-        mWaveSideBarView.setOnSelectIndexItemListener(new WaveSideBarView.OnSelectIndexItemListener() {
-            @Override
-            public void onSelectIndexItem(String letter) {
-                for (int i = 0; i < mContactModels.size(); i++) {
-                    if (mContactModels.get(i).getIndex().equals(letter)) {
-                        ((LinearLayoutManager) mRecyclerView.getLayoutManager()).scrollToPositionWithOffset(i, 0);
-                        return;
-                    }
-                }
-            }
-        });
-
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN, priority = 100, sticky = false) //在ui线程执行，优先级为100
     public void onEvent(MyClientName myClientName) {
@@ -207,15 +242,15 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
 
                     @Override
                     public void onNext(ClientBean clientBean) {
-                        Log.i("MyCL", "1");
-                        mContactModels.clear();
-                        data = clientBean.getData();
-                        for (int i = 0; i < data.size(); ++i) {
-                            ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
-                            mContactModels.add(contactModel);
-                        }
-                        initDatas();
-                        NewlyIncreased.setTest(true);
+//                        Log.i("MyCL", "1");
+//                        mContactModels.clear();
+//                        data = clientBean.getData();
+//                        for (int i = 0; i < data.size(); ++i) {
+//                            ContactModel contactModel = new ContactModel(data.get(i).getName() + "@" + data.get(i).getId());
+//                            mContactModels.add(contactModel);
+//                        }
+//                        initDatas();
+//                        NewlyIncreased.setTest(true);
                     }
 
                     @Override

@@ -122,7 +122,6 @@ public class AllActivity extends AppCompatActivity {
                     default:
                         break;
                 }
-
             }
         }
 
