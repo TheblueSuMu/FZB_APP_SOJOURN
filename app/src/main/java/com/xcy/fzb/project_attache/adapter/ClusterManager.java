@@ -251,8 +251,8 @@ public class ClusterManager<T extends ClusterItem> implements BaiduMap.OnMapStat
     /**
      * Sets a callback that's invoked when an individual ClusterItem is tapped. Note: For this
      * listener to function, the ClusterManager must be added as a click listener to the map.
-     *
-     * *设置一个回调，当一个单独的ClusterItem被选中时调用该回调。注意:这个
+     *选中
+     *      * *设置一个回调，当一个单独的ClusterItem被时调用该回调。注意:这个
      * *监听器功能，ClusterManager必须作为点击监听器添加到地图。
      */
     public void setOnClusterItemClickListener(OnClusterItemClickListener<T> listener) {

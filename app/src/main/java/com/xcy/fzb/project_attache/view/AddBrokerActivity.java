@@ -334,6 +334,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
                             @Override
                             public void onError(Throwable e) {
+                                Log.i("经纪人", "添加经纪人错误信息：" + e.getMessage());
                             }
 
                             @Override
@@ -403,7 +404,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
                             @Override
                             public void onError(Throwable e) {
-                                Log.i("经纪人", "错误信息：" + e.getMessage());
+                                Log.i("经纪人", "修改经纪人错误信息：" + e.getMessage());
                             }
 
                             @Override
