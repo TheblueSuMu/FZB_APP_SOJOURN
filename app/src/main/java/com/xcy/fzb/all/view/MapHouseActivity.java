@@ -911,11 +911,11 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
             return BitmapDescriptorFactory.fromView(getView(sb));
         }
 
-        @Override
-        public String getString() {
-            Log.i("点聚合区域", "mString:" + mString);
-            return mString;
-        }
+//        @Override
+//        public String getString() {
+//            Log.i("点聚合区域", "mString:" + mString);
+//            return mString;
+//        }
     }
 
     //跳转第三方地图 路线规划 项目详情

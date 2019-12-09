@@ -110,7 +110,7 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
     private ClusterManager.OnClusterInfoWindowClickListener<T> mInfoWindowClickListener;
     private ClusterManager.OnClusterItemClickListener<T> mItemClickListener;
     private ClusterManager.OnClusterItemInfoWindowClickListener<T> mItemInfoWindowClickListener;
-    private String string;
+//    private String string;
 
     public DefaultClusterRenderer(Context context, BaiduMap map, ClusterManager<T> clusterManager) {
         mMap = map;
@@ -773,7 +773,7 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
 //            mColoredCircleBackground.getPaint().setColor(getColor(bucket));
             mColoredCircleBackground.getPaint().setColor(Color.TRANSPARENT);
             //TODO 最外层图像上面的文字填充↓
-            descriptor = BitmapDescriptorFactory.fromBitmap(mIconGenerator.makeIcon(string + "" + getClusterText(bucket)));
+            descriptor = BitmapDescriptorFactory.fromBitmap(mIconGenerator.makeIcon(getClusterText(bucket)));
             mIcons.put(bucket, descriptor);
         }
         // TODO: consider adding anchor(.5, .5) (Individual markers will overlap more often)
@@ -883,15 +883,15 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
                         if (animateFrom != null) {
                             markerOptions.position(animateFrom);
                             markerOptions.icon(item.getBitmapDescriptor());
-                            string = item.getString();
-                            Log.i("点聚合区域","animateFrom:mString:" + string);
-                            markerOptions.title(item.getString());
+//                            string = item.getString();
+//                            Log.i("点聚合区域","animateFrom:mString:" + string);
+//                            markerOptions.title(item.getString());
                         } else {
                             markerOptions.position(item.getPosition());
                             markerOptions.icon(item.getBitmapDescriptor());
-                            string = item.getString();
-                            Log.i("点聚合区域","animateFrom:else:mString:" + string);
-                            markerOptions.title(item.getString());
+//                            string = item.getString();
+//                            Log.i("点聚合区域","animateFrom:else:mString:" + string);
+//                            markerOptions.title(item.getString());
                         }
                         onBeforeClusterItemRendered(item, markerOptions);
                         marker = mClusterManager.getMarkerCollection().addMarker(markerOptions);
