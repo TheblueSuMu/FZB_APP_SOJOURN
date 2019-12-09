@@ -16,7 +16,6 @@ import androidx.core.content.ContextCompat;
 
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.persente.StatusBar;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 public class AllActivity extends AppCompatActivity {
 
@@ -98,25 +97,25 @@ public class AllActivity extends AppCompatActivity {
                     case 200://刚才的识别码
                         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
                         } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                            ToastUtil.showLongToast(AllActivity.this, "未开启定位权限,请手动到设置去开启权限");
+//                            ToastUtil.showLongToast(AllActivity.this, "未开启定位权限,请手动到设置去开启权限");
                         }
                         break;
                     case 3://刚才的识别码
                         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
                         } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-//                    ToastUtil.showLongToast(AllActivity.this, "未开启相机权限,请手动到设置去开启相机权限");
+//                            ToastUtil.showLongToast(AllActivity.this, "未开启相机权限,请手动到设置去开启相机权限");
                         }
                         break;
                     case 2://刚才的识别码
                         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
                         } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                            ToastUtil.showLongToast(AllActivity.this, "未开启存储权限,请手动到设置去开启权限");
+//                            ToastUtil.showLongToast(AllActivity.this, "未开启存储权限,请手动到设置去开启权限");
                         }
                         break;
                     case 1://刚才的识别码
                         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
                         } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                            ToastUtil.showLongToast(AllActivity.this, "未开启读取通讯录权限,请手动到设置去开启读取通讯录权限");
+//                            ToastUtil.showLongToast(AllActivity.this, "未开启读取通讯录权限,请手动到设置去开启读取通讯录权限");
                         }
                         break;
                     default:

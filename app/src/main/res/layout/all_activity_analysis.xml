@@ -351,7 +351,7 @@
                         android:layout_marginLeft="19dp"
                         android:singleLine="true"
                         android:textSize="15sp"
-                        android:textColor="#111111"
+                        android:textColor="#334485"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
