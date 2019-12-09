@@ -622,7 +622,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     public void onNext(UserIdentity userIdentity) {
                         if (userIdentity.getData().getIdentity().equals("1") || userIdentity.getData().getIdentity().equals("2") || userIdentity.getData().getIdentity().equals("3")) {
                             initBroker();
-                        } else if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63")) {
+                        } else if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63") || userIdentity.getData().getIdentity().equals("8") || userIdentity.getData().getIdentity().equals("9")) {
                             initExemplary();
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
@@ -688,7 +688,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     public void onNext(UserIdentity userIdentity) {
                         if (userIdentity.getData().getIdentity().equals("1") || userIdentity.getData().getIdentity().equals("2") || userIdentity.getData().getIdentity().equals("3")) {
                             initBroker();
-                        } else if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7") || userIdentity.getData().getIdentity().equals("63")) {
+                        } else if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7") || userIdentity.getData().getIdentity().equals("63") || userIdentity.getData().getIdentity().equals("8") || userIdentity.getData().getIdentity().equals("9")) {
                             initExemplary();
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62")) {
                             initCaptain();
@@ -850,7 +850,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
-                            if (userBean.getData().getIdentity().equals("5")) {
+                            if (userBean.getData().getIdentity().equals("5") || userBean.getData().getIdentity().equals("8") || userBean.getData().getIdentity().equals("9")) {
                                 //  TODO 专员端登录
                                 Intent intent = new Intent(LoginActivity.this, Project_Attache_MainActivity.class);
                                 FinalContents.setUserID(userBean.getData().getId());
@@ -1495,7 +1495,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         passWord = "";
                         if (userIdentity.getData().getIdentity().equals("1") || userIdentity.getData().getIdentity().equals("2") || userIdentity.getData().getIdentity().equals("3")) {
                             initBroker();
-                        } else if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63")) {
+                        } else if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63") || userIdentity.getData().getIdentity().equals("8") || userIdentity.getData().getIdentity().equals("9")) {
                             initExemplary();
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();

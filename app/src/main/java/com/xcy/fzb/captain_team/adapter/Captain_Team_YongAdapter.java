@@ -84,25 +84,23 @@ public class Captain_Team_YongAdapter extends RecyclerView.Adapter<Captain_Team_
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout item_sales_details_details_relative;
+        RelativeLayout item_sales_details_details_relative_btn;
         ImageView item_sales_details_details_money_img;
         ImageView item_sales_details_details_back_img;
         TextView item_sales_details_details_relative_title;
         TextView item_sales_details_details_relative_content1;
         TextView item_sales_details_details_relative_content2;
         TextView item_sales_details_details_relative_content3;
-        TextView item_sales_details_details_relative_btn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            item_sales_details_details_relative = itemView.findViewById(R.id.item_sales_details_details_relative);
+            item_sales_details_details_relative_btn = itemView.findViewById(R.id.item_sales_details_details_relative_btn);
             item_sales_details_details_money_img = itemView.findViewById(R.id.item_sales_details_details_money_img);
             item_sales_details_details_back_img = itemView.findViewById(R.id.item_sales_details_details_back_img);
             item_sales_details_details_relative_title = itemView.findViewById(R.id.item_sales_details_details_relative_title);
             item_sales_details_details_relative_content1 = itemView.findViewById(R.id.item_sales_details_details_relative_content1);
             item_sales_details_details_relative_content2 = itemView.findViewById(R.id.item_sales_details_details_relative_content2);
             item_sales_details_details_relative_content3 = itemView.findViewById(R.id.item_sales_details_details_relative_content3);
-            item_sales_details_details_relative_btn = itemView.findViewById(R.id.item_sales_details_details_relative_btn);
 
         }
     }

@@ -27,8 +27,10 @@ import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.FamilyInfoBean;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -71,6 +73,9 @@ public class AnalysisActivity extends AllActivity {
     float quarterly3 = 34;
     private LinearLayout all_activity_analysis_linear;
     private LinearLayout all_activity_analysis_analysis_linear;
+    double d = 0;
+    double o = 0;
+    private String location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +141,13 @@ public class AnalysisActivity extends AllActivity {
         all_activity_analysis_site.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (location.equals("")) {
+                    ToastUtil.showLongToast(AnalysisActivity.this,"当前无法进入地图");
+                }else {
+                    Intent mapintent = new Intent(AnalysisActivity.this, MapActivity.class);
+                    mapintent.putExtra("office", "1");
+                    startActivity(mapintent);
+                }
             }
         });         //      TODO    进入地图导航页
     }
@@ -189,6 +200,18 @@ public class AnalysisActivity extends AllActivity {
                             all_activity_analysis_price.setVisibility(View.VISIBLE);
                             all_activity_analysis_price.setText("¥" + familyInfoBean.getData().getAverage() + "/m²");
                         }
+
+                        //地图
+                        //从pd里取出字符串
+                        location = familyInfoBean.getData().getProject().getLocation();
+                        if (!location.equals("")) {
+                            List tags = Arrays.asList(location.split(","));//根据逗号分隔转化为list
+                            double d = Double.parseDouble(tags.get(0).toString());
+                            double o = Double.parseDouble(tags.get(1).toString());
+                            FinalContents.setO(o);
+                            FinalContents.setD(d);
+                        }
+
 
 
                         all_activity_analysis_acreage_area.setText(familyInfoBean.getData().getFamilyArea() + "m²");

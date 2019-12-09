@@ -778,5 +778,8 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
     protected void onDestroy() {
         super.onDestroy();
         CityContents.setOneKey("");
+        FinalContents.setProjectID("");
+        FinalContents.setProjectName("");
+        FinalContents.setCommissionId("");
     }
 }
