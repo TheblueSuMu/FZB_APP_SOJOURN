@@ -39,6 +39,12 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.SearchResult;
+import com.baidu.mapapi.search.geocode.GeoCodeOption;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.baidu.mapapi.utils.route.BaiduMapRoutePlan;
 import com.baidu.mapapi.utils.route.RouteParaOption;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
@@ -57,7 +63,13 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.project_attache.adapter.ClusterItem;
 import com.xcy.fzb.project_attache.adapter.ClusterManager;
 
+import org.apache.commons.lang.StringUtils;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -139,6 +151,9 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
     int ifMapStart = 0;
     private String projectId;
     private String projectType;
+    private GeoCoder mCoder;
+    private double latitude;
+    private double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -285,6 +300,8 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         // 开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
 
+        mCoder = GeoCoder.newInstance();
+        mCoder.setOnGetGeoCodeResultListener(listenerS);
 
         // 定位初始化
         mLocClient = new
@@ -449,15 +466,17 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
 
         if (ifStart == 0) {
             mLayoutIn = LayoutInflater.from(MapHouseActivity.this);
+            Log.i("地图Map", " FinalContents.getCityName():" + FinalContents.getCityName());
             if (FinalContents.getIfCity().equals("")) {
-                android.location.Address geoPointBystr = getGeoPointBystr(MapHouseActivity.this, FinalContents.getCityName());
-                mMapStatus = new MapStatus.Builder().target(new LatLng(geoPointBystr.getLatitude(), geoPointBystr.getLongitude())).zoom(10).build();
+                mCoder.geocode(new GeoCodeOption()
+                        .city(FinalContents.getCityName())
+                        .address(FinalContents.getCityName()));
             } else {
                 for (int i = 0; i < data.size(); ++i) {
                     if (data.get(i).getId().equals(FinalContents.getIfCity())) {
-                        android.location.Address geoPointBystr = getGeoPointBystr(MapHouseActivity.this, data.get(i).getCity());
-                        mMapStatus = new MapStatus.Builder().target(new LatLng(geoPointBystr.getLatitude(), geoPointBystr.getLongitude())).zoom(10).build();
-                        Log.i("地图经纬度", "经纬度：" + geoPointBystr.getLatitude() + "      经纬度：" + geoPointBystr.getLongitude());
+                        mCoder.geocode(new GeoCodeOption()
+                                .city(data.get(i).getCity())
+                                .address(data.get(i).getCity()));
                         break;
                     }
                 }
@@ -466,11 +485,20 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         } else {
             mLayoutIn = LayoutInflater.from(MapHouseActivity.this);
             mMapStatus = new MapStatus.Builder().target(new LatLng(position.latitude, position.longitude)).zoom(20).build();
+            initMapsData();
         }
 
+    }
+
+    private void initMapsData() {
+
+        Log.i("地图", "latitude:" + latitude);
+        Log.i("地图", "longitude:" + longitude);
+
+        Log.i("地图", "中");
         mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(mMapStatus));
         // 定义点聚合管理类ClusterManager
-        mClusterManager = new ClusterManager<MyItem>(this, mBaiduMap);
+        mClusterManager = new ClusterManager<MyItem>(MapHouseActivity.this, mBaiduMap);
         // 添加Marker点
         addMarkers();
         // 设置地图监听，当地图状态发生改变时，进行点聚合运算
@@ -568,11 +596,11 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                                 if (append.substring(j, j + 1).equals(",")) {
                                     vs1 = Double.parseDouble(append.substring(0, j));
                                     vs2 = Double.parseDouble(append.substring(j + 1));
-                                    Log.i("地图maker", "item1.getPosition().longitude:" + item1.getPosition().longitude);
-                                    Log.i("地图maker", "vs1:" + vs1);
+//                                    Log.i("地图maker", "item1.getPosition().longitude:" + item1.getPosition().longitude);
+//                                    Log.i("地图maker", "vs1:" + vs1);
                                     if (item1.getPosition().longitude == vs1) {
-                                        Log.i("地图maker", "i:" + i);
-                                        Log.i("地图maker", "rows1.get(i).getStatus():" + rows1.get(i).getStatus());
+//                                        Log.i("地图maker", "i:" + i);
+//                                        Log.i("地图maker", "rows1.get(i).getStatus():" + rows1.get(i).getStatus());
                                         if (rows1.get(i).getStatus().equals("0")) {
                                             pop_title.setText(rows1.get(i).getCompanyName() + "(未合作)");
                                             isName = rows1.get(i).getCompanyName() + "(未合作)";
@@ -587,7 +615,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
 //                                                pop_title.setText(rows1.get(i).getCompanyName() + "(维护)");
 //                                            } else {
                                             pop_title.setVisibility(View.VISIBLE);
-                                            Log.i("地图maker", "rows1.get(i).getCompanyName():" + rows1.get(i).getCompanyName());
+//                                            Log.i("地图maker", "rows1.get(i).getCompanyName():" + rows1.get(i).getCompanyName());
                                             pop_title.setText(rows1.get(i).getCompanyName());
                                             isName = rows1.get(i).getCompanyName();
 //                                            }
@@ -711,6 +739,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 return false;
             }
         });
+
     }
 
 
@@ -745,7 +774,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                                 double v1 = Double.parseDouble(append.substring(j + 1));
 //                            Log.i("地图maker", "添加门店数据:" + v + "," + v1);
                                 strings.add(rows.get(i).getStoreName());
-                                items.add(new MyItem(new LatLng(v1, v),""));
+                                items.add(new MyItem(new LatLng(v1, v), ""));
                             }
                         }
                     }
@@ -783,7 +812,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         }
-        Log.i("MyCL", "items数据长度：" + items.size());
+//        Log.i("MyCL", "items数据长度：" + items.size());
 //        Log.i("地图maker", "items数据长度:" + items.size());
         mClusterManager.addItems(items);
     }
@@ -993,19 +1022,19 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         }
 
         mViewHolder.mTextView.setText(str);//设置文字
-        Log.i("地图maker", "str:" + str);
-        Log.i("地图maker", "isName:" + isName);
+//        Log.i("地图maker", "str:" + str);
+//        Log.i("地图maker", "isName:" + isName);
         if (str.toString().equals(isName)) {
-            Log.i("地图maker", "文字颜色：111111");
+//            Log.i("地图maker", "文字颜色：111111");
             mViewHolder.mTextView.setTextColor(Color.parseColor("#FFFFFF"));
             mViewHolder.mTextView.setBackground(this.getResources().getDrawable(R.mipmap.mapb));
         } else {
-            Log.i("地图maker", "文字颜色：FFFFFF");
+//            Log.i("地图maker", "文字颜色：FFFFFF");
             mViewHolder.mTextView.setTextColor(Color.parseColor("#111111"));
-            mViewHolder.mTextView.setBackground(this.getResources().getDrawable(R.mipmap.mapbs));
+            mViewHolder.mTextView.setBackground(this.getResources().getDrawable(R.mipmap.mapbss));
         }
 
-        Log.i("地图maker", "view:" + view);
+//        Log.i("地图maker", "view:" + view);
 
         return view;//返回
 
@@ -1147,27 +1176,34 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         public void onReceivePoi(BDLocation poiLocation) {
         }
     }
+    OnGetGeoCoderResultListener listenerS = new OnGetGeoCoderResultListener() {
 
-    //地址转经纬度
-    public static android.location.Address getGeoPointBystr(Context context, String str) {
-        android.location.Address address_temp = null;
-        if (str != null) {
-            Geocoder gc = new Geocoder(context, Locale.CHINA);
-            List<android.location.Address> addressList = null;
-            try {
-                addressList = gc.getFromLocationName(str, 1);
-                if (!addressList.isEmpty()) {
-                    address_temp = addressList.get(0);
-                    double Latitude = address_temp.getLatitude();
-                    double Longitude = address_temp.getLongitude();
-                    Log.d("zxc003", str + " Latitude = " + Latitude + " Longitude = " + Longitude);
+        @Override
+        public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
+//            Log.i("地图", "geoCodeResult：" + geoCodeResult);
+//            Log.i("地图", "geoCodeResult.getLocation()：" + geoCodeResult.getLocation());
+            if (null != geoCodeResult && null != geoCodeResult.getLocation()) {
+//                Log.i("地图", "geoCodeResult：" + geoCodeResult);
+//                Log.i("地图", "geoCodeResult.error：" + geoCodeResult.error);
+                if (geoCodeResult == null || geoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+                    //没有检索到结果
+                    Log.i("地图", "没有检索到结果");
+                    return;
+                } else {
+                    latitude = geoCodeResult.getLocation().latitude;
+                    longitude = geoCodeResult.getLocation().longitude;
+                    Log.i("地图", "先");
+                    mMapStatus = new MapStatus.Builder().target(new LatLng(latitude, longitude)).zoom(10).build();
+                    initMapsData();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
-        return address_temp;
-    }
+
+        @Override
+        public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+
+        }
+    };
 
     //获取地图当前缩放比例
     BaiduMap.OnMapStatusChangeListener listener = new BaiduMap.OnMapStatusChangeListener() {

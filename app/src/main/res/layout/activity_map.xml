@@ -44,7 +44,6 @@
             <ImageView
                 android:id="@+id/map_navigation"
                 android:layout_width="17dp"
-                android:visibility="gone"
                 android:layout_height="19sp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="34dp"

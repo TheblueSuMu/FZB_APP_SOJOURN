@@ -39,6 +39,7 @@ import com.xcy.fzb.all.view.PersonalInformationActivity;
 import com.xcy.fzb.captain_counselor.view.Captain_Counselor_CommissionTheProjectEndActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -47,7 +48,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MeFragment extends AllFragment implements View.OnClickListener {
+public class MeFragment extends AllFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     RelativeLayout my_collect;
     RelativeLayout my_comment;
@@ -73,7 +74,7 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
     private Intent intent;
     private GWDataBean.DataBean data;
     private TextView my_tv_huancun;
-
+    private SwipeRefreshLayout layout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,7 +103,7 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
         counselor_phone = getActivity().findViewById(R.id.counselor_phone);
         e_client_tv = getActivity().findViewById(R.id.e_client_tv);
         e_commissions_tv = getActivity().findViewById(R.id.e_commissions_tv);
-
+        layout = getActivity().findViewById(R.id.e_ssrfl_6);
         me_photo = getActivity().findViewById(R.id.me_photo);
         me_name = getActivity().findViewById(R.id.me_name);
         me_identity = getActivity().findViewById(R.id.me_identity);
@@ -115,7 +116,7 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        layout.setOnRefreshListener(this);
         me_img_phone.setOnClickListener(this);
         me_gr.setOnClickListener(this);
         me_Client.setOnClickListener(this);
@@ -353,5 +354,19 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
             init();
             NewlyIncreased.setUserMessage("");
         }
+    }
+
+    @Override
+    public void onRefresh() {
+
+        if (layout.isRefreshing()) {//如果正在刷新
+//            initView();
+//            initHotList();
+            initUserMessage();
+            initClientCommissions();
+            layout.setRefreshing(false);//取消刷新
+        }
+
+
     }
 }

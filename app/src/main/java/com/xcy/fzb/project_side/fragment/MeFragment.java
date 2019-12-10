@@ -34,6 +34,7 @@ import com.xcy.fzb.all.view.CollectActivity;
 import com.xcy.fzb.all.view.FeedbackActivity;
 import com.xcy.fzb.all.view.PersonalInformationActivity;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -46,7 +47,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MeFragment extends Fragment implements View.OnClickListener {
+public class MeFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     ImageView img_my_the_project_end;
     TextView name_my_the_project_end;
@@ -62,6 +63,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     RelativeLayout side_rl;
     private Intent intent;
     private TextView my_tv_huancun;
+    private SwipeRefreshLayout layout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,14 +88,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         about_my_the_project_end = getActivity().findViewById(R.id.about_my_the_project_end);
         empty_my_the_project_end = getActivity().findViewById(R.id.empty_my_the_project_end);
         exit_my_the_project_end = getActivity().findViewById(R.id.exit_my_the_project_end);
-
+        layout = getActivity().findViewById(R.id.e_ssrfl_3);
         my_tv_huancun = getActivity().findViewById(R.id.my_tv_huancun);
         try {
             my_tv_huancun.setText(CleanDataUtils.getTotalCacheSize(getActivity()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        layout.setOnRefreshListener(this);
         side_rl.setOnClickListener(this);
         collect_my_the_project_end.setOnClickListener(this);
         comment_my_the_project_end.setOnClickListener(this);
@@ -179,7 +181,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
     //TODO 用户信息赋值
-    private void initUser(){
+    private void initUser() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -212,7 +214,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -222,7 +224,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 });
     }
 
-    private void init(){
+    private void init() {
         UserBean userBean = Connector.getUserBean();
         Glide.with(getActivity()).load(FinalContents.getImageUrl() + userBean.getData().getPhoto()).into(img_my_the_project_end);
         name_my_the_project_end.setText(userBean.getData().getName());
@@ -236,8 +238,20 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        if (NewlyIncreased.getUserMessage().equals("7")){
+        if (NewlyIncreased.getUserMessage().equals("7")) {
             init();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+
+        if (layout.isRefreshing()) {//如果正在刷新
+//            initView();
+//            initHotList();
+            initUser();
+            layout.setRefreshing(false);//取消刷新
+        }
+
     }
 }

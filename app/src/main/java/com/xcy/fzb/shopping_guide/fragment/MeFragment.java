@@ -34,6 +34,7 @@ import com.xcy.fzb.all.view.CollectActivity;
 import com.xcy.fzb.all.view.FeedbackActivity;
 import com.xcy.fzb.all.view.PersonalInformationActivity;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -46,7 +47,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MeFragment extends Fragment implements View.OnClickListener {
+public class MeFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     ImageView img_my_the_project_end;
     TextView name_my_the_project_end;
@@ -62,7 +63,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     RelativeLayout guide_rl;
     private Intent intent;
     private TextView my_tv_huancun;
-
+    private SwipeRefreshLayout layout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         position_my_the_project_end = getActivity().findViewById(R.id.position_my_the_project_end);
         shop_my_the_project_end = getActivity().findViewById(R.id.shop_my_the_project_end);
         guide_rl = getActivity().findViewById(R.id.guide_rl);
-
+        layout = getActivity().findViewById(R.id.e_ssrfl_2);
         collect_my_the_project_end = getActivity().findViewById(R.id.collect_my_the_project_end);
         comment_my_the_project_end = getActivity().findViewById(R.id.comment_my_the_project_end);
         about_my_the_project_end = getActivity().findViewById(R.id.about_my_the_project_end);
@@ -93,7 +94,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        layout.setOnRefreshListener(this);
         guide_rl.setOnClickListener(this);
         collect_my_the_project_end.setOnClickListener(this);
         comment_my_the_project_end.setOnClickListener(this);
@@ -245,4 +246,13 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onRefresh() {
+        if (layout.isRefreshing()) {//如果正在刷新
+//            initView();
+//            initHotList();
+            initUser();
+            layout.setRefreshing(false);//取消刷新
+        }
+    }
 }

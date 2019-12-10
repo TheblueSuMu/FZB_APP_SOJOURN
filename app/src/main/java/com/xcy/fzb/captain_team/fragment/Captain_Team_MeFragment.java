@@ -40,6 +40,7 @@ import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivit
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyTeamActivity;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -48,7 +49,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Captain_Team_MeFragment extends AllFragment implements View.OnClickListener {
+public class Captain_Team_MeFragment extends AllFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     RelativeLayout my_collect;
     RelativeLayout my_comment;
@@ -76,6 +77,7 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
 
     private Intent intent;
     private TextView my_tv_huancun;
+    private SwipeRefreshLayout layout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -117,13 +119,15 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
         me_city = getActivity().findViewById(R.id.me_city);
         me_store = getActivity().findViewById(R.id.me_store);
 
+        layout = getActivity().findViewById(R.id.e_ssrfl_5);
+
         my_tv_huancun = getActivity().findViewById(R.id.my_tv_huancun);
         try {
             my_tv_huancun.setText(CleanDataUtils.getTotalCacheSize(getActivity()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        layout.setOnRefreshListener(this);
         me_img_phone.setOnClickListener(this);
         me_gr.setOnClickListener(this);
         me_Client.setOnClickListener(this);
@@ -150,7 +154,7 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ZhangBingDataBean> userMessage = fzbInterface.getZhangBingBean(FinalContents.getUserID(),FinalContents.getUserID() );
+        Observable<ZhangBingDataBean> userMessage = fzbInterface.getZhangBingBean(FinalContents.getUserID(), FinalContents.getUserID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ZhangBingDataBean>() {
@@ -163,9 +167,9 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
                     public void onNext(ZhangBingDataBean userMessageBean) {
                         ZhangBingDataBean.DataBean data = userMessageBean.getData();
 
-                        if(data.getSysUser().getPhoto().equals("")){
+                        if (data.getSysUser().getPhoto().equals("")) {
                             Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getSysUser().getManager().getPhoto()).into(me_photo);
-                        }else {
+                        } else {
                             Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getSysUser().getPhoto()).into(me_photo);
                         }
 
@@ -204,7 +208,6 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
     }
 
 
-
     //点击事件
 
     @Override
@@ -217,13 +220,13 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
         } else if (id == R.id.me_Client) {
 //            TODO 成交量
             intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
-            intent.putExtra("client","5");
+            intent.putExtra("client", "5");
             FinalContents.setMySelf("1");
             FinalContents.setQuanceng("1");
             FinalContents.setAgentId(FinalContents.getUserID());
             startActivity(intent);
 
-        }else if (id == R.id.me_team) {
+        } else if (id == R.id.me_team) {
 //            TODO 我的团队
             intent = new Intent(getContext(), Captain_Team_MyTeamActivity.class);
             startActivity(intent);
@@ -320,7 +323,7 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
                     public void onNext(MyDataBean myDataBean) {
                         e_client_tv.setText(myDataBean.getData().getTradeNum());
                         e_commissions_tv.setText(myDataBean.getData().getMyAmount());
-                        e_commissions_team.setText(myDataBean.getData().getMyTeamNum()+"");
+                        e_commissions_team.setText(myDataBean.getData().getMyTeamNum() + "");
                     }
 
                     @Override
@@ -336,12 +339,12 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
 
     }
 
-    private void init(){
+    private void init() {
         ZhangBingDataBean.DataBean data = Connector.getZhangBingDataBean().getData();
 
-        if(data.getSysUser().getPhoto().equals("")){
+        if (data.getSysUser().getPhoto().equals("")) {
             Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getSysUser().getManager().getPhoto()).into(me_photo);
-        }else {
+        } else {
             Glide.with(getActivity()).load(FinalContents.getImageUrl() + data.getSysUser().getPhoto()).into(me_photo);
         }
 
@@ -361,9 +364,24 @@ public class Captain_Team_MeFragment extends AllFragment implements View.OnClick
     @Override
     public void onResume() {
         super.onResume();
-        if (NewlyIncreased.getUserMessage().equals("60")){
+        if (NewlyIncreased.getUserMessage().equals("60")) {
             init();
             NewlyIncreased.setUserMessage("");
         }
+    }
+
+    @Override
+    public void onRefresh() {
+
+        if (layout.isRefreshing()) {//如果正在刷新
+//            initView();
+//            initHotList();
+//        根据用户Id获取用户信息
+            initUserMessage();
+//        我的佣金和客户数量
+            initClientCommissions();
+            layout.setRefreshing(false);//取消刷新
+        }
+
     }
 }

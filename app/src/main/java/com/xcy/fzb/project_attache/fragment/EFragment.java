@@ -38,6 +38,7 @@ import com.xcy.fzb.project_attache.adapter.MyDataStoreBean;
 import com.xcy.fzb.project_attache.view.CommissionActivity;
 import com.xcy.fzb.project_attache.view.PunchingCardRecordActivity;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -46,7 +47,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class EFragment extends Fragment implements View.OnClickListener {
+public class EFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     RelativeLayout my_collect;
     RelativeLayout my_comment;
@@ -69,7 +70,7 @@ public class EFragment extends Fragment implements View.OnClickListener {
     LinearLayout attache_ll_2;
     TextView attache_tv_1;
     TextView attache_tv_2;
-
+    private SwipeRefreshLayout layout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -95,7 +96,7 @@ public class EFragment extends Fragment implements View.OnClickListener {
         attache_ll_2 = getActivity().findViewById(R.id.attache_ll_2);
         attache_tv_1 = getActivity().findViewById(R.id.attache_tv_1);
         attache_tv_2 = getActivity().findViewById(R.id.attache_tv_2);
-
+        layout = getActivity().findViewById(R.id.e_ssrfl_4);
         my_rl_1 = getActivity().findViewById(R.id.my_rl_1);
         me_photo = getActivity().findViewById(R.id.me_photo);
         me_name = getActivity().findViewById(R.id.me_name);
@@ -109,7 +110,7 @@ public class EFragment extends Fragment implements View.OnClickListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        layout.setOnRefreshListener(this);
         my_rl_1.setOnClickListener(this);
         my_collect.setOnClickListener(this);
         my_comment.setOnClickListener(this);
@@ -189,6 +190,10 @@ public class EFragment extends Fragment implements View.OnClickListener {
 
                         if (userMessageBean.getData().getIdentity().equals("5")) {
                             me_identity.setText("专员");
+                        }else if (userMessageBean.getData().getIdentity().equals("8")) {
+                            me_identity.setText("经理");
+                        }else if (userMessageBean.getData().getIdentity().equals("9")) {
+                            me_identity.setText("总监");
                         }
                         me_city.setText(data.getCity());
                         me_store.setText(data.getStoreManage() + "");
@@ -317,6 +322,19 @@ public class EFragment extends Fragment implements View.OnClickListener {
         if (NewlyIncreased.getUserMessage().equals("5")){
             init();
             NewlyIncreased.setUserMessage("");
+        }
+
+    }
+
+    @Override
+    public void onRefresh() {
+
+        if (layout.isRefreshing()) {//如果正在刷新
+//            initView();
+//            initHotList();
+            initUserMessage();
+            initMyDataStore();
+            layout.setRefreshing(false);//取消刷新
         }
 
     }
