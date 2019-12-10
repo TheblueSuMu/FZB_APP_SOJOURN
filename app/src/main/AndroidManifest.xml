@@ -115,6 +115,7 @@
         <activity android:name=".all.view.AnalysisActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 户型解析-->
         <activity android:name=".all.view.CityWideActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 同城项目或跨城项目-->
         <activity android:name=".all.view.PhoneActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 通讯录-->
+        <activity android:name=".all.view.WeChatBindingActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 微信绑定或解绑-->
 
         <activity android:name=".FinMag" android:theme="@style/LunchTheme">       <!--TODO 域名-->
 <!--            <intent-filter>-->

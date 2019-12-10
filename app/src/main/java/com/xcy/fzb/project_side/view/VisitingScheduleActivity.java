@@ -110,7 +110,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
     private EditText fill_in_transaction_information_et4;
     private EditText fill_in_transaction_information_et3;
     private String gender = "";     //  TODO    性别
-    private int sum = 0;
+    private String sum = "";
     private String projecttype;
     private RecyclerView fill_in_transaction_information_rv;
     private TextView fill_in_transaction_information_tishi;
@@ -241,8 +241,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                         double area = Double.parseDouble(s1);
                         double price = Double.parseDouble(s2);
                         sum = GetInt.getInt((area * price));
-                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                        str = myformat.format(sum);
+                        str = sum;
                         fill_in_transaction_information_et6.setText(str + "元");
                         fill_in_transaction_information_tishi.setVisibility(View.GONE);
                         return true;
@@ -272,8 +271,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
                             sum = GetInt.getInt((area * price));
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                            str = myformat.format(sum);
+                            str = sum;
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
@@ -304,8 +302,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
                             sum = GetInt.getInt((area * price));
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                            str = myformat.format(sum);
+                            str = sum;
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
@@ -604,6 +601,17 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
             }
         });
 
+        dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+            @Override
+            public void onSelectedDateChanged(Calendar date) {
+                int year = date.get(Calendar.YEAR);
+                int month = date.get(Calendar.MONTH);
+                int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
+                project_time.setText(dateString);
+            }
+        });
+
         //            TODO 时间
         project_time.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -798,7 +806,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                         fill_in_transaction_information_et4.setText(tradeAuditBean.getData().getArea());
                         fill_in_transaction_information_et5.setText(tradeAuditBean.getData().getPrice());
                         fill_in_transaction_information_et6.setText(tradeAuditBean.getData().getTotalPrice() + "元");
-                        sum = Integer.parseInt(tradeAuditBean.getData().getTotalPrice());
+                        sum = tradeAuditBean.getData().getTotalPrice();
                         str = tradeAuditBean.getData().getTotalPrice();
                         payment_way.setText(tradeAuditBean.getData().getPaymentMethod());
                         project_time.setText(tradeAuditBean.getData().getTradeDate());

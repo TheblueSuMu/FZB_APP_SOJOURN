@@ -11,6 +11,26 @@ public class CityContents {
 
     static String addClient = "";
 
+    static String WeChatType = "";
+
+    static String WeChatJson = "";
+
+    public static String getWeChatType() {
+        return WeChatType;
+    }
+
+    public static void setWeChatType(String weChatType) {
+        WeChatType = weChatType;
+    }
+
+    public static String getWeChatJson() {
+        return WeChatJson;
+    }
+
+    public static void setWeChatJson(String weChatJson) {
+        WeChatJson = weChatJson;
+    }
+
     public static String getAddClient() {
         return addClient;
     }

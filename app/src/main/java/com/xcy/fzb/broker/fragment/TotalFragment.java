@@ -315,5 +315,9 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
         }
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        FinalContents.setEconomicCircleID("");
+    }
 }

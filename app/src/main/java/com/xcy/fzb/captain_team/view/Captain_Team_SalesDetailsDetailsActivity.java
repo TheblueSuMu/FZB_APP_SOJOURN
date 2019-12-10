@@ -317,7 +317,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         }else {
                             sales_details_details_linear1.setVisibility(View.GONE);
                         }
-
                     }
 
                     @Override
@@ -603,9 +602,10 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
             //      TODO 数据统计 自定义
             case R.id.sales_details_details_rb4:
                 sales_details_details_ll1.setVisibility(View.VISIBLE);
-                initDate();
                 type = "3";
+                initDate();
                 NewlyIncreased.setTag("3");
+                initDataStatistics();
                 break;
             //      TODO 选择开始时间
             case R.id.sales_details_details_time1:
@@ -787,8 +787,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     NewlyIncreased.setTag("2");
                     sales_details_details_ll1.setVisibility(View.GONE);
                 } else if (sales_details_details_rb4.isChecked() == true) {
-                    initDate();
                     type = "3";
+                    initDate();
                     initDataStatistics();
                     NewlyIncreased.setTag("3");
                     sales_details_details_ll1.setVisibility(View.VISIBLE);
@@ -826,8 +826,9 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     NewlyIncreased.setTag("2");
                     sales_details_details_ll1.setVisibility(View.GONE);
                 } else if (sales_details_details_rb4.isChecked() == true) {
-                    initDate();
                     type = "3";
+                    initDate();
+                    initDataStatistics();
                     NewlyIncreased.setTag("3");
                     sales_details_details_ll1.setVisibility(View.VISIBLE);
                 }
@@ -888,6 +889,9 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
         dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+
+        startTime = string;
+        endTime = string;
 
         sales_details_details_ensure.setOnClickListener(new View.OnClickListener() {
             @Override

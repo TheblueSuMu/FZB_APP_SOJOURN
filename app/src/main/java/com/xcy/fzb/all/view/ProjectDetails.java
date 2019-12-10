@@ -843,7 +843,13 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         project_details_scrollview.setVisibility(View.VISIBLE);
                         projectDetailsBeanData = projectDetailsBean.getData();
                         Log.i("wsm", "fdsafd:" + projectDetailsBeanData.getProjectListVo().getProjectImg());
-                        Glide.with(ProjectDetails.this).load(FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg()).into(backimg);
+                        if (projectDetailsBean.getData().getProjectListVo().getProjectImg().equals("")) {
+                            backimg.setImageResource(R.mipmap.banner_img);
+                        }else {
+                            Glide.with(ProjectDetails.this).load(FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg()).into(backimg);
+                        }
+
+
                         if (projectDetailsBeanData.getProjectListVo().getReferenceToatlPrice().equals("")) {
                             guowai1.setVisibility(View.GONE);
                             guowai2.setVisibility(View.GONE);

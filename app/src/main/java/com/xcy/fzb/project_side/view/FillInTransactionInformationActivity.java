@@ -111,7 +111,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
     private EditText fill_in_transaction_information_et4;
     private EditText fill_in_transaction_information_et3;
     private String gender = "";     //  TODO    性别
-    private int sum = 0;
+    private String sum = "";
     private String projecttype;
     private RecyclerView fill_in_transaction_information_rv;
     private TextView fill_in_transaction_information_tishi;
@@ -242,8 +242,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                         double area = Double.parseDouble(s1);
                         double price = Double.parseDouble(s2);
                         sum = GetInt.getInt((area * price));
-                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                        str = myformat.format(sum);
+                        str = sum;
                         fill_in_transaction_information_et6.setText(str + "元");
                         fill_in_transaction_information_tishi.setVisibility(View.GONE);
                         return true;
@@ -273,8 +272,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
                             sum = GetInt.getInt((area * price));
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                            str = myformat.format(sum);
+                            str = sum;
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
@@ -305,8 +303,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
                             sum = GetInt.getInt((area * price));
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                            str = myformat.format(sum);
+                            str = sum;
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
@@ -635,7 +632,6 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
         int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
-        project_time.setText(dateString);
         dateTimePickerView.setStartDate(new GregorianCalendar(year - 2, month - 1, dayOfMonth));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(2019, month - 1, dayOfMonth));
@@ -652,6 +648,17 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
             @Override
             public void onClick(View view) {
                 picker.setVisibility(View.GONE);
+            }
+        });
+
+        dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+            @Override
+            public void onSelectedDateChanged(Calendar date) {
+                int year = date.get(Calendar.YEAR);
+                int month = date.get(Calendar.MONTH);
+                int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
+                project_time.setText(dateString);
             }
         });
 
@@ -857,7 +864,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                         fill_in_transaction_information_et4.setText(findTradeBean.getData().getFfServerTrade().getArea());
                         fill_in_transaction_information_et5.setText(findTradeBean.getData().getFfServerTrade().getPrice());
                         fill_in_transaction_information_et6.setText(findTradeBean.getData().getFfServerTrade().getTotalPrice() + "元");
-                        sum = Integer.parseInt(findTradeBean.getData().getFfServerTrade().getTotalPrice());
+                        sum = findTradeBean.getData().getFfServerTrade().getTotalPrice();
                         str = findTradeBean.getData().getFfServerTrade().getTotalPrice();
                         payment_way.setText(findTradeBean.getData().getFfServerTrade().getPaymentMethod());
                         project_time.setText(findTradeBean.getData().getFfServerTrade().getTradeDate());

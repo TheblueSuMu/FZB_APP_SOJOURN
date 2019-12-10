@@ -376,6 +376,11 @@ public interface MyService {
     @POST("commonSelect/reportNoReadList")
     Observable<ReportNoReadListBean> getReportNoReadList(@Query("userId") String userId, @Query("projectId") String projectId, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("searchName") String searchName, @Query("teamTag") String teamTag);
 
+    //圈层未读消息数据
+    @POST("layersSelect/getreportNoRead")
+    Observable<ReportNoReadListBean> getreportNoRead(@Query("agentId") String agentId,@Query("search") String search,@Query("userId") String userId,  @Query("type") String type,  @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
+
+
     //项目进度未读消息返回数据
     @POST("nodeUpdate/readRecord")
     Observable<ReadRecordBean> getReadRecord(@Query("userId") String userId, @Query("preparationId") String preparationId, @Query("status") String status);

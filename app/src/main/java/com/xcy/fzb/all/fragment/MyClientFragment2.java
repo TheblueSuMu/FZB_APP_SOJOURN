@@ -170,6 +170,8 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
     }
 
     private void initData2() {
+
+
         reportProcessAdapter = new ReportProcessAdapter();
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -222,7 +224,6 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
         Intent intent = new Intent(getContext(), ReviewTheSuccessActivity.class);
         FinalContents.setCustomerID(rows.get(position).getCustomerId());
         FinalContents.setPreparationId(rows.get(position).getPreparationId());
-
         startActivity(intent);
     }
 

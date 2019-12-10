@@ -44,7 +44,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AnalysisActivity extends AllActivity {
 
     private RelativeLayout all_activity_analysis_return;
-    private RelativeLayout all_activity_analysis_share;
     private ImageView all_activity_analysis_backImage;
     private TextView all_activity_analysis_productfeature;
     private TextView all_activity_analysis_salestatus;
@@ -92,7 +91,6 @@ public class AnalysisActivity extends AllActivity {
         all_activity_analysis_analysis_linear = findViewById(R.id.all_activity_analysis_analysis_linear);
 
         all_activity_analysis_return = findViewById(R.id.all_activity_analysis_return);
-        all_activity_analysis_share = findViewById(R.id.all_activity_analysis_share);
         all_activity_analysis_backImage = findViewById(R.id.all_activity_analysis_backImage);
 
         all_activity_analysis_salestatus = findViewById(R.id.all_activity_analysis_salestatus);
@@ -130,13 +128,6 @@ public class AnalysisActivity extends AllActivity {
             }
         });         //      TODO    退出
 
-        all_activity_analysis_share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                FinalContents.showShare();
-            }
-        });         //      TODO    分享
-
 
         all_activity_analysis_site.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +164,7 @@ public class AnalysisActivity extends AllActivity {
                     public void onNext(final FamilyInfoBean familyInfoBean) {
                         all_activity_analysis_scrollview.setVisibility(View.VISIBLE);
                         Glide.with(AnalysisActivity.this).load(FinalContents.getImageUrl() + familyInfoBean.getData().getFloorPlan()).into(all_activity_analysis_backImage);
-                        all_activity_analysis_salestatus.setText(familyInfoBean.getData().getText());
+                        all_activity_analysis_salestatus.setText(familyInfoBean.getData().getSaleStatus());
                         switch (familyInfoBean.getData().getProductType()) {
                             case "1":
                                 all_activity_analysis_productfeature.setText("住宅");
@@ -191,7 +182,17 @@ public class AnalysisActivity extends AllActivity {
                                 all_activity_analysis_productfeature.setText("别墅");
                                 break;
                         }
-                        all_activity_analysis_house_type.setText(familyInfoBean.getData().getRoom() + "室");
+
+                        if (familyInfoBean.getData().getHall().equals("") && familyInfoBean.getData().getToilet().equals("")) {
+                            all_activity_analysis_house_type.setText(familyInfoBean.getData().getRoom() + "室");
+                        }else if (familyInfoBean.getData().getToilet().equals("")){
+                            all_activity_analysis_house_type.setText(familyInfoBean.getData().getRoom() + "室"+familyInfoBean.getData().getHall() + "厅");
+                        }else if (familyInfoBean.getData().getHall().equals("")){
+                            all_activity_analysis_house_type.setText(familyInfoBean.getData().getRoom() + "室"+familyInfoBean.getData().getToilet() + "卫");
+                        }else {
+                            all_activity_analysis_house_type.setText(familyInfoBean.getData().getRoom() + "室"+familyInfoBean.getData().getHall() + "厅"+familyInfoBean.getData().getToilet() + "卫");
+                        }
+
                         if(familyInfoBean.getData().getAverage().equals("")){
                             all_activity_analysis_price_title.setVisibility(View.GONE);
                             all_activity_analysis_price.setVisibility(View.GONE);
@@ -216,7 +217,13 @@ public class AnalysisActivity extends AllActivity {
 
                         all_activity_analysis_acreage_area.setText(familyInfoBean.getData().getFamilyArea() + "m²");
                         all_activity_analysis_compass_area.setText(familyInfoBean.getData().getFamilyOrientation());
-                        all_activity_analysis_percentage_area.setText(familyInfoBean.getData().getGetHouseRate() + "%");
+
+                        if (!familyInfoBean.getData().getGetHouseRate().equals("")) {
+                            all_activity_analysis_percentage_area.setText(familyInfoBean.getData().getGetHouseRate() + "%");
+                        }else {
+                            all_activity_analysis_percentage_area.setText("");
+                        }
+
 
                         all_activity_analysis_building.setText(familyInfoBean.getData().getBuild());
                         all_activity_analysis_houses.setText(familyInfoBean.getData().getProject().getProjectName());
@@ -226,7 +233,11 @@ public class AnalysisActivity extends AllActivity {
                         all_activity_analysis_analysis_content.setText(familyInfoBean.getData().getText());
 
 
-                        all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly() + "元");
+                        if (familyInfoBean.getData().getYears().equals("")) {
+                            all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly() + "元");
+                        }else {
+                            all_activity_analysis_monthly_installment.setText(familyInfoBean.getData().getMonthly() + "元"+"("+familyInfoBean.getData().getYears()+"年)");
+                        }
 
 
                         if (familyInfoBean.getData().getTitle().equals("") && familyInfoBean.getData().getText().equals("")) {

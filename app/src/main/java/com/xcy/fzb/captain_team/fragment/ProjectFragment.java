@@ -55,7 +55,6 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
-import com.xcy.fzb.captain_counselor.view.Captain_Counselor_CommissionTheProjectEndActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
 import com.youth.banner.Banner;
@@ -219,11 +218,10 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         textView4 = view.findViewById(R.id.home_item_brokerage);
         city = view.findViewById(R.id.project_city_selector);
 
-//        if (FinalContents.getDengLu().equals("顾问")) {
-//            home_item_yongjin.setText("我的客户");
-//        } else {
-//            home_item_yongjin.setText("我的团队");
-//        }
+        if (FinalContents.getDengLu().equals("顾问")) {
+            home_item_text4.setText("我的客户");
+            home_item_img4.setImageResource(R.mipmap.adds4);
+        }
 
         layout.setOnRefreshListener(this);
         search = view.findViewById(R.id.home_search);
@@ -294,7 +292,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                 } else if (FinalContents.getIdentity().equals("62")) {
                     //  TODO    顾问
                     FinalContents.setMySelf("1");
-                    Intent intent = new Intent(getContext(), Captain_Counselor_CommissionTheProjectEndActivity.class);
+                    Intent intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
                     intent.putExtra("client", "0");
                     FinalContents.setAgentId(FinalContents.getUserID());
                     startActivity(intent);

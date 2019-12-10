@@ -695,6 +695,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 market_time_ll10.setVisibility(View.VISIBLE);
                 type1 = "3";
                 NewlyIncreased.setTag("3");
+                initDataStatistics();
                 break;
 
             //            TODO 财务数据 时间选择 全部
@@ -732,6 +733,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 market_time_ll11.setVisibility(View.VISIBLE);
                 type2 = "3";
                 NewlyIncreased.setYJType("3");
+                initTeamCommissions();
                 break;
 
             //            TODO 成交TOP5 时间选择 全部
@@ -765,6 +767,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             case R.id.team_rb12:
                 market_time_ll12.setVisibility(View.VISIBLE);
                 type3 = "3";
+                initDailyTurnover();
                 break;
             case R.id.project_attache_ll1://实时
                 tag = "1";
@@ -800,6 +803,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
                     NewlyIncreased.setTag("3");
+                    initDataStatistics();
                     market_time_ll10.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -837,6 +841,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
                     NewlyIncreased.setTag("3");
+                    initDataStatistics();
                     market_time_ll10.setVisibility(View.VISIBLE);
                 }
                 break;

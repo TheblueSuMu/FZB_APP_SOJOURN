@@ -163,6 +163,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
     LinearLayout project_attache_ll4;
 
     String tag = "1";
+    private String string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -348,7 +349,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+ 1, dayOfMonth);
+        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+ 1, dayOfMonth);
         market_time_time_tv1.setText(string);
         market_time_time_tv2.setText(string);
         market_time_time_tv3.setText(string);
@@ -580,6 +581,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                         market_time_time_tv1.setText(dateString);
                         startDate1 = dateString;
                         NewlyIncreased.setStartDate(dateString);
+                        type = "1";
                     }
                 });
 
@@ -614,6 +616,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                         market_time_time_tv3.setText(dateString);
                         startDate2 = dateString;
                         NewlyIncreased.setYJstartDate(dateString);
+                        type = "2";
                     }
                 });
                 break;
@@ -646,6 +649,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
                         market_time_time_tv5.setText(dateString);
                         startDate3 = dateString;
+                        type = "3";
                     }
                 });
                 break;

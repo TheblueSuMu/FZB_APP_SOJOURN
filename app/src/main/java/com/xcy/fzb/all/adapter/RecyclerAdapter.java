@@ -101,10 +101,48 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         if (beanList.get(position).getProjectType().equals("2")) {
             holder.price.setText(beanList.get(position).getReferenceToatlPrice());
             holder.price_money.setText(beanList.get(position).getReferenceToatlUnit());
+            Log.i("列表","海外数据1"+beanList.get(position).getReferenceToatlPrice());
+            Log.i("列表","海外数据2"+beanList.get(position).getReferenceToatlUnit());
+            if (beanList.get(position).getReferenceToatlPrice().equals("") || beanList.get(position).getReferenceToatlPrice().equals("0")) {
+                holder.price.setVisibility(View.GONE);
+                holder.price_money.setVisibility(View.GONE);
+                holder.item_view.setVisibility(View.GONE);
+            }else {
+                holder.price.setVisibility(View.VISIBLE);
+                holder.price_money.setVisibility(View.VISIBLE);
+                holder.item_view.setVisibility(View.VISIBLE);
+            }
         } else if (beanList.get(position).getProjectType().equals("3")) {
             holder.price.setText(beanList.get(position).getProductUnitPrice());
             holder.price_money.setText(beanList.get(position).getMonetaryUnit());
+            Log.i("列表","旅居数据1"+beanList.get(position).getProductUnitPrice());
+            Log.i("列表","旅居数据2"+beanList.get(position).getMonetaryUnit());
+            if (beanList.get(position).getProductUnitPrice().equals("") || beanList.get(position).getProductUnitPrice().equals("0")) {
+                holder.price.setVisibility(View.GONE);
+                holder.price_money.setVisibility(View.GONE);
+                holder.item_view.setVisibility(View.GONE);
+            }else {
+                holder.price.setVisibility(View.VISIBLE);
+                holder.price_money.setVisibility(View.VISIBLE);
+                holder.item_view.setVisibility(View.VISIBLE);
+            }
+        }else if (beanList.get(position).getProjectType().equals("1")) {
+            holder.price.setText(beanList.get(position).getProductUnitPrice());
+            holder.price_money.setText(beanList.get(position).getMonetaryUnit());
+            Log.i("列表","城市数据1"+beanList.get(position).getProductUnitPrice());
+            Log.i("列表","城市数据2"+beanList.get(position).getMonetaryUnit());
+            if (beanList.get(position).getProductUnitPrice().equals("") || beanList.get(position).getProductUnitPrice().equals("0")) {
+                holder.price.setVisibility(View.GONE);
+                holder.price_money.setVisibility(View.GONE);
+                holder.item_view.setVisibility(View.GONE);
+            }else {
+                holder.price.setVisibility(View.VISIBLE);
+                holder.price_money.setVisibility(View.VISIBLE);
+                holder.item_view.setVisibility(View.VISIBLE);
+            }
         }
+
+
 
         holder.square.setText(beanList.get(position).getAreaInterval());
         holder.commission.setText("佣金：" + beanList.get(position).getCommission());
@@ -163,6 +201,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView second;
         LinearLayout modulebroke_ll;
         TextView group_booking;
+        View item_view;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -181,6 +220,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             second = (TextView) itemView.findViewById(R.id.second);
             modulebroke_ll = (LinearLayout) itemView.findViewById(R.id.modulebroke_ll);
             group_booking = itemView.findViewById(R.id.group_booking_item);
+            item_view = itemView.findViewById(R.id.item_view);
         }
     }
 }

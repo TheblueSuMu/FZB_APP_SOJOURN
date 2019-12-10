@@ -25,6 +25,7 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -69,7 +70,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -102,7 +103,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                 break;
             case R.id.change_phone_yanzhengma_1:
                 if (!MatcherUtils.isMobile(change_phone_et.getText().toString())) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showLongToast(this, "请输入正确的手机号");
                     return;
                 } else {
                     initData2();
@@ -156,7 +157,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
     private void initData1() {
         yanzhengma = change_phone_yanzhengma.getText().toString();
         if (yanzhengma.equals("")) {
-            Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请输入验证码");
             return;
         }
         Retrofit.Builder builder = new Retrofit.Builder();

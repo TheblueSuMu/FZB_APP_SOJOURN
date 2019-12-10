@@ -160,7 +160,13 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
                         initDataUp();
                         my_brokerage_et.setText("");
                         s = my_brokerage_et.getText().toString();
-                        initDataDown(prokecttype, s);
+                        if (myBrokerageLj.getVisibility() == View.VISIBLE) {
+                            initDataDown("3", s);
+                        } else if (myBrokerageHw.getVisibility() == View.VISIBLE) {
+                            initDataDown("2", s);
+                        } else if (myBrokerageCs.getVisibility() == View.VISIBLE) {
+                            initDataDown("1", s);
+                        }
                     }
                 }, 1000);
             }

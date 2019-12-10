@@ -35,7 +35,6 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.view.AllActivity;
-import com.xcy.fzb.all.view.MyClientActivity;
 import com.xcy.fzb.all.view.MyClientAddActivity;
 import com.xcy.fzb.all.view.PhoneActivity;
 import com.xcy.fzb.captain_team.fragment.Captain_Team_MyClientFragment1;
@@ -206,7 +205,7 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ReportNoReadListBean> clientFragment = fzbInterface.getReportNoReadList(FinalContents.getUserID(),"", NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate(),"","");
+        Observable<ReportNoReadListBean> clientFragment = fzbInterface.getreportNoRead(FinalContents.getAgentId(),"",FinalContents.getUserID(),FinalContents.getMySelf(), NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate());
         clientFragment.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ReportNoReadListBean>() {

@@ -196,6 +196,8 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     }
 
     private void initData() {
+        Log.i("我的经济圈","用户："+FinalContents.getUserID());
+        Log.i("我的经济圈","id："+FinalContents.getEconomicCircleID());
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());

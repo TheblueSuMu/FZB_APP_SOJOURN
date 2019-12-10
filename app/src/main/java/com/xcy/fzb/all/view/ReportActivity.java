@@ -42,7 +42,6 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.utils.ToastUtil;
-import com.xcy.fzb.captain_team.view.Captain_Team_CommissionLevelActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -157,6 +156,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private String customerID = "";
     private LinearLayout report_nosearch;
     private LinearLayout report_issure;
+    private List<ItemEntity> dateList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -257,7 +257,11 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             public void afterTextChanged(Editable editable) {
                 //长度发生变化，监听到输入的长度为 editText.getText().length()
                 if (report_client_name_et.getText().toString().length() > 0) {
-                    report_associating_inputing_rv.setVisibility(View.VISIBLE);
+                    if (dateList.size() != 0) {
+                        report_associating_inputing_rv.setVisibility(View.VISIBLE);
+                    }else {
+                        report_associating_inputing_rv.setVisibility(View.GONE);
+                    }
                 } else {
                     report_associating_inputing_rv.setVisibility(View.GONE);
                 }
@@ -873,49 +877,54 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     }
 
     private void initSearch() {
-        List<ItemEntity> dateList = fillData(list);
-        Collections.sort(dateList, new LettersComparator<ItemEntity>());
-        report_associating_inputing_rv.setLayoutManager(new LinearLayoutManager(ReportActivity.this));
-        fuzzySearchAdapter = new FuzzySearchAdapter(dateList);
-        report_associating_inputing_rv.setAdapter(fuzzySearchAdapter);
-        fuzzySearchAdapter.notifyDataSetChanged();
+        dateList = fillData(list);
+        if (dateList.size() != 0) {
+            Collections.sort(dateList, new LettersComparator<ItemEntity>());
+            report_associating_inputing_rv.setLayoutManager(new LinearLayoutManager(ReportActivity.this));
+            fuzzySearchAdapter = new FuzzySearchAdapter(dateList);
+            report_associating_inputing_rv.setAdapter(fuzzySearchAdapter);
+            fuzzySearchAdapter.notifyDataSetChanged();
 
-        report_client_name_et.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            report_client_name_et.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                fuzzySearchAdapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        fuzzySearchAdapter.setItemOnClick(new FuzzySearchAdapter.ItemOnClick() {
-            @Override
-            public void itemClick(int position, String phone) {
-                Log.i("显示", "模糊：" + phone);
-                for (int i = 0; i < list.size(); i++) {
-                    if (phone.equals(list.get(i).getContactsPhone1())) {
-                        report_associating_inputing_rv.setVisibility(View.GONE);
-                        FinalContents.setClientPhone(list.get(i).getContactsPhone1());
-                        FinalContents.setClientName(list.get(i).getCustomerName());
-                        FinalContents.setCustomerID(list.get(i).getId());
-                        customerID = list.get(i).getId();
-                        report_client_name_et.setText(FinalContents.getClientName());
-                        report_client_phone.setText(FinalContents.getClientPhone());
-                        break;
-                    }
                 }
-                report_associating_inputing_rv.setVisibility(View.GONE);
-            }
-        });
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    fuzzySearchAdapter.getFilter().filter(s);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            fuzzySearchAdapter.setItemOnClick(new FuzzySearchAdapter.ItemOnClick() {
+                @Override
+                public void itemClick(int position, String phone) {
+                    Log.i("显示", "模糊：" + phone);
+                    for (int i = 0; i < list.size(); i++) {
+                        if (phone.equals(list.get(i).getContactsPhone1())) {
+                            report_associating_inputing_rv.setVisibility(View.GONE);
+                            FinalContents.setClientPhone(list.get(i).getContactsPhone1());
+                            FinalContents.setClientName(list.get(i).getCustomerName());
+                            FinalContents.setCustomerID(list.get(i).getId());
+                            customerID = list.get(i).getId();
+                            report_client_name_et.setText(FinalContents.getClientName());
+                            report_client_phone.setText(FinalContents.getClientPhone());
+                            break;
+                        }
+                    }
+                    report_associating_inputing_rv.setVisibility(View.GONE);
+                }
+            });
+        }else{
+            report_associating_inputing_rv.setVisibility(View.GONE);
+        }
+
     }
 
     private void initReport() {
@@ -1140,6 +1149,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         if (FinalContents.isChecked()) {
             report_client_name_et.setText(FinalContents.getClientName());
             report_client_phone.setText(FinalContents.getClientPhone());
+            report_associating_inputing_rv.setVisibility(View.GONE);
         } else {
             project_name.setText("");
         }
@@ -1166,6 +1176,11 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 report_issure.setVisibility(View.GONE);
             } else {
                 report_issure.setVisibility(View.VISIBLE);
+            }
+            if (FinalContents.getCustomerID().equals("")) {
+                report_associating_inputing_rv.setVisibility(View.VISIBLE);
+            }else {
+                report_associating_inputing_rv.setVisibility(View.GONE);
             }
         }
     }

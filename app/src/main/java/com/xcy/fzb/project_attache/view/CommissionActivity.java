@@ -2,6 +2,7 @@ package com.xcy.fzb.project_attache.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -69,7 +70,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     private String s = "";
     private RelativeLayout myBrokerage_rl;
     private PtrClassicFrameLayout commission_ptrclass;
-    String projecttype = "3";
+    String projecttype = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +128,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         commission_ll3.setOnClickListener(this);
         commission_ll5.setOnClickListener(this);
         initDataUp();
-
+        initData("1", s);
         commission_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
@@ -228,9 +229,6 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
 
                     }
                 });
-
-        initData("1", s);
-
     }
 
     @Override
@@ -274,6 +272,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     }
 
     private void initData(String projectType, String search) {
+        Log.i("专员佣金","佣金列表信息"+projectType);
 
         adapter = new CommissionListAdapter();
 
@@ -311,6 +310,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                     public void onError(Throwable e) {
                         commission_rv.setVisibility(View.GONE);
                         myBrokerage_rl.setVisibility(View.VISIBLE);
+                        Log.i("专员佣金","佣金列表错误信息"+e.getMessage());
                     }
 
                     @Override

@@ -110,7 +110,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
     private EditText fill_in_transaction_information_et4;
     private EditText fill_in_transaction_information_et3;
     private String gender = "";     //  TODO    性别
-    private int sum = 0;
+    private String sum = "";
     private String projecttype;
     private TextView fill_in_transaction_information_tishi;
     private boolean whethe = false;
@@ -246,8 +246,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                         double area = Double.parseDouble(s1);
                         double price = Double.parseDouble(s2);
                         sum = GetInt.getInt((area * price));
-                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                        str = myformat.format(sum);
+                        str = sum;
                         fill_in_transaction_information_et6.setText(str + "元");
                         fill_in_transaction_information_tishi.setVisibility(View.GONE);
                         return true;
@@ -277,8 +276,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
                             sum = GetInt.getInt((area * price));
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                            str = myformat.format(sum);
+                            str = sum;
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
@@ -476,7 +474,13 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             //            TODO 成交时间
             case R.id.fill_in_transaction_information_rl5:
-                initQuery();
+
+                if (ifnum3 == 0) {
+                    ifnum3 = 1;
+                    picker.setVisibility(View.VISIBLE);
+                    initDate();
+                    ifnum3 = 0;
+                }
                 break;
             //            TODO 佣金
             case R.id.fill_in_transaction_information_rl6:
@@ -494,10 +498,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                 transition_layout.setVisibility(View.GONE);
                 break;
             case R.id.one_key_relative_1:
-                FinalContents.setProject("1");
-                FinalContents.setChecked2(true);
-                Intent project_intent = new Intent(OneKeyActivity.this, MyProjectActivity.class);
-                startActivity(project_intent);
+                initQuery();
                 break;
         }
     }
@@ -526,6 +527,17 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view) {
                 picker.setVisibility(View.GONE);
+            }
+        });
+
+        dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+            @Override
+            public void onSelectedDateChanged(Calendar date) {
+                int year = date.get(Calendar.YEAR);
+                int month = date.get(Calendar.MONTH);
+                int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
+                project_time.setText(dateString);
             }
         });
 
@@ -661,12 +673,10 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                         Log.i("MyCL","phoneByUserBean:" + phoneByUserBean.getData().getMsg());
                         FinalContents.setJJrID(phoneByUserBean.getData().getData().getUserId());
                         if (phoneByUserBean.getData().getCode().equals("1")) {
-                            if (ifnum3 == 0) {
-                                ifnum3 = 1;
-                                picker.setVisibility(View.VISIBLE);
-                                initDate();
-                                ifnum3 = 0;
-                            }
+                            FinalContents.setProject("1");
+                            FinalContents.setChecked2(true);
+                            Intent project_intent = new Intent(OneKeyActivity.this, MyProjectActivity.class);
+                            startActivity(project_intent);
                         }else if (phoneByUserBean.getData().getCode().equals("0")){
                            ToastUtil.showLongToast(OneKeyActivity.this, "请确保输入的经纪人信息是否正确");
                         }
