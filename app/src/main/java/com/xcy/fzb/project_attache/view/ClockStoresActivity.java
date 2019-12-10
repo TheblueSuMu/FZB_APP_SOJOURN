@@ -72,8 +72,12 @@ import com.xcy.fzb.project_attache.adapter.GridViewSAdapter;
 import com.xcy.fzb.project_attache.adapter.RecordAdapter;
 
 import java.io.File;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 //TODO 门店打卡
 public class ClockStoresActivity extends AppCompatActivity implements View.OnClickListener {
@@ -152,13 +156,13 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                         listImage.add(a[i]);
                     }
                     listImage.remove(position);
-                    stringBuffer.delete(0,stringBuffer.length());
+                    stringBuffer.delete(0, stringBuffer.length());
                     mDatas.remove(position);
                     adapter.notifyDataSetChanged();
-                    for (int i = 0; i < mDatas.size(); ++i){
-                        if(i == 0){
+                    for (int i = 0; i < mDatas.size(); ++i) {
+                        if (i == 0) {
                             stringBuffer.append(mDatas.get(i));
-                        }else {
+                        } else {
                             stringBuffer.append("|" + mDatas.get(i));
                         }
                     }
@@ -169,10 +173,17 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                 default:
                     break;
             }
-        };
+        }
+
+        ;
     };
     private String addrStr;
     private String s;
+    private Timer timer1;
+    private TimerTask timerTask;
+
+    TextView store_details_img_btn_tv1;
+    TextView store_details_img_btn_tv2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,7 +191,6 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_clock_stores);
 
         initView();
-
     }
 
     private void initView() {
@@ -191,6 +201,8 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
         store_details_linear2 = findViewById(R.id.store_details_linear2);
         store_details_img_rf = findViewById(R.id.store_details_img_rf);
         store_details_tv_start = findViewById(R.id.store_details_tv_start);
+        store_details_img_btn_tv1 = findViewById(R.id.store_details_img_btn_tv1);
+        store_details_img_btn_tv2 = findViewById(R.id.store_details_img_btn_tv2);
 
         store_details_return = findViewById(R.id.store_details_return_s);
         store_details_img = findViewById(R.id.store_details_img);
@@ -208,7 +220,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 
         inflate = View.inflate(ClockStoresActivity.this, R.layout.item_flowlayout, null);
         mDatas = new ArrayList<>();
-        adapter = new GridViewSAdapter(ClockStoresActivity.this, mDatas,handler);
+        adapter = new GridViewSAdapter(ClockStoresActivity.this, mDatas, handler);
         confirm_the_visit_gv.setAdapter(adapter);
 
         myStoreRise = getIntent().getStringExtra("MyStoreRise");
@@ -231,7 +243,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (mDatas.size() == 3) {
-                    ToastUtil.showLongToast(ClockStoresActivity.this,"图片最多三张");
+                    ToastUtil.showLongToast(ClockStoresActivity.this, "图片最多三张");
                 } else {
                     if (position == parent.getChildCount() - 1) {
 
@@ -307,6 +319,8 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
             //开启定位权限,200是标识码
 //            ActivityCompat.requestPermissions(ClockStoresActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
             Log.i("MyCL", "未开启定位权限");
+            store_details_img_btn_tv1.setVisibility(View.GONE);
+            store_details_img_btn_tv2.setVisibility(View.GONE);
             Glide.with(ClockStoresActivity.this).load(R.mipmap.wufadaka).into(store_details_img_btn);//无法打卡
             num = 1;
             store_details_linear1.setVisibility(View.GONE);
@@ -352,7 +366,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
         MyService myService = build.create(MyService.class);
         Log.i("MyCL", "FinalContents.getUserID():" + FinalContents.getUserID());
         Log.i("MyCL", "myStoreId:" + myStoreId);
-        Observable<RecordBean> financeBean = myService.getRecord(FinalContents.getUserID(), myStoreId, "","1");
+        Observable<RecordBean> financeBean = myService.getRecord(FinalContents.getUserID(), myStoreId, "", "1");
         financeBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<RecordBean>() {
@@ -368,11 +382,11 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                         Log.i("MyCL", "门店打卡记录数据：" + data.getRows().toString());
                         adapter1.setRows(data.getRows());
                         store_details_rv.setAdapter(adapter1);
-                        if(data.getRows().size() == 2){
+                        if (data.getRows().size() == 2) {
                             store_details_check.setVisibility(View.GONE);
                             store_details_check_S.setVisibility(View.GONE);
                             confirm_the_visit_gv.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             initDataS();
                         }
 
@@ -395,8 +409,36 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 //        String mylatitude = "38.117131";
 //        String mylongitude = "118.162608";
 
-
     }
+
+    private void StartTime() {
+        timer1 = new Timer();
+        timerTask = new TimerTask() {
+            int cnt = 0;
+
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+//                        Log.i("计时器", "时间：" + getStringTime(cnt++));
+                        store_details_img_btn_tv2.setText(getStringTime(cnt++));
+                    }
+                });
+            }
+        };
+        timer1.schedule(timerTask, 0, 1000);
+    }
+
+    private String getStringTime(int cnt) {
+
+        int hour = cnt / 3600;
+        int min = cnt % 3600 / 60;
+        int second = cnt % 60;
+
+        return String.format(Locale.CHINA, "%02d:%02d:%02d", hour, min, second);
+    }
+
 
     private void initDataS() {
 
@@ -427,14 +469,25 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
             num = 3;
             if (data.getTotal() == 0) {
                 Glide.with(ClockStoresActivity.this).load(R.mipmap.daodiandaka).into(store_details_img_btn);//到店打卡
+                store_details_img_btn_tv1.setVisibility(View.GONE);
+                store_details_img_btn_tv2.setVisibility(View.GONE);
             } else if (data.getTotal() == 1) {
                 store_details_check.setText("出店打卡：");
+                store_details_img_btn_tv1.setVisibility(View.GONE);
+                store_details_img_btn_tv2.setVisibility(View.GONE);
+//                store_details_img_btn_tv1.setVisibility(View.VISIBLE);
+//                store_details_img_btn_tv2.setVisibility(View.VISIBLE);
+//                store_details_img_btn_tv1.setText("出店打卡");
+//                long timeStamp = System.currentTimeMillis();//获取时间戳
+//                StartTime();
                 Glide.with(ClockStoresActivity.this).load(R.mipmap.chudiandaka).into(store_details_img_btn);//出店打卡
             } else if (data.getTotal() == 2) {
                 store_details_img_btn.setVisibility(View.GONE);
                 store_details_check.setVisibility(View.GONE);
                 store_details_check_S.setVisibility(View.GONE);
                 confirm_the_visit_gv.setVisibility(View.GONE);
+                store_details_img_btn_tv1.setVisibility(View.GONE);
+                store_details_img_btn_tv2.setVisibility(View.GONE);
 
             }
 
@@ -444,11 +497,14 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
             num = 4;
             store_details_linear1.setVisibility(View.VISIBLE);
             store_details_linear2.setVisibility(View.GONE);
+            store_details_img_btn_tv1.setVisibility(View.GONE);
+            store_details_img_btn_tv2.setVisibility(View.GONE);
             Glide.with(ClockStoresActivity.this).load(R.mipmap.weidaozhidingquyu).into(store_details_img_btn);//未到指定区域
-            ToastUtil.showLongToast(ClockStoresActivity.this,"未到指定区域");
+            ToastUtil.showLongToast(ClockStoresActivity.this, "未到指定区域");
         }
 
     }
+
 
     @Override
     public void onClick(View view) {
@@ -456,6 +512,12 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
         switch (view.getId()) {
             case R.id.store_details_return_s:
                 //返回按钮
+               if (data.getTotal() == 1) {
+                    if (!timerTask.cancel()) {
+                        timerTask.cancel();
+                        timer1.cancel();
+                    }
+                }
                 finish();
                 break;
             case R.id.store_details_img_btn:
@@ -464,7 +526,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                 if (num == 1) {
                     //未开启定位权限
                     Log.i("MyCL", "未开启定位权限");
-                    ToastUtil.showLongToast(ClockStoresActivity.this,"未开启定位权限，无法打卡");
+                    ToastUtil.showLongToast(ClockStoresActivity.this, "未开启定位权限，无法打卡");
                 } else if (num == 2) {
                     //暂无状态
                     Log.i("MyCL", "暂无状态");
@@ -473,7 +535,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                     Log.i("MyCL", "到店打卡/出店打卡");
                     if (stringBuffer.length() == 0) {
                         Log.i("MyCL", "打卡失败 图片至少一张");
-                        ToastUtil.showLongToast(ClockStoresActivity.this,"打卡失败 图片至少一张");
+                        ToastUtil.showLongToast(ClockStoresActivity.this, "打卡失败 图片至少一张");
                         //打卡失败 图片至少一张
                     } else {
                         initClockIn();
@@ -493,7 +555,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                 } else if (num == 4) {
                     //未到指定区域
                     Log.i("MyCL", "未到指定区域");
-                    ToastUtil.showLongToast(ClockStoresActivity.this,"未到指定区域");
+                    ToastUtil.showLongToast(ClockStoresActivity.this, "未到指定区域");
 //                    Intent intent = new Intent(ClockStoresActivity.this, MapHouseActivity.class);
 //                    startActivity(intent);
                 }
@@ -513,10 +575,10 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
     //门店打卡接口
     private void initClockIn() {
         //从百度地图获取地址
-        if(IfNum == 0){
+        if (IfNum == 0) {
             s = addrStr;
             IfNum = 1;
-        }else {
+        } else {
             s = mlocation.getAddrStr();
         }
         if (data.getTotal() == 0) {
@@ -728,14 +790,15 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 
     //    TODO 动态打开gps
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case 200://刚才的识别码
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
 //                    initMap();//开始定位
                 } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                    ToastUtil.showLongToast(ClockStoresActivity.this,"未开启定位权限,请手动到设置去开启权限");
+                    ToastUtil.showLongToast(ClockStoresActivity.this, "未开启定位权限,请手动到设置去开启权限");
                 }
                 Log.i("MyCL", "动态打开gps");
                 mLocClient = new LocationClient(this);

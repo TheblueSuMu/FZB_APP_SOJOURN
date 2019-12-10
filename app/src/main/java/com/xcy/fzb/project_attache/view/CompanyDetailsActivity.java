@@ -163,7 +163,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showLongToast(CompanyDetailsActivity.this,"当前无网络，请检查网络后再进行登录");
+            ToastUtil.showLongToast(CompanyDetailsActivity.this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -581,10 +581,10 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                                 company_details_call.setText(storeInfo.getShopownerPhone());
                             }
                         }
-                        if(storeInfo.getIsMy().equals("1")){
+                        if (storeInfo.getIsMy().equals("1")) {
                             company_details_ttv.setVisibility(View.GONE);
                             company_details_ttcall.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             if (storeInfo.getAttacheName().equals("")) {
                                 company_details_ttv.setVisibility(View.GONE);
                                 company_details_ttcall.setVisibility(View.GONE);
@@ -592,17 +592,11 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                                 company_details_ttv.setVisibility(View.VISIBLE);
                                 company_details_ttcall.setVisibility(View.VISIBLE);
                                 if (storeInfo.getAttacheIdentity().equals("5")) {
-                                    company_details_ttv.setVisibility(View.GONE);
-                                    company_details_ttcall.setVisibility(View.GONE);
-//                                company_details_ttv.setText("负责专员:" + storeInfo.getAttacheName());
-                                } else if (storeInfo.getAttacheIdentity().equals("8")) {
-                                    company_details_ttv.setVisibility(View.VISIBLE);
-                                    company_details_ttcall.setVisibility(View.VISIBLE);
                                     company_details_ttv.setText("负责专员:" + storeInfo.getAttacheName());
-                                } else if (storeInfo.getAttacheIdentity().equals("9")) {
-                                    company_details_ttv.setVisibility(View.VISIBLE);
-                                    company_details_ttcall.setVisibility(View.VISIBLE);
+                                } else if (storeInfo.getAttacheIdentity().equals("8")) {
                                     company_details_ttv.setText("负责经理:" + storeInfo.getAttacheName());
+                                } else if (storeInfo.getAttacheIdentity().equals("9")) {
+                                    company_details_ttv.setText("负责总监:" + storeInfo.getAttacheName());
                                 }
                                 company_details_ttcall.setText(storeInfo.getAttachePhone());
                             }
@@ -667,7 +661,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 break;
             case R.id.company_details_call:
                 if (storeInfo.getShopownerPhone().equals("")) {
-                    ToastUtil.showLongToast(CompanyDetailsActivity.this,"暂无电话信息，无法拨打");
+                    ToastUtil.showLongToast(CompanyDetailsActivity.this, "暂无电话信息，无法拨打");
                 } else {
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + storeInfo.getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
                     startActivity(dialIntent);
@@ -749,7 +743,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 break;
             case R.id.company_details_new_tv1://电话拜访
                 if (storeInfo.getShopownerPhone().equals("")) {
-                    ToastUtil.showLongToast(CompanyDetailsActivity.this,"暂无电话信息，无法拨打");
+                    ToastUtil.showLongToast(CompanyDetailsActivity.this, "暂无电话信息，无法拨打");
                 } else {
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + storeInfo.getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
                     startActivity(dialIntent);
@@ -757,7 +751,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 break;
             case R.id.company_details_new_tv2://门店打卡
                 if (storeInfo.getLocation().equals("")) {
-                    ToastUtil.showLongToast(CompanyDetailsActivity.this,"门店暂不支持打卡");
+                    ToastUtil.showLongToast(CompanyDetailsActivity.this, "门店暂不支持打卡");
                 } else {
                     Intent intent = new Intent(CompanyDetailsActivity.this, ClockStoresActivity.class);
                     intent.putExtra("MyStoreRise", storeInfo.getStoreRise());

@@ -92,28 +92,55 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                         holder.contacts_name.setText("店长：" + listData.get(i).getShopownerName());
                         holder.contacts_phone.setText(listData.get(i).getShopownerPhone());
                     }
+
                     if (listData.get(i).getIsMy().equals("1")) {
                         holder.contacts_name_s.setVisibility(View.GONE);
                         holder.contacts_phone_s.setVisibility(View.GONE);
+//                        holder.contacts_name_s.setText("自己:" + listData.get(i).getAttacheName());
+//                        holder.contacts_phone_s.setText(listData.get(i).getAttachePhone());
                     } else {
                         if (listData.get(i).getAttacheName().equals("")) {
                             holder.contacts_name_s.setVisibility(View.GONE);
                             holder.contacts_phone_s.setVisibility(View.GONE);
                         } else {
-                            if (FinalContents.getIdentity().equals("5")) {
-                                holder.contacts_name_s.setVisibility(View.GONE);
-                                holder.contacts_phone_s.setVisibility(View.GONE);
-                            } else if (FinalContents.getIdentity().equals("8")) {
-                                holder.contacts_name_s.setVisibility(View.VISIBLE);
-                                holder.contacts_phone_s.setVisibility(View.VISIBLE);
+                            holder.contacts_name_s.setVisibility(View.VISIBLE);
+                            holder.contacts_phone_s.setVisibility(View.VISIBLE);
+                            if (listData.get(i).getAttacheIdentity().equals("5")) {
                                 holder.contacts_name_s.setText("负责专员:" + listData.get(i).getAttacheName());
                                 holder.contacts_phone_s.setText(listData.get(i).getAttachePhone());
-                            } else if (FinalContents.getIdentity().equals("9")) {
-                                holder.contacts_name_s.setVisibility(View.VISIBLE);
-                                holder.contacts_phone_s.setVisibility(View.VISIBLE);
+                            } else if (listData.get(i).getAttacheIdentity().equals("8")) {
                                 holder.contacts_name_s.setText("负责经理:" + listData.get(i).getAttacheName());
                                 holder.contacts_phone_s.setText(listData.get(i).getAttachePhone());
+                            } else if (listData.get(i).getAttacheIdentity().equals("9")) {
+                                holder.contacts_name_s.setText("负责总监:" + listData.get(i).getAttacheName());
+                                holder.contacts_phone_s.setText(listData.get(i).getAttachePhone());
                             }
+//                            if (FinalContents.getIdentity().equals("5")) {
+//                                if(listData.get(i).getAttacheIdentity().equals("8")){
+//                                    holder.contacts_name_s.setText("负责专员:" + listData.get(i).getAttacheName());
+////                                    holder.contacts_phone_s.setText(listData.get(i).getAttachePhone());
+//                                }else if(listData.get(i).getAttacheIdentity().equals("9")){
+//                                    holder.contacts_name_s.setText("负责专员:" + listData.get(i).getAttacheName());
+//                                    holder.contacts_phone_s.setText(listData.get(i).getAttachePhone());
+//                                }
+//                            } else if (FinalContents.getIdentity().equals("8")) {
+//                                if(listData.get(i).getAttacheIdentity().equals("5")){
+//
+//                                }else if(listData.get(i).getAttacheIdentity().equals("8")){
+//
+//                                }else if(listData.get(i).getAttacheIdentity().equals("9")){
+//
+//                                }
+//                                holder.contacts_name_s.setVisibility(View.VISIBLE);
+//                                holder.contacts_phone_s.setVisibility(View.VISIBLE);
+//                                holder.contacts_name_s.setText("负责专员:" + listData.get(i).getAttacheName());
+//                                holder.contacts_phone_s.setText(listData.get(i).getAttachePhone());
+//                            } else if (FinalContents.getIdentity().equals("9")) {
+//                                holder.contacts_name_s.setVisibility(View.VISIBLE);
+//                                holder.contacts_phone_s.setVisibility(View.VISIBLE);
+//                                holder.contacts_name_s.setText("负责经理:" + listData.get(i).getAttacheName());
+//                                holder.contacts_phone_s.setText(listData.get(i).getAttachePhone());
+//                            }
                         }
                     }
                     holder.contacts_phone_s.setOnClickListener(new View.OnClickListener() {
@@ -190,7 +217,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                     holder.contacts_img.setVisibility(View.VISIBLE);
                     Glide.with(holder.itemView.getContext()).load(R.mipmap.wwc3).into(holder.contacts_img);
                 } else if (listData.get(i).getStatus().equals("1")) {
-                    if(FinalContents.getStoreList().equals("1")){
+                    if (FinalContents.getStoreList().equals("1")) {
                         if (listData.get(i).getState().equals("1")) {//签约
                             holder.contacts_img.setVisibility(View.VISIBLE);
                             Glide.with(holder.itemView.getContext()).load(R.mipmap.qianyue).into(holder.contacts_img);
@@ -206,7 +233,7 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                         } else {
                             holder.contacts_img.setVisibility(View.GONE);
                         }
-                    }else if( FinalContents.getStoreList().equals("2")){
+                    } else if (FinalContents.getStoreList().equals("2")) {
                         holder.contacts_img.setVisibility(View.GONE);
                     }
                 }

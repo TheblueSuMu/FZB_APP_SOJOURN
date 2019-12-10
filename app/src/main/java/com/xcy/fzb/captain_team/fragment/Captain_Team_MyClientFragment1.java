@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -54,7 +55,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Captain_Team_MyClientFragment1 extends Fragment implements ContactsAdapter.ItemOnClick {
+public class Captain_Team_MyClientFragment1 extends Fragment implements ContactsAdapter.ItemOnClick, SwipeRefreshLayout.OnRefreshListener {
 
     WaveSideBarView mWaveSideBarView;
     RecyclerView mRecyclerView;
@@ -79,6 +80,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     private LinearLayoutManager linearLayoutManager;
     private SuspensionDecoration mDecoration;
     private LinkmanAdapter linkmanAdapter;
+    private SwipeRefreshLayout layout;
 
     public Captain_Team_MyClientFragment1() {
         // Required empty public constructor
@@ -105,6 +107,8 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
         main_indexbar = getActivity().findViewById(R.id.main_indexbar);//HintTextView
         main_side_bar = getActivity().findViewById(R.id.test_side_bar);//IndexBar
         mRecyclerView = getActivity().findViewById(R.id.main_recycler);
+        layout = getActivity().findViewById(R.id.home_srl_SS);
+        layout.setOnRefreshListener(this);
         all_no_information = getActivity().findViewById(R.id.all_no_information);
         main_side_bar.bringToFront();
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -169,9 +173,9 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
         String name = myClientName.getName();
         Log.i("MyCL", "廣播:" + name);
 //        if (NewlyIncreased.isTest()) {
-            size++;
-            inithot(name);
-            NewlyIncreased.setTest(false);
+        size++;
+        inithot(name);
+        NewlyIncreased.setTest(false);
 //        }
     }
 
@@ -190,7 +194,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
         Log.i("MyCL", "2");
-        Observable<ClientBean> client = fzbInterface.getClient(name, FinalContents.getUserID() + "","1000");
+        Observable<ClientBean> client = fzbInterface.getClient(name, FinalContents.getUserID() + "", "1000");
         client.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ClientBean>() {
@@ -206,11 +210,11 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                         if (data.size() != 0) {
                             all_no_information.setVisibility(View.GONE);
                             mRecyclerView.setVisibility(View.VISIBLE);
-                            for (int i = 0; i < data.size(); i++){
-                                list.add(new LinkmanBean(data.get(i).getCustomerName()+"",data.get(i).getId()+"",data.get(i).getContactsPhone1()+""));
+                            for (int i = 0; i < data.size(); i++) {
+                                list.add(new LinkmanBean(data.get(i).getCustomerName() + "", data.get(i).getId() + "", data.get(i).getContactsPhone1() + ""));
                             }
 
-                            linkmanAdapter = new LinkmanAdapter(context,list);
+                            linkmanAdapter = new LinkmanAdapter(context, list);
                             mRecyclerView.setAdapter(linkmanAdapter);
                             linkmanAdapter.notifyDataSetChanged();
 
@@ -219,26 +223,26 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                             mDecoration.setmDatas(list);
 
                             linkmanAdapter.setItemOnClick(new LinkmanAdapter.ItemOnClick() {
-                              @Override
-                              public void itemClick(int position) {
-                                  Log.i("数据对比","1客户名"+list.get(position).getCity());
-                                  if (FinalContents.getNUM().equals("1")) {
-                                      FinalContents.setClientName(list.get(position).getCity());
-                                      FinalContents.setCustomerID(list.get(position).getClientId());
-                                      FinalContents.setClientPhone(list.get(position).getClientPhone());
-                                      Log.i("数据对比","1客户名"+list.get(position).getCity());
-                                      getActivity().finish();
-                                  } else {
-                                      FinalContents.setCustomerID(list.get(position).getClientId());
-                                      Intent intent = new Intent(getContext(), ClientParticularsActivity.class);
-                                      startActivity(intent);
-                                      Log.i("团队长", "contacts.get(position).getName()：" + list.get(position).getCity());
+                                                              @Override
+                                                              public void itemClick(int position) {
+                                                                  Log.i("数据对比", "1客户名" + list.get(position).getCity());
+                                                                  if (FinalContents.getNUM().equals("1")) {
+                                                                      FinalContents.setClientName(list.get(position).getCity());
+                                                                      FinalContents.setCustomerID(list.get(position).getClientId());
+                                                                      FinalContents.setClientPhone(list.get(position).getClientPhone());
+                                                                      Log.i("数据对比", "1客户名" + list.get(position).getCity());
+                                                                      getActivity().finish();
+                                                                  } else {
+                                                                      FinalContents.setCustomerID(list.get(position).getClientId());
+                                                                      Intent intent = new Intent(getContext(), ClientParticularsActivity.class);
+                                                                      startActivity(intent);
+                                                                      Log.i("团队长", "contacts.get(position).getName()：" + list.get(position).getCity());
 
-                                  }
-                              }
-                          }
+                                                                  }
+                                                              }
+                                                          }
                             );
-                        }else {
+                        } else {
                             all_no_information.setVisibility(View.VISIBLE);
                             mRecyclerView.setVisibility(View.GONE);
                         }
@@ -299,4 +303,13 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     }
 
 
+    @Override
+    public void onRefresh() {
+
+        if (layout.isRefreshing()) {//如果正在刷新
+            inithot("");
+            layout.setRefreshing(false);//取消刷新
+        }
+
+    }
 }

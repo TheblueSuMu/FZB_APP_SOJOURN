@@ -40,6 +40,7 @@ import com.xcy.fzb.captain_market.view.Captain_Market_MyTeamActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -48,7 +49,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MeFragment extends AllFragment implements View.OnClickListener {
+public class MeFragment extends AllFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     RelativeLayout my_collect;
     RelativeLayout my_comment;
@@ -80,7 +81,7 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
     private TextView me_tv_name;
     private TextView me_tv_phone;
     private TextView my_tv_huancun;
-
+    private SwipeRefreshLayout layout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -123,14 +124,14 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
         me_identity = getActivity().findViewById(R.id.me_identity);
         me_city = getActivity().findViewById(R.id.me_city);
         me_store = getActivity().findViewById(R.id.me_store);
-
+        layout = getActivity().findViewById(R.id.e_ssrfl_5);
         my_tv_huancun = getActivity().findViewById(R.id.my_tv_huancun);
         try {
             my_tv_huancun.setText(CleanDataUtils.getTotalCacheSize(getActivity()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        layout.setOnRefreshListener(this);
         me_img_phone.setOnClickListener(this);
         me_gr.setOnClickListener(this);
         me_Client.setOnClickListener(this);
@@ -389,5 +390,22 @@ public class MeFragment extends AllFragment implements View.OnClickListener {
             init();
             NewlyIncreased.setUserMessage("");
         }
+    }
+
+    @Override
+    public void onRefresh() {
+
+
+        if (layout.isRefreshing()) {//如果正在刷新
+//            initView();
+//            initHotList();
+//        根据用户Id获取用户信息
+            initUserMessage();
+//        我的佣金和客户数量
+            initClientCommissions();
+            layout.setRefreshing(false);//取消刷新
+        }
+
+
     }
 }

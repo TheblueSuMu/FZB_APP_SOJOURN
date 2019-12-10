@@ -635,14 +635,16 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "1");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
             //            TODO 到访
             case R.id.ll3_modulebroke:
                 intent = new Intent(getContext(), MyClientActivity.class);
-                intent.putExtra("client", "2");
+                intent.putExtra("client", "42");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
@@ -651,6 +653,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "3");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
@@ -659,6 +662,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "4");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
@@ -667,6 +671,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "5");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
@@ -675,6 +680,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "6");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;

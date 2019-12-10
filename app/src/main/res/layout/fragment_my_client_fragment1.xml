@@ -6,43 +6,49 @@
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <RelativeLayout
+    <com.xcy.fzb.all.utils.SuperSwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/home_srl_SS"
+        android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/main_recycler"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"/>
+            android:layout_height="match_parent">
 
-        <com.mcxtzhang.indexlib.IndexBar.widget.IndexBar
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:id="@+id/test_side_bar"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp"
-            android:layout_width="12dp"
-            android:layout_height="match_parent"
-            app:indexBarPressBackground="@color/partTranslucent"
-            app:indexBarTextSize="12sp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"/>
 
-        <TextView
-            android:id="@+id/main_indexbar"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:layout_centerInParent="true"
-            android:background="@drawable/shape_side_bar_bg"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="48sp"
-            android:visibility="gone"
-            tools:text="A"
-            tools:visibility="visible"/>
+            <com.mcxtzhang.indexlib.IndexBar.widget.IndexBar
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/test_side_bar"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:layout_width="12dp"
+                android:layout_height="match_parent"
+                app:indexBarPressBackground="@color/partTranslucent"
+                app:indexBarTextSize="12sp"/>
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/main_indexbar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:background="@drawable/shape_side_bar_bg"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="48sp"
+                android:visibility="gone"
+                tools:text="A"
+                tools:visibility="visible"/>
+
+        </RelativeLayout>
+
+    </com.xcy.fzb.all.utils.SuperSwipeRefreshLayout>
 
     <ImageView
         android:id="@+id/all_no_information"

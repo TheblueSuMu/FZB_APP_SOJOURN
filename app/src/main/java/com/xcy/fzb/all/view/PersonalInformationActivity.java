@@ -175,7 +175,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
         personalRl6.setOnClickListener(this);
 
 
-        if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7")) {
+        if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7")|| FinalContents.getIdentity().equals("8")|| FinalContents.getIdentity().equals("9")) {
             initData();
         } else if (FinalContents.getIdentity().equals("60")) {
             initDataTDZ();
@@ -258,7 +258,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
             String storeManage = data.getStoreManage();
             personal_store.setText(storeManage);
 
-        } else if (FinalContents.getIdentity().equals("5")) {
+        } else if (FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9")) {
             ZYDataBean userMessageBean = Connector.getZyDataBean();
 
             ZYDataBean.DataBean data = userMessageBean.getData();
@@ -268,6 +268,10 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                 personal_identity.setText("专员");
             } else if (data.getIdentity().equals("7")) {
                 personal_identity.setText("导购");
+            }else if (data.getIdentity().equals("8")) {
+                personal_identity.setText("经理");
+            }else if (data.getIdentity().equals("9")) {
+                personal_identity.setText("总监");
             }
             personal_city.setText(data.getCity());
             if (data.getSex().equals("")) {

@@ -977,21 +977,18 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                         if (changePhoneBean.getData().getStatus().equals("1")) {//报备成功
                             ToastUtil.showLongToast(ReportActivity.this, changePhoneBean.getData().getMessage());
                             finish();
-                            FinalContents.setClientName("");
-                            FinalContents.setClientPhone("");
-                            FinalContents.setCustomerID("");
-                            FinalContents.setProjectName("");
-                            FinalContents.setProjectSearchID("");
-                            FinalContents.setGuideRuleId("");
-                            FinalContents.setProjectID("");
                         } else if (changePhoneBean.getData().getStatus().equals("2")) {//已有报备
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(ReportActivity.this);
                             View inflate = LayoutInflater.from(ReportActivity.this).inflate(R.layout.binding_report, null, false);
                             builder1.setView(inflate);
                             TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
+                            TextView report_binding_confirm_tv = inflate.findViewById(R.id.report_binding_confirm_tv);
+                            TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
                             RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
                             RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
                             report_binding_title.setText(changePhoneBean.getData().getMessage());//内容
+                            report_binding_confirm_tv.setText("前去看看");
+                            report_binding_cancel_tv.setText("我知道了");
                             final AlertDialog show = builder1.show();
                             report_binding_cancel.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -1011,19 +1008,20 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                                     show.dismiss();
                                 }
                             });
-                        } else if (changePhoneBean.getData().getStatus().equals("3")) {//报备失败
+                        } else if (changePhoneBean.getData().getStatus().equals("3")) {//提示信息
 
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(ReportActivity.this);
                             View inflate = LayoutInflater.from(ReportActivity.this).inflate(R.layout.binding_report, null, false);
                             builder1.setView(inflate);
                             TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
                             RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
+                            TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
                             RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
                             LinearLayout report_binding_confirm_LinearLayout = inflate.findViewById(R.id.report_binding_confirm_LinearLayout);
                             report_binding_title.setText(changePhoneBean.getData().getMessage());//内容
                             report_binding_confirm.setVisibility(View.GONE);
                             report_binding_confirm_LinearLayout.setVisibility(View.GONE);
-
+                            report_binding_cancel_tv.setText("我知道了");
                             final AlertDialog show = builder1.show();
                             report_binding_cancel.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -1040,10 +1038,12 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                             builder1.setView(inflate);
                             TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
                             TextView report_binding_confirm_tv = inflate.findViewById(R.id.report_binding_confirm_tv);
+                            TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
                             RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
                             RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
-                            report_binding_title.setText(changePhoneBean.getData().getBusiness());//内容
+                            report_binding_title.setText(changePhoneBean.getData().getMessage());//内容
                             report_binding_confirm_tv.setText("前去致电");
+                            report_binding_cancel_tv.setText("我知道了");
                             final AlertDialog show = builder1.show();
                             report_binding_cancel.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -1057,6 +1057,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                                 public void onClick(View v) {
                                     Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + changePhoneBean.getData().getBusiness()));//跳转到拨号界面，同时传递电话号码
                                     startActivity(dialIntent);
+                                    finish();
                                     show.dismiss();
                                 }
                             });
@@ -1189,5 +1190,12 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     protected void onDestroy() {
         super.onDestroy();
         FinalContents.setProjectType("");
+        FinalContents.setClientName("");
+        FinalContents.setClientPhone("");
+        FinalContents.setCustomerID("");
+        FinalContents.setProjectName("");
+        FinalContents.setProjectSearchID("");
+        FinalContents.setGuideRuleId("");
+        FinalContents.setProjectID("");
     }
 }

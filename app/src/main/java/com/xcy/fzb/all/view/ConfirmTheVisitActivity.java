@@ -30,6 +30,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
+import com.baidu.location.Address;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -197,6 +198,7 @@ public class ConfirmTheVisitActivity extends AllActivity {
             @SuppressLint("MissingPermission")
             @Override
             public void onClick(View view) {
+                isFirstLoc = true;
                 initMapData();
 //                Log.e("Map", "setOnClickListener ");
                 //取上一次定位的位置
@@ -310,6 +312,9 @@ public class ConfirmTheVisitActivity extends AllActivity {
                     .direction(100).latitude(mlocation.getLatitude())
                     .longitude(mlocation.getLongitude()).build();
             if (isFirstLoc) {
+                String addrStr = location.getAddrStr();
+                comfirm_location.setText(addrStr);
+                Log.i("确认到访","addrStr：" + addrStr);
                 isFirstLoc = false;
                 ll = new LatLng(location.getLatitude(),
                         location.getLongitude());
@@ -514,60 +519,60 @@ public class ConfirmTheVisitActivity extends AllActivity {
     //TODO 从相册获取图片
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (isIF == 1) {
-//            if (requestCode == 1 && resultCode == RESULT_OK) {
-//                add_company_tv3.setText(data.getStringExtra("getLatitude") + "\n" + data.getStringExtra("getLongitude"));
-//            }
-            getLatitude = data.getStringExtra("getLatitude");
-            getLongitude = data.getStringExtra("getLongitude");
-
-
-            StringBuffer stringBuffer1 = new StringBuffer();
-            StringBuffer stringBuffer2 = new StringBuffer();
-
-            StringBuffer append1 = stringBuffer1.append(getLatitude);
-            StringBuffer append2 = stringBuffer2.append(getLongitude);
-
-            Retrofit.Builder builder = new Retrofit.Builder();
-            builder.baseUrl(FinalContents.getBaseUrl());
-            builder.addConverterFactory(GsonConverterFactory.create());
-            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-            Retrofit build = builder.build();
-            MyService fzbInterface = build.create(MyService.class);
-
-            Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
-            changeAddress.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<ChangeAddress>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
-
-                        }
-
-                        @Override
-                        public void onNext(ChangeAddress changeAddress) {
-
-                            comfirm_location.setText(changeAddress.getData().getValue());
-
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-
-                            Log.i("经纬度转坐标", "经纬度转坐标错误信息：" + e.getMessage());
-
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
-
-            isIF = 0;
-        } else {
-
-        }
+//        if (isIF == 1) {
+////            if (requestCode == 1 && resultCode == RESULT_OK) {
+////                add_company_tv3.setText(data.getStringExtra("getLatitude") + "\n" + data.getStringExtra("getLongitude"));
+////            }
+//            getLatitude = data.getStringExtra("getLatitude");
+//            getLongitude = data.getStringExtra("getLongitude");
+//
+//
+//            StringBuffer stringBuffer1 = new StringBuffer();
+//            StringBuffer stringBuffer2 = new StringBuffer();
+//
+//            StringBuffer append1 = stringBuffer1.append(getLatitude);
+//            StringBuffer append2 = stringBuffer2.append(getLongitude);
+//
+//            Retrofit.Builder builder = new Retrofit.Builder();
+//            builder.baseUrl(FinalContents.getBaseUrl());
+//            builder.addConverterFactory(GsonConverterFactory.create());
+//            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+//            Retrofit build = builder.build();
+//            MyService fzbInterface = build.create(MyService.class);
+//
+//            Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
+//            changeAddress.subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(new Observer<ChangeAddress>() {
+//                        @Override
+//                        public void onSubscribe(Disposable d) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onNext(ChangeAddress changeAddress) {
+//
+//                            comfirm_location.setText(changeAddress.getData().getValue());
+//
+//                        }
+//
+//                        @Override
+//                        public void onError(Throwable e) {
+//
+//                            Log.i("经纬度转坐标", "经纬度转坐标错误信息：" + e.getMessage());
+//
+//                        }
+//
+//                        @Override
+//                        public void onComplete() {
+//
+//                        }
+//                    });
+//
+//            isIF = 0;
+//        } else {
+//
+//        }
         //TODO  获取相册图片地址
         sum++;
         if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
