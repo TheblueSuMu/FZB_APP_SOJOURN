@@ -54,7 +54,7 @@ public class TestMapActivity extends AppCompatActivity{
     BDLocation mlocation;
     private double latitude = 0;
     private double longitude = 0;
-    private GeoCoder mCoder;
+//    private GeoCoder mCoder;
     private LatLng latLng1;
     private RoutePlanSearch mSearch;
     GeoCoder geoCoder = GeoCoder.newInstance();
@@ -147,9 +147,9 @@ public class TestMapActivity extends AppCompatActivity{
         option.setAddrType("all");
         mLocClient.setLocOption(option);
         //经纬度转地址
-        mSearch = RoutePlanSearch.newInstance();
-        mCoder = GeoCoder.newInstance();
-        mSearch.setOnGetRoutePlanResultListener((OnGetRoutePlanResultListener) this);
+//        mSearch = RoutePlanSearch.newInstance();
+//        mCoder = GeoCoder.newInstance();
+//        mSearch.setOnGetRoutePlanResultListener((OnGetRoutePlanResultListener) this);
 
         BaiduMap.OnMapClickListener listener = new BaiduMap.OnMapClickListener() {
 
@@ -173,10 +173,10 @@ public class TestMapActivity extends AppCompatActivity{
                 latitude = latLng.latitude;
                 longitude = latLng.longitude;
                 //经纬度转地址
-                mCoder.reverseGeoCode(new ReverseGeoCodeOption()
-                        .location(point)
-                        // POI召回半径，允许设置区间为0-1000米，超过1000米按1000米召回。默认值为1000
-                        .radius(500));
+//                mCoder.reverseGeoCode(new ReverseGeoCodeOption()
+//                        .location(point)
+//                        // POI召回半径，允许设置区间为0-1000米，超过1000米按1000米召回。默认值为1000
+//                        .radius(500));
 
                 latLng1 = latLng;
             }
@@ -194,26 +194,26 @@ public class TestMapActivity extends AppCompatActivity{
 
     }
 
-    //经纬度转地址
-    OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
-        @Override
-        public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
-
-        }
-
-        @Override
-        public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
-            if (reverseGeoCodeResult == null || reverseGeoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
-                //没有找到检索结果
-                return;
-            } else {
-                //详细地址
-                String address = reverseGeoCodeResult.getAddress();
-                //行政区号
-                int adCode = reverseGeoCodeResult. getCityCode();
-            }
-        }
-    };
+//    //经纬度转地址
+//    OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
+//        @Override
+//        public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
+//
+//        }
+//
+//        @Override
+//        public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+//            if (reverseGeoCodeResult == null || reverseGeoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+//                //没有找到检索结果
+//                return;
+//            } else {
+//                //详细地址
+//                String address = reverseGeoCodeResult.getAddress();
+////                //行政区号
+////                int adCode = reverseGeoCodeResult. getCityCode();
+//            }
+//        }
+//    };
 
     /**
      * 定位SDK监听函数
@@ -289,7 +289,7 @@ public class TestMapActivity extends AppCompatActivity{
         mBaiduMap.setMyLocationEnabled(false);
         mMapView.onDestroy();
         mMapView = null;
-        mCoder.destroy();
+//        mCoder.destroy();
 
         super.onDestroy();
     }

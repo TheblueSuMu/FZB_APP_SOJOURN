@@ -127,6 +127,15 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
     private ImageView all_no_information;
     private ScrollView project_side_scrollview;
 
+    ImageView project_side_img_1;
+    ImageView project_side_img_2;
+    ImageView project_side_img_3;
+    ImageView project_side_img_4;
+    ImageView project_side_img_5;
+    ImageView project_side_img_6;
+    ImageView project_side_img_7;
+    ImageView project_side_img_8;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -161,6 +170,15 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         home_picker_ensure = view.findViewById(R.id.home_picker_ensure);
         dateTimePickerView = view.findViewById(R.id.home_pickerView);
 
+        //小红点
+        project_side_img_1 = getActivity().findViewById(R.id.project_side_img_1);//报备
+        project_side_img_2 = getActivity().findViewById(R.id.project_side_img_2);//到访
+        project_side_img_3 = getActivity().findViewById(R.id.project_side_img_3);//登岛
+        project_side_img_4 = getActivity().findViewById(R.id.project_side_img_4);//认筹
+        project_side_img_5 = getActivity().findViewById(R.id.project_side_img_5);//成交
+        project_side_img_6 = getActivity().findViewById(R.id.project_side_img_6);//失效
+        project_side_img_7 = getActivity().findViewById(R.id.project_side_img_7);//待我审核
+        project_side_img_8 = getActivity().findViewById(R.id.project_side_img_8);//我发起的审核
 
         myproject = view.findViewById(R.id.myproject);
         mypost = view.findViewById(R.id.mypost);
