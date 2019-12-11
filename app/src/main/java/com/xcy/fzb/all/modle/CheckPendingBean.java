@@ -3,12 +3,10 @@ package com.xcy.fzb.all.modle;
 import java.util.List;
 
 public class CheckPendingBean {
-
-
     /**
      * code : 1
      * msg : 成功
-     * data : {"total":2,"rows":[{"date":"报备时间2019-05-05 13:16:51","customerPhone":"123456","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"","customerId":"82c05675e5f247939ab28f9b1d8b3ff4","preparationId":"980f45eee2154c5e9e2794450f26ce08","relatedData":"待审核","intentionArea":"","projectName":"Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区","projectId":"","customerName":"aaa","status":"10"},{"date":"报备时间2019-04-30 11:45:25","customerPhone":"18964641","customerImg":"/fangfang/userfiles/43dea5335a1b4cb6bf15782a3be87c6a/attachment//ff/server/customer/2019/4/1556540329209.jpeg","projectType":"","customerId":"9360ddf8912c475aa65f9fe3ffccae28","preparationId":"5a9a15bbc7574a0e855b2638fc244e90","relatedData":"待审核","intentionArea":"","projectName":"Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区","projectId":"","customerName":"帮你暖暖","status":"10"}]}
+     * data : {"total":17,"rows":[{"date":"报备时间2019-12-11 14:55:24","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"不错","customerPhone":"15243111617","customerId":"85547b9dfbf64621a3e7587aec0a1195","preparationId":"94325e66877f43b195d1bc481fb71ebb","relatedData":"待审核","intentionArea":"","projectName":"鼎龙湾国际海洋王国度假区","projectId":"","status":"10"},{"date":"报备时间2019-12-11 13:28:18","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"不错","customerPhone":"15243111617","customerId":"85547b9dfbf64621a3e7587aec0a1195","preparationId":"e8942da95d614b9186d77b639b4966a2","relatedData":"待审核","intentionArea":"","projectName":"航天首府","projectId":"","status":"10"},{"date":"报备时间2019-12-11 13:18:02","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"宠一","customerPhone":"15566666335","customerId":"aacc72239e724ea2a6229f290ff1a6da","preparationId":"64998e04f01949b1bd7cc6c623ab61d8","relatedData":"待审核","intentionArea":"","projectName":"航天首府","projectId":"","status":"10"},{"date":"报备时间2019-12-10 22:30:16","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"嘿嘿","customerPhone":"13850306686","customerId":"3b02b4e89564471b90e63ede0062d805","preparationId":"443dec288bb94b94ba53b4a7cef51226","relatedData":"待审核","intentionArea":"","projectName":"航天首府","projectId":"","status":"10"},{"date":"报备时间2019-12-10 16:22:01","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"姣姣","customerPhone":"15752452580","customerId":"0de805a44df9439da591ab046a51f31a","preparationId":"ac574bf9cf8c4fc1b3a85025aa2fefd9","relatedData":"待审核","intentionArea":"","projectName":"鼎龙湾国际海洋王国度假区","projectId":"","status":"10"},{"date":"报备时间2019-12-10 16:16:06","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"米兰","customerPhone":"15566368989","customerId":"93325a8b9e4f49ce85c00d29f9183489","preparationId":"4987fc3fceb64fb29c46236cd71a94b5","relatedData":"待审核","intentionArea":"","projectName":"航天首府","projectId":"","status":"10"},{"date":"报备时间2019-12-10 14:35:30","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"米咋","customerPhone":"15855565555","customerId":"7016d0009d614f8584edaa356d8f89a2","preparationId":"b6f8ddee0b5241a59744a287245f659b","relatedData":"待审核","intentionArea":"","projectName":"温泉新都孔雀城冠军园","projectId":"","status":"10"},{"date":"报备时间2019-12-10 14:33:37","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"你丫","customerPhone":"15808880008","customerId":"b254afa4fb67447a9d0ad8ea1b59d32a","preparationId":"9ca69ff2d0df4680819f389dcf675d66","relatedData":"待审核","intentionArea":"","projectName":"温泉新都孔雀城冠军园","projectId":"","status":"10"},{"date":"报备时间2019-12-10 11:25:26","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"赵娜娜","customerPhone":"15508445563","customerId":"484672b2cd5a4e78a2d4c5ad4e7885fb","preparationId":"e3888fffcd054fc7b9c2aeed105aa974","relatedData":"待审核","intentionArea":"","projectName":"温泉新都孔雀城风情园","projectId":"","status":"10"},{"date":"报备时间2019-12-10 11:02:41","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"米兰","customerPhone":"15566368989","customerId":"93325a8b9e4f49ce85c00d29f9183489","preparationId":"09af972d202f4ed0bee4f39338fdc302","relatedData":"待审核","intentionArea":"","projectName":"温泉新都孔雀城风情园","projectId":"","status":"10"}]}
      */
 
     private String code;
@@ -41,8 +39,8 @@ public class CheckPendingBean {
 
     public static class DataBean {
         /**
-         * total : 2
-         * rows : [{"date":"报备时间2019-05-05 13:16:51","customerPhone":"123456","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"","customerId":"82c05675e5f247939ab28f9b1d8b3ff4","preparationId":"980f45eee2154c5e9e2794450f26ce08","relatedData":"待审核","intentionArea":"","projectName":"Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区","projectId":"","customerName":"aaa","status":"10"},{"date":"报备时间2019-04-30 11:45:25","customerPhone":"18964641","customerImg":"/fangfang/userfiles/43dea5335a1b4cb6bf15782a3be87c6a/attachment//ff/server/customer/2019/4/1556540329209.jpeg","projectType":"","customerId":"9360ddf8912c475aa65f9fe3ffccae28","preparationId":"5a9a15bbc7574a0e855b2638fc244e90","relatedData":"待审核","intentionArea":"","projectName":"Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区","projectId":"","customerName":"帮你暖暖","status":"10"}]
+         * total : 17
+         * rows : [{"date":"报备时间2019-12-11 14:55:24","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"不错","customerPhone":"15243111617","customerId":"85547b9dfbf64621a3e7587aec0a1195","preparationId":"94325e66877f43b195d1bc481fb71ebb","relatedData":"待审核","intentionArea":"","projectName":"鼎龙湾国际海洋王国度假区","projectId":"","status":"10"},{"date":"报备时间2019-12-11 13:28:18","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"不错","customerPhone":"15243111617","customerId":"85547b9dfbf64621a3e7587aec0a1195","preparationId":"e8942da95d614b9186d77b639b4966a2","relatedData":"待审核","intentionArea":"","projectName":"航天首府","projectId":"","status":"10"},{"date":"报备时间2019-12-11 13:18:02","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"宠一","customerPhone":"15566666335","customerId":"aacc72239e724ea2a6229f290ff1a6da","preparationId":"64998e04f01949b1bd7cc6c623ab61d8","relatedData":"待审核","intentionArea":"","projectName":"航天首府","projectId":"","status":"10"},{"date":"报备时间2019-12-10 22:30:16","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"嘿嘿","customerPhone":"13850306686","customerId":"3b02b4e89564471b90e63ede0062d805","preparationId":"443dec288bb94b94ba53b4a7cef51226","relatedData":"待审核","intentionArea":"","projectName":"航天首府","projectId":"","status":"10"},{"date":"报备时间2019-12-10 16:22:01","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"姣姣","customerPhone":"15752452580","customerId":"0de805a44df9439da591ab046a51f31a","preparationId":"ac574bf9cf8c4fc1b3a85025aa2fefd9","relatedData":"待审核","intentionArea":"","projectName":"鼎龙湾国际海洋王国度假区","projectId":"","status":"10"},{"date":"报备时间2019-12-10 16:16:06","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"米兰","customerPhone":"15566368989","customerId":"93325a8b9e4f49ce85c00d29f9183489","preparationId":"4987fc3fceb64fb29c46236cd71a94b5","relatedData":"待审核","intentionArea":"","projectName":"航天首府","projectId":"","status":"10"},{"date":"报备时间2019-12-10 14:35:30","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"米咋","customerPhone":"15855565555","customerId":"7016d0009d614f8584edaa356d8f89a2","preparationId":"b6f8ddee0b5241a59744a287245f659b","relatedData":"待审核","intentionArea":"","projectName":"温泉新都孔雀城冠军园","projectId":"","status":"10"},{"date":"报备时间2019-12-10 14:33:37","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"你丫","customerPhone":"15808880008","customerId":"b254afa4fb67447a9d0ad8ea1b59d32a","preparationId":"9ca69ff2d0df4680819f389dcf675d66","relatedData":"待审核","intentionArea":"","projectName":"温泉新都孔雀城冠军园","projectId":"","status":"10"},{"date":"报备时间2019-12-10 11:25:26","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"赵娜娜","customerPhone":"15508445563","customerId":"484672b2cd5a4e78a2d4c5ad4e7885fb","preparationId":"e3888fffcd054fc7b9c2aeed105aa974","relatedData":"待审核","intentionArea":"","projectName":"温泉新都孔雀城风情园","projectId":"","status":"10"},{"date":"报备时间2019-12-10 11:02:41","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"","customerName":"米兰","customerPhone":"15566368989","customerId":"93325a8b9e4f49ce85c00d29f9183489","preparationId":"09af972d202f4ed0bee4f39338fdc302","relatedData":"待审核","intentionArea":"","projectName":"温泉新都孔雀城风情园","projectId":"","status":"10"}]
          */
 
         private int total;
@@ -66,31 +64,33 @@ public class CheckPendingBean {
 
         public static class RowsBean {
             /**
-             * date : 报备时间2019-05-05 13:16:51
-             * customerPhone : 123456
+             * date : 报备时间2019-12-11 14:55:24
              * customerImg : /fangfang/static/common/images/flat-avatar.png
+             * isRead : 0
              * projectType :
-             * customerId : 82c05675e5f247939ab28f9b1d8b3ff4
-             * preparationId : 980f45eee2154c5e9e2794450f26ce08
+             * customerName : 不错
+             * customerPhone : 15243111617
+             * customerId : 85547b9dfbf64621a3e7587aec0a1195
+             * preparationId : 94325e66877f43b195d1bc481fb71ebb
              * relatedData : 待审核
              * intentionArea :
-             * projectName : Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区
+             * projectName : 鼎龙湾国际海洋王国度假区
              * projectId :
-             * customerName : aaa
              * status : 10
              */
 
             private String date;
-            private String customerPhone;
             private String customerImg;
+            private String isRead;
             private String projectType;
+            private String customerName;
+            private String customerPhone;
             private String customerId;
             private String preparationId;
             private String relatedData;
             private String intentionArea;
             private String projectName;
             private String projectId;
-            private String customerName;
             private String status;
 
             public String getDate() {
@@ -101,14 +101,6 @@ public class CheckPendingBean {
                 this.date = date;
             }
 
-            public String getCustomerPhone() {
-                return customerPhone;
-            }
-
-            public void setCustomerPhone(String customerPhone) {
-                this.customerPhone = customerPhone;
-            }
-
             public String getCustomerImg() {
                 return customerImg;
             }
@@ -117,12 +109,36 @@ public class CheckPendingBean {
                 this.customerImg = customerImg;
             }
 
+            public String getIsRead() {
+                return isRead;
+            }
+
+            public void setIsRead(String isRead) {
+                this.isRead = isRead;
+            }
+
             public String getProjectType() {
                 return projectType;
             }
 
             public void setProjectType(String projectType) {
                 this.projectType = projectType;
+            }
+
+            public String getCustomerName() {
+                return customerName;
+            }
+
+            public void setCustomerName(String customerName) {
+                this.customerName = customerName;
+            }
+
+            public String getCustomerPhone() {
+                return customerPhone;
+            }
+
+            public void setCustomerPhone(String customerPhone) {
+                this.customerPhone = customerPhone;
             }
 
             public String getCustomerId() {
@@ -171,14 +187,6 @@ public class CheckPendingBean {
 
             public void setProjectId(String projectId) {
                 this.projectId = projectId;
-            }
-
-            public String getCustomerName() {
-                return customerName;
-            }
-
-            public void setCustomerName(String customerName) {
-                this.customerName = customerName;
             }
 
             public String getStatus() {

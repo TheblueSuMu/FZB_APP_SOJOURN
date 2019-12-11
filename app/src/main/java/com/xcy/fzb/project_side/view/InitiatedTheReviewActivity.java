@@ -131,6 +131,8 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                             initData(2);
                         } else if (initiated_the_review_ll6.getVisibility() == View.VISIBLE) {
                             initData(3);
+                        } else if (initiated_the_review_ll8.getVisibility() == View.VISIBLE) {
+                            initData(4);
                         }
                     }
                 }, 1000);
@@ -142,8 +144,6 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
             }
         });
 
-
-        initData(1);
         initRead();
     }
 
@@ -317,4 +317,17 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                 });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (initiated_the_review_ll2.getVisibility() == View.VISIBLE) {
+            initData(1);
+        } else if (initiated_the_review_ll4.getVisibility() == View.VISIBLE) {
+            initData(2);
+        } else if (initiated_the_review_ll6.getVisibility() == View.VISIBLE) {
+            initData(3);
+        } else if (initiated_the_review_ll8.getVisibility() == View.VISIBLE) {
+            initData(4);
+        }
+    }
 }

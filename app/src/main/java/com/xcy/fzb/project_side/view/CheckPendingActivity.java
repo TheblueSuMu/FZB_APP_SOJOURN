@@ -23,6 +23,7 @@ import com.xcy.fzb.all.adapter.ReviewTheSuccessPhoneAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CBean;
 import com.xcy.fzb.all.modle.CheckBean;
+import com.xcy.fzb.all.modle.ReadRecordBean;
 import com.xcy.fzb.all.modle.ReportProcessDetailsBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -368,5 +369,44 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                     });
         }
 
+    }
+
+    private void initReadRecord(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ReadRecordBean> clientFragment = fzbInterface.getReadRecord(FinalContents.getUserID(),FinalContents.getPreparationId(), "");
+        clientFragment.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ReadRecordBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ReadRecordBean readRecordBean) {
+                        Log.i("MyCL", "项目进度中未浏览信息"+readRecordBean.getData().getMessage());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "项目进度中未浏览错误信息" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initReadRecord();
     }
 }

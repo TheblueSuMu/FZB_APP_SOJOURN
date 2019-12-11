@@ -326,7 +326,7 @@
                                             android:layout_height="5dp"
                                             android:layout_toRightOf="@id/tv2_home_the_project_end"
                                             android:src="@mipmap/item_unread"
-                                            android:visibility="gone"></ImageView>
+                                            android:visibility="gone" />
                                     </RelativeLayout>
 
 
@@ -383,7 +383,7 @@
                                             android:layout_height="5dp"
                                             android:layout_toRightOf="@id/tv3_home_the_project_end"
                                             android:src="@mipmap/item_unread"
-                                            android:visibility="gone"></ImageView>
+                                            android:visibility="gone"/>
                                     </RelativeLayout>
 
 
@@ -441,7 +441,7 @@
                                             android:layout_height="5dp"
                                             android:layout_toRightOf="@id/tv5_home_the_project_end"
                                             android:src="@mipmap/item_unread"
-                                            android:visibility="gone"></ImageView>
+                                            android:visibility="gone"/>
                                     </RelativeLayout>
 
 
@@ -499,7 +499,7 @@
                                             android:layout_height="5dp"
                                             android:layout_toRightOf="@id/tv6_home_the_project_end"
                                             android:src="@mipmap/item_unread"
-                                            android:visibility="gone"></ImageView>
+                                            android:visibility="gone"/>
                                     </RelativeLayout>
 
 
@@ -553,7 +553,7 @@
                                             android:layout_height="5dp"
                                             android:src="@mipmap/item_unread"
                                             android:visibility="gone"
-                                            android:layout_toRightOf="@id/tv7_home_the_project_end"></ImageView>
+                                            android:layout_toRightOf="@id/tv7_home_the_project_end"/>
                                     </RelativeLayout>
 
 
@@ -607,7 +607,7 @@
                                             android:layout_height="5dp"
                                             android:src="@mipmap/item_unread"
                                             android:visibility="gone"
-                                            android:layout_toRightOf="@id/tv8_home_the_project_end"></ImageView>
+                                            android:layout_toRightOf="@id/tv8_home_the_project_end"/>
                                     </RelativeLayout>
 
 
@@ -882,7 +882,7 @@
                                             android:layout_height="5dp"
                                             android:src="@mipmap/item_unread"
                                             android:visibility="gone"
-                                            android:layout_toRightOf="@id/tv13_home_the_project_end"></ImageView>
+                                            android:layout_toRightOf="@id/tv13_home_the_project_end"/>
                                     </RelativeLayout>
 
 
@@ -945,7 +945,7 @@
                                             android:layout_height="5dp"
                                             android:src="@mipmap/item_unread"
                                             android:visibility="gone"
-                                            android:layout_toRightOf="@id/tv14_home_the_project_end"></ImageView>
+                                            android:layout_toRightOf="@id/tv14_home_the_project_end"/>
                                     </RelativeLayout>
 
 

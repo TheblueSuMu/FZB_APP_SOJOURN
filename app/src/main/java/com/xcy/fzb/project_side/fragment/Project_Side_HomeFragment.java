@@ -171,14 +171,14 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         dateTimePickerView = view.findViewById(R.id.home_pickerView);
 
         //小红点
-        project_side_img_1 = getActivity().findViewById(R.id.project_side_img_1);//报备
-        project_side_img_2 = getActivity().findViewById(R.id.project_side_img_2);//到访
-        project_side_img_3 = getActivity().findViewById(R.id.project_side_img_3);//登岛
-        project_side_img_4 = getActivity().findViewById(R.id.project_side_img_4);//认筹
-        project_side_img_5 = getActivity().findViewById(R.id.project_side_img_5);//成交
-        project_side_img_6 = getActivity().findViewById(R.id.project_side_img_6);//失效
-        project_side_img_7 = getActivity().findViewById(R.id.project_side_img_7);//待我审核
-        project_side_img_8 = getActivity().findViewById(R.id.project_side_img_8);//我发起的审核
+        project_side_img_1 = view.findViewById(R.id.project_side_img_1);//报备
+        project_side_img_2 = view.findViewById(R.id.project_side_img_2);//到访
+        project_side_img_3 = view.findViewById(R.id.project_side_img_3);//登岛
+        project_side_img_4 = view.findViewById(R.id.project_side_img_4);//认筹
+        project_side_img_5 = view.findViewById(R.id.project_side_img_5);//成交
+        project_side_img_6 = view.findViewById(R.id.project_side_img_6);//失效
+        project_side_img_7 = view.findViewById(R.id.project_side_img_7);//待我审核
+        project_side_img_8 = view.findViewById(R.id.project_side_img_8);//我发起的审核
 
         myproject = view.findViewById(R.id.myproject);
         mypost = view.findViewById(R.id.mypost);
@@ -424,6 +424,56 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                         tv12_home_the_project_end.setText("" + homeBean.getData().getSurplusMoney());
                         tv13_home_the_project_end.setText("" + homeBean.getData().getAuditNumber());
                         tv14_home_the_project_end.setText("" + homeBean.getData().getApplyCount());
+
+
+
+                        if (homeBean.getData().getReportNoRead() == 1) {//    TODO    报备  未读
+                            project_side_img_1.setVisibility(View.VISIBLE);
+                        }else {
+                            project_side_img_1.setVisibility(View.GONE);
+                        }
+
+                        if (homeBean.getData().getAccessingNoRead() == 1) {//    TODO    到访  未读
+                            project_side_img_2.setVisibility(View.VISIBLE);
+                        }else {
+                            project_side_img_2.setVisibility(View.GONE);
+                        }
+
+                        if (homeBean.getData().getIsIslandNoRead() == 1) {//    TODO    登岛  未读
+                            project_side_img_3.setVisibility(View.VISIBLE);
+                        }else {
+                            project_side_img_3.setVisibility(View.GONE);
+                        }
+
+                        if (homeBean.getData().getEarnestMoneyNoRead() == 1) {//    TODO    认筹  未读
+                            project_side_img_4.setVisibility(View.VISIBLE);
+                        }else {
+                            project_side_img_4.setVisibility(View.GONE);
+                        }
+
+                        if (homeBean.getData().getTradeNoRead() == 1) {//    TODO    成交  未读
+                            project_side_img_5.setVisibility(View.VISIBLE);
+                        }else {
+                            project_side_img_5.setVisibility(View.GONE);
+                        }
+
+                        if (homeBean.getData().getLoseNoRead() == 1) {//    TODO    失效  未读
+                            project_side_img_6.setVisibility(View.VISIBLE);
+                        }else {
+                            project_side_img_6.setVisibility(View.GONE);
+                        }
+
+                        if (homeBean.getData().getAuditNoRead().equals("1")) {//    TODO    待审核  未读
+                            project_side_img_7.setVisibility(View.VISIBLE);
+                        }else {
+                            project_side_img_7.setVisibility(View.GONE);
+                        }
+
+                        if (homeBean.getData().getApplyNoRead().equals("1")) {//    TODO    我发起的审核  未读
+                            project_side_img_8.setVisibility(View.VISIBLE);
+                        }else {
+                            project_side_img_8.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
@@ -644,5 +694,6 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         if (NewlyIncreased.getUserMessage().equals("7")){
             init();
         }
+        initViewData();
     }
 }

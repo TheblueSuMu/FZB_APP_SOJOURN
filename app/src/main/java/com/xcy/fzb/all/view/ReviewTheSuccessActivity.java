@@ -776,6 +776,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     }
 
     private void initReadRecord(){
+        Log.i("状态", "项目进度中状态"+CityContents.getReadRecordStatus());
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
