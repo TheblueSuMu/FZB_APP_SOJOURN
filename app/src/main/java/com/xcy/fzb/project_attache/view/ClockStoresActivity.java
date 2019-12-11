@@ -523,7 +523,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
         switch (view.getId()) {
             case R.id.store_details_return_s:
                 //返回按钮
-                if (data.getTotal() == 1) {
+                if (data.getTotal() == 1 && store_details_linear1.getVisibility() == View.GONE && store_details_linear2.getVisibility() == View.GONE) {
                     if (!timerTask.cancel()) {
                         timerTask.cancel();
                         timer1.cancel();

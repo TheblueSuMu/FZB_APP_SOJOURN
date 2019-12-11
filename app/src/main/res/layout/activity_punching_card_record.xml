@@ -51,12 +51,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/icon_c"
-        android:background="#FFF">
+        android:background="#EEEEEE">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/punching_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             ></androidx.recyclerview.widget.RecyclerView>
     </com.xcy.fzb.all.utils.SuperSwipeRefreshLayout>
 

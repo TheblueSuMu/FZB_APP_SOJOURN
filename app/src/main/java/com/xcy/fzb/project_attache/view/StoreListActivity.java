@@ -46,8 +46,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-public class StoreListActivity extends AllActivity implements View.OnClickListener, StoreListAdapter.ItemOnClick, SwipeRefreshLayout.OnRefreshListener {
+//, SwipeRefreshLayout.OnRefreshListener
+public class StoreListActivity extends AllActivity implements View.OnClickListener, StoreListAdapter.ItemOnClick {
 
     RelativeLayout store_list_return;
     ImageView store_list_add;
@@ -75,7 +75,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
     private Intent intent;
     private ImageView all_no_information;
 
-    private SwipeRefreshLayout layout;
+//    private SwipeRefreshLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,9 +119,9 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         store_list_tv2 = findViewById(R.id.store_list_tv2);
         store_list_tv1 = findViewById(R.id.store_list_tv1);
         store_list_cb = findViewById(R.id.store_list_cb);
-        layout = findViewById(R.id.ssrl_s);
+//        layout = findViewById(R.id.ssrl_s);
 
-        layout.setOnRefreshListener(this);
+//        layout.setOnRefreshListener(this);
 
         store_list_cb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -539,29 +539,29 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
     }
 
-    @Override
-    public void onRefresh() {
-
-        if (layout.isRefreshing()) {//如果正在刷新
-//            initView();
-//            initHotList();
-            if(store_list_ll2.getVisibility() == View.VISIBLE){
-                if (store_list_cb.isChecked()) {
-                    initData("", "", "1","","","");
-                } else {
-                    initData("", "", "","","","");
-                }
-                FinalContents.setStoreList("1");
-            }else if(store_list_ll4.getVisibility() == View.VISIBLE){
-                FinalContents.setStoreList("2");
-                if (store_list_cb.isChecked()) {
-                    initDatam("","", "1");
-                } else {
-                    initDatam("","", "");
-                }
-            }
-            layout.setRefreshing(false);//取消刷新
-        }
-
-    }
+//    @Override
+//    public void onRefresh() {
+//
+//        if (layout.isRefreshing()) {//如果正在刷新
+////            initView();
+////            initHotList();
+//            if(store_list_ll2.getVisibility() == View.VISIBLE){
+//                if (store_list_cb.isChecked()) {
+//                    initData("", "", "1","","","");
+//                } else {
+//                    initData("", "", "","","","");
+//                }
+//                FinalContents.setStoreList("1");
+//            }else if(store_list_ll4.getVisibility() == View.VISIBLE){
+//                FinalContents.setStoreList("2");
+//                if (store_list_cb.isChecked()) {
+//                    initDatam("","", "1");
+//                } else {
+//                    initDatam("","", "");
+//                }
+//            }
+//            layout.setRefreshing(false);//取消刷新
+//        }
+//
+//    }
 }

@@ -42,6 +42,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:scrollbars="none"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -52,7 +53,7 @@
             <ImageView
                 android:id="@+id/store_details_img"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="160dp"
                 android:layout_marginBottom="20dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/banner_img" />
@@ -115,7 +116,6 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
-                android:fadeScrollbars="false"
                 android:numColumns="3" />
 
             <RelativeLayout

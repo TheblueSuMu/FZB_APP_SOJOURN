@@ -7,9 +7,9 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -72,19 +72,20 @@
                     android:hint="搜索"
                     android:textColor="#333333"
                     android:textSize="12sp" />
+
                 <CheckBox
                     android:id="@+id/store_list_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="只看合作"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
                     android:button="@null"
                     android:drawableLeft="@drawable/store_list_checked_select"
                     android:drawablePadding="8dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
+                    android:text="只看合作"
                     android:textColor="#FFFFFF"
-                    android:textSize="13sp"
-                    android:layout_marginRight="15dp"/>
+                    android:textSize="13sp" />
             </RelativeLayout>
 
             <LinearLayout
@@ -114,11 +115,11 @@
 
                     <LinearLayout
                         android:id="@+id/store_list_ll2"
-                        android:orientation="vertical"
                         android:layout_width="30dp"
                         android:layout_height="3dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/back_all_s_s"></LinearLayout>
+                        android:background="@drawable/back_all_s_s"
+                        android:orientation="vertical"></LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -143,67 +144,69 @@
                         android:id="@+id/store_list_ll4"
                         android:layout_width="30dp"
                         android:layout_height="3dp"
-                        android:orientation="vertical"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/back_all_s_s"
+                        android:orientation="vertical"
                         android:visibility="invisible"></LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
         </RelativeLayout>
-        <com.xcy.fzb.all.utils.SuperSwipeRefreshLayout
-            android:id="@+id/ssrl_s"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
+<!--        <com.xcy.fzb.all.utils.SuperSwipeRefreshLayout-->
+<!--            android:id="@+id/ssrl_s"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/store_list_rv"
-                    android:background="#FFFFFF"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF" />
 
                 <ImageView
                     android:id="@+id/all_no_information"
-                    android:background="#fff"
-                    android:visibility="gone"
-                    android:src="@mipmap/no_information"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:background="#fff"
+                    android:src="@mipmap/no_information"
+                    android:visibility="gone" />
 
             </RelativeLayout>
-        </com.xcy.fzb.all.utils.SuperSwipeRefreshLayout>
+<!--        </com.xcy.fzb.all.utils.SuperSwipeRefreshLayout>-->
 
 
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/all_no_network"
-        android:background="#fff"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageimage"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/no_network"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network" />
 
         <Button
-            android:layout_below="@id/imageimage"
             android:id="@+id/all_no_reload"
-            android:layout_marginTop="-40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageimage"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="-40dp"
             android:background="@drawable/button_back"
             android:text="重新加载"
-            android:textSize="12sp"
             android:textColor="#334485"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
