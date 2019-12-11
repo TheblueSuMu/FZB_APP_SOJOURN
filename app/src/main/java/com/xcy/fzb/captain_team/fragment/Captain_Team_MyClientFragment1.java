@@ -21,13 +21,13 @@ import com.mcxtzhang.indexlib.suspension.SuspensionDecoration;
 import com.nanchen.wavesidebar.WaveSideBarView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.LinkmanAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.LinkmanBean;
 import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.DividerItemDecoration;
-import com.xcy.fzb.all.persente.LetterComparator;
 import com.xcy.fzb.all.persente.MyClientName;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -40,10 +40,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -55,7 +53,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Captain_Team_MyClientFragment1 extends Fragment implements ContactsAdapter.ItemOnClick, SwipeRefreshLayout.OnRefreshListener {
+public class Captain_Team_MyClientFragment1 extends Fragment{
 
     WaveSideBarView mWaveSideBarView;
     RecyclerView mRecyclerView;
@@ -80,7 +78,6 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
     private LinearLayoutManager linearLayoutManager;
     private SuspensionDecoration mDecoration;
     private LinkmanAdapter linkmanAdapter;
-    private SwipeRefreshLayout layout;
 
     public Captain_Team_MyClientFragment1() {
         // Required empty public constructor
@@ -93,6 +90,7 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
         // Inflate the layout for this fragment
         StatusBar.makeStatusBarTransparent(getActivity());
         EventBus.getDefault().register(this);
+        CityContents.setAddClient("");
         context = container.getContext();
         return inflater.inflate(R.layout.fragment_my_client_fragment1, container, false);
     }
@@ -107,8 +105,6 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
         main_indexbar = getActivity().findViewById(R.id.main_indexbar);//HintTextView
         main_side_bar = getActivity().findViewById(R.id.test_side_bar);//IndexBar
         mRecyclerView = getActivity().findViewById(R.id.main_recycler);
-        layout = getActivity().findViewById(R.id.home_srl_SS);
-        layout.setOnRefreshListener(this);
         all_no_information = getActivity().findViewById(R.id.all_no_information);
         main_side_bar.bringToFront();
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -121,50 +117,6 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
                 .setmLayoutManager(linearLayoutManager);//设置RecyclerView的LayoutManager
 
         inithot("");
-
-    }
-
-
-    private void initDatas() {
-// RecyclerView设置相关
-        decoration.registerTypePinnedHeader(1, new PinnedHeaderDecoration.PinnedHeaderCreator() {
-            @Override
-            public boolean create(RecyclerView parent, int adapterPosition) {
-                return true;
-            }
-        });
-        Log.i("MyCL", "集合长度：" + mContactModels.size());
-
-        mAdapter = new ContactsAdapter();
-        mRecyclerView.addItemDecoration(decoration);
-        Collections.sort(mContactModels, new LetterComparator());
-        mAdapter.setContacts(mContactModels);
-        mAdapter.setItemOnClick(this);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
-
-        mAdapter = new ContactsAdapter();
-        mRecyclerView.addItemDecoration(decoration);
-        Collections.sort(mContactModels, new LetterComparator());
-        mAdapter.setContacts(mContactModels);
-        mAdapter.setItemOnClick(this);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
-
-// 侧边设置相关
-        mWaveSideBarView.setOnSelectIndexItemListener(new WaveSideBarView.OnSelectIndexItemListener() {
-            @Override
-            public void onSelectIndexItem(String letter) {
-                for (int i = 0; i < mContactModels.size(); i++) {
-                    if (mContactModels.get(i).getIndex().equals(letter)) {
-                        ((LinearLayoutManager) mRecyclerView.getLayoutManager()).scrollToPositionWithOffset(i, 0);
-                        return;
-                    }
-                }
-            }
-        });
-        Log.i("MyCL", "5555");
-        NewlyIncreased.setTest(true);
 
     }
 
@@ -260,56 +212,34 @@ public class Captain_Team_MyClientFragment1 extends Fragment implements Contacts
 
                     }
                 });
-
-
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (CityContents.getAddClient().equals("1")) {
+            Log.i("客户列表","加载成功");
+            inithot("");
+        }else {
+            Log.i("客户列表","加载失败");
+        }
     }
 
     @Override
-    public void itemClick(String itemName) {
-
-        StringBuffer stringBuffer = new StringBuffer();
-        StringBuffer append = stringBuffer.append(itemName);
-
-        if (FinalContents.getNUM().equals("1")) {
-            for (int j = 0; j < append.length(); ++j) {
-                if (append.substring(j, j + 1).equals("@")) {
-                    FinalContents.setClientName(append.substring(0, j));
-                    FinalContents.setCustomerID(append.substring(j + 1));
-                    getActivity().finish();
-                    FinalContents.setNUM("0");
-                    break;
-                }
-            }
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(hidden){
+            //TODO now visible to user 不显示fragment
         } else {
-            for (int j = 0; j < append.length(); ++j) {
-                if (append.substring(j, j + 1).equals("@")) {
-                    FinalContents.setCustomerID(append.substring(j + 1));
-                    Intent intent = new Intent(getContext(), ClientParticularsActivity.class);
-                    startActivity(intent);
-                    Log.i("团队长", "contacts.get(position).getName()：" + append.substring(j + 1));
-                    break;
-                }
-            }
-
+            onResume();
+            //TODO now invisible to user 显示fragment
         }
-
     }
-
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        CityContents.setAddClient("");
     }
 
-
-    @Override
-    public void onRefresh() {
-
-        if (layout.isRefreshing()) {//如果正在刷新
-            inithot("");
-            layout.setRefreshing(false);//取消刷新
-        }
-
-    }
 }

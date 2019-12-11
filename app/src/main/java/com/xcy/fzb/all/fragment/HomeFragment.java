@@ -296,9 +296,6 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
                         final List<String> list = new ArrayList<>();
                         for (int i = 0; i < citylist.size(); i++) {
                             list.add(citylist.get(i).getCity());
-                            if (citylist.get(i).getId().equals(FinalContents.getCityID())) {
-                                city.setText(citylist.get(i).getCity());
-                            }
                         }
                         //      监听选中
                         OptionsPickerView pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {

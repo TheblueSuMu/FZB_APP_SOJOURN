@@ -32,6 +32,7 @@ import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.DynamicLineChartManager;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
@@ -209,6 +210,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private void initView() {
         FinalContents.setDetails("项目详情");
         StatusBar.makeStatusBarTransparent(this);
+        CityContents.setIsRead("");
 
         project_attache_ll1 = findViewById(R.id.project_attache_ll1);
         project_attache_ll2 = findViewById(R.id.project_attache_ll2);

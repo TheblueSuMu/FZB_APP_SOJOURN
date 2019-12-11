@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
@@ -482,6 +483,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
     //TODO 点击事件
     @Override
     public void onClick(View view) {
+        CityContents.setIsRead("1");
         if (NewlyIncreased.getTag().equals("3")) {
             NewlyIncreased.setStartDate(beforeDate);
             NewlyIncreased.setEndDate(afterDate);
@@ -505,6 +507,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                 break;
 //                TODO  报备
             case R.id.layout1:
+
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "1");
                 startActivity(intent);

@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ReportNoReadListBean;
@@ -282,13 +283,18 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
     }
 
     private void initData(){
+        String ProjectID = "";
+        if (!CityContents.getIsRead().equals("1")) {
+            ProjectID = FinalContents.getProjectID();
+        }
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ReportNoReadListBean> clientFragment = fzbInterface.getReportNoReadList(FinalContents.getUserID(),FinalContents.getProjectID(), NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate(),"","");
+        Observable<ReportNoReadListBean> clientFragment = fzbInterface.getReportNoReadList(FinalContents.getUserID(),ProjectID, NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate(),"","");
         clientFragment.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ReportNoReadListBean>() {
@@ -299,6 +305,7 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
 
                     @Override
                     public void onNext(ReportNoReadListBean reportNoReadListBean) {
+
                         if (reportNoReadListBean.getData().getReports().equals("0") || reportNoReadListBean.getData().getReports().equals("")) {//  TODO 报备
                             my_client_unread_1.setVisibility(View.INVISIBLE);
                         }else {

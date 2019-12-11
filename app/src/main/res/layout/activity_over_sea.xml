@@ -122,6 +122,7 @@
                         </androidx.recyclerview.widget.RecyclerView>
 
                         <LinearLayout
+                            android:layout_marginTop="26dp"
                             android:id="@+id/oversea_linear"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">

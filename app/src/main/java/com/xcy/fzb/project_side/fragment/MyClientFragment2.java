@@ -124,6 +124,12 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
         if (FinalContents.getDetails().equals("项目详情")) {
             ProjectID = FinalContents.getProjectID();
         }
+        Log.i("专案","10:" + 10);
+        Log.i("专案","name:" + name);
+        Log.i("专案","FinalContents.getUserID():" + FinalContents.getUserID());
+        Log.i("专案"," NewlyIncreased.getTag():" +  NewlyIncreased.getTag());
+        Log.i("专案","NewlyIncreased.getStartDate():" + NewlyIncreased.getStartDate());
+        Log.i("专案","NewlyIncreased.getEndDate():" + NewlyIncreased.getEndDate());
         clientFragmentAdapter = new ClientFragmentAdapter();
         clientFragmentAdapter.setClick(this);
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -161,7 +167,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
                     public void onError(Throwable e) {
                         all_no_information.setVisibility(View.VISIBLE);
                         client_2_rv.setVisibility(View.GONE);
-                        Log.i("MyCL", "我的客户（报备）错误信息" + e.getMessage());
+                        Log.i("专案", "我的客户（报备）错误信息" + e.getMessage());
                     }
 
                     @Override

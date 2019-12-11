@@ -15,6 +15,16 @@ public class CityContents {
 
     static String WeChatJson = "";
 
+    static String IsRead = "";
+
+    public static String getIsRead() {
+        return IsRead;
+    }
+
+    public static void setIsRead(String isRead) {
+        IsRead = isRead;
+    }
+
     public static String getWeChatType() {
         return WeChatType;
     }

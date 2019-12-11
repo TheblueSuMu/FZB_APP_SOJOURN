@@ -177,7 +177,7 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
     @Override
     public void onResume() {
         super.onResume();
-
+        city.setText(FinalContents.getCityName());
         tvBanner2.startFlipping();
         //TODO 获取加速传感器
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
@@ -212,7 +212,7 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
         textView4 = view.findViewById(R.id.home_item_brokerage);
         city = view.findViewById(R.id.project_city_selector);
 
-
+        city.setText(FinalContents.getCityName());
         layout.setOnRefreshListener(this);
         search = view.findViewById(R.id.home_search);
         search.setFocusable(false);

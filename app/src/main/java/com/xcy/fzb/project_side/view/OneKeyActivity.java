@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -241,7 +242,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                     KeyUtils.hideKeyboard(fill_in_transaction_information_et5);
                     String s1 = fill_in_transaction_information_et4.getText().toString();
                     String s2 = fill_in_transaction_information_et5.getText().toString();
-                    if (s1.equals("") && s2.equals("")) {
+                    if (s1.equals("") || s2.equals("")) {
                     } else {
                         double area = Double.parseDouble(s1);
                         double price = Double.parseDouble(s2);
@@ -271,7 +272,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                         KeyUtils.hideKeyboard(fill_in_transaction_information_et5);
                         String s1 = fill_in_transaction_information_et4.getText().toString();
                         String s2 = fill_in_transaction_information_et5.getText().toString();
-                        if (s1.equals("") && s2.equals("")) {
+                        if (s1.equals("") || s2.equals("")) {
                         } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
@@ -293,6 +294,59 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
         } else {
             fill_in_transaction_information_tishi.setVisibility(View.GONE);
         }
+
+        fill_in_transaction_information_et4.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 获得焦点
+                } else {
+                    // 失去焦点
+                    hideInput();
+                    String s1 = fill_in_transaction_information_et4.getText().toString();
+                    String s2 = fill_in_transaction_information_et5.getText().toString();
+                    if (s1.equals("") || s2.equals("")) {
+                    } else {
+                        double area = Double.parseDouble(s1);
+                        double price = Double.parseDouble(s2);
+                        sum = GetInt.getInt((area * price));
+                        str = sum;
+                        fill_in_transaction_information_et6.setText(str + "元");
+                        fill_in_transaction_information_tishi.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+
+        });
+
+        fill_in_transaction_information_et5.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    // 获得焦点
+                } else {
+                    // 失去焦点
+                    hideInput();
+                    String s1 = fill_in_transaction_information_et4.getText().toString();
+                    String s2 = fill_in_transaction_information_et5.getText().toString();
+                    if (s1.equals("") || s2.equals("")) {
+                    } else {
+                        double area = Double.parseDouble(s1);
+                        double price = Double.parseDouble(s2);
+                        sum = GetInt.getInt((area * price));
+                        str = sum;
+                        fill_in_transaction_information_et6.setText(str + "元");
+                        fill_in_transaction_information_tishi.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+
+        });
     }
 
     //  TODO    选择变换
@@ -477,6 +531,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
 
                 if (ifnum3 == 0) {
                     ifnum3 = 1;
+                    hideInput();
                     picker.setVisibility(View.VISIBLE);
                     initDate();
                     ifnum3 = 0;
@@ -791,5 +846,16 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
         FinalContents.setProjectID("");
         FinalContents.setProjectName("");
         FinalContents.setCommissionId("");
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 }

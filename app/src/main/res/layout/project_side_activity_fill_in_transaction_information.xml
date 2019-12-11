@@ -593,7 +593,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:text="成交参考总价"
+                                android:text="成交总价"
                                 android:textColor="#ff666666"
                                 android:textSize="15sp" />
 
@@ -669,7 +669,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="15dp"
-                            android:background="#EEEEEE"></LinearLayout>
+                            android:background="#EEEEEE"/>
 
                         <RelativeLayout
                             android:id="@+id/fill_in_transaction_information_rl5"

@@ -331,8 +331,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                 });
     }
 
-
-
     private void initData() {
         Log.i("顾问", "从详情页获取的ID：" + FinalContents.getInforId());
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -523,6 +521,21 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
 
     @Override
     public void onClick(View view) {
+        if (NewlyIncreased.getTag().equals("3")) {
+            NewlyIncreased.setStartDate(startTime);
+            NewlyIncreased.setEndDate(endTime);
+        }else {
+            NewlyIncreased.setStartDate("");
+            NewlyIncreased.setEndDate("");
+        }
+
+        if (NewlyIncreased.getYJType().equals("3")) {
+            NewlyIncreased.setYJstartDate(startTime);
+            NewlyIncreased.setYJendDate(endTime);
+        }else {
+            NewlyIncreased.setYJstartDate("");
+            NewlyIncreased.setYJendDate("");
+        }
         switch (view.getId()) {
             //      TODO 进入报备
             case R.id.sales_details_details_ll2:

@@ -357,7 +357,7 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave("", FinalContents.getPreparationId(), FinalContents.getCustomerID(), FinalContents.getProjectID(), s, s1, s2, s3, s8, s4, s7, s5, sex, FinalContents.getUserID());
+        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave("", FinalContents.getPreparationId(), FinalContents.getCustomerID(), FinalContents.getProjectID(), s, s1, s2, s3, s8, s4, s7+"", s5, sex, FinalContents.getUserID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ConfessBean>() {

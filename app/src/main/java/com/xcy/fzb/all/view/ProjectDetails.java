@@ -1540,6 +1540,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         xAxis.setAxisMinimum(0f);
         xAxis.setAxisMaximum(list.size());
         xAxis.setTextColor(R.color.LableColor);
+        xAxis.setGridColor(R.color.GridColor);
         //不显示网格线
         xAxis.setDrawGridLines(false);
         // 标签倾斜
@@ -1564,7 +1565,8 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         //+2：最大值n就有n+1个刻度，在加上y轴多一个单位长度，为了好看，so+2
         yAxis.setLabelCount(4, false);
         //设置从Y轴值
-        yAxis.setAxisMinimum(0f);
+        yAxis.setAxisMinimum(0);
+        yAxis.setAxisMaximum(list.get(0)+10000);
         //图例：得到Lengend
         Legend legend = details_chart.getLegend();
         //隐藏Lengend

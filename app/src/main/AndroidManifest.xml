@@ -89,7 +89,7 @@
         <!--TODO 百度地图 end-->
 
         <activity android:name=".all.view.ATestActivity"></activity><!--TODO 数据库测试数据-->
-        <activity android:name=".all.view.MessageCommentActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 楼盘动态详情-->
+        <activity android:name=".all.view.MessageCommentActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>   <!--TODO 公用 楼盘动态详情-->
         <activity android:name=".all.view.MapActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.BannerPhotoActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.CollectActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/><!--TODO 公用 我的收藏-->
@@ -111,7 +111,7 @@
         <activity android:name=".all.view.MyClientActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 我的客户-->
         <activity android:name=".all.view.AboutFZBActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".all.view.RecyclerViewActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".all.view.EconomicCircleParticularsActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 经济圈详情-->
+        <activity android:name=".all.view.EconomicCircleParticularsActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>   <!--TODO 公用 经济圈详情-->
         <activity android:name=".all.view.AnalysisActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 户型解析-->
         <activity android:name=".all.view.CityWideActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 同城项目或跨城项目-->
         <activity android:name=".all.view.PhoneActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 通讯录-->

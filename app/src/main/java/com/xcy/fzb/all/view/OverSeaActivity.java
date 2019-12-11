@@ -261,7 +261,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
          }else if (FinalContents.getProjectType().equals("1")) {
             title.setText("城市房产");
             arrposid = "3";
-            report.setVisibility(View.GONE);
             oversea_linear.setVisibility(View.VISIBLE);
             nationRv.setVisibility(View.GONE);
             oversea_linear_issue.setVisibility(View.GONE);

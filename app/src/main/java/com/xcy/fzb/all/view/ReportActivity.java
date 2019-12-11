@@ -256,14 +256,16 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
             public void afterTextChanged(Editable editable) {
                 //长度发生变化，监听到输入的长度为 editText.getText().length()
-                if (report_client_name_et.getText().toString().length() > 0) {
-                    if (dateList.size() != 0) {
-                        report_associating_inputing_rv.setVisibility(View.VISIBLE);
-                    }else {
+                if (dateList != null) {
+                    if (report_client_name_et.getText().toString().length() > 0) {
+                        if (dateList.size() != 0) {
+                            report_associating_inputing_rv.setVisibility(View.VISIBLE);
+                        }else {
+                            report_associating_inputing_rv.setVisibility(View.GONE);
+                        }
+                    } else {
                         report_associating_inputing_rv.setVisibility(View.GONE);
                     }
-                } else {
-                    report_associating_inputing_rv.setVisibility(View.GONE);
                 }
             }
         });
@@ -415,12 +417,12 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private void initDate() {
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH) + 1;
+        final int month = calendar.get(Calendar.MONTH);
         final int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
-        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth + 1);
+        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth + 1);
 
         report_start.setText("<" + string);
         report_end.setText("-" + string1 + " >");
@@ -1157,8 +1159,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         if (FinalContents.isChecked2()) {
             if (FinalContents.getProjectType().equals("1")) {
                 report_issure.setVisibility(View.GONE);
-            } else {
+            } else if (FinalContents.getProjectType().equals("2") || FinalContents.getProjectType().equals("3")){
                 report_issure.setVisibility(View.VISIBLE);
+            } else {
+                report_issure.setVisibility(View.GONE);
             }
             project_name.setText(FinalContents.getProjectName());
         } else {
@@ -1175,10 +1179,17 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             initIdNumber();
             if (FinalContents.getProjectType().equals("1")) {
                 report_issure.setVisibility(View.GONE);
-            } else {
+            } else if (FinalContents.getProjectType().equals("2") || FinalContents.getProjectType().equals("3")){
                 report_issure.setVisibility(View.VISIBLE);
+            } else {
+                report_issure.setVisibility(View.GONE);
             }
             if (FinalContents.getCustomerID().equals("")) {
+                report_associating_inputing_rv.setVisibility(View.VISIBLE);
+            }else {
+                report_associating_inputing_rv.setVisibility(View.GONE);
+            }
+            if (FinalContents.getProjectID().equals("")) {
                 report_associating_inputing_rv.setVisibility(View.VISIBLE);
             }else {
                 report_associating_inputing_rv.setVisibility(View.GONE);
@@ -1197,5 +1208,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         FinalContents.setProjectSearchID("");
         FinalContents.setGuideRuleId("");
         FinalContents.setProjectID("");
+        FinalContents.setNUM("");
     }
 }

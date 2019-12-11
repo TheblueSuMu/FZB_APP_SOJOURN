@@ -183,6 +183,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         super.onResume();
 
         tvBanner2.startFlipping();
+        city.setText(FinalContents.getCityName());
         //TODO 获取加速传感器
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_NORMAL);
@@ -217,6 +218,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         textView3 = view.findViewById(R.id.home_item_client);
         textView4 = view.findViewById(R.id.home_item_brokerage);
         city = view.findViewById(R.id.project_city_selector);
+
+        city.setText(FinalContents.getCityName());
 
         if (FinalContents.getDengLu().equals("顾问")) {
             home_item_text4.setText("我的客户");

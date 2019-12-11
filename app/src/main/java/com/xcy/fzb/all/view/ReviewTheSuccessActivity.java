@@ -499,7 +499,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             //            TODO 返回上一层
             case R.id.review_the_success_return:
                 FinalContents.setTiaozhuang("");
-//                if (all_no_information.get)
                 finish();
                 break;
             //            TODO 失效

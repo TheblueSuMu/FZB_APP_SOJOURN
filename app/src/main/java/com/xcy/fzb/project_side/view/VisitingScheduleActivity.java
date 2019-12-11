@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -236,7 +237,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                     KeyUtils.hideKeyboard(fill_in_transaction_information_et5);
                     String s1 = fill_in_transaction_information_et4.getText().toString();
                     String s2 = fill_in_transaction_information_et5.getText().toString();
-                    if (s1.equals("") && s2.equals("")) {
+                    if (s1.equals("") || s2.equals("")) {
                     } else {
                         double area = Double.parseDouble(s1);
                         double price = Double.parseDouble(s2);
@@ -266,7 +267,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                         KeyUtils.hideKeyboard(fill_in_transaction_information_et5);
                         String s1 = fill_in_transaction_information_et4.getText().toString();
                         String s2 = fill_in_transaction_information_et5.getText().toString();
-                        if (s1.equals("") && s2.equals("")) {
+                        if (s1.equals("") || s2.equals("")) {
                         } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
@@ -297,7 +298,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                         KeyUtils.hideKeyboard(fill_in_transaction_information_et5);
                         String s1 = fill_in_transaction_information_et4.getText().toString();
                         String s2 = fill_in_transaction_information_et5.getText().toString();
-                        if (s1.equals("") && s2.equals("")) {
+                        if (s1.equals("") || s2.equals("")) {
                         } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
@@ -319,6 +320,60 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
         } else {
             fill_in_transaction_information_tishi.setVisibility(View.GONE);
         }
+
+
+        fill_in_transaction_information_et4.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 获得焦点
+                } else {
+                    // 失去焦点
+                    hideInput();
+                    String s1 = fill_in_transaction_information_et4.getText().toString();
+                    String s2 = fill_in_transaction_information_et5.getText().toString();
+                    if (s1.equals("") || s2.equals("")) {
+                    } else {
+                        double area = Double.parseDouble(s1);
+                        double price = Double.parseDouble(s2);
+                        sum = GetInt.getInt((area * price));
+                        str = sum;
+                        fill_in_transaction_information_et6.setText(str + "元");
+                        fill_in_transaction_information_tishi.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+
+        });
+
+        fill_in_transaction_information_et5.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    // 获得焦点
+                } else {
+                    // 失去焦点
+                    hideInput();
+                    String s1 = fill_in_transaction_information_et4.getText().toString();
+                    String s2 = fill_in_transaction_information_et5.getText().toString();
+                    if (s1.equals("") || s2.equals("")) {
+                    } else {
+                        double area = Double.parseDouble(s1);
+                        double price = Double.parseDouble(s2);
+                        sum = GetInt.getInt((area * price));
+                        str = sum;
+                        fill_in_transaction_information_et6.setText(str + "元");
+                        fill_in_transaction_information_tishi.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+
+        });
     }
 
     private void initselect() {
@@ -549,6 +604,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                 if (ifnum5 == 0) {
                     ifnum5 = 1;
                     picker.setVisibility(View.VISIBLE);
+                    hideInput();
                     initDate();
                     ifnum5 = 0;
                 }
@@ -894,5 +950,16 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
         pvOptions.setPicker(list);
         //      展示
         pvOptions.show();
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 }

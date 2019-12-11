@@ -175,7 +175,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
     @Override
     public void onResume() {
         super.onResume();
-
+        city.setText(FinalContents.getCityName());
         tvBanner2.startFlipping();
 //        //TODO 获取加速传感器
 //        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
@@ -210,7 +210,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
         textView4 = view.findViewById(R.id.home_item_brokerage);
         city = view.findViewById(R.id.home_city_selector);
 
-
+        city.setText(FinalContents.getCityName());
         layout.setOnRefreshListener(this);
         search = view.findViewById(R.id.home_search);
         search.setFocusable(false);
