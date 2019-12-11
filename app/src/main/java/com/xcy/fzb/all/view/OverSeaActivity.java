@@ -344,7 +344,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         imglist = application.getImglist();
         hotlist = application.getHotlist();
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         banner = findViewById(R.id.banner_2);
 
