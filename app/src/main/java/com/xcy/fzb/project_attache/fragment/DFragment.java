@@ -642,7 +642,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
             //            TODO 到访
             case R.id.ll3_modulebroke:
                 intent = new Intent(getContext(), MyClientActivity.class);
-                intent.putExtra("client", "42");
+                intent.putExtra("client", "2");
                 FinalContents.setStoreId("");
                 FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");

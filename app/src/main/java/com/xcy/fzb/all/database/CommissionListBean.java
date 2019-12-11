@@ -8,7 +8,7 @@ public class CommissionListBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"total":1,"rows":[{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"aaaaaa","customerPhone":"","projectName":"丽江项目测试1","roomNumber":"1栋2单元3室","tradeDate":"","totalAmount":"0.00","alreadyAmount":"0.00","notAmount":"0.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-09-10","moneyStatus":2,"returnedMoney":"0","moneyStatusImg":"/fangfang/static/common/images/tuidan.png","companyName":"唐老鸭","storeName":"鸭店001","agentName":"cs5","agentPhone":"","status":"1","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""}]}
+     * data : {"total":1,"rows":[{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"ff","customerPhone":"15558535538","projectName":"航天首府","roomNumber":"5栋5单元508室","tradeDate":"","totalAmount":"30000.00","alreadyAmount":"","notAmount":"30000.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 15:39:47","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"经纪公司B","companyId":"","storeName":"星期一门店","storeId":"","agentName":"ffff","agentId":"","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""}]}
      */
 
     private String code;
@@ -42,7 +42,7 @@ public class CommissionListBean {
     public static class DataBean {
         /**
          * total : 1
-         * rows : [{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"aaaaaa","customerPhone":"","projectName":"丽江项目测试1","roomNumber":"1栋2单元3室","tradeDate":"","totalAmount":"0.00","alreadyAmount":"0.00","notAmount":"0.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-09-10","moneyStatus":2,"returnedMoney":"0","moneyStatusImg":"/fangfang/static/common/images/tuidan.png","companyName":"唐老鸭","storeName":"鸭店001","agentName":"cs5","agentPhone":"","status":"1","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""}]
+         * rows : [{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"ff","customerPhone":"15558535538","projectName":"航天首府","roomNumber":"5栋5单元508室","tradeDate":"","totalAmount":"30000.00","alreadyAmount":"","notAmount":"30000.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 15:39:47","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"经纪公司B","companyId":"","storeName":"星期一门店","storeId":"","agentName":"ffff","agentId":"","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""}]
          */
 
         private int total;
@@ -72,25 +72,28 @@ public class CommissionListBean {
              * createDate :
              * updateBy :
              * updateDate :
-             * customerName : aaaaaa
-             * customerPhone :
-             * projectName : 丽江项目测试1
-             * roomNumber : 1栋2单元3室
+             * customerName : ff
+             * customerPhone : 15558535538
+             * projectName : 航天首府
+             * roomNumber : 5栋5单元508室
              * tradeDate :
-             * totalAmount : 0.00
-             * alreadyAmount : 0.00
-             * notAmount : 0.00
+             * totalAmount : 30000.00
+             * alreadyAmount :
+             * notAmount : 30000.00
              * invoiceMoney :
              * secondsAmount :
-             * closingTime : 2019-09-10
-             * moneyStatus : 2
-             * returnedMoney : 0
-             * moneyStatusImg : /fangfang/static/common/images/tuidan.png
-             * companyName : 唐老鸭
-             * storeName : 鸭店001
-             * agentName : cs5
+             * closingTime : 2019-12-10 15:39:47
+             * moneyStatus : 0
+             * returnedMoney : 0.00
+             * moneyStatusImg :
+             * companyName : 经纪公司B
+             * companyId :
+             * storeName : 星期一门店
+             * storeId :
+             * agentName : ffff
+             * agentId :
              * agentPhone :
-             * status : 1
+             * status : 0
              * isMy :
              * commission :
              * userId :
@@ -100,6 +103,7 @@ public class CommissionListBean {
              * search :
              * beforeDate :
              * afterDate :
+             * historyData :
              */
 
             private String id;
@@ -123,8 +127,11 @@ public class CommissionListBean {
             private String returnedMoney;
             private String moneyStatusImg;
             private String companyName;
+            private String companyId;
             private String storeName;
+            private String storeId;
             private String agentName;
+            private String agentId;
             private String agentPhone;
             private String status;
             private String isMy;
@@ -136,6 +143,7 @@ public class CommissionListBean {
             private String search;
             private String beforeDate;
             private String afterDate;
+            private String historyData;
 
             public String getId() {
                 return id;
@@ -305,6 +313,14 @@ public class CommissionListBean {
                 this.companyName = companyName;
             }
 
+            public String getCompanyId() {
+                return companyId;
+            }
+
+            public void setCompanyId(String companyId) {
+                this.companyId = companyId;
+            }
+
             public String getStoreName() {
                 return storeName;
             }
@@ -313,12 +329,28 @@ public class CommissionListBean {
                 this.storeName = storeName;
             }
 
+            public String getStoreId() {
+                return storeId;
+            }
+
+            public void setStoreId(String storeId) {
+                this.storeId = storeId;
+            }
+
             public String getAgentName() {
                 return agentName;
             }
 
             public void setAgentName(String agentName) {
                 this.agentName = agentName;
+            }
+
+            public String getAgentId() {
+                return agentId;
+            }
+
+            public void setAgentId(String agentId) {
+                this.agentId = agentId;
             }
 
             public String getAgentPhone() {
@@ -407,6 +439,14 @@ public class CommissionListBean {
 
             public void setAfterDate(String afterDate) {
                 this.afterDate = afterDate;
+            }
+
+            public String getHistoryData() {
+                return historyData;
+            }
+
+            public void setHistoryData(String historyData) {
+                this.historyData = historyData;
             }
         }
     }

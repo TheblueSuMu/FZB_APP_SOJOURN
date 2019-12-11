@@ -327,7 +327,16 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-
+            Log.i("公司数据","s3:" + s3);
+            Log.i("公司数据","s1:" + s1);
+            Log.i("公司数据","s4:" + s4);
+            Log.i("公司数据","s2:" + s2);
+            Log.i("公司数据","s5:" + s5);
+            Log.i("公司数据","s6:" + s6);
+            Log.i("公司数据","s7:" + s7);
+            Log.i("公司数据","s8:" + s8);
+            Log.i("公司数据","num:" + num);
+            Log.i("公司数据","FinalContents.getUserID():" + FinalContents.getUserID());
             addCompanyBean = fzbInterface.getAddCompanyBean("", s3, s1, s4, s2, s5, s6, s7, s8, num, FinalContents.getUserID());
 
             addCompanyBean.subscribeOn(Schedulers.io())

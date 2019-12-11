@@ -228,12 +228,17 @@ public class EFragment extends Fragment implements View.OnClickListener, SwipeRe
             intent = new Intent(getContext(), CollectActivity.class);
             startActivity(intent);
         } else if(id == R.id.attache_ll_1){
+            //TODO 打卡历史记录
             Log.i("MyCL","attache_ll_1");
             intent = new Intent(getContext(), PunchingCardRecordActivity.class);
             startActivity(intent);
         } else if(id == R.id.attache_ll_2){
+            //TODO 我的佣金
             Log.i("MyCL","attache_ll_1");
             intent = new Intent(getContext(), CommissionActivity.class);
+            FinalContents.setCompanyId("");
+            FinalContents.setStoreId("");
+            FinalContents.setAgentId("");
             startActivity(intent);
         }else if (id == R.id.my_rl_1) {
 //            TODO 个人信息
