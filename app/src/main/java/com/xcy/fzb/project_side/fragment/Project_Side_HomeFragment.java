@@ -170,14 +170,15 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         home_picker_ensure = view.findViewById(R.id.home_picker_ensure);
         dateTimePickerView = view.findViewById(R.id.home_pickerView);
 
-        project_side_img_1 = getActivity().findViewById(R.id.project_side_img_1);
-        project_side_img_2 = getActivity().findViewById(R.id.project_side_img_2);
-        project_side_img_3 = getActivity().findViewById(R.id.project_side_img_3);
-        project_side_img_4 = getActivity().findViewById(R.id.project_side_img_4);
-        project_side_img_5 = getActivity().findViewById(R.id.project_side_img_5);
-        project_side_img_6 = getActivity().findViewById(R.id.project_side_img_6);
-        project_side_img_7 = getActivity().findViewById(R.id.project_side_img_7);
-        project_side_img_8 = getActivity().findViewById(R.id.project_side_img_8);
+        //小红点
+        project_side_img_1 = getActivity().findViewById(R.id.project_side_img_1);//报备
+        project_side_img_2 = getActivity().findViewById(R.id.project_side_img_2);//到访
+        project_side_img_3 = getActivity().findViewById(R.id.project_side_img_3);//登岛
+        project_side_img_4 = getActivity().findViewById(R.id.project_side_img_4);//认筹
+        project_side_img_5 = getActivity().findViewById(R.id.project_side_img_5);//成交
+        project_side_img_6 = getActivity().findViewById(R.id.project_side_img_6);//失效
+        project_side_img_7 = getActivity().findViewById(R.id.project_side_img_7);//待我审核
+        project_side_img_8 = getActivity().findViewById(R.id.project_side_img_8);//我发起的审核
 
         myproject = view.findViewById(R.id.myproject);
         mypost = view.findViewById(R.id.mypost);
