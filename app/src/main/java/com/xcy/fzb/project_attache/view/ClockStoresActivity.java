@@ -1,6 +1,7 @@
 package com.xcy.fzb.project_attache.view;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -31,6 +32,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -68,6 +70,8 @@ import com.xcy.fzb.all.view.BigPhotoActivity;
 import com.xcy.fzb.all.view.ConfirmTheVisitActivity;
 import com.xcy.fzb.all.view.MapActivity;
 import com.xcy.fzb.all.view.MapHouseActivity;
+import com.xcy.fzb.all.view.ReportActivity;
+import com.xcy.fzb.all.view.ReviewTheSuccessActivity;
 import com.xcy.fzb.project_attache.adapter.GridViewSAdapter;
 import com.xcy.fzb.project_attache.adapter.RecordAdapter;
 
@@ -184,6 +188,10 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 
     TextView store_details_img_btn_tv1;
     TextView store_details_img_btn_tv2;
+    private int min;
+    private int hour;
+    private int second;
+    private long l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -413,8 +421,9 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 
     private void StartTime() {
         timer1 = new Timer();
+        final int count = new Long(l).intValue();
         timerTask = new TimerTask() {
-            int cnt = 0;
+            int cnt = count / 1000;
 
             @Override
             public void run() {
@@ -432,9 +441,9 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 
     private String getStringTime(int cnt) {
 
-        int hour = cnt / 3600;
-        int min = cnt % 3600 / 60;
-        int second = cnt % 60;
+        hour = cnt / 3600;
+        min = cnt % 3600 / 60;
+        second = cnt % 60;
 
         return String.format(Locale.CHINA, "%02d:%02d:%02d", hour, min, second);
     }
@@ -473,14 +482,16 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                 store_details_img_btn_tv2.setVisibility(View.GONE);
             } else if (data.getTotal() == 1) {
                 store_details_check.setText("出店打卡：");
-                store_details_img_btn_tv1.setVisibility(View.GONE);
-                store_details_img_btn_tv2.setVisibility(View.GONE);
-//                store_details_img_btn_tv1.setVisibility(View.VISIBLE);
-//                store_details_img_btn_tv2.setVisibility(View.VISIBLE);
-//                store_details_img_btn_tv1.setText("出店打卡");
-//                long timeStamp = System.currentTimeMillis();//获取时间戳
-//                StartTime();
-                Glide.with(ClockStoresActivity.this).load(R.mipmap.chudiandaka).into(store_details_img_btn);//出店打卡
+//                store_details_img_btn_tv1.setVisibility(View.GONE);
+//                store_details_img_btn_tv2.setVisibility(View.GONE);
+                store_details_img_btn_tv1.setVisibility(View.VISIBLE);
+                store_details_img_btn_tv2.setVisibility(View.VISIBLE);
+                store_details_img_btn_tv1.setText("出店打卡");
+                long timeStamp = System.currentTimeMillis();//获取时间戳
+                long createTime = data.getRows().get(0).getCreateTime();
+                l = timeStamp - createTime;
+                StartTime();
+                Glide.with(ClockStoresActivity.this).load(R.mipmap.dakabeijing).into(store_details_img_btn);//出店打卡
             } else if (data.getTotal() == 2) {
                 store_details_img_btn.setVisibility(View.GONE);
                 store_details_check.setVisibility(View.GONE);
@@ -512,7 +523,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
         switch (view.getId()) {
             case R.id.store_details_return_s:
                 //返回按钮
-               if (data.getTotal() == 1) {
+                if (data.getTotal() == 1) {
                     if (!timerTask.cancel()) {
                         timerTask.cancel();
                         timer1.cancel();
@@ -535,10 +546,42 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                     Log.i("MyCL", "到店打卡/出店打卡");
                     if (stringBuffer.length() == 0) {
                         Log.i("MyCL", "打卡失败 图片至少一张");
-                        ToastUtil.showLongToast(ClockStoresActivity.this, "打卡失败 图片至少一张");
+                        ToastUtil.showLongToast(ClockStoresActivity.this, "照片不能为空");
                         //打卡失败 图片至少一张
                     } else {
-                        initClockIn();
+                        if (data.getTotal() == 0) {
+                            initClockIn();
+                        } else if (data.getTotal() == 1) {
+                            if (min < 30) {
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(ClockStoresActivity.this);
+                                View inflate = LayoutInflater.from(ClockStoresActivity.this).inflate(R.layout.binding_report, null, false);
+                                builder1.setView(inflate);
+                                TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
+                                TextView report_binding_confirm_tv = inflate.findViewById(R.id.report_binding_confirm_tv);
+                                TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
+                                RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
+                                RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
+                                report_binding_title.setText("未到指定时间,无效打卡");//内容
+                                report_binding_confirm_tv.setText("取消打卡");
+                                report_binding_cancel_tv.setText("继续打卡");
+                                final AlertDialog show = builder1.show();
+                                report_binding_cancel.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        initClockIn();
+                                        show.dismiss();
+                                    }
+                                });
+                                report_binding_confirm.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        show.dismiss();
+                                    }
+                                });
+                            } else if (min >= 30) {
+                                initClockIn();
+                            }
+                        }
                         //打卡成功 刷新
 //                        if (data.getTotal() == 0) {
 //                            //进店打卡成功
