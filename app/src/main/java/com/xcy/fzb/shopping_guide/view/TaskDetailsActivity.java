@@ -23,9 +23,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
-import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.all.modle.CustomerListBean;
 import com.xcy.fzb.all.modle.TaskDetailsBean;
 import com.xcy.fzb.all.persente.AppBarStateChangeListener;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
@@ -205,7 +203,6 @@ public class TaskDetailsActivity extends AllActivity {
                             recyclerAdapter.notifyDataSetChanged();
                         }
 
-                        initClient();
                         attentionFragment = new AttentionFragment(taskDetailsBean);
                         journeyFragment = new JourneyFragment(taskDetailsBean);
 
@@ -224,42 +221,6 @@ public class TaskDetailsActivity extends AllActivity {
                     }
                 });
     }
-
-    private void initClient() {
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
-        Observable<CustomerListBean> userMessage = fzbInterface.getcustomerList(FinalContents.getUserID(), FinalContents.getRouteTimeId(), "","1000");
-        userMessage.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<CustomerListBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @SuppressLint("WrongConstant")
-                    @Override
-                    public void onNext(CustomerListBean customerListBean) {
-                        Connector.setCustomerListBean(customerListBean);
-                        clientFragment = new ClientFragment();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("列表数据获取错误", "错误" + e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
-
 
     private void init(){
         mTitle.setVisibility(View.GONE);
@@ -307,7 +268,7 @@ public class TaskDetailsActivity extends AllActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         mFragments = new ArrayList<>();
-
+        clientFragment = new ClientFragment();
         mFragments.add(journeyFragment);
         mFragments.add(attentionFragment);
         mFragments.add(clientFragment);
@@ -318,6 +279,6 @@ public class TaskDetailsActivity extends AllActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        initClient();
+        initData();
     }
 }

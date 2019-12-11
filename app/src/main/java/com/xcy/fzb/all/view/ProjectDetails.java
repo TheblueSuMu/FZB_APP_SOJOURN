@@ -16,7 +16,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +54,7 @@ import com.xcy.fzb.all.modle.HouseBean;
 import com.xcy.fzb.all.modle.ProjectDetailsBean;
 import com.xcy.fzb.all.modle.ProjectHousesTrendListBean;
 import com.xcy.fzb.all.modle.RemindBean;
+import com.xcy.fzb.all.persente.GradationScrollView;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.persente.StatusBar;
@@ -76,9 +76,9 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProjectDetails extends AllActivity implements View.OnClickListener, DetailsAdapter.DetailsItem {
+public class ProjectDetails extends AllActivity implements View.OnClickListener, DetailsAdapter.DetailsItem, GradationScrollView.ScrollViewListener {
     private ImageView backimg;
-    private LinearLayout back;
+    private RelativeLayout back;
     private ImageView building;
 
     private TextView number;
@@ -158,7 +158,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
     private LinearLayout project_details_linear3;
     private TextView project_details_discounts_nummer;
     private LinearLayout linear;
-    private ScrollView project_details_scrollview;
+    private GradationScrollView project_details_scrollview;
     private TextView project_details_trend;
     private RelativeLayout project_details_relative;
     private LinearLayout project_details_linear_city0;
@@ -187,6 +187,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
     List<DetailsData> list;
     private DetailsAdapter adapter;
+    private TextView project_details_title;
+    private RelativeLayout project_details_toolbar;
+    int mAlpha = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -312,6 +315,8 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         project_details_family_tablayout = findViewById(R.id.project_details_family_tablayout);
         project_details_villa_title = findViewById(R.id.project_details_villa_title);
 
+        project_details_title = findViewById(R.id.project_details_title);
+        project_details_toolbar = findViewById(R.id.project_details_toolbar);
 
         //  TODO    三合一大派对      佣金/报备/奖励
         project_details_layout = findViewById(R.id.project_details_layout);
@@ -433,6 +438,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         backimg.setOnClickListener(this);
         more.setOnClickListener(this);
         transmit_house.setOnClickListener(this);
+        project_details_scrollview.setScrollViewListener(this);
 
 
         location.setOnClickListener(this);
@@ -1652,4 +1658,39 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         buildingInformationintent.putExtra("pic", FinalContents.getImageUrl() + projectDetailsBeanData.getBuildingImg());
         startActivity(buildingInformationintent);
     }
+
+    @Override
+    public void onScrollChanged(GradationScrollView scrollView, int x, final int y, int oldx, int oldy) {
+        int minHeight = 50;
+        int maxHeight = (int) (backimg.getMeasuredHeight()*0.5);
+        if (maxHeight == 0) {
+            maxHeight = 500;
+        }
+        int color = Color.parseColor("#334485");
+        final int red = (color & 0xff0000) >> 16;
+        final int green = (color & 0x00ff00) >> 8;
+        final int blue = (color & 0x0000ff);
+        if (scrollView.getScrollY() <= minHeight) {
+            mAlpha = 0;
+        } else if (scrollView.getScrollY() > maxHeight) {
+            mAlpha = 255;
+        } else {
+            mAlpha = (scrollView.getScrollY() - minHeight) * 255 / (maxHeight - minHeight);
+        }
+
+        if (mAlpha <= 0) {
+            project_details_title.setText("");
+            project_details_toolbar.setBackgroundColor(Color.argb((int) 0, red, green, blue));
+        } else if (mAlpha >= 255) {
+            project_details_title.setText("项目详情");
+            project_details_toolbar.setBackgroundColor(Color.argb((int) 225, red, green, blue));
+        } else {
+            float scale = (float) y / maxHeight;
+            float alpha = (255 * scale);
+            project_details_title.setText("项目详情");
+            project_details_toolbar.setBackgroundColor(Color.argb((int) alpha, red, green, blue));
+        }
+
+    }
+
 }

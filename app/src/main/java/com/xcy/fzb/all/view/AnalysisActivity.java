@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -26,6 +25,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.FamilyInfoBean;
+import com.xcy.fzb.all.persente.GradationScrollView;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.ToastUtil;
 
@@ -41,7 +41,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AnalysisActivity extends AllActivity {
+public class AnalysisActivity extends AllActivity implements GradationScrollView.ScrollViewListener {
 
     private RelativeLayout all_activity_analysis_return;
     private ImageView all_activity_analysis_backImage;
@@ -63,7 +63,7 @@ public class AnalysisActivity extends AllActivity {
     private TextView all_activity_analysis_loans;
     private TextView all_activity_analysis_interest;
     private TextView all_activity_analysis_price_title;
-    private ScrollView all_activity_analysis_scrollview;
+    private GradationScrollView all_activity_analysis_scrollview;
     private PieChart mChart;
 
     // 饼图数据
@@ -75,6 +75,9 @@ public class AnalysisActivity extends AllActivity {
     double d = 0;
     double o = 0;
     private String location;
+    int mAlpha = 0;
+    private TextView all_activity_analysis_title;
+    private RelativeLayout all_activity_analysis_toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,8 @@ public class AnalysisActivity extends AllActivity {
 
         all_activity_analysis_return = findViewById(R.id.all_activity_analysis_return);
         all_activity_analysis_backImage = findViewById(R.id.all_activity_analysis_backImage);
+        all_activity_analysis_title = findViewById(R.id.all_activity_analysis_title);
+        all_activity_analysis_toolbar = findViewById(R.id.all_activity_analysis_toolbar);
 
         all_activity_analysis_salestatus = findViewById(R.id.all_activity_analysis_salestatus);
         all_activity_analysis_productfeature = findViewById(R.id.all_activity_analysis_productfeature);
@@ -116,6 +121,9 @@ public class AnalysisActivity extends AllActivity {
         all_activity_analysis_down_payment = findViewById(R.id.all_activity_analysis_down_payment);
         all_activity_analysis_loans = findViewById(R.id.all_activity_analysis_loans);
         all_activity_analysis_interest = findViewById(R.id.all_activity_analysis_interest);
+
+        all_activity_analysis_scrollview.setScrollViewListener(this);
+
         initData();
         initClick();
     }
@@ -360,5 +368,40 @@ public class AnalysisActivity extends AllActivity {
         PieData pieData = new PieData(pieDataSet);
 
         return pieData;
+    }
+
+    @Override
+    public void onScrollChanged(GradationScrollView scrollView, int x, final int y, int oldx, int oldy) {
+        int minHeight = 50;
+        int maxHeight = (int) (all_activity_analysis_backImage.getMeasuredHeight()*0.5);
+        if (maxHeight == 0) {
+            maxHeight = 500;
+        }
+
+        int color = Color.parseColor("#334485");
+        final int red = (color & 0xff0000) >> 16;
+        final int green = (color & 0x00ff00) >> 8;
+        final int blue = (color & 0x0000ff);
+        if (scrollView.getScrollY() <= minHeight) {
+            mAlpha = 0;
+        } else if (scrollView.getScrollY() > maxHeight) {
+            mAlpha = 255;
+        } else {
+            mAlpha = (scrollView.getScrollY() - minHeight) * 255 / (maxHeight - minHeight);
+        }
+
+        if (mAlpha <= 0) {
+            all_activity_analysis_title.setText("");
+            all_activity_analysis_toolbar.setBackgroundColor(Color.argb((int) 0, red, green, blue));
+        } else if (mAlpha >= 255) {
+            all_activity_analysis_title.setText("户型解析");
+            all_activity_analysis_toolbar.setBackgroundColor(Color.argb((int) 225, red, green, blue));
+        } else {
+            float scale = (float) y / maxHeight;
+            float alpha = (255 * scale);
+            all_activity_analysis_title.setText("户型解析");
+            all_activity_analysis_toolbar.setBackgroundColor(Color.argb((int) alpha, red, green, blue));
+        }
+
     }
 }

@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:ignore="ResourceName">
 
-    <ScrollView
+    <com.xcy.fzb.all.persente.GradationScrollView
         android:id="@+id/project_details_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,20 +43,6 @@
                     android:text=""
                     android:textColor="#fff" />
 
-                <LinearLayout
-                    android:id="@+id/project_details_back"
-                    android:layout_width="50dp"
-                    android:layout_height="80dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="30dp"
-                        android:src="@mipmap/return2" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/relative"
@@ -1077,7 +1063,41 @@
                 android:layout_height="50dp" />
         </LinearLayout>
 
-    </ScrollView>
+    </com.xcy.fzb.all.persente.GradationScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/project_details_toolbar"
+        android:paddingTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/project_details_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/return2" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/project_details_title"
+            android:text=""
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/project_details_all"
