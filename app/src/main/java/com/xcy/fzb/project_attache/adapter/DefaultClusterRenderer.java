@@ -21,7 +21,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.MessageQueue;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
@@ -64,7 +63,7 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
     private final ClusterManager<T> mClusterManager;
     private final float mDensity;
     //    MAX_DISTANCE_AT_ZOOM * MAX_DISTANCE_AT_ZOOM;
-    private static final int[] BUCKETS = {2, 4, 6, 8, 10, 20, 50, 100, 200, 500, 1000};
+    private static final int[] BUCKETS = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 30, 50, 100, 200, 500, 1000};
     private ShapeDrawable mColoredCircleBackground;
 
     /**
@@ -183,7 +182,7 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
         if (bucket < BUCKETS[0]) {
             return String.valueOf(bucket);
         }
-        return String.valueOf(bucket) + "+";
+        return String.valueOf(bucket);
     }
 
     /**

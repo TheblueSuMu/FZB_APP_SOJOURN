@@ -191,7 +191,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     }
 
     private void initView() {
-
+        FinalContents.setProjectType("");
         StatusBar.makeStatusBarTransparent(this);
         report_linear = findViewById(R.id.report_linear);
 
@@ -430,6 +430,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
         dateTimePickerView.setEndDate(new GregorianCalendar(year + 3, month, dayOfMonth));
+        year1 = year;
+        month1 = month;
+        dayOfMonth1 = dayOfMonth;
+
 
 
         report_ensure.setOnClickListener(new View.OnClickListener() {
@@ -455,6 +459,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             public void onClick(View view) {
                 report_picker.setVisibility(View.VISIBLE);
                 dateTimePickerView.setStartDate(Calendar.getInstance());
+                dateTimePickerView.setEndDate(new GregorianCalendar(year + 3, month, dayOfMonth));
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
                     public void onSelectedDateChanged(Calendar date) {
@@ -480,6 +485,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 report_picker.setVisibility(View.VISIBLE);
                 Log.d("判断", "n 判断: " + blean);
                 dateTimePickerView.setStartDate(new GregorianCalendar(year1, month1, dayOfMonth1));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year1, month1, dayOfMonth1+15));
                 dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
                     @Override
                     public void onSelectedDateChanged(Calendar date) {
@@ -1174,7 +1180,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     protected void onResume() {
         super.onResume();
         if (FinalContents.getProjectName().equals("")) {
-
         } else {
             initIdNumber();
             if (FinalContents.getProjectType().equals("1")) {

@@ -397,14 +397,13 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
     private void initDate() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
+        int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-        String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
-        confess_to_raise_information_tv6.setText(dateString);
-        pickerView.setStartDate(new GregorianCalendar(year - 2, month-1, dayOfMonth));
+        String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
+        pickerView.setStartDate(new GregorianCalendar(year - 2, month, dayOfMonth));
         // 注意：月份是从0开始计数的
         pickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        pickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth));
+        pickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -417,6 +416,17 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 picker.setVisibility(View.GONE);
+            }
+        });
+
+        pickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+            @Override
+            public void onSelectedDateChanged(Calendar date) {
+                int year = date.get(Calendar.YEAR);
+                int month = date.get(Calendar.MONTH);
+                int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
+                confess_to_raise_information_tv6.setText(dateString);
             }
         });
 
