@@ -72,13 +72,6 @@ public class InitiatedActivity extends AllActivity {
 
         initData();
 
-        initiated_return.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
         initiated_img2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,12 +100,22 @@ public class InitiatedActivity extends AllActivity {
                     @Override
                     public void onNext(ReportProcessDetailsBean reportProcessDetailsBean) {
                         infoData = reportProcessDetailsBean.getData().getInfoData();
-                        Glide.with(InitiatedActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(initiated_img1);
+                        if (infoData.getCustomerImg() != null) {
+                            if (!infoData.getCustomerImg().equals("")) {
+                                Glide.with(InitiatedActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(initiated_img1);
+                            }
+                        }
                         initiated_tv1.setText(infoData.getCustomerName());
                         processData = reportProcessDetailsBean.getData().getProcessData();
 
                         initiated_tv2.setText(infoData.getProjectName());
                         initiated_tv3.setText(infoData.getCustomerName() + "[" + infoData.getCustomerPhone() + "]");
+                        initiated_return.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                finish();
+                            }
+                        });
 
                         initRV();
                     }

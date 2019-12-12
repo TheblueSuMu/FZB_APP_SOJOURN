@@ -96,7 +96,7 @@ public class NoticeFragment extends Fragment {
     private List<MessageBean.DataBean.RowsBean> rows;
     Bitmap bitmap;
     private ProgressDialog progressDialog;
-    private ImageView all_no_information;
+    private ImageView all_no_information_notice;
 
     public NoticeFragment() {
         // Required empty public constructor
@@ -118,7 +118,7 @@ public class NoticeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         notice_rv = getActivity().findViewById(R.id.notice_rv);
-        all_no_information = getActivity().findViewById(R.id.all_no_information_notice);
+        all_no_information_notice = getActivity().findViewById(R.id.all_no_information_notice);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -171,7 +171,7 @@ public class NoticeFragment extends Fragment {
                         rows = data1.getRows();
                         Log.i("列表数据加载", "加载");
                         if (rows.size() != 0) {
-                            all_no_information.setVisibility(View.GONE);
+                            all_no_information_notice.setVisibility(View.GONE);
                             notice_rv.setVisibility(View.VISIBLE);
                             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -263,7 +263,7 @@ public class NoticeFragment extends Fragment {
                             notice_rv.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                         }else {
-                            all_no_information.setVisibility(View.VISIBLE);
+                            all_no_information_notice.setVisibility(View.VISIBLE);
                             notice_rv.setVisibility(View.GONE);
                         }
 
@@ -271,7 +271,7 @@ public class NoticeFragment extends Fragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        all_no_information.setVisibility(View.VISIBLE);
+                        all_no_information_notice.setVisibility(View.VISIBLE);
                         notice_rv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }

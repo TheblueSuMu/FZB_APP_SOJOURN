@@ -28,6 +28,7 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.ReviewTheSuccessActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -119,6 +120,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
     }
 
     private void initData() {
+        rows = new ArrayList<>();
         clientFragmentAdapter = new ClientFragmentAdapter();
         clientFragmentAdapter.setClick(this);
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -170,8 +172,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
     }
 
     private void initData2() {
-
-
+        rows = new ArrayList<>();
         reportProcessAdapter = new ReportProcessAdapter();
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());

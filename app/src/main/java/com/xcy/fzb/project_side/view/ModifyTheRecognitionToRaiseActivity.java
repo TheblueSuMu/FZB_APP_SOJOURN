@@ -441,7 +441,6 @@ public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
-        modify_the_recognition_to_raise_tv8.setText(dateString);
         pickerView.setStartDate(new GregorianCalendar(year - 2, month - 1, dayOfMonth));
         // 注意：月份是从0开始计数的
         pickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
@@ -458,6 +457,17 @@ public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 picker.setVisibility(View.GONE);
+            }
+        });
+
+        pickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+            @Override
+            public void onSelectedDateChanged(Calendar date) {
+                int year = date.get(Calendar.YEAR);
+                int month = date.get(Calendar.MONTH);
+                int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
+                modify_the_recognition_to_raise_tv8.setText(dateString);
             }
         });
 

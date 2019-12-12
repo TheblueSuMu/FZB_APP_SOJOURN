@@ -226,8 +226,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         success_linear13 = findViewById(R.id.success_linear13);
 
 
-
-        review_the_success_return.setOnClickListener(this);
         review_the_success_bt1.setOnClickListener(this);
         review_the_success_bt2.setOnClickListener(this);
         review_the_success_bt3.setOnClickListener(this);
@@ -377,7 +375,8 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                                     review_the_success_bt13.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                                 }
                             }
-                        } else if (reportProcessDetailsBean.getData().getMenuData().size() == 1){
+                        }
+                        else if (reportProcessDetailsBean.getData().getMenuData().size() == 1){
                             linearlayout_ll.setVisibility(View.GONE);
                             linearlayout_l.setVisibility(View.VISIBLE);
                             for (int i = 0;i < reportProcessDetailsBean.getData().getMenuData().size();i++){
@@ -439,7 +438,12 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
 
                         infoData = reportProcessDetailsBean.getData().getInfoData();
-                        Glide.with(ReviewTheSuccessActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(review_the_success_img1);
+                        if (infoData.getCustomerImg() != null) {
+                            if (!infoData.getCustomerImg().equals("")) {
+                                Glide.with(ReviewTheSuccessActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(review_the_success_img1);
+                            }
+                        }
+
                         review_the_success_tv1.setText(infoData.getCustomerName()+"("+infoData.getCustomerPhone()+")");
                         processData = reportProcessDetailsBean.getData().getProcessData();
 
@@ -463,6 +467,14 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                         FinalContents.setProjectID(infoData.getProjectId());
                         Log.i("项目路线","项目ID："+ FinalContents.getProjectID());
                         initRV();
+
+                        review_the_success_return.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                FinalContents.setTiaozhuang("");
+                                finish();
+                            }
+                        });
                     }
 
                     @Override
@@ -496,11 +508,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
 
         switch (view.getId()) {
-            //            TODO 返回上一层
-            case R.id.review_the_success_return:
-                FinalContents.setTiaozhuang("");
-                finish();
-                break;
             //            TODO 失效
             case R.id.review_the_success_bt1:
                 initShiXiao();

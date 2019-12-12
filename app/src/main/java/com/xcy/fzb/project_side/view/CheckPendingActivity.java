@@ -129,8 +129,6 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
             check_pending_ll.setVisibility(View.VISIBLE);
         }
 
-
-        check_pending_return.setOnClickListener(this);
         check_pending_bt1.setOnClickListener(this);
         check_pending_bt2.setOnClickListener(this);
 
@@ -166,7 +164,12 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                     @Override
                     public void onNext(ReportProcessDetailsBean reportProcessDetailsBean) {
                         infoData = reportProcessDetailsBean.getData().getInfoData();
-                        Glide.with(CheckPendingActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(check_pending_img1);
+                        if (infoData.getCustomerImg() != null) {
+                            if (!infoData.getCustomerImg().equals("")) {
+                                Glide.with(CheckPendingActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(check_pending_img1);
+                            }
+                        }
+
                         check_pending_tv1.setText(infoData.getCustomerName());
 
                         processData = reportProcessDetailsBean.getData().getProcessData();
@@ -185,6 +188,13 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
 //                        check_pending_tv3.setText(infoData.getCustomerName() + "[" + infoData.getCustomerPhone() + "]");
                         FinalContents.setJJrID(infoData.getAgentId());
                         initRV();
+
+                        check_pending_return.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                finish();
+                            }
+                        });
                     }
 
                     @Override
@@ -216,10 +226,6 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
     public void onClick(View view) {
 
         switch (view.getId()) {
-            //            TODO 返回上一层
-            case R.id.check_pending_return:
-                finish();
-                break;
             //            TODO 通过
             case R.id.check_pending_bt1:
                 if (isnum1 == 0) {
