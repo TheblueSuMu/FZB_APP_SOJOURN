@@ -297,7 +297,7 @@ public interface MyService {
 
     //手机绑定微信
     @POST("commonSelect/wechatBinding")
-    Observable<WechatBindingBean> getWechatBinding(@Query("userPhone") String userPhone, @Query("captcha") String captcha, @Query("type") String type, @Query("wechatData") String wechatData);
+    Observable<WechatBindingBean> getWechatBinding(@Query("userId") String userId,@Query("userPhone") String userPhone, @Query("captcha") String captcha, @Query("type") String type, @Query("wechatData") String wechatData);
 
     //手机绑定微信
     @POST("commonSelect/isWeChat")

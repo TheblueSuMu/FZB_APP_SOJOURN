@@ -31,6 +31,7 @@ import com.tuacy.fuzzysearchlibrary.PinyinUtil;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.FuzzySearchAdapter;
 import com.xcy.fzb.all.adapter.ReportItemAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ChangePhoneBean;
 import com.xcy.fzb.all.modle.ClientBean;
@@ -192,6 +193,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
     private void initView() {
         FinalContents.setProjectType("");
+        CityContents.setAddClient("");
         StatusBar.makeStatusBarTransparent(this);
         report_linear = findViewById(R.id.report_linear);
 
@@ -1155,6 +1157,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     @Override
     protected void onRestart() {
         super.onRestart();
+        Log.i("报备","重新运行");
         if (FinalContents.isChecked()) {
             report_client_name_et.setText(FinalContents.getClientName());
             report_client_phone.setText(FinalContents.getClientPhone());
@@ -1179,6 +1182,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     @Override
     protected void onResume() {
         super.onResume();
+        Log.i("报备","恢复");
         if (FinalContents.getProjectName().equals("")) {
         } else {
             initIdNumber();

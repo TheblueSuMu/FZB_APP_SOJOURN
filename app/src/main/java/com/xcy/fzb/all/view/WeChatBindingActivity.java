@@ -142,7 +142,7 @@ public class WeChatBindingActivity extends AllActivity{
         builder1.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder1.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<WechatBindingBean> userMessage = fzbInterface.getWechatBinding(userphone+"",captcha+"",type+"",json);
+        Observable<WechatBindingBean> userMessage = fzbInterface.getWechatBinding(FinalContents.getUserID(),userphone+"",captcha+"",type+"",json);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<WechatBindingBean>() {
