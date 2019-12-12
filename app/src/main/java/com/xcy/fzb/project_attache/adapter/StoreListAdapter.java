@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -181,15 +182,17 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                     if (listData.get(i).getShopownerName().equals("")) {
                         holder.contacts_name.setVisibility(View.GONE);
                         holder.contacts_phone.setVisibility(View.GONE);
+                        holder.item_stores_ll1.setVisibility(View.GONE);
                     } else {
                         holder.contacts_name.setVisibility(View.VISIBLE);
                         holder.contacts_phone.setVisibility(View.VISIBLE);
+                        holder.item_stores_ll1.setVisibility(View.VISIBLE);
                         holder.contacts_name.setText("公司负责人：" + listData.get(i).getShopownerName());
                         holder.contacts_phone.setText(listData.get(i).getShopownerPhone());
                     }
 //                    holder.contacts_name.setText("公司负责人：" + listData.get(i).getShopownerName() + " " + listData.get(i).getShopownerPhone());
 
-
+                    holder.item_stores_ll2.setVisibility(View.GONE);
                     holder.contacts_name.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -278,6 +281,9 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
         //        ImageView contacts_call;
         ImageView contacts_img;
 
+        LinearLayout item_stores_ll1;
+        LinearLayout item_stores_ll2;
+
         ContactsViewHolder(View itemView) {
             super(itemView);
             tvIndex = itemView.findViewById(R.id.tv_index_s);
@@ -293,6 +299,8 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
 
 //            contacts_call = itemView.findViewById(R.id.store_call);
             contacts_img = itemView.findViewById(R.id.store_img);
+            item_stores_ll1 = itemView.findViewById(R.id.item_stores_ll1);
+            item_stores_ll2 = itemView.findViewById(R.id.item_stores_ll2);
 
         }
     }
