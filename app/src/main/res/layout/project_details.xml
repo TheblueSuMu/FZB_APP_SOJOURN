@@ -864,7 +864,7 @@
                         android:text="查看全部20栋楼信息"
                         android:textSize="14sp"
                         android:textColor="#334485"
-                        android:background="@drawable/details_shape"></TextView>
+                        android:background="@drawable/details_shape"/>
 
                     <View
                         android:layout_width="match_parent"

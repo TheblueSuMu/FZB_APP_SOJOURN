@@ -248,9 +248,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         Log.i("MyCL","data:" + data.size());
                         list.clear();
                         if (data.size() == 0) {
+                            linear5.setVisibility(View.GONE);
                             details_tv_S.setVisibility(View.GONE);
                             details_rv.setVisibility(View.GONE);
                         } else if (data.size() == 1) {
+                            linear5.setVisibility(View.VISIBLE);
                             details_tv_S.setVisibility(View.VISIBLE);
                             details_rv.setVisibility(View.VISIBLE);
                             adapter = new DetailsAdapter();
@@ -260,6 +262,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                             details_rv.setAdapter(adapter);
                             adapter.setDetailsItem(ProjectDetails.this);
                         } else if (data.size() > 1) {
+                            linear5.setVisibility(View.VISIBLE);
                             details_tv_S.setVisibility(View.VISIBLE);
                             details_rv.setVisibility(View.VISIBLE);
                             adapter = new DetailsAdapter();
@@ -1192,14 +1195,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         } else if (projectDetailsBeanData.getBuildingInfoStatus().equals("1")) {
                             linear5.setVisibility(View.VISIBLE);
                             Glide.with(ProjectDetails.this).load(FinalContents.getImageUrl() + projectDetailsBeanData.getBuildingImg()).into(building);
-                            building.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent buildingInformationintent = new Intent(ProjectDetails.this, BuildingInformationActivity.class);
-                                    buildingInformationintent.putExtra("pic", FinalContents.getImageUrl() + projectDetailsBeanData.getBuildingImg());
-                                    startActivity(buildingInformationintent);
-                                }
-                            });
                         }
 
                         if (project_details_layout1.getVisibility() == View.GONE) {

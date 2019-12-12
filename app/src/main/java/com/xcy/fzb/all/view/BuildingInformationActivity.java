@@ -39,7 +39,6 @@ public class BuildingInformationActivity extends AllActivity {
 
     private LinearLayout building_img;
     private TextView name;
-    private TextView state;
     private TextView ladder;
     private TextView tier;
     private TextView cell;
@@ -90,7 +89,6 @@ public class BuildingInformationActivity extends AllActivity {
         StatusBar.makeStatusBarTransparent(this);
         name = findViewById(R.id.building_name);
         building_standard_S = findViewById(R.id.building_standard_S);
-        state = findViewById(R.id.building_state);
         ladder = findViewById(R.id.building_ladder);
         project_details_family_tablayout = findViewById(R.id.project_details_family_tablayout_S);
         tier = findViewById(R.id.building_tier);
@@ -146,25 +144,20 @@ public class BuildingInformationActivity extends AllActivity {
                             }
 //                        }
 
-                        building_standard_S.setText("包含户型(" + num + ")：");
+                        building_standard_S.setText("包含户型：(" + num + ")");
 
 
                         if (list.size() != 0) {
                             tabLayout.setSelectedTabIndicatorColor(R.color.colorIndicator);
                             tabLayout.setSelectedTabIndicator(R.drawable.tab_indicator);
                             name.setText(list.get(0).getProject().getProjectName());
-                            if (list.get(0).getSaleStatus().equals("")) {
-                                state.setText("暂无");
-                            }else {
-                                state.setText(list.get(0).getSaleStatus());
-                            }
                             if (list.get(0).getElevator().equals("") || list.get(0).getFamily().equals("")) {
-                                ladder.setText("未知");
+                                ladder.setText("暂无");
                             } else {
                                 ladder.setText(list.get(0).getElevator() + "梯" + list.get(0).getFamily() + "户");
                             }
                             if (list.get(0).getElementNumber().equals("")) {
-                                cell.setText("未知");
+                                cell.setText("暂无");
                             } else {
                                 cell.setText(list.get(0).getElementNumber() + "");
                             }
@@ -219,7 +212,7 @@ public class BuildingInformationActivity extends AllActivity {
                                         project_details_family_tablayout.addTab(project_details_family_tablayout.newTab().setText(list.get(0).getHouseInfoList().get(s).getKey()));
                                         num = num + list.get(0).getHouseInfoList().get(s).getSize();
                                     }
-                                    building_standard_S.setText("包含户型(" + num + ")：");
+                                    building_standard_S.setText("包含户型：(" + num + ")");
                                 }
 
                                 final int index = 0;
@@ -274,18 +267,13 @@ public class BuildingInformationActivity extends AllActivity {
                                         for (int j = 0; j < list.size(); j++) {
                                             if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
                                                 name.setText(list.get(j).getProject().getProjectName());
-                                                if (list.get(j).getSaleStatus().equals("")) {
-                                                    state.setText("暂无");
-                                                }else {
-                                                    state.setText(list.get(j).getSaleStatus());
-                                                }
                                                 if (list.get(j).getElevator().equals("") || list.get(0).getFamily().equals("")) {
-                                                    ladder.setText("未知");
+                                                    ladder.setText("暂无");
                                                 } else {
                                                     ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
                                                 }
                                                 if (list.get(j).getElementNumber().equals("")) {
-                                                    cell.setText("未知");
+                                                    cell.setText("暂无");
                                                 } else {
                                                     cell.setText(list.get(j).getElementNumber() + "");
                                                 }
@@ -325,7 +313,7 @@ public class BuildingInformationActivity extends AllActivity {
                                                     project_details_family_tablayout.addTab(project_details_family_tablayout.newTab().setText(list.get(j).getHouseInfoList().get(s).getKey()));
                                                     num = num + list.get(j).getHouseInfoList().get(s).getSize();
                                                 }
-                                                building_standard_S.setText("包含户型(" + num + ")：");
+                                                building_standard_S.setText("包含户型：(" + num + ")");
 
                                                 final int index = j;
                                                 project_details_family_tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -384,18 +372,13 @@ public class BuildingInformationActivity extends AllActivity {
                                         for (int j = 0; j < list.size(); j++) {
                                             if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
                                                 name.setText(list.get(j).getProject().getProjectName());
-                                                if (list.get(j).getSaleStatus().equals("")) {
-                                                    state.setText("暂无");
-                                                }else {
-                                                    state.setText(list.get(j).getSaleStatus());
-                                                }
                                                 if (list.get(j).getElevator().equals("") || list.get(0).getFamily().equals("")) {
-                                                    ladder.setText("未知");
+                                                    ladder.setText("暂无");
                                                 } else {
                                                     ladder.setText(list.get(j).getElevator() + "梯" + list.get(j).getFamily() + "户");
                                                 }
                                                 if (list.get(j).getElementNumber().equals("")) {
-                                                    cell.setText("未知");
+                                                    cell.setText("暂无");
                                                 } else {
                                                     cell.setText(list.get(j).getElementNumber() + "");
                                                 }
@@ -435,7 +418,7 @@ public class BuildingInformationActivity extends AllActivity {
                                                     project_details_family_tablayout.addTab(project_details_family_tablayout.newTab().setText(list.get(j).getHouseInfoList().get(s).getKey()));
                                                     num = num + list.get(j).getHouseInfoList().get(s).getSize();
                                                 }
-                                                building_standard_S.setText("包含户型(" + num + ")：");
+                                                building_standard_S.setText("包含户型：(" + num + ")");
 
                                                 final int index = j;
                                                 project_details_family_tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

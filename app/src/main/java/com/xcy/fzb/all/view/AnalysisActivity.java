@@ -223,13 +223,25 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
 
 
 
-                        all_activity_analysis_acreage_area.setText(familyInfoBean.getData().getFamilyArea() + "m²");
-                        all_activity_analysis_compass_area.setText(familyInfoBean.getData().getFamilyOrientation());
+
+
+
+                        if (!familyInfoBean.getData().getFamilyArea().equals("")) {
+                            all_activity_analysis_acreage_area.setText(familyInfoBean.getData().getFamilyArea() + "m²");
+                        }else {
+                            all_activity_analysis_percentage_area.setText("暂无");
+                        }
+
+                        if (!familyInfoBean.getData().getFamilyOrientation().equals("")) {
+                            all_activity_analysis_compass_area.setText(familyInfoBean.getData().getFamilyOrientation());
+                        }else {
+                            all_activity_analysis_percentage_area.setText("暂无");
+                        }
 
                         if (!familyInfoBean.getData().getGetHouseRate().equals("")) {
                             all_activity_analysis_percentage_area.setText(familyInfoBean.getData().getGetHouseRate() + "%");
                         }else {
-                            all_activity_analysis_percentage_area.setText("");
+                            all_activity_analysis_percentage_area.setText("暂无");
                         }
 
 
