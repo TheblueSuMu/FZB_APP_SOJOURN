@@ -57,22 +57,23 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     EditText add_company_et2;
     EditText add_company_et3;
     EditText add_company_et4;
-    EditText add_company_et5;
-    EditText add_company_et6;
+//    EditText add_company_et5;
+//    EditText add_company_et6;
     TextView add_company_tvs;
 
     Button add_company_btn;
 
     RelativeLayout add_company_rl1;
     RelativeLayout add_company_rl2;
-    RelativeLayout rl1;
-    RelativeLayout rl2;
-    RelativeLayout rl3;
-    RelativeLayout rl4;
+//    RelativeLayout rl1;
+//    RelativeLayout rl2;
+//    RelativeLayout rl3;
+//    RelativeLayout rl4;
 
     RadioButton add_company_rb1;
     RadioButton add_company_rb2;
     RadioButton add_company_rb3;
+    RadioButton add_company_rb4;
 
 
     private String num;
@@ -83,8 +84,8 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     private String s4;
     private String s5;
     private String s6;
-    private String s7;
-    private String s8;
+//    private String s7;
+//    private String s8;
     private String getLatitude = "";
     private String getLongitude = "";
     private ComapnyManage.DataBean.CompanyManageBean companyManage;
@@ -135,19 +136,20 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         add_company_et3 = findViewById(R.id.add_company_et3);
         add_company_et4 = findViewById(R.id.add_company_et4);
         add_company_et4.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-        add_company_et5 = findViewById(R.id.add_company_et5);
-        add_company_et6 = findViewById(R.id.add_company_et6);
+//        add_company_et5 = findViewById(R.id.add_company_et5);
+//        add_company_et6 = findViewById(R.id.add_company_et6);
         add_company_btn = findViewById(R.id.add_company_btn);
         add_company_rl1 = findViewById(R.id.add_company_rl1);
         add_company_rl2 = findViewById(R.id.add_company_rl2);
         add_company_rb1 = findViewById(R.id.add_company_rb1);
         add_company_rb2 = findViewById(R.id.add_company_rb2);
         add_company_rb3 = findViewById(R.id.add_company_rb3);
+        add_company_rb4 = findViewById(R.id.add_company_rb4);
         add_company_tvs = findViewById(R.id.tvs);
-        rl1 = findViewById(R.id.rl1);
-        rl2 = findViewById(R.id.rl2);
-        rl3 = findViewById(R.id.rl3);
-        rl4 = findViewById(R.id.rl4);
+//        rl1 = findViewById(R.id.rl1);
+//        rl2 = findViewById(R.id.rl2);
+//        rl3 = findViewById(R.id.rl3);
+//        rl4 = findViewById(R.id.rl4);
 
         add_company_return.setOnClickListener(this);
         add_company_rl1.setOnClickListener(this);
@@ -162,10 +164,12 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 
         if (FinalContents.getStoreChange().equals("修改")) {
 
-            rl1.setVisibility(View.GONE);
-            rl2.setVisibility(View.GONE);
-            rl3.setVisibility(View.GONE);
-            rl4.setVisibility(View.GONE);
+//            rl1.setVisibility(View.GONE);
+//            rl2.setVisibility(View.GONE);
+//            rl3.setVisibility(View.GONE);
+//            rl4.setVisibility(View.GONE);
+
+            add_company_rb4.setVisibility(View.VISIBLE);
 
             add_company_tvs.setText("修改公司");
             Retrofit.Builder builder = new Retrofit.Builder();
@@ -198,7 +202,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                             add_company_et2.setText(companyManage.getAddress());
                             add_company_et3.setText(companyManage.getUserName());
                             add_company_et4.setText(companyManage.getPhone());
-                            add_company_et5.setText(companyManage.getLoginName());
+//                            add_company_et5.setText(companyManage.getLoginName());
 
                             if (companyManage.getFlag().equals("0")) {
                                 add_company_rb1.setChecked(true);
@@ -206,6 +210,8 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                                 add_company_rb2.setChecked(true);
                             } else if (companyManage.getFlag().equals("2")) {
                                 add_company_rb3.setChecked(true);
+                            } else if (companyManage.getFlag().equals("3")) {
+                                add_company_rb4.setChecked(true);
                             }
 
                         }
@@ -223,10 +229,11 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 
         } else {
 
-            rl1.setVisibility(View.VISIBLE);
-            rl2.setVisibility(View.VISIBLE);
-            rl3.setVisibility(View.VISIBLE);
-            rl4.setVisibility(View.VISIBLE);
+//            rl1.setVisibility(View.VISIBLE);
+//            rl2.setVisibility(View.VISIBLE);
+//            rl3.setVisibility(View.VISIBLE);
+//            rl4.setVisibility(View.VISIBLE);
+            add_company_rb4.setVisibility(View.GONE);
             add_company_tvs.setText("添加公司");
             add_company_tv1.setText(FinalContents.getCityName());
         }
@@ -271,17 +278,25 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                 s2 = add_company_tv3.getText().toString();
                 s3 = add_company_et1.getText().toString();
                 s4 = add_company_et2.getText().toString();
-                if (FinalContents.getStoreChange().equals("修改")) {
+//                if (FinalContents.getStoreChange().equals("修改")) {
+//
+//                } else {
+//
+//
+////                    s7 = add_company_et5.getText().toString();
+////                    s8 = add_company_et6.getText().toString();
+//                }
 
-                } else {
+                s5 = add_company_et3.getText().toString();
+                s6 = add_company_et4.getText().toString();
+
+                if(s6.equals("")){
+
+                }else {
                     if (!MatcherUtils.isMobile(add_company_et4.getText().toString())) {
                         ToastUtil.showLongToast(AddCompanyActivity.this,"请输入正确的手机号");
                         return;
                     }
-                    s5 = add_company_et3.getText().toString();
-                    s6 = add_company_et4.getText().toString();
-                    s7 = add_company_et5.getText().toString();
-                    s8 = add_company_et6.getText().toString();
                 }
 
                 if (add_company_rb1.isChecked()) {
@@ -290,10 +305,12 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                     num = "1";
                 } else if (add_company_rb3.isChecked()) {
                     num = "2";
+                }else if (add_company_rb4.isChecked()) {
+                    num = "3";
                 }
-                if (add_company_et6.getText().toString().equals("")) {
-                    s8 = "123456";
-                }
+//                if (add_company_et6.getText().toString().equals("")) {
+//                    s8 = "123456";
+//                }
                 if (FinalContents.getStoreChange().equals("修改")) {
                     s2 = add_company_tv3.getText().toString();
                     initDatas1();
@@ -316,7 +333,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 
     private void initdatas2() {
 
-        if (s.equals("") || s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("") || s5.equals("") || s6.equals("") || s7.equals("") || s8.equals("")) {
+        if (s.equals("") || s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
             ToastUtil.showLongToast(AddCompanyActivity.this,"带*号的数据不能为空，请完成填写再提交");
         } else {
 
@@ -333,11 +350,11 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             Log.i("公司数据","s2:" + s2);
             Log.i("公司数据","s5:" + s5);
             Log.i("公司数据","s6:" + s6);
-            Log.i("公司数据","s7:" + s7);
-            Log.i("公司数据","s8:" + s8);
+//            Log.i("公司数据","s7:" + s7);
+//            Log.i("公司数据","s8:" + s8);
             Log.i("公司数据","num:" + num);
             Log.i("公司数据","FinalContents.getUserID():" + FinalContents.getUserID());
-            addCompanyBean = fzbInterface.getAddCompanyBean("", s3, s1, s4, s2, s5, s6, s7, s8, num, FinalContents.getUserID());
+            addCompanyBean = fzbInterface.getAddCompanyBean("", s3, s1, s4, s2, s5, s6, num, FinalContents.getUserID());
 
             addCompanyBean.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -386,7 +403,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
 
-            addCompanyBean = fzbInterface.getAddCompanyBean(companyManage.getId(), s3, s1, s4, s2, "", "", "", "", num, FinalContents.getUserID());
+            addCompanyBean = fzbInterface.getAddCompanyBean(companyManage.getId(), s3, s1, s4, s2, s5, s6, num, FinalContents.getUserID());
             addCompanyBean.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<AddCompanyBean>() {

@@ -14,15 +14,26 @@
         android:alpha="0.05"
         android:scaleType="fitXY" />
 
-
-    <ImageView
+    <RelativeLayout
         android:id="@+id/content_img"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="70dp"
-        android:src="@mipmap/adds" />
+        android:layout_marginBottom="50dp">
+
+        <ImageView
+
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:src="@mipmap/adds" />
+
+    </RelativeLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"

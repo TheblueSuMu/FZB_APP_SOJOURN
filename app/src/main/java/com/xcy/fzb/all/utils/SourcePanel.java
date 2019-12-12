@@ -26,12 +26,6 @@ public class SourcePanel extends GridView {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-
-    @Override
 
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
@@ -42,5 +36,11 @@ public class SourcePanel extends GridView {
         }
         return super.dispatchTouchEvent(ev);
 
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 }

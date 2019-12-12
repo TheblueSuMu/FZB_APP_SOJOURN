@@ -255,7 +255,8 @@ public class EFragment extends AllFragment implements View.OnClickListener, Swip
         } else if (id == R.id.my_exit) {
 //            TODO 退出登录
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("退出完成");
+            builder.setMessage("确定要退出程序吗?");
+//            builder.setTitle("退出完成");
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

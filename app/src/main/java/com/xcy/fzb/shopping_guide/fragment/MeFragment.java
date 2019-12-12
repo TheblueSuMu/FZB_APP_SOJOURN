@@ -161,7 +161,7 @@ public class MeFragment extends Fragment implements View.OnClickListener, SwipeR
             case R.id.exit_my_the_project_end:
                 //            TODO 退出登录
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                builder2.setTitle("退出完成");
+                builder2.setTitle("确定要退出程序吗?");
                 builder2.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

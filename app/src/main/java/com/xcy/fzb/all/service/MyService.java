@@ -763,7 +763,7 @@ public interface MyService {
     //添加经纪公司
     @POST("commissionerUpdate/companyAdd")
     Observable<AddCompanyBean> getAddCompanyBean(@Query("id") String id, @Query("companyName") String companyName, @Query("area") String area, @Query("address") String address, @Query("location") String location,
-                                                 @Query("userName") String userName, @Query("phone") String phone, @Query("loginName") String loginName, @Query("password") String password,
+                                                 @Query("userName") String userName, @Query("phone") String phone,
                                                  @Query("flag") String flag, @Query("userId") String userId);
 
     //添加经纪门店
