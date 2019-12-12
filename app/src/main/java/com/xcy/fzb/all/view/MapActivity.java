@@ -353,7 +353,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
             List<PoiInfo> pois = result.getAllPoi();
             OverlayOptions op = null;
             BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_gcoding);
-            BitmapDescriptor bitmap2 = BitmapDescriptorFactory.fromResource(R.drawable.icon_marka);
+            BitmapDescriptor bitmap2 = BitmapDescriptorFactory.fromResource(R.drawable.icon_gcoding);
             for (int i = 0; i < pois.size(); i++) {
                 if (flag) {
                     op = new MarkerOptions().position(pois.get(i).location).icon(bitmap);

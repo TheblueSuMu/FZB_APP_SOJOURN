@@ -65,6 +65,7 @@ import com.xcy.fzb.all.modle.ClockInBean;
 import com.xcy.fzb.all.modle.RecordBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.SourcePanel;
 import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.BigPhotoActivity;
 import com.xcy.fzb.all.view.ConfirmTheVisitActivity;
@@ -120,7 +121,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
     /**
      * GridView + 相机拍照
      */
-    GridView confirm_the_visit_gv;
+    SourcePanel confirm_the_visit_gv;
     private GridViewSAdapter adapter;
     private List<Object> mDatas;
     int isPhoto = 0;
@@ -250,11 +251,18 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if (mDatas.size() == 3) {
-                    ToastUtil.showLongToast(ClockStoresActivity.this, "图片最多三张");
-                } else {
+//                if (mDatas.size() == 3) {
+//                    ToastUtil.showLongToast(ClockStoresActivity.this, "图片最多三张");
+//                } else {
                     if (position == parent.getChildCount() - 1) {
 
+                        if (mDatas.size() == 3) {
+                            Intent intent = new Intent(ClockStoresActivity.this, BigPhotoActivity.class);
+                            intent.putExtra("index", position);
+                            intent.putExtra("bigPhotoimg", stringBuffer.toString());// -1  -1  -1
+                            startActivity(intent);
+//                            ToastUtil.showLongToast(ClockStoresActivity.this, "图片最多三张");
+                        } else {
 //                        AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmTheVisitActivity.this);
 //                        builder.setTitle("请选择图片来源");
 //                        builder.setItems(new String[]{"相机", "相册"}, new DialogInterface.OnClickListener() {
@@ -262,40 +270,41 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 //                            public void onClick(DialogInterface dialogInterface, int i) {
 //                                if (i == 0) {
 
-                        try {
-                            //检测是否有写的权限
-                            int permission = ActivityCompat.checkSelfPermission(ClockStoresActivity.this,
-                                    "android.permission.WRITE_EXTERNAL_STORAGE");
-                            if (permission != PackageManager.PERMISSION_GRANTED) {
-                                // 没有写的权限，去申请写的权限，
-                                ActivityCompat.requestPermissions(ClockStoresActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+                            try {
+                                //检测是否有写的权限
+                                int permission = ActivityCompat.checkSelfPermission(ClockStoresActivity.this,
+                                        "android.permission.WRITE_EXTERNAL_STORAGE");
+                                if (permission != PackageManager.PERMISSION_GRANTED) {
+                                    // 没有写的权限，去申请写的权限，
+                                    ActivityCompat.requestPermissions(ClockStoresActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        String SDState = Environment.getExternalStorageState();
-                        if (SDState.equals(Environment.MEDIA_MOUNTED)) {
-                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// "android.media.action.IMAGE_CAPTURE"
-                            /***
-                             * 需要说明一下，以下操作使用照相机拍照，拍照后的图片会存放在相册中的 这里使用的这种方式有一个好处就是获取的图片是拍照后的原图
-                             * 如果不实用ContentValues存放照片路径的话，拍照后获取的图片为缩略图不清晰
-                             */
-                            ContentValues values = new ContentValues();
-                            Uri photoUri = ClockStoresActivity.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                            String SDState = Environment.getExternalStorageState();
+                            if (SDState.equals(Environment.MEDIA_MOUNTED)) {
+                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// "android.media.action.IMAGE_CAPTURE"
+                                /***
+                                 * 需要说明一下，以下操作使用照相机拍照，拍照后的图片会存放在相册中的 这里使用的这种方式有一个好处就是获取的图片是拍照后的原图
+                                 * 如果不实用ContentValues存放照片路径的话，拍照后获取的图片为缩略图不清晰
+                                 */
+                                ContentValues values = new ContentValues();
+                                Uri photoUri = ClockStoresActivity.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
 
 //TODO Uri图片转换成file类型的 start
-                            file = uri2File(photoUri);
-                            Log.i("MyCL", "Uri图片转换成file类型的：" + file);
+                                file = uri2File(photoUri);
+                                Log.i("MyCL", "Uri图片转换成file类型的：" + file);
 
-                            isPhoto = 1;
+                                isPhoto = 1;
 
 //TODO Uri图片转换成file类型的 end
-                            Log.i("MyCL", "图片路径：" + photoUri);
-                            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                            startActivityForResult(intent, 1);
-                        } else {
+                                Log.i("MyCL", "图片路径：" + photoUri);
+                                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                                startActivityForResult(intent, 1);
+                            } else {
 
+                            }
                         }
                     } else {
                         Intent intent = new Intent(ClockStoresActivity.this, BigPhotoActivity.class);
@@ -312,7 +321,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 //                        adapter.notifyDataSetChanged();
 
                     }
-                }
+//                }
             }
         });
 

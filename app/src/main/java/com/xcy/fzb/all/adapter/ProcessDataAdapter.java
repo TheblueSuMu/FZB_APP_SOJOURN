@@ -109,7 +109,7 @@ public class ProcessDataAdapter extends RecyclerView.Adapter<ProcessDataAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (FinalContents.getIdentity().equals("5")) {
+                if (FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("8")|| FinalContents.getIdentity().equals("9")) {
 
                 } else {
                     Intent intent = new Intent(context, ReviewTheSuccessActivity.class);

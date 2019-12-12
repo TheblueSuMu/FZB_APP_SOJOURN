@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
@@ -16,7 +17,7 @@ import com.xcy.fzb.all.view.AllActivity;
 public class ContentActivity extends AllActivity {
 
     ImageView imageView;
-    ImageView content_img;
+    RelativeLayout content_img;
 
     LinearLayout content_ll1;
     LinearLayout content_ll2;

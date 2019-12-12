@@ -104,7 +104,7 @@ public class MessageIssueActivity extends AllActivity {
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -269,12 +269,13 @@ public class MessageIssueActivity extends AllActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if (mDatas.size() == 9) {
 
-                    Toast.makeText(MessageIssueActivity.this,"图片最多九张",Toast.LENGTH_SHORT).show();
-                } else {
-                    if (position == parent.getChildCount() - 1) {
+                if (position == parent.getChildCount() - 1) {
 
+                    if (mDatas.size() == 9) {
+
+                        Toast.makeText(MessageIssueActivity.this, "图片最多九张", Toast.LENGTH_SHORT).show();
+                    } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(MessageIssueActivity.this);
                         builder.setTitle("请选择图片来源");
                         builder.setItems(new String[]{"相机", "相册"}, new DialogInterface.OnClickListener() {

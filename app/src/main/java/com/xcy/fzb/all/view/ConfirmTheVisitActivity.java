@@ -112,7 +112,7 @@ public class ConfirmTheVisitActivity extends AllActivity {
 
     int ismap = 0;
 
-   // 定位相关
+    // 定位相关
     LocationClient mLocClient;
     //定位监听
     public MyLocationListenner myListener = new MyLocationListenner();
@@ -281,7 +281,7 @@ public class ConfirmTheVisitActivity extends AllActivity {
 //            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListener);
 //        }
 
-        Log.i("地图","initMapData");
+        Log.i("地图", "initMapData");
         mLocClient = new LocationClient(this);
         mLocClient.registerLocationListener(myListener);
         LocationClientOption option = new LocationClientOption();
@@ -314,7 +314,7 @@ public class ConfirmTheVisitActivity extends AllActivity {
             if (isFirstLoc) {
                 String addrStr = location.getAddrStr();
                 comfirm_location.setText(addrStr);
-                Log.i("确认到访","addrStr：" + addrStr);
+                Log.i("确认到访", "addrStr：" + addrStr);
                 isFirstLoc = false;
                 ll = new LatLng(location.getLatitude(),
                         location.getLongitude());
@@ -324,7 +324,6 @@ public class ConfirmTheVisitActivity extends AllActivity {
                 getLatitude = location.getLatitude() + "";
                 comfirm_location.setText(location.getAddrStr());
             }
-
 
 
         }
@@ -390,11 +389,11 @@ public class ConfirmTheVisitActivity extends AllActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if (mDatas.size() == 9) {
-                    Toast.makeText(ConfirmTheVisitActivity.this, "图片最多九张", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (position == parent.getChildCount() - 1) {
 
+                if (position == parent.getChildCount() - 1) {
+                    if (mDatas.size() == 9) {
+                        Toast.makeText(ConfirmTheVisitActivity.this, "图片最多九张", Toast.LENGTH_SHORT).show();
+                    } else {
 //                        AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmTheVisitActivity.this);
 //                        builder.setTitle("请选择图片来源");
 //                        builder.setItems(new String[]{"相机", "相册"}, new DialogInterface.OnClickListener() {
@@ -438,12 +437,12 @@ public class ConfirmTheVisitActivity extends AllActivity {
 
                         }
                     }
+                }
 //                                else if (i == 1) {
 //                                    Intent getAlbum = new Intent(Intent.ACTION_PICK);
 //                                    getAlbum.setType(IMAGE_TYPE);
 //                                    startActivityForResult(getAlbum, IMAGE_CODE);
 //                                }
-                }
 //                        });
 //                        builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
 //                            @Override
@@ -760,7 +759,7 @@ public class ConfirmTheVisitActivity extends AllActivity {
             }.start();
         }
         isPhoto = 0;
-        if(ismap == 1){
+        if (ismap == 1) {
             initMapData();
             ismap = 0;
         }
