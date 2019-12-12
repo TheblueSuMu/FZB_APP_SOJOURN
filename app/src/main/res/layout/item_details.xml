@@ -22,6 +22,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textColor="#ff666666"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -36,6 +38,8 @@
                 android:id="@+id/item_details_elementNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text=""
                 android:textColor="#ff666666"
                 android:textSize="12sp" />
@@ -50,6 +54,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text=""
                 android:textColor="#ff666666"
                 android:textSize="12sp" />
