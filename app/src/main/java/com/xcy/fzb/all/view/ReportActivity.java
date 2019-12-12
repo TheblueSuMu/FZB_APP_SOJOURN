@@ -192,7 +192,11 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     }
 
     private void initView() {
-        FinalContents.setProjectType("");
+        if (CityContents.getIsReport().equals("")) {
+            Log.i("数据","1走一走:"+FinalContents.getProjectType());
+            FinalContents.setProjectType("");
+        }
+        Log.i("数据","2走一走:"+FinalContents.getProjectType());
         CityContents.setAddClient("");
         StatusBar.makeStatusBarTransparent(this);
         report_linear = findViewById(R.id.report_linear);
@@ -1209,14 +1213,17 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        FinalContents.setProjectType("");
+        if (CityContents.getIsReport().equals("")) {
+            Log.i("数据","1走一走:"+FinalContents.getProjectType());
+            FinalContents.setProjectType("");
+            FinalContents.setProjectName("");
+            FinalContents.setGuideRuleId("");
+            FinalContents.setProjectID("");
+        }
         FinalContents.setClientName("");
         FinalContents.setClientPhone("");
         FinalContents.setCustomerID("");
-        FinalContents.setProjectName("");
         FinalContents.setProjectSearchID("");
-        FinalContents.setGuideRuleId("");
-        FinalContents.setProjectID("");
         FinalContents.setNUM("");
     }
 }

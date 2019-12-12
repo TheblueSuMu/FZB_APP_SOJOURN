@@ -17,6 +17,16 @@ public class CityContents {
 
     static String IsRead = "";
 
+    static String IsReport = "";
+
+    public static String getIsReport() {
+        return IsReport;
+    }
+
+    public static void setIsReport(String isReport) {
+        IsReport = isReport;
+    }
+
     public static String getIsRead() {
         return IsRead;
     }

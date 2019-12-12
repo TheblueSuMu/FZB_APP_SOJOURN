@@ -47,6 +47,7 @@ import com.xcy.fzb.all.adapter.FamilyRecycler;
 import com.xcy.fzb.all.adapter.ProjectDetailsVillaAdapter;
 import com.xcy.fzb.all.adapter.ReportAdapter;
 import com.xcy.fzb.all.adapter.TalktoolRecycler;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.BuildingBean;
 import com.xcy.fzb.all.modle.CollectBean;
@@ -320,6 +321,8 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
         project_details_title = findViewById(R.id.project_details_title);
         project_details_toolbar = findViewById(R.id.project_details_toolbar);
+
+        CityContents.setIsReport("1");
 
         //  TODO    三合一大派对      佣金/报备/奖励
         project_details_layout = findViewById(R.id.project_details_layout);
@@ -1688,4 +1691,10 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("数据","走一走:"+CityContents.getIsReport());
+        CityContents.setIsReport("");
+    }
 }
