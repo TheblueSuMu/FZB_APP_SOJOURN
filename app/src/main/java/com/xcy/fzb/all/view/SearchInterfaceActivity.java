@@ -167,7 +167,7 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
                         if (hotlist.size() == 0) {
                             all_no_information.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.GONE);
-                            recyclerAdapter.notifyDataSetChanged();
+//                            recyclerAdapter.notifyDataSetChanged();
                         } else {
                             all_no_information.setVisibility(View.GONE);
                             recyclerView.setVisibility(View.VISIBLE);
@@ -179,21 +179,23 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
                             recyclerAdapter.setProject(FinalContents.getProject());
                             recyclerView.setAdapter(recyclerAdapter);
                             recyclerAdapter.notifyDataSetChanged();
+
+                            recyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickLisenter() {
+                                @Override
+                                public void onItemClick(int postion) {
+                                    if (FinalContents.getProject().equals("1")) {
+                                        FinalContents.setProjectType(hotlist.get(postion).getProjectType());
+                                        FinalContents.setProjectName(hotlist.get(postion).getProjectName());
+                                        FinalContents.setProjectSearchID(hotlist.get(postion).getProjectId());
+                                        FinalContents.setGuideRuleId(hotlist.get(postion).getGuideRuleId());
+                                        FinalContents.setProjectID(hotlist.get(postion).getProjectId());
+                                        finish();
+                                    }
+                                }
+                            });
                         }
 
-                        recyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickLisenter() {
-                            @Override
-                            public void onItemClick(int postion) {
-                                if (FinalContents.getProject().equals("1")) {
-                                    FinalContents.setProjectType(hotlist.get(postion).getProjectType());
-                                    FinalContents.setProjectName(hotlist.get(postion).getProjectName());
-                                    FinalContents.setProjectSearchID(hotlist.get(postion).getProjectId());
-                                    FinalContents.setGuideRuleId(hotlist.get(postion).getGuideRuleId());
-                                    FinalContents.setProjectID(hotlist.get(postion).getProjectId());
-                                    finish();
-                                }
-                            }
-                        });
+
                         hideInput();
                     }
 
