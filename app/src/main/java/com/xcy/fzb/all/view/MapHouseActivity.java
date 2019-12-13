@@ -316,6 +316,8 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         mLocClient.setLocOption(option);
         mLocClient.start();
 
+        initMap();
+
         if (FinalContents.getIfCity().
 
                 equals("")) {
@@ -369,7 +371,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                     public void onNext(HotBean hotBean) {
                         rows2 = hotBean.getData().getRows();
                         Log.i("MyCL", "城市项目列表长度：" + rows2.size());
-                        initMap();
+//                        initMap();
                     }
 
                     @Override
@@ -407,7 +409,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                     public void onNext(StoreListBean storeListBean) {
                         rows1 = storeListBean.getData().getRows();
                         Log.i("MyCL", "公司数据：" + rows1.size());
-                        initMap();
+//                        initMap();
                     }
 
                     @Override
@@ -445,7 +447,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                     public void onNext(StoreListBean storeListBean) {
                         rows = storeListBean.getData().getRows();
                         Log.i("MyCL", "门店数据：" + rows.size());
-                        initMap();
+//                        initMap();
                     }
 
                     @Override

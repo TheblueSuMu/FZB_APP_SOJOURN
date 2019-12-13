@@ -178,7 +178,7 @@
                             android:layout_width="43dp"
                             android:layout_height="43dp"
                             android:layout_gravity="center"
-                            android:src="@mipmap/adds5" />
+                            android:src="@mipmap/maphourse" />
 
                         <TextView
                             android:layout_width="wrap_content"
