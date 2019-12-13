@@ -703,6 +703,9 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
             case R.id.my_team_rb4:
                 market_time_ll10.setVisibility(View.VISIBLE);
                 type1 = "3";
+                startDate1 = string;
+                endDate1 = string;
+                initDataStatistics();
                 NewlyIncreased.setTag("3");
                 break;
 
@@ -740,6 +743,9 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
             case R.id.my_team_rb8:
                 market_time_ll11.setVisibility(View.VISIBLE);
                 type2 = "3";
+                startDate2 = string;
+                endDate2 = string;
+                initTeamCommissions();
                 NewlyIncreased.setYJType("3");
                 break;
 
@@ -774,6 +780,9 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
             case R.id.my_team_rb12:
                 market_time_ll12.setVisibility(View.VISIBLE);
                 type3 = "3";
+                startDate3 = string;
+                endDate3 = string;
+                initDailyTurnover();
                 break;
             case R.id.project_attache_ll1://实时
                 tag = "1";
@@ -808,7 +817,10 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
+                    startDate1 = string;
+                    endDate1 = string;
                     NewlyIncreased.setTag("3");
+                    initDataStatistics();
                     market_time_ll10.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -845,7 +857,10 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
+                    startDate1 = string;
+                    endDate1 = string;
                     NewlyIncreased.setTag("3");
+                    initDataStatistics();
                     market_time_ll10.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -856,6 +871,11 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
 
     // TODO 数据统计
     private void initDataStatistics() {
+        Log.i("自定义","实时或总体"+tag);
+        Log.i("自定义","选择类型"+type1);
+        Log.i("自定义","开始时间"+startDate1);
+        Log.i("自定义","结束时间"+endDate1);
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());

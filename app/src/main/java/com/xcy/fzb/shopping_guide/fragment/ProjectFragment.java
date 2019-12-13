@@ -350,6 +350,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                     FinalContents.setCityIs("");
                                 }
                                 city.setText(list.get(options1));
+                                FinalContents.setCityName(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
                                 initHotList();
                             }

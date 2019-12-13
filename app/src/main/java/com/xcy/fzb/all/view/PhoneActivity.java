@@ -1,5 +1,10 @@
 package com.xcy.fzb.all.view;
 
+import android.Manifest;
+import android.app.AppOpsManager;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +33,7 @@ import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.DividerItemDecoration;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.PhoneUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +74,7 @@ public class PhoneActivity extends AllActivity{
     private List<LinkmanBean> list = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     private SuspensionDecoration mDecoration;
+    private TextView error_message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +84,8 @@ public class PhoneActivity extends AllActivity{
     }
 
     private void initfvb(){
+        error_message = findViewById(R.id.error_message);
+        havaReadContacts(PhoneActivity.this,"READ_CONTACTS ");
         all_activity_phone_cancle = findViewById(R.id.all_activity_phone_cancle);
         all_activity_phone_search = findViewById(R.id.all_activity_phone_search);
         all_activity_phone_ensure = findViewById(R.id.all_activity_phone_ensure);
@@ -133,14 +143,70 @@ public class PhoneActivity extends AllActivity{
                         }
                     }
                 }
-
             }
         });
     }
 
+    /**
+     * 判断是否拥有联系人读取权限
+     *
+     * @param context
+     * @return
+     * XXX代表权限字符串，比如 READ_CONTACTS 通讯录读取权限
+     */
+    public boolean havaReadContacts(Context context, String xxx) {
+
+        boolean have = false;
+
+        error_message.setText("判断权限");
+        ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS);
+        if (Build.VERSION.SDK_INT >= 23) {
+            AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+            int checkOp = appOpsManager.checkOp(AppOpsManager.OPSTR_READ_CONTACTS, android.os.Process.myUid(), context.getPackageName());
+            error_message.setText("权限是："+checkOp);
+            Log.e("通讯录权限", "checkOp:" + checkOp);
+            ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ："+checkOp);
+            switch (checkOp) {
+                case AppOpsManager.MODE_ALLOWED:
+                    Log.e("通讯录权限", "AppOpsManager.MODE_ALLOWED ：有权限");
+                    ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：有权限");
+                    error_message.setText("有权限");
+                    have = true;
+                    break;
+                case AppOpsManager.MODE_IGNORED:
+                    Log.e("通讯录权限", "AppOpsManager.MODE_IGNORED：被禁止了");
+                    ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：被禁止了");
+                    error_message.setText("被禁止了");
+                    have = false;
+                    break;
+                case AppOpsManager.MODE_DEFAULT:
+                    Log.e("通讯录权限", "AppOpsManager.MODE_DEFAULT");
+                    ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：默认");
+                    error_message.setText("默认");
+                    break;
+                case AppOpsManager.MODE_ERRORED:
+                    Log.e("通讯录权限", "AppOpsManager.MODE_ERRORED：出错了");
+                    ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：出错了");
+                    error_message.setText("出错了");
+                    have = false;
+                    break;
+                case 4:
+                    Log.e("通讯录权限", "AppOpsManager.OTHER：权限需要询问");
+                    ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：权限需要询问");
+                    error_message.setText("权限需要询问");
+                    have = false;
+                    break;
+            }
+        } else {
+            error_message.setText("权限询问中");
+            have = ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS)
+                    == PackageManager.PERMISSION_GRANTED;
+        }
+        return have;
+    }
 
     private void initViews() {
-        PhoneUtil phoneUtil = new PhoneUtil(this);
+        PhoneUtil phoneUtil = new PhoneUtil(PhoneActivity.this);
         phoneDtos = phoneUtil.getPhone();
 
         if (phoneDtos.size() != 0) {
@@ -195,7 +261,7 @@ public class PhoneActivity extends AllActivity{
                         phoneAdapter.notifyDataSetChanged();
                     }else if (all_activity_phone_checkbox_all.getText().toString().equals("全选")){
                         all_activity_phone_checkbox_all.setText("取消全选");
-                        all_activity_phone_checkbox_all_number.setText("已选"+mContactModels.size());
+                        all_activity_phone_checkbox_all_number.setText("已选"+phoneDtos.size());
                         phoneAdapter.setAll("1");
                         phoneAdapter.notifyDataSetChanged();
                     }

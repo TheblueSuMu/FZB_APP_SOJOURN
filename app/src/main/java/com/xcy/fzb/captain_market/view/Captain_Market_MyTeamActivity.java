@@ -139,6 +139,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
     LinearLayout project_attache_ll2;
     LinearLayout project_attache_ll3;
     LinearLayout project_attache_ll4;
+    private String string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -247,7 +248,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
         int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+ 1, dayOfMonth);
+        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+ 1, dayOfMonth);
         market_time_time_tv1.setText(string);
         market_time_time_tv2.setText(string);
         market_time_time_tv3.setText(string);
@@ -571,6 +572,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             case R.id.my_team_rb4:
                 market_time_ll10.setVisibility(View.VISIBLE);
                 type1 = "3";
+                startDate1 = string;
+                endDate1 = string;
                 NewlyIncreased.setTag("3");
                 initDataStatistics();
                 break;
@@ -606,6 +609,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             case R.id.my_team_rb8:
                 market_time_ll11.setVisibility(View.VISIBLE);
                 type2 = "3";
+                startDate2 = string;
+                endDate2 = string;
                 initTeamCommissions();
                 break;
 
@@ -640,6 +645,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             case R.id.my_team_rb12:
                 market_time_ll12.setVisibility(View.VISIBLE);
                 type3 = "3";
+                startDate3 = string;
+                endDate3 = string;
                 initDailyTurnover();
                 break;
             case R.id.project_attache_ll1://实时
@@ -675,6 +682,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
+                    startDate1 = string;
+                    endDate1 = string;
                     NewlyIncreased.setTag("3");
                     initDataStatistics();
                     market_time_ll10.setVisibility(View.VISIBLE);
@@ -713,6 +722,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
+                    startDate1 = string;
+                    endDate1 = string;
                     NewlyIncreased.setTag("3");
                     initDataStatistics();
                     market_time_ll10.setVisibility(View.VISIBLE);

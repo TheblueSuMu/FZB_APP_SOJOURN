@@ -19,6 +19,26 @@ public class CityContents {
 
     static String IsReport = "";
 
+    static String Error = "";
+
+    static String ErrorMessage = "";
+
+    public static String getError() {
+        return Error;
+    }
+
+    public static void setError(String error) {
+        Error = error;
+    }
+
+    public static String getErrorMessage() {
+        return ErrorMessage;
+    }
+
+    public static void setErrorMessage(String errorMessage) {
+        ErrorMessage = errorMessage;
+    }
+
     public static String getIsReport() {
         return IsReport;
     }

@@ -130,6 +130,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     LinearLayout project_attache_ll4;
 
     String tag = "1";
+    private String string;
 
 
     @Override
@@ -616,6 +617,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
             case R.id.sales_details_details_rb4:
                 sales_details_details_ll1.setVisibility(View.VISIBLE);
                 type = "3";
+                startTime = string;
+                endTime = string;
                 initDate();
                 NewlyIncreased.setTag("3");
                 initDataStatistics();
@@ -801,6 +804,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     sales_details_details_ll1.setVisibility(View.GONE);
                 } else if (sales_details_details_rb4.isChecked() == true) {
                     type = "3";
+                    startTime = string;
+                    endTime = string;
                     initDate();
                     initDataStatistics();
                     NewlyIncreased.setTag("3");
@@ -840,6 +845,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     sales_details_details_ll1.setVisibility(View.GONE);
                 } else if (sales_details_details_rb4.isChecked() == true) {
                     type = "3";
+                    startTime = string;
+                    endTime = string;
                     initDate();
                     initDataStatistics();
                     NewlyIncreased.setTag("3");
@@ -895,7 +902,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
         sales_details_details_time1.setText("<" + string);
         sales_details_details_time2.setText("-" + string + " >");
         dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));

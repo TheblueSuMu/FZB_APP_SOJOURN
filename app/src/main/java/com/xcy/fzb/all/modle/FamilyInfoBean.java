@@ -1,11 +1,10 @@
 package com.xcy.fzb.all.modle;
 
 public class FamilyInfoBean {
-
     /**
      * code : 1
      * msg : 成功
-     * data : {"id":"c96f0e838b224e26ae9b262ab12d3d2d","remarks":"","createBy":"","createDate":"2019-10-28 17:44:53","updateBy":"","updateDate":"2019-11-28 19:39:21","project":{"id":"f0ba02e953b7423e882ef0ca1fa7ec2c","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"广州融创","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"广东省","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"familyName":"A户型,A户型","productType":"1","room":"2","hall":"2","toilet":"1","apartment":"","familyArea":"88","familyOrientation":"2","getHouseRate":"90","modelHouse":"2","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/10/微信图片_20191023190633(1).png","modelHouseChart":"","familySlideImgList":"","average":"10000","total":"100.00","downpayment":"40.00","percentage":"40.0","loan":"60.00","monthly":"3000","years":"1234","interest":"0.23","title":"","text":"","build":"1栋","saleStatus":""}
+     * data : {"id":"b56125f47155474dbe1feaa9366d9ee7","remarks":"","createBy":"","createDate":"2019-06-16 11:04:03","updateBy":"","updateDate":"2019-12-07 15:55:46","project":{"id":"ef3f647c7e3643bc882c9fc365634a1a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"丽江时光","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"云南省丽江市古城区金山北路","location":"100.281021,26.884087","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"familyName":"A","productType":"1","room":"1","hall":"1","toilet":"1","apartment":"","familyArea":"50","familyOrientation":"南","getHouseRate":"","modelHouse":"1","floorPlan":"/fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/6/1573524426482.jpg","modelHouseChart":"","familySlideImgList":"","average":"10000","total":"100.00","downpayment":"40.00","percentage":"40","loan":"60.00","monthly":"3000","years":"20","interest":"1.23","title":"啊手动阀手动阀","text":"啊手动阀手动阀手动阀手动阀","isText":"1","isShow":"1","build":"17栋,19栋","saleStatus":"在售"}
      */
 
     private String code;
@@ -38,38 +37,40 @@ public class FamilyInfoBean {
 
     public static class DataBean {
         /**
-         * id : c96f0e838b224e26ae9b262ab12d3d2d
+         * id : b56125f47155474dbe1feaa9366d9ee7
          * remarks :
          * createBy :
-         * createDate : 2019-10-28 17:44:53
+         * createDate : 2019-06-16 11:04:03
          * updateBy :
-         * updateDate : 2019-11-28 19:39:21
-         * project : {"id":"f0ba02e953b7423e882ef0ca1fa7ec2c","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"广州融创","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"广东省","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""}
-         * familyName : A户型,A户型
+         * updateDate : 2019-12-07 15:55:46
+         * project : {"id":"ef3f647c7e3643bc882c9fc365634a1a","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"丽江时光","developer":"","houseCompany":"","cityCompany":"","projectType":"","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"云南省丽江市古城区金山北路","location":"100.281021,26.884087","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""}
+         * familyName : A
          * productType : 1
-         * room : 2
-         * hall : 2
+         * room : 1
+         * hall : 1
          * toilet : 1
          * apartment :
-         * familyArea : 88
-         * familyOrientation : 2
-         * getHouseRate : 90
-         * modelHouse : 2
-         * floorPlan : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/10/微信图片_20191023190633(1).png
+         * familyArea : 50
+         * familyOrientation : 南
+         * getHouseRate :
+         * modelHouse : 1
+         * floorPlan : /fangfang/userfiles/3c37d25396a940f9b784b4c180f7db37/attachment//ff/server/ffServerFamilyInfomation/2019/6/1573524426482.jpg
          * modelHouseChart :
          * familySlideImgList :
          * average : 10000
          * total : 100.00
          * downpayment : 40.00
-         * percentage : 40.0
+         * percentage : 40
          * loan : 60.00
          * monthly : 3000
-         * years : 1234
-         * interest : 0.23
-         * title :
-         * text :
-         * build : 1栋
-         * saleStatus :
+         * years : 20
+         * interest : 1.23
+         * title : 啊手动阀手动阀
+         * text : 啊手动阀手动阀手动阀手动阀
+         * isText : 1
+         * isShow : 1
+         * build : 17栋,19栋
+         * saleStatus : 在售
          */
 
         private String id;
@@ -102,6 +103,8 @@ public class FamilyInfoBean {
         private String interest;
         private String title;
         private String text;
+        private String isText;
+        private String isShow;
         private String build;
         private String saleStatus;
 
@@ -345,6 +348,22 @@ public class FamilyInfoBean {
             this.text = text;
         }
 
+        public String getIsText() {
+            return isText;
+        }
+
+        public void setIsText(String isText) {
+            this.isText = isText;
+        }
+
+        public String getIsShow() {
+            return isShow;
+        }
+
+        public void setIsShow(String isShow) {
+            this.isShow = isShow;
+        }
+
         public String getBuild() {
             return build;
         }
@@ -363,13 +382,13 @@ public class FamilyInfoBean {
 
         public static class ProjectBean {
             /**
-             * id : f0ba02e953b7423e882ef0ca1fa7ec2c
+             * id : ef3f647c7e3643bc882c9fc365634a1a
              * remarks :
              * createBy :
              * createDate :
              * updateBy :
              * updateDate :
-             * projectName : 广州融创
+             * projectName : 丽江时光
              * developer :
              * houseCompany :
              * cityCompany :
@@ -380,8 +399,8 @@ public class FamilyInfoBean {
              * cooperationState :
              * onlineState :
              * belongsArea :
-             * address : 广东省
-             * location :
+             * address : 云南省丽江市古城区金山北路
+             * location : 100.281021,26.884087
              * totalBuildings :
              * hot :
              * sort :

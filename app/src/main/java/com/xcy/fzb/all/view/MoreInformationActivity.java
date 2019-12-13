@@ -92,13 +92,7 @@ public class MoreInformationActivity extends AllActivity implements View.OnClick
         information_relative2 = findViewById(R.id.information_relative2);
         more_qt_call = findViewById(R.id.more_qt_call);
 
-        if (FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5")|| FinalContents.getIdentity().equals("63")|| FinalContents.getIdentity().equals("7")) {
-            information_relative1.setVisibility(View.GONE);
-            information_relative2.setVisibility(View.VISIBLE);
-        }else {
-            information_relative1.setVisibility(View.VISIBLE);
-            information_relative2.setVisibility(View.GONE);
-        }
+
 
         if (!FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
             information_relative1.setVisibility(View.GONE);
@@ -106,6 +100,15 @@ public class MoreInformationActivity extends AllActivity implements View.OnClick
         }else {
             information_relative1.setVisibility(View.VISIBLE);
             information_relative2.setVisibility(View.GONE);
+            if (FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5")|| FinalContents.getIdentity().equals("63")|| FinalContents.getIdentity().equals("7")) {
+                Log.i("身份验证","是团助");
+                information_relative1.setVisibility(View.GONE);
+                information_relative2.setVisibility(View.VISIBLE);
+            }else {
+                Log.i("身份验证","不是团助");
+                information_relative1.setVisibility(View.VISIBLE);
+                information_relative2.setVisibility(View.GONE);
+            }
         }
 
         initData();

@@ -318,6 +318,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                                     FinalContents.setCityIs("");
                                 }
                                 city.setText(list.get(options1));
+                                FinalContents.setCityName(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
                                 initHotList();
                             }

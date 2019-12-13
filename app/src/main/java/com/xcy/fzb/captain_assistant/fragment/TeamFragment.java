@@ -174,6 +174,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     LinearLayout project_attache_ll3;
     LinearLayout project_attache_ll4;
     String tag = "1";
+    private String string;
 
     public TeamFragment() {
         // Required empty public constructor
@@ -343,7 +344,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
         int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+1, dayOfMonth);
+        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+1, dayOfMonth);
         market_time_time_tv1.setText(string);
         market_time_time_tv2.setText(string);
         market_time_time_tv3.setText(string);
@@ -694,6 +695,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             case R.id.team_rb4:
                 market_time_ll10.setVisibility(View.VISIBLE);
                 type1 = "3";
+                startDate1 = string;
+                endDate1 = string;
                 NewlyIncreased.setTag("3");
                 initDataStatistics();
                 break;
@@ -732,6 +735,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             case R.id.team_rb8:
                 market_time_ll11.setVisibility(View.VISIBLE);
                 type2 = "3";
+                startDate2 = string;
+                endDate2 = string;
                 NewlyIncreased.setYJType("3");
                 initTeamCommissions();
                 break;
@@ -767,6 +772,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             case R.id.team_rb12:
                 market_time_ll12.setVisibility(View.VISIBLE);
                 type3 = "3";
+                startDate3 = "";
+                endDate3 = "";
                 initDailyTurnover();
                 break;
             case R.id.project_attache_ll1://实时
@@ -802,6 +809,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
+                    startDate1 = string;
+                    endDate1 = string;
                     NewlyIncreased.setTag("3");
                     initDataStatistics();
                     market_time_ll10.setVisibility(View.VISIBLE);
@@ -840,6 +849,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
+                    startDate1 = string;
+                    endDate1 = string;
                     NewlyIncreased.setTag("3");
                     initDataStatistics();
                     market_time_ll10.setVisibility(View.VISIBLE);

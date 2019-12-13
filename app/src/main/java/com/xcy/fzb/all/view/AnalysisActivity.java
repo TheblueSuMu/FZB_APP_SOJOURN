@@ -260,12 +260,11 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
                         }
 
 
-                        if (familyInfoBean.getData().getTitle().equals("") && familyInfoBean.getData().getText().equals("")) {
+                        if (!familyInfoBean.getData().getIsText().equals("1")) {
                             all_activity_analysis_analysis_linear.setVisibility(View.GONE);
                         } else {
                             all_activity_analysis_analysis_linear.setVisibility(View.VISIBLE);
                         }
-
 
                         all_activity_analysis_total_price.setText(familyInfoBean.getData().getTotal() + "万元");
                         if (familyInfoBean.getData().getPercentage().equals("")) {
@@ -277,7 +276,7 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
                         all_activity_analysis_loans.setText(familyInfoBean.getData().getLoan() + "万元");
                         all_activity_analysis_interest.setText(familyInfoBean.getData().getInterest() + "万元");
 
-                        if (familyInfoBean.getData().getDownpayment().equals("") || familyInfoBean.getData().getLoan().equals("") || familyInfoBean.getData().getInterest().equals("") || familyInfoBean.getData().getMonthly().equals("") || familyInfoBean.getData().getTotal().equals("")) {
+                        if (!familyInfoBean.getData().getIsShow().equals("1")) {
                             all_activity_analysis_linear.setVisibility(View.GONE);
                         } else {
                             all_activity_analysis_linear.setVisibility(View.VISIBLE);

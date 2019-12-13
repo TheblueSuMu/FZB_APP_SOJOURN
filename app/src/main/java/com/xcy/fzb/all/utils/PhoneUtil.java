@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
 
+import com.tencent.bugly.crashreport.CrashReport;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.modle.PhoneDto;
 
 import java.util.ArrayList;
@@ -33,9 +35,20 @@ public class PhoneUtil {
         List<PhoneDto> phoneDtos = new ArrayList<>();
         ContentResolver cr = context.getContentResolver();
         Cursor cursor = cr.query(phoneUri,new String[]{NUM,NAME},null,null,null);
-        while (cursor.moveToNext()){
-            PhoneDto phoneDto = new PhoneDto(cursor.getString(cursor.getColumnIndex(NAME)),cursor.getString(cursor.getColumnIndex(NUM)));
-            phoneDtos.add(phoneDto);
+        try {
+            if (cursor != null) {
+                while (cursor.moveToNext()){
+                    PhoneDto phoneDto = new PhoneDto(cursor.getString(cursor.getColumnIndex(NAME)),cursor.getString(cursor.getColumnIndex(NUM)));
+                    phoneDtos.add(phoneDto);
+                }
+            }
+        }catch (Exception e){
+            Log.e("非空判断",Log.getStackTraceString(e));
+            Log.i("非空判断","为空："+e.getMessage());
+            Log.i("非空判断","为空");
+            CityContents.setError(Log.getStackTraceString(e));
+            CityContents.setErrorMessage(e.getMessage());
+            CrashReport.testJavaCrash();
         }
         return phoneDtos;
     }

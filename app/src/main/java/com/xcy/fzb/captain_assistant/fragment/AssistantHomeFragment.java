@@ -319,6 +319,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                                     FinalContents.setCityIs("");
                                 }
                                 city.setText(list.get(options1));
+                                FinalContents.setCityName(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
                                 Log.i("city",FinalContents.getCityID());
                                 initHotList();

@@ -1,5 +1,6 @@
 package com.xcy.fzb.project_attache.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -64,6 +65,7 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -141,14 +143,17 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     private MyViewPager vpager_one;
     private ArrayList<Fragment> aList = new ArrayList<>();
     private MyFragmentPagerAdapter mAdapter;
+    private View view;
+    private Context context;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         StatusBar.makeStatusBarTransparent(getActivity());
         FinalContents.setZhuanyuan("1");
-
-        return inflater.inflate(R.layout.project_attache_modulebroker_fragment_economics, container, false);
+        view = inflater.inflate(R.layout.project_attache_modulebroker_fragment_economics, container, false);
+        context = container.getContext();
+        return view;
     }
 
     @Override
@@ -567,7 +572,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         NewlyIncreased.setPeopleCount(dBean.getData().getPeopleCount()+"");
 
                         if (FinalContents.getFragmentSS().equals("0")) {
-                            mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
+                            mAdapter = new MyFragmentPagerAdapter(Objects.requireNonNull(getActivity()).getSupportFragmentManager());
                             FinalContents.setFragmentSS("1");
                             aList.add(new MyFragment2());
                             aList.add(new MyFragment1());

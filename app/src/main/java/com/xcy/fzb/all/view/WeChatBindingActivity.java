@@ -77,6 +77,13 @@ public class WeChatBindingActivity extends AllActivity{
             }
         });
 
+        change_wechat_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         change_wechat_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

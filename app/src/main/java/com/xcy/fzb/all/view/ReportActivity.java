@@ -208,7 +208,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         //  TODO    城市版
         report_issure = findViewById(R.id.report_issure);
 
-
         //  TODO    城市版
 
         report_btn_s = findViewById(R.id.report_btn_yes);
@@ -1082,7 +1081,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
                     @Override
                     public void onError(Throwable e) {
-                        ToastUtil.showLongToast(ReportActivity.this, "请选择房源");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
@@ -1159,31 +1157,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.i("报备","重新运行");
-        if (FinalContents.isChecked()) {
-            report_client_name_et.setText(FinalContents.getClientName());
-            report_client_phone.setText(FinalContents.getClientPhone());
-            report_associating_inputing_rv.setVisibility(View.GONE);
-        } else {
-            project_name.setText("");
-        }
-        if (FinalContents.isChecked2()) {
-            if (FinalContents.getProjectType().equals("1")) {
-                report_issure.setVisibility(View.GONE);
-            } else if (FinalContents.getProjectType().equals("2") || FinalContents.getProjectType().equals("3")){
-                report_issure.setVisibility(View.VISIBLE);
-            } else {
-                report_issure.setVisibility(View.GONE);
-            }
-            project_name.setText(FinalContents.getProjectName());
-        } else {
-            project_name.setText("");
-        }
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         Log.i("报备","恢复");
@@ -1207,6 +1180,25 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             }else {
                 report_associating_inputing_rv.setVisibility(View.GONE);
             }
+        }
+        if (FinalContents.isChecked()) {
+            report_client_name_et.setText(FinalContents.getClientName());
+            report_client_phone.setText(FinalContents.getClientPhone());
+            report_associating_inputing_rv.setVisibility(View.GONE);
+        } else {
+            project_name.setText("");
+        }
+        if (FinalContents.isChecked2()) {
+            if (FinalContents.getProjectType().equals("1")) {
+                report_issure.setVisibility(View.GONE);
+            } else if (FinalContents.getProjectType().equals("2") || FinalContents.getProjectType().equals("3")){
+                report_issure.setVisibility(View.VISIBLE);
+            } else {
+                report_issure.setVisibility(View.GONE);
+            }
+            project_name.setText(FinalContents.getProjectName());
+        } else {
+            project_name.setText("");
         }
     }
 
