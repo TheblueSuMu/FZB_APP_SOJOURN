@@ -994,7 +994,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     protected void onRestart() {
         super.onRestart();
 
-        initData();
+//        initData();
 
         add_broker_tv2.setText(FinalContents.getAddtype2());
 

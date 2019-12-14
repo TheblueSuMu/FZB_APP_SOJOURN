@@ -158,4 +158,7 @@ dependencies {
     implementation project(path: ':azlist')
     implementation project(path: ':fuzzysearchlibrary')
     implementation project(path: ':indexlib')
+
+
+    implementation 'com.wang.avi:library:2.1.3'
 }

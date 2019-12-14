@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.wang.avi.AVLoadingIndicatorView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.StoreListBean;
@@ -77,6 +78,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
 //    private SwipeRefreshLayout layout;
 
+//    private AVLoadingIndicatorView avi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,6 +122,12 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         store_list_tv2 = findViewById(R.id.store_list_tv2);
         store_list_tv1 = findViewById(R.id.store_list_tv1);
         store_list_cb = findViewById(R.id.store_list_cb);
+
+//        avi = findViewById(R.id.avi);
+//
+//        avi.show();
+//        avi.setVisibility(View.VISIBLE);
+
 //        layout = findViewById(R.id.ssrl_s);
 
 //        layout.setOnRefreshListener(this);
@@ -256,6 +265,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                 }
                             }
                             store_list_ll1.setClickable(true);
+//                            avi.hide();
+//                            avi.setVisibility(View.GONE);
                             initDatas();
                         }else {
                             all_no_information.setVisibility(View.VISIBLE);
@@ -266,6 +277,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                     @Override
                     public void onError(Throwable e) {
+//                        avi.setVisibility(View.GONE);
+//                        initDatas();
                         all_no_information.setVisibility(View.VISIBLE);
                         store_list_rv.setVisibility(View.GONE);
                         Log.i("专员门店或公司列表", "错误信息：" + e.getMessage());
@@ -320,6 +333,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                 break;
             case R.id.store_list_ll1:
+//                avi.setVisibility(View.VISIBLE);
+//                avi.show();
                 if(store_list_ll3.isClickable()){
                     store_list_ll1.setClickable(false);
                     store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
@@ -356,6 +371,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                 break;
             case R.id.store_list_ll3:
+//                avi.setVisibility(View.VISIBLE);
+//                avi.show();
                 if(store_list_ll1.isClickable()){
                     store_list_ll3.setClickable(false);
                     store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
@@ -454,6 +471,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                             }
                             store_list_ll3.setClickable(true);
+//                            avi.hide();
+//                            avi.setVisibility(View.GONE);
                             initDatas();
                         }else {
                             all_no_information.setVisibility(View.VISIBLE);
@@ -464,6 +483,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                     @Override
                     public void onError(Throwable e) {
+//                        avi.setVisibility(View.GONE);
+//                        initDatas();
                         all_no_information.setVisibility(View.VISIBLE);
                         store_list_rv.setVisibility(View.GONE);
                         Log.i("专员公司列表", "错误信息：" + e.getMessage());
@@ -582,6 +603,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         }
 
     }
+
 
 //    @Override
 //    public void onRefresh() {

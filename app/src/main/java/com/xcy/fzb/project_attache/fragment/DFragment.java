@@ -141,14 +141,14 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     private SwipeRefreshLayout ptrClassicFrameLayout;
 
     private MyViewPager vpager_one;
-    private ArrayList<Fragment> aList = new ArrayList<>();
+    private ArrayList<Fragment> aList;
     private MyFragmentPagerAdapter mAdapter;
     private View view;
     private Context context;
+    private MyFragment1 myFragment1;
+    private MyFragment2 myFragment2;
+    private MyFragment3 myFragment3;
 
-    MyFragment1 myFragment1 = new MyFragment1();
-    MyFragment2 myFragment2 = new MyFragment2();
-    MyFragment3 myFragment3 = new MyFragment3();
 
     @Nullable
     @Override
@@ -168,11 +168,17 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     }
 
     private void initView() {
-        ptrClassicFrameLayout = getActivity().findViewById(R.id.PtrClassic_modulebroke);
-        fragment_ll_3 = getActivity().findViewById(R.id.fragment_ll_3);
-        fragment_ll_2 = getActivity().findViewById(R.id.fragment_ll_2);
-        fragment_ll_1 = getActivity().findViewById(R.id.fragment_ll_1);
-        vpager_one = getActivity().findViewById(R.id.vpager_one);
+        ptrClassicFrameLayout = view.findViewById(R.id.PtrClassic_modulebroke);
+
+        aList = new ArrayList<>();
+        myFragment1 = new MyFragment1();
+        myFragment2 = new MyFragment2();
+        myFragment3 = new MyFragment3();
+
+        fragment_ll_3 = view.findViewById(R.id.fragment_ll_3);
+        fragment_ll_2 = view.findViewById(R.id.fragment_ll_2);
+        fragment_ll_1 = view.findViewById(R.id.fragment_ll_1);
+        vpager_one = view.findViewById(R.id.vpager_one);
         vpager_one.setOnSingleTouchListener(this);
 
         vpager_one.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -244,53 +250,53 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 //            }
 //        });
 
-        ll1_modulebroker = getActivity().findViewById(R.id.ll1_modulebroke);
-        ll2_modulebroker = getActivity().findViewById(R.id.ll2_modulebroke);
-        ll3_modulebroker = getActivity().findViewById(R.id.ll3_modulebroke);
-        ll4_modulebroker = getActivity().findViewById(R.id.ll4_modulebroke);
-        ll5_modulebroker = getActivity().findViewById(R.id.ll5_modulebroke);
-        ll6_modulebroker = getActivity().findViewById(R.id.ll6_modulebroke);
-        ll7_modulebroker = getActivity().findViewById(R.id.ll7_modulebroke);
+        ll1_modulebroker = view.findViewById(R.id.ll1_modulebroke);
+        ll2_modulebroker = view.findViewById(R.id.ll2_modulebroke);
+        ll3_modulebroker = view.findViewById(R.id.ll3_modulebroke);
+        ll4_modulebroker = view.findViewById(R.id.ll4_modulebroke);
+        ll5_modulebroker = view.findViewById(R.id.ll5_modulebroke);
+        ll6_modulebroker = view.findViewById(R.id.ll6_modulebroke);
+        ll7_modulebroker = view.findViewById(R.id.ll7_modulebroke);
 
-        project_attache_fragment_ll4 = getActivity().findViewById(R.id.project_attache_fragment_ll4);
-        project_attache_fragment_ll3 = getActivity().findViewById(R.id.project_attache_fragment_ll3);
-        project_attache_fragment_ll2 = getActivity().findViewById(R.id.project_attache_fragment_ll2);
-        project_attache_fragment_ll1 = getActivity().findViewById(R.id.project_attache_fragment_ll1);
+        project_attache_fragment_ll4 = view.findViewById(R.id.project_attache_fragment_ll4);
+        project_attache_fragment_ll3 = view.findViewById(R.id.project_attache_fragment_ll3);
+        project_attache_fragment_ll2 = view.findViewById(R.id.project_attache_fragment_ll2);
+        project_attache_fragment_ll1 = view.findViewById(R.id.project_attache_fragment_ll1);
 
-        rb1_modulebroker = getActivity().findViewById(R.id.rb1_modulebroke);
-        rb2_modulebroker = getActivity().findViewById(R.id.rb2_modulebroke);
-        rb3_modulebroker = getActivity().findViewById(R.id.rb3_modulebroke);
-        rb4_modulebroker = getActivity().findViewById(R.id.rb4_modulebroke);
-        rb5_modulebroker = getActivity().findViewById(R.id.rb5_modulebroke);
-        rb6_modulebroker = getActivity().findViewById(R.id.rb6_modulebroke);
+        rb1_modulebroker = view.findViewById(R.id.rb1_modulebroke);
+        rb2_modulebroker = view.findViewById(R.id.rb2_modulebroke);
+        rb3_modulebroker = view.findViewById(R.id.rb3_modulebroke);
+        rb4_modulebroker = view.findViewById(R.id.rb4_modulebroke);
+        rb5_modulebroker = view.findViewById(R.id.rb5_modulebroke);
+        rb6_modulebroker = view.findViewById(R.id.rb6_modulebroke);
 
 //        tv1_modulebroker = getActivity().findViewById(R.id.tv1_modulebroke);
 //        tv2_modulebroker = getActivity().findViewById(R.id.tv2_modulebroke);
 //        tv3_modulebroker = getActivity().findViewById(R.id.tv3_modulebroke);
-        modulebroke_tv_type = getActivity().findViewById(R.id.modulebroke_tv_type);
+        modulebroke_tv_type = view.findViewById(R.id.modulebroke_tv_type);
 
-        tv4_modulebroker = getActivity().findViewById(R.id.tv4_modulebroke);
-        tv5_modulebroker = getActivity().findViewById(R.id.tv5_modulebroke);
-        tv6_modulebroker = getActivity().findViewById(R.id.tv6_modulebroke);
-        tv7_modulebroker = getActivity().findViewById(R.id.tv7_modulebroke);
-        tv8_modulebroker = getActivity().findViewById(R.id.tv8_modulebroke);
-        tv9_modulebroker = getActivity().findViewById(R.id.tv9_modulebroke);
+        tv4_modulebroker = view.findViewById(R.id.tv4_modulebroke);
+        tv5_modulebroker = view.findViewById(R.id.tv5_modulebroke);
+        tv6_modulebroker = view.findViewById(R.id.tv6_modulebroke);
+        tv7_modulebroker = view.findViewById(R.id.tv7_modulebroke);
+        tv8_modulebroker = view.findViewById(R.id.tv8_modulebroke);
+        tv9_modulebroker = view.findViewById(R.id.tv9_modulebroke);
 
-        time1_modulebroker = getActivity().findViewById(R.id.time1_modulebroke);
-        time2_modulebroker = getActivity().findViewById(R.id.time2_modulebroke);
+        time1_modulebroker = view.findViewById(R.id.time1_modulebroke);
+        time2_modulebroker = view.findViewById(R.id.time2_modulebroke);
 
 //        rl1_modulebroke = getActivity().findViewById(R.id.rl1_modulebroke);
 //        rl2_modulebroke = getActivity().findViewById(R.id.rl2_modulebroke);
 //        rl3_modulebroke = getActivity().findViewById(R.id.rl3_modulebroke);
 
-        modulebroke_rg1 = getActivity().findViewById(R.id.modulebroke_rg1);
-        modulebroke_rg2 = getActivity().findViewById(R.id.modulebroke_rg2);
+        modulebroke_rg1 = view.findViewById(R.id.modulebroke_rg1);
+        modulebroke_rg2 = view.findViewById(R.id.modulebroke_rg2);
 
-        dateTimePickerView = getActivity().findViewById(R.id.fragment_report_pickerView);
-        report_picker = getActivity().findViewById(R.id.fragment_report_picker);
-        report_cancel = getActivity().findViewById(R.id.fragment_report_picker_cancel);
-        report_ensure = getActivity().findViewById(R.id.fragment_report_picker_ensure);
-        details_chart = getActivity().findViewById(R.id.lc_modulebroke);
+        dateTimePickerView = view.findViewById(R.id.fragment_report_pickerView);
+        report_picker = view.findViewById(R.id.fragment_report_picker);
+        report_cancel = view.findViewById(R.id.fragment_report_picker_cancel);
+        report_ensure = view.findViewById(R.id.fragment_report_picker_ensure);
+        details_chart = view.findViewById(R.id.lc_modulebroke);
 
         ptrClassicFrameLayout.setOnRefreshListener(this);
 
@@ -572,8 +578,8 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
                         EventBus.getDefault().post(new Fragnemt_SS(dBean.getData().getStoreCount() + "", dBean.getData().getPeopleCount() + "", "", "", ""));
 
-                        NewlyIncreased.setStoreCount(dBean.getData().getStoreCount()+"");
-                        NewlyIncreased.setPeopleCount(dBean.getData().getPeopleCount()+"");
+                        NewlyIncreased.setStoreCount(dBean.getData().getStoreCount() + "");
+                        NewlyIncreased.setPeopleCount(dBean.getData().getPeopleCount() + "");
 
                         if (FinalContents.getFragmentSS().equals("0")) {
                             mAdapter = new MyFragmentPagerAdapter(Objects.requireNonNull(getActivity()).getSupportFragmentManager());
@@ -709,27 +715,27 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 ll7_modulebroker.setClickable(true);
 
 //                if (ll1_modulebroker.getVisibility() == View.VISIBLE) {
-                    if (rb1_modulebroker.isChecked() == true) {
-                        ll1_modulebroker.setVisibility(View.GONE);
-                        NewlyIncreased.setTag("0");
-                        initDataNum("0", "", "", "1");
-                    } else if (rb2_modulebroker.isChecked() == true) {
-                        initDataNum("1", "", "", "1");
-                        NewlyIncreased.setTag("1");
-                        ll1_modulebroker.setVisibility(View.GONE);
-                    } else if (rb3_modulebroker.isChecked() == true) {
-                        initDataNum("2", "", "", "1");
-                        NewlyIncreased.setTag("2");
-                        ll1_modulebroker.setVisibility(View.GONE);
-                    } else if (rb4_modulebroker.isChecked() == true) {
-                        String s = time1_modulebroker.getText().toString();
-                        String s1 = time2_modulebroker.getText().toString();
-                        NewlyIncreased.setStartDate(s);
-                        NewlyIncreased.setEndDate(s1);
-                        NewlyIncreased.setTag("3");
-                        initDataNum("3", s, s1, "1");
-                        ll1_modulebroker.setVisibility(View.VISIBLE);
-                    }
+                if (rb1_modulebroker.isChecked() == true) {
+                    ll1_modulebroker.setVisibility(View.GONE);
+                    NewlyIncreased.setTag("0");
+                    initDataNum("0", "", "", "1");
+                } else if (rb2_modulebroker.isChecked() == true) {
+                    initDataNum("1", "", "", "1");
+                    NewlyIncreased.setTag("1");
+                    ll1_modulebroker.setVisibility(View.GONE);
+                } else if (rb3_modulebroker.isChecked() == true) {
+                    initDataNum("2", "", "", "1");
+                    NewlyIncreased.setTag("2");
+                    ll1_modulebroker.setVisibility(View.GONE);
+                } else if (rb4_modulebroker.isChecked() == true) {
+                    String s = time1_modulebroker.getText().toString();
+                    String s1 = time2_modulebroker.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    NewlyIncreased.setTag("3");
+                    initDataNum("3", s, s1, "1");
+                    ll1_modulebroker.setVisibility(View.VISIBLE);
+                }
 //                } else {
 //                    initDataNum("", "", "", "1");
 //                }
@@ -745,27 +751,27 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 ll6_modulebroker.setClickable(false);
                 ll7_modulebroker.setClickable(false);
 //                if (ll1_modulebroker.getVisibility() == View.VISIBLE) {
-                    if (rb1_modulebroker.isChecked() == true) {
-                        ll1_modulebroker.setVisibility(View.GONE);
-                        NewlyIncreased.setTag("0");
-                        initDataNum("0", "", "", "2");
-                    } else if (rb2_modulebroker.isChecked() == true) {
-                        initDataNum("1", "", "", "2");
-                        NewlyIncreased.setTag("1");
-                        ll1_modulebroker.setVisibility(View.GONE);
-                    } else if (rb3_modulebroker.isChecked() == true) {
-                        initDataNum("2", "", "", "2");
-                        NewlyIncreased.setTag("2");
-                        ll1_modulebroker.setVisibility(View.GONE);
-                    } else if (rb4_modulebroker.isChecked() == true) {
-                        String s = time1_modulebroker.getText().toString();
-                        String s1 = time2_modulebroker.getText().toString();
-                        NewlyIncreased.setStartDate(s);
-                        NewlyIncreased.setEndDate(s1);
-                        NewlyIncreased.setTag("3");
-                        initDataNum("3", s, s1, "2");
-                        ll1_modulebroker.setVisibility(View.VISIBLE);
-                    }
+                if (rb1_modulebroker.isChecked() == true) {
+                    ll1_modulebroker.setVisibility(View.GONE);
+                    NewlyIncreased.setTag("0");
+                    initDataNum("0", "", "", "2");
+                } else if (rb2_modulebroker.isChecked() == true) {
+                    initDataNum("1", "", "", "2");
+                    NewlyIncreased.setTag("1");
+                    ll1_modulebroker.setVisibility(View.GONE);
+                } else if (rb3_modulebroker.isChecked() == true) {
+                    initDataNum("2", "", "", "2");
+                    NewlyIncreased.setTag("2");
+                    ll1_modulebroker.setVisibility(View.GONE);
+                } else if (rb4_modulebroker.isChecked() == true) {
+                    String s = time1_modulebroker.getText().toString();
+                    String s1 = time2_modulebroker.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    NewlyIncreased.setTag("3");
+                    initDataNum("3", s, s1, "2");
+                    ll1_modulebroker.setVisibility(View.VISIBLE);
+                }
 //                } else {
 //                    initDataNum("", "", "", "2");
 //                }
