@@ -1512,7 +1512,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("MyCL", "项目详情错误信息：" + e.getMessage());
+                        Log.i("MyCL", "项目详情楼盘走势错误信息：" + e.getMessage());
                     }
 
                     @Override

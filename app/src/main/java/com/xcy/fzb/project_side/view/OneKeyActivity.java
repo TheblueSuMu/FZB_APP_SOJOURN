@@ -846,6 +846,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
         FinalContents.setProjectID("");
         FinalContents.setProjectName("");
         FinalContents.setCommissionId("");
+        FinalContents.setProject("");
     }
 
     /**

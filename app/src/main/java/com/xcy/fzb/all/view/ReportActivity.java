@@ -1217,5 +1217,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         FinalContents.setCustomerID("");
         FinalContents.setProjectSearchID("");
         FinalContents.setNUM("");
+        FinalContents.setProject("");
     }
 }

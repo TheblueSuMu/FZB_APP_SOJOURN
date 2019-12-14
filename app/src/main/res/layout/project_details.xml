@@ -483,11 +483,12 @@
 
                         <TextView
                             android:id="@+id/project_details_discounts_nummer"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
-                            android:layout_marginTop="60dp"
-                            android:text="0.0001元"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="180dp"
+                            android:text=""
                             android:textColor="#111111"
                             android:textSize="12sp"
                             android:textStyle="bold" />

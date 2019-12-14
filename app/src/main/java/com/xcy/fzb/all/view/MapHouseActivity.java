@@ -1,12 +1,10 @@
 package com.xcy.fzb.all.view;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -63,17 +61,9 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.project_attache.adapter.ClusterItem;
 import com.xcy.fzb.project_attache.adapter.ClusterManager;
 
-import org.apache.commons.lang.StringUtils;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 import co.lujun.androidtagview.ColorFactory;
 import co.lujun.androidtagview.TagContainerLayout;
@@ -316,7 +306,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
         mLocClient.setLocOption(option);
         mLocClient.start();
 
-        initMap();
+//        initMap();
 
         if (FinalContents.getIfCity().
 
@@ -371,7 +361,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                     public void onNext(HotBean hotBean) {
                         rows2 = hotBean.getData().getRows();
                         Log.i("MyCL", "城市项目列表长度：" + rows2.size());
-//                        initMap();
+                        initMap();
                     }
 
                     @Override
@@ -409,7 +399,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                     public void onNext(StoreListBean storeListBean) {
                         rows1 = storeListBean.getData().getRows();
                         Log.i("MyCL", "公司数据：" + rows1.size());
-//                        initMap();
+                        initMap();
                     }
 
                     @Override
@@ -447,7 +437,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                     public void onNext(StoreListBean storeListBean) {
                         rows = storeListBean.getData().getRows();
                         Log.i("MyCL", "门店数据：" + rows.size());
-//                        initMap();
+                        initMap();
                     }
 
                     @Override
