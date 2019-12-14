@@ -11,7 +11,7 @@
         android:background="#EEEEEE"
         android:gravity="center_vertical"
         android:paddingLeft="15dp"
-        android:text="A"
+        android:text=""
         android:textColor="#333333"
         android:textSize="15sp" />
 
