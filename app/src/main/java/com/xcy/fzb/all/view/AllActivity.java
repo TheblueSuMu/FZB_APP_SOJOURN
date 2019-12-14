@@ -35,11 +35,14 @@ public class AllActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);      //  TODO    始终竖屏
         initView();
+
+
     }
 
     private void initView() {
-
         StatusBar.makeStatusBarTransparent(this);
+
+
 
         Log.i("MyCL","进入initView");
         if (Build.VERSION.SDK_INT >= 23) {
@@ -85,6 +88,8 @@ public class AllActivity extends AppCompatActivity {
             Log.i("王", "321");
         }
 
+
+
     }
 
     @Override
@@ -94,27 +99,47 @@ public class AllActivity extends AppCompatActivity {
             if (grantResults.length != 0) {
                 switch (requestCode) {
                     case 200://刚才的识别码
-                        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
-                        } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-//                            ToastUtil.showLongToast(AllActivity.this, "未开启定位权限,请手动到设置去开启权限");
+                        try {
+                            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
+                            } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
+                                //                            ToastUtil.showLongToast(AllActivity.this, "未开启定位权限,请手动到设置去开启权限");
+                                Log.i("权限获取","未开启定位权限,请手动到设置去开启权限");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                         break;
                     case 3://刚才的识别码
-                        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
-                        } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-//                            ToastUtil.showLongToast(AllActivity.this, "未开启相机权限,请手动到设置去开启相机权限");
+                        try {
+                            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
+                            } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
+    //                            ToastUtil.showLongToast(AllActivity.this, "未开启相机权限,请手动到设置去开启相机权限");
+                                Log.i("权限获取","未开启相机权限,请手动到设置去开启相机权限");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                         break;
                     case 2://刚才的识别码
-                        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
-                        } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-//                            ToastUtil.showLongToast(AllActivity.this, "未开启存储权限,请手动到设置去开启权限");
+                        try {
+                            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
+                            } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
+    //                            ToastUtil.showLongToast(AllActivity.this, "未开启存储权限,请手动到设置去开启权限");
+                                Log.i("权限获取","未开启存储权限,请手动到设置去开启权限");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                         break;
                     case 1://刚才的识别码
-                        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
-                        } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-//                            ToastUtil.showLongToast(AllActivity.this, "未开启读取通讯录权限,请手动到设置去开启读取通讯录权限");
+                        try {
+                            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
+                            } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
+    //                            ToastUtil.showLongToast(AllActivity.this, "未开启读取通讯录权限,请手动到设置去开启读取通讯录权限");
+                                Log.i("权限获取","未开启读取通讯录权限,请手动到设置去开启读取通讯录权限");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                         break;
                     default:
@@ -122,13 +147,15 @@ public class AllActivity extends AppCompatActivity {
                 }
             }
         }
-
     }
 
     /**
      * 隐藏键盘
      */
     protected void hideInput() {
+
+
+
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         View v = getWindow().peekDecorView();
         if (null != v) {

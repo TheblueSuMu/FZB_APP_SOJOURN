@@ -393,7 +393,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<GetLandLineTimeBean> clientFragment = fzbInterface.getlandLinetime(routeid2);
+        Observable<GetLandLineTimeBean> clientFragment = fzbInterface.getlandLinetime(routeid2,FinalContents.getProjectID());
         clientFragment.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<GetLandLineTimeBean>() {

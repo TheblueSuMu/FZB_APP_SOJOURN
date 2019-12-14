@@ -772,8 +772,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
             case R.id.team_rb12:
                 market_time_ll12.setVisibility(View.VISIBLE);
                 type3 = "3";
-                startDate3 = "";
-                endDate3 = "";
+                startDate3 = string;
+                endDate3 = string;
                 initDailyTurnover();
                 break;
             case R.id.project_attache_ll1://实时

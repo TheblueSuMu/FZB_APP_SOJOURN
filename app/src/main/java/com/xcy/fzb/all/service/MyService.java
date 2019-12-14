@@ -180,7 +180,7 @@ public interface MyService {
 
     //专案端 登岛路线时间数据
     @POST("nodeSelect/getlandLinetime")
-    Observable<GetLandLineTimeBean> getlandLinetime(@Query("routeid") String routeid);
+    Observable<GetLandLineTimeBean> getlandLinetime(@Query("routeid") String routeid, @Query("projectId") String projectId);
 
     //报备流程详情
     @POST("commonSelect/reportProcessDetails")

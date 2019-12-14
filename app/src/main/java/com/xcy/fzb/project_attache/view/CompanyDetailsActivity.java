@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,7 +14,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -750,17 +748,21 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 }
                 break;
             case R.id.company_details_new_tv2://门店打卡
-                if (storeInfo.getLocation().equals("")) {
-                    ToastUtil.showLongToast(CompanyDetailsActivity.this, "门店暂不支持打卡");
-                } else {
-                    Intent intent = new Intent(CompanyDetailsActivity.this, ClockStoresActivity.class);
-                    intent.putExtra("MyStoreRise", storeInfo.getStoreRise());
-                    intent.putExtra("MyStoreName", storeInfo.getStoreName());
-                    intent.putExtra("MyLocation", storeInfo.getLocation());
-                    intent.putExtra("MyStoreId", storeInfo.getStoreId());
-                    startActivity(intent);
+                try {
+                    if (storeInfo.getLocation().equals("")) {
+                        ToastUtil.showLongToast(CompanyDetailsActivity.this, "门店暂不支持打卡");
+                    } else {
+                        Intent intent = new Intent(CompanyDetailsActivity.this, ClockStoresActivity.class);
+                        intent.putExtra("MyStoreRise", storeInfo.getStoreRise());
+                        intent.putExtra("MyStoreName", storeInfo.getStoreName());
+                        intent.putExtra("MyLocation", storeInfo.getLocation());
+                        intent.putExtra("MyStoreId", storeInfo.getStoreId());
+                        startActivity(intent);
+                    }
+                    break;
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                break;
             case R.id.project_attache_ll1://实时
                 project_attache_ll2.setVisibility(View.VISIBLE);
                 project_attache_ll4.setVisibility(View.INVISIBLE);

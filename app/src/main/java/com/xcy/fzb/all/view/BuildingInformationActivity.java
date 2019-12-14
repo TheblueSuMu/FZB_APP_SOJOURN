@@ -137,16 +137,6 @@ public class BuildingInformationActivity extends AllActivity {
                     public void onNext(BuildingBean buildingBean) {
                         final List<BuildingBean.DataBean> list = buildingBean.getData();
 
-//                        for (int i = 0; i < buildingBean.getData().size(); i++) {
-                        for (int j = 0; j < buildingBean.getData().get(0).getHouseInfoList().size(); ++j) {
-                            project_details_family_tablayout.addTab(project_details_family_tablayout.newTab().setText(buildingBean.getData().get(0).getHouseInfoList().get(j).getKey()));
-                            num = num + buildingBean.getData().get(0).getHouseInfoList().get(j).getSize();
-                        }
-//                        }
-
-                        building_standard_S.setText("包含户型：(" + num + ")");
-
-
                         if (list.size() != 0) {
                             tabLayout.setSelectedTabIndicatorColor(R.color.colorIndicator);
                             tabLayout.setSelectedTabIndicator(R.drawable.tab_indicator);

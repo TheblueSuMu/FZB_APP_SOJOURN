@@ -171,8 +171,12 @@ public class NoticeFragment extends Fragment {
                         rows = data1.getRows();
                         Log.i("列表数据加载", "加载");
                         if (rows.size() != 0) {
-                            all_no_information_notice.setVisibility(View.GONE);
-                            notice_rv.setVisibility(View.VISIBLE);
+                            try {
+                                all_no_information_notice.setVisibility(View.GONE);
+                                notice_rv.setVisibility(View.VISIBLE);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                             NoticeAdapter adapter = new NoticeAdapter();
@@ -263,16 +267,25 @@ public class NoticeFragment extends Fragment {
                             notice_rv.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                         }else {
-                            all_no_information_notice.setVisibility(View.VISIBLE);
-                            notice_rv.setVisibility(View.GONE);
+                            try {
+                                all_no_information_notice.setVisibility(View.VISIBLE);
+                                notice_rv.setVisibility(View.GONE);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
                         }
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        all_no_information_notice.setVisibility(View.VISIBLE);
-                        notice_rv.setVisibility(View.GONE);
+                        try {
+                            all_no_information_notice.setVisibility(View.VISIBLE);
+                            notice_rv.setVisibility(View.GONE);
+                        } catch (Exception ee) {
+                            ee.printStackTrace();
+                        }
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 
