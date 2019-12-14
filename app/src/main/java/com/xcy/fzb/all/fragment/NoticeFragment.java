@@ -97,6 +97,7 @@ public class NoticeFragment extends Fragment {
     Bitmap bitmap;
     private ProgressDialog progressDialog;
     private ImageView all_no_information_notice;
+    private NoticeAdapter adapter;
 
     public NoticeFragment() {
         // Required empty public constructor
@@ -174,14 +175,22 @@ public class NoticeFragment extends Fragment {
                             try {
                                 all_no_information_notice.setVisibility(View.GONE);
                                 notice_rv.setVisibility(View.VISIBLE);
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                            NoticeAdapter adapter = new NoticeAdapter();
-                            adapter.setRows(rows);
 
+
+                            try {
+                                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                adapter = new NoticeAdapter();
+                                adapter.setRows(rows);
+                                notice_rv.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             adapter.setClick(new NoticeAdapter.Click() {
                                 @Override
                                 public void ItemOnClick(int position) {
@@ -264,8 +273,6 @@ public class NoticeFragment extends Fragment {
                                 }
                             });
 
-                            notice_rv.setAdapter(adapter);
-                            adapter.notifyDataSetChanged();
                         }else {
                             try {
                                 all_no_information_notice.setVisibility(View.VISIBLE);

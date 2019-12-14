@@ -453,30 +453,34 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         project_details_qt_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (projectDetailsBeanData.getProjectListVo().getFfAttacheList().size() != 0) {
-                    List<String> arrayList = new ArrayList<>();
-                    for (int index = 0; index < projectDetailsBeanData.getProjectListVo().getFfAttacheList().size(); index++) {
-                        arrayList.add(projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(index).getName());
-                    }
-                    //      监听选中
-                    OptionsPickerView pvOptions = new OptionsPickerBuilder(ProjectDetails.this, new OnOptionsSelectListener() {
-                        @Override
-                        public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                            //               返回的分别是三个级别的选中位置
-                            //              展示选中数据
-                            Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(options1).getPhone()));//跳转到拨号界面，同时传递电话号码
-                            startActivity(dialIntent);
+                try {
+                    if (projectDetailsBeanData.getProjectListVo().getFfAttacheList().size() != 0) {
+                        List<String> arrayList = new ArrayList<>();
+                        for (int index = 0; index < projectDetailsBeanData.getProjectListVo().getFfAttacheList().size(); index++) {
+                            arrayList.add(projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(index).getName());
                         }
-                    })
-                            .setSelectOptions(0)//设置选择第一个
-                            .setOutSideCancelable(false)//点击背的地方不消失
-                            .build();//创建
-                    //      把数据绑定到控件上面
-                    pvOptions.setPicker(arrayList);
-                    //      展示
-                    pvOptions.show();
-                }else {
-                    ToastUtil.showLongToast(ProjectDetails.this,"暂无专案");
+                        //      监听选中
+                        OptionsPickerView pvOptions = new OptionsPickerBuilder(ProjectDetails.this, new OnOptionsSelectListener() {
+                            @Override
+                            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                                //               返回的分别是三个级别的选中位置
+                                //              展示选中数据
+                                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(options1).getPhone()));//跳转到拨号界面，同时传递电话号码
+                                startActivity(dialIntent);
+                            }
+                        })
+                                .setSelectOptions(0)//设置选择第一个
+                                .setOutSideCancelable(false)//点击背的地方不消失
+                                .build();//创建
+                        //      把数据绑定到控件上面
+                        pvOptions.setPicker(arrayList);
+                        //      展示
+                        pvOptions.show();
+                    }else {
+                        ToastUtil.showLongToast(ProjectDetails.this,"暂无专案");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
