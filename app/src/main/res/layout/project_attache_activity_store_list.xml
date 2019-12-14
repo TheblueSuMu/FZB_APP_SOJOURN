@@ -176,6 +176,15 @@
                     android:src="@mipmap/no_information"
                     android:visibility="gone" />
 
+                <com.wang.avi.AVLoadingIndicatorView
+                    android:id="@+id/avi"
+                    style="@style/AVLoadingIndicatorView.Small"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:visibility="gone"
+                    app:indicatorColor="#334485"
+                    android:layout_centerInParent="true"
+                    app:indicatorName="LineSpinFadeLoaderIndicator" />
             </RelativeLayout>
 <!--        </com.xcy.fzb.all.utils.SuperSwipeRefreshLayout>-->
 
@@ -209,5 +218,7 @@
             android:textSize="12sp" />
 
     </RelativeLayout>
+
+
 
 </RelativeLayout>
