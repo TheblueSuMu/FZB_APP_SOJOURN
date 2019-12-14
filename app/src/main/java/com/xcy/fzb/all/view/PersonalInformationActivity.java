@@ -538,6 +538,20 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                     userMessageBean.setData(dataBean);
                                     Connector.setZyDataBean(userMessageBean);
                                     NewlyIncreased.setUserMessage("5");
+                                }  else if (FinalContents.getIdentity().equals("8")) {
+                                    ZYDataBean userMessageBean = Connector.getZyDataBean();
+                                    ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                                    dataBean.setName(personal_et_name.getText().toString());
+                                    userMessageBean.setData(dataBean);
+                                    Connector.setZyDataBean(userMessageBean);
+                                    NewlyIncreased.setUserMessage("8");
+                                }  else if (FinalContents.getIdentity().equals("9")) {
+                                    ZYDataBean userMessageBean = Connector.getZyDataBean();
+                                    ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                                    dataBean.setName(personal_et_name.getText().toString());
+                                    userMessageBean.setData(dataBean);
+                                    Connector.setZyDataBean(userMessageBean);
+                                    NewlyIncreased.setUserMessage("9");
                                 } else if (FinalContents.getIdentity().equals("60")) {
                                     ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
                                     ZhangBingDataBean.DataBean dataBean = userMessageBean.getData();
