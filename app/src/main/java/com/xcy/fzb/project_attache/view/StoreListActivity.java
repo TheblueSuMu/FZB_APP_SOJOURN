@@ -255,6 +255,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                     listData.add(storeListData);
                                 }
                             }
+                            store_list_ll1.setClickable(true);
                             initDatas();
                         }else {
                             all_no_information.setVisibility(View.VISIBLE);
@@ -319,63 +320,73 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                 break;
             case R.id.store_list_ll1:
-                store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
-                store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
-                store_list_ll2.setVisibility(View.VISIBLE);
-                store_list_ll4.setVisibility(View.INVISIBLE);
+                if(store_list_ll3.isClickable()){
+                    store_list_ll1.setClickable(false);
+                    store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
+                    store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
+                    store_list_ll2.setVisibility(View.VISIBLE);
+                    store_list_ll4.setVisibility(View.INVISIBLE);
 
-                if(listData.size() == 0){
+                    if(listData.size() == 0){
 
+                    }else {
+                        store_list_rv.removeAllViews();
+                        mContactModels.clear();
+                        listData.clear();
+                        mAdapter.notifyDataSetChanged();
+
+                    }
+
+
+                    if(FinalContents.getMyAddType().equals("门店")){
+                        initData(FinalContents.getCompanyManageId(), "", "","","","");
+                        FinalContents.setStoreList("1");
+                    }else {
+                        if (store_list_cb.isChecked()) {
+                            initData("", "", "1","","","");
+                        } else {
+                            initData("", "", "","","","");
+                        }
+                        FinalContents.setStoreList("1");
+                    }
                 }else {
-                    store_list_rv.removeAllViews();
-                    mContactModels.clear();
-                    listData.clear();
-                    mAdapter.notifyDataSetChanged();
-
+                    ToastUtil.showLongToast(StoreListActivity.this,"数据未加载完成");
                 }
 
-
-               if(FinalContents.getMyAddType().equals("门店")){
-                   initData(FinalContents.getCompanyManageId(), "", "","","","");
-                   FinalContents.setStoreList("1");
-               }else {
-                   if (store_list_cb.isChecked()) {
-                       initData("", "", "1","","","");
-                   } else {
-                       initData("", "", "","","","");
-                   }
-                   FinalContents.setStoreList("1");
-               }
 
                 break;
             case R.id.store_list_ll3:
-                store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
-                store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
-                store_list_ll4.setVisibility(View.VISIBLE);
-                store_list_ll2.setVisibility(View.INVISIBLE);
+                if(store_list_ll1.isClickable()){
+                    store_list_ll3.setClickable(false);
+                    store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
+                    store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
+                    store_list_ll4.setVisibility(View.VISIBLE);
+                    store_list_ll2.setVisibility(View.INVISIBLE);
 
-                if(listData.size() == 0){
+                    if(listData.size() == 0){
 
-                }else {
-                    store_list_rv.removeAllViews();
-                    mContactModels.clear();
-                    listData.clear();
-                    mAdapter.notifyDataSetChanged();
+                    }else {
+                        store_list_rv.removeAllViews();
+                        mContactModels.clear();
+                        listData.clear();
+                        mAdapter.notifyDataSetChanged();
 
-                }
-
-                if(FinalContents.getMyAddType().equals("公司")){
-                    initDatam("","", "");
-                    FinalContents.setStoreList("2");
-                }else {
-                    FinalContents.setStoreList("2");
-                    if (store_list_cb.isChecked()) {
-                        initDatam("","", "1");
-                    } else {
-                        initDatam("","", "");
                     }
-                }
 
+                    if(FinalContents.getMyAddType().equals("公司")){
+                        initDatam("","", "");
+                        FinalContents.setStoreList("2");
+                    }else {
+                        FinalContents.setStoreList("2");
+                        if (store_list_cb.isChecked()) {
+                            initDatam("","", "1");
+                        } else {
+                            initDatam("","", "");
+                        }
+                    }
+                }else {
+                    ToastUtil.showLongToast(StoreListActivity.this,"数据未加载完成");
+                }
 
                 break;
         }
@@ -442,6 +453,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                 }
 
                             }
+                            store_list_ll3.setClickable(true);
                             initDatas();
                         }else {
                             all_no_information.setVisibility(View.VISIBLE);
