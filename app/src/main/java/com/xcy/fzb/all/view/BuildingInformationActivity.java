@@ -54,6 +54,7 @@ public class BuildingInformationActivity extends AllActivity {
     private BuildingInformationAdapter buildingInformationAdapter;
     private String picUrl;
     private int num = 0;
+    private List<BuildingBean.DataBean> list;
 
 
     @Override
@@ -135,7 +136,7 @@ public class BuildingInformationActivity extends AllActivity {
 
                     @Override
                     public void onNext(BuildingBean buildingBean) {
-                        final List<BuildingBean.DataBean> list = buildingBean.getData();
+                        list = buildingBean.getData();
 
                         if (list.size() != 0) {
                             tabLayout.setSelectedTabIndicatorColor(R.color.colorIndicator);

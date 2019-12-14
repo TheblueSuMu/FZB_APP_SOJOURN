@@ -49,6 +49,7 @@ import com.xcy.fzb.all.modle.ImgData;
 import com.xcy.fzb.all.modle.MessageBean2;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.MyClientActivity;
@@ -237,6 +238,7 @@ public class HomeFragment extends AllFragment implements View.OnClickListener, S
     }
 
     //点击事件
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         if (hotlist.size() != 0) {
