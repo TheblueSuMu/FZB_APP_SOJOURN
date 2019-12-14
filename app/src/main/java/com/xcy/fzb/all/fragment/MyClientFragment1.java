@@ -173,6 +173,7 @@ public class MyClientFragment1 extends Fragment implements ContactsAdapter.ItemO
                                         FinalContents.setCustomerID(list.get(position).getClientId());
                                         Log.i("数据对比","1客户名"+list.get(position).getCity());
                                         FinalContents.setClientPhone(list.get(position).getClientPhone());
+                                        FinalContents.setChecked(true);
                                         getActivity().finish();
                                     } else {
                                         FinalContents.setCustomerID(list.get(position).getClientId());

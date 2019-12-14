@@ -1,18 +1,20 @@
 package com.xcy.fzb.project_attache.view;
 
 import android.Manifest;
-import android.app.Dialog;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
@@ -67,25 +69,18 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
     MessageFragment message_fragment = new MessageFragment();
     EFragment eFragment = new EFragment();
 
-    /**
-     * 版本下载数据
-     */
-    //  上下文
-//    private Context mContext;
-    //  进度条
-    private ProgressBar mProgressBar;
-    //  对话框
-    private Dialog mDownloadDialog;
-    //  判断是否停止
-    private boolean mIsCancel = false;
-    //  进度
-    private int mProgress;
-    //  文件保存路径
-    private String mSavePath;
-    //  版本名称
-    private String mVersion_name="1.0";
-    //  请求链接
-    private String url ="";
+    //定义一个变量，来标识是否退出
+    private static boolean isExit=false;
+
+    @SuppressLint("HandlerLeak")
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            isExit=false;
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -361,6 +356,29 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 break;
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode,event);
+    }
+
+    private void exit(){
+        if(!isExit){
+            isExit=true;
+            ToastUtil.showLongToast(getApplicationContext(),"再按一次返回键，退出程序");
+            //利用handler延迟发送更改状态信息
+            handler.sendEmptyMessageDelayed(0,2000);
+        }
+        else{
+            AllActivity.exit = true;
+            finish();
+            System.exit(0);
         }
     }
 }

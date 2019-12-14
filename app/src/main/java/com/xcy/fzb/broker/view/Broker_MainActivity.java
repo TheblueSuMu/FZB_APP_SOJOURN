@@ -1,8 +1,12 @@
 package com.xcy.fzb.broker.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,6 +48,18 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
     DFragment dFragment = new DFragment();
     EFragment eFragment = new EFragment();
 
+
+    //定义一个变量，来标识是否退出
+    private static boolean isExit=false;
+
+    @SuppressLint("HandlerLeak")
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            isExit=false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -240,5 +256,26 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode,event);
+    }
 
+    private void exit(){
+        if(!isExit){
+            isExit=true;
+            ToastUtil.showLongToast(getApplicationContext(),"再按一次返回键，退出程序");
+            //利用handler延迟发送更改状态信息
+            handler.sendEmptyMessageDelayed(0,2000);
+        }
+        else{
+            AllActivity.exit = true;
+            finish();
+            System.exit(0);
+        }
+    }
 }

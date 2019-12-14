@@ -795,7 +795,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 Intent clientIntent = new Intent(ReportActivity.this, MyClientActivity.class);
                 FinalContents.setNUM("1");
                 startActivity(clientIntent);
-                FinalContents.setChecked(true);
                 break;
             case R.id.report_project_name:
                 Intent projectIntent = new Intent(ReportActivity.this, SearchInterfaceActivity.class);
@@ -1217,5 +1216,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         FinalContents.setCustomerID("");
         FinalContents.setProjectSearchID("");
         FinalContents.setNUM("");
+        FinalContents.setProject("");
     }
 }

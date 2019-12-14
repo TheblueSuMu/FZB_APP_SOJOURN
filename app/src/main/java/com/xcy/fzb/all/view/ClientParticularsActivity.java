@@ -283,4 +283,5 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
         }
 
     }
+
 }
