@@ -82,7 +82,11 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                     holder.tvName.setText(listData.get(i).getCompanyName());
                     holder.store_tv.setText("-" + listData.get(i).getStoreName());
                     holder.store_id.setText(listData.get(i).getStoreIdCode());
-                    holder.store_num.setText("经纪人：" + listData.get(i).getAgentNum());
+                    if(listData.get(i).getAgentNum().equals("")){
+                        holder.store_num.setText("经纪人：0");
+                    }else {
+                        holder.store_num.setText("经纪人：" + listData.get(i).getAgentNum());
+                    }
 
                     if (listData.get(i).getShopownerName().equals("")) {
                         holder.contacts_name.setVisibility(View.GONE);
@@ -177,7 +181,12 @@ public class StoreListAdapter extends RecyclerView.Adapter<StoreListAdapter.Cont
                     holder.tvName.setText(listData.get(i).getCompanyName());
                     holder.store_tv.setText("");
                     holder.store_id.setText("公司地址：" + listData.get(i).getCompanyAddress());
-                    holder.store_num.setText("门店：" + listData.get(i).getStoreNum());
+                    if(listData.get(i).getStoreNum().equals("")){
+                        holder.store_num.setText("门店：0");
+                    }else {
+                        holder.store_num.setText("门店：" + listData.get(i).getStoreNum());
+                    }
+
 
                     if (listData.get(i).getShopownerName().equals("")) {
                         holder.contacts_name.setVisibility(View.GONE);

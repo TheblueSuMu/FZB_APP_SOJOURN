@@ -684,7 +684,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.i("门店","门店添加错误信息：" + e.getMessage());
                     }
 
                     @Override
@@ -704,6 +704,18 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
         Observable<AddStoreBean> addStoreBean;
+//        Log.i("修改门店", "storeManage.getId()：" + storeManage.getId());
+        Log.i("修改门店", "s：" + s);
+        Log.i("修改门店", "s1：" + s1);
+        Log.i("修改门店", "s2：" + s2);
+        Log.i("修改门店", "s3：" + s3);
+        Log.i("修改门店", "myLocation：" + getLongitude + "," + getLatitude);
+        Log.i("修改门店", "url1：" + url1);
+        Log.i("修改门店", "url2：" + url2);
+        Log.i("修改门店", "flag：" + flag);
+        Log.i("修改门店", "state：" + state);
+        Log.i("修改门店", " FinalContents.getCompanyManageId()：" + FinalContents.getCompanyManageId());
+        Log.i("修改门店", " FinalContents.getUserID()：" + FinalContents.getUserID());
         if (add_broker_rl2.getVisibility() == View.VISIBLE) {
             addStoreBean = fzbInterface.getAddStoreBean("", s, s1, s2, s3, (getLongitude + "," + getLatitude), url1, url2, flag + "", state, FinalContents.getCompanyManageId(), FinalContents.getUserID());
         } else {
@@ -730,7 +742,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.i("门店","门店添加错误信息：" + e.getMessage());
                     }
 
                     @Override

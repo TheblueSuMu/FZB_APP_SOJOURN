@@ -403,6 +403,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                             store_details_check.setVisibility(View.GONE);
                             store_details_check_S.setVisibility(View.GONE);
                             confirm_the_visit_gv.setVisibility(View.GONE);
+                            store_details_img_btn.setVisibility(View.GONE);
                         } else {
                             initDataS();
                         }

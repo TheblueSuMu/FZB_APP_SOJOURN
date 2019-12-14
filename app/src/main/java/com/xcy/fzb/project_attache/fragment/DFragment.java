@@ -146,6 +146,10 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     private View view;
     private Context context;
 
+    MyFragment1 myFragment1 = new MyFragment1();
+    MyFragment2 myFragment2 = new MyFragment2();
+    MyFragment3 myFragment3 = new MyFragment3();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -574,9 +578,9 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                         if (FinalContents.getFragmentSS().equals("0")) {
                             mAdapter = new MyFragmentPagerAdapter(Objects.requireNonNull(getActivity()).getSupportFragmentManager());
                             FinalContents.setFragmentSS("1");
-                            aList.add(new MyFragment2());
-                            aList.add(new MyFragment1());
-                            aList.add(new MyFragment3());
+                            aList.add(myFragment2);
+                            aList.add(myFragment1);
+                            aList.add(myFragment3);
 
                             mAdapter.setListfragment(aList);
                             vpager_one.setAdapter(mAdapter);
@@ -838,7 +842,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         //不显示网格线
         xAxis.setDrawGridLines(false);
         // 标签倾斜
-        xAxis.setLabelRotationAngle(45);
+        xAxis.setLabelRotationAngle(0);
         //设置X轴值为字符串
         xAxis.setValueFormatter(new IndexAxisValueFormatter(indexList));
         //得到Y轴
