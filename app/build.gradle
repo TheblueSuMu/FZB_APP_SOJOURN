@@ -59,6 +59,9 @@ MobSDK {
     }
 }
 
+// 注意：主App中请确保添加aspectjx
+apply plugin: 'android-aspectjx'
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -147,6 +150,8 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:support-v4:26.1.0'
 
+    //TODO  多次点击事件拦截
+    implementation 'org.aspectj:aspectjrt:1.8.9'
 
     //TODO Bugly使用
     implementation 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
