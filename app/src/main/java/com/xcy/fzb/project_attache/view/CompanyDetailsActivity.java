@@ -354,9 +354,9 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         String s1 = company_details_tv9.getText().toString();
                         NewlyIncreased.setYJstartDate(dateString);
                         if (project_attache_ll2.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "1");
+                            initFinanceNum("3", s, s1);
                         } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "2");
+                            initFinanceNum("3", s, s1);
                         }
 
 
@@ -381,9 +381,9 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         String s1 = company_details_tv9.getText().toString();
                         NewlyIncreased.setYJendDate(dateString);
                         if (project_attache_ll2.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "1");
+                            initFinanceNum("3", s, s1);
                         } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "2");
+                            initFinanceNum("3", s, s1);
                         }
 
                     }

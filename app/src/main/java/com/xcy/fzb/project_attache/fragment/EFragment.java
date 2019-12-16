@@ -315,6 +315,10 @@ public class EFragment extends Fragment implements View.OnClickListener, SwipeRe
 
         if (userMessageBean.getData().getIdentity().equals("5")) {
             me_identity.setText("专员");
+        }else if(userMessageBean.getData().getIdentity().equals("8")){
+            me_identity.setText("经理");
+        }else if(userMessageBean.getData().getIdentity().equals("9")){
+            me_identity.setText("总监");
         }
         me_city.setText(data.getCity());
         me_store.setText(data.getStoreManage() + "");
