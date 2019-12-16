@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -157,7 +158,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
     }
 
     private void initView() {
-
+        Log.i("销毁","数1："+FinalContents.getStoreId());
         StatusBar.makeStatusBarTransparent(this);
 
         broker_rb1 = findViewById(R.id.broker_rb1);
@@ -908,11 +909,31 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.i("销毁","数："+FinalContents.getStoreId());
+        FinalContents.setStoreId("");
+        FinalContents.setAgentId("");
         NewlyIncreased.setTag("0");
         NewlyIncreased.setStartDate("");
         NewlyIncreased.setEndDate("");
         NewlyIncreased.setYJType("");
         NewlyIncreased.setYJstartDate("");
         NewlyIncreased.setYJendDate("");
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)
+        {
+            FinalContents.setStoreId("");
+            FinalContents.setAgentId("");
+            finish();
+            // your code
+            return true;// true 事件不继续传递， false 事件继续传递
+        }
+        else
+        {
+            return super.onKeyDown(keyCode, event);
+        }
     }
 }

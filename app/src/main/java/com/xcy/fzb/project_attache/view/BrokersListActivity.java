@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,23 +19,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.BrokersListBean;
 import com.xcy.fzb.all.database.BrokersListData;
-import com.xcy.fzb.all.modle.ChangeSexBean;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
-import com.xcy.fzb.all.persente.OkHttpPost;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
-import com.xcy.fzb.all.view.PersonalInformationActivity;
 import com.xcy.fzb.project_attache.adapter.ContactsAdapter;
 
 import java.util.ArrayList;
@@ -232,6 +226,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
+        Log.i("销毁","数2："+FinalContents.getStoreId());
         if(FinalContents.getCompanyId().equals("")){
             initData(FinalContents.getStoreId(), "", "","","","");
         }else {
@@ -255,44 +250,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.brokers_tv:
-
                 initAll();
-
-
-//                popupWindow = new PopupWindow(BrokersListActivity.this);
-//                inflate = LayoutInflater.from(BrokersListActivity.this).inflate(R.layout.project_attache_item_popwindows, null);
-//                popupWindow.setContentView(inflate);
-//
-//                popupWindow.setWidth(brokers_tv.getMeasuredWidth() * 3);
-//                popupWindow.setHeight(brokers_tv.getMeasuredHeight() * 3 + 20);
-//
-//                final TextView item_popwindoe_1 = inflate.findViewById(R.id.item_popwindoe_1s);
-//                final TextView item_popwindoe_2 = inflate.findViewById(R.id.item_popwindoe_2s);
-//
-//                item_popwindoe_1.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        String string = brokers_list_et.getText().toString();
-//                        brokers_tv.setText("全部");
-//                        initData(FinalContents.getStoreId(), string, "");
-//                        popupWindow.dismiss();
-//                    }
-//                });
-//                item_popwindoe_2.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        String string = brokers_list_et.getText().toString();
-//                        brokers_tv.setText("只看异常门店");
-//                        initData(FinalContents.getStoreId(), string, "3");
-//                        popupWindow.dismiss();
-//                    }
-//                });
-//
-//
-//                popupWindow.setFocusable(true); //设置PopupWindow可获得焦点
-//                popupWindow.setTouchable(true); //设置PopupWindow可触摸
-//                popupWindow.setOutsideTouchable(true);
-//                popupWindow.showAsDropDown(brokers_tv, 0, 0);
                 break;
 
         }
