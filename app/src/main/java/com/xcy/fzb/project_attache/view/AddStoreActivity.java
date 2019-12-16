@@ -308,6 +308,9 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                                 add_broker_tv4.setText(storeChangeBean.getData().getStoreManage().getLocation());
                             }
                             myLocation = storeChangeBean.getData().getStoreManage().getLocation();
+
+                            FinalContents.setAddtype2(storeChangeBean.getData().getStoreManage().getCompany().getCompanyName());
+
                         }
 
                         @Override

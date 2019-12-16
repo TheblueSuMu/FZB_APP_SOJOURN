@@ -63,6 +63,7 @@ import com.xcy.fzb.all.database.FinanceBean;
 import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.modle.ClockInBean;
 import com.xcy.fzb.all.modle.RecordBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.SourcePanel;
@@ -145,6 +146,8 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
     private RecordAdapter adapter1;
 
     private int IfNum = 0;
+
+    private int isOne = 0;
 
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -527,6 +530,7 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
     }
 
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -542,57 +546,57 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.store_details_img_btn:
-                //打卡
-                Log.i("MyCL", "点击按钮");
-                if (num == 1) {
-                    //未开启定位权限
-                    Log.i("MyCL", "未开启定位权限");
-                    ToastUtil.showLongToast(ClockStoresActivity.this, "未开启定位权限，无法打卡");
-                } else if (num == 2) {
-                    //暂无状态
-                    Log.i("MyCL", "暂无状态");
-                } else if (num == 3) {
-                    //到店打卡
-                    Log.i("MyCL", "到店打卡/出店打卡");
-                    if (stringBuffer.length() == 0) {
-                        Log.i("MyCL", "打卡失败 图片至少一张");
-                        ToastUtil.showLongToast(ClockStoresActivity.this, "照片不能为空");
-                        //打卡失败 图片至少一张
-                    } else {
-                        if (data.getTotal() == 0) {
-                            initClockIn();
-                        } else if (data.getTotal() == 1) {
-                            if (min < 30) {
-                                AlertDialog.Builder builder1 = new AlertDialog.Builder(ClockStoresActivity.this);
-                                View inflate = LayoutInflater.from(ClockStoresActivity.this).inflate(R.layout.binding_report, null, false);
-                                builder1.setView(inflate);
-                                TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
-                                TextView report_binding_confirm_tv = inflate.findViewById(R.id.report_binding_confirm_tv);
-                                TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
-                                RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
-                                RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
-                                report_binding_title.setText("未到指定时间,无效打卡");//内容
-                                report_binding_confirm_tv.setText("取消打卡");
-                                report_binding_cancel_tv.setText("继续打卡");
-                                final AlertDialog show = builder1.show();
-                                report_binding_cancel.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        initClockIn();
-                                        show.dismiss();
-                                    }
-                                });
-                                report_binding_confirm.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        show.dismiss();
-                                    }
-                                });
-                            } else if (min >= 30) {
+                    //打卡
+                    Log.i("MyCL", "点击按钮");
+                    if (num == 1) {
+                        //未开启定位权限
+                        Log.i("MyCL", "未开启定位权限");
+                        ToastUtil.showLongToast(ClockStoresActivity.this, "未开启定位权限，无法打卡");
+                    } else if (num == 2) {
+                        //暂无状态
+                        Log.i("MyCL", "暂无状态");
+                    } else if (num == 3) {
+                        //到店打卡
+                        Log.i("MyCL", "到店打卡/出店打卡");
+                        if (stringBuffer.length() == 0) {
+                            Log.i("MyCL", "打卡失败 图片至少一张");
+                            ToastUtil.showLongToast(ClockStoresActivity.this, "照片不能为空");
+                            //打卡失败 图片至少一张
+                        } else {
+                            if (data.getTotal() == 0) {
                                 initClockIn();
+                            } else if (data.getTotal() == 1) {
+                                if (min < 30) {
+                                    AlertDialog.Builder builder1 = new AlertDialog.Builder(ClockStoresActivity.this);
+                                    View inflate = LayoutInflater.from(ClockStoresActivity.this).inflate(R.layout.binding_report, null, false);
+                                    builder1.setView(inflate);
+                                    TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
+                                    TextView report_binding_confirm_tv = inflate.findViewById(R.id.report_binding_confirm_tv);
+                                    TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
+                                    RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
+                                    RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
+                                    report_binding_title.setText("未到指定时间,无效打卡");//内容
+                                    report_binding_confirm_tv.setText("取消打卡");
+                                    report_binding_cancel_tv.setText("继续打卡");
+                                    final AlertDialog show = builder1.show();
+                                    report_binding_cancel.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            initClockIn();
+                                            show.dismiss();
+                                        }
+                                    });
+                                    report_binding_confirm.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            show.dismiss();
+                                        }
+                                    });
+                                } else if (min >= 30) {
+                                    initClockIn();
+                                }
                             }
-                        }
-                        //打卡成功 刷新
+                            //打卡成功 刷新
 //                        if (data.getTotal() == 0) {
 //                            //进店打卡成功
 //                            store_details_check.setText("出店打卡");
@@ -604,14 +608,15 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
 //                            confirm_the_visit_gv.setVisibility(View.GONE);
 //                            stringBuffer.setLength(0);
 //                        }
-                    }
-                } else if (num == 4) {
-                    //未到指定区域
-                    Log.i("MyCL", "未到指定区域");
-                    ToastUtil.showLongToast(ClockStoresActivity.this, "未到指定区域");
+                        }
+                    } else if (num == 4) {
+                        //未到指定区域
+                        Log.i("MyCL", "未到指定区域");
+                        ToastUtil.showLongToast(ClockStoresActivity.this, "未到指定区域");
 //                    Intent intent = new Intent(ClockStoresActivity.this, MapHouseActivity.class);
 //                    startActivity(intent);
                 }
+
                 break;
             case R.id.store_details_img_rf:
                 //未到指定地点 刷新
