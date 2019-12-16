@@ -877,12 +877,20 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         project_details_trend.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend().equals("0")) {
-                                    ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
-                                }else if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend().equals("1")){
-                                    project_details_relative.setVisibility(View.VISIBLE);
-                                }else{
-                                    ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
+                                try {
+                                    if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend() != null) {
+                                        if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend().equals("0")) {
+                                            ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
+                                        }else if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend().equals("1")){
+                                            project_details_relative.setVisibility(View.VISIBLE);
+                                        }else{
+                                            ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
+                                        }
+                                    }else {
+                                        ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
                             }
                         });//  TODO    打开走势图

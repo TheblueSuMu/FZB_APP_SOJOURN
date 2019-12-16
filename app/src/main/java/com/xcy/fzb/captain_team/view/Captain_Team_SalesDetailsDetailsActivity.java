@@ -263,12 +263,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         }
         initData();
 
-        if (FinalContents.getIdentity().equals("63")) {
-            sales_details_details_linear1.setVisibility(View.VISIBLE);
-            init();
-        }else {
-            sales_details_details_linear1.setVisibility(View.GONE);
-        }
+
 
         sales_details_details_access.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -503,11 +498,19 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                             }
                         }
 
-                        if (agentDetails.getData().getAgentInfo().getIdentity().equals("60")) {
-                            sales_details_details_linear1.setVisibility(View.VISIBLE);
+                        if (FinalContents.getIdentity().equals("63")) {
+                            if (agentDetails.getData().getAgentInfo().getIdentity().equals("60")) {
+                                sales_details_details_linear1.setVisibility(View.VISIBLE);
+                                init();
+                            }else {
+                                sales_details_details_linear1.setVisibility(View.GONE);
+                            }
+
                         }else {
                             sales_details_details_linear1.setVisibility(View.GONE);
                         }
+
+
 
                         List<Integer> integers = agentDetailsBean.getData().getGsonOption().getSeries().get(0).getData();
                         indexList = agentDetailsBean.getData().getGsonOption().getXAxis().getData();
