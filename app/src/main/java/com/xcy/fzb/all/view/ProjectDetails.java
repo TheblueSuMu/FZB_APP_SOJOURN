@@ -275,13 +275,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
         project_details_tab_layout = findViewById(R.id.project_details_tab_layout);
 
-        project_details_trend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                project_details_relative.setVisibility(View.VISIBLE);
-            }
-        });//  TODO    打开走势图
-
         project_details_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -880,6 +873,27 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         }else {
                             Glide.with(ProjectDetails.this).load(FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg()).into(backimg);
                         }
+
+                        project_details_trend.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                try {
+                                    if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend() != null) {
+                                        if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend().equals("0")) {
+                                            ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
+                                        }else if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend().equals("1")){
+                                            project_details_relative.setVisibility(View.VISIBLE);
+                                        }else{
+                                            ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
+                                        }
+                                    }else {
+                                        ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });//  TODO    打开走势图
 
 
                         if (projectDetailsBeanData.getProjectListVo().getReferenceToatlPrice().equals("")) {
