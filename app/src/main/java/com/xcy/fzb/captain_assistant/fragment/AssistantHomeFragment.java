@@ -526,15 +526,19 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                             banner.setOnBannerListener(new OnBannerListener() {
                                 @Override
                                 public void OnBannerClick(int position) {
-                                    FinalContents.setProjectID(imglist.get(position).getProject().getId());
-                                    FinalContents.setNewID(imglist.get(position).getId());
-                                    Log.i("详情", "项目ID" + FinalContents.getProjectID());
-                                    Log.i("详情", "用户ID" + FinalContents.getUserID());
-                                    Log.i("详情", "用户ID" + FinalContents.getNewID());
-                                    Intent intent = new Intent(view.getContext(), WebViewActivity.class);
-                                    intent.putExtra("title", "新闻详情");
-                                    intent.putExtra("webview", imglist.get(position).getContent());
-                                    startActivity(intent);
+                                    try {
+                                        FinalContents.setProjectID(imglist.get(position).getProject().getId());
+                                        FinalContents.setNewID(imglist.get(position).getId());
+                                        Log.i("详情", "项目ID" + FinalContents.getProjectID());
+                                        Log.i("详情", "用户ID" + FinalContents.getUserID());
+                                        Log.i("详情", "用户ID" + FinalContents.getNewID());
+                                        Intent intent = new Intent(view.getContext(), WebViewActivity.class);
+                                        intent.putExtra("title", "新闻详情");
+                                        intent.putExtra("webview", imglist.get(position).getContent());
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                         }

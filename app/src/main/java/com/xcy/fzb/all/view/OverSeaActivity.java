@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -742,18 +741,27 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                     @Override
                     public void onNext(ImgData imgData) {
                         imagelist = imgData.getData();
+                        if (imagelist.size() != 0) {
+                            oversea_linear_issue.setVisibility(View.VISIBLE);
+                            issueRv.setVisibility(View.VISIBLE);
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(OverSeaActivity.this);
+                            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-                        LinearLayoutManager layoutManager = new LinearLayoutManager(OverSeaActivity.this);
-                        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                            issueRv.setLayoutManager(layoutManager);
+                            IssueAdapter recyclerAdapter = new IssueAdapter(imagelist);
+                            issueRv.setAdapter(recyclerAdapter);
+                            recyclerAdapter.notifyDataSetChanged();
+                        }else {
+                            oversea_linear_issue.setVisibility(View.GONE);
+                            issueRv.setVisibility(View.GONE);
+                        }
 
-                        issueRv.setLayoutManager(layoutManager);
-                        IssueAdapter recyclerAdapter = new IssueAdapter(imagelist);
-                        issueRv.setAdapter(recyclerAdapter);
-                        recyclerAdapter.notifyDataSetChanged();
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        oversea_linear_issue.setVisibility(View.GONE);
+                        issueRv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

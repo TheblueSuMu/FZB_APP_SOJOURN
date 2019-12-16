@@ -503,6 +503,12 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                             }
                         }
 
+                        if (agentDetails.getData().getAgentInfo().getIdentity().equals("60")) {
+                            sales_details_details_linear1.setVisibility(View.VISIBLE);
+                        }else {
+                            sales_details_details_linear1.setVisibility(View.GONE);
+                        }
+
                         List<Integer> integers = agentDetailsBean.getData().getGsonOption().getSeries().get(0).getData();
                         indexList = agentDetailsBean.getData().getGsonOption().getXAxis().getData();
                         init(integers);

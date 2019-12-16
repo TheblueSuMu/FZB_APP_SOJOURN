@@ -171,6 +171,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     LinearLayout project_attache_ll3;
     LinearLayout project_attache_ll4;
     String tag = "1";
+    private String string;
 
 
     @Override
@@ -355,7 +356,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         month = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
         details_the_project_end_time1.setText("<" + string);
         details_the_project_end_time2.setText("-" + string + " >");
         details_the_project_end_time3.setText("<" + string);
@@ -387,9 +388,9 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             @Override
             public void onClick(View view) {
                 if (type.equals("1")) {
-                    initViewData1();
-                } else if (type.equals("2")) {
                     initViewData2();
+                } else if (type.equals("2")) {
+                    initViewData1();
                 } else if (type.equals("3")) {
                     initViewData3();
                 }
@@ -901,7 +902,10 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             case R.id.details_the_project_end_rb4:
                 details_the_project_end_time_ll1.setVisibility(View.VISIBLE);
                 type1 = "3";
+                beforeDate1 = string;
+                afterDate1 = string;
                 NewlyIncreased.setTag("3");
+                initViewData2();
                 initDate();
                 break;
             case R.id.details_the_project_end_rb5:
@@ -931,7 +935,10 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             case R.id.details_the_project_end_rb8:
                 details_the_project_end_time_ll2.setVisibility(View.VISIBLE);
                 type2 = "3";
+                beforeDate2 = string;
+                afterDate2 = string;
                 NewlyIncreased.setYJType("3");
+                initViewData1();
                 initDate();
                 break;
 //                    TODO 报备
@@ -969,6 +976,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             case R.id.details_the_project_end_rb15:
                 details_the_project_end_time_ll3.setVisibility(View.VISIBLE);
                 type3 = "3";
+                beforeDate3 = string;
+                afterDate3 = string;
                 initDate();
                 initViewData3();
                 break;

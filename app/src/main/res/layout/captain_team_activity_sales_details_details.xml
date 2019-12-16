@@ -590,7 +590,7 @@
 
                 <LinearLayout
                     android:id="@+id/sales_details_details_linear1"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">

@@ -192,6 +192,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
     private TextView project_details_title;
     private RelativeLayout project_details_toolbar;
     int mAlpha = 0;
+    private LinearLayout project_details_villa_linear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,78 +220,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             });
             Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    //楼栋查看全部信息
-    private void initDetails() {
-
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        details_rv.setLayoutManager(manager);
-        list = new ArrayList<>();
-
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        final Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
-        Observable<BuildingBean> buildingBean = fzbInterface.getBuildingBean(FinalContents.getUserID(), FinalContents.getProjectID());
-        buildingBean.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<BuildingBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(BuildingBean buildingBean) {
-                        List<BuildingBean.DataBean> data = buildingBean.getData();
-                        Log.i("MyCL","data:" + data.size());
-                        list.clear();
-                        if (data.size() == 0) {
-                            linear5.setVisibility(View.GONE);
-                            details_tv_S.setVisibility(View.GONE);
-                            details_rv.setVisibility(View.GONE);
-                        } else if (data.size() == 1) {
-                            linear5.setVisibility(View.VISIBLE);
-                            details_tv_S.setVisibility(View.VISIBLE);
-                            details_rv.setVisibility(View.VISIBLE);
-                            adapter = new DetailsAdapter();
-                            list.add(new DetailsData(data.get(0).getBuildingName() + "", data.get(0).getElementNumber() + "", data.get(0).getHouseNumber() + "", "1"));
-                            details_tv_S.setText("查看全部" + data.size() + "栋楼信息");
-                            adapter.setList(list);
-                            details_rv.setAdapter(adapter);
-                            adapter.setDetailsItem(ProjectDetails.this);
-                        } else if (data.size() > 1) {
-                            linear5.setVisibility(View.VISIBLE);
-                            details_tv_S.setVisibility(View.VISIBLE);
-                            details_rv.setVisibility(View.VISIBLE);
-                            adapter = new DetailsAdapter();
-                            list.add(new DetailsData(data.get(0).getBuildingName() + "", data.get(0).getElementNumber() + "", data.get(0).getHouseNumber() + "", "1"));
-                            list.add(new DetailsData(data.get(1).getBuildingName() + "", data.get(1).getElementNumber() + "", data.get(1).getHouseNumber() + "", "2"));
-                            details_tv_S.setText("查看全部" + data.size() + "栋楼信息");
-                            adapter.setList(list);
-                            details_rv.setAdapter(adapter);
-                            adapter.setDetailsItem(ProjectDetails.this);
-                        }
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("MyCL", "楼栋信息错误信息：" + e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
-        details_rv.setAdapter(adapter);
-
     }
 
     //命名区域
@@ -322,6 +251,8 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
         project_details_title = findViewById(R.id.project_details_title);
         project_details_toolbar = findViewById(R.id.project_details_toolbar);
+
+        project_details_villa_linear = findViewById(R.id.project_details_villa_linear);
 
         CityContents.setIsReport("1");
 
@@ -438,7 +369,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         project_details_linear3 = findViewById(R.id.project_details_linear3);
 
         talktool_layout = findViewById(R.id.project_details_talktool_layout);
-        project_details_scrollview.setVisibility(View.GONE);
 
         linear5.setOnClickListener(this);
         back.setOnClickListener(this);
@@ -772,6 +702,78 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 //                startActivity(buildingInformationintentS);
                 break;
         }
+    }
+
+    //楼栋查看全部信息
+    private void initDetails() {
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        details_rv.setLayoutManager(manager);
+        list = new ArrayList<>();
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        final Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<BuildingBean> buildingBean = fzbInterface.getBuildingBean(FinalContents.getUserID(), FinalContents.getProjectID());
+        buildingBean.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BuildingBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BuildingBean buildingBean) {
+                        List<BuildingBean.DataBean> data = buildingBean.getData();
+                        Log.i("MyCL","data:" + data.size());
+                        list.clear();
+                        if (data.size() == 0) {
+                            linear5.setVisibility(View.GONE);
+                            details_tv_S.setVisibility(View.GONE);
+                            details_rv.setVisibility(View.GONE);
+                        } else if (data.size() == 1) {
+                            linear5.setVisibility(View.VISIBLE);
+                            details_tv_S.setVisibility(View.VISIBLE);
+                            details_rv.setVisibility(View.VISIBLE);
+                            adapter = new DetailsAdapter();
+                            list.add(new DetailsData(data.get(0).getBuildingName() + "", data.get(0).getElementNumber() + "", data.get(0).getHouseNumber() + "", "1"));
+                            details_tv_S.setText("查看全部" + data.size() + "栋楼信息");
+                            adapter.setList(list);
+                            details_rv.setAdapter(adapter);
+                            adapter.setDetailsItem(ProjectDetails.this);
+                        } else if (data.size() > 1) {
+                            linear5.setVisibility(View.VISIBLE);
+                            details_tv_S.setVisibility(View.VISIBLE);
+                            details_rv.setVisibility(View.VISIBLE);
+                            adapter = new DetailsAdapter();
+                            list.add(new DetailsData(data.get(0).getBuildingName() + "", data.get(0).getElementNumber() + "", data.get(0).getHouseNumber() + "", "1"));
+                            list.add(new DetailsData(data.get(1).getBuildingName() + "", data.get(1).getElementNumber() + "", data.get(1).getHouseNumber() + "", "2"));
+                            details_tv_S.setText("查看全部" + data.size() + "栋楼信息");
+                            adapter.setList(list);
+                            details_rv.setAdapter(adapter);
+                            adapter.setDetailsItem(ProjectDetails.this);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "楼栋信息错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+        details_rv.setAdapter(adapter);
+
     }
 
     // 定价通知
@@ -1257,6 +1259,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
                     @Override
                     public void onError(Throwable e) {
+                        project_details_scrollview.setVisibility(View.GONE);
                         Log.i("error", "项目详情内数据错误信息1：" + e.getMessage());
                         Log.i("error", "项目详情内数据错误信息2：" + e.getLocalizedMessage());
                         Log.i("error", "项目详情内数据错误信息3：" + e.getCause());
@@ -1421,6 +1424,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         project_details_villa_title.setText(projectHousesTrendListBean.getData().getHouseTrendResult().getProjectName());
                         if (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendRatioVoList().size() != 0) {
                             project_details_villa_rv.setVisibility(View.VISIBLE);
+                            project_details_villa_linear.setVisibility(View.VISIBLE);
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ProjectDetails.this);
                             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                             project_details_villa_rv.setLayoutManager(linearLayoutManager);
@@ -1429,6 +1433,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                             projectDetailsVillaAdapter.notifyDataSetChanged();
                         } else {
                             project_details_villa_rv.setVisibility(View.GONE);
+                            project_details_villa_linear.setVisibility(View.GONE);
                         }
 
                         if (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().size() != 0) {

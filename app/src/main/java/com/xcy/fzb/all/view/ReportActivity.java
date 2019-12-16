@@ -38,6 +38,7 @@ import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.modle.IdNumberBean;
 import com.xcy.fzb.all.modle.ItemEntity;
 import com.xcy.fzb.all.modle.ReportBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -314,8 +315,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         });
 
         if (FinalContents.isChecked()) {
-            report_client_name_et.setText(FinalContents.getClientName());
-            report_client_phone.setText(FinalContents.getClientPhone());
+            if (!FinalContents.getClientName().equals("")) {
+                report_client_name_et.setText(FinalContents.getClientName());
+                report_client_phone.setText(FinalContents.getClientPhone());
+            }
         } else {
             project_name.setText("");
         }
@@ -389,7 +392,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         goal8.setOnClickListener(this);
         ensure.setOnClickListener(this);
 
-        initAssociatingInputing();
     }
 
     private void initData() {
@@ -605,6 +607,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 });
     }
 
+    //点击事件
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -851,6 +855,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     }
 
     private void initAssociatingInputing() {
+        list = new ArrayList<>();
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -925,8 +930,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                             FinalContents.setClientName(list.get(i).getCustomerName());
                             FinalContents.setCustomerID(list.get(i).getId());
                             customerID = list.get(i).getId();
-                            report_client_name_et.setText(FinalContents.getClientName());
-                            report_client_phone.setText(FinalContents.getClientPhone());
+                            if (!FinalContents.getClientName().equals("")) {
+                                report_client_name_et.setText(FinalContents.getClientName());
+                                report_client_phone.setText(FinalContents.getClientPhone());
+                            }
                             break;
                         }
                     }
@@ -1181,8 +1188,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             }
         }
         if (FinalContents.isChecked()) {
-            report_client_name_et.setText(FinalContents.getClientName());
-            report_client_phone.setText(FinalContents.getClientPhone());
+            if (!FinalContents.getClientName().equals("")) {
+                report_client_name_et.setText(FinalContents.getClientName());
+                report_client_phone.setText(FinalContents.getClientPhone());
+            }
             report_associating_inputing_rv.setVisibility(View.GONE);
         } else {
             project_name.setText("");
@@ -1199,6 +1208,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         } else {
             project_name.setText("");
         }
+        initAssociatingInputing();
     }
 
     @Override

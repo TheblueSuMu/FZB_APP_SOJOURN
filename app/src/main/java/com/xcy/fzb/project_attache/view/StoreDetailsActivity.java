@@ -12,7 +12,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -324,7 +323,6 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         report_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (indextype.equals("1")) {
                     initDataNum("3", store_details_tv4.getText().toString(), store_details_tv5.getText().toString());
                 } else if (indextype.equals("2")) {
@@ -582,7 +580,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         int month = date.get(Calendar.MONTH);
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        store_details_tv8.setText(dateString);
+                        store_details_tv9.setText(dateString);
                         NewlyIncreased.setYJendDate(dateString);
                         indextype = "2";
                     }

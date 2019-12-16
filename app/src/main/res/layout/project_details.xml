@@ -1298,16 +1298,24 @@
                     android:textColor="#111111"
                     android:textSize="16sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="20dp"
-                    android:background="#EEEEEE" />
+               <LinearLayout
+                   android:id="@+id/project_details_villa_linear"
+                   android:orientation="vertical"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/project_details_villa_rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp" />
+                   <View
+                       android:layout_width="match_parent"
+                       android:layout_height="1dp"
+                       android:layout_marginTop="20dp"
+                       android:background="#EEEEEE" />
+
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/project_details_villa_rv"
+                       android:layout_width="match_parent"
+                       android:layout_height="130dp" />
+
+               </LinearLayout>
 
             </LinearLayout>
 

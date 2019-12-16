@@ -14,7 +14,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -391,9 +390,9 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         String s1 = broker_tv14.getText().toString();
                         NewlyIncreased.setYJstartDate(dateString);
                         if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "1");
+                            initFinanceNum("3", s, s1);
                         } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "2");
+                            initFinanceNum("3", s, s1);
                         }
 
 
@@ -417,9 +416,9 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         String s1 = broker_tv14.getText().toString();
                         NewlyIncreased.setYJendDate(dateString);
                         if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "1");
+                            initFinanceNum("3", s, s1);
                         } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "2");
+                            initFinanceNum("3", s, s1);
                         }
 
                     }

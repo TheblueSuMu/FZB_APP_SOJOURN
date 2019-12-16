@@ -74,7 +74,6 @@ public class PhoneActivity extends AllActivity{
     private List<LinkmanBean> list = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     private SuspensionDecoration mDecoration;
-    private TextView error_message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +83,6 @@ public class PhoneActivity extends AllActivity{
     }
 
     private void initfvb(){
-        error_message = findViewById(R.id.error_message);
         havaReadContacts(PhoneActivity.this,"READ_CONTACTS ");
         all_activity_phone_cancle = findViewById(R.id.all_activity_phone_cancle);
         all_activity_phone_search = findViewById(R.id.all_activity_phone_search);
@@ -158,47 +156,39 @@ public class PhoneActivity extends AllActivity{
 
         boolean have = false;
 
-        error_message.setText("判断权限");
         ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS);
         if (Build.VERSION.SDK_INT >= 23) {
             AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
             int checkOp = appOpsManager.checkOp(AppOpsManager.OPSTR_READ_CONTACTS, android.os.Process.myUid(), context.getPackageName());
-            error_message.setText("权限是："+checkOp);
             Log.e("通讯录权限", "checkOp:" + checkOp);
             ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ："+checkOp);
             switch (checkOp) {
                 case AppOpsManager.MODE_ALLOWED:
                     Log.e("通讯录权限", "AppOpsManager.MODE_ALLOWED ：有权限");
                     ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：有权限");
-                    error_message.setText("有权限");
                     have = true;
                     break;
                 case AppOpsManager.MODE_IGNORED:
                     Log.e("通讯录权限", "AppOpsManager.MODE_IGNORED：被禁止了");
                     ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：被禁止了");
-                    error_message.setText("被禁止了");
                     have = false;
                     break;
                 case AppOpsManager.MODE_DEFAULT:
                     Log.e("通讯录权限", "AppOpsManager.MODE_DEFAULT");
                     ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：默认");
-                    error_message.setText("默认");
                     break;
                 case AppOpsManager.MODE_ERRORED:
                     Log.e("通讯录权限", "AppOpsManager.MODE_ERRORED：出错了");
                     ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：出错了");
-                    error_message.setText("出错了");
                     have = false;
                     break;
                 case 4:
                     Log.e("通讯录权限", "AppOpsManager.OTHER：权限需要询问");
                     ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：权限需要询问");
-                    error_message.setText("权限需要询问");
                     have = false;
                     break;
             }
         } else {
-            error_message.setText("权限询问中");
             have = ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS)
                     == PackageManager.PERMISSION_GRANTED;
         }
