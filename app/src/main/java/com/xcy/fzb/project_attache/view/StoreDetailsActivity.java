@@ -582,7 +582,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                         int month = date.get(Calendar.MONTH);
                         int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
                         String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        store_details_tv8.setText(dateString);
+                        store_details_tv9.setText(dateString);
                         NewlyIncreased.setYJendDate(dateString);
                         indextype = "2";
                     }
