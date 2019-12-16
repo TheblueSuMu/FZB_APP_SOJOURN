@@ -277,8 +277,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                     @Override
                     public void onError(Throwable e) {
+//                        avi.hide();
 //                        avi.setVisibility(View.GONE);
-//                        initDatas();
                         all_no_information.setVisibility(View.VISIBLE);
                         store_list_rv.setVisibility(View.GONE);
                         Log.i("专员门店或公司列表", "错误信息：" + e.getMessage());
@@ -483,8 +483,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                     @Override
                     public void onError(Throwable e) {
+//                        avi.hide();
 //                        avi.setVisibility(View.GONE);
-//                        initDatas();
                         all_no_information.setVisibility(View.VISIBLE);
                         store_list_rv.setVisibility(View.GONE);
                         Log.i("专员公司列表", "错误信息：" + e.getMessage());

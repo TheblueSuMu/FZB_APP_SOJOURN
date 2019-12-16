@@ -120,7 +120,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
-                       android:text="已结佣金(万元)"
+                       android:text="已结(万元)"
                        android:textColor="#FFFFFF"
                        android:textSize="11sp" />
 
@@ -154,7 +154,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
-                       android:text="待结佣金(万元)"
+                       android:text="待结(万元)"
                        android:textColor="#FFFFFF"
                        android:textSize="11sp" />
 
@@ -188,7 +188,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
-                       android:text="未结佣金(万元)"
+                       android:text="未结(万元)"
                        android:textColor="#FFFFFF"
                        android:textSize="11sp" />
 
