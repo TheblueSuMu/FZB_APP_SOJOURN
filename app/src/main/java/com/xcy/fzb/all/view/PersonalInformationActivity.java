@@ -175,6 +175,112 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
         personalRl6.setOnClickListener(this);
 
 
+        personal_et_name.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 获得焦点
+                } else {
+                    // 失去焦点
+                    hideInput();
+                    //TODO 处理事件
+                    String s = personal_et_name.getText().toString();
+
+                    String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonUpdate/updateName?" + "userId=" + FinalContents.getUserID() + "&name=" + s;
+
+                    OkHttpPost okHttpPost = new OkHttpPost(url);
+                    String data = okHttpPost.post();
+                    Gson gson = new Gson();
+                    ChangeNameBean changeNameBean = gson.fromJson(data, ChangeNameBean.class);
+                    ChangeNameBean.DataBean data1 = changeNameBean.getData();
+                    if (data1.getMessage().equals("修改昵称成功")) {
+                        personal_et_name.setVisibility(View.GONE);
+                        personal_name.setVisibility(View.VISIBLE);
+                        personal_name.setText(s);
+                        Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
+                            UserMessageBean userMessageBean = Connector.getUserMessageBean();
+                            UserMessageBean.DataBean dataBean = userMessageBean.getData();
+                            dataBean.setName(personal_et_name.getText().toString());
+                            userMessageBean.setData(dataBean);
+                            Connector.setUserMessageBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("123");
+                        } else if (FinalContents.getIdentity().equals("4")  || FinalContents.getIdentity().equals("7")) {
+                            UserBean userMessageBean = Connector.getUserBean();
+                            UserBean.DataBean dataBean = userMessageBean.getData();
+                            dataBean.setName(personal_et_name.getText().toString());
+                            userMessageBean.setData(dataBean);
+                            Connector.setUserBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("7");
+                        } else if (FinalContents.getIdentity().equals("5")) {
+                            ZYDataBean userMessageBean = Connector.getZyDataBean();
+                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                            dataBean.setName(personal_et_name.getText().toString());
+                            userMessageBean.setData(dataBean);
+                            Connector.setZyDataBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("5");
+                        }  else if (FinalContents.getIdentity().equals("8")) {
+                            ZYDataBean userMessageBean = Connector.getZyDataBean();
+                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                            dataBean.setName(personal_et_name.getText().toString());
+                            userMessageBean.setData(dataBean);
+                            Connector.setZyDataBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("8");
+                        }  else if (FinalContents.getIdentity().equals("9")) {
+                            ZYDataBean userMessageBean = Connector.getZyDataBean();
+                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                            dataBean.setName(personal_et_name.getText().toString());
+                            userMessageBean.setData(dataBean);
+                            Connector.setZyDataBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("9");
+                        } else if (FinalContents.getIdentity().equals("60")) {
+                            ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
+                            ZhangBingDataBean.DataBean dataBean = userMessageBean.getData();
+                            ZhangBingDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                            sysUserBean.setName(personal_et_name.getText().toString());
+                            dataBean.setSysUser(sysUserBean);
+                            userMessageBean.setData(dataBean);
+                            Connector.setZhangBingDataBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("60");
+                        } else if (FinalContents.getIdentity().equals("61")) {
+                            GWDataBean userMessageBean = Connector.getGwDataBean();
+                            GWDataBean.DataBean dataBean = userMessageBean.getData();
+                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                            sysUserBean.setName(personal_et_name.getText().toString());
+                            dataBean.setSysUser(sysUserBean);
+                            userMessageBean.setData(dataBean);
+                            Connector.setGwDataBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("61");
+                        } else if (FinalContents.getIdentity().equals("62")) {
+                            GWDataBean userMessageBean = Connector.getGwDataBean();
+                            GWDataBean.DataBean dataBean = userMessageBean.getData();
+                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                            sysUserBean.setName(personal_et_name.getText().toString());
+                            dataBean.setSysUser(sysUserBean);
+                            userMessageBean.setData(dataBean);
+                            Connector.setGwDataBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("61");
+                        } else if (FinalContents.getIdentity().equals("63")) {
+                            UserBean userMessageBean = Connector.getUserBean();
+                            UserBean.DataBean dataBean = userMessageBean.getData();
+                            dataBean.setName(personal_et_name.getText().toString());
+                            userMessageBean.setData(dataBean);
+                            Connector.setUserBean(userMessageBean);
+                            NewlyIncreased.setUserMessage("63");
+                        }
+                        initData();
+                    } else {
+                        Toast.makeText(PersonalInformationActivity.this, "修改昵称失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+
+        });
+
+
         if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7")|| FinalContents.getIdentity().equals("8")|| FinalContents.getIdentity().equals("9")) {
             initData();
         } else if (FinalContents.getIdentity().equals("60")) {
@@ -1074,7 +1180,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                 }
             }.start();
         }else {
-            if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7")) {
+            if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9")) {
                 initData();
             } else if (FinalContents.getIdentity().equals("60")) {
                 initDataTDZ();

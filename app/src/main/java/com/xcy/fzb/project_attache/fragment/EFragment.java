@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -38,7 +39,6 @@ import com.xcy.fzb.project_attache.adapter.MyDataStoreBean;
 import com.xcy.fzb.project_attache.view.CommissionActivity;
 import com.xcy.fzb.project_attache.view.PunchingCardRecordActivity;
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -324,7 +324,7 @@ public class EFragment extends Fragment implements View.OnClickListener, SwipeRe
     public void onResume() {
         super.onResume();
         initMyDataStore();
-        if (NewlyIncreased.getUserMessage().equals("5")){
+        if (NewlyIncreased.getUserMessage().equals("5") || NewlyIncreased.getUserMessage().equals("8") || NewlyIncreased.getUserMessage().equals("9")){
             init();
             NewlyIncreased.setUserMessage("");
         }
