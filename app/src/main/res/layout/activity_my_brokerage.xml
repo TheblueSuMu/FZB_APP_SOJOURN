@@ -128,7 +128,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="已结佣金(万元)"
+                        android:text="已结(万元)"
                         android:textColor="#ffffff"
                         android:textSize="11sp" />
 
@@ -163,7 +163,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="未结佣金(万元)"
+                        android:text="未结(万元)"
                         android:textColor="#ffffff"
                         android:textSize="11sp" />
 
