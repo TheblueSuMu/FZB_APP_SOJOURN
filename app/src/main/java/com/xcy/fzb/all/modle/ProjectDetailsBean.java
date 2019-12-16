@@ -285,6 +285,7 @@ public class ProjectDetailsBean {
              * fitmentState :
              */
 
+            private String isPriceTrend;
             private String id;
             private String remarks;
             private String createBy;
@@ -362,6 +363,14 @@ public class ProjectDetailsBean {
             private String procuctType;
             private String fitmentState;
             private List<FfAttacheListBean> ffAttacheList;
+
+            public String getIsPriceTrend() {
+                return isPriceTrend;
+            }
+
+            public void setIsPriceTrend(String isPriceTrend) {
+                this.isPriceTrend = isPriceTrend;
+            }
 
             public String getId() {
                 return id;
