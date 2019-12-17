@@ -46,6 +46,7 @@ import com.xcy.fzb.all.modle.GetLandLineTimeBean;
 import com.xcy.fzb.all.modle.LandBean;
 import com.xcy.fzb.all.modle.LandSaveBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -155,7 +156,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -196,7 +197,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
         });
     }
 
-
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -239,7 +240,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                         if (!to_apply_for_an_island2_tv1.getText().toString().equals("")) {
                             initPostReport();
                         } else {
-                            Toast.makeText(ToApplyForAnlsland2Activity.this, "请选择登岛路线时间，如果没有请及时联系管理员", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(ToApplyForAnlsland2Activity.this, "请选择登岛路线时间，如果没有请及时联系管理员");
                         }
                     } else if (ProjectProgressApi.getComplemented().equals("1")) {
                         initlandUpdate();
@@ -494,7 +495,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(LandSaveBean landSaveBean) {
-                        Toast.makeText(ToApplyForAnlsland2Activity.this, landSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(ToApplyForAnlsland2Activity.this, landSaveBean.getData().getMessage());
                         FinalContents.setTiaozhuang("登岛成功");
                         FinalContents.setDengDao("1");
                         finish();
@@ -502,7 +503,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(ToApplyForAnlsland2Activity.this, "请确定您的输入信息是否完整", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(ToApplyForAnlsland2Activity.this, "请确定您的输入信息是否完整");
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 
@@ -540,7 +541,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(LandSaveBean landSaveBean) {
-                        Toast.makeText(ToApplyForAnlsland2Activity.this, landSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(ToApplyForAnlsland2Activity.this, landSaveBean.getData().getMessage());
                         FinalContents.setTiaozhuang("登岛成功");
                         FinalContents.setDengDao("1");
                         finish();
@@ -548,7 +549,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(ToApplyForAnlsland2Activity.this, "请确定您的输入信息是否完整", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(ToApplyForAnlsland2Activity.this, "请确定您的输入信息是否完整");
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

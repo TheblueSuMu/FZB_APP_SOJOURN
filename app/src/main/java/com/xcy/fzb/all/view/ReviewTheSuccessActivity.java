@@ -35,9 +35,11 @@ import com.xcy.fzb.all.modle.ReadRecordBean;
 import com.xcy.fzb.all.modle.ReportProcessDetailsBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.OkHttpPost;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.project_side.view.BackToRaiseThatActivity;
 import com.xcy.fzb.project_side.view.ConfessToRaiseInformationActivity;
 import com.xcy.fzb.project_side.view.FillInTransactionInformationActivity;
@@ -146,7 +148,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -503,6 +505,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         adapter.notifyDataSetChanged();
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -717,10 +720,10 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             Gson gson = new Gson();
             CBean cBean = gson.fromJson(data, CBean.class);
             if (cBean.getMsg().equals("成功")) {
-                Toast.makeText(ReviewTheSuccessActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, cBean.getData().getMessage());
                 finish();
             } else {
-                Toast.makeText(ReviewTheSuccessActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, cBean.getData().getMessage());
                 finish();
             }
         } else if (name.equals("认筹")) {
@@ -730,10 +733,10 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             Gson gson = new Gson();
             CheckBean checkBean = gson.fromJson(data, CheckBean.class);
             if (checkBean.getMsg().equals("成功")) {
-                Toast.makeText(ReviewTheSuccessActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, checkBean.getMsg());
                 finish();
             } else {
-                Toast.makeText(ReviewTheSuccessActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, checkBean.getMsg());
                 finish();
             }
         } else if (name.equals("成功")) {
@@ -743,10 +746,10 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             Gson gson = new Gson();
             CheckBean checkBean = gson.fromJson(data, CheckBean.class);
             if (checkBean.getMsg().equals("成功")) {
-                Toast.makeText(ReviewTheSuccessActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, checkBean.getMsg());
                 finish();
             } else {
-                Toast.makeText(ReviewTheSuccessActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, checkBean.getMsg());
                 finish();
             }
         }
@@ -765,11 +768,11 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 Gson gson = new Gson();
                 FailureAlertBean failureAlertBean = gson.fromJson(post, FailureAlertBean.class);
                 if(failureAlertBean.getMsg().equals("成功")){
-                    Toast.makeText(ReviewTheSuccessActivity.this,failureAlertBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(ReviewTheSuccessActivity.this,failureAlertBean.getData().getMessage());
                     FinalContents.setTiaozhuang("失效成功");
                     finish();
                 }else{
-                    Toast.makeText(ReviewTheSuccessActivity.this,failureAlertBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(ReviewTheSuccessActivity.this,failureAlertBean.getData().getMessage());
                 }
             }
         });

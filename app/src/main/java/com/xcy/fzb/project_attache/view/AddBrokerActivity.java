@@ -22,6 +22,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.AddBrokerBean;
 import com.xcy.fzb.all.database.BrokerChangeBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -217,6 +218,7 @@ public class AddBrokerActivity extends AllActivity implements View.OnClickListen
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

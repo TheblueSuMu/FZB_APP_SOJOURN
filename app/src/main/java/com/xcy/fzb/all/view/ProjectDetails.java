@@ -58,6 +58,7 @@ import com.xcy.fzb.all.modle.RemindBean;
 import com.xcy.fzb.all.persente.GradationScrollView;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -218,7 +219,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -437,10 +438,10 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                                 dataBean = collectBean.getData();
                                 if (dataBean.getStatus().equals("1")) {
                                     collect.setChecked(true);
-                                    Toast.makeText(ProjectDetails.this, dataBean.getMessage(), Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(ProjectDetails.this, dataBean.getMessage());
                                 } else {
                                     collect.setChecked(false);
-                                    Toast.makeText(ProjectDetails.this, dataBean.getMessage(), Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(ProjectDetails.this, dataBean.getMessage());
                                 }
                             }
 
@@ -482,10 +483,10 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                                 dataBean = collectBean.getData();
                                 if (dataBean.getStatus().equals("1")) {
                                     collect.setChecked(true);
-                                    Toast.makeText(ProjectDetails.this, dataBean.getMessage(), Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(ProjectDetails.this, dataBean.getMessage());
                                 } else {
                                     collect.setChecked(false);
-                                    Toast.makeText(ProjectDetails.this, dataBean.getMessage(), Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(ProjectDetails.this, dataBean.getMessage());
                                 }
                             }
 
@@ -584,6 +585,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
     }
 
     //点击事件
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -819,7 +821,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                             });
                             builder1.show();
                         } else {
-                            Toast.makeText(ProjectDetails.this, remindBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(ProjectDetails.this, remindBean.getData().getMessage());
                         }
 
                     }

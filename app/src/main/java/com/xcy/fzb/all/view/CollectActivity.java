@@ -26,9 +26,11 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.application.DemoApplication;
 import com.xcy.fzb.all.modle.HotBean;
 import com.xcy.fzb.all.persente.SharItOff;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.List;
 
@@ -93,7 +95,7 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -204,6 +206,7 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
                 });
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -265,10 +268,10 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
 
                         if (SharItOff.getShar().equals("隐")) {
                             SharItOff.setShar("显");
-                            Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(this,"佣金已显示，如需隐藏请摇动");
                         } else if (SharItOff.getShar().equals("显")) {
                             SharItOff.setShar("隐");
-                            Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(this,"佣金已隐藏，如需显示请摇动");
                         }
                         if(collect_ll1.getVisibility() == View.VISIBLE){
                             recyclerViewData("3");

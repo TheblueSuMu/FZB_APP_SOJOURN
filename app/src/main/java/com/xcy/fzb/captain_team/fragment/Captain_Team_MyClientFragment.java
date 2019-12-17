@@ -36,6 +36,7 @@ import com.xcy.fzb.all.fragment.MyClientFragment6;
 import com.xcy.fzb.all.fragment.MyClientFragment7;
 import com.xcy.fzb.all.modle.ReportNoReadListBean;
 import com.xcy.fzb.all.persente.MyClientName;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.MyClientAddActivity;
@@ -255,6 +256,7 @@ public class Captain_Team_MyClientFragment extends AllFragment implements View.O
                 });
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         manager = getActivity().getSupportFragmentManager();

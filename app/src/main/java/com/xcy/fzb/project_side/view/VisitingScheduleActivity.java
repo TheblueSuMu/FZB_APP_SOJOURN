@@ -39,12 +39,14 @@ import com.xcy.fzb.all.modle.DictListBean;
 import com.xcy.fzb.all.modle.FindTradeBean;
 import com.xcy.fzb.all.modle.TradeSaveBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.GetInt;
 import com.xcy.fzb.all.utils.KeyUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.utils.MoneyValueFilter;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.project_side.adapter.TimeRangeAdapter;
 
 import java.util.ArrayList;
@@ -153,7 +155,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -434,10 +436,10 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                     @Override
                     public void onNext(TradeSaveBean tradeSaveBean) {
                         if (FinalContents.getCommissionId().equals("")) {
-                            Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(VisitingScheduleActivity.this, "请选择佣金");
                             isnum1 = 0;
                         } else {
-                            Toast.makeText(VisitingScheduleActivity.this, tradeSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(VisitingScheduleActivity.this, tradeSaveBean.getData().getMessage());
                             finish();
                             isnum1 = 0;
                         }
@@ -454,12 +456,13 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                     }
                 });
         if (FinalContents.getCommissionId().equals("")) {
-            Toast.makeText(VisitingScheduleActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(VisitingScheduleActivity.this, "请选择佣金");
         } else {
             FinalContents.setTiaozhuang("成交");
         }
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -471,67 +474,67 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
             //            TODO 提交
             case R.id.fill_in_transaction_information_btn:
                 if (!MatcherUtils.isMobile(fill_in_transaction_information_et2.getText().toString())) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(this, "请输入正确的手机号");
                     return;
                 } else {
 
                     if (project_type.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择产品类型", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择产品类型");
                         return;
                     }
 
                     if (fill_in_transaction_information_et1.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户姓名", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交客户姓名");
                         return;
                     }
 
                     if (fill_in_transaction_information_et2.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户电话", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交客户电话");
                         return;
                     }
 
                     if (fill_in_transaction_information_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户身份证号", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交客户身份证号");
                         return;
                     }
 
                     if (project_relation.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交客户与报备客户关系", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择成交客户与报备客户关系");
                         return;
                     }
 
                     if (fang_hao_et1.getText().toString().equals("") || fang_hao_et2.getText().toString().equals("") || fang_hao_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交房号", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交房号");
                         return;
                     }
 
                     if (house_type.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交户型", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择成交户型");
                         return;
                     }
 
                     if (fill_in_transaction_information_et4.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交面积", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交面积");
                         return;
                     }
 
                     if (fill_in_transaction_information_et5.getText().toString().equals("")) {
-                        Toast.makeText(this, "请填写成交单价", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请填写成交单价");
                         return;
                     }
 
                     if (str.equals("")) {
-                        Toast.makeText(this, "请填写成交单价并确认", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请填写成交单价并确认");
                         return;
                     }
 
                     if (payment_way.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择付款方式", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择付款方式");
                         return;
                     }
 
                     if (project_time.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交时间", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择成交时间");
                         return;
                     }
 

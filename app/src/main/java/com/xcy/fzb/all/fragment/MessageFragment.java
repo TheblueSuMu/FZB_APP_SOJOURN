@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 
 //TODO 消息界面
@@ -131,6 +132,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         manager = getActivity().getSupportFragmentManager();

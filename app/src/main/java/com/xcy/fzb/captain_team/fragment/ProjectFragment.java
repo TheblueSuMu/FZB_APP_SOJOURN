@@ -50,8 +50,10 @@ import com.xcy.fzb.all.modle.ImgData;
 import com.xcy.fzb.all.modle.MessageBean2;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
@@ -158,10 +160,10 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 
                     if (SharItOff.getShar().equals("隐")) {
                         SharItOff.setShar("显");
-                        Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(getContext(),"佣金已显示，如需隐藏请摇动");
                     } else if (SharItOff.getShar().equals("显")) {
                         SharItOff.setShar("隐");
-                        Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(getContext(),"佣金已隐藏，如需显示请摇动");
                     }
                     Log.i("MyCL", "摇一摇");
                     initHotList();
@@ -247,6 +249,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     }
 
     //点击事件
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         if (hotlist.size() != 0) {

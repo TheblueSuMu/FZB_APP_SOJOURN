@@ -39,9 +39,11 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.modle.LandBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -128,7 +130,7 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -192,6 +194,7 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
         });
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -253,16 +256,16 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                                 }
 
                             } else {
-                                Toast.makeText(this, "请输入年龄", Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(this, "请输入年龄");
                             }
                         }else {
-                            Toast.makeText(this, "请上传照片", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(this, "请上传照片");
                         }
                     } else {
-                        Toast.makeText(this, "请选择性别", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择性别");
                     }
                 } else {
-                    Toast.makeText(this, "请输入身份证", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(this, "请输入身份证");
                 }
                 break;
             //TODO 图片

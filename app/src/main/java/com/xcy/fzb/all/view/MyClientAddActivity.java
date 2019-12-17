@@ -36,10 +36,12 @@ import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.AddClientBean;
 import com.xcy.fzb.all.modle.AddPhotoBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -145,7 +147,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -205,6 +207,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
         saveUri = Uri.fromFile(new File(getExternalFilesDir(Environment.DIRECTORY_DCIM), "test.jpg"));
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -276,11 +279,11 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
 //                TODO 编辑
             case R.id.client_add_btn:
                 if (!MatcherUtils.isMobile(client_add_photo_et_1.getText().toString())) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(this, "请输入正确的手机号");
                     return;
                 } else {
                     if (client_add_name_et.getText().toString().equals("")) {
-                        Toast.makeText(MyClientAddActivity.this, "手机号至少填一个", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(MyClientAddActivity.this, "手机号至少填一个");
                     } else {
                         if (addNum == 0) {
                             addNum = 1;
@@ -338,7 +341,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                     client_add_rl_2.setVisibility(View.VISIBLE);
                     client_add_ll_2.setVisibility(View.VISIBLE);
                 } else if (client_add_rl_1.getVisibility() == View.VISIBLE && client_add_rl_2.getVisibility() == View.VISIBLE) {
-                    Toast.makeText(MyClientAddActivity.this, "最多添加三个联系人", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(MyClientAddActivity.this, "最多添加三个联系人");
                 }
                 break;
 //                TODO 删除
@@ -484,7 +487,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
     private void initData() {
         if (client_add_rl_1.getVisibility() == View.VISIBLE && client_add_rl_2.getVisibility() == View.GONE) {
             if (client_add_photo_et_1.getText().length() != 11 || client_add_photo_et_2.getText().length() != 11) {
-                Toast.makeText(MyClientAddActivity.this, "请检查手机号是否是11位", Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(MyClientAddActivity.this, "请检查手机号是否是11位");
                 addNum = 0;
             } else {
                 Retrofit.Builder builder = new Retrofit.Builder();
@@ -506,11 +509,11 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                             public void onNext(AddClientBean addClientBean) {
                                 String msg = addClientBean.getMsg();
                                 if (msg.equals("成功")) {
-                                    Toast.makeText(MyClientAddActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户成功");
                                     CityContents.setAddClient("1");
                                     finish();
                                 } else {
-                                    Toast.makeText(MyClientAddActivity.this, "添加客户失败", Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户失败");
                                 }
                             }
 
@@ -527,7 +530,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
             }
         } else if (client_add_rl_1.getVisibility() == View.VISIBLE && client_add_rl_2.getVisibility() == View.VISIBLE) {
             if (client_add_photo_et_1.getText().length() != 11 || client_add_photo_et_2.getText().length() != 11 || client_add_photo_et_3.getText().length() != 11) {
-                Toast.makeText(MyClientAddActivity.this, "请检查手机号是否是11位", Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(MyClientAddActivity.this, "请检查手机号是否是11位");
                 addNum = 0;
             } else {
                 Retrofit.Builder builder = new Retrofit.Builder();
@@ -549,11 +552,11 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                             public void onNext(AddClientBean addClientBean) {
                                 String msg = addClientBean.getMsg();
                                 if (msg.equals("成功")) {
-                                    Toast.makeText(MyClientAddActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户成功");
                                     CityContents.setAddClient("1");
                                     finish();
                                 } else {
-                                    Toast.makeText(MyClientAddActivity.this, "添加客户失败", Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户失败");
                                 }
                             }
 
@@ -570,7 +573,7 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
             }
         } else {
             if (client_add_photo_et_1.getText().length() != 11) {
-                Toast.makeText(MyClientAddActivity.this, "请检查手机号是否是11位", Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(MyClientAddActivity.this, "请检查手机号是否是11位");
                 addNum = 0;
             } else {
                 Retrofit.Builder builder = new Retrofit.Builder();
@@ -592,11 +595,11 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                             public void onNext(AddClientBean addClientBean) {
                                 String msg = addClientBean.getMsg();
                                 if (msg.equals("成功")) {
-                                    Toast.makeText(MyClientAddActivity.this, "添加客户成功", Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户成功");
                                     CityContents.setAddClient("1");
                                     finish();
                                 } else {
-                                    Toast.makeText(MyClientAddActivity.this, "添加客户失败", Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户失败");
                                 }
                             }
 

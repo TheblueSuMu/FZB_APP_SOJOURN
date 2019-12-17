@@ -49,6 +49,7 @@ import com.xcy.fzb.all.fragment.MyFragment3;
 import com.xcy.fzb.all.modle.DBean;
 import com.xcy.fzb.all.modle.TendentcyBean;
 import com.xcy.fzb.all.persente.Fragnemt_SS;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.MyViewPager;
@@ -619,6 +620,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 });
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

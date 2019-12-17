@@ -40,6 +40,7 @@ import com.xcy.fzb.all.modle.DictListBean;
 import com.xcy.fzb.all.modle.OneKeyTradeBean;
 import com.xcy.fzb.all.modle.PhoneByUserBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.GetInt;
@@ -159,7 +160,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -385,6 +386,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -395,77 +397,77 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
             //            TODO 提交
             case R.id.one_key_btn:
                 if (one_key_relative_et1.getText().toString().equals("")){
-                    Toast.makeText(this, "请输入经纪人姓名", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(this, "请输入经纪人姓名");
                     return;
                 }
 
                 if (!MatcherUtils.isMobile(one_key_relative_et2.getText().toString())){
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(this, "请输入正确的手机号");
                     return;
                 }
 
                 if (!MatcherUtils.isMobile(fill_in_transaction_information_et2.getText().toString())) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(this, "请输入正确的手机号");
                     return;
                 } else {
 
                     if (project_type.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择产品类型", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择产品类型");
                         return;
                     }
 
                     if (fill_in_transaction_information_et1.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户姓名", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交客户姓名");
                         return;
                     }
 
                     if (fill_in_transaction_information_et2.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户电话", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交客户电话");
                         return;
                     }
 
                     if (fill_in_transaction_information_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户身份证号", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交客户身份证号");
                         return;
                     }
 
                     if (project_relation.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交客户与报备客户关系", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择成交客户与报备客户关系");
                         return;
                     }
 
                     if (fang_hao_et1.getText().toString().equals("") || fang_hao_et2.getText().toString().equals("") || fang_hao_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交房号", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交房号");
                         return;
                     }
 
                     if (house_type.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交户型", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择成交户型");
                         return;
                     }
 
                     if (fill_in_transaction_information_et4.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交面积", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交面积");
                         return;
                     }
 
                     if (fill_in_transaction_information_et5.getText().toString().equals("")) {
-                        Toast.makeText(this, "请填写成交单价", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请填写成交单价");
                         return;
                     }
 
                     if (str.equals("")) {
-                        Toast.makeText(this, "请填写成交单价并确认", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请填写成交单价并确认");
                         return;
                     }
 
                     if (payment_way.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择付款方式", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择付款方式");
                         return;
                     }
 
                     if (project_time.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交时间", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择成交时间");
                         return;
                     }
 
@@ -739,7 +741,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(OneKeyActivity.this, "请确保输入的经纪人信息是否正确", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(OneKeyActivity.this, "请确保输入的经纪人信息是否正确");
                         Log.i("根据手机号查询经纪人信息数据获取错误", "错误" + e);
                     }
 
@@ -799,7 +801,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                         @SuppressLint("WrongConstant")
                         @Override
                         public void onNext(OneKeyTradeBean oneKeyTradeBean) {
-                            Toast.makeText(OneKeyActivity.this, oneKeyTradeBean.getData().getMsg(), Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(OneKeyActivity.this, oneKeyTradeBean.getData().getMsg());
                             if (oneKeyTradeBean.getData().getStatus().equals("1")) {
                                 finish();
                                 Log.i("判断", "shuju2：" + ifnum6);
@@ -810,7 +812,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                         @Override
                         public void onError(Throwable e) {
                             ifnum6 = 0;
-                            Toast.makeText(OneKeyActivity.this, "请查看所输入的信息是否正确", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(OneKeyActivity.this, "请查看所输入的信息是否正确");
                             Log.i("一键成交信息", "错误" + e);
                         }
 
@@ -820,12 +822,12 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                         }
                     });
             if (FinalContents.getCommissionId().equals("")) {
-                Toast.makeText(OneKeyActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(OneKeyActivity.this, "请选择佣金");
             } else {
                 FinalContents.setTiaozhuang("成交");
             }
         } else {
-            Toast.makeText(OneKeyActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(OneKeyActivity.this, "请选择佣金");
         }
     }
 

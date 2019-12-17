@@ -16,6 +16,7 @@ import com.xcy.fzb.all.modle.CBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 
 import io.reactivex.Observable;
@@ -62,7 +63,7 @@ public class TheReasonForRefusalActivity extends AllActivity {
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -89,7 +90,7 @@ public class TheReasonForRefusalActivity extends AllActivity {
                     isnum = 1;
                     message = the_reason_for_refusal_et.getText().toString();
                     if (message.equals("")) {
-                        Toast.makeText(TheReasonForRefusalActivity.this, "请填写拒绝原因", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(TheReasonForRefusalActivity.this, "请填写拒绝原因");
                     } else {
 
                         Retrofit.Builder builder = new Retrofit.Builder();
@@ -110,14 +111,14 @@ public class TheReasonForRefusalActivity extends AllActivity {
                                     @Override
                                     public void onNext(CBean cBean) {
                                         if (cBean.getMsg().equals("成功")) {
-                                            Toast.makeText(TheReasonForRefusalActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                            ToastUtil.showToast(TheReasonForRefusalActivity.this, cBean.getData().getMessage());
                                             FinalContents.setEndStart("成功");
                                             the_reason_for_refusal_et.setText("");
                                             Intent intent = new Intent(TheReasonForRefusalActivity.this, CheckPendingTheProjectActivity.class);
                                             startActivity(intent);
                                             finish();
                                         } else {
-                                            Toast.makeText(TheReasonForRefusalActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                            ToastUtil.showToast(TheReasonForRefusalActivity.this, cBean.getData().getMessage());
                                         }
                                     }
 

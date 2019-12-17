@@ -38,6 +38,7 @@ import com.xcy.fzb.all.fragment.MyFragment6;
 import com.xcy.fzb.all.modle.MyTeam2Bean;
 import com.xcy.fzb.all.persente.Fragnemt_SS;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.MyViewPager;
@@ -425,6 +426,7 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
         initDailyTurnover();
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         if (NewlyIncreased.getTag().equals("3")) {

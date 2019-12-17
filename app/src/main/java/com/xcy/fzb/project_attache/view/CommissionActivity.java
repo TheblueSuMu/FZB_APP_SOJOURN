@@ -22,6 +22,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.CommissionListBean;
 import com.xcy.fzb.all.modle.CommissionUpBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -231,6 +232,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                 });
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

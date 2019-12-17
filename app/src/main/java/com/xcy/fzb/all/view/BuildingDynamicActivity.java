@@ -33,6 +33,7 @@ import com.xcy.fzb.all.modle.Dynamic2Bean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -113,7 +114,7 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -242,7 +243,7 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
                     }
                 }).start();
             }
-            Toast.makeText(BuildingDynamicActivity.this, "复制成功", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"复制成功");
             num = 0;
 
         }
@@ -253,7 +254,7 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
 
         String phone = list.get(position).getAttaches().get(0).getPhone();
         if (phone.equals("")) {
-            Toast.makeText(BuildingDynamicActivity.this, "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"暂无电话信息，无法拨打");
         } else {
             final List<String> arrayList = new ArrayList<>();
             for (int i = 0; i < list.get(position).getAttaches().size(); i++) {

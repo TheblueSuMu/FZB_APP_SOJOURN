@@ -40,6 +40,7 @@ import com.xcy.fzb.all.modle.MessageIssueBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 
 import java.io.BufferedOutputStream;
@@ -153,10 +154,10 @@ public class MessageIssueActivity extends AllActivity {
             @Override
             public void onClick(View view) {
                 if (message_issue_message.getText().toString().equals("") && stringBuffer.toString().equals("")) {
-                    Toast.makeText(MessageIssueActivity.this, "请输入要发布的内容或图片", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(MessageIssueActivity.this, "请输入要发布的内容或图片");
                 } else {
                     if (projectID.equals("")) {
-                        Toast.makeText(MessageIssueActivity.this, "请选择要发布的项目", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(MessageIssueActivity.this, "请选择要发布的项目");
                     } else {
                         initFB();
                     }
@@ -209,13 +210,13 @@ public class MessageIssueActivity extends AllActivity {
                     @Override
                     public void onNext(MessageIssueBean messageIssueBean) {
                         if (messageIssueBean.getMsg().equals("成功")) {
-                            Toast.makeText(MessageIssueActivity.this, messageIssueBean.getMsg(), Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(MessageIssueActivity.this, messageIssueBean.getMsg());
                             finish();
                             FinalContents.setProjectID("");
                             FinalContents.setProjectName("");
                             NewlyIncreased.setTest(false);
                         } else {
-                            Toast.makeText(MessageIssueActivity.this, messageIssueBean.getMsg(), Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(MessageIssueActivity.this, messageIssueBean.getMsg());
                         }
                     }
 
@@ -273,8 +274,7 @@ public class MessageIssueActivity extends AllActivity {
                 if (position == parent.getChildCount() - 1) {
 
                     if (mDatas.size() == 9) {
-
-                        Toast.makeText(MessageIssueActivity.this, "图片最多九张", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(MessageIssueActivity.this, "图片最多九张");
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(MessageIssueActivity.this);
                         builder.setTitle("请选择图片来源");

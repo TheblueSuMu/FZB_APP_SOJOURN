@@ -50,7 +50,7 @@ public class PhotoFragment extends Fragment {
         mPhotoView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Toast.makeText(container.getContext(), "长按事件", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(container.getContext(), "长按事件", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });

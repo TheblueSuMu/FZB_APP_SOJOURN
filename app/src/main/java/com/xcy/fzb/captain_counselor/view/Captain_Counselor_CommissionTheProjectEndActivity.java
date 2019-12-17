@@ -23,10 +23,12 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.CommissionListBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.KeyUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_counselor.adapter.TheProjectEndCommissionAdapter;
 
@@ -95,7 +97,7 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -158,6 +160,7 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

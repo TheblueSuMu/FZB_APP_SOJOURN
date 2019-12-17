@@ -35,6 +35,7 @@ import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.BrokerBean;
 import com.xcy.fzb.all.database.DataNumBean;
 import com.xcy.fzb.all.database.FinanceBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -339,7 +340,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                         broker_tv4.setText(dateString);
                         String s = broker_tv4.getText().toString();
                         String s1 = broker_tv5.getText().toString();
-                        if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                        if (project_attache_broker_ll2. getVisibility() == View.VISIBLE) {
                             initDataNum("3", s, s1, "1");
                         } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
                             initDataNum("3", s, s1, "2");
@@ -631,6 +632,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

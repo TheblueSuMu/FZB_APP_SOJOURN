@@ -29,8 +29,10 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ZYDataBean;
 import com.xcy.fzb.all.persente.CleanDataUtils;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AboutFZBActivity;
 import com.xcy.fzb.all.view.CollectActivity;
 import com.xcy.fzb.all.view.FeedbackActivity;
@@ -218,7 +220,7 @@ public class EFragment extends Fragment implements View.OnClickListener, SwipeRe
     }
 
     //点击事件
-
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         Log.i("MyCL","onClick");
@@ -264,7 +266,7 @@ public class EFragment extends Fragment implements View.OnClickListener, SwipeRe
                     try {
                         String totalCacheSize = CleanDataUtils.getTotalCacheSize(getActivity());
                         CleanDataUtils.clearAllCache(getActivity());
-                        Toast.makeText(getActivity(), "清理缓存成功,共清理了" + totalCacheSize + "内存", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(getContext(),"清理缓存成功,共清理了" + totalCacheSize + "内存");
                         my_tv_huancun.setText("0 M");
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -274,7 +276,7 @@ public class EFragment extends Fragment implements View.OnClickListener, SwipeRe
             builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
                 }
             });
             AlertDialog show = builder.show();

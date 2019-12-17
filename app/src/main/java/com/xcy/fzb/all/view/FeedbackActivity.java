@@ -36,6 +36,7 @@ import com.xcy.fzb.all.modle.FeedBackBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.project_attache.adapter.GridViewSAdapter;
 
 import java.io.BufferedOutputStream;
@@ -107,7 +108,7 @@ public class FeedbackActivity extends AllActivity{
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -140,7 +141,7 @@ public class FeedbackActivity extends AllActivity{
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (mDatas.size() == 9) {
-                    Toast.makeText(FeedbackActivity.this, "图片最多九张", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(FeedbackActivity.this, "图片最多九张");
                 } else {
                     if (position == parent.getChildCount() - 1) {
 
@@ -256,10 +257,10 @@ public class FeedbackActivity extends AllActivity{
                                 public void onNext(FeedBackBean feedBackBean) {
                                     String msg = feedBackBean.getMsg();
                                     if (msg.equals("成功")) {
-                                        Toast.makeText(FeedbackActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                                        ToastUtil.showToast(FeedbackActivity.this, "提交成功");
                                         finish();
                                     } else {
-                                        Toast.makeText(FeedbackActivity.this, "提交失败，请重新提交", Toast.LENGTH_SHORT).show();
+                                        ToastUtil.showToast(FeedbackActivity.this, "提交失败，请重新提交");
                                     }
                                 }
 

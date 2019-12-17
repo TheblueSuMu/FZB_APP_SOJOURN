@@ -41,6 +41,7 @@ import com.baidu.mapapi.search.route.OnGetRoutePlanResultListener;
 import com.baidu.mapapi.search.route.RoutePlanSearch;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 public class TestMapActivity extends AppCompatActivity{
 
@@ -300,7 +301,7 @@ public class TestMapActivity extends AppCompatActivity{
     public void sendMessage() {
 
         if (mlocation == null || mMapView == null) {
-            Toast.makeText(TestMapActivity.this, "点击了发送按钮", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(TestMapActivity.this, "点击了发送按钮");
             return;
         }
 
@@ -308,7 +309,7 @@ public class TestMapActivity extends AppCompatActivity{
 //        Log.i("地图", "longitude：" + longitude);
 
         if (latitude == 0 || longitude == 0) {
-            Toast.makeText(TestMapActivity.this, "请选择定位", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(TestMapActivity.this, "请选择定位");
         } else {
             Intent intent = new Intent();
             //纬度
@@ -343,7 +344,7 @@ public class TestMapActivity extends AppCompatActivity{
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
 //                    initMap();//开始定位
                 } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                    Toast.makeText(TestMapActivity.this, "未开启定位权限,请手动到设置去开启权限", Toast.LENGTH_LONG).show();
+                    ToastUtil.showToast(TestMapActivity.this, "未开启定位权限,请手动到设置去开启权限");
                     initView();
                 }
                 break;
@@ -359,7 +360,7 @@ public class TestMapActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
-        Toast.makeText(TestMapActivity.this, "请选择坐标并且发送", Toast.LENGTH_SHORT).show();
+        ToastUtil.showToast(TestMapActivity.this, "请选择坐标并且发送");
         Log.i("键", "点击了回退键");
 
     }

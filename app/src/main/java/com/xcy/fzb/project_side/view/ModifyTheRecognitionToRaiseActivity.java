@@ -32,6 +32,7 @@ import com.xcy.fzb.all.modle.EarnestMoneyAuditBean;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -111,7 +112,7 @@ public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -205,7 +206,7 @@ public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
 
     private void init() {
         if (!MatcherUtils.isMobile(modify_the_recognition_to_raise_tv2.getText().toString())) {
-            Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "请输入正确的手机号");
             return;
         }
 
@@ -228,47 +229,47 @@ public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
         }
 
         if (modify_the_recognition_to_raise_tv1.getText().toString().equals("")) {
-            Toast.makeText(this, "请输入认筹客户姓名", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "请输入认筹客户姓名");
             return;
         }
 
         if (sex.equals("")) {
-            Toast.makeText(this, "请选择性别", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "请选择性别");
             return;
         }
 
         if (modify_the_recognition_to_raise_tv2.getText().toString().equals("")) {
-            Toast.makeText(this, "请输入认筹客户电话", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "请输入认筹客户电话");
             return;
         }
 
         if (modify_the_recognition_to_raise_tv3.getText().toString().equals("")) {
-            Toast.makeText(this, "请输入认筹客户身份证", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "请输入认筹客户身份证");
             return;
         }
 
         if (modify_the_recognition_to_raise_tv4.getText().toString().equals("")) {
-            Toast.makeText(this, "请选择报备客户与认筹客户关系", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "请选择报备客户与认筹客户关系");
             return;
         }
 
         if (modify_the_recognition_to_raise_tv5.getText().toString().equals("")) {
-            Toast.makeText(this, "请输入意向楼栋", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "请输入意向楼栋");
             return;
         }
 
         if (modify_the_recognition_to_raise_tv6.getText().toString().equals("")) {
-            Toast.makeText(this, "请选择意向户型", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "请选择意向户型");
             return;
         }
 
         if (modify_the_recognition_to_raise_tv7.getText().toString().equals("")) {
-            Toast.makeText(this, "请输入意向面积", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "请输入意向面积");
             return;
         }
 
         if (modify_the_recognition_to_raise_tv8.getText().toString().equals("")) {
-            Toast.makeText(this, "请选择认筹时间", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "请选择认筹时间");
             return;
         }
 
@@ -294,11 +295,11 @@ public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
                     @Override
                     public void onNext(ConfessBean confessBean) {
                         if (confessBean.getMsg().equals("成功")) {
-                            Toast.makeText(ModifyTheRecognitionToRaiseActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(ModifyTheRecognitionToRaiseActivity.this, confessBean.getData().getMessage());
                             FinalContents.setTiaozhuang("认筹成功");
                             finish();
                         } else {
-                            Toast.makeText(ModifyTheRecognitionToRaiseActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(ModifyTheRecognitionToRaiseActivity.this, confessBean.getData().getMessage());
                         }
                     }
 

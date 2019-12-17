@@ -55,6 +55,7 @@ import com.xcy.fzb.all.modle.UserMessageBean;
 import com.xcy.fzb.all.modle.ZYDataBean;
 import com.xcy.fzb.all.modle.ZhangBingDataBean;
 import com.xcy.fzb.all.persente.OkHttpPost;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -345,6 +346,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
     }
 
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

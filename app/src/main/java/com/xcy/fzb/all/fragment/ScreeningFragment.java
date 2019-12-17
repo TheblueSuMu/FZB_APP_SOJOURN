@@ -21,6 +21,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.Project_Label_Adapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.LabelBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.service.MyService;
 
 import org.greenrobot.eventbus.EventBus;
@@ -282,6 +283,7 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
                 });
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()){

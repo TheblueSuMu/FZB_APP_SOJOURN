@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.github.androidprogresslayout.ProgressLayout;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.fragment.MessageFragment;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.ToastUtil;
@@ -80,7 +81,7 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -181,6 +182,7 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
         }
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -245,7 +247,7 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
     private void exit(){
         if(!isExit){
             isExit=true;
-            ToastUtil.showLongToast(getApplicationContext(),"再按一次返回键，退出程序");
+            ToastUtil.showToast(getApplicationContext(),"再按一次返回键，退出程序");
             //利用handler延迟发送更改状态信息
             handler.sendEmptyMessageDelayed(0,2000);
         }
