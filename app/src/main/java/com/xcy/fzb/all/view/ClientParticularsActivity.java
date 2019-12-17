@@ -26,9 +26,11 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ClientParticularsAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ClientParticularsBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +80,7 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -211,7 +213,7 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
                                         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
-                                                Toast.makeText(ClientParticularsActivity.this, "取消拨打电话", Toast.LENGTH_SHORT).show();
+                                                ToastUtil.showToast(ClientParticularsActivity.this,"取消拨打电话");
                                             }
                                         });
                                         builder.show();
@@ -269,6 +271,7 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

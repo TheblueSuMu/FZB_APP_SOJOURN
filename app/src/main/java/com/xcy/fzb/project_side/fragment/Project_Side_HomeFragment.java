@@ -31,6 +31,7 @@ import com.xcy.fzb.all.modle.HomeBean;
 import com.xcy.fzb.all.modle.SideHomeBean;
 import com.xcy.fzb.all.modle.UserBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.project_side.adapter.Project_Side_HomeRecyclerAdapter;
@@ -553,6 +554,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
     }
 
     //TODO 点击事件
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         CityContents.setIsRead("1");

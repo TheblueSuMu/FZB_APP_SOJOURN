@@ -31,6 +31,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.MessageBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -153,7 +154,7 @@ public class NoticeFragment extends Fragment {
                                 public void ItemOnClick(int position) {
                                     String phone = rows.get(position).getPhone();
                                     if (phone.equals("")) {
-                                        Toast.makeText(getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+                                        ToastUtil.showLongToast(getContext(),"暂无电话信息，无法拨打");
                                     } else {
                                         Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));//跳转到拨号界面，同时传递电话号码
                                         startActivity(dialIntent);
@@ -213,7 +214,7 @@ public class NoticeFragment extends Fragment {
                                             }
                                         }
                                     }
-                                    Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showLongToast(getContext(),"复制成功");
                                     num = 0;
 
                                 }

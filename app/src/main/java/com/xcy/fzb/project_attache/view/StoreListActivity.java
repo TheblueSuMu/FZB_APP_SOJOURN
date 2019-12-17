@@ -28,6 +28,7 @@ import com.xcy.fzb.all.database.StoreListData;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -312,6 +313,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

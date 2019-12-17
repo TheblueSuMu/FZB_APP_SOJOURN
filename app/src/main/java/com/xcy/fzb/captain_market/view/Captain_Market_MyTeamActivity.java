@@ -26,9 +26,11 @@ import com.xcy.fzb.all.database.DataStatisticsBean;
 import com.xcy.fzb.all.database.MyTeamBean;
 import com.xcy.fzb.all.database.TeamCommissionsBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_team.adapter.DailyTurnoverAdapter;
 import com.xcy.fzb.captain_team.adapter.MyTeamAdapter;
@@ -165,7 +167,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -341,6 +343,7 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
         initDailyTurnover();
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         if (NewlyIncreased.getTag().equals("3")) {

@@ -47,6 +47,7 @@ import com.xcy.fzb.all.modle.LoginUserBean;
 import com.xcy.fzb.all.modle.UserIdentity;
 import com.xcy.fzb.all.modle.UserSaveBean;
 import com.xcy.fzb.all.persente.SharItOff;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
@@ -172,7 +173,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                 initfvb();
             }
         } else {
-            ToastUtil.showLongToast(this, "当前无网络，请检查网络后再进行登录");
+            ToastUtil.showLongToast(LoginActivity.this,"当前无网络，请检查网络后再进行登录");
         }
         initClear();
     }
@@ -435,6 +436,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
 
     @SuppressLint("WrongConstant")
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

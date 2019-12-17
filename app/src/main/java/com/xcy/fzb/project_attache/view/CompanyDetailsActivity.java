@@ -34,6 +34,7 @@ import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.DataNumBean;
 import com.xcy.fzb.all.database.FinanceBean;
 import com.xcy.fzb.all.modle.CompanyDetailsBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -647,6 +648,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

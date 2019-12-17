@@ -582,8 +582,8 @@ public class ClockStoresActivity extends AppCompatActivity implements View.OnCli
                                     report_binding_cancel.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            initClockIn();
                                             show.dismiss();
+                                             initClockIn();
                                         }
                                     });
                                     report_binding_confirm.setOnClickListener(new View.OnClickListener() {

@@ -15,9 +15,11 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.WechatBindingBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -71,7 +73,7 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -111,14 +113,14 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
 
                         @Override
                         public void onError(Platform platform, int i, Throwable throwable) {
-                            Toast.makeText(ToLoginActivity.this, "授权失败", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(ToLoginActivity.this, "授权失败");
                             Log.i("json","授权失败"+throwable.getMessage());
                         }
 
                         @Override
                         public void onCancel(Platform platform, int i) {
                             Log.i("json","授权取消");
-                            Toast.makeText(ToLoginActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(ToLoginActivity.this, "授权取消");
                         }
                     });//授权回调监听，监听oncomplete，onerror，oncancel三种状态
 
@@ -128,10 +130,10 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
                     }
                     if (plat.isAuthValid()) {
                         //判断是否已经存在授权状态，可以根据自己的登录逻辑设置
-                        Toast.makeText(ToLoginActivity.this, "已经授权过了", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(ToLoginActivity.this, "已经授权过了");
                         return;
                     } else {
-                        Toast.makeText(ToLoginActivity.this, "正在授权", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(ToLoginActivity.this, "正在授权");
                     }
                     ShareSDK.setActivity(ToLoginActivity.this);//抖音登录适配安卓9.0
                     plat.showUser(null);    //要数据不要功能，主要体现在不会重复出现授权界面
@@ -190,6 +192,7 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
     }
 
     @SuppressLint("InflateParams")
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

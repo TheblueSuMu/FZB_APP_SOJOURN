@@ -52,6 +52,7 @@ import com.xcy.fzb.all.modle.VisitSaveBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -148,7 +149,7 @@ public class ConfirmTheVisitActivity extends AllActivity {
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -392,7 +393,7 @@ public class ConfirmTheVisitActivity extends AllActivity {
 
                 if (position == parent.getChildCount() - 1) {
                     if (mDatas.size() == 9) {
-                        Toast.makeText(ConfirmTheVisitActivity.this, "图片最多九张", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(ConfirmTheVisitActivity.this,"图片最多九张");
                     } else {
 //                        AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmTheVisitActivity.this);
 //                        builder.setTitle("请选择图片来源");
@@ -471,12 +472,12 @@ public class ConfirmTheVisitActivity extends AllActivity {
         String locationS = getLongitude + "," + getLatitude;
 
         if (comfirm_location.getText().toString().equals("")) {
-            Toast.makeText(this, "请进入地图选择地址", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"请进入地图选择地址");
             return;
         }
 
         if (stringBuffer.toString().equals("")) {
-            Toast.makeText(this, "请选择照片", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"请选择照片");
             return;
         }
 
@@ -498,7 +499,7 @@ public class ConfirmTheVisitActivity extends AllActivity {
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(VisitSaveBean visitSaveBean) {
-                        Toast.makeText(ConfirmTheVisitActivity.this, visitSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(ConfirmTheVisitActivity.this,visitSaveBean.getData().getMessage());
                         FinalContents.setTiaozhuang("到访成功");
                         finish();
                     }

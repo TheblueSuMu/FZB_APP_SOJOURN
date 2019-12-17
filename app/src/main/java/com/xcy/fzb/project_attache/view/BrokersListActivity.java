@@ -27,6 +27,7 @@ import com.xcy.fzb.all.database.BrokersListData;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -237,6 +238,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
         }
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

@@ -28,6 +28,7 @@ import com.github.androidprogresslayout.ProgressLayout;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.MessageFragment;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.ToastUtil;
@@ -215,6 +216,7 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
         button_me.setOnClickListener(this);
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         FragmentManager manager = getSupportFragmentManager();

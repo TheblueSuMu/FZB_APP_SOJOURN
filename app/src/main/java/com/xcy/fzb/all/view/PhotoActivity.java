@@ -15,6 +15,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 
@@ -52,7 +53,7 @@ public class PhotoActivity extends AllActivity {
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 

@@ -25,9 +25,11 @@ import com.xcy.fzb.all.modle.CBean;
 import com.xcy.fzb.all.modle.CheckBean;
 import com.xcy.fzb.all.modle.ReadRecordBean;
 import com.xcy.fzb.all.modle.ReportProcessDetailsBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.adapter.Project_Side_MakeABargainAdapter;
 
@@ -98,7 +100,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -222,6 +224,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
         check_pending_rv.setAdapter(adapter);
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -278,11 +281,11 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         @Override
                         public void onNext(CBean cBean) {
                             if (cBean.getMsg().equals("成功")) {
-                                Toast.makeText(CheckPendingActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, cBean.getData().getMessage());
                                 FinalContents.setEndStart("成功");
                                 finish();
                             } else {
-                                Toast.makeText(CheckPendingActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, cBean.getData().getMessage());
                                 finish();
                             }
                         }
@@ -317,10 +320,10 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         @Override
                         public void onNext(CheckBean checkBean) {
                             if (checkBean.getMsg().equals("成功")) {
-                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
                                 finish();
                             } else {
-                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
                                 finish();
                             }
                         }
@@ -355,10 +358,10 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         @Override
                         public void onNext(CheckBean checkBean) {
                             if (checkBean.getMsg().equals("成功")) {
-                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
                                 finish();
                             } else {
-                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
                                 finish();
                             }
                         }

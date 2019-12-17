@@ -56,8 +56,10 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.StoreListBean;
 import com.xcy.fzb.all.modle.CityBean;
 import com.xcy.fzb.all.modle.HotBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.project_attache.adapter.ClusterItem;
 import com.xcy.fzb.project_attache.adapter.ClusterManager;
 
@@ -221,7 +223,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                         String s = map_house_search.getText().toString();
                         if (s.equals("")) {
                             //提示用户输入内容再搜索
-                            Toast.makeText(MapHouseActivity.this, "输入框为空，请输入内容再进行查找", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(MapHouseActivity.this, "输入框为空，请输入内容再进行查找");
                         } else {
                             if (FinalContents.getIfCity().equals("")) {
                                 if (ifMG == 0) {//门店
@@ -1033,6 +1035,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
     }
 
     //点击事件
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -1249,7 +1252,7 @@ public class MapHouseActivity extends AppCompatActivity implements View.OnClickL
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
                     initView();//开始定位
                 } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                    Toast.makeText(MapHouseActivity.this, "未开启定位权限,请手动到设置去开启权限", Toast.LENGTH_LONG).show();
+                    ToastUtil.showToast(MapHouseActivity.this, "未开启定位权限,请手动到设置去开启权限");
                     initView();
                 }
                 break;

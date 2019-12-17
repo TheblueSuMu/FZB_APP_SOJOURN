@@ -22,9 +22,11 @@ import com.xcy.fzb.all.adapter.BrokerageAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.BorkerageDownBean;
 import com.xcy.fzb.all.database.BorkerageUpBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +94,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -223,6 +225,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
     }
 
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         int id = view.getId();

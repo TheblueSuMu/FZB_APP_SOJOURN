@@ -20,6 +20,7 @@ import com.xcy.fzb.all.modle.UserMessageBean;
 import com.xcy.fzb.all.modle.VerificationBean;
 import com.xcy.fzb.all.modle.ZYDataBean;
 import com.xcy.fzb.all.modle.ZhangBingDataBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -70,7 +71,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showLongToast(this, "当前无网络，请检查网络后再进行登录");
+            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -94,6 +95,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -138,7 +140,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                         CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(change_phone_yanzhengma_1, 60000, 1000);
                         mCountDownTimerUtils.start();
                         VerificationBean.DataBean data = codeBean.getData();
-                        Toast.makeText(ChangePhoneActivity.this, data.getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(ChangePhoneActivity.this,data.getMessage());
                     }
 
                     @Override
@@ -181,7 +183,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                     @Override
                     public void onNext(ChangePhoneBean changeBean) {
                         ChangePhoneBean.DataBean data = changeBean.getData();
-                        Toast.makeText(ChangePhoneActivity.this, data.getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(ChangePhoneActivity.this, data.getMessage());
                         if (data.getStatus().equals("1")) {
                             if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
                                 UserMessageBean userMessageBean = Connector.getUserMessageBean();

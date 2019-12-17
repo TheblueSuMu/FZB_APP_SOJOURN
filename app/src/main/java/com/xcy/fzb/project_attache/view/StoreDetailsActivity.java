@@ -26,6 +26,7 @@ import com.xcy.fzb.all.fragment.MyFragment2;
 import com.xcy.fzb.all.modle.CompanyBean;
 import com.xcy.fzb.all.modle.CompanyDataBean;
 import com.xcy.fzb.all.persente.Fragnemt_SS;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
@@ -498,6 +499,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.github.androidprogresslayout.ProgressLayout;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.persente.SharItOff;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.ToastUtil;
@@ -75,7 +76,7 @@ public class Shopping_Guide_MainActivity extends AllActivity implements View.OnC
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -171,6 +172,7 @@ public class Shopping_Guide_MainActivity extends AllActivity implements View.OnC
         transaction.commit();
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         FragmentManager manager = getSupportFragmentManager();

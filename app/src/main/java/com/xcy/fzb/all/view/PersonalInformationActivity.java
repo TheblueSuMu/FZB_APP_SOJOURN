@@ -47,9 +47,11 @@ import com.xcy.fzb.all.modle.UserMessageBean;
 import com.xcy.fzb.all.modle.ZYDataBean;
 import com.xcy.fzb.all.modle.ZhangBingDataBean;
 import com.xcy.fzb.all.persente.OkHttpPost;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -137,7 +139,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -521,7 +523,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
 
     }
 
-
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -571,13 +573,12 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                             }else {
 
                             }
-                            Toast.makeText(PersonalInformationActivity.this, "相机", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(PersonalInformationActivity.this, "相机");
                         } else if (i == 1) {
                             Intent getAlbum = new Intent(Intent.ACTION_PICK);
                             getAlbum.setType(IMAGE_TYPE);
                             startActivityForResult(getAlbum, IMAGE_CODE);
-                            Toast.makeText(PersonalInformationActivity.this, "相册", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(PersonalInformationActivity.this, "相册", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(PersonalInformationActivity.this, "相册");
                         }
                     }
                 });
@@ -621,7 +622,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                 personal_et_name.setVisibility(View.GONE);
                                 personal_name.setVisibility(View.VISIBLE);
                                 personal_name.setText(s);
-                                Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(PersonalInformationActivity.this, data1.getMessage());
 
                                 if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
                                     UserMessageBean userMessageBean = Connector.getUserMessageBean();
@@ -695,7 +696,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                 }
                                 initData();
                             } else {
-                                Toast.makeText(PersonalInformationActivity.this, "修改昵称失败", Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(PersonalInformationActivity.this, "修改昵称失败");
                             }
                             return true;
                         }
@@ -755,7 +756,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                 ChangeSexBean changeSexBean = gson.fromJson(data, ChangeSexBean.class);
                 ChangeSexBean.DataBean data1 = changeSexBean.getData();
                 if (data1.getMessage().equals("修改性别成功")) {
-                    Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(PersonalInformationActivity.this, data1.getMessage());
                     personal_sex.setText(list1.get(options1));
                     if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
                         UserMessageBean userMessageBean = Connector.getUserMessageBean();
@@ -807,7 +808,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                         Connector.setUserBean(userMessageBean);
                     }
                 } else {
-                    Toast.makeText(PersonalInformationActivity.this, "性别修改失败", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(PersonalInformationActivity.this, "性别修改失败");
                 }
 
 
@@ -951,9 +952,9 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                                     @Override
                                                     public void onNext(PersonalPhotoBean personalPhotoBean) {
                                                         if (personalPhotoBean.getData().getStatus().equals("1")) {
-                                                            Toast.makeText(PersonalInformationActivity.this, personalPhotoBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                                            ToastUtil.showToast(PersonalInformationActivity.this, personalPhotoBean.getData().getMessage());
                                                         } else {
-                                                            Toast.makeText(PersonalInformationActivity.this, personalPhotoBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                                            ToastUtil.showToast(PersonalInformationActivity.this, personalPhotoBean.getData().getMessage());
                                                         }
 
                                                     }
@@ -1098,7 +1099,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                                 @Override
                                                 public void onNext(PersonalPhotoBean personalPhotoBean) {
                                                     if (personalPhotoBean.getData().getStatus().equals("1")) {
-                                                        Toast.makeText(PersonalInformationActivity.this, personalPhotoBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                                        ToastUtil.showToast(PersonalInformationActivity.this, personalPhotoBean.getData().getMessage());
                                                         isPhoto = "";
                                                         if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
                                                             UserMessageBean userMessageBean = Connector.getUserMessageBean();
@@ -1150,7 +1151,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                                                             Connector.setUserBean(userMessageBean);
                                                         }
                                                     } else {
-                                                        Toast.makeText(PersonalInformationActivity.this, personalPhotoBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                                        ToastUtil.showToast(PersonalInformationActivity.this, personalPhotoBean.getData().getMessage());
                                                     }
 
                                                 }
