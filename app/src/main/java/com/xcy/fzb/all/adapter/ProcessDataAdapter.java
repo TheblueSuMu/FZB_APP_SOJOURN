@@ -78,6 +78,7 @@ public class ProcessDataAdapter extends RecyclerView.Adapter<ProcessDataAdapter.
                     holder.client_item_title.setText(Html.fromHtml("<font color='#999999'>" + split[0] + "</font>"));
 //                holder.client_item_title.setTextColor(R.color.colornn4);
                 }
+                holder.client_item_cg.setVisibility(View.VISIBLE);
                 holder.client_item_cg.setTextColor(Color.parseColor("#ac1e26"));
             }else {
 //                holder.client_item_title.setText(rows.get(position).getRelatedData());
