@@ -14,14 +14,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.wang.avi.AVLoadingIndicatorView;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.StoreListBean;
 import com.xcy.fzb.all.database.StoreListData;
@@ -40,7 +39,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -132,6 +130,10 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 //        layout = findViewById(R.id.ssrl_s);
 
 //        layout.setOnRefreshListener(this);
+
+        if (CityContents.getStore().equals("1")) {
+            store_list_ll3.setVisibility(View.GONE);
+        }
 
         store_list_cb.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,6 +23,16 @@ public class CityContents {
 
     static String ErrorMessage = "";
 
+    static String Store = "";
+
+    public static String getStore() {
+        return Store;
+    }
+
+    public static void setStore(String store) {
+        Store = store;
+    }
+
     public static String getError() {
         return Error;
     }
