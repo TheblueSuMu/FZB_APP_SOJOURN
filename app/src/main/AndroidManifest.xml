@@ -133,9 +133,10 @@
         <activity android:name=".Introduction" android:launchMode="singleTop"/>       <!--TODO 引导页-->
         <activity android:name=".Login.LoginActivity" android:launchMode="singleTop"/>  <!--TODO 登录页-->
 
+        <activity android:name=".broker.view.Broker_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 经纪人 主页-->
+
         <activity android:name=".all.view.FeedbackActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 意见反馈-->
         <activity android:name=".all.view.DisclaimerActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 免责声明-->
-        <activity android:name=".broker.view.Broker_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 经纪人 主页-->
         <activity android:name=".all.view.BindingPhoneActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 绑定手机号-->
         <activity android:name=".all.view.CentreActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 项目详情页 医疗中心-->
         <activity android:name=".all.view.ChangePhoneActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 更换手机号-->

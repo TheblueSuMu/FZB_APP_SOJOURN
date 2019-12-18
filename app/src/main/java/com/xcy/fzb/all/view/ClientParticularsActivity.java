@@ -99,16 +99,17 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
         client_particulars_img.setOnClickListener(this);
         client_particulars_return.setOnClickListener(this);
 
-        if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
-            client_particulars_report.setVisibility(View.GONE);
-        }else {
-            client_particulars_report.setVisibility(View.VISIBLE);
-        }
+
 
         if (!FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
             client_particulars_report.setVisibility(View.GONE);
         }else {
             client_particulars_report.setVisibility(View.VISIBLE);
+            if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9") ) {
+                client_particulars_report.setVisibility(View.GONE);
+            }else {
+                client_particulars_report.setVisibility(View.VISIBLE);
+            }
         }
 
         initData();

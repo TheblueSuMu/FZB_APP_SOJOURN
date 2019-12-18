@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -102,7 +101,7 @@ public class MoreInformationActivity extends AllActivity implements View.OnClick
         }else {
             information_relative1.setVisibility(View.VISIBLE);
             information_relative2.setVisibility(View.GONE);
-            if (FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5")|| FinalContents.getIdentity().equals("63")|| FinalContents.getIdentity().equals("7")) {
+            if (FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5")|| FinalContents.getIdentity().equals("63")|| FinalContents.getIdentity().equals("7") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9")) {
                 Log.i("身份验证","是团助");
                 information_relative1.setVisibility(View.GONE);
                 information_relative2.setVisibility(View.VISIBLE);
