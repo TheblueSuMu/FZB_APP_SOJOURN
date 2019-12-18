@@ -945,7 +945,7 @@ public class AddStoreActivity extends AllActivity implements View.OnClickListene
                         @Override
                         public void onError(Throwable e) {
 
-                            ToastUtil.showToast(AddStoreActivity.this,"请重新定位详情地址");
+//                            ToastUtil.showToast(AddStoreActivity.this,"请重新定位详情地址");
                             Log.i("经纬度转坐标", "经纬度转坐标错误信息：" + e.getMessage());
 
                         }
