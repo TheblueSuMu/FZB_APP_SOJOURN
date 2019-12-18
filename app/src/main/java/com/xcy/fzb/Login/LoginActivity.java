@@ -1201,6 +1201,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
     private void initDaown(){
         Log.i("查询次数","次数：" +size++);
+
         String versionName = APKVersionCodeUtils.getVerName(this);
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -1209,6 +1210,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         final Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
         final Observable<AppPackageBean> appPackage = fzbInterface.getAppPackage("android","com.xcy.fzb", versionName);
+        Log.i("提示更新","数据："+FinalContents.getBaseUrl()+"commonSelect/appPackage&appType=android&appPackage=com.xcy.fzb&appVeriosn="+versionName);
         appPackage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<AppPackageBean>() {

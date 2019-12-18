@@ -19,6 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.MyFragmentPagerAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.fragment.MyFragment1;
@@ -150,6 +151,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
         StatusBar.makeStatusBarTransparent(this);
 
+        CityContents.setStore("1");
 
         fragment_ll_2 = findViewById(R.id.fragment_llss_2);
         fragment_ll_1 = findViewById(R.id.fragment_llss_1);
@@ -640,6 +642,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         NewlyIncreased.setYJType("");
         NewlyIncreased.setYJstartDate("");
         NewlyIncreased.setYJendDate("");
+        CityContents.setStore("");
     }
 
     @Override
@@ -675,4 +678,5 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
             initDataS();
         }
     }
+
 }

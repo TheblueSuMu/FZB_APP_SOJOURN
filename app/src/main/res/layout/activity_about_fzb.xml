@@ -86,7 +86,7 @@
             android:layout_height="7dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="#EEEEEE"></LinearLayout>
+            android:background="#EEEEEE"/>
 
         <RelativeLayout
             android:id="@+id/fzb_jc"
