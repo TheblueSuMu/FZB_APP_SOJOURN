@@ -22,7 +22,6 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -384,7 +383,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
         if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
             report.setVisibility(View.VISIBLE);
-            if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
+            if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9") ) {
                 report.setVisibility(View.GONE);
             }else {
                 report.setVisibility(View.VISIBLE);
@@ -431,7 +430,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 }else {
                     report.setVisibility(View.GONE);
                 }
-                if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
+                if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7")  || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9")) {
                     report.setVisibility(View.GONE);
                 }
                 oversea_ll.setVisibility(View.GONE);
@@ -446,7 +445,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 }else {
                     report.setVisibility(View.GONE);
                 }
-                if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
+                if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9") ) {
                     report.setVisibility(View.GONE);
                 }
                 oversea_ll.setVisibility(View.GONE);
