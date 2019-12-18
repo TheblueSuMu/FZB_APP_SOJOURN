@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.view.AllActivity;
@@ -79,6 +80,7 @@ public class ContentActivity extends AllActivity {
         content_ll4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                CityContents.setStore("1");
                 intent = new Intent(ContentActivity.this, StoreListActivity.class);
                 FinalContents.setCompanyId("");
                 FinalContents.setMyAddType("");
@@ -87,4 +89,12 @@ public class ContentActivity extends AllActivity {
             }
         });
     }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//
+//        CityContents.setStore("");
+//
+//    }
 }
