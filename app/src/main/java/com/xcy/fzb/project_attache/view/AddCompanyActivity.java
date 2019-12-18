@@ -526,7 +526,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 
                         @Override
                         public void onError(Throwable e) {
-
+                            ToastUtil.showToast(AddCompanyActivity.this,"请重新定位详情地址");
                             Log.i("经纬度转坐标","经纬度转坐标错误信息：" + e.getMessage());
 
                         }
