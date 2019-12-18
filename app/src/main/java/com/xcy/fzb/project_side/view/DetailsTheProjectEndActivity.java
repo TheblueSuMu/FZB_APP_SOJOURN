@@ -15,8 +15,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -51,7 +53,7 @@ import com.xcy.fzb.all.view.ProjectDetails;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -62,7 +64,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 //TODO 项目详情
 public class DetailsTheProjectEndActivity extends AllActivity implements View.OnClickListener {
@@ -151,10 +152,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private String status = "10";
     private LineChart details_chart;
 
-    DateTimePickerView dateTimePickerView;
-    RelativeLayout particulars_picker;
-    TextView particulars_picker_cancel;
-    TextView particulars_picker_ensure;
 
     private DynamicLineChartManager dynamicLineChartManager;
     private List<String> names = new ArrayList<>(); //折线名字集合
@@ -174,6 +171,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     LinearLayout project_attache_ll4;
     String tag = "1";
     private String string;
+    private Date selectdate;
 
 
     @Override
@@ -289,10 +287,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time_ll1 = findViewById(R.id.details_the_project_end_time_ll1);
         details_the_project_end_time_ll2 = findViewById(R.id.details_the_project_end_time_ll2);
         details_the_project_end_time_ll3 = findViewById(R.id.details_the_project_end_time_ll3);
-        particulars_picker = findViewById(R.id.particulars_picker);
-        particulars_picker_cancel = findViewById(R.id.particulars_picker_cancel);
-        particulars_picker_ensure = findViewById(R.id.particulars_picker_ensure);
-        dateTimePickerView = findViewById(R.id.particulars_pickerView);
 
         details_chart = findViewById(R.id.details_chart);
 
@@ -373,180 +367,236 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         beforeDate3 = string;
         afterDate3 = string;
 
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth - 15));
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth + 15));
-
-        particulars_picker_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                particulars_picker.setVisibility(View.GONE);
-            }
-        });
-
-        particulars_picker_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (type.equals("1")) {
-                    initViewData2();
-                } else if (type.equals("2")) {
-                    initViewData1();
-                } else if (type.equals("3")) {
-                    initViewData3();
-                }
-                particulars_picker.setVisibility(View.GONE);
-            }
-        });
-
-        particulars_picker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                particulars_picker.setVisibility(View.GONE);
-            }
-        });
-
-        //            TODO 开始时间
+        //                TODO 开始时间
         details_the_project_end_time1.setOnClickListener(new View.OnClickListener() {
+            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth - 15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth + 15));
-                particulars_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        beforeDate1 = dateString;
-                        details_the_project_end_time1.setText("<" + dateString);
-                        NewlyIncreased.setStartDate(dateString);
-                        type = "1";
-                    }
-                });
+                initTime1_Date1();
             }
         });
         //                TODO 结束时间
         details_the_project_end_time2.setOnClickListener(new View.OnClickListener() {
+            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth - 15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth + 15));
-                particulars_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        afterDate1 = dateString;
-                        details_the_project_end_time2.setText("-" + dateString + " >");
-                        NewlyIncreased.setEndDate(dateString);
-                        type = "1";
-                    }
-                });
+                initTime1_Date2();
             }
         });
 
-        //            TODO 开始时间
+        //                TODO 开始时间
         details_the_project_end_time3.setOnClickListener(new View.OnClickListener() {
+            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth - 15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth + 15));
-                particulars_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        beforeDate2 = dateString;
-                        details_the_project_end_time3.setText("<" + dateString);
-                        NewlyIncreased.setYJstartDate(dateString);
-                        type = "2";
-                    }
-                });
+                initTime2_Date1();
             }
         });
         //                TODO 结束时间
         details_the_project_end_time4.setOnClickListener(new View.OnClickListener() {
+            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth - 15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth + 15));
-                particulars_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        afterDate2 = dateString;
-                        details_the_project_end_time4.setText("-" + dateString + " >");
-                        NewlyIncreased.setYJendDate(dateString);
-                        type = "2";
-                    }
-                });
+                initTime2_Date2();
             }
         });
 
-        //            TODO 开始时间
+        //                TODO 开始时间
         details_the_project_end_time5.setOnClickListener(new View.OnClickListener() {
+            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth - 15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth + 15));
-                particulars_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        year3 = date.get(Calendar.YEAR);
-                        month3 = date.get(Calendar.MONTH);
-                        dayOfMonth3 = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year3, month3 + 1, dayOfMonth3);
-                        beforeDate3 = dateString;
-                        details_the_project_end_time5.setText("<" + dateString);
-                        type = "3";
-                    }
-                });
+                initTime3_Date1();
             }
         });
+
+        //                TODO 结束时间
+        details_the_project_end_time6.setOnClickListener(new View.OnClickListener() {
+            @SingleClick(1000)
+            @Override
+            public void onClick(View view) {
+                initTime3_Date2();
+            }
+        });
+    }
+
+    //            TODO  项目详情    运营数据   开始时间
+    private void initTime1_Date1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                details_the_project_end_time1.setText("<" + getTime2(date));
+                beforeDate1 = getTime2(date);
+                NewlyIncreased.setStartDate(getTime2(date));
+                initViewData2();
+            }
+        })
+
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO  项目详情    运营数据   结束时间
+    private void initTime1_Date2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                afterDate1 = getTime2(date);
+                details_the_project_end_time2.setText("-" + getTime2(date) + " >");
+                NewlyIncreased.setEndDate(getTime2(date));
+                initViewData2();
+            }
+        })
+
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO  项目详情    财务数据   开始时间
+    private void initTime2_Date1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                beforeDate2 = getTime2(date);
+                details_the_project_end_time3.setText("<" + getTime2(date));
+                NewlyIncreased.setYJstartDate(getTime2(date));
+                initViewData1();
+            }
+        })
+
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO  项目详情    财务数据   结束时间
+    private void initTime2_Date2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                afterDate2 = getTime2(date);
+                details_the_project_end_time4.setText("-" + getTime2(date) + " >");
+                NewlyIncreased.setYJendDate(getTime2(date));
+                initViewData1();
+            }
+        })
+
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO  项目详情    业务趋势   开始时间
+    private void initTime3_Date1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                selectdate = date;
+                beforeDate3 = getTime2(date);
+                details_the_project_end_time5.setText("<" + getTime2(date));
+                initViewData3();
+            }
+        })
+
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO  项目详情    业务趋势   结束时间
+    private void initTime3_Date2(){
+        Calendar calendar = Calendar.getInstance();
+        if (selectdate != null) {
+            calendar.setTime(selectdate);
+        }
+
         year3 = calendar.get(Calendar.YEAR);
         month3 = calendar.get(Calendar.MONTH);
         dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
-        initDate3();
+
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        final Calendar endDate = Calendar.getInstance();
+        selectedDate.set(year3, month3, dayOfMonth3);
+        startDate.set(year3, month3, dayOfMonth3);
+        endDate.set(year3, month3, dayOfMonth3+15);
+        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                afterDate3 = getTime2(date);
+                details_the_project_end_time6.setText("-" + getTime2(date) + " >");
+                initViewData3();
+            }
+        })
+
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
     }
 
-    private void initDate3() {
-        //                TODO 结束时间
-        details_the_project_end_time6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dateTimePickerView.setStartDate(new GregorianCalendar(year3, month3, dayOfMonth3 - 15));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year3, month3, dayOfMonth3 + 15));
-                particulars_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        afterDate3 = dateString;
-                        details_the_project_end_time6.setText("-" + dateString + " >");
-                        type = "3";
-                    }
-                });
-            }
-        });
-    }
 
     //TODO 详情页财务数据赋值
     private void initData() {

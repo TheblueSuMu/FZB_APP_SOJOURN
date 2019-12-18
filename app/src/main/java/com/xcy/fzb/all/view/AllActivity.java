@@ -16,7 +16,9 @@ import androidx.core.content.ContextCompat;
 
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.persente.StatusBar;
-import com.xcy.fzb.all.utils.ToastUtil;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AllActivity extends AppCompatActivity {
 
@@ -154,13 +156,22 @@ public class AllActivity extends AppCompatActivity {
      * 隐藏键盘
      */
     protected void hideInput() {
-
-
-
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         View v = getWindow().peekDecorView();
         if (null != v) {
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
         }
+    }
+
+    public String getTime1(Date date) {//可根据需要自行截取数据显示
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+        return format.format(date);
+    }
+
+    public String getTime2(Date date) {//可根据需要自行截取数据显示
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+        return format.format(date);
     }
 }

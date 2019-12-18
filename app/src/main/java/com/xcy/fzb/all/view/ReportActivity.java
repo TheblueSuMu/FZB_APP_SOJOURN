@@ -25,6 +25,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.tuacy.azlist.LettersComparator;
 import com.tuacy.fuzzysearchlibrary.PinyinUtil;
@@ -48,7 +51,7 @@ import com.xcy.fzb.all.utils.ToastUtil;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -61,7 +64,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 public class ReportActivity extends AllActivity implements View.OnClickListener {
 
@@ -71,8 +73,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     TextView report_tv_sq;
     TextView report_start;
     TextView report_end;
-    TextView report_cancel;
-    TextView report_ensure;
     EditText IDcard;
     EditText price_start;
     EditText price_end;
@@ -80,10 +80,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
     RelativeLayout back;
 
-    LinearLayout report_picker;
     LinearLayout report_ll_start_sq;
 
-    DateTimePickerView dateTimePickerView;
 
     private CheckBox area1;
     private CheckBox area2;
@@ -143,13 +141,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private LinearLayout report_ll_start_sq1;
     private LinearLayout report_ll_start_sq2;
 
-    int year1 = 0;
-    int month1 = 0;
-    int dayOfMonth1 = 0;
-
     int ifnum1 = 0;
     private LinearLayout report_linear;
-    boolean blean = false;
     private EditText report_client_phone;
     private FuzzySearchAdapter fuzzySearchAdapter;
     private RecyclerView report_associating_inputing_rv;
@@ -159,6 +152,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private LinearLayout report_nosearch;
     private LinearLayout report_issure;
     private List<ItemEntity> dateList;
+    private int year;
+    private int month;
+    private int dayOfMonth;
+    private Date selectdate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -221,7 +218,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         report_ll_start_sq2 = findViewById(R.id.report_ll_start_sq2);
 
         report_ll_start_sq = findViewById(R.id.report_ll_start_sq);
-        dateTimePickerView = findViewById(R.id.report_pickerView);
         report_start = findViewById(R.id.report_start);
         report_end = findViewById(R.id.report_end);
         IDcard = findViewById(R.id.report_IDcard);
@@ -328,10 +324,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             project_name.setText("");
         }
 
-        report_cancel = findViewById(R.id.report_picker_cancel);
-        report_ensure = findViewById(R.id.report_picker_ensure);
-
-        report_picker = findViewById(R.id.report_picker);
 
         report_btn_s.setOnClickListener(this);
         report_btn_f.setOnClickListener(this);
@@ -423,9 +415,9 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
     private void initDate() {
         Calendar calendar = Calendar.getInstance();
-        final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH);
-        final int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
 
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
@@ -433,82 +425,79 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
         report_start.setText("<" + string);
         report_end.setText("-" + string1 + " >");
-        dateTimePickerView.setStartDate(Calendar.getInstance());
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year + 3, month, dayOfMonth));
-        year1 = year;
-        month1 = month;
-        dayOfMonth1 = dayOfMonth;
-
-
-
-        report_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-                Log.d("判断", "判断: " + blean);
-                if (blean) {
-                    initDate2();
-                }
-            }
-        });
-
-        report_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-            }
-        });
 
         report_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setStartDate(Calendar.getInstance());
-                dateTimePickerView.setEndDate(new GregorianCalendar(year + 3, month, dayOfMonth));
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        year1 = date.get(Calendar.YEAR);
-                        month1 = date.get(Calendar.MONTH);
-                        dayOfMonth1 = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year1, month1 + 1, dayOfMonth1);
-                        timeStart = dateString;
-                        report_start.setText("<" + dateString);
-                    }
-                });
-                blean = true;
+                initTimePickerView1();
+
+            }
+        });
+
+        report_end.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                initTimePickerView2();
             }
         });
 
     }
 
-    private void initDate2() {
-
-        report_end.setOnClickListener(new View.OnClickListener() {
+    private void initTimePickerView1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year+3, month, dayOfMonth);
+        TimePickerView pvTime = new TimePickerBuilder(ReportActivity.this, new OnTimeSelectListener() {
             @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                Log.d("判断", "n 判断: " + blean);
-                dateTimePickerView.setStartDate(new GregorianCalendar(year1, month1, dayOfMonth1));
-                dateTimePickerView.setEndDate(new GregorianCalendar(year1, month1, dayOfMonth1+15));
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        timeEnd = dateString;
-                        report_end.setText("-" + dateString + " >");
-                        Log.d("wsw", "new date: " + dateString);
-                    }
-                });
-                blean = false;
-                Log.d("判断", "new 判断: " + blean);
+            public void onTimeSelect(Date date, View v) {
+                selectdate = date;
+                timeStart = getTime2(date);
+                report_start.setText("<" + getTime2(date));
             }
-        });
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    private void initTimePickerView2(){
+        Calendar calendar = Calendar.getInstance();
+        if (selectdate != null) {
+            calendar.setTime(selectdate);
+        }
+        int year3 = calendar.get(Calendar.YEAR);
+        int month3 = calendar.get(Calendar.MONTH);
+        int dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
+
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        final Calendar endDate = Calendar.getInstance();
+        selectedDate.set(year3, month3, dayOfMonth3);
+        startDate.set(year3, month3, dayOfMonth3);
+        endDate.set(year3, month3, dayOfMonth3+15);
+        TimePickerView pvTime = new TimePickerBuilder(ReportActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                timeEnd = getTime2(date);
+                report_end.setText("-" + getTime2(date) + " >");
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
     }
 
     private void initDataReport() {

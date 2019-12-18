@@ -13,21 +13,21 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/my_brokerage"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/store_list_return"
                 android:layout_width="50dp"
-                android:layout_height="match_parent">
+                android:layout_height="70dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginBottom="120dp"
+                    android:layout_marginBottom="20dp"
                     android:src="@mipmap/return2" />
 
             </RelativeLayout>
@@ -36,9 +36,8 @@
                 android:id="@+id/center_headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="117dp"
+                android:layout_marginTop="30dp"
                 android:text="列表"
                 android:textColor="#FFFEFE"
                 android:textSize="18sp" />
@@ -48,9 +47,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginRight="15dp"
-                android:layout_marginBottom="116dp"
+                android:layout_marginTop="30dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/my_client_add" />
 
@@ -89,6 +87,7 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/store_list_ll0"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="120dp"

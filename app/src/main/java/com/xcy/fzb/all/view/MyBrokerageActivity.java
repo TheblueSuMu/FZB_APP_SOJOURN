@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -300,22 +299,23 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
 
                     @Override
                     public void onNext(BorkerageDownBean borkerageDownBean) {
-                        rows = borkerageDownBean.getData().getRows();
-                        Log.i("MyCL", "total：" + borkerageDownBean.getData().getTotal());
-                        int total = borkerageDownBean.getData().getTotal();
-                        if (total == 0) {
-                            Log.i("MyCL", "123");
-                            my_brokerage_rv.setVisibility(View.GONE);
-                            myBrokerage_rl.setVisibility(View.VISIBLE);
-                        } else {
-                            my_brokerage_rv.setVisibility(View.VISIBLE);
-                            myBrokerage_rl.setVisibility(View.GONE);
-                            adapter.setRows(rows);
-                            my_brokerage_rv.setAdapter(adapter);
-                            adapter.notifyDataSetChanged();
+                        try {
+                            rows = borkerageDownBean.getData().getRows();
+                            if (rows.size() != 0) {
+                                my_brokerage_rv.setVisibility(View.VISIBLE);
+                                myBrokerage_rl.setVisibility(View.GONE);
+                                adapter.setRows(rows);
+                                my_brokerage_rv.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+                            }else {
+                                my_brokerage_rv.setVisibility(View.GONE);
+                                myBrokerage_rl.setVisibility(View.VISIBLE);
+                            }
+                            isnum = 0;
+                            hideInput();
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                        isnum = 0;
-                        hideInput();
                     }
 
                     @Override

@@ -74,6 +74,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
     private List<StoreListBean.DataBean.RowsBean> rows;
     private Intent intent;
     private ImageView all_no_information;
+    private LinearLayout store_list_ll0;
+    private TextView center_headline;
 
 //    private SwipeRefreshLayout layout;
 
@@ -113,6 +115,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         store_list_return = findViewById(R.id.store_list_return);
         store_list_add = findViewById(R.id.store_list_add);
         store_list_et = findViewById(R.id.store_list_et);
+        center_headline = findViewById(R.id.center_headline);
+        store_list_ll0 = findViewById(R.id.store_list_ll0);
         store_list_ll1 = findViewById(R.id.store_list_ll1);
         store_list_ll2 = findViewById(R.id.store_list_ll2);
         store_list_ll3 = findViewById(R.id.store_list_ll3);
@@ -132,7 +136,11 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 //        layout.setOnRefreshListener(this);
 
         if (CityContents.getStore().equals("1")) {
-            store_list_ll3.setVisibility(View.GONE);
+            store_list_ll0.setVisibility(View.GONE);
+            center_headline.setText("门店列表");
+        }else {
+            store_list_ll0.setVisibility(View.VISIBLE);
+            center_headline.setText("列表");
         }
 
         store_list_cb.setOnClickListener(new View.OnClickListener() {

@@ -152,6 +152,9 @@ dependencies {
     //TODO  多次点击事件拦截
     implementation 'org.aspectj:aspectjrt:1.8.9'
 
+    //TODO  时间选择器
+    implementation 'com.contrarywind:Android-PickerView:3.2.7'
+
     //TODO Bugly使用
     implementation 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
 

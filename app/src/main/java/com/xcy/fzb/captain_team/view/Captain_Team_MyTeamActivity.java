@@ -12,7 +12,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -869,7 +868,6 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
 
     }
 
-
     // TODO 数据统计
     private void initDataStatistics() {
         Log.i("自定义","实时或总体"+tag);
@@ -997,7 +995,6 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
                     }
                 });
     }
-
 
     // TODO 我的团队显示数据
     private void initMyTeamData() {
