@@ -280,6 +280,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 //                            avi.setVisibility(View.GONE);
                             initDatas();
                         }else {
+                            //                            avi.hide();
+//                            avi.setVisibility(View.GONE);
                             all_no_information.setVisibility(View.VISIBLE);
                             store_list_rv.setVisibility(View.GONE);
                         }
@@ -487,6 +489,8 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 //                            avi.setVisibility(View.GONE);
                             initDatas();
                         }else {
+                            //                            avi.hide();
+//                            avi.setVisibility(View.GONE);
                             all_no_information.setVisibility(View.VISIBLE);
                             store_list_rv.setVisibility(View.GONE);
                         }

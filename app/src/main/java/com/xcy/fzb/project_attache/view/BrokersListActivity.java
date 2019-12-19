@@ -20,6 +20,7 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.wang.avi.AVLoadingIndicatorView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.BrokersListBean;
@@ -69,6 +70,8 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
     private View inflate;
     private ImageView all_no_information;
 
+//    private AVLoadingIndicatorView avi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +95,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showLongToast(BrokersListActivity.this,"当前无网络，请检查网络后再进行登录");
+            ToastUtil.showLongToast(BrokersListActivity.this, "当前无网络，请检查网络后再进行登录");
 
         }
     }
@@ -113,6 +116,11 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
         brokers_list_rv.setLayoutManager(new LinearLayoutManager(this));
         decoration = new PinnedHeaderDecoration();
 
+//        avi = findViewById(R.id.broker_avi);
+//
+//        avi.show();
+//        avi.setVisibility(View.VISIBLE);
+
         brokers_list_return.setOnClickListener(this);
         brokers_list_add.setOnClickListener(this);
         brokers_tv.setOnClickListener(this);
@@ -125,13 +133,13 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                     String s = brokers_list_et.getText().toString();
                     String s1 = brokers_tv.getText().toString();
                     if (s1.equals("全部")) {
-                        initData(FinalContents.getStoreId(), s, "","","","");
+                        initData(FinalContents.getStoreId(), s, "", "", "", "");
                         return true;
                     } else if (s1.equals("只看异常门店")) {
-                        initData(FinalContents.getStoreId(), s, "3","","","");
+                        initData(FinalContents.getStoreId(), s, "3", "", "", "");
                         return true;
                     } else {
-                        initData(FinalContents.getStoreId(), s, "","","","");
+                        initData(FinalContents.getStoreId(), s, "", "", "", "");
                         return true;
                     }
                 }
@@ -141,7 +149,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
 
     }
 
-    private void initData(String storeId, String search, String status,String type,String startData,String endData) {
+    private void initData(String storeId, String search, String status, String type, String startData, String endData) {
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -153,8 +161,8 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
         Log.i("MyCL", "--1--storeId：" + storeId);
         Log.i("MyCL", "--1--search：" + search);
         Log.i("MyCL", "--1--status：" + status);
-        Log.i("MyCL", "--1-- FinalContents.getUserID()：" +  FinalContents.getUserID());
-        Observable<BrokersListBean> brokersListBean = fzbInterface.getBrokersListBean(FinalContents.getCompanyId(), storeId, search, status, FinalContents.getUserID(), "1000",type,startData,endData);
+        Log.i("MyCL", "--1-- FinalContents.getUserID()：" + FinalContents.getUserID());
+        Observable<BrokersListBean> brokersListBean = fzbInterface.getBrokersListBean(FinalContents.getCompanyId(), storeId, search, status, FinalContents.getUserID(), "1000", type, startData, endData);
         brokersListBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BrokersListBean>() {
@@ -184,8 +192,12 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                                 listData.add(brokersListData);
 
                             }
+//                            avi.hide();
+//                            avi.setVisibility(View.GONE);
                             initDatas();
                         } else {
+//                            avi.hide();
+//                            avi.setVisibility(View.GONE);
                             all_no_information.setVisibility(View.VISIBLE);
                             brokers_list_rv.setVisibility(View.GONE);
                         }
@@ -195,6 +207,8 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                     @Override
                     public void onError(Throwable e) {
                         Log.i("经纪人列表", "错误信息:" + e.getMessage());
+//                        avi.hide();
+//                        avi.setVisibility(View.GONE);
                         brokers_list_rv.setVisibility(View.GONE);
                         all_no_information.setVisibility(View.VISIBLE);
                     }
@@ -227,14 +241,14 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("销毁","数2："+FinalContents.getStoreId());
-        if(FinalContents.getCompanyId().equals("")){
-            initData(FinalContents.getStoreId(), "", "","","","");
-        }else {
+        Log.i("销毁", "数2：" + FinalContents.getStoreId());
+        if (FinalContents.getCompanyId().equals("")) {
+            initData(FinalContents.getStoreId(), "", "", "", "", "");
+        } else {
             String types = getIntent().getStringExtra("types");
             String starts = getIntent().getStringExtra("starts");
             String ends = getIntent().getStringExtra("ends");
-            initData(FinalContents.getStoreId(), "", "",types,starts,ends);
+            initData(FinalContents.getStoreId(), "", "", types, starts, ends);
         }
     }
 
@@ -270,10 +284,10 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                 brokers_tv.setText(list1.get(options1));
                 String string = brokers_list_et.getText().toString();
                 if (options1 == 0) {
-                    initData(FinalContents.getStoreId(), string, "","","","");
+                    initData(FinalContents.getStoreId(), string, "", "", "", "");
                 } else if (options1 == 1) {
 
-                    initData(FinalContents.getStoreId(), string, "3","","","");
+                    initData(FinalContents.getStoreId(), string, "3", "", "", "");
                 }
             }
         }).setSelectOptions(0)
