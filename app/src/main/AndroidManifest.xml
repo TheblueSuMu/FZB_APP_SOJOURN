@@ -206,7 +206,6 @@
         <activity android:name=".project_side.view.CheckPendingTheProjectActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 待我审核 拒绝记录-->
         <activity android:name=".project_side.view.OneKeyActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>        <!--TODO 专案 一键成交-->
 
-
         <!--TODO 导购-->
         <activity android:name=".shopping_guide.view.Shopping_Guide_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 导购 主页-->
         <activity android:name=".shopping_guide.view.ReviewTheSuccessActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 导购 项目进度-->

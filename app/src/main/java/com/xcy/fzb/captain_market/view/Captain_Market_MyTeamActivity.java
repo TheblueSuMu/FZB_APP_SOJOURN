@@ -12,11 +12,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
@@ -38,7 +40,7 @@ import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivit
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.Locale;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -52,7 +54,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 //TODO 圈层4-1我的团队
 public class Captain_Market_MyTeamActivity extends AllActivity implements View.OnClickListener {
@@ -113,10 +114,6 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
 
     ImageView all_no_information_S;
 
-    DateTimePickerView dateTimePickerView;
-    LinearLayout report_picker;
-    TextView report_cancel;
-    TextView report_ensure;
     private Intent intent;
 
     String type1 = "";
@@ -142,6 +139,9 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
     LinearLayout project_attache_ll3;
     LinearLayout project_attache_ll4;
     private String string;
+    private int year;
+    private int month;
+    private int dayOfMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -238,19 +238,12 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
         market_time_rv = findViewById(R.id.my_team_rv);
         my_team_img = findViewById(R.id.my_team_img);
 
-
-        dateTimePickerView = findViewById(R.id.my_team_pickerView);
-        report_picker = findViewById(R.id.my_team_picker);
-        report_cancel = findViewById(R.id.my_team_cancel);
-        report_ensure = findViewById(R.id.my_team_ensure);
-
-
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+ 1, dayOfMonth);
+        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
         market_time_time_tv1.setText(string);
         market_time_time_tv2.setText(string);
         market_time_time_tv3.setText(string);
@@ -265,10 +258,6 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
         startDate3 = string;
         endDate3 = string;
 
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
         my_team_img.setOnClickListener(this);
         market_time_rl2.setOnClickListener(this);
         market_time_ll1.setOnClickListener(this);
@@ -319,26 +308,6 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
             }
         });
 
-        report_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (type.equals("1")) {
-                    initDataStatistics();
-                } else if (type.equals("2")) {
-                    initTeamCommissions();
-                } else if (type.equals("3")) {
-                    initDailyTurnover();
-                }
-                report_picker.setVisibility(View.GONE);
-            }
-        });
-
-        report_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-            }
-        });
         initMyTeamData();
         initDailyTurnover();
     }
@@ -442,104 +411,27 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                 break;
 //            TODO 时间选择1
             case R.id.my_team_time_tv1:
-
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        market_time_time_tv1.setText(dateString);
-                        startDate1 = dateString;
-                        NewlyIncreased.setStartDate(dateString);
-                        type = "1";
-                    }
-                });
-
+                initTime1_Date1();
                 break;
 //            TODO 时间选择2
             case R.id.my_team_time_tv2:
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        market_time_time_tv2.setText(dateString);
-                        endDate1 = dateString;
-                        NewlyIncreased.setEndDate(dateString);
-                        type = "1";
-                    }
-                });
-
+                initTime1_Date2();
                 break;
 //            TODO 时间选择3
             case R.id.my_team_time_tv3:
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        market_time_time_tv3.setText(dateString);
-                        startDate2 = dateString;
-                        type = "2";
-                    }
-                });
+                initTime2_Date1();
                 break;
 //            TODO 时间选择4
             case R.id.my_team_time_tv4:
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        market_time_time_tv4.setText(dateString);
-                        endDate2 = dateString;
-                        type = "2";
-                    }
-                });
+                initTime2_Date2();
                 break;
 //            TODO 时间选择5
             case R.id.my_team_time_tv5:
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        market_time_time_tv5.setText(dateString);
-                        startDate3 = dateString;
-                        type = "3";
-                    }
-                });
+                initTime3_Date1();
                 break;
 //            TODO 时间选择6
             case R.id.my_team_time_tv6:
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        market_time_time_tv6.setText(dateString);
-                        endDate3 = dateString;
-                        type = "3";
-                    }
-                });
+                initTime3_Date2();
                 break;
             //            TODO 数据统计 时间选择 全部
             case R.id.my_team_rb1:
@@ -577,6 +469,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                 type1 = "3";
                 startDate1 = string;
                 endDate1 = string;
+                market_time_time_tv1.setText(string);
+                market_time_time_tv2.setText(string);
                 NewlyIncreased.setTag("3");
                 initDataStatistics();
                 break;
@@ -614,6 +508,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                 type2 = "3";
                 startDate2 = string;
                 endDate2 = string;
+                market_time_time_tv3.setText(string);
+                market_time_time_tv4.setText(string);
                 initTeamCommissions();
                 break;
 
@@ -650,6 +546,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
                 type3 = "3";
                 startDate3 = string;
                 endDate3 = string;
+                market_time_time_tv5.setText(string);
+                market_time_time_tv6.setText(string);
                 initDailyTurnover();
                 break;
             case R.id.project_attache_ll1://实时
@@ -736,10 +634,171 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
 
     }
 
+    //            TODO 数据统计 时间选择 开始时间
+    private void initTime1_Date1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(Captain_Market_MyTeamActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                market_time_time_tv1.setText(getTime2(date));
+                startDate1 = getTime2(date);
+                NewlyIncreased.setStartDate(getTime2(date));
+                initDataStatistics();
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 数据统计 时间选择 结束时间
+    private void initTime1_Date2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(Captain_Market_MyTeamActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                market_time_time_tv2.setText(getTime2(date));
+                endDate1 = getTime2(date);
+                NewlyIncreased.setEndDate(getTime2(date));
+                initDataStatistics();
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 财务数据 时间选择 开始时间
+    private void initTime2_Date1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(Captain_Market_MyTeamActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                market_time_time_tv3.setText(getTime2(date));
+                startDate2 = getTime2(date);
+                NewlyIncreased.setYJstartDate(getTime2(date));
+                initTeamCommissions();
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 财务数据 时间选择 开始时间
+    private void initTime2_Date2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(Captain_Market_MyTeamActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                market_time_time_tv4.setText(getTime2(date));
+                endDate2 = getTime2(date);
+                NewlyIncreased.setYJendDate(getTime2(date));
+                initTeamCommissions();
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 成交TOP5单 时间选择 开始时间
+    private void initTime3_Date1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(Captain_Market_MyTeamActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                market_time_time_tv5.setText(getTime2(date));
+                startDate3 = getTime2(date);
+                initDailyTurnover();
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 成交TOP5单 时间选择 开始时间
+    private void initTime3_Date2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(Captain_Market_MyTeamActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                market_time_time_tv6.setText(getTime2(date));
+                endDate3 = getTime2(date);
+                initDailyTurnover();
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
 
     // TODO 数据统计
     private void initDataStatistics(){
-
+        NewlyIncreased.setStartDate(startDate1);
+        NewlyIncreased.setEndDate(endDate1);
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -829,6 +888,8 @@ public class Captain_Market_MyTeamActivity extends AllActivity implements View.O
 
     // TODO 团队佣金
     private void initTeamCommissions(){
+        NewlyIncreased.setYJstartDate(startDate2);
+        NewlyIncreased.setYJendDate(endDate2);
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());

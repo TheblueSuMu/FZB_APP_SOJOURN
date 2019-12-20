@@ -127,8 +127,8 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                     if (s1.equals("全部")) {
                         initData(FinalContents.getStoreId(), s, "","","","");
                         return true;
-                    } else if (s1.equals("只看异常门店")) {
-                        initData(FinalContents.getStoreId(), s, "3","","","");
+                    } else if (s1.equals("只看异常经纪人")) {
+                        initData(FinalContents.getStoreId(), s, "2","","","");
                         return true;
                     } else {
                         initData(FinalContents.getStoreId(), s, "","","","");
@@ -263,7 +263,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
 
         final List<String> list1 = new ArrayList<>();
         list1.add("全部");
-        list1.add("只看异常门店");
+        list1.add("只看异常经纪人");
         OptionsPickerView pvOptions = new OptionsPickerBuilder(BrokersListActivity.this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
@@ -273,7 +273,7 @@ public class BrokersListActivity extends AllActivity implements View.OnClickList
                     initData(FinalContents.getStoreId(), string, "","","","");
                 } else if (options1 == 1) {
 
-                    initData(FinalContents.getStoreId(), string, "3","","","");
+                    initData(FinalContents.getStoreId(), string, "2","","","");
                 }
             }
         }).setSelectOptions(0)

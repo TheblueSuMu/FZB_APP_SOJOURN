@@ -1,5 +1,6 @@
 package com.xcy.fzb.all.view;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -22,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -176,6 +176,7 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
         personalRl5.setOnClickListener(this);
         personalRl6.setOnClickListener(this);
 
+        personal_et_name.clearFocus();
 
         personal_et_name.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
 
@@ -187,95 +188,115 @@ public class PersonalInformationActivity extends AllActivity implements View.OnC
                     // 失去焦点
                     hideInput();
                     //TODO 处理事件
-                    String s = personal_et_name.getText().toString();
+                    Retrofit.Builder builder = new Retrofit.Builder();
+                    builder.baseUrl(FinalContents.getBaseUrl());
+                    builder.addConverterFactory(GsonConverterFactory.create());
+                    builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                    Retrofit build = builder.build();
+                    MyService fzbInterface = build.create(MyService.class);
+                    Observable<ChangeNameBean> userMessage = fzbInterface.getUpdateName(FinalContents.getUserID(),personal_et_name.getText().toString());
+                    userMessage.subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new Observer<ChangeNameBean>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
 
-                    String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonUpdate/updateName?" + "userId=" + FinalContents.getUserID() + "&name=" + s;
+                                }
 
-                    OkHttpPost okHttpPost = new OkHttpPost(url);
-                    String data = okHttpPost.post();
-                    Gson gson = new Gson();
-                    ChangeNameBean changeNameBean = gson.fromJson(data, ChangeNameBean.class);
-                    ChangeNameBean.DataBean data1 = changeNameBean.getData();
-                    if (data1.getMessage().equals("修改昵称成功")) {
-                        personal_et_name.setVisibility(View.GONE);
-                        personal_name.setVisibility(View.VISIBLE);
-                        personal_name.setText(s);
-                        Toast.makeText(PersonalInformationActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
+                                @SuppressLint("WrongConstant")
+                                @Override
+                                public void onNext(ChangeNameBean changeNameBean) {
+                                    if (changeNameBean.getData().getMessage().equals("修改昵称成功")) {
+                                        personal_et_name.setVisibility(View.GONE);
+                                        personal_name.setVisibility(View.VISIBLE);
+                                        personal_name.setText(personal_et_name.getText().toString());
+                                        ToastUtil.showLongToast(PersonalInformationActivity.this, changeNameBean.getData().getMessage());
 
-                        if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
-                            UserMessageBean userMessageBean = Connector.getUserMessageBean();
-                            UserMessageBean.DataBean dataBean = userMessageBean.getData();
-                            dataBean.setName(personal_et_name.getText().toString());
-                            userMessageBean.setData(dataBean);
-                            Connector.setUserMessageBean(userMessageBean);
-                            NewlyIncreased.setUserMessage("123");
-                        } else if (FinalContents.getIdentity().equals("4")  || FinalContents.getIdentity().equals("7")) {
-                            UserBean userMessageBean = Connector.getUserBean();
-                            UserBean.DataBean dataBean = userMessageBean.getData();
-                            dataBean.setName(personal_et_name.getText().toString());
-                            userMessageBean.setData(dataBean);
-                            Connector.setUserBean(userMessageBean);
-                            NewlyIncreased.setUserMessage("7");
-                        } else if (FinalContents.getIdentity().equals("5")) {
-                            ZYDataBean userMessageBean = Connector.getZyDataBean();
-                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
-                            dataBean.setName(personal_et_name.getText().toString());
-                            userMessageBean.setData(dataBean);
-                            Connector.setZyDataBean(userMessageBean);
-                            NewlyIncreased.setUserMessage("5");
-                        }  else if (FinalContents.getIdentity().equals("8")) {
-                            ZYDataBean userMessageBean = Connector.getZyDataBean();
-                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
-                            dataBean.setName(personal_et_name.getText().toString());
-                            userMessageBean.setData(dataBean);
-                            Connector.setZyDataBean(userMessageBean);
-                            NewlyIncreased.setUserMessage("8");
-                        }  else if (FinalContents.getIdentity().equals("9")) {
-                            ZYDataBean userMessageBean = Connector.getZyDataBean();
-                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
-                            dataBean.setName(personal_et_name.getText().toString());
-                            userMessageBean.setData(dataBean);
-                            Connector.setZyDataBean(userMessageBean);
-                            NewlyIncreased.setUserMessage("9");
-                        } else if (FinalContents.getIdentity().equals("60")) {
-                            ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
-                            ZhangBingDataBean.DataBean dataBean = userMessageBean.getData();
-                            ZhangBingDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
-                            sysUserBean.setName(personal_et_name.getText().toString());
-                            dataBean.setSysUser(sysUserBean);
-                            userMessageBean.setData(dataBean);
-                            Connector.setZhangBingDataBean(userMessageBean);
-                            NewlyIncreased.setUserMessage("60");
-                        } else if (FinalContents.getIdentity().equals("61")) {
-                            GWDataBean userMessageBean = Connector.getGwDataBean();
-                            GWDataBean.DataBean dataBean = userMessageBean.getData();
-                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
-                            sysUserBean.setName(personal_et_name.getText().toString());
-                            dataBean.setSysUser(sysUserBean);
-                            userMessageBean.setData(dataBean);
-                            Connector.setGwDataBean(userMessageBean);
-                            NewlyIncreased.setUserMessage("61");
-                        } else if (FinalContents.getIdentity().equals("62")) {
-                            GWDataBean userMessageBean = Connector.getGwDataBean();
-                            GWDataBean.DataBean dataBean = userMessageBean.getData();
-                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
-                            sysUserBean.setName(personal_et_name.getText().toString());
-                            dataBean.setSysUser(sysUserBean);
-                            userMessageBean.setData(dataBean);
-                            Connector.setGwDataBean(userMessageBean);
-                            NewlyIncreased.setUserMessage("61");
-                        } else if (FinalContents.getIdentity().equals("63")) {
-                            UserBean userMessageBean = Connector.getUserBean();
-                            UserBean.DataBean dataBean = userMessageBean.getData();
-                            dataBean.setName(personal_et_name.getText().toString());
-                            userMessageBean.setData(dataBean);
-                            Connector.setUserBean(userMessageBean);
-                            NewlyIncreased.setUserMessage("63");
-                        }
-                        initData();
-                    } else {
-                        Toast.makeText(PersonalInformationActivity.this, "修改昵称失败", Toast.LENGTH_SHORT).show();
-                    }
+                                        if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
+                                            UserMessageBean userMessageBean = Connector.getUserMessageBean();
+                                            UserMessageBean.DataBean dataBean = userMessageBean.getData();
+                                            dataBean.setName(personal_et_name.getText().toString());
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setUserMessageBean(userMessageBean);
+                                            NewlyIncreased.setUserMessage("123");
+                                        } else if (FinalContents.getIdentity().equals("4")  || FinalContents.getIdentity().equals("7")) {
+                                            UserBean userMessageBean = Connector.getUserBean();
+                                            UserBean.DataBean dataBean = userMessageBean.getData();
+                                            dataBean.setName(personal_et_name.getText().toString());
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setUserBean(userMessageBean);
+                                            NewlyIncreased.setUserMessage("7");
+                                        } else if (FinalContents.getIdentity().equals("5")) {
+                                            ZYDataBean userMessageBean = Connector.getZyDataBean();
+                                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                                            dataBean.setName(personal_et_name.getText().toString());
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setZyDataBean(userMessageBean);
+                                            NewlyIncreased.setUserMessage("5");
+                                        }  else if (FinalContents.getIdentity().equals("8")) {
+                                            ZYDataBean userMessageBean = Connector.getZyDataBean();
+                                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                                            dataBean.setName(personal_et_name.getText().toString());
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setZyDataBean(userMessageBean);
+                                            NewlyIncreased.setUserMessage("8");
+                                        }  else if (FinalContents.getIdentity().equals("9")) {
+                                            ZYDataBean userMessageBean = Connector.getZyDataBean();
+                                            ZYDataBean.DataBean dataBean = userMessageBean.getData();
+                                            dataBean.setName(personal_et_name.getText().toString());
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setZyDataBean(userMessageBean);
+                                            NewlyIncreased.setUserMessage("9");
+                                        } else if (FinalContents.getIdentity().equals("60")) {
+                                            ZhangBingDataBean userMessageBean = Connector.getZhangBingDataBean();
+                                            ZhangBingDataBean.DataBean dataBean = userMessageBean.getData();
+                                            ZhangBingDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                            sysUserBean.setName(personal_et_name.getText().toString());
+                                            dataBean.setSysUser(sysUserBean);
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setZhangBingDataBean(userMessageBean);
+                                            NewlyIncreased.setUserMessage("60");
+                                        } else if (FinalContents.getIdentity().equals("61")) {
+                                            GWDataBean userMessageBean = Connector.getGwDataBean();
+                                            GWDataBean.DataBean dataBean = userMessageBean.getData();
+                                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                            sysUserBean.setName(personal_et_name.getText().toString());
+                                            dataBean.setSysUser(sysUserBean);
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setGwDataBean(userMessageBean);
+                                            NewlyIncreased.setUserMessage("61");
+                                        } else if (FinalContents.getIdentity().equals("62")) {
+                                            GWDataBean userMessageBean = Connector.getGwDataBean();
+                                            GWDataBean.DataBean dataBean = userMessageBean.getData();
+                                            GWDataBean.DataBean.SysUserBean sysUserBean = dataBean.getSysUser();
+                                            sysUserBean.setName(personal_et_name.getText().toString());
+                                            dataBean.setSysUser(sysUserBean);
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setGwDataBean(userMessageBean);
+                                            NewlyIncreased.setUserMessage("61");
+                                        } else if (FinalContents.getIdentity().equals("63")) {
+                                            UserBean userMessageBean = Connector.getUserBean();
+                                            UserBean.DataBean dataBean = userMessageBean.getData();
+                                            dataBean.setName(personal_et_name.getText().toString());
+                                            userMessageBean.setData(dataBean);
+                                            Connector.setUserBean(userMessageBean);
+                                            NewlyIncreased.setUserMessage("63");
+                                        }
+                                        initData();
+                                    }
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    ToastUtil.showLongToast(PersonalInformationActivity.this, "修改昵称失败");
+                                    Log.i("修改昵称失败", "错误" + e);
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
                 }
             }
 

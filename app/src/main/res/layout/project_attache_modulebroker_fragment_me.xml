@@ -144,7 +144,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="10dp"
-                                android:text="打卡记录(套)"
+                                android:text="打卡记录"
                                 android:textColor="#111111"
                                 android:textSize="12sp" />
                         </LinearLayout>

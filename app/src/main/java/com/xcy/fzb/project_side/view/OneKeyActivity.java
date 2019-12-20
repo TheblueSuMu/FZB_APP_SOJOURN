@@ -20,7 +20,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -714,8 +713,9 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
         Log.i("MyCL","FinalContents.getUserID():" + FinalContents.getUserID());
+        Log.i("MyCL","one_key_relative_et1.getText().toString():" + one_key_relative_et1.getText().toString());
         Log.i("MyCL","one_key_relative_et2.getText().toString():" + one_key_relative_et2.getText().toString());
-        Observable<PhoneByUserBean> userMessage = fzbInterface.getPhoneByUser(FinalContents.getUserID(),one_key_relative_et2.getText().toString());
+        Observable<PhoneByUserBean> userMessage = fzbInterface.getPhoneByUser(FinalContents.getUserID(),one_key_relative_et2.getText().toString(),one_key_relative_et1.getText().toString());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<PhoneByUserBean>() {

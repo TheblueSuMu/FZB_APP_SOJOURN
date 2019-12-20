@@ -957,6 +957,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 type1 = "3";
                 beforeDate1 = string;
                 afterDate1 = string;
+                details_the_project_end_time1.setText("<" + string);
+                details_the_project_end_time2.setText("-" + string + " >");
                 NewlyIncreased.setTag("3");
                 initViewData2();
                 initDate();
@@ -990,6 +992,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 type2 = "3";
                 beforeDate2 = string;
                 afterDate2 = string;
+                details_the_project_end_time3.setText("<" + string);
+                details_the_project_end_time4.setText("-" + string + " >");
                 NewlyIncreased.setYJType("3");
                 initViewData1();
                 initDate();
@@ -1031,6 +1035,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 type3 = "3";
                 beforeDate3 = string;
                 afterDate3 = string;
+                details_the_project_end_time5.setText("<" + string);
+                details_the_project_end_time6.setText("-" + string + " >");
                 initDate();
                 initViewData3();
                 break;

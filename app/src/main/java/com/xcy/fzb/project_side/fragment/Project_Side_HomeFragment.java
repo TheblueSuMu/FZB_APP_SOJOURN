@@ -137,6 +137,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
     private int year;
     private int month;
     private int dayOfMonth;
+    private String string;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -321,7 +322,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         month = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
         time1_home_the_project_end.setText("<" + string);
         time2_home_the_project_end.setText("-" + string + " >");
 
@@ -589,7 +590,6 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                 break;
 //                TODO  报备
             case R.id.layout1:
-
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "1");
                 startActivity(intent);
@@ -685,6 +685,8 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
             case R.id.rb4_home_the_project_end:
                 time1_ll1_home_the_project_end.setVisibility(View.VISIBLE);
                 type = "3";
+                time1_home_the_project_end.setText("<" + string);
+                time2_home_the_project_end.setText("-" + string + " >");
                 NewlyIncreased.setTag("3");
                 NewlyIncreased.setYJType("3");
                 initDate();

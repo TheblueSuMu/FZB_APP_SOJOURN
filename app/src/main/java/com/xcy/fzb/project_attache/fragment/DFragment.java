@@ -23,8 +23,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -60,10 +63,11 @@ import com.xcy.fzb.project_side.view.MyClientActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -75,7 +79,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 
 public class DFragment extends Fragment implements View.OnClickListener, MyViewPager.OnSingleTouchListener, SwipeRefreshLayout.OnRefreshListener {
@@ -135,10 +138,6 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     private PopupWindow popupWindow;
     private View inflate;
 
-    DateTimePickerView dateTimePickerView;
-    LinearLayout report_picker;
-    TextView report_cancel;
-    TextView report_ensure;
     private SwipeRefreshLayout ptrClassicFrameLayout;
 
     private MyViewPager vpager_one;
@@ -149,6 +148,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     private MyFragment1 myFragment1;
     private MyFragment2 myFragment2;
     private MyFragment3 myFragment3;
+    private int year;
+    private int month;
+    private int dayOfMonth;
+    private String string1;
+    private String string2;
 
 
     @Nullable
@@ -293,29 +297,19 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         modulebroke_rg1 = view.findViewById(R.id.modulebroke_rg1);
         modulebroke_rg2 = view.findViewById(R.id.modulebroke_rg2);
 
-        dateTimePickerView = view.findViewById(R.id.fragment_report_pickerView);
-        report_picker = view.findViewById(R.id.fragment_report_picker);
-        report_cancel = view.findViewById(R.id.fragment_report_picker_cancel);
-        report_ensure = view.findViewById(R.id.fragment_report_picker_ensure);
         details_chart = view.findViewById(R.id.lc_modulebroke);
 
         ptrClassicFrameLayout.setOnRefreshListener(this);
 
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth - 1);
-        String string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+        string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+        string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth+1);
         time1_modulebroker.setText(string1);
         time2_modulebroker.setText(string2);
-
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth - 15));
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth + 15));
 
         modulebroke_rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -346,6 +340,8 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                     NewlyIncreased.setTag("2");
                     ll1_modulebroker.setVisibility(View.GONE);
                 } else if (i == R.id.rb4_modulebroke) {
+                    time1_modulebroker.setText(string1);
+                    time2_modulebroker.setText(string2);
                     String s = time1_modulebroker.getText().toString();
                     String s1 = time2_modulebroker.getText().toString();
                     NewlyIncreased.setStartDate(s);
@@ -362,70 +358,20 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         });
 
         time1_modulebroker.setOnClickListener(new View.OnClickListener() {
+            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        time1_modulebroker.setText(dateString);
-                        String s = time1_modulebroker.getText().toString();
-                        String s1 = time2_modulebroker.getText().toString();
-                        NewlyIncreased.setStartDate(dateString);
-                        if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "1");
-                        } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "2");
-                        }
-
-
-                    }
-                });
+                initTimePickerView1();
             }
         });
         time2_modulebroker.setOnClickListener(new View.OnClickListener() {
+            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        time2_modulebroker.setText(dateString);
-                        String s = time1_modulebroker.getText().toString();
-                        String s1 = time2_modulebroker.getText().toString();
-                        NewlyIncreased.setEndDate(dateString);
-                        if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "1");
-                        } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
-                            initDataNum("3", s, s1, "2");
-                        }
-
-                    }
-                });
+                initTimePickerView2();
             }
         });
 
-        report_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-            }
-        });
-
-        report_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-            }
-        });
 
         modulebroke_rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -618,6 +564,66 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
                     }
                 });
+    }
+
+    //   TODO 数据统计 时间选择 开始时间
+    private void initTimePickerView1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                time1_modulebroker.setText(getTime2(date));
+                NewlyIncreased.setStartDate(getTime2(date));
+                if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                    initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString(), "1");
+                } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                    initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString(), "2");
+                }
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //   TODO 数据统计 时间选择 结束时间
+    private void initTimePickerView2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                time2_modulebroker.setText(getTime2(date));
+                NewlyIncreased.setEndDate(getTime2(date));
+                if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                    initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString(), "1");
+                } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                    initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString(), "2");
+                }
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
     }
 
     @SingleClick(1000)
@@ -995,5 +1001,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
             ptrClassicFrameLayout.setRefreshing(false);//取消刷新
         }
 
+    }
+
+    public String getTime2(Date date) {//可根据需要自行截取数据显示
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+        return format.format(date);
     }
 }

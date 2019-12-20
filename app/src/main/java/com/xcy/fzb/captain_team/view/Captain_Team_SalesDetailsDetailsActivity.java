@@ -16,15 +16,17 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -57,7 +59,7 @@ import com.xcy.fzb.captain_team.adapter.Captain_Team_YongAdapter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -68,7 +70,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implements View.OnClickListener {
     private LinearLayout sales_details_details_ll1;
@@ -78,7 +79,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private LinearLayout sales_details_details_ll5;
     private LinearLayout sales_details_details_ll6;
     private LinearLayout sales_details_details_ll7;
-    private LinearLayout sales_details_details_picker;
 
     private TextView sales_details_details_tv1;
     private TextView sales_details_details_tv2;
@@ -92,8 +92,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private TextView sales_details_details_type;
     private TextView sales_details_details_time1;
     private TextView sales_details_details_time2;
-    private TextView sales_details_details_cancel;
-    private TextView sales_details_details_ensure;
     private TextView sales_details_details_name;
     private TextView sales_details_details_tv10;
     private TextView sales_details_details_tv11;
@@ -109,8 +107,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private List<String> names = new ArrayList<>(); //折线名字集合
     private List<Integer> colour = new ArrayList<>();//折线颜色集合
     private List<String> indexList;
-
-    private DateTimePickerView dateTimePickerView;
 
 
     private RelativeLayout sales_details_details_return;
@@ -133,6 +129,9 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
 
     String tag = "1";
     private String string;
+    private int year;
+    private int month;
+    private int dayOfMonth;
 
 
     @Override
@@ -192,7 +191,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_ll5 = findViewById(R.id.sales_details_details_ll5);
         sales_details_details_ll6 = findViewById(R.id.sales_details_details_ll6);
         sales_details_details_ll7 = findViewById(R.id.sales_details_details_ll7);
-        sales_details_details_picker = findViewById(R.id.sales_details_details_picker);
         sales_details_details_return = findViewById(R.id.sales_details_details_return);
         sales_details_details_amend = findViewById(R.id.sales_details_details_amend);
 
@@ -210,8 +208,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_type = findViewById(R.id.sales_details_details_type);
         sales_details_details_time1 = findViewById(R.id.sales_details_details_time1);
         sales_details_details_time2 = findViewById(R.id.sales_details_details_time2);
-        sales_details_details_cancel = findViewById(R.id.sales_details_details_cancel);
-        sales_details_details_ensure = findViewById(R.id.sales_details_details_ensure);
+
         sales_details_details_name = findViewById(R.id.sales_details_details_name);
         sales_details_details_tv10 = findViewById(R.id.sales_details_details_tv10);
         sales_details_details_tv11 = findViewById(R.id.sales_details_details_tv11);
@@ -224,8 +221,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_img = findViewById(R.id.sales_details_details_img);
 
         sales_details_details_lc = findViewById(R.id.sales_details_details_lc);
-
-        dateTimePickerView = findViewById(R.id.sales_details_details_pickerView);
 
         sales_details_details_ll2.setOnClickListener(this);
         sales_details_details_ll3.setOnClickListener(this);
@@ -910,53 +905,22 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     //TODO 首页时间赋值
     private void initDate() {
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
         sales_details_details_time1.setText("<" + string);
         sales_details_details_time2.setText("-" + string + " >");
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
         startTime = string;
         endTime = string;
-
-        sales_details_details_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                initDataStatistics();
-                sales_details_details_picker.setVisibility(View.GONE);
-            }
-        });
-
-        sales_details_details_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sales_details_details_picker.setVisibility(View.GONE);
-            }
-        });
 
         //            TODO 开始时间
         sales_details_details_time1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sales_details_details_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        startTime = dateString;
-                        sales_details_details_time1.setText("<" + dateString);
-                        NewlyIncreased.setStartDate(dateString);
-                    }
-                });
+                initTimePickerView1();
             }
         });
 
@@ -964,22 +928,63 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_time2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sales_details_details_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        endTime = dateString;
-                        sales_details_details_time2.setText("-" + dateString + " >");
-                        NewlyIncreased.setEndDate(dateString);
-                    }
-                });
-
+                initTimePickerView2();
             }
         });
+    }
+
+    //TODO 详情页 数据统计 开始时间
+    private void initTimePickerView1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(Captain_Team_SalesDetailsDetailsActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                sales_details_details_time1.setText("<" + getTime2(date));
+                startTime = getTime2(date);
+                NewlyIncreased.setStartDate(getTime2(date));
+                initDataStatistics();
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //TODO 详情页 数据统计 结束时间
+    private void initTimePickerView2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(Captain_Team_SalesDetailsDetailsActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                sales_details_details_time2.setText("-" + getTime2(date) + " >");
+                endTime = getTime2(date);
+                NewlyIncreased.setEndDate(getTime2(date));
+                initDataStatistics();
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
     }
 
     //TODO 详情页趋势图绘制

@@ -192,7 +192,11 @@ public interface MyService {
 
     //一键成交 查询经纪人信息
     @POST("commonSelect/getPhoneByUser")
-    Observable<PhoneByUserBean> getPhoneByUser(@Query("userId") String userId, @Query("phone") String phone);
+    Observable<PhoneByUserBean> getPhoneByUser(@Query("userId") String userId, @Query("phone") String phone, @Query("name") String name);
+
+    //个人信息 修改姓名
+    @POST("commonUpdate/updateName")
+    Observable<ChangeNameBean> getUpdateName(@Query("userId") String userId, @Query("name") String name);
 
     //点击调单回显数据
     @POST("nodeSelect/findAdjustApply")
