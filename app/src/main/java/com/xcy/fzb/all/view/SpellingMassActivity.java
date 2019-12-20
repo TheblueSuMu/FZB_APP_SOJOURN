@@ -24,7 +24,6 @@ import com.xcy.fzb.all.modle.SpellingDataBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.shopping_guide.adapter.BaseFragmentAdapter;
 
 import java.util.ArrayList;
@@ -55,6 +54,9 @@ public class SpellingMassActivity extends AllActivity {
     String[] mTitles = new String[]{
             "行程", "注意事项"
     };
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private BaseFragmentAdapter adapter;
 
 
     @Override
@@ -80,7 +82,7 @@ public class SpellingMassActivity extends AllActivity {
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -96,6 +98,9 @@ public class SpellingMassActivity extends AllActivity {
                 finish();
             }
         });
+
+        viewPager =  findViewById(R.id.spelling_mass_framelayout);
+        tabLayout =  findViewById(R.id.spelling_mass_tablayout);
 
         item_task_back = findViewById(R.id.item_back);
         item_task_icon = findViewById(R.id.item_icon);
@@ -151,22 +156,16 @@ public class SpellingMassActivity extends AllActivity {
 
     }
 
+
     private void setupViewPager() {
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.spelling_mass_framelayout);
-        setupViewPager(viewPager);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.spelling_mass_tablayout);
-        tabLayout.setupWithViewPager(viewPager);
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
         mFragments = new ArrayList<>();
 
         All_AttentionFragment all_attentionFragment = new All_AttentionFragment();
         All_JourneyFragment all_journeyFragment = new All_JourneyFragment();
         mFragments.add(all_journeyFragment);
         mFragments.add(all_attentionFragment);
-        BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, mTitles);
+        adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, mTitles);
         viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

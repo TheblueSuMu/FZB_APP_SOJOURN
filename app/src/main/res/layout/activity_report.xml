@@ -60,8 +60,6 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/report_relative"
-                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="44dp">
 
@@ -74,21 +72,19 @@
                         android:textSize="15sp" />
 
                     <ImageView
-                        android:id="@+id/report_client_name_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="6dp"
+                        android:layout_height="9dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:src="@mipmap/report_address_list" />
+                        android:src="@mipmap/icon_you" />
 
-                    <EditText
-                        android:id="@+id/report_client_name_et"
+                    <TextView
+                        android:id="@+id/report_client_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="27dp"
-                        android:background="@null"
+                        android:layout_marginRight="20dp"
                         android:gravity="right"
                         android:hint="点击选择客户"
                         android:textColor="#ff111111"
@@ -96,11 +92,43 @@
 
                 </RelativeLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/report_associating_inputing_rv"
-                    android:visibility="gone"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"/>
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="选择房源"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="9dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_you" />
+
+                    <TextView
+                        android:id="@+id/report_project_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:gravity="right"
+                        android:hint="点击选择房源"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -108,231 +136,147 @@
                     android:background="#EEEEEE"/>
 
                 <LinearLayout
-                    android:id="@+id/report_nosearch"
-                    android:orientation="vertical"
+                    android:id="@+id/report_linear"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="44dp"
+                    android:orientation="horizontal">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="填写身份证号码："
+                        android:textColor="#111111"
+                        android:textSize="15sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="手机号"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <EditText
-                            android:id="@+id/report_client_phone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:background="@null"
-                            android:maxLength="11"
-                            android:gravity="right"
-                            android:hint="请输入客户手机号"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#EEEEEE"/>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="选择房源"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                        <ImageView
-                            android:layout_width="6dp"
-                            android:layout_height="9dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:src="@mipmap/icon_you" />
-
-                        <TextView
-                            android:id="@+id/report_project_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="20dp"
-                            android:gravity="right"
-                            android:hint="点击选择房源"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#EEEEEE"/>
-
-                    <LinearLayout
-                        android:id="@+id/report_linear"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text="填写身份证号码："
-                            android:textColor="#111111"
-                            android:textSize="15sp" />
-
-                        <EditText
-                            android:id="@+id/report_IDcard"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="#FFFFFF"
-                            android:inputType="number"
-                            android:digits="1234567890zxyZXY"
-                            android:hint="请输入身份证号码"
-                            android:gravity="right"
-                            android:maxLength="18"
-                            android:textColor="#ff111111"
-                            android:textSize="15sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#EEEEEE"/>
-
-                    <LinearLayout
-                        android:id="@+id/report_issure"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:text="是否计划登岛"
-                                android:textColor="#ff111111"
-                                android:textSize="15sp" />
-
-                            <RadioGroup
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:orientation="horizontal">
-
-                                <RadioButton
-                                    android:id="@+id/report_btn_yes"
-                                    android:layout_width="82dp"
-                                    android:layout_height="28dp"
-                                    android:background="@drawable/add_aa"
-                                    android:button="@null"
-                                    android:gravity="center"
-                                    android:text="是"
-                                    android:textColor="@drawable/text_back"
-                                    android:textSize="15sp" />
-
-                                <RadioButton
-                                    android:id="@+id/report_btn_no"
-                                    android:layout_width="82dp"
-                                    android:layout_height="28dp"
-                                    android:background="@drawable/add_bb"
-                                    android:button="@null"
-                                    android:checked="true"
-                                    android:gravity="center"
-                                    android:text="否"
-                                    android:textColor="@drawable/text_back"
-                                    android:textSize="15sp" />
-                            </RadioGroup>
-
-                        </RelativeLayout>
-
-                        <LinearLayout
-                            android:id="@+id/report_tv_timer"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:visibility="gone">
-
-                            <TextView
-                                android:id="@+id/report_start"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="right"
-                                android:text=""
-                                android:textColor="#ff354687"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/report_end"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="left"
-                                android:text=""
-                                android:textColor="#ff354687"
-                                android:textSize="14sp" />
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="15dp"
-                            android:background="#EEEEEE"/>
-
-                    </LinearLayout>
-
-                    <RelativeLayout
+                    <EditText
+                        android:id="@+id/report_IDcard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="11dp">
+                        android:layout_gravity="center_vertical"
+                        android:background="#FFFFFF"
+                        android:inputType="number"
+                        android:digits="1234567890zxyZXY"
+                        android:hint="请输入身份证号码"
+                        android:gravity="right"
+                        android:maxLength="18"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="客户意向："
-                            android:textColor="#ff1a1a1a"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/report_tv_sq"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:text="展开"
-                            android:textColor="#ff364888"
-                            android:textSize="12sp" />
-                    </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE">
 
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="是否计划登岛"
+                        android:textColor="#ff111111"
+                        android:textSize="15sp" />
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/report_btn_yes"
+                            android:layout_width="82dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/add_aa"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="是"
+                            android:textColor="@drawable/text_back"
+                            android:textSize="15sp" />
+
+                        <RadioButton
+                            android:id="@+id/report_btn_no"
+                            android:layout_width="82dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/add_bb"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:text="否"
+                            android:textColor="@drawable/text_back"
+                            android:textSize="15sp" />
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/report_tv_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/report_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=""
+                        android:textColor="#ff354687"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/report_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text=""
+                        android:textColor="#ff354687"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#EEEEEE"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="客户意向："
+                        android:textColor="#ff1a1a1a"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/report_tv_sq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="展开"
+                        android:textColor="#ff364888"
+                        android:textSize="12sp" />
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -903,6 +847,63 @@
 
     </ScrollView>
 
+    <LinearLayout
+        android:id="@+id/report_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#e7e7e7"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/report_picker_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="取消"
+                android:textColor="#ff666666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="请选择时间"
+                android:textColor="#ff111111"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/report_picker_ensure"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="确定"
+                android:textColor="#334485"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <top.defaults.view.DateTimePickerView
+            android:id="@+id/report_pickerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e7e7e7"
+            app:preferredMaxOffsetItemCount="4" />
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/all_no_network"
         android:background="#fff"
@@ -930,7 +931,5 @@
             android:layout_height="wrap_content"/>
 
     </RelativeLayout>
-
-
 
 </RelativeLayout>

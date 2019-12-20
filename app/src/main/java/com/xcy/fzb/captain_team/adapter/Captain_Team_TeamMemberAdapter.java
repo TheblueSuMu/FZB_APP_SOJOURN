@@ -52,7 +52,7 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
 
     @Override
     public void onBindViewHolder(@NonNull final TeamMemberViewHolder holder, final int position) {
-
+        holder.member_name_img.setVisibility(View.GONE);
         Log.i("MyCL", "集合长度：" + contacts.size());
         contact = contacts.get(position);
         Log.e("MyCL", "onBindViewHolder: index:" + contact.getIndex());
@@ -69,8 +69,8 @@ public class Captain_Team_TeamMemberAdapter extends RecyclerView.Adapter<Captain
             StringBuffer append = stringBuffer.append(contact.getName());
             for (int j = 0; j < append.length(); ++j) {
                 if (append.substring(j, j + 1).equals("@")) {
-
                     if (contact.getName().equals(list.get(i).getName() + "@" + list.get(i).getId())) {
+                        holder.member_name_img.setVisibility(View.VISIBLE);
                         Glide.with(holder.itemView.getContext()).load(FinalContents.getImageUrl() + list.get(i).getPhoto()).into(holder.member_name_img);
                         if (list.get(i).getType().equals("1")) {
                             holder.tvName.setText(append.substring(0, j) + "(" + list.get(i).getLevelName() + ")");

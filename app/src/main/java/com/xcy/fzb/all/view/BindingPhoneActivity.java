@@ -22,13 +22,11 @@ import com.xcy.fzb.all.modle.UserMessageBean;
 import com.xcy.fzb.all.modle.VerificationBean;
 import com.xcy.fzb.all.modle.ZYDataBean;
 import com.xcy.fzb.all.modle.ZhangBingDataBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -76,7 +74,7 @@ public class BindingPhoneActivity extends AllActivity implements View.OnClickLis
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -101,7 +99,6 @@ public class BindingPhoneActivity extends AllActivity implements View.OnClickLis
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -113,7 +110,7 @@ public class BindingPhoneActivity extends AllActivity implements View.OnClickLis
                 break;
             case R.id.binding_btn_1:
                 if (!MatcherUtils.isMobile(binding_phone.getText().toString())) {
-                    ToastUtil.showToast(BindingPhoneActivity.this,"请输入正确的手机号");
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
                     initData1();
@@ -130,7 +127,7 @@ public class BindingPhoneActivity extends AllActivity implements View.OnClickLis
     private void initData2() {
         yanzhengma = binding_et.getText().toString();
         if (yanzhengma.equals("")) {
-            ToastUtil.showToast(this,"请输入验证码");
+            Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
             return;
         }
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -266,7 +263,7 @@ public class BindingPhoneActivity extends AllActivity implements View.OnClickLis
                         CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(binding_btn_1, 60000, 1000);
                         mCountDownTimerUtils.start();
                         VerificationBean.DataBean data = codeBean.getData();
-                        ToastUtil.showToast(BindingPhoneActivity.this,data.getMessage());
+                        Toast.makeText(BindingPhoneActivity.this, data.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

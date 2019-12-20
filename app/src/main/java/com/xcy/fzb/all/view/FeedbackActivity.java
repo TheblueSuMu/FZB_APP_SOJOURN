@@ -11,8 +11,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -36,8 +34,6 @@ import com.xcy.fzb.all.modle.FeedBackBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
-import com.xcy.fzb.project_attache.adapter.GridViewSAdapter;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -58,7 +54,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 //TODO 意见反馈
-public class FeedbackActivity extends AllActivity{
+public class FeedbackActivity extends AllActivity {
 
     RelativeLayout feedback_return;
     EditText feedback_editText;
@@ -92,7 +88,7 @@ public class FeedbackActivity extends AllActivity{
         init_No_Network();
     }
 
-    private void init_No_Network() {
+    private void init_No_Network(){
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -108,7 +104,7 @@ public class FeedbackActivity extends AllActivity{
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -140,9 +136,9 @@ public class FeedbackActivity extends AllActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if (mDatas.size() == 9) {
-                    ToastUtil.showToast(FeedbackActivity.this, "图片最多九张");
-                } else {
+                if(mDatas.size() == 9){
+                    Toast.makeText(FeedbackActivity.this,"图片最多九张",Toast.LENGTH_SHORT).show();
+                }else {
                     if (position == parent.getChildCount() - 1) {
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(FeedbackActivity.this);
@@ -177,7 +173,7 @@ public class FeedbackActivity extends AllActivity{
 //TODO Uri图片转换成file类型的 start
                                         file = uri2File(photoUri);
 
-                                        if (isPhoto.equals("")) {
+                                        if (isPhoto.equals("")){
                                             isPhoto = "拍照";
                                         }
 
@@ -206,25 +202,6 @@ public class FeedbackActivity extends AllActivity{
                         adapter = new GridViewAdapter(FeedbackActivity.this, mDatas);
                         mGridView.setAdapter(adapter);
 
-                    } else {
-
-                        Intent intent = new Intent(FeedbackActivity.this, BigPhotoActivity.class);
-                        intent.putExtra("index", position);
-                        intent.putExtra("bigPhotoimg", stringBuffer.toString());// -1  -1  -1
-                        startActivity(intent);
-
-//                        Log.i("MyCL","下标：" + position);
-//                        ArrayList<String> listImage = new ArrayList<>();
-//                        final String[] a = stringBuffer.toString().split("[|]");
-//                        for (int i = 0; i < a.length; i++) {
-//                            listImage.add(a[i]);
-//                        }
-//                        listImage.remove(position);
-//                        stringBuffer.append(listImage);
-//                        mDatas.remove(position);
-//                        adapter.notifyDataSetChanged();
-//                        Log.i("MyCL","stringBuffer：" + stringBuffer.toString());
-//                        Log.i("MyCL","mDatas：" + mDatas.toString());
                     }
                 }
             }
@@ -236,9 +213,9 @@ public class FeedbackActivity extends AllActivity{
             public void onClick(View view) {
                 message = feedback_editText.getText().toString();
 
-                if (message.equals("")) {
-                    Toast.makeText(FeedbackActivity.this, "原因不能为空", Toast.LENGTH_SHORT).show();
-                } else {
+                if(message.equals("")){
+                    Toast.makeText(FeedbackActivity.this,"原因不能为空",Toast.LENGTH_SHORT).show();
+                }else {
                     Retrofit.Builder builder = new Retrofit.Builder();
                     builder.baseUrl(FinalContents.getBaseUrl());
                     builder.addConverterFactory(GsonConverterFactory.create());
@@ -257,10 +234,10 @@ public class FeedbackActivity extends AllActivity{
                                 public void onNext(FeedBackBean feedBackBean) {
                                     String msg = feedBackBean.getMsg();
                                     if (msg.equals("成功")) {
-                                        ToastUtil.showToast(FeedbackActivity.this, "提交成功");
+                                        Toast.makeText(FeedbackActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
                                         finish();
                                     } else {
-                                        ToastUtil.showToast(FeedbackActivity.this, "提交失败，请重新提交");
+                                        Toast.makeText(FeedbackActivity.this, "提交失败，请重新提交", Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -421,7 +398,7 @@ public class FeedbackActivity extends AllActivity{
     protected void onRestart() {
         super.onRestart();
 
-        if (isPhoto.equals("拍照")) {
+        if(isPhoto.equals("拍照")){
             new Thread() {
                 @Override
                 public void run() {

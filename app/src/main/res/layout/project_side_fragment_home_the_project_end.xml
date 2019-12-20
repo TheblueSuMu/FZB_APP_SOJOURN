@@ -305,30 +305,16 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <RelativeLayout
+                                    <TextView
+                                        android:id="@+id/tv2_home_the_project_end"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-
-                                        <TextView
-                                            android:id="@+id/tv2_home_the_project_end"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <ImageView
-                                            android:id="@+id/project_side_img_1"
-                                            android:layout_width="5dp"
-                                            android:layout_height="5dp"
-                                            android:layout_toRightOf="@id/tv2_home_the_project_end"
-                                            android:src="@mipmap/item_unread"
-                                            android:visibility="gone" />
-                                    </RelativeLayout>
-
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:ellipsize="end"
+                                        android:lines="1"
+                                        android:text=""
+                                        android:textColor="#111111"
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -362,30 +348,16 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <RelativeLayout
+                                    <TextView
+                                        android:id="@+id/tv3_home_the_project_end"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-
-                                        <TextView
-                                            android:id="@+id/tv3_home_the_project_end"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <ImageView
-                                            android:id="@+id/project_side_img_2"
-                                            android:layout_width="5dp"
-                                            android:layout_height="5dp"
-                                            android:layout_toRightOf="@id/tv3_home_the_project_end"
-                                            android:src="@mipmap/item_unread"
-                                            android:visibility="gone"/>
-                                    </RelativeLayout>
-
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:ellipsize="end"
+                                        android:lines="1"
+                                        android:text=""
+                                        android:textColor="#111111"
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -420,30 +392,16 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <RelativeLayout
+                                    <TextView
+                                        android:id="@+id/tv5_home_the_project_end"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-
-                                        <TextView
-                                            android:id="@+id/tv5_home_the_project_end"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <ImageView
-                                            android:id="@+id/project_side_img_3"
-                                            android:layout_width="5dp"
-                                            android:layout_height="5dp"
-                                            android:layout_toRightOf="@id/tv5_home_the_project_end"
-                                            android:src="@mipmap/item_unread"
-                                            android:visibility="gone"/>
-                                    </RelativeLayout>
-
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:ellipsize="end"
+                                        android:lines="1"
+                                        android:text=""
+                                        android:textColor="#111111"
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -478,30 +436,16 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <RelativeLayout
+                                    <TextView
+                                        android:id="@+id/tv6_home_the_project_end"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-
-                                        <TextView
-                                            android:id="@+id/tv6_home_the_project_end"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-
-                                        <ImageView
-                                            android:id="@+id/project_side_img_4"
-                                            android:layout_width="5dp"
-                                            android:layout_height="5dp"
-                                            android:layout_toRightOf="@id/tv6_home_the_project_end"
-                                            android:src="@mipmap/item_unread"
-                                            android:visibility="gone"/>
-                                    </RelativeLayout>
-
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:ellipsize="end"
+                                        android:lines="1"
+                                        android:text=""
+                                        android:textColor="#111111"
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -534,28 +478,17 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:orientation="vertical">
-                                    <RelativeLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-                                        <TextView
-                                            android:id="@+id/tv7_home_the_project_end"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-                                        <ImageView
-                                            android:id="@+id/project_side_img_5"
-                                            android:layout_width="5dp"
-                                            android:layout_height="5dp"
-                                            android:src="@mipmap/item_unread"
-                                            android:visibility="gone"
-                                            android:layout_toRightOf="@id/tv7_home_the_project_end"/>
-                                    </RelativeLayout>
 
+                                    <TextView
+                                        android:id="@+id/tv7_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:ellipsize="end"
+                                        android:lines="1"
+                                        android:text=""
+                                        android:textColor="#111111"
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -588,28 +521,17 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:orientation="vertical">
-                                    <RelativeLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-                                        <TextView
-                                            android:id="@+id/tv8_home_the_project_end"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:ellipsize="end"
-                                            android:lines="1"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-                                        <ImageView
-                                            android:id="@+id/project_side_img_6"
-                                            android:layout_width="5dp"
-                                            android:layout_height="5dp"
-                                            android:src="@mipmap/item_unread"
-                                            android:visibility="gone"
-                                            android:layout_toRightOf="@id/tv8_home_the_project_end"/>
-                                    </RelativeLayout>
 
+                                    <TextView
+                                        android:id="@+id/tv8_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:ellipsize="end"
+                                        android:lines="1"
+                                        android:text=""
+                                        android:textColor="#111111"
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -865,26 +787,15 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:orientation="vertical">
-                                    <RelativeLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-                                        <TextView
-                                            android:id="@+id/tv13_home_the_project_end"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-                                        <ImageView
-                                            android:id="@+id/project_side_img_7"
-                                            android:layout_width="5dp"
-                                            android:layout_height="5dp"
-                                            android:src="@mipmap/item_unread"
-                                            android:visibility="gone"
-                                            android:layout_toRightOf="@id/tv13_home_the_project_end"/>
-                                    </RelativeLayout>
 
+                                    <TextView
+                                        android:id="@+id/tv13_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#111111"
+                                        android:textSize="18sp" />
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -928,26 +839,15 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:orientation="vertical">
-                                    <RelativeLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content">
-                                        <TextView
-                                            android:id="@+id/tv14_home_the_project_end"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:text=""
-                                            android:textColor="#111111"
-                                            android:textSize="18sp" />
-                                        <ImageView
-                                            android:id="@+id/project_side_img_8"
-                                            android:layout_width="5dp"
-                                            android:layout_height="5dp"
-                                            android:src="@mipmap/item_unread"
-                                            android:visibility="gone"
-                                            android:layout_toRightOf="@id/tv14_home_the_project_end"/>
-                                    </RelativeLayout>
 
+                                    <TextView
+                                        android:id="@+id/tv14_home_the_project_end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text=""
+                                        android:textColor="#111111"
+                                        android:textSize="18sp" />
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -1028,5 +928,63 @@
         </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/home_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#e7e7e7"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/home_picker_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="取消"
+                android:textColor="#ff666666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="请选择时间"
+                android:textColor="#ff111111"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/home_picker_ensure"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="确定"
+                android:textColor="#334485"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <top.defaults.view.DateTimePickerView
+            android:id="@+id/home_pickerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e7e7e7"
+            app:preferredMaxOffsetItemCount="4" />
+    </LinearLayout>
+
 
 </RelativeLayout>

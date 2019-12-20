@@ -26,11 +26,9 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ClientParticularsAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ClientParticularsBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +78,7 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -99,17 +97,12 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
         client_particulars_img.setOnClickListener(this);
         client_particulars_return.setOnClickListener(this);
 
-
-
-        if (!FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+        if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
             client_particulars_report.setVisibility(View.GONE);
-        }else {
-            client_particulars_report.setVisibility(View.VISIBLE);
-            if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9") ) {
-                client_particulars_report.setVisibility(View.GONE);
-            }else {
-                client_particulars_report.setVisibility(View.VISIBLE);
-            }
+        }
+
+        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+            client_particulars_report.setVisibility(View.GONE);
         }
 
         initData();
@@ -214,7 +207,7 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
                                         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
-                                                ToastUtil.showToast(ClientParticularsActivity.this,"取消拨打电话");
+                                                Toast.makeText(ClientParticularsActivity.this, "取消拨打电话", Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                         builder.show();
@@ -233,7 +226,6 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
                             @Override
                             public void onClick(View view) {
                                 finish();
-                                FinalContents.setClientPhone(clientParticularsBean.getData().getInfoData().getContactsPhone1());
                                 FinalContents.setClientName(clientParticularsBean.getData().getInfoData().getCustomerName());
                                 FinalContents.setCustomerID(clientParticularsBean.getData().getInfoData().getId());
                                 FinalContents.setChecked(true);
@@ -272,7 +264,6 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -287,5 +278,4 @@ public class ClientParticularsActivity extends AllActivity implements View.OnCli
         }
 
     }
-
 }

@@ -19,12 +19,9 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.InitiatedBean;
-import com.xcy.fzb.all.modle.MyExamineNumBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.adapter.InitiatedAdapter;
 
@@ -52,17 +49,11 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
     LinearLayout initiated_the_review_ll4;
     LinearLayout initiated_the_review_ll5;
     LinearLayout initiated_the_review_ll6;
-    LinearLayout initiated_the_review_ll7;
-    LinearLayout initiated_the_review_ll8;
     RecyclerView initiated_the_review_rv;
 
     InitiatedAdapter adapter;
     private List<InitiatedBean.DataBean.RowsBean> rows;
     private ImageView all_no_information;
-    private TextView initiated_the_review_tv1;
-    private TextView initiated_the_review_tv2;
-    private TextView initiated_the_review_tv3;
-    private TextView initiated_the_review_tv4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +78,7 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -102,21 +93,13 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
         initiated_the_review_ll4 = findViewById(R.id.initiated_the_review_ll4);
         initiated_the_review_ll5 = findViewById(R.id.initiated_the_review_ll5);
         initiated_the_review_ll6 = findViewById(R.id.initiated_the_review_ll6);
-        initiated_the_review_ll7 = findViewById(R.id.initiated_the_review_ll7);
-        initiated_the_review_ll8 = findViewById(R.id.initiated_the_review_ll8);
         initiated_the_review_rv = findViewById(R.id.initiated_the_review_rv);
-
-        initiated_the_review_tv1 = findViewById(R.id.initiated_the_review_tv1);
-        initiated_the_review_tv2 = findViewById(R.id.initiated_the_review_tv2);
-        initiated_the_review_tv3 = findViewById(R.id.initiated_the_review_tv3);
-        initiated_the_review_tv4 = findViewById(R.id.initiated_the_review_tv4);
 
         initiated_the_review_return.setOnClickListener(this);
         initiated_the_review_tv.setOnClickListener(this);
         initiated_the_review_ll1.setOnClickListener(this);
         initiated_the_review_ll3.setOnClickListener(this);
         initiated_the_review_ll5.setOnClickListener(this);
-        initiated_the_review_ll7.setOnClickListener(this);
 
         ptrClassicFrameLayout = (PtrClassicFrameLayout) findViewById(R.id.store_house_ptr_frame_15);
         ptrClassicFrameLayout.setPtrHandler(new PtrHandler() {
@@ -133,8 +116,6 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                             initData(2);
                         } else if (initiated_the_review_ll6.getVisibility() == View.VISIBLE) {
                             initData(3);
-                        } else if (initiated_the_review_ll8.getVisibility() == View.VISIBLE) {
-                            initData(4);
                         }
                     }
                 }, 1000);
@@ -146,10 +127,11 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
             }
         });
 
-        initRead();
+
+        initData(1);
+
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -171,7 +153,7 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                 initiated_the_review_ll2.setVisibility(View.VISIBLE);
                 initiated_the_review_ll4.setVisibility(View.GONE);
                 initiated_the_review_ll6.setVisibility(View.GONE);
-                initiated_the_review_ll8.setVisibility(View.GONE);
+
                 break;
             //            TODO 调单
             case R.id.initiated_the_review_ll3:
@@ -180,7 +162,6 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                 initiated_the_review_ll2.setVisibility(View.GONE);
                 initiated_the_review_ll4.setVisibility(View.VISIBLE);
                 initiated_the_review_ll6.setVisibility(View.GONE);
-                initiated_the_review_ll8.setVisibility(View.GONE);
                 break;
             //            TODO 退单
             case R.id.initiated_the_review_ll5:
@@ -189,16 +170,6 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                 initiated_the_review_ll2.setVisibility(View.GONE);
                 initiated_the_review_ll4.setVisibility(View.GONE);
                 initiated_the_review_ll6.setVisibility(View.VISIBLE);
-                initiated_the_review_ll8.setVisibility(View.GONE);
-                break;
-            //            TODO 成交
-            case R.id.initiated_the_review_ll7:
-
-                initData(4);
-                initiated_the_review_ll2.setVisibility(View.GONE);
-                initiated_the_review_ll4.setVisibility(View.GONE);
-                initiated_the_review_ll6.setVisibility(View.GONE);
-                initiated_the_review_ll8.setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -248,7 +219,6 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                             all_no_information.setVisibility(View.VISIBLE);
                             initiated_the_review_rv.setVisibility(View.GONE);
                         }
-                        initRead();
                     }
 
                     @Override
@@ -265,72 +235,4 @@ public class InitiatedTheReviewActivity extends AllActivity implements View.OnCl
                 });
     }
 
-    private void initRead(){
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
-        Observable<MyExamineNumBean> userMessage = fzbInterface.getMyExamineNum(FinalContents.getUserID(), "1","1000");
-        userMessage.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MyExamineNumBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @SuppressLint("WrongConstant")
-                    @Override
-                    public void onNext(MyExamineNumBean initiatedBean) {
-                        if (initiatedBean.getData().getWithdraw() == 0) {
-                            initiated_the_review_tv1.setText("退筹");
-                        }else {
-                            initiated_the_review_tv1.setText("退筹("+initiatedBean.getData().getWithdraw()+")");
-                        }
-                        if (initiatedBean.getData().getOrderSheet() == 0) {
-                            initiated_the_review_tv2.setText("调单");
-                        }else {
-                            initiated_the_review_tv2.setText("调单("+initiatedBean.getData().getOrderSheet()+")");
-                        }
-                        if (initiatedBean.getData().getDocuments() == 0) {
-                            initiated_the_review_tv3.setText("退单");
-                        }else {
-                            initiated_the_review_tv3.setText("退单("+initiatedBean.getData().getDocuments()+")");
-                        }
-                        if (initiatedBean.getData().getTrade() == 0) {
-                            initiated_the_review_tv4.setText("成交");
-                        }else {
-                            initiated_the_review_tv4.setText("成交("+initiatedBean.getData().getTrade()+")");
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        all_no_information.setVisibility(View.VISIBLE);
-                        initiated_the_review_rv.setVisibility(View.GONE);
-                        Log.i("列表数据获取错误", "错误" + e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (initiated_the_review_ll2.getVisibility() == View.VISIBLE) {
-            initData(1);
-        } else if (initiated_the_review_ll4.getVisibility() == View.VISIBLE) {
-            initData(2);
-        } else if (initiated_the_review_ll6.getVisibility() == View.VISIBLE) {
-            initData(3);
-        } else if (initiated_the_review_ll8.getVisibility() == View.VISIBLE) {
-            initData(4);
-        }
-    }
 }

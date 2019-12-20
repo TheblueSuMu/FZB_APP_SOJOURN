@@ -20,13 +20,11 @@ import com.xcy.fzb.all.database.BrokerSaveBean;
 import com.xcy.fzb.all.database.RatioByOwnerIdBean;
 import com.xcy.fzb.all.database.TeamMemberBean;
 import com.xcy.fzb.all.modle.SysUser2Bean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.SlideSwitch;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 
 import java.util.ArrayList;
@@ -106,7 +104,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -171,7 +169,6 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
         }
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -345,7 +342,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                             }else {
                                 Toast.makeText(Captain_Team_AddAConsultantActivity.this, "当前团队长暂无销售", Toast.LENGTH_SHORT).show();
                             }
-
+                            
                             ifnum2 = 0;
                         }
 
@@ -511,10 +508,10 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
 
         if (FinalContents.getIdentity().equals("63")) {
             if (FinalContents.getOwnerId001().equals("")) {
-                ToastUtil.showToast(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交");
+                Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
             } else {
                 if (add_aconsultant_et1.getText().toString().equals("")  || add_aconsultant_et3.getText().toString().equals("") || add_aconsultant_et4.getText().toString().equals("") || add_aconsultant_tv1.getText().toString().equals("") || add_aconsultant_tv2.getText().toString().equals("") || add_aconsultant_tv3.getText().toString().equals("")) {
-                    ToastUtil.showToast(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交");
+                    Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
                 } else {
                     if (txt.getVisibility() == View.VISIBLE) {
                         loginFlag = "0";
@@ -533,7 +530,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                                 @SuppressLint("WrongConstant")
                                 @Override
                                 public void onNext(BrokerSaveBean brokerSaveBean) {
-                                    ToastUtil.showToast(Captain_Team_AddAConsultantActivity.this, brokerSaveBean.getData().getMessage());
+                                    Toast.makeText(Captain_Team_AddAConsultantActivity.this, brokerSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                     if (brokerSaveBean.getData().getMessage().equals("保存成功")) {
                                         FinalContents.setOwnerId("");
                                         FinalContents.setOwnerId001("");
@@ -581,7 +578,7 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                             @SuppressLint("WrongConstant")
                             @Override
                             public void onNext(BrokerSaveBean brokerSaveBean) {
-                                ToastUtil.showToast(Captain_Team_AddAConsultantActivity.this, brokerSaveBean.getData().getMessage());
+                                Toast.makeText(Captain_Team_AddAConsultantActivity.this, brokerSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                 if (brokerSaveBean.getData().getMessage().equals("保存成功")) {
                                     FinalContents.setOwnerId("");
                                     FinalContents.setOwnerId001("");

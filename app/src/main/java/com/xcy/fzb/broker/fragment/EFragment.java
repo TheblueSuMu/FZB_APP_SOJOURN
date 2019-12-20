@@ -39,7 +39,6 @@ import com.xcy.fzb.all.view.MyBrokerageActivity;
 import com.xcy.fzb.all.view.MyClientActivity;
 import com.xcy.fzb.all.view.PersonalInformationActivity;
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -48,7 +47,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class EFragment extends AllFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class EFragment extends AllFragment implements View.OnClickListener {
 
     RelativeLayout my_collect;
     RelativeLayout my_comment;
@@ -73,8 +72,6 @@ public class EFragment extends AllFragment implements View.OnClickListener, Swip
 
     private Intent intent;
     private TextView my_tv_huancun;
-
-    private SwipeRefreshLayout layout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -103,7 +100,6 @@ public class EFragment extends AllFragment implements View.OnClickListener, Swip
         me_tv_name = getActivity().findViewById(R.id.me_tv_name);//个人中心
         me_tv_phone = getActivity().findViewById(R.id.me_tv_phone);//个人中心
 
-        layout = getActivity().findViewById(R.id.e_ssrfl_1);
 
         e_client_tv = getActivity().findViewById(R.id.e_client_tv);
         e_commissions_tv = getActivity().findViewById(R.id.e_commissions_tv);
@@ -130,7 +126,7 @@ public class EFragment extends AllFragment implements View.OnClickListener, Swip
         my_about.setOnClickListener(this);
         my_empty.setOnClickListener(this);
         my_exit.setOnClickListener(this);
-        layout.setOnRefreshListener(this);
+
         //        根据用户Id获取用户信息
         initUserMessage();
 //        我的佣金和客户数量
@@ -255,8 +251,7 @@ public class EFragment extends AllFragment implements View.OnClickListener, Swip
         } else if (id == R.id.my_exit) {
 //            TODO 退出登录
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setMessage("确定要退出程序吗?");
-//            builder.setTitle("退出完成");
+            builder.setTitle("退出完成");
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -334,18 +329,5 @@ public class EFragment extends AllFragment implements View.OnClickListener, Swip
             init();
             NewlyIncreased.setUserMessage("");
         }
-    }
-
-    @Override
-    public void onRefresh() {
-
-        if (layout.isRefreshing()) {//如果正在刷新
-//            initView();
-//            initHotList();
-            initUserMessage();
-            initClientCommissions();
-            layout.setRefreshing(false);//取消刷新
-        }
-
     }
 }

@@ -14,24 +14,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
-import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.StoreListBean;
 import com.xcy.fzb.all.database.StoreListData;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_attache.adapter.StoreListAdapter;
 
@@ -46,7 +44,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-//, SwipeRefreshLayout.OnRefreshListener
+
 public class StoreListActivity extends AllActivity implements View.OnClickListener, StoreListAdapter.ItemOnClick {
 
     RelativeLayout store_list_return;
@@ -74,12 +72,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
     private List<StoreListBean.DataBean.RowsBean> rows;
     private Intent intent;
     private ImageView all_no_information;
-    private LinearLayout store_list_ll0;
-    private TextView center_headline;
-
-//    private SwipeRefreshLayout layout;
-
-//    private AVLoadingIndicatorView avi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +79,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         setContentView(R.layout.project_attache_activity_store_list);
         init_No_Network();
     }
-
     private void init_No_Network(){
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
@@ -104,7 +95,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showLongToast(StoreListActivity.this,"当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -115,8 +106,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         store_list_return = findViewById(R.id.store_list_return);
         store_list_add = findViewById(R.id.store_list_add);
         store_list_et = findViewById(R.id.store_list_et);
-        center_headline = findViewById(R.id.center_headline);
-        store_list_ll0 = findViewById(R.id.store_list_ll0);
         store_list_ll1 = findViewById(R.id.store_list_ll1);
         store_list_ll2 = findViewById(R.id.store_list_ll2);
         store_list_ll3 = findViewById(R.id.store_list_ll3);
@@ -125,23 +114,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         store_list_tv2 = findViewById(R.id.store_list_tv2);
         store_list_tv1 = findViewById(R.id.store_list_tv1);
         store_list_cb = findViewById(R.id.store_list_cb);
-
-//        avi = findViewById(R.id.avi);
-//
-//        avi.show();
-//        avi.setVisibility(View.VISIBLE);
-
-//        layout = findViewById(R.id.ssrl_s);
-
-//        layout.setOnRefreshListener(this);
-
-        if (CityContents.getStore().equals("1")) {
-            store_list_ll0.setVisibility(View.GONE);
-            center_headline.setText("门店列表");
-        }else {
-            store_list_ll0.setVisibility(View.VISIBLE);
-            center_headline.setText("列表");
-        }
 
         store_list_cb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,6 +196,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
         store_list_rv.setLayoutManager(new LinearLayoutManager(this));
         decoration = new PinnedHeaderDecoration();
 
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -265,23 +238,13 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                     storeListData.setStoreIdCode(rows.get(i).getStoreIdCode());
                                     storeListData.setCompanyAddress(rows.get(i).getCompanyAddress());
                                     storeListData.setStoreNum(rows.get(i).getStoreNum());
-                                    storeListData.setAttacheName(rows.get(i).getAttacheName());
-                                    storeListData.setAttachePhone(rows.get(i).getAttachePhone());
-                                    storeListData.setAttacheIdentity(rows.get(i).getAttacheIdentity());
-                                    storeListData.setState(rows.get(i).getState());
-                                    storeListData.setIsMy(rows.get(i).getIsMy());
 
                                     mContactModels.add(contactModel);
                                     listData.add(storeListData);
                                 }
                             }
-                            store_list_ll1.setClickable(true);
-//                            avi.hide();
-//                            avi.setVisibility(View.GONE);
                             initDatas();
                         }else {
-                            //                            avi.hide();
-//                            avi.setVisibility(View.GONE);
                             all_no_information.setVisibility(View.VISIBLE);
                             store_list_rv.setVisibility(View.GONE);
                         }
@@ -290,8 +253,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                     @Override
                     public void onError(Throwable e) {
-//                        avi.hide();
-//                        avi.setVisibility(View.GONE);
                         all_no_information.setVisibility(View.VISIBLE);
                         store_list_rv.setVisibility(View.GONE);
                         Log.i("专员门店或公司列表", "错误信息：" + e.getMessage());
@@ -325,7 +286,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
     }
 
-    @SingleClick(1000)
+
     @Override
     public void onClick(View view) {
 
@@ -347,77 +308,43 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                 break;
             case R.id.store_list_ll1:
-//                avi.setVisibility(View.VISIBLE);
-//                avi.show();
-                if(store_list_ll3.isClickable()){
-                    store_list_ll1.setClickable(false);
-                    store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
-                    store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
-                    store_list_ll2.setVisibility(View.VISIBLE);
-                    store_list_ll4.setVisibility(View.INVISIBLE);
-
-                    if(listData.size() == 0){
-
-                    }else {
-                        store_list_rv.removeAllViews();
-                        mContactModels.clear();
-                        listData.clear();
-                        mAdapter.notifyDataSetChanged();
-
-                    }
+                store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
+                store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
+                store_list_ll2.setVisibility(View.VISIBLE);
+                store_list_ll4.setVisibility(View.INVISIBLE);
 
 
-                    if(FinalContents.getMyAddType().equals("门店")){
-                        initData(FinalContents.getCompanyManageId(), "", "","","","");
-                        FinalContents.setStoreList("1");
-                    }else {
-                        if (store_list_cb.isChecked()) {
-                            initData("", "", "1","","","");
-                        } else {
-                            initData("", "", "","","","");
-                        }
-                        FinalContents.setStoreList("1");
-                    }
-                }else {
-                    ToastUtil.showLongToast(StoreListActivity.this,"数据未加载完成");
-                }
-
+               if(FinalContents.getMyAddType().equals("门店")){
+                   initData(FinalContents.getCompanyManageId(), "", "","","","");
+                   FinalContents.setStoreList("1");
+               }else {
+                   if (store_list_cb.isChecked()) {
+                       initData("", "", "1","","","");
+                   } else {
+                       initData("", "", "","","","");
+                   }
+                   FinalContents.setStoreList("1");
+               }
 
                 break;
             case R.id.store_list_ll3:
-//                avi.setVisibility(View.VISIBLE);
-//                avi.show();
-                if(store_list_ll1.isClickable()){
-                    store_list_ll3.setClickable(false);
-                    store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
-                    store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
-                    store_list_ll4.setVisibility(View.VISIBLE);
-                    store_list_ll2.setVisibility(View.INVISIBLE);
+                store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
+                store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
+                store_list_ll4.setVisibility(View.VISIBLE);
+                store_list_ll2.setVisibility(View.INVISIBLE);
 
-                    if(listData.size() == 0){
-
-                    }else {
-                        store_list_rv.removeAllViews();
-                        mContactModels.clear();
-                        listData.clear();
-                        mAdapter.notifyDataSetChanged();
-
-                    }
-
-                    if(FinalContents.getMyAddType().equals("公司")){
-                        initDatam("","", "");
-                        FinalContents.setStoreList("2");
-                    }else {
-                        FinalContents.setStoreList("2");
-                        if (store_list_cb.isChecked()) {
-                            initDatam("","", "1");
-                        } else {
-                            initDatam("","", "");
-                        }
-                    }
+                if(FinalContents.getMyAddType().equals("公司")){
+                    initDatam("","", "");
+                    FinalContents.setStoreList("2");
                 }else {
-                    ToastUtil.showLongToast(StoreListActivity.this,"数据未加载完成");
+                    FinalContents.setStoreList("2");
+                    if (store_list_cb.isChecked()) {
+                        initDatam("","", "1");
+                    } else {
+                        initDatam("","", "");
+                    }
                 }
+
 
                 break;
         }
@@ -473,24 +400,14 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                                     storeListData.setStoreIdCode(rows.get(i).getStoreIdCode());
                                     storeListData.setCompanyAddress(rows.get(i).getCompanyAddress());
                                     storeListData.setStoreNum(rows.get(i).getStoreNum());
-                                    storeListData.setAttacheName(rows.get(i).getAttacheName());
-                                    storeListData.setAttachePhone(rows.get(i).getAttachePhone());
-                                    storeListData.setAttacheIdentity(rows.get(i).getAttacheIdentity());
-                                    storeListData.setState(rows.get(i).getState());
-                                    storeListData.setIsMy(rows.get(i).getIsMy());
 
                                     mContactModels.add(contactModel);
                                     listData.add(storeListData);
                                 }
 
                             }
-                            store_list_ll3.setClickable(true);
-//                            avi.hide();
-//                            avi.setVisibility(View.GONE);
                             initDatas();
                         }else {
-                            //                            avi.hide();
-//                            avi.setVisibility(View.GONE);
                             all_no_information.setVisibility(View.VISIBLE);
                             store_list_rv.setVisibility(View.GONE);
                         }
@@ -499,8 +416,6 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                     @Override
                     public void onError(Throwable e) {
-//                        avi.hide();
-//                        avi.setVisibility(View.GONE);
                         all_no_information.setVisibility(View.VISIBLE);
                         store_list_rv.setVisibility(View.GONE);
                         Log.i("专员公司列表", "错误信息：" + e.getMessage());
@@ -511,6 +426,7 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
 
                     }
                 });
+
     }
 
     @Override
@@ -550,15 +466,11 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
                 if (listData.get(i).getCompanyId().equals(itemName)) {
                     for (int j = 0; j < listData.size(); ++j) {
                         if (mContactModels.get(i).getName().equals(listData.get(j).getCompanyName())) {
-                            if(FinalContents.getIdentity().equals("9")){
-                                FinalContents.setStoreId(listData.get(j).getStoreId());
-                                FinalContents.setCompanyId(listData.get(j).getCompanyId());
-                                Intent intent = new Intent(StoreListActivity.this, StoreDetailsActivity.class);
-                                FinalContents.setMyAddType("公司");
-                                startActivity(intent);
-                            }else if(FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("8")){
-                                ToastUtil.showLongToast(StoreListActivity.this,"当前用户无查看公司详情权限");
-                            }
+                            FinalContents.setStoreId(listData.get(j).getStoreId());
+                            FinalContents.setCompanyId(listData.get(j).getCompanyId());
+                            Intent intent = new Intent(StoreListActivity.this, StoreDetailsActivity.class);
+                            FinalContents.setMyAddType("公司");
+                            startActivity(intent);
                         }
                     }
                 }
@@ -585,17 +497,14 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
     protected void onRestart() {
         super.onRestart();
 
+
         if (FinalContents.getMyAddType().equals("公司")) {
             store_list_tv2.setTextColor(Color.parseColor("#FFFFFF"));
             store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
             store_list_ll4.setVisibility(View.VISIBLE);
             store_list_ll2.setVisibility(View.INVISIBLE);
             FinalContents.setStoreList("2");
-            if (store_list_cb.isChecked()) {
-                initDatam("","", "1");
-            } else {
-                initDatam("","", "");
-            }
+            initDatam("","", "");
             FinalContents.setMyAddType("");
         } else if (FinalContents.getMyAddType().equals("门店")) {
             store_list_tv1.setTextColor(Color.parseColor("#FFFFFF"));
@@ -604,46 +513,11 @@ public class StoreListActivity extends AllActivity implements View.OnClickListen
             store_list_ll2.setVisibility(View.VISIBLE);
             FinalContents.setStoreList("1");
             FinalContents.setMyAddType("");
-            if (store_list_cb.isChecked()) {
-                initData("", "", "1","","","");
-            } else {
-                initData("", "", "","","","");
-            }
+            initData("", "", "","","","");
         } else {
-            if (store_list_cb.isChecked()) {
-                initData("", "", "1","","","");
-            } else {
-                initData("", "", "","","","");
-            }
+            initData("", "", "","","","");
             FinalContents.setStoreList("1");
         }
 
     }
-
-
-//    @Override
-//    public void onRefresh() {
-//
-//        if (layout.isRefreshing()) {//如果正在刷新
-////            initView();
-////            initHotList();
-//            if(store_list_ll2.getVisibility() == View.VISIBLE){
-//                if (store_list_cb.isChecked()) {
-//                    initData("", "", "1","","","");
-//                } else {
-//                    initData("", "", "","","","");
-//                }
-//                FinalContents.setStoreList("1");
-//            }else if(store_list_ll4.getVisibility() == View.VISIBLE){
-//                FinalContents.setStoreList("2");
-//                if (store_list_cb.isChecked()) {
-//                    initDatam("","", "1");
-//                } else {
-//                    initDatam("","", "");
-//                }
-//            }
-//            layout.setRefreshing(false);//取消刷新
-//        }
-//
-//    }
 }

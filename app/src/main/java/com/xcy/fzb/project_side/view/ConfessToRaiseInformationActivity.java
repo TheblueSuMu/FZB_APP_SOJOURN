@@ -28,11 +28,9 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.modle.ConfessBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -135,7 +133,7 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -185,7 +183,6 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -277,7 +274,7 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
                 s7 = confess_to_raise_information_tv6.getText().toString();
 
                 if (!MatcherUtils.isMobile(confess_to_raise_information_et2.getText().toString())) {
-                    ToastUtil.showToast(this, "请输入正确的手机号");
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -300,47 +297,47 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
                 }
 
                 if (confess_to_raise_information_et1.getText().toString().equals("")) {
-                    ToastUtil.showToast(this, "请输入认筹客户姓名");
+                    Toast.makeText(this, "请输入认筹客户姓名", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (sex.equals("")) {
-                    ToastUtil.showToast(this, "请选择性别");
+                    Toast.makeText(this, "请选择性别", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (confess_to_raise_information_et2.getText().toString().equals("")) {
-                    ToastUtil.showToast(this, "请输入认筹客户电话");
+                    Toast.makeText(this, "请输入认筹客户电话", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (confess_to_raise_information_et3.getText().toString().equals("")) {
-                    ToastUtil.showToast(this, "请输入认筹客户身份证");
+                    Toast.makeText(this, "请输入认筹客户身份证", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (confess_to_raise_information_tv4.getText().toString().equals("")) {
-                    ToastUtil.showToast(this, "请选择报备客户与认筹客户关系");
+                    Toast.makeText(this, "请选择报备客户与认筹客户关系", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (confess_to_raise_information_et4.getText().toString().equals("")) {
-                    ToastUtil.showToast(this, "请输入意向楼栋");
+                    Toast.makeText(this, "请输入意向楼栋", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (confess_to_raise_information_tv5.getText().toString().equals("")) {
-                    ToastUtil.showToast(this, "请选择意向户型");
+                    Toast.makeText(this, "请选择意向户型", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (confess_to_raise_information_et5.getText().toString().equals("")) {
-                    ToastUtil.showToast(this, "请输入意向面积");
+                    Toast.makeText(this, "请输入意向面积", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (confess_to_raise_information_tv6.getText().toString().equals("")) {
-                    ToastUtil.showToast(this, "请选择认筹时间");
+                    Toast.makeText(this, "请选择认筹时间", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (isnum1 == 0) {
@@ -360,7 +357,7 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave("", FinalContents.getPreparationId(), FinalContents.getCustomerID(), FinalContents.getProjectID(), s, s1, s2, s3, s8, s4, s7+"", s5, sex, FinalContents.getUserID());
+        Observable<ConfessBean> userMessage = fzbInterface.getEarnestMoneySave("", FinalContents.getPreparationId(), FinalContents.getCustomerID(), FinalContents.getProjectID(), s, s1, s2, s3, s8, s4, s7, s5, sex, FinalContents.getUserID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ConfessBean>() {
@@ -373,12 +370,12 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
                     @Override
                     public void onNext(ConfessBean confessBean) {
                         if (confessBean.getMsg().equals("成功")) {
-                            ToastUtil.showToast(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage());
+                            Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                             FinalContents.setTiaozhuang("认筹成功");
                             finish();
                             isnum1 = 0;
                         } else {
-                            ToastUtil.showToast(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage());
+                            Toast.makeText(ConfessToRaiseInformationActivity.this, confessBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                             isnum1 = 0;
                         }
                     }
@@ -400,13 +397,14 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
     private void initDate() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
+        int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-        String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
-        pickerView.setStartDate(new GregorianCalendar(year - 2, month, dayOfMonth));
+        String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
+        confess_to_raise_information_tv6.setText(dateString);
+        pickerView.setStartDate(new GregorianCalendar(year - 2, month-1, dayOfMonth));
         // 注意：月份是从0开始计数的
         pickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        pickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth));
+        pickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth));
 
         picker_ensure.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -419,17 +417,6 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 picker.setVisibility(View.GONE);
-            }
-        });
-
-        pickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-            @Override
-            public void onSelectedDateChanged(Calendar date) {
-                int year = date.get(Calendar.YEAR);
-                int month = date.get(Calendar.MONTH);
-                int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
-                confess_to_raise_information_tv6.setText(dateString);
             }
         });
 

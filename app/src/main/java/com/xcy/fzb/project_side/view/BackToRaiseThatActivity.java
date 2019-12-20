@@ -15,7 +15,6 @@ import com.xcy.fzb.all.modle.BackToBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 
 import io.reactivex.Observable;
@@ -64,7 +63,7 @@ public class BackToRaiseThatActivity extends AllActivity {
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -111,7 +110,7 @@ public class BackToRaiseThatActivity extends AllActivity {
 
                                     @Override
                                     public void onNext(BackToBean backToBean) {
-                                        ToastUtil.showToast(BackToRaiseThatActivity.this, backToBean.getData().getMessage());
+                                        Toast.makeText(BackToRaiseThatActivity.this, backToBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                         ifnum1 = 0;
                                         finish();
                                     }

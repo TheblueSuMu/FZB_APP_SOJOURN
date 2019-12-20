@@ -34,7 +34,6 @@ import com.xcy.fzb.all.modle.FeedBackBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 
 import java.io.BufferedOutputStream;
@@ -106,7 +105,7 @@ public class WCJActivity extends AllActivity {
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -140,7 +139,7 @@ public class WCJActivity extends AllActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (mDatas.size() == 9) {
-                    ToastUtil.showToast(WCJActivity.this, "图片最多九张");
+                    Toast.makeText(WCJActivity.this, "图片最多九张", Toast.LENGTH_SHORT).show();
                 } else {
 
                     if (position == parent.getChildCount() - 1) {
@@ -238,10 +237,10 @@ public class WCJActivity extends AllActivity {
                                 public void onNext(FeedBackBean feedBackBean) {
                                     String msg = feedBackBean.getMsg();
                                     if (msg.equals("成功")) {
-                                        ToastUtil.showToast(WCJActivity.this, "提交成功");
+                                        Toast.makeText(WCJActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
                                         finish();
                                     } else {
-                                        ToastUtil.showToast(WCJActivity.this, "提交失败，请重新提交");
+                                        Toast.makeText(WCJActivity.this, "提交失败，请重新提交", Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

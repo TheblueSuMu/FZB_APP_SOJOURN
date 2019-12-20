@@ -20,13 +20,11 @@ import com.xcy.fzb.all.modle.UserMessageBean;
 import com.xcy.fzb.all.modle.VerificationBean;
 import com.xcy.fzb.all.modle.ZYDataBean;
 import com.xcy.fzb.all.modle.ZhangBingDataBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.CountDownTimerUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -71,7 +69,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -95,7 +93,6 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -105,7 +102,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                 break;
             case R.id.change_phone_yanzhengma_1:
                 if (!MatcherUtils.isMobile(change_phone_et.getText().toString())) {
-                    ToastUtil.showLongToast(this, "请输入正确的手机号");
+                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
                     initData2();
@@ -140,7 +137,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                         CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(change_phone_yanzhengma_1, 60000, 1000);
                         mCountDownTimerUtils.start();
                         VerificationBean.DataBean data = codeBean.getData();
-                        ToastUtil.showToast(ChangePhoneActivity.this,data.getMessage());
+                        Toast.makeText(ChangePhoneActivity.this, data.getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -159,7 +156,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
     private void initData1() {
         yanzhengma = change_phone_yanzhengma.getText().toString();
         if (yanzhengma.equals("")) {
-            ToastUtil.showLongToast(this, "请输入验证码");
+            Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
             return;
         }
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -183,7 +180,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
                     @Override
                     public void onNext(ChangePhoneBean changeBean) {
                         ChangePhoneBean.DataBean data = changeBean.getData();
-                        ToastUtil.showToast(ChangePhoneActivity.this, data.getMessage());
+                        Toast.makeText(ChangePhoneActivity.this, data.getMessage(), Toast.LENGTH_SHORT).show();
                         if (data.getStatus().equals("1")) {
                             if (FinalContents.getIdentity().equals("1") || FinalContents.getIdentity().equals("2") || FinalContents.getIdentity().equals("3")) {
                                 UserMessageBean userMessageBean = Connector.getUserMessageBean();

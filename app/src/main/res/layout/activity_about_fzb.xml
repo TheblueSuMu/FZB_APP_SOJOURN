@@ -86,7 +86,7 @@
             android:layout_height="7dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="#EEEEEE"/>
+            android:background="#EEEEEE"></LinearLayout>
 
         <RelativeLayout
             android:id="@+id/fzb_jc"
@@ -143,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="房坐标用户服务条款"
+                android:text="用户协议及隐私政策"
                 android:textColor="#ff111111"
                 android:textSize="15sp" />
 

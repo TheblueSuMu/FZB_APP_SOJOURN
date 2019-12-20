@@ -50,15 +50,14 @@ import com.xcy.fzb.all.modle.ImgData;
 import com.xcy.fzb.all.modle.MessageBean2;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
-import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
+import com.xcy.fzb.captain_market.view.Captain_Market_MyTeamActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
+import com.xcy.fzb.captain_team.view.Captain_Team_MyTeamActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -116,8 +115,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     private DemoApplication application;
     private TextView home_item_yongjin;
     private ImageView all_no_information;
-    private TextView home_item_text4;
-    private ImageView home_item_img4;
+    private ImageView home_banner_img;
 
     @Nullable
     @Override
@@ -147,7 +145,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     @SuppressLint("MissingPermission")
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+        if (FinalContents.getCityIs().equals("")) {
             int sensortype = event.sensor.getType();
             float[] values = event.values;
             if (sensortype == Sensor.TYPE_ACCELEROMETER) {
@@ -160,10 +158,10 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 
                     if (SharItOff.getShar().equals("隐")) {
                         SharItOff.setShar("显");
-                        ToastUtil.showLongToast(getContext(),"佣金已显示，如需隐藏请摇动");
+                        Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
                     } else if (SharItOff.getShar().equals("显")) {
                         SharItOff.setShar("隐");
-                        ToastUtil.showLongToast(getContext(),"佣金已隐藏，如需显示请摇动");
+                        Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
                     }
                     Log.i("MyCL", "摇一摇");
                     initHotList();
@@ -185,7 +183,6 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         super.onResume();
 
         tvBanner2.startFlipping();
-        city.setText(FinalContents.getCityName());
         //TODO 获取加速传感器
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_NORMAL);
@@ -207,11 +204,9 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         recyclerView = view.findViewById(R.id.home_recycler_vertical);
 
         all_no_information = view.findViewById(R.id.all_no_information_p);
-        home_item_text4 = view.findViewById(R.id.home_item_text4);
-        home_item_img4 = view.findViewById(R.id.home_item_img4);
 
         banner = view.findViewById(R.id.home_banner);
-
+        home_banner_img = view.findViewById(R.id.captain_home_banner_img);
         layout = view.findViewById(R.id.home_srl);
         tvBanner2 = view.findViewById(R.id.tv_banner2);
 
@@ -220,12 +215,11 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         textView3 = view.findViewById(R.id.home_item_client);
         textView4 = view.findViewById(R.id.home_item_brokerage);
         city = view.findViewById(R.id.project_city_selector);
-
         city.setText(FinalContents.getCityName());
-
         if (FinalContents.getDengLu().equals("顾问")) {
-            home_item_text4.setText("我的客户");
-            home_item_img4.setImageResource(R.mipmap.adds4);
+            home_item_yongjin.setText("我的客户");
+        } else {
+            home_item_yongjin.setText("我的团队");
         }
 
         layout.setOnRefreshListener(this);
@@ -249,7 +243,6 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     }
 
     //点击事件
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         if (hotlist.size() != 0) {
@@ -267,33 +260,30 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                 FinalContents.setProjectType("2");
                 Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent);
-            } else if (view.getId() == R.id.home_item_client) {
-                FinalContents.setProjectType("1");
-                Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
-                startActivity(intent);
-
-//                FinalContents.setStoreId("");
-//                FinalContents.setAgentId(FinalContents.getUserID());
-//                Intent intent_overseas = new Intent(getContext(), Captain_Team_MyClientActivity.class);
-//                FinalContents.setQuanceng("1");
-//                FinalContents.setMySelf("0");
-//                intent_overseas.putExtra("client", "1");
-//                startActivity(intent_overseas);
             } else if (view.getId() == R.id.home_item_brokerage) {
+
+                FinalContents.setStoreId("");
+                FinalContents.setAgentId(FinalContents.getUserID());
+                Intent intent_overseas = new Intent(getContext(), Captain_Team_MyClientActivity.class);
+                FinalContents.setQuanceng("1");
+                FinalContents.setMySelf("0");
+                intent_overseas.putExtra("client", "1");
+                startActivity(intent_overseas);
+
+
+            } else if (view.getId() == R.id.home_item_client) {
                 //  TODO    判断不同的身份进入不同的佣金界面
                 if (FinalContents.getIdentity().equals("60")) {
                     //  TODO    团队长
-                    FinalContents.setMySelf("1");
-                    Intent intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
-                    intent.putExtra("client", "0");
-                    FinalContents.setAgentId(FinalContents.getUserID());
+//                Intent intent = new Intent(view.getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
+//                startActivity(intent);
+                    Intent intent = new Intent(getContext(), Captain_Team_MyTeamActivity.class);
                     startActivity(intent);
                 } else if (FinalContents.getIdentity().equals("61")) {
                     //  TODO    销售
-                    FinalContents.setMySelf("1");
-                    Intent intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
-                    intent.putExtra("client", "0");
-                    FinalContents.setAgentId(FinalContents.getUserID());
+//                Intent intent = new Intent(view.getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
+//                startActivity(intent);
+                    Intent intent = new Intent(view.getContext(), Captain_Market_MyTeamActivity.class);
                     startActivity(intent);
                 } else if (FinalContents.getIdentity().equals("62")) {
                     //  TODO    顾问
@@ -338,6 +328,9 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                         final List<String> list = new ArrayList<>();
                         for (int i = 0; i < citylist.size(); i++) {
                             list.add(citylist.get(i).getCity());
+                            if (citylist.get(i).getId().equals(FinalContents.getCityID())) {
+                                city.setText(citylist.get(i).getCity());
+                            }
                         }
                         //      监听选中
                         OptionsPickerView pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
@@ -352,7 +345,6 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                     FinalContents.setCityIs("");
                                 }
                                 city.setText(list.get(options1));
-                                FinalContents.setCityName(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
                                 Log.i("city", FinalContents.getCityID());
                                 initHotList();
@@ -532,6 +524,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     public void onNext(ImgData imgData) {
                         imglist = imgData.getData();
                         if (imglist.size() != 0) {
+                            home_banner_img.setVisibility(View.GONE);
+                            banner.setVisibility(View.VISIBLE);
                             for (int i = 0; i < imglist.size(); i++) {
                                 list_path.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                                 list_title.add(imglist.get(i).getTitle());
@@ -570,11 +564,16 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                     startActivity(intent);
                                 }
                             });
+                        }else {
+                            home_banner_img.setVisibility(View.VISIBLE);
+                            banner.setVisibility(View.GONE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        home_banner_img.setVisibility(View.VISIBLE);
+                        banner.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

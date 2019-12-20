@@ -32,11 +32,9 @@ import com.xcy.fzb.all.database.TeamMemberBean;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.LetterComparator;
 import com.xcy.fzb.all.persente.PinnedHeaderDecoration;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_PopAdapter;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_TeamMemberAdapter;
@@ -114,7 +112,7 @@ public class Assistant_Teams_Activity extends AllActivity implements View.OnClic
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -221,7 +219,6 @@ public class Assistant_Teams_Activity extends AllActivity implements View.OnClic
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

@@ -15,10 +15,8 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.NickNameBean;
 import com.xcy.fzb.all.persente.OkHttpPost;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 
 //TODO 性别
@@ -58,7 +56,7 @@ public class SexActivity extends AllActivity implements View.OnClickListener {
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -80,7 +78,6 @@ public class SexActivity extends AllActivity implements View.OnClickListener {
         sex_rl_2.setOnClickListener(this);
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

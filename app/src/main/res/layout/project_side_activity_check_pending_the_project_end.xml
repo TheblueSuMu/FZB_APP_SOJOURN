@@ -67,7 +67,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/check_pending_the_project_end_tv1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -82,7 +81,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/the_project_end_underline"
-                        android:orientation="horizontal"/>
+                        android:orientation="horizontal"></LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -93,7 +92,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/check_pending_the_project_end_tv2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -109,7 +107,7 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/the_project_end_underline"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone"></LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -120,7 +118,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/check_pending_the_project_end_tv3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -136,7 +133,7 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/the_project_end_underline"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone"></LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -147,7 +144,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/check_pending_the_project_end_tv4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -163,7 +159,7 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/the_project_end_underline"
                         android:orientation="horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone"></LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

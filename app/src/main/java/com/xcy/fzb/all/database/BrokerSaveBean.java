@@ -1,4 +1,3 @@
-
 package com.xcy.fzb.all.database;
 
 public class BrokerSaveBean {

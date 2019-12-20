@@ -7,27 +7,27 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="170dp"
             android:background="@drawable/my_brokerage"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/store_list_return"
                 android:layout_width="50dp"
-                android:layout_height="70dp">
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="120dp"
                     android:src="@mipmap/return2" />
 
             </RelativeLayout>
@@ -36,8 +36,9 @@
                 android:id="@+id/center_headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
+                android:layout_marginBottom="117dp"
                 android:text="列表"
                 android:textColor="#FFFEFE"
                 android:textSize="18sp" />
@@ -47,8 +48,9 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginBottom="116dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/my_client_add" />
 
@@ -70,24 +72,22 @@
                     android:hint="搜索"
                     android:textColor="#333333"
                     android:textSize="12sp" />
-
                 <CheckBox
                     android:id="@+id/store_list_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
+                    android:text="只看合作"
                     android:button="@null"
                     android:drawableLeft="@drawable/store_list_checked_select"
                     android:drawablePadding="8dp"
-                    android:text="只看合作"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
                     android:textColor="#FFFFFF"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:layout_marginRight="15dp"/>
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/store_list_ll0"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="120dp"
@@ -114,11 +114,11 @@
 
                     <LinearLayout
                         android:id="@+id/store_list_ll2"
+                        android:orientation="vertical"
                         android:layout_width="30dp"
                         android:layout_height="3dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/back_all_s_s"
-                        android:orientation="vertical"></LinearLayout>
+                        android:background="@drawable/back_all_s_s"></LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -143,81 +143,63 @@
                         android:id="@+id/store_list_ll4"
                         android:layout_width="30dp"
                         android:layout_height="3dp"
+                        android:orientation="vertical"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/back_all_s_s"
-                        android:orientation="vertical"
                         android:visibility="invisible"></LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
         </RelativeLayout>
 
-<!--        <com.xcy.fzb.all.utils.SuperSwipeRefreshLayout-->
-<!--            android:id="@+id/ssrl_s"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/store_list_rv"
+                android:background="#FFFFFF"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/store_list_rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#FFFFFF" />
+            <ImageView
+                android:id="@+id/all_no_information"
+                android:background="#fff"
+                android:visibility="gone"
+                android:src="@mipmap/no_information"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-                <ImageView
-                    android:id="@+id/all_no_information"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#fff"
-                    android:src="@mipmap/no_information"
-                    android:visibility="gone" />
-
-                <com.wang.avi.AVLoadingIndicatorView
-                    android:id="@+id/avi"
-                    style="@style/AVLoadingIndicatorView.Small"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:visibility="gone"
-                    app:indicatorColor="#334485"
-                    android:layout_centerInParent="true"
-                    app:indicatorName="LineSpinFadeLoaderIndicator" />
-            </RelativeLayout>
-<!--        </com.xcy.fzb.all.utils.SuperSwipeRefreshLayout>-->
-
+        </RelativeLayout>
 
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/all_no_network"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:background="#fff"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@mipmap/no_network" />
+            android:src="@mipmap/no_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/all_no_reload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_below="@id/imageimage"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/all_no_reload"
             android:layout_marginTop="-40dp"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/button_back"
             android:text="重新加载"
+            android:textSize="12sp"
             android:textColor="#334485"
-            android:textSize="12sp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
-
-
 
 </RelativeLayout>

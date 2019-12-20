@@ -96,6 +96,8 @@ public class DFragment extends AllFragment implements View.OnClickListener {
                 transaction.commit();
                 break;
         }
+
+
     }
 
     @Override

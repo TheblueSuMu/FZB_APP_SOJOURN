@@ -16,7 +16,6 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.all.modle.ReadRecordBean;
 import com.xcy.fzb.all.modle.ReportProcessDetailsBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -72,6 +71,13 @@ public class InitiatedActivity extends AllActivity {
 
         initData();
 
+        initiated_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         initiated_img2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +87,8 @@ public class InitiatedActivity extends AllActivity {
     }
 
     private void initData() {
+
+
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -100,22 +108,12 @@ public class InitiatedActivity extends AllActivity {
                     @Override
                     public void onNext(ReportProcessDetailsBean reportProcessDetailsBean) {
                         infoData = reportProcessDetailsBean.getData().getInfoData();
-                        if (infoData.getCustomerImg() != null) {
-                            if (!infoData.getCustomerImg().equals("")) {
-                                Glide.with(InitiatedActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(initiated_img1);
-                            }
-                        }
+                        Glide.with(InitiatedActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(initiated_img1);
                         initiated_tv1.setText(infoData.getCustomerName());
                         processData = reportProcessDetailsBean.getData().getProcessData();
 
                         initiated_tv2.setText(infoData.getProjectName());
                         initiated_tv3.setText(infoData.getCustomerName() + "[" + infoData.getCustomerPhone() + "]");
-                        initiated_return.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                finish();
-                            }
-                        });
 
                         initRV();
                     }
@@ -142,44 +140,5 @@ public class InitiatedActivity extends AllActivity {
         adapter = new Project_Side_MakeABargainAdapter();
         adapter.setListData(processData);
         initiated_rv.setAdapter(adapter);
-    }
-
-    private void initReadRecord(){
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
-        Observable<ReadRecordBean> clientFragment = fzbInterface.getReadRecord(FinalContents.getUserID(),FinalContents.getPreparationId(), "");
-        clientFragment.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ReadRecordBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(ReadRecordBean readRecordBean) {
-                        Log.i("MyCL", "项目进度中未浏览信息"+readRecordBean.getData().getMessage());
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("MyCL", "项目进度中未浏览错误信息" + e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initReadRecord();
     }
 }

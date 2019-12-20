@@ -7,7 +7,7 @@ public class ReceivableBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"total":25,"projectType":"1","rows":[{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"ff","customerPhone":"15558535538","projectName":"航天首府","roomNumber":"5栋5单元508室","tradeDate":"2019-12-10","totalAmount":"30000.00","alreadyAmount":"","notAmount":"30000.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 15:39:47","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"经纪公司B","companyId":"","storeName":"星期一门店","storeId":"","agentName":"ffff","agentId":"","agentPhone":"13586558855","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"米奇","customerPhone":"15508088878","projectName":"鼎龙湾国际海洋王国度假区","roomNumber":"12栋1单元1806室","tradeDate":"2019-12-10","totalAmount":"4457.40","alreadyAmount":"","notAmount":"4457.40","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 14:20:35","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"房地产经纪有限公司","companyId":"","storeName":"房地产经纪门店","storeId":"","agentName":"米妮","agentId":"","agentPhone":"15625580888","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"cc","customerPhone":"13585858686","projectName":"航天首府","roomNumber":"5栋5单元508室","tradeDate":"2019-12-11","totalAmount":"30000.00","alreadyAmount":"","notAmount":"30000.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-11 10:35:32","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"团队长-tdz|销售-xs|顾问-gw","agentId":"","agentPhone":"13479999866","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"酷酷","customerPhone":"15808556553","projectName":"鼎龙湾国际海洋王国度假区","roomNumber":"11栋1单元1208室","tradeDate":"2019-12-10","totalAmount":"526.65","alreadyAmount":"","notAmount":"526.65","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 16:05:29","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"房地产经纪有限公司","companyId":"","storeName":"房地产经纪门店","storeId":"","agentName":"米妮","agentId":"","agentPhone":"15625580888","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"好好","customerPhone":"13886868685","projectName":"佳源金月湾","roomNumber":"2栋5单元508室","tradeDate":"2019-12-10","totalAmount":"845.00","alreadyAmount":"","notAmount":"845.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 12:15:57","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"团队长-tdz|销售-xs|顾问-gw","agentId":"","agentPhone":"13479999866","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"刘佳","customerPhone":"15365875858","projectName":"佳源金月湾","roomNumber":"5栋8单元805室","tradeDate":"2019-12-10","totalAmount":"1125.00","alreadyAmount":"1125","notAmount":"0.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 11:05:53","moneyStatus":1,"returnedMoney":"0.00","moneyStatusImg":"/fangfang/static/common/images/tiaodan.png","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"团队长-tdz|销售-xs","agentId":"","agentPhone":"17717821392","status":"1","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"好好","customerPhone":"15368868668","projectName":"鼎龙湾国际海洋王国度假区","roomNumber":"5栋5单元501室","tradeDate":"2019-12-10","totalAmount":"0.00","alreadyAmount":"558.35","notAmount":"0.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 10:50:20","moneyStatus":2,"returnedMoney":"558.35","moneyStatusImg":"/fangfang/static/common/images/tuidan.png","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"团队长-tdz|销售-xs|顾问-gw","agentId":"","agentPhone":"13479999866","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"kk","customerPhone":"13353358888","projectName":"航天首府","roomNumber":"5栋5单元802室","tradeDate":"2019-12-09","totalAmount":"30000.00","alreadyAmount":"0","notAmount":"30000.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-09 17:59:47","moneyStatus":1,"returnedMoney":"0.00","moneyStatusImg":"/fangfang/static/common/images/tiaodan.png","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"团队长-tdz","agentId":"","agentPhone":"18920100797","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"哈哈黄金","customerPhone":"13358385835","projectName":"泰禾厦门湾","roomNumber":"5栋5单元802室","tradeDate":"2019-12-09","totalAmount":"1401.36","alreadyAmount":"","notAmount":"1401.36","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-09 10:11:35","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"经纪公司A_S","companyId":"","storeName":"","storeId":"","agentName":"测试","agentId":"","agentPhone":"18302214098","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"一键成交","customerPhone":"13412888668","projectName":"泰禾厦门湾","roomNumber":"5栋5单元508室","tradeDate":"2019-12-06","totalAmount":"1460.16","alreadyAmount":"","notAmount":"1460.16","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-06 14:11:44","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"经纪公司A_S","companyId":"","storeName":"","storeId":"","agentName":"测试","agentId":"","agentPhone":"18302214098","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""}]}
+     * data : {"total":57,"projectType":"","rows":[{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"八戒1","customerPhone":"19764325866","projectName":"Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区","roomNumber":"3栋3单元303室","tradeDate":"2019-05-04","totalAmount":"24000.00","alreadyAmount":"","notAmount":"24000.00","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"菠萝","storeName":"菠萝1店","agentName":"菠萝1店AA","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"123","customerPhone":"123456789","projectName":"Colindale Gardens | 科林戴尔花园","roomNumber":"56栋67单元66室","tradeDate":"2019-05-01","totalAmount":"42691.55","alreadyAmount":"","notAmount":"42691.55","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"杨进礼","customerPhone":"18812908790","projectName":"华欣三百峰皇家国际旅游度假区","roomNumber":"1栋6单元8室","tradeDate":"2019-06-11","totalAmount":"1000000.00","alreadyAmount":"500000.00","notAmount":"500000.00","invoiceMoney":"0","secondsAmount":"","closingTime":"2019-06-11","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"奔不霸霸不奔","customerPhone":"18866660000","projectName":"华欣三百峰皇家国际旅游度假区","roomNumber":"5栋2单元101室","tradeDate":"2019-06-10","totalAmount":"1000000.00","alreadyAmount":"","notAmount":"1000000.00","invoiceMoney":"1000000","secondsAmount":"","closingTime":"2019-06-11","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"刘测试","customerPhone":"13944550088","projectName":"丽江时光","roomNumber":"2栋1单元6室","tradeDate":"2019-06-15","totalAmount":"36550.31","alreadyAmount":"","notAmount":"36550.31","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"3","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"王大锤","customerPhone":"15506075234","projectName":"西港云上","roomNumber":"12栋43单元187室","tradeDate":"2019-06-09","totalAmount":"50000.00","alreadyAmount":"50000.00","notAmount":"0.00","invoiceMoney":"0","secondsAmount":"","closingTime":"2019-06-11","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"1","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"王大锤","customerPhone":"15506075234","projectName":"Richmond Chase | 里士满御庭 伦敦西南四区","roomNumber":"1栋3单元103室","tradeDate":"2019-04-30","totalAmount":"52800.00","alreadyAmount":"","notAmount":"52800.00","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"晕晕乎乎","customerPhone":"12345689936","projectName":"西港云上","roomNumber":"1栋1单元1室","tradeDate":"2019-05-04","totalAmount":"50000.00","alreadyAmount":"28000.00","notAmount":"22000.00","invoiceMoney":"22000","secondsAmount":"","closingTime":"2019-05-07","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"晕晕乎乎","customerPhone":"12345689936","projectName":"西港云上","roomNumber":"1栋1单元1室","tradeDate":"2019-05-04","totalAmount":"50000.00","alreadyAmount":"50000.00","notAmount":"0.00","invoiceMoney":"0","secondsAmount":"","closingTime":"2019-05-07","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"1","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"晕晕乎乎","customerPhone":"12345689936","projectName":"西港云上","roomNumber":"1栋1单元1室","tradeDate":"2019-05-04","totalAmount":"50000.00","alreadyAmount":"31000.00","notAmount":"19000.00","invoiceMoney":"19000","secondsAmount":"","closingTime":"2019-05-07","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""}]}
      */
 
     private String code;
@@ -40,9 +40,9 @@ public class ReceivableBean {
 
     public static class DataBean {
         /**
-         * total : 25
-         * projectType : 1
-         * rows : [{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"ff","customerPhone":"15558535538","projectName":"航天首府","roomNumber":"5栋5单元508室","tradeDate":"2019-12-10","totalAmount":"30000.00","alreadyAmount":"","notAmount":"30000.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 15:39:47","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"经纪公司B","companyId":"","storeName":"星期一门店","storeId":"","agentName":"ffff","agentId":"","agentPhone":"13586558855","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"米奇","customerPhone":"15508088878","projectName":"鼎龙湾国际海洋王国度假区","roomNumber":"12栋1单元1806室","tradeDate":"2019-12-10","totalAmount":"4457.40","alreadyAmount":"","notAmount":"4457.40","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 14:20:35","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"房地产经纪有限公司","companyId":"","storeName":"房地产经纪门店","storeId":"","agentName":"米妮","agentId":"","agentPhone":"15625580888","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"cc","customerPhone":"13585858686","projectName":"航天首府","roomNumber":"5栋5单元508室","tradeDate":"2019-12-11","totalAmount":"30000.00","alreadyAmount":"","notAmount":"30000.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-11 10:35:32","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"团队长-tdz|销售-xs|顾问-gw","agentId":"","agentPhone":"13479999866","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"酷酷","customerPhone":"15808556553","projectName":"鼎龙湾国际海洋王国度假区","roomNumber":"11栋1单元1208室","tradeDate":"2019-12-10","totalAmount":"526.65","alreadyAmount":"","notAmount":"526.65","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 16:05:29","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"房地产经纪有限公司","companyId":"","storeName":"房地产经纪门店","storeId":"","agentName":"米妮","agentId":"","agentPhone":"15625580888","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"好好","customerPhone":"13886868685","projectName":"佳源金月湾","roomNumber":"2栋5单元508室","tradeDate":"2019-12-10","totalAmount":"845.00","alreadyAmount":"","notAmount":"845.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 12:15:57","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"团队长-tdz|销售-xs|顾问-gw","agentId":"","agentPhone":"13479999866","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"刘佳","customerPhone":"15365875858","projectName":"佳源金月湾","roomNumber":"5栋8单元805室","tradeDate":"2019-12-10","totalAmount":"1125.00","alreadyAmount":"1125","notAmount":"0.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 11:05:53","moneyStatus":1,"returnedMoney":"0.00","moneyStatusImg":"/fangfang/static/common/images/tiaodan.png","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"团队长-tdz|销售-xs","agentId":"","agentPhone":"17717821392","status":"1","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"好好","customerPhone":"15368868668","projectName":"鼎龙湾国际海洋王国度假区","roomNumber":"5栋5单元501室","tradeDate":"2019-12-10","totalAmount":"0.00","alreadyAmount":"558.35","notAmount":"0.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-10 10:50:20","moneyStatus":2,"returnedMoney":"558.35","moneyStatusImg":"/fangfang/static/common/images/tuidan.png","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"团队长-tdz|销售-xs|顾问-gw","agentId":"","agentPhone":"13479999866","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"kk","customerPhone":"13353358888","projectName":"航天首府","roomNumber":"5栋5单元802室","tradeDate":"2019-12-09","totalAmount":"30000.00","alreadyAmount":"0","notAmount":"30000.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-09 17:59:47","moneyStatus":1,"returnedMoney":"0.00","moneyStatusImg":"/fangfang/static/common/images/tiaodan.png","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"团队长-tdz","agentId":"","agentPhone":"18920100797","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"哈哈黄金","customerPhone":"13358385835","projectName":"泰禾厦门湾","roomNumber":"5栋5单元802室","tradeDate":"2019-12-09","totalAmount":"1401.36","alreadyAmount":"","notAmount":"1401.36","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-09 10:11:35","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"经纪公司A_S","companyId":"","storeName":"","storeId":"","agentName":"测试","agentId":"","agentPhone":"18302214098","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"一键成交","customerPhone":"13412888668","projectName":"泰禾厦门湾","roomNumber":"5栋5单元508室","tradeDate":"2019-12-06","totalAmount":"1460.16","alreadyAmount":"","notAmount":"1460.16","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-06 14:11:44","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"经纪公司A_S","companyId":"","storeName":"","storeId":"","agentName":"测试","agentId":"","agentPhone":"18302214098","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"1","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""}]
+         * total : 57
+         * projectType :
+         * rows : [{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"八戒1","customerPhone":"19764325866","projectName":"Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区","roomNumber":"3栋3单元303室","tradeDate":"2019-05-04","totalAmount":"24000.00","alreadyAmount":"","notAmount":"24000.00","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"菠萝","storeName":"菠萝1店","agentName":"菠萝1店AA","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"123","customerPhone":"123456789","projectName":"Colindale Gardens | 科林戴尔花园","roomNumber":"56栋67单元66室","tradeDate":"2019-05-01","totalAmount":"42691.55","alreadyAmount":"","notAmount":"42691.55","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"杨进礼","customerPhone":"18812908790","projectName":"华欣三百峰皇家国际旅游度假区","roomNumber":"1栋6单元8室","tradeDate":"2019-06-11","totalAmount":"1000000.00","alreadyAmount":"500000.00","notAmount":"500000.00","invoiceMoney":"0","secondsAmount":"","closingTime":"2019-06-11","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"奔不霸霸不奔","customerPhone":"18866660000","projectName":"华欣三百峰皇家国际旅游度假区","roomNumber":"5栋2单元101室","tradeDate":"2019-06-10","totalAmount":"1000000.00","alreadyAmount":"","notAmount":"1000000.00","invoiceMoney":"1000000","secondsAmount":"","closingTime":"2019-06-11","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"刘测试","customerPhone":"13944550088","projectName":"丽江时光","roomNumber":"2栋1单元6室","tradeDate":"2019-06-15","totalAmount":"36550.31","alreadyAmount":"","notAmount":"36550.31","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"3","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"王大锤","customerPhone":"15506075234","projectName":"西港云上","roomNumber":"12栋43单元187室","tradeDate":"2019-06-09","totalAmount":"50000.00","alreadyAmount":"50000.00","notAmount":"0.00","invoiceMoney":"0","secondsAmount":"","closingTime":"2019-06-11","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"1","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"王大锤","customerPhone":"15506075234","projectName":"Richmond Chase | 里士满御庭 伦敦西南四区","roomNumber":"1栋3单元103室","tradeDate":"2019-04-30","totalAmount":"52800.00","alreadyAmount":"","notAmount":"52800.00","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"晕晕乎乎","customerPhone":"12345689936","projectName":"西港云上","roomNumber":"1栋1单元1室","tradeDate":"2019-05-04","totalAmount":"50000.00","alreadyAmount":"28000.00","notAmount":"22000.00","invoiceMoney":"22000","secondsAmount":"","closingTime":"2019-05-07","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"晕晕乎乎","customerPhone":"12345689936","projectName":"西港云上","roomNumber":"1栋1单元1室","tradeDate":"2019-05-04","totalAmount":"50000.00","alreadyAmount":"50000.00","notAmount":"0.00","invoiceMoney":"0","secondsAmount":"","closingTime":"2019-05-07","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"1","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"晕晕乎乎","customerPhone":"12345689936","projectName":"西港云上","roomNumber":"1栋1单元1室","tradeDate":"2019-05-04","totalAmount":"50000.00","alreadyAmount":"31000.00","notAmount":"19000.00","invoiceMoney":"19000","secondsAmount":"","closingTime":"2019-05-07","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"中胜房产中介","storeName":"A1501门店","agentName":"虎虎","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"2","projectId":"","search":""}]
          */
 
         private int total;
@@ -81,38 +81,32 @@ public class ReceivableBean {
              * createDate :
              * updateBy :
              * updateDate :
-             * customerName : ff
-             * customerPhone : 15558535538
-             * projectName : 航天首府
-             * roomNumber : 5栋5单元508室
-             * tradeDate : 2019-12-10
-             * totalAmount : 30000.00
+             * customerName : 八戒1
+             * customerPhone : 19764325866
+             * projectName : Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区
+             * roomNumber : 3栋3单元303室
+             * tradeDate : 2019-05-04
+             * totalAmount : 24000.00
              * alreadyAmount :
-             * notAmount : 30000.00
+             * notAmount : 24000.00
              * invoiceMoney :
              * secondsAmount :
-             * closingTime : 2019-12-10 15:39:47
+             * closingTime :
              * moneyStatus : 0
-             * returnedMoney : 0.00
+             * returnedMoney : 0
              * moneyStatusImg :
-             * companyName : 经纪公司B
-             * companyId :
-             * storeName : 星期一门店
-             * storeId :
-             * agentName : ffff
-             * agentId :
-             * agentPhone : 13586558855
+             * companyName : 菠萝
+             * storeName : 菠萝1店
+             * agentName : 菠萝1店AA
+             * agentPhone :
              * status : 0
              * isMy :
              * commission :
              * userId :
              * type :
-             * projectType : 1
+             * projectType : 2
              * projectId :
              * search :
-             * beforeDate :
-             * afterDate :
-             * historyData :
              */
 
             private String id;
@@ -136,11 +130,8 @@ public class ReceivableBean {
             private String returnedMoney;
             private String moneyStatusImg;
             private String companyName;
-            private String companyId;
             private String storeName;
-            private String storeId;
             private String agentName;
-            private String agentId;
             private String agentPhone;
             private String status;
             private String isMy;
@@ -150,9 +141,6 @@ public class ReceivableBean {
             private String projectType;
             private String projectId;
             private String search;
-            private String beforeDate;
-            private String afterDate;
-            private String historyData;
 
             public String getId() {
                 return id;
@@ -322,14 +310,6 @@ public class ReceivableBean {
                 this.companyName = companyName;
             }
 
-            public String getCompanyId() {
-                return companyId;
-            }
-
-            public void setCompanyId(String companyId) {
-                this.companyId = companyId;
-            }
-
             public String getStoreName() {
                 return storeName;
             }
@@ -338,28 +318,12 @@ public class ReceivableBean {
                 this.storeName = storeName;
             }
 
-            public String getStoreId() {
-                return storeId;
-            }
-
-            public void setStoreId(String storeId) {
-                this.storeId = storeId;
-            }
-
             public String getAgentName() {
                 return agentName;
             }
 
             public void setAgentName(String agentName) {
                 this.agentName = agentName;
-            }
-
-            public String getAgentId() {
-                return agentId;
-            }
-
-            public void setAgentId(String agentId) {
-                this.agentId = agentId;
             }
 
             public String getAgentPhone() {
@@ -432,30 +396,6 @@ public class ReceivableBean {
 
             public void setSearch(String search) {
                 this.search = search;
-            }
-
-            public String getBeforeDate() {
-                return beforeDate;
-            }
-
-            public void setBeforeDate(String beforeDate) {
-                this.beforeDate = beforeDate;
-            }
-
-            public String getAfterDate() {
-                return afterDate;
-            }
-
-            public void setAfterDate(String afterDate) {
-                this.afterDate = afterDate;
-            }
-
-            public String getHistoryData() {
-                return historyData;
-            }
-
-            public void setHistoryData(String historyData) {
-                this.historyData = historyData;
             }
         }
     }

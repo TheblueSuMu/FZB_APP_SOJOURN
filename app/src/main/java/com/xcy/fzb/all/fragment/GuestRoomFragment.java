@@ -31,7 +31,6 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.MessageBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.BigPhotoActivity;
 
 import java.io.File;
@@ -179,7 +178,7 @@ public class GuestRoomFragment extends Fragment{
                                 public void ItemOnClick(int position) {
                                     String phone = rows.get(position).getPhone();
                                     if (phone.equals("")) {
-                                        ToastUtil.showLongToast(getContext(),"暂无电话信息，无法拨打");
+                                        Toast.makeText(getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));//跳转到拨号界面，同时传递电话号码
                                         startActivity(dialIntent);
@@ -254,7 +253,7 @@ public class GuestRoomFragment extends Fragment{
                                             }
                                         }
                                     }
-                                    ToastUtil.showLongToast(getContext(),"复制成功");
+                                    Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
                                     num = 0;
 
                                 }

@@ -23,14 +23,15 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.modle.CustomerListBean;
 import com.xcy.fzb.all.modle.TaskDetailsBean;
 import com.xcy.fzb.all.persente.AppBarStateChangeListener;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.shopping_guide.adapter.BaseFragmentAdapter;
 import com.xcy.fzb.shopping_guide.adapter.TaskDetailsAdapter;
@@ -51,7 +52,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TaskDetailsActivity extends AllActivity {
 
-    ViewPager mViewPager;
     List<Fragment> mFragments;
     Toolbar mToolbar;
     RelativeLayout task_details_tool_layout;
@@ -80,9 +80,14 @@ public class TaskDetailsActivity extends AllActivity {
             "行程", "注意事项", "客户"
     };
     private LinearLayout appbar_layout;
-    private ClientFragment clientFragment;
+    private ClientFragment clientFragment = new ClientFragment();
     private AttentionFragment attentionFragment;
     private JourneyFragment journeyFragment;
+    private BaseFragmentAdapter adapter;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private TaskDetailsBean taskDetails;
+    private CustomerListBean customerList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,7 +113,7 @@ public class TaskDetailsActivity extends AllActivity {
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -118,12 +123,14 @@ public class TaskDetailsActivity extends AllActivity {
         StatusBar.makeStatusBarTransparent(this);
 
         mAppBarLayout = (AppBarLayout) findViewById(R.id.mainappbar);
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
 
         appbar_layout = findViewById(R.id.appbar_layout);
         mTitle =  findViewById(R.id.rl_title);
         task_details_tool_layout = findViewById(R.id.task_details_tool_layout);
         task_details_tool_title = findViewById(R.id.task_details_tool_title);
+
+        viewPager = findViewById(R.id.task_details_viewpager);
+        tabLayout = findViewById(R.id.tabs);
 
         task_details_constraintlayout_title = findViewById(R.id.task_details_constraintlayout_title);
         task_details_constraintlayout_status = findViewById(R.id.task_details_constraintlayout_status);
@@ -177,6 +184,7 @@ public class TaskDetailsActivity extends AllActivity {
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(TaskDetailsBean taskDetailsBean) {
+                        taskDetails = taskDetailsBean;
                         task_details_constraintlayout_title.setText(taskDetailsBean.getData().getRouteTimeInfo().getRoute().getRouteName());
                         task_details_title.setText(taskDetailsBean.getData().getRouteTimeInfo().getRoute().getRouteName());
                         Glide.with(TaskDetailsActivity.this).load(FinalContents.getImageUrl() + taskDetailsBean.getData().getRouteTimeInfo().getTravelWayImg()).into(task_details_constraintlayout_img);
@@ -194,8 +202,6 @@ public class TaskDetailsActivity extends AllActivity {
                         }else {
                             task_details_constraintlayout_layout.setVisibility(View.VISIBLE);
                             task_details_constraintlayout_project_name.setText(taskDetailsBean.getData().getProjectSpecialInfo().get(0).getName());
-
-
                             MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(TaskDetailsActivity.this);
                             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                             task_details_constraintlayout_listview.setLayoutManager(layoutManager);
@@ -204,9 +210,7 @@ public class TaskDetailsActivity extends AllActivity {
                             recyclerAdapter.notifyDataSetChanged();
                         }
 
-                        attentionFragment = new AttentionFragment(taskDetailsBean);
-                        journeyFragment = new JourneyFragment(taskDetailsBean);
-
+                        initClient();
                         setupViewPager();
 
                     }
@@ -222,6 +226,43 @@ public class TaskDetailsActivity extends AllActivity {
                     }
                 });
     }
+
+    private void initClient() {
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<CustomerListBean> userMessage = fzbInterface.getcustomerList(FinalContents.getUserID(), FinalContents.getRouteTimeId(), "","1000");
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CustomerListBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @SuppressLint("WrongConstant")
+                    @Override
+                    public void onNext(CustomerListBean customerListBean) {
+                        customerList = customerListBean;
+                        Connector.setCustomerListBean(customerList);
+//                        clientFragment.initData2();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("列表数据获取错误", "错误" + e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
 
     private void init(){
         mTitle.setVisibility(View.GONE);
@@ -258,28 +299,27 @@ public class TaskDetailsActivity extends AllActivity {
         mAppBarLayout.addOnOffsetChangedListener(listener);
     }
 
-
     private void setupViewPager() {
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
         mFragments = new ArrayList<>();
-        clientFragment = new ClientFragment();
+        attentionFragment = new AttentionFragment(taskDetails);
+        journeyFragment = new JourneyFragment(taskDetails);
         mFragments.add(journeyFragment);
         mFragments.add(attentionFragment);
         mFragments.add(clientFragment);
-        BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, mTitles);
+        adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, mTitles);
         viewPager.setAdapter(adapter);
+
+        if (tabLayout != null) {
+            if (viewPager != null) {
+                tabLayout.setupWithViewPager(viewPager);
+            }
+        }
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        initData();
+        initClient();
     }
 }

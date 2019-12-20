@@ -13,16 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
-import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.BuildingBean;
-import com.xcy.fzb.all.view.AnalysisActivity;
 import com.xcy.fzb.all.view.BigPhotoActivity;
 
 import java.util.List;
 
 public class BuildingInformationAdapter extends RecyclerView.Adapter<BuildingInformationAdapter.ViewHolder>{
-    private List<BuildingBean.DataBean.HouseInfoListBean.ValueBean> list;
+    private List<BuildingBean.DataBean.HouseInfoListBean> list;
     private Context context;
     private String imageUrl = "";
     StringBuffer s = new StringBuffer();
@@ -31,7 +29,7 @@ public class BuildingInformationAdapter extends RecyclerView.Adapter<BuildingInf
         this.imageUrl = imageUrl;
     }
 
-    public BuildingInformationAdapter(List<BuildingBean.DataBean.HouseInfoListBean.ValueBean> list) {
+    public BuildingInformationAdapter(List<BuildingBean.DataBean.HouseInfoListBean> list) {
         this.list = list;
     }
 
@@ -47,13 +45,12 @@ public class BuildingInformationAdapter extends RecyclerView.Adapter<BuildingInf
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-
         Glide.with(context).load(FinalContents.getImageUrl() +list.get(position).getFloorPlan()).into(holder.imageAvatar);
 
         if(position == 0){
-        s.append(list.get(position).getFloorPlan());
+            s.append(list.get(position).getFloorPlan());
         }else {
-        s.append("|" + list.get(position).getFloorPlan());
+            s.append("|" + list.get(position).getFloorPlan());
         }
 
         holder.room.setText(list.get(position).getModel());
@@ -63,8 +60,9 @@ public class BuildingInformationAdapter extends RecyclerView.Adapter<BuildingInf
         holder.imageAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CityContents.setFamilyId(list.get(position).getId());
-                Intent intent = new Intent(context, AnalysisActivity.class);
+                Intent intent = new Intent(context, BigPhotoActivity.class);
+                intent.putExtra("index",position);
+                intent.putExtra("bigPhotoimg",s.toString());
                 context.startActivity(intent);
             }
         });

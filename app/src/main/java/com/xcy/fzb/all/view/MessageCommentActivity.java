@@ -28,11 +28,9 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.LikeNumBean;
 import com.xcy.fzb.all.modle.CommentBean;
 import com.xcy.fzb.all.modle.DynamicDetailsBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +93,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -192,7 +190,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
     private void initDataEt() {
         String et = comment_et.getText().toString();
         if (et.equals("")) {
-            ToastUtil.showToast(MessageCommentActivity.this, "评论内容不能为空");
+            Toast.makeText(MessageCommentActivity.this, "评论内容不能为空", Toast.LENGTH_SHORT);
             num = 0;
         } else {
             Retrofit.Builder builder = new Retrofit.Builder();
@@ -213,11 +211,11 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
                         @Override
                         public void onNext(CommentBean commentBean) {
                             if (commentBean.getData().getStatus().equals("2")) {
-                                ToastUtil.showToast(MessageCommentActivity.this, commentBean.getData().getMessage());
+                                Toast.makeText(MessageCommentActivity.this, commentBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                                 comment_et.setText("");
                                 num = 0;
                             } else {
-                                ToastUtil.showToast(MessageCommentActivity.this, "发布失败");
+                                Toast.makeText(MessageCommentActivity.this, "发布失败", Toast.LENGTH_SHORT).show();
                                 comment_et.setText("");
                             }
                             initData();
@@ -287,7 +285,6 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
                 });
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -341,7 +338,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
 
                 ClipboardManager clip = (ClipboardManager) MessageCommentActivity.this.getSystemService(Context.CLIPBOARD_SERVICE);
                 clip.setText(message);
-                ToastUtil.showToast(MessageCommentActivity.this, "复制成功");
+                Toast.makeText(MessageCommentActivity.this, "复制成功", Toast.LENGTH_SHORT).show();
 
                 break;
         }

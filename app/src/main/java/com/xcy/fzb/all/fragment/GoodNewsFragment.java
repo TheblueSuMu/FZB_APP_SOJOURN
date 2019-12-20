@@ -65,7 +65,7 @@ public class GoodNewsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        all_no_information = getActivity().findViewById(R.id.all_no_information_good_news);
+        all_no_information = getActivity().findViewById(R.id.all_no_information_S);
 
         good_news_rv = getActivity().findViewById(R.id.good_news_rv);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -114,22 +114,18 @@ public class GoodNewsFragment extends Fragment {
                     public void onNext(GoodNewsBean goodNewsBean) {
                         GoodNewsBean.DataBean data1 = goodNewsBean.getData();
                         List<GoodNewsBean.DataBean.RowsBean> rows = data1.getRows();
-                        try {
-                            if (rows.size() != 0) {
-                                all_no_information.setVisibility(View.GONE);
-                                good_news_rv.setVisibility(View.VISIBLE);
-                                adapter = new GoodNewsAdapter();
-                                adapter.setRows(rows);
-                                good_news_rv.setAdapter(adapter);
-                                adapter.notifyDataSetChanged();
-                                Log.i("喜报获取","数据1"+rows.size());
-                            }else {
-                                Log.i("喜报获取","数据2"+rows.size());
-                                all_no_information.setVisibility(View.VISIBLE);
-                                good_news_rv.setVisibility(View.GONE);
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        if (rows.size() != 0) {
+                            all_no_information.setVisibility(View.GONE);
+                            good_news_rv.setVisibility(View.VISIBLE);
+                            adapter = new GoodNewsAdapter();
+                            adapter.setRows(rows);
+                            good_news_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                            Log.i("喜报获取","数据1"+rows.size());
+                        }else if (rows.size() == 0) {
+                            Log.i("喜报获取","数据2"+rows.size());
+                            all_no_information.setVisibility(View.VISIBLE);
+                            good_news_rv.setVisibility(View.GONE);
                         }
                         Log.i("喜报获取","数据"+rows.size());
                     }

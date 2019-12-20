@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -23,12 +24,10 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.CommissionListBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.KeyUtils;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_counselor.adapter.TheProjectEndCommissionAdapter;
 
@@ -97,7 +96,7 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -160,7 +159,6 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -234,10 +232,12 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
                                     TheProjectEndCommissionAdapter recyclerAdapter = new TheProjectEndCommissionAdapter(rowsBeanList);
                                     commission_the_project_end_rv.setAdapter(recyclerAdapter);
                                     recyclerAdapter.notifyDataSetChanged();
+                                    hideInput();
                                 }else {
                                     commission_the_project_end_rl.setVisibility(View.VISIBLE);
                                     commission_the_project_end_rv.setVisibility(View.GONE);
                                 }
+
                             }else {
                                 commission_the_project_end_rv.setVisibility(View.GONE);
                                 commission_the_project_end_rl.setVisibility(View.VISIBLE);
@@ -246,7 +246,6 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
                             commission_the_project_end_rv.setVisibility(View.GONE);
                             commission_the_project_end_rl.setVisibility(View.VISIBLE);
                         }
-                        hideInput();
                     }
 
                     @Override
@@ -264,4 +263,15 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
 
     }
 
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+    }
 }

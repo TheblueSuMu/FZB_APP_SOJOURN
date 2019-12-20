@@ -146,7 +146,6 @@ public class XCrashHandlerUtils implements Thread.UncaughtExceptionHandler {
         } catch (Exception e1) {
             Log.e(TAG, "dump crash info failed");
         }
-
     }
 
     /**

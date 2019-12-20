@@ -7,7 +7,7 @@ public class ReportProcessBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"total":0,"rows":[{"id":"","remarks":"","createBy":"","createDate":"2019-11-30 17:44:01","updateBy":"","updateDate":"2019-11-30 17:45:38","user":"","agentUser":"","storeId":"","agentId":"bd50b94b2d7349a9aa69dc08f99fa644","projectId":"129dcdd7a342486386853fa6d3725cba","preparationId":"f446bf8d0d764075b87fdffdad5b214a","customerName":"王健林","customerPhone":"13752071477","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"融创西双版纳国际旅游度假区","agentName":"团队长-王楠|销售-王俊凯|顾问-王源","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"1","landingStatus":"","earnestStatus":"","tradeStatus":"","protectDay":"25","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近到访时间 2019-11-30 17:45:38","date":"最近到访时间 2019-11-30 17:45:38","statusStr":"到访成功\n保护期剩余25天","relatedData":"到访成功\n保护期剩余25天","beforeDate":"","afterDate":"","isRead":"0"},{"id":"","remarks":"","createBy":"","createDate":"2019-11-28 14:26:30","updateBy":"","updateDate":"2019-11-28 14:37:47","user":"","agentUser":"","storeId":"","agentId":"bd50b94b2d7349a9aa69dc08f99fa644","projectId":"2616d1191d6a444b94b2a743384bfb6e","preparationId":"a562e997b59d47199a6ba4649e8a8c1b","customerName":"王思聪","customerPhone":"15323258055","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"海映兰屿","agentName":"团队长-王楠|销售-王俊凯|顾问-王源","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"1","landingStatus":"","earnestStatus":"2","tradeStatus":"","protectDay":"21","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近到访时间 2019-11-28 14:37:47","date":"最近到访时间 2019-11-28 14:37:47","statusStr":"到访成功\n保护期剩余21天","relatedData":"到访成功\n保护期剩余21天","beforeDate":"","afterDate":"","isRead":"0"},{"id":"","remarks":"","createBy":"","createDate":"2019-11-28 14:01:23","updateBy":"","updateDate":"2019-11-28 14:02:12","user":"","agentUser":"","storeId":"","agentId":"bd50b94b2d7349a9aa69dc08f99fa644","projectId":"1014ea5af90f483e86af89e1ea3e8665","preparationId":"894912fb0e4e43feba990da75d6c32f6","customerName":"王健林","customerPhone":"13752071477","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"温泉新都孔雀城风情园","agentName":"团队长-王楠|销售-王俊凯|顾问-王源","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"0","landingStatus":"","earnestStatus":"","tradeStatus":"","protectDay":"21","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近到访时间 2019-11-28 14:02:12","date":"最近到访时间 2019-11-28 14:02:12","statusStr":"到访申请","relatedData":"到访申请","beforeDate":"","afterDate":"","isRead":"0"},{"id":"","remarks":"","createBy":"","createDate":"2019-11-28 13:25:58","updateBy":"","updateDate":"2019-11-28 13:34:10","user":"","agentUser":"","storeId":"","agentId":"bd50b94b2d7349a9aa69dc08f99fa644","projectId":"1014ea5af90f483e86af89e1ea3e8665","preparationId":"c392a5d539ca45a582c827fbf2087735","customerName":"王思聪","customerPhone":"15323258055","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"温泉新都孔雀城风情园","agentName":"团队长-王楠|销售-王俊凯|顾问-王源","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"1","landingStatus":"","earnestStatus":"","tradeStatus":"","protectDay":"21","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近到访时间 2019-11-28 13:34:10","date":"最近到访时间 2019-11-28 13:34:10","statusStr":"到访成功\n保护期剩余21天","relatedData":"到访成功\n保护期剩余21天","beforeDate":"","afterDate":"","isRead":"0"},{"id":"","remarks":"","createBy":"","createDate":"2019-11-27 17:43:12","updateBy":"","updateDate":"2019-11-27 17:46:55","user":"","agentUser":"","storeId":"","agentId":"bd50b94b2d7349a9aa69dc08f99fa644","projectId":"371dac37607c41d4b2e7de8581783188","preparationId":"1aa93f93d0dd4416a1d61ce56d717f8d","customerName":"王大哥","customerPhone":"18852369636","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"融创.春风十里","agentName":"团队长-王楠|销售-王俊凯|顾问-王源","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"1","landingStatus":"","earnestStatus":"","tradeStatus":"","protectDay":"20","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近到访时间 2019-11-27 17:46:55","date":"最近到访时间 2019-11-27 17:46:55","statusStr":"到访成功\n保护期剩余20天","relatedData":"到访成功\n保护期剩余20天","beforeDate":"","afterDate":"","isRead":"0"}]}
+     * data : {"total":1,"rows":[{"id":"","remarks":"","createBy":"","createDate":"2019-06-11 15:09:32","updateBy":"","updateDate":"2019-06-12 17:18:14","user":"","agentUser":"","storeId":"","agentId":"cfd494bfcefc45b5a8623791668633b9","projectId":"fc17eeeb177f4e5e85625264234bc5fe","preparationId":"605be2dc46344f7a9804faf7e42f1b23","customerName":"客户2","customerPhone":"15506094074","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区","agentName":"","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"","landingStatus":"","earnestStatus":"","tradeStatus":"","protectDay":"37","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近一次到访时间 2019-06-12 17:18","date":"最近一次到访时间 2019-06-12 17:18","statusStr":"","relatedData":""}]}
      */
 
     private String code;
@@ -40,8 +40,8 @@ public class ReportProcessBean {
 
     public static class DataBean {
         /**
-         * total : 0
-         * rows : [{"id":"","remarks":"","createBy":"","createDate":"2019-11-30 17:44:01","updateBy":"","updateDate":"2019-11-30 17:45:38","user":"","agentUser":"","storeId":"","agentId":"bd50b94b2d7349a9aa69dc08f99fa644","projectId":"129dcdd7a342486386853fa6d3725cba","preparationId":"f446bf8d0d764075b87fdffdad5b214a","customerName":"王健林","customerPhone":"13752071477","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"融创西双版纳国际旅游度假区","agentName":"团队长-王楠|销售-王俊凯|顾问-王源","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"1","landingStatus":"","earnestStatus":"","tradeStatus":"","protectDay":"25","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近到访时间 2019-11-30 17:45:38","date":"最近到访时间 2019-11-30 17:45:38","statusStr":"到访成功\n保护期剩余25天","relatedData":"到访成功\n保护期剩余25天","beforeDate":"","afterDate":"","isRead":"0"},{"id":"","remarks":"","createBy":"","createDate":"2019-11-28 14:26:30","updateBy":"","updateDate":"2019-11-28 14:37:47","user":"","agentUser":"","storeId":"","agentId":"bd50b94b2d7349a9aa69dc08f99fa644","projectId":"2616d1191d6a444b94b2a743384bfb6e","preparationId":"a562e997b59d47199a6ba4649e8a8c1b","customerName":"王思聪","customerPhone":"15323258055","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"海映兰屿","agentName":"团队长-王楠|销售-王俊凯|顾问-王源","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"1","landingStatus":"","earnestStatus":"2","tradeStatus":"","protectDay":"21","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近到访时间 2019-11-28 14:37:47","date":"最近到访时间 2019-11-28 14:37:47","statusStr":"到访成功\n保护期剩余21天","relatedData":"到访成功\n保护期剩余21天","beforeDate":"","afterDate":"","isRead":"0"},{"id":"","remarks":"","createBy":"","createDate":"2019-11-28 14:01:23","updateBy":"","updateDate":"2019-11-28 14:02:12","user":"","agentUser":"","storeId":"","agentId":"bd50b94b2d7349a9aa69dc08f99fa644","projectId":"1014ea5af90f483e86af89e1ea3e8665","preparationId":"894912fb0e4e43feba990da75d6c32f6","customerName":"王健林","customerPhone":"13752071477","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"温泉新都孔雀城风情园","agentName":"团队长-王楠|销售-王俊凯|顾问-王源","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"0","landingStatus":"","earnestStatus":"","tradeStatus":"","protectDay":"21","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近到访时间 2019-11-28 14:02:12","date":"最近到访时间 2019-11-28 14:02:12","statusStr":"到访申请","relatedData":"到访申请","beforeDate":"","afterDate":"","isRead":"0"},{"id":"","remarks":"","createBy":"","createDate":"2019-11-28 13:25:58","updateBy":"","updateDate":"2019-11-28 13:34:10","user":"","agentUser":"","storeId":"","agentId":"bd50b94b2d7349a9aa69dc08f99fa644","projectId":"1014ea5af90f483e86af89e1ea3e8665","preparationId":"c392a5d539ca45a582c827fbf2087735","customerName":"王思聪","customerPhone":"15323258055","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"温泉新都孔雀城风情园","agentName":"团队长-王楠|销售-王俊凯|顾问-王源","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"1","landingStatus":"","earnestStatus":"","tradeStatus":"","protectDay":"21","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近到访时间 2019-11-28 13:34:10","date":"最近到访时间 2019-11-28 13:34:10","statusStr":"到访成功\n保护期剩余21天","relatedData":"到访成功\n保护期剩余21天","beforeDate":"","afterDate":"","isRead":"0"},{"id":"","remarks":"","createBy":"","createDate":"2019-11-27 17:43:12","updateBy":"","updateDate":"2019-11-27 17:46:55","user":"","agentUser":"","storeId":"","agentId":"bd50b94b2d7349a9aa69dc08f99fa644","projectId":"371dac37607c41d4b2e7de8581783188","preparationId":"1aa93f93d0dd4416a1d61ce56d717f8d","customerName":"王大哥","customerPhone":"18852369636","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"融创.春风十里","agentName":"团队长-王楠|销售-王俊凯|顾问-王源","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"1","landingStatus":"","earnestStatus":"","tradeStatus":"","protectDay":"20","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近到访时间 2019-11-27 17:46:55","date":"最近到访时间 2019-11-27 17:46:55","statusStr":"到访成功\n保护期剩余20天","relatedData":"到访成功\n保护期剩余20天","beforeDate":"","afterDate":"","isRead":"0"}]
+         * total : 1
+         * rows : [{"id":"","remarks":"","createBy":"","createDate":"2019-06-11 15:09:32","updateBy":"","updateDate":"2019-06-12 17:18:14","user":"","agentUser":"","storeId":"","agentId":"cfd494bfcefc45b5a8623791668633b9","projectId":"fc17eeeb177f4e5e85625264234bc5fe","preparationId":"605be2dc46344f7a9804faf7e42f1b23","customerName":"客户2","customerPhone":"15506094074","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectName":"Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区","agentName":"","agentPhone":"","companyName":"","storeName":"","auditStatus":"1","visitStatus":"","landingStatus":"","earnestStatus":"","tradeStatus":"","protectDay":"37","status":"20","attacheName":"","isMy":"","search":"","dateStr":"最近一次到访时间 2019-06-12 17:18","date":"最近一次到访时间 2019-06-12 17:18","statusStr":"","relatedData":""}]
          */
 
         private int total;
@@ -68,42 +68,37 @@ public class ReportProcessBean {
              * id :
              * remarks :
              * createBy :
-             * createDate : 2019-11-30 17:44:01
+             * createDate : 2019-06-11 15:09:32
              * updateBy :
-             * updateDate : 2019-11-30 17:45:38
+             * updateDate : 2019-06-12 17:18:14
              * user :
              * agentUser :
              * storeId :
-             * agentId : bd50b94b2d7349a9aa69dc08f99fa644
-             * projectId : 129dcdd7a342486386853fa6d3725cba
-             * preparationId : f446bf8d0d764075b87fdffdad5b214a
-             * customerName : 王健林
-             * customerPhone : 13752071477
+             * agentId : cfd494bfcefc45b5a8623791668633b9
+             * projectId : fc17eeeb177f4e5e85625264234bc5fe
+             * preparationId : 605be2dc46344f7a9804faf7e42f1b23
+             * customerName : 客户2
+             * customerPhone : 15506094074
              * customerImg : /fangfang/static/common/images/flat-avatar.png
-             * projectName : 融创西双版纳国际旅游度假区
-             * agentName : 团队长-王楠|销售-王俊凯|顾问-王源
+             * projectName : Chelsea Creek | 切尔西水畔 泰晤士河北岸伦敦西二区
+             * agentName :
              * agentPhone :
              * companyName :
              * storeName :
              * auditStatus : 1
-             * visitStatus : 1
+             * visitStatus :
              * landingStatus :
              * earnestStatus :
              * tradeStatus :
-             * protectDay : 25
+             * protectDay : 37
              * status : 20
              * attacheName :
              * isMy :
              * search :
-             * dateStr : 最近到访时间 2019-11-30 17:45:38
-             * date : 最近到访时间 2019-11-30 17:45:38
-             * statusStr : 到访成功
-             保护期剩余25天
-             * relatedData : 到访成功
-             保护期剩余25天
-             * beforeDate :
-             * afterDate :
-             * isRead : 0
+             * dateStr : 最近一次到访时间 2019-06-12 17:18
+             * date : 最近一次到访时间 2019-06-12 17:18
+             * statusStr :
+             * relatedData :
              */
 
             private String id;
@@ -140,9 +135,6 @@ public class ReportProcessBean {
             private String date;
             private String statusStr;
             private String relatedData;
-            private String beforeDate;
-            private String afterDate;
-            private String isRead;
 
             public String getId() {
                 return id;
@@ -414,30 +406,6 @@ public class ReportProcessBean {
 
             public void setRelatedData(String relatedData) {
                 this.relatedData = relatedData;
-            }
-
-            public String getBeforeDate() {
-                return beforeDate;
-            }
-
-            public void setBeforeDate(String beforeDate) {
-                this.beforeDate = beforeDate;
-            }
-
-            public String getAfterDate() {
-                return afterDate;
-            }
-
-            public void setAfterDate(String afterDate) {
-                this.afterDate = afterDate;
-            }
-
-            public String getIsRead() {
-                return isRead;
-            }
-
-            public void setIsRead(String isRead) {
-                this.isRead = isRead;
             }
         }
     }

@@ -52,34 +52,9 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/collect_l3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="城市房产"
-                        android:textColor="#ffffff"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:id="@+id/collect_ll3"
-                        android:layout_width="59dp"
-                        android:layout_height="3dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="15dp"
-                        android:background="@drawable/back_all"
-                        android:orientation="vertical"
-                        android:visibility="visible"/>
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/collect_l1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="70dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -96,8 +71,9 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/back_all"
-                        android:visibility="invisible"
-                        android:orientation="vertical"/>
+                        android:orientation="vertical">
+
+                    </LinearLayout>
                 </LinearLayout>
 
 

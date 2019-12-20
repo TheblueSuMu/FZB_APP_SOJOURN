@@ -100,12 +100,31 @@ public class ClientFragment extends AllFragment {
 
         search = "";
         client_search.setText("");
-
+        initData2();
         return view;
     }
 
-    private void initData() {
+    private void initData2(){
+        Log.i("客户数据查询", "次数");
+        if (customerList != null) {
+            if (customerList.getData().getRows().size() != 0) {
+                all_no_information.setVisibility(View.GONE);
+                client_rv.setVisibility(View.VISIBLE);
+                MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(view.getContext());
+                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                client_rv.setLayoutManager(layoutManager);
+                ClientAdapter recyclerAdapter = new ClientAdapter(customerList.getData().getRows());
+                client_rv.setAdapter(recyclerAdapter);
+                recyclerAdapter.notifyDataSetChanged();
+            }else {
+                all_no_information.setVisibility(View.VISIBLE);
+                client_rv.setVisibility(View.GONE);
 
+            }
+        }
+    }
+
+    private void initData() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -158,9 +177,5 @@ public class ClientFragment extends AllFragment {
                 });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        initData();
-    }
+
 }

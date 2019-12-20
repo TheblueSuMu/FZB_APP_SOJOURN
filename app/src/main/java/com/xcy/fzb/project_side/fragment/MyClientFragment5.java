@@ -19,7 +19,6 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ClientFragmentAdapter;
 import com.xcy.fzb.all.adapter.ProcessDataAdapter;
-import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ClientFragmentBean;
@@ -186,7 +185,7 @@ public class MyClientFragment5 extends Fragment implements ClientFragmentAdapter
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ProcessDataBean> clientFragment = fzbInterface.getProcessData(FinalContents.getStoreId(),FinalContents.getAgentId(), "50", name+"",FinalContents.getUserID(),"1000", NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate());
+        Observable<ProcessDataBean> clientFragment = fzbInterface.getProcessData(FinalContents.getStoreId(), "50", name+"",FinalContents.getUserID(),"1000", NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate());
         clientFragment.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ProcessDataBean>() {
@@ -228,11 +227,11 @@ public class MyClientFragment5 extends Fragment implements ClientFragmentAdapter
 
     @Override
     public void ItemOnClick(int position) {
-        CityContents.setReadRecordStatus("50");
         FinalContents.setPreparationId(rows.get(position).getPreparationId());
         Intent intent = new Intent(getContext(), ReviewTheSuccessActivity.class);
         FinalContents.setCustomerID(rows.get(position).getCustomerId());
         FinalContents.setPreparationId(rows.get(position).getPreparationId());
+
         startActivity(intent);
 
     }

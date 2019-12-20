@@ -23,13 +23,11 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.BrokerSaveBean;
 import com.xcy.fzb.all.modle.RatioByOwnerId2Bean;
 import com.xcy.fzb.all.modle.SysUser3Bean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.SlideSwitch;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +100,7 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -157,7 +155,6 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -273,7 +270,7 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
         Log.i("添加团队长", type);
 
         if (add_aconsultant_et1.getText().equals("")  || add_aconsultant_et3.getText().equals("") || loginName.equals("") || add_aconsultant_tv3.getText().equals("")) {
-            ToastUtil.showToast(Assistant_Addteam_Activity.this, "请把数据填充完整再提交");
+            Toast.makeText(Assistant_Addteam_Activity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
             return;
         } else {
 
@@ -301,7 +298,7 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
                         @SuppressLint("WrongConstant")
                         @Override
                         public void onNext(BrokerSaveBean brokerSaveBean) {
-                            ToastUtil.showToast(Assistant_Addteam_Activity.this, brokerSaveBean.getData().getMessage());
+                            Toast.makeText(Assistant_Addteam_Activity.this, brokerSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                             if(brokerSaveBean.getData().getMessage().equals("保存成功")){
                                 finish();
                             }else {

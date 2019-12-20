@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,11 +23,9 @@ import com.xcy.fzb.all.adapter.BrokerageAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.BorkerageDownBean;
 import com.xcy.fzb.all.database.BorkerageUpBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +93,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -134,6 +134,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
                     //处理事件
                     if (isnum == 0) {
                         s = my_brokerage_et.getText().toString();
+                        isnum = 1;
                         if (myBrokerageLj.getVisibility() == View.VISIBLE) {
                             initDataDown("3", s);
                         } else if (myBrokerageHw.getVisibility() == View.VISIBLE) {
@@ -141,7 +142,6 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
                         } else if (myBrokerageCs.getVisibility() == View.VISIBLE) {
                             initDataDown("1", s);
                         }
-                        isnum = 1;
                     }
                     return true;
                 }
@@ -161,13 +161,7 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
                         initDataUp();
                         my_brokerage_et.setText("");
                         s = my_brokerage_et.getText().toString();
-                        if (myBrokerageLj.getVisibility() == View.VISIBLE) {
-                            initDataDown("3", s);
-                        } else if (myBrokerageHw.getVisibility() == View.VISIBLE) {
-                            initDataDown("2", s);
-                        } else if (myBrokerageCs.getVisibility() == View.VISIBLE) {
-                            initDataDown("1", s);
-                        }
+                        initDataDown(prokecttype, s);
                     }
                 }, 1000);
             }
@@ -224,7 +218,6 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
     }
 
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -299,23 +292,24 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
 
                     @Override
                     public void onNext(BorkerageDownBean borkerageDownBean) {
-                        try {
-                            rows = borkerageDownBean.getData().getRows();
-                            if (rows.size() != 0) {
-                                my_brokerage_rv.setVisibility(View.VISIBLE);
-                                myBrokerage_rl.setVisibility(View.GONE);
-                                adapter.setRows(rows);
-                                my_brokerage_rv.setAdapter(adapter);
-                                adapter.notifyDataSetChanged();
-                            }else {
-                                my_brokerage_rv.setVisibility(View.GONE);
-                                myBrokerage_rl.setVisibility(View.VISIBLE);
-                            }
-                            isnum = 0;
+                        rows = borkerageDownBean.getData().getRows();
+                        Log.i("MyCL", "total：" + borkerageDownBean.getData().getTotal());
+                        int total = borkerageDownBean.getData().getTotal();
+                        if (total == 0) {
+                            Log.i("MyCL", "123");
+                            my_brokerage_rv.setVisibility(View.GONE);
+                            myBrokerage_rl.setVisibility(View.VISIBLE);
+                        } else {
+                            my_brokerage_rv.setVisibility(View.VISIBLE);
+                            myBrokerage_rl.setVisibility(View.GONE);
+                            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                            adapter.setRows(rows);
+                            my_brokerage_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
                             hideInput();
-                        } catch (Exception e) {
-                            e.printStackTrace();
                         }
+                        isnum = 0;
                     }
 
                     @Override
@@ -329,5 +323,16 @@ public class MyBrokerageActivity extends AllActivity implements View.OnClickList
                     }
                 });
 
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 }

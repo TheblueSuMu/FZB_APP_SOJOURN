@@ -40,7 +40,6 @@ import com.xcy.fzb.all.modle.MessageIssueBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 
 import java.io.BufferedOutputStream;
@@ -105,7 +104,7 @@ public class MessageIssueActivity extends AllActivity {
         init_No_Network();
     }
 
-    private void init_No_Network() {
+    private void init_No_Network(){
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -153,11 +152,13 @@ public class MessageIssueActivity extends AllActivity {
         message_issue_fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (message_issue_message.getText().toString().equals("") && stringBuffer.toString().equals("")) {
-                    ToastUtil.showToast(MessageIssueActivity.this, "请输入要发布的内容或图片");
+                message = message_issue_message.getText().toString();
+                imgUrl = stringBuffer.toString();
+                if (message_issue_message.getText().toString().equals("") && imgUrl.equals("")) {
+                    Toast.makeText(MessageIssueActivity.this, "请输入要发布的内容或图片", Toast.LENGTH_SHORT).show();
                 } else {
                     if (projectID.equals("")) {
-                        ToastUtil.showToast(MessageIssueActivity.this, "请选择要发布的项目");
+                        Toast.makeText(MessageIssueActivity.this, "请选择要发布的项目", Toast.LENGTH_SHORT).show();
                     } else {
                         initFB();
                     }
@@ -189,8 +190,7 @@ public class MessageIssueActivity extends AllActivity {
 
     //TODO 发布操作
     private void initFB() {
-        message = message_issue_message.getText().toString();
-        imgUrl = stringBuffer.toString();
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -210,13 +210,13 @@ public class MessageIssueActivity extends AllActivity {
                     @Override
                     public void onNext(MessageIssueBean messageIssueBean) {
                         if (messageIssueBean.getMsg().equals("成功")) {
-                            ToastUtil.showToast(MessageIssueActivity.this, messageIssueBean.getMsg());
+                            Toast.makeText(MessageIssueActivity.this, messageIssueBean.getMsg(), Toast.LENGTH_SHORT).show();
                             finish();
                             FinalContents.setProjectID("");
                             FinalContents.setProjectName("");
                             NewlyIncreased.setTest(false);
                         } else {
-                            ToastUtil.showToast(MessageIssueActivity.this, messageIssueBean.getMsg());
+                            Toast.makeText(MessageIssueActivity.this, messageIssueBean.getMsg(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -270,12 +270,12 @@ public class MessageIssueActivity extends AllActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                if (mDatas.size() == 9) {
 
-                if (position == parent.getChildCount() - 1) {
+                    Toast.makeText(MessageIssueActivity.this,"图片最多九张",Toast.LENGTH_SHORT).show();
+                } else {
+                    if (position == parent.getChildCount() - 1) {
 
-                    if (mDatas.size() == 9) {
-                        ToastUtil.showToast(MessageIssueActivity.this, "图片最多九张");
-                    } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(MessageIssueActivity.this);
                         builder.setTitle("请选择图片来源");
                         builder.setItems(new String[]{"相机", "相册"}, new DialogInterface.OnClickListener() {

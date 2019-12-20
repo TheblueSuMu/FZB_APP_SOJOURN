@@ -109,7 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="已结(万元)"
+                        android:text="已结佣金(万元)"
                         android:textColor="#ffffff"
                         android:textSize="11sp" />
 
@@ -144,7 +144,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="未结(万元)"
+                        android:text="未结佣金(万元)"
                         android:textColor="#ffffff"
                         android:textSize="11sp" />
 
@@ -170,38 +170,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginLeft="40dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/commission_ll5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="城市房产"
-                        android:textColor="#ffffffff"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:id="@+id/commission_ll6"
-                        android:layout_width="58dp"
-                        android:layout_height="3dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/the_project_end_underline"
-                        android:orientation="vertical"
-                        android:visibility="visible"/>
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/commission_ll1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -218,8 +194,7 @@
                         android:layout_height="3dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/the_project_end_underline"
-                        android:orientation="horizontal"
-                        android:visibility="invisible"/>
+                        android:orientation="horizontal"></LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -244,12 +219,9 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/the_project_end_underline"
                         android:orientation="vertical"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible"></LinearLayout>
 
                 </LinearLayout>
-
-
-
             </LinearLayout>
         </RelativeLayout>
 
@@ -279,15 +251,7 @@
 
             </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
-            <com.wang.avi.AVLoadingIndicatorView
-                android:id="@+id/commission_avi"
-                style="@style/AVLoadingIndicatorView.Small"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:visibility="gone"
-                app:indicatorColor="#334485"
-                android:layout_centerInParent="true"
-                app:indicatorName="LineSpinFadeLoaderIndicator" />
+
 
             <RelativeLayout
                 android:id="@+id/myBrokerage_rl"

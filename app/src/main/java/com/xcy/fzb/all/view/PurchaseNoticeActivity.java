@@ -19,11 +19,9 @@ import com.xcy.fzb.all.fragment.CityFragment;
 import com.xcy.fzb.all.fragment.EnterpriseFragment;
 import com.xcy.fzb.all.fragment.FlowFragment;
 import com.xcy.fzb.all.modle.HouseBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -83,7 +81,7 @@ public class PurchaseNoticeActivity extends AllActivity implements View.OnClickL
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -166,7 +164,6 @@ public class PurchaseNoticeActivity extends AllActivity implements View.OnClickL
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         int id = view.getId();

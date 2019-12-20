@@ -20,11 +20,9 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.ToApplyForAnIslandActivity;
 import com.xcy.fzb.project_side.view.ConfessToRaiseInformationActivity;
@@ -105,7 +103,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -137,7 +135,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         linearlayout_l = findViewById(R.id.linearlayout_l);
         linearlayout_ll = findViewById(R.id.linearlayout_ll);
 
-
+        review_the_success_return.setOnClickListener(this);
         review_the_success_bt1.setOnClickListener(this);
         review_the_success_bt3.setOnClickListener(this);
         review_the_success_bt4.setOnClickListener(this);
@@ -212,23 +210,14 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
 
                         infoData = myClientFragmentBean.getData().getInfoData();
-                        if (infoData.getCustomerImg() != null) {
-                            if (!infoData.getCustomerImg().equals("")) {
-                                Glide.with(ReviewTheSuccessActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(review_the_success_img1);
-                            }
-                        }
+                        Glide.with(ReviewTheSuccessActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(review_the_success_img1);
                         review_the_success_tv1.setText(infoData.getCustomerName());
                         processData = myClientFragmentBean.getData().getListData();
                         FinalContents.setJJrID(FinalContents.getUserID());
                         FinalContents.setProjectID(infoData.getProjectId());
                         review_the_success_tv2.setText(infoData.getProjectName());
                         review_the_success_tv3.setText(infoData.getCustomerName() + "[" + infoData.getCustomerPhone() + "]");
-                        review_the_success_return.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                finish();
-                            }
-                        });
+
                         FinalContents.setProjectType(infoData.getProjectType());
                         initRV();
                     }
@@ -257,12 +246,15 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         adapter.notifyDataSetChanged();
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
 
         switch (view.getId()) {
+            //            TODO 返回上一层
+            case R.id.review_the_success_return:
+                finish();
+                break;
             //            TODO 补全信息
             case R.id.review_the_success_bt1:
                 if (isnum1 == 0) {

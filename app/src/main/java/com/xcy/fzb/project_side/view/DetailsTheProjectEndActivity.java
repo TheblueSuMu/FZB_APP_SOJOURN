@@ -15,10 +15,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -34,7 +32,6 @@ import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
-import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.DynamicLineChartManager;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
@@ -42,18 +39,16 @@ import com.xcy.fzb.all.modle.BusinessBean;
 import com.xcy.fzb.all.modle.DetailsBean;
 import com.xcy.fzb.all.modle.FinanceBean;
 import com.xcy.fzb.all.modle.OperationBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.MapActivity;
 import com.xcy.fzb.all.view.ProjectDetails;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -64,6 +59,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import top.defaults.view.DateTimePickerView;
 
 //TODO 项目详情
 public class DetailsTheProjectEndActivity extends AllActivity implements View.OnClickListener {
@@ -137,11 +133,11 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
     Intent intent;
 
-    private String type1 = "";
+    private String type1 = "0";
     private String beforeDate1 = "";
     private String afterDate1 = "";
 
-    private String type2 = "";
+    private String type2 = "0";
     private String beforeDate2 = "";
     private String afterDate2 = "";
 
@@ -152,6 +148,10 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private String status = "10";
     private LineChart details_chart;
 
+    DateTimePickerView dateTimePickerView;
+    RelativeLayout particulars_picker;
+    TextView particulars_picker_cancel;
+    TextView particulars_picker_ensure;
 
     private DynamicLineChartManager dynamicLineChartManager;
     private List<String> names = new ArrayList<>(); //折线名字集合
@@ -163,16 +163,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private int year;
     private int month;
     private int dayOfMonth;
-    String type = "";
-
-    LinearLayout project_attache_ll1;
-    LinearLayout project_attache_ll2;
-    LinearLayout project_attache_ll3;
-    LinearLayout project_attache_ll4;
-    String tag = "1";
-    private String string;
-    private Date selectdate;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,7 +171,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         init_No_Network();
     }
 
-    private void init_No_Network() {
+    private void init_No_Network(){
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             NewlyIncreased.setTag("0");
@@ -203,7 +193,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -211,15 +201,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private void initView() {
         FinalContents.setDetails("项目详情");
         StatusBar.makeStatusBarTransparent(this);
-        CityContents.setIsRead("");
-
-        project_attache_ll1 = findViewById(R.id.project_attache_ll1);
-        project_attache_ll2 = findViewById(R.id.project_attache_ll2);
-        project_attache_ll3 = findViewById(R.id.project_attache_ll3);
-        project_attache_ll4 = findViewById(R.id.project_attache_ll4);
-
-        project_attache_ll1.setOnClickListener(this);
-        project_attache_ll3.setOnClickListener(this);
 
         details_the_project_end_img = findViewById(R.id.details_the_project_end_img);
         details_the_project_end_return = findViewById(R.id.details_the_project_end_return);
@@ -287,6 +268,10 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         details_the_project_end_time_ll1 = findViewById(R.id.details_the_project_end_time_ll1);
         details_the_project_end_time_ll2 = findViewById(R.id.details_the_project_end_time_ll2);
         details_the_project_end_time_ll3 = findViewById(R.id.details_the_project_end_time_ll3);
+        particulars_picker = findViewById(R.id.particulars_picker);
+        particulars_picker_cancel = findViewById(R.id.particulars_picker_cancel);
+        particulars_picker_ensure = findViewById(R.id.particulars_picker_ensure);
+        dateTimePickerView = findViewById(R.id.particulars_pickerView);
 
         details_chart = findViewById(R.id.details_chart);
 
@@ -346,19 +331,25 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页时间赋值
-    private void initDate() {
+    private void initDate(){
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
+        month = calendar.get(Calendar.MONTH)+1;
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-        details_the_project_end_time1.setText("<" + string);
-        details_the_project_end_time2.setText("-" + string + " >");
-        details_the_project_end_time3.setText("<" + string);
-        details_the_project_end_time4.setText("-" + string + " >");
-        details_the_project_end_time5.setText("<" + string);
-        details_the_project_end_time6.setText("-" + string + " >");
+        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        details_the_project_end_time1.setText("<"+string);
+        details_the_project_end_time2.setText("-"+string+" >");
+        details_the_project_end_time3.setText("<"+string);
+        details_the_project_end_time4.setText("-"+string+" >");
+        details_the_project_end_time5.setText("<"+string);
+        details_the_project_end_time6.setText("-"+string+" >");
+
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
+        // 注意：月份是从0开始计数的
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
         beforeDate1 = string;
         afterDate1 = string;
@@ -367,246 +358,176 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         beforeDate3 = string;
         afterDate3 = string;
 
-        //                TODO 开始时间
-        details_the_project_end_time1.setOnClickListener(new View.OnClickListener() {
-            @SingleClick(1000)
+        particulars_picker_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initTime1_Date1();
+                particulars_picker.setVisibility(View.GONE);
+            }
+        });
+
+        particulars_picker_ensure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                particulars_picker.setVisibility(View.GONE);
+                initViewData1();
+                initViewData2();
+                initViewData3();
+            }
+        });
+
+        particulars_picker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                particulars_picker.setVisibility(View.GONE);
+            }
+        });
+
+        //            TODO 开始时间
+        details_the_project_end_time1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+                particulars_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        beforeDate1 = dateString;
+                        details_the_project_end_time1.setText("<"+dateString);
+                        NewlyIncreased.setStartDate(dateString);
+
+                    }
+                });
             }
         });
         //                TODO 结束时间
         details_the_project_end_time2.setOnClickListener(new View.OnClickListener() {
-            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                initTime1_Date2();
+                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+                particulars_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        afterDate1 = dateString;
+                        details_the_project_end_time2.setText("-"+dateString+" >");
+                        NewlyIncreased.setEndDate(dateString);
+                    }
+                });
             }
         });
 
-        //                TODO 开始时间
+        //            TODO 开始时间
         details_the_project_end_time3.setOnClickListener(new View.OnClickListener() {
-            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                initTime2_Date1();
+                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+                particulars_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        beforeDate2 = dateString;
+                        details_the_project_end_time3.setText("<"+dateString);
+                        NewlyIncreased.setYJstartDate(dateString);
+                    }
+                });
             }
         });
         //                TODO 结束时间
         details_the_project_end_time4.setOnClickListener(new View.OnClickListener() {
-            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                initTime2_Date2();
+                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+                particulars_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        afterDate2 = dateString;
+                        details_the_project_end_time4.setText("-"+dateString+" >");
+                        NewlyIncreased.setYJendDate(dateString);
+
+                    }
+                });
             }
         });
 
-        //                TODO 开始时间
+        //            TODO 开始时间
         details_the_project_end_time5.setOnClickListener(new View.OnClickListener() {
-            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                initTime3_Date1();
+                dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
+                particulars_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        year3 = date.get(Calendar.YEAR);
+                        month3 = date.get(Calendar.MONTH);
+                        dayOfMonth3 = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year3, month3 + 1, dayOfMonth3);
+                        beforeDate3 = dateString;
+                        details_the_project_end_time5.setText("<"+dateString);
+                    }
+                });
             }
         });
+         year3 = calendar.get(Calendar.YEAR);
+         month3 = calendar.get(Calendar.MONTH)+1;
+         dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
+         initDate3();
+    }
 
+    private void initDate3(){
         //                TODO 结束时间
         details_the_project_end_time6.setOnClickListener(new View.OnClickListener() {
-            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                initTime3_Date2();
+                dateTimePickerView.setStartDate(new GregorianCalendar(year3, month3 - 1, dayOfMonth3));
+                dateTimePickerView.setEndDate(new GregorianCalendar(year3, month3 - 1, dayOfMonth3+5));
+                particulars_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        afterDate3 = dateString;
+                        details_the_project_end_time6.setText("-"+dateString+" >");
+                    }
+                });
             }
         });
     }
 
-    //            TODO  项目详情    运营数据   开始时间
-    private void initTime1_Date1(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                details_the_project_end_time1.setText("<" + getTime2(date));
-                beforeDate1 = getTime2(date);
-                NewlyIncreased.setStartDate(getTime2(date));
-                initViewData2();
-            }
-        })
-
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
-    }
-
-    //            TODO  项目详情    运营数据   结束时间
-    private void initTime1_Date2(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                afterDate1 = getTime2(date);
-                details_the_project_end_time2.setText("-" + getTime2(date) + " >");
-                NewlyIncreased.setEndDate(getTime2(date));
-                initViewData2();
-            }
-        })
-
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
-    }
-
-    //            TODO  项目详情    财务数据   开始时间
-    private void initTime2_Date1(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                beforeDate2 = getTime2(date);
-                details_the_project_end_time3.setText("<" + getTime2(date));
-                NewlyIncreased.setYJstartDate(getTime2(date));
-                initViewData1();
-            }
-        })
-
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
-    }
-
-    //            TODO  项目详情    财务数据   结束时间
-    private void initTime2_Date2(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                afterDate2 = getTime2(date);
-                details_the_project_end_time4.setText("-" + getTime2(date) + " >");
-                NewlyIncreased.setYJendDate(getTime2(date));
-                initViewData1();
-            }
-        })
-
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
-    }
-
-    //            TODO  项目详情    业务趋势   开始时间
-    private void initTime3_Date1(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                selectdate = date;
-                beforeDate3 = getTime2(date);
-                details_the_project_end_time5.setText("<" + getTime2(date));
-                initViewData3();
-            }
-        })
-
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
-    }
-
-    //            TODO  项目详情    业务趋势   结束时间
-    private void initTime3_Date2(){
-        Calendar calendar = Calendar.getInstance();
-        if (selectdate != null) {
-            calendar.setTime(selectdate);
-        }
-
-        year3 = calendar.get(Calendar.YEAR);
-        month3 = calendar.get(Calendar.MONTH);
-        dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
-
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        final Calendar endDate = Calendar.getInstance();
-        selectedDate.set(year3, month3, dayOfMonth3);
-        startDate.set(year3, month3, dayOfMonth3);
-        endDate.set(year3, month3, dayOfMonth3+15);
-        TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                afterDate3 = getTime2(date);
-                details_the_project_end_time6.setText("-" + getTime2(date) + " >");
-                initViewData3();
-            }
-        })
-
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
-    }
-
-
     //TODO 详情页财务数据赋值
-    private void initData() {
+    private void initData(){
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DetailsBean> userMessage = fzbInterface.getDetailsBeanList(FinalContents.getUserID(), FinalContents.getProjectID());
+        Observable<DetailsBean> userMessage = fzbInterface.getDetailsBeanList(FinalContents.getUserID(),FinalContents.getProjectID());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DetailsBean>() {
@@ -619,10 +540,10 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                     @Override
                     public void onNext(DetailsBean detailsBean) {
                         FinalContents.setProjectID(detailsBean.getData().getProject().getId());
-                        Glide.with(DetailsTheProjectEndActivity.this).load(FinalContents.getImageUrl() + detailsBean.getData().getProject().getProjectImg()).into(details_the_project_end_img);
-                        details_the_project_end_tv1.setText("[" + detailsBean.getData().getProject().getCityName() + "]" + detailsBean.getData().getProject().getProjectName());
-                        details_the_project_end_tv2.setText("项目地址：" + detailsBean.getData().getProject().getAddress());
-                        details_the_project_end_tv3.setText(Html.fromHtml("报备(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getReportAmount() + "</font>" + ")  " + "关注(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getBrowseNum() + "</font>" + ")  " + "收藏(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getCollectionNum() + "</font>" + ")  " + "转发(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getForwardingAmount() + "</font>" + ")  "));
+                        Glide.with(DetailsTheProjectEndActivity.this).load(FinalContents.getImageUrl() +detailsBean.getData().getProject().getProjectImg()).into(details_the_project_end_img);
+                        details_the_project_end_tv1.setText("["+detailsBean.getData().getProject().getCityName()+"]"+detailsBean.getData().getProject().getProjectName());
+                        details_the_project_end_tv2.setText("项目地址："+detailsBean.getData().getProject().getAddress());
+                        details_the_project_end_tv3.setText(Html.fromHtml("报备(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getReportAmount() + "</font>"+")  "+"关注(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getBrowseNum() + "</font>"+")  "+"收藏(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getCollectionNum() + "</font>"+")  "+"转发(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getForwardingAmount() + "</font>"+")  "));
 
                         details_the_project_end_tv12.setText(""+detailsBean.getData().getReceivableMoneyMap().getReceivableMoney());
                         details_the_project_end_tv13.setText(""+detailsBean.getData().getReceivableMoneyMap().getBackMoney());
@@ -644,7 +565,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误", "错误" + e);
+                        Log.i("列表数据获取错误","错误"+e);
                     }
 
                     @Override
@@ -655,14 +576,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页财务数据赋值
-    private void initViewData1() {
+    private void initViewData1(){
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<OperationBean> userMessage = fzbInterface.getOperationList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate2, afterDate2, type2);
+        Observable<OperationBean> userMessage = fzbInterface.getOperationList(FinalContents.getUserID(),FinalContents.getProjectID(),beforeDate2,afterDate2,type2);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<OperationBean>() {
@@ -674,15 +595,15 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(OperationBean operationBean) {
-                        details_the_project_end_tv12.setText("" + operationBean.getData().getReceivableMoney());
-                        details_the_project_end_tv13.setText("" + operationBean.getData().getBackMoney());
-                        details_the_project_end_tv14.setText("" + operationBean.getData().getInvoiceMoney());
-                        details_the_project_end_tv15.setText("" + operationBean.getData().getSurplusMoney());
+                        details_the_project_end_tv12.setText(""+operationBean.getData().getReceivableMoney());
+                        details_the_project_end_tv13.setText(""+operationBean.getData().getBackMoney());
+                        details_the_project_end_tv14.setText(""+operationBean.getData().getInvoiceMoney());
+                        details_the_project_end_tv15.setText(""+operationBean.getData().getSurplusMoney());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误", "错误" + e);
+                        Log.i("列表数据获取错误","错误"+e);
                     }
 
                     @Override
@@ -693,14 +614,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页运营数据赋值
-    private void initViewData2() {
+    private void initViewData2(){
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<FinanceBean> userMessage = fzbInterface.getFinanceList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate1, afterDate1, type1,tag);
+        Observable<FinanceBean> userMessage = fzbInterface.getFinanceList(FinalContents.getUserID(),FinalContents.getProjectID(),beforeDate1,afterDate1,type1);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -712,19 +633,18 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(FinanceBean financeBean) {
-                        details_the_project_end_tv4.setText("" + financeBean.getData().getReportNumber());
-                        details_the_project_end_tv5.setText("" + financeBean.getData().getReportOk());
-                        details_the_project_end_tv6.setText("" + financeBean.getData().getAccessingNumber());
-                        details_the_project_end_tv8.setText("" + financeBean.getData().getIsIslandNumber());
-                        details_the_project_end_tv9.setText("" + financeBean.getData().getEarnestMoneyNumber());
-                        details_the_project_end_tv10.setText("" + financeBean.getData().getTradeNumber());
-                        details_the_project_end_tv11.setText("" + financeBean.getData().getInvalidNum());
-
+                        details_the_project_end_tv4.setText(""+financeBean.getData().getReportNumber());
+                        details_the_project_end_tv5.setText(""+financeBean.getData().getReportOk());
+                        details_the_project_end_tv6.setText(""+financeBean.getData().getAccessingNumber());
+                        details_the_project_end_tv8.setText(""+financeBean.getData().getIsIslandNumber());
+                        details_the_project_end_tv9.setText(""+financeBean.getData().getEarnestMoneyNumber());
+                        details_the_project_end_tv10.setText(""+financeBean.getData().getTradeNumber());
+                        details_the_project_end_tv11.setText(""+financeBean.getData().getInvalidNum());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误", "错误" + e);
+                        Log.i("列表数据获取错误","错误"+e);
                     }
 
                     @Override
@@ -735,14 +655,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页趋势数据赋值
-    private void initViewData3() {
+    private void initViewData3(){
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<BusinessBean> userMessage = fzbInterface.getBusinesseList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate3, afterDate3, type3, status);
+        Observable<BusinessBean> userMessage = fzbInterface.getBusinesseList(FinalContents.getUserID(),FinalContents.getProjectID(),beforeDate3,afterDate3,type3,status);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BusinessBean>() {
@@ -761,7 +681,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误", "错误" + e);
+                        Log.i("列表数据获取错误","错误"+e);
                     }
 
                     @Override
@@ -772,7 +692,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 详情页趋势图绘制
-    private void init(final List<Integer> list) {
+    private void init(final List<Integer> list){
 
         //显示边界
         details_chart.setDrawBorders(false);
@@ -841,7 +761,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
         LineDataSet set1;
 
-        if (details_chart.getData() != null && details_chart.getData().getDataSetCount() > 0) {
+        if (details_chart.getData() != null &&
+                details_chart.getData().getDataSetCount() > 0) {
             set1 = (LineDataSet) details_chart.getData().getDataSetByIndex(0);
             set1.setValues(values);
             details_chart.getData().notifyDataChanged();
@@ -895,7 +816,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //TODO 点击事件
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         if (NewlyIncreased.getTag().equals("3")) {
@@ -955,12 +875,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             case R.id.details_the_project_end_rb4:
                 details_the_project_end_time_ll1.setVisibility(View.VISIBLE);
                 type1 = "3";
-                beforeDate1 = string;
-                afterDate1 = string;
-                details_the_project_end_time1.setText("<" + string);
-                details_the_project_end_time2.setText("-" + string + " >");
                 NewlyIncreased.setTag("3");
-                initViewData2();
                 initDate();
                 break;
             case R.id.details_the_project_end_rb5:
@@ -990,12 +905,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             case R.id.details_the_project_end_rb8:
                 details_the_project_end_time_ll2.setVisibility(View.VISIBLE);
                 type2 = "3";
-                beforeDate2 = string;
-                afterDate2 = string;
-                details_the_project_end_time3.setText("<" + string);
-                details_the_project_end_time4.setText("-" + string + " >");
                 NewlyIncreased.setYJType("3");
-                initViewData1();
                 initDate();
                 break;
 //                    TODO 报备
@@ -1033,53 +943,49 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             case R.id.details_the_project_end_rb15:
                 details_the_project_end_time_ll3.setVisibility(View.VISIBLE);
                 type3 = "3";
-                beforeDate3 = string;
-                afterDate3 = string;
-                details_the_project_end_time5.setText("<" + string);
-                details_the_project_end_time6.setText("-" + string + " >");
                 initDate();
                 initViewData3();
                 break;
 //                TODO  报备审核
             case R.id.details_the_project_end_ll1:
                 intent = new Intent(DetailsTheProjectEndActivity.this, CheckPendingTheProjectEndActivity.class);
-                intent.putExtra("client", "1");
+                intent.putExtra("client","1");
                 startActivity(intent);
                 break;
 //                TODO  报备
             case R.id.details_the_project_end_ll2:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client", "1");
+                intent.putExtra("client","1");
                 startActivity(intent);
                 break;
 //                TODO  到访
             case R.id.details_the_project_end_ll3:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client", "2");
+                intent.putExtra("client","2");
                 startActivity(intent);
                 break;
 //               TODO  登岛
             case R.id.details_the_project_end_ll5:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client", "3");
+                intent.putExtra("client","3");
                 startActivity(intent);
                 break;
 //                TODO  认筹
             case R.id.details_the_project_end_ll6:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client", "4");
+                intent.putExtra("client","4");
                 startActivity(intent);
                 break;
 //                TODO  成交
             case R.id.details_the_project_end_ll7:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client", "5");
+                intent.putExtra("client","5");
                 startActivity(intent);
                 break;
 //                TODO  失效
             case R.id.details_the_project_end_ll8:
                 intent = new Intent(DetailsTheProjectEndActivity.this, MyClientActivity.class);
-                intent.putExtra("client", "6");
+                intent.putExtra("client","6");
                 startActivity(intent);
                 break;
 //                TODO  应收
@@ -1102,82 +1008,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 intent = new Intent(DetailsTheProjectEndActivity.this, CommissionTheProjectEndActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.project_attache_ll1://实时
-                tag = "1";
-                project_attache_ll2.setVisibility(View.VISIBLE);
-                project_attache_ll4.setVisibility(View.INVISIBLE);
-                details_the_project_end_ll1.setClickable(true);
-                details_the_project_end_ll2.setClickable(true);
-                details_the_project_end_ll3.setClickable(true);
-                details_the_project_end_ll5.setClickable(true);
-                details_the_project_end_ll6.setClickable(true);
-                details_the_project_end_ll7.setClickable(true);
-                details_the_project_end_ll8.setClickable(true);
-                if (details_the_project_end_rb1.isChecked() == true) {
-                    beforeDate1 = "";
-                    afterDate1 = "";
-                    type1 = "0";
-                    NewlyIncreased.setTag("0");
-                    initViewData2();
-                    details_the_project_end_time_ll1.setVisibility(View.GONE);
-                } else if (details_the_project_end_rb2.isChecked() == true) {
-                    beforeDate1 = "";
-                    afterDate1 = "";
-                    type1 = "1";
-                    NewlyIncreased.setTag("1");
-                    initViewData2();
-                    details_the_project_end_time_ll1.setVisibility(View.GONE);
-                } else if (details_the_project_end_rb3.isChecked() == true) {
-                    beforeDate1 = "";
-                    afterDate1 = "";
-                    type1 = "2";
-                    NewlyIncreased.setTag("2");
-                    initViewData2();
-                    details_the_project_end_time_ll1.setVisibility(View.GONE);
-                } else if (details_the_project_end_rb4.isChecked() == true) {
-                    type1 = "3";
-                    NewlyIncreased.setTag("3");
-                    details_the_project_end_time_ll1.setVisibility(View.VISIBLE);
-                }
-                break;
-            case R.id.project_attache_ll3://总体
-                tag = "2";
-                project_attache_ll2.setVisibility(View.INVISIBLE);
-                project_attache_ll4.setVisibility(View.VISIBLE);
-                details_the_project_end_ll1.setClickable(false);
-                details_the_project_end_ll2.setClickable(false);
-                details_the_project_end_ll3.setClickable(false);
-                details_the_project_end_ll5.setClickable(false);
-                details_the_project_end_ll6.setClickable(false);
-                details_the_project_end_ll7.setClickable(false);
-                details_the_project_end_ll8.setClickable(false);
-                if (details_the_project_end_rb1.isChecked() == true) {
-                    beforeDate1 = "";
-                    afterDate1 = "";
-                    type1 = "0";
-                    NewlyIncreased.setTag("0");
-                    initViewData2();
-                    details_the_project_end_time_ll1.setVisibility(View.GONE);
-                } else if (details_the_project_end_rb2.isChecked() == true) {
-                    beforeDate1 = "";
-                    afterDate1 = "";
-                    type1 = "1";
-                    NewlyIncreased.setTag("1");
-                    initViewData2();
-                    details_the_project_end_time_ll1.setVisibility(View.GONE);
-                } else if (details_the_project_end_rb3.isChecked() == true) {
-                    beforeDate1 = "";
-                    afterDate1 = "";
-                    type1 = "2";
-                    NewlyIncreased.setTag("2");
-                    initViewData2();
-                    details_the_project_end_time_ll1.setVisibility(View.GONE);
-                } else if (details_the_project_end_rb4.isChecked() == true) {
-                    type1 = "3";
-                    NewlyIncreased.setTag("3");
-                    details_the_project_end_time_ll1.setVisibility(View.VISIBLE);
-                }
-                break;
+
         }
     }
 

@@ -47,13 +47,6 @@ public class CheckPendingTheProjectEndAdapter extends RecyclerView.Adapter<Check
         if (rows.get(position).getRelatedData().equals("失效")) {
             holder.item_refuse_the_project_end_tv4.setText("拒绝");
         }
-
-        if (rows.get(position).getIsRead().equals("0")){
-            holder.item_refuse_the_project_end_unread.setVisibility(View.VISIBLE);
-        }else if(rows.get(position).getIsRead().equals("1")){
-            holder.item_refuse_the_project_end_unread.setVisibility(View.GONE);
-        }
-
         holder.item_refuse_the_project_end_tv4.setTextColor(Color.parseColor("#AC1E26"));
         holder.item_refuse_the_project_end_tv2.setText(rows.get(position).getProjectName());
         holder.item_refuse_the_project_end_tv1.setText(rows.get(position).getCustomerName()+"("+rows.get(position).getCustomerPhone()+")");
@@ -81,7 +74,6 @@ public class CheckPendingTheProjectEndAdapter extends RecyclerView.Adapter<Check
         TextView item_refuse_the_project_end_tv2;
         TextView item_refuse_the_project_end_tv3;
         TextView item_refuse_the_project_end_tv4;
-        ImageView item_refuse_the_project_end_unread;
 
         public CheckPendingTheProjectEndViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,7 +83,7 @@ public class CheckPendingTheProjectEndAdapter extends RecyclerView.Adapter<Check
             item_refuse_the_project_end_tv2 = itemView.findViewById(R.id.item_refuse_the_project_end_tv2);
             item_refuse_the_project_end_tv3 = itemView.findViewById(R.id.item_refuse_the_project_end_tv3);
             item_refuse_the_project_end_tv4 = itemView.findViewById(R.id.item_refuse_the_project_end_tv4);
-            item_refuse_the_project_end_unread = itemView.findViewById(R.id.item_refuse_the_project_end_unread);
+
         }
     }
 

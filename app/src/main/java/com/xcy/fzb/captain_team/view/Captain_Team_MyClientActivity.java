@@ -16,43 +16,22 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.fragment.MyClientFragment2;
 import com.xcy.fzb.all.fragment.MyClientFragment3;
 import com.xcy.fzb.all.fragment.MyClientFragment4;
 import com.xcy.fzb.all.fragment.MyClientFragment5;
 import com.xcy.fzb.all.fragment.MyClientFragment6;
 import com.xcy.fzb.all.fragment.MyClientFragment7;
-import com.xcy.fzb.all.modle.ReportNoReadListBean;
 import com.xcy.fzb.all.persente.MyClientName;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
-import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.MyClientAddActivity;
-import com.xcy.fzb.all.view.PhoneActivity;
 import com.xcy.fzb.captain_team.fragment.Captain_Team_MyClientFragment1;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Captain_Team_MyClientActivity extends AllActivity implements View.OnClickListener {
 
@@ -63,13 +42,13 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
 
     TextView my_client_tv;
 
-    RelativeLayout my_client_ll_1;
-    RelativeLayout my_client_11_2;
-    RelativeLayout my_client_11_3;
-    RelativeLayout my_client_11_4;
-    RelativeLayout my_client_11_5;
-    RelativeLayout my_client_11_6;
-    RelativeLayout my_client_11_7;
+    LinearLayout my_client_ll_1;
+    LinearLayout my_client_11_2;
+    LinearLayout my_client_11_3;
+    LinearLayout my_client_11_4;
+    LinearLayout my_client_11_5;
+    LinearLayout my_client_11_6;
+    LinearLayout my_client_11_7;
     LinearLayout my_client_11_8;
     LinearLayout my_client_11_9;
     LinearLayout my_client_11_10;
@@ -89,13 +68,6 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
     MyClientFragment6 myClientFragment6 = new MyClientFragment6();
     MyClientFragment7 myClientFragment7 = new MyClientFragment7();
     private String client;
-
-    private TextView my_client_unread_1;
-    private TextView my_client_unread_2;
-    private TextView my_client_unread_3;
-    private TextView my_client_unread_4;
-    private TextView my_client_unread_5;
-    private TextView my_client_unread_6;
 
 
     @Override
@@ -121,7 +93,7 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -150,23 +122,7 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
         my_client_11_13 = findViewById(R.id.my_client_ll_13);
         my_client_11_14 = findViewById(R.id.my_client_ll_14);
 
-        //  TODO    客户未读
-        my_client_unread_1 = findViewById(R.id.my_client_unread_1);
-        my_client_unread_2 = findViewById(R.id.my_client_unread_2);
-        my_client_unread_3 = findViewById(R.id.my_client_unread_3);
-        my_client_unread_4 = findViewById(R.id.my_client_unread_4);
-        my_client_unread_5 = findViewById(R.id.my_client_unread_5);
-        my_client_unread_6 = findViewById(R.id.my_client_unread_6);
-
-        my_client_unread_1.bringToFront();
-        my_client_unread_2.bringToFront();
-        my_client_unread_3.bringToFront();
-        my_client_unread_4.bringToFront();
-        my_client_unread_5.bringToFront();
-        my_client_unread_6.bringToFront();
-
         if (FinalContents.getIdentity().equals("63")) {
-            my_client_tv.setText("业务信息");
             my_client_ll_1.setVisibility(View.GONE);
             client_add.setVisibility(View.GONE);
         }
@@ -198,80 +154,6 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
 
         });
 
-    }
-
-    private void initData(){
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
-        Observable<ReportNoReadListBean> clientFragment = fzbInterface.getreportNoRead(FinalContents.getAgentId(),"",FinalContents.getUserID(),FinalContents.getMySelf(), NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate());
-        clientFragment.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ReportNoReadListBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(ReportNoReadListBean reportNoReadListBean) {
-                        if (reportNoReadListBean.getData().getReports().equals("0") || reportNoReadListBean.getData().getReports().equals("")) {//  TODO 报备
-                            my_client_unread_1.setVisibility(View.INVISIBLE);
-                        }else {
-                            my_client_unread_1.setVisibility(View.VISIBLE);
-                            my_client_unread_1.setText(reportNoReadListBean.getData().getReports());
-                        }
-
-                        if (reportNoReadListBean.getData().getAccessing().equals("0") || reportNoReadListBean.getData().getAccessing().equals("")) {//  TODO 到访
-                            my_client_unread_2.setVisibility(View.INVISIBLE);
-                        }else {
-                            my_client_unread_2.setVisibility(View.VISIBLE);
-                            my_client_unread_2.setText(reportNoReadListBean.getData().getAccessing());
-                        }
-
-                        if (reportNoReadListBean.getData().getTrade().equals("0") || reportNoReadListBean.getData().getTrade().equals("")) {//  TODO 成交
-                            my_client_unread_5.setVisibility(View.INVISIBLE);
-                        }else {
-                            my_client_unread_5.setVisibility(View.VISIBLE);
-                            my_client_unread_5.setText(reportNoReadListBean.getData().getTrade());
-                        }
-
-                        if (reportNoReadListBean.getData().getLose().equals("0") || reportNoReadListBean.getData().getLose().equals("")) {//  TODO 失效
-                            my_client_unread_6.setVisibility(View.INVISIBLE);
-                        }else {
-                            my_client_unread_6.setVisibility(View.VISIBLE);
-                            my_client_unread_6.setText(reportNoReadListBean.getData().getLose());
-                        }
-
-                        if (reportNoReadListBean.getData().getEarnest().equals("0") || reportNoReadListBean.getData().getEarnest().equals("")) {//  TODO 认筹
-                            my_client_unread_4.setVisibility(View.INVISIBLE);
-                        }else {
-                            my_client_unread_4.setVisibility(View.VISIBLE);
-                            my_client_unread_4.setText(reportNoReadListBean.getData().getEarnest());
-                        }
-
-                        if (reportNoReadListBean.getData().getIsIsland().equals("0") || reportNoReadListBean.getData().getIsIsland().equals("")) {//  TODO 登岛
-                            my_client_unread_3.setVisibility(View.INVISIBLE);
-                        }else {
-                            my_client_unread_3.setVisibility(View.VISIBLE);
-                            my_client_unread_3.setText(reportNoReadListBean.getData().getIsIsland());
-                        }
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("MyCL", "未浏览错误信息" + e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
     }
 
     private void initClient(){
@@ -387,7 +269,7 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
         }
     }
 
-    @SingleClick(1000)
+
     @Override
     public void onClick(View view) {
         manager = getSupportFragmentManager();
@@ -397,32 +279,8 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
                 finish();
                 break;
             case R.id.client_add:
-                final List<String> list = new ArrayList<>();
-                list.add("手动添加");
-                list.add("通讯录导入");
-
-                //      监听选中
-                OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_MyClientActivity.this, new OnOptionsSelectListener() {
-                    @Override
-                    public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                        //               返回的分别是三个级别的选中位置
-                        //              展示选中数据
-                        if (list.get(options1).equals("手动添加")) {
-                            Intent intent = new Intent(Captain_Team_MyClientActivity.this, MyClientAddActivity.class);
-                            startActivity(intent);
-                        }else if (list.get(options1).equals("通讯录导入")){
-                            Intent intent = new Intent(Captain_Team_MyClientActivity.this, PhoneActivity.class);
-                            startActivity(intent);
-                        }
-                    }
-                })
-                        .setSelectOptions(0)//设置选择第一个
-                        .setOutSideCancelable(false)//点击背的地方不消失
-                        .build();//创建
-                //      把数据绑定到控件上面
-                pvOptions.setPicker(list);
-                //      展示
-                pvOptions.show();
+                Intent intent = new Intent(Captain_Team_MyClientActivity.this, MyClientAddActivity.class);
+                startActivity(intent);
                 break;
             case R.id.my_client_ll_1:
                 my_client_tv.setVisibility(View.GONE);
@@ -607,7 +465,7 @@ public class Captain_Team_MyClientActivity extends AllActivity implements View.O
             my_client_11_13.setVisibility(View.VISIBLE);
             my_client_11_14.setVisibility(View.INVISIBLE);
         }
-        initData();
+
     }
 
     @Override

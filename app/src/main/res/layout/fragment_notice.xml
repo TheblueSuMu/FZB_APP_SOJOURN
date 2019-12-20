@@ -44,7 +44,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/all_no_information_notice"
+        android:id="@+id/all_notice_fragment_no_information_notice"
         android:background="#fff"
         android:visibility="gone"
         android:src="@mipmap/no_information"

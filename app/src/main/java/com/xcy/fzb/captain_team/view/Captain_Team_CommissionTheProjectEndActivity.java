@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,12 +30,10 @@ import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.CommissionListBean;
 import com.xcy.fzb.all.database.TeamCommissionsBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.KeyUtils;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_PopAdapter;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_TheProjectEndCommissionAdapter;
@@ -70,8 +69,6 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
     LinearLayout commission_the_project_end_l2;
     LinearLayout commission_the_project_end_l3;
     LinearLayout commission_the_project_end_l4;
-    LinearLayout commission_the_project_end_l5;
-    LinearLayout commission_the_project_end_l6;
 
     ImageView all_no_information;
     RecyclerView commission_the_project_end_rv;
@@ -110,7 +107,7 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -126,8 +123,6 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
         commission_the_project_end_l2 = findViewById(R.id.commission_the_project_end_l2);
         commission_the_project_end_l3 = findViewById(R.id.commission_the_project_end_l3);
         commission_the_project_end_l4 = findViewById(R.id.commission_the_project_end_l4);
-        commission_the_project_end_l5 = findViewById(R.id.commission_the_project_end_l5);
-        commission_the_project_end_l6 = findViewById(R.id.commission_the_project_end_l6);
         all_no_information = findViewById(R.id.all_no_information);
         commission_the_project_end_rv = findViewById(R.id.commission_the_project_end_rv);
         commission_the_project_end_all = findViewById(R.id.commission_the_project_end_all);
@@ -176,7 +171,6 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
         commission_the_project_end_screen.setOnClickListener(this);
         commission_the_project_end_l1.setOnClickListener(this);
         commission_the_project_end_l3.setOnClickListener(this);
-        commission_the_project_end_l5.setOnClickListener(this);
         commission_the_project_end_all.setOnClickListener(this);
 
         commission_the_project_end_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -192,9 +186,11 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
                 return false;
             }
         });
+
+
+
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -213,7 +209,6 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
 
                 commission_the_project_end_l2.setVisibility(View.VISIBLE);
                 commission_the_project_end_l4.setVisibility(View.GONE);
-                commission_the_project_end_l6.setVisibility(View.GONE);
                 projectType = "3";
                 initDataBean();
 
@@ -223,18 +218,9 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
 
                 commission_the_project_end_l2.setVisibility(View.GONE);
                 commission_the_project_end_l4.setVisibility(View.VISIBLE);
-                commission_the_project_end_l6.setVisibility(View.GONE);
                 projectType = "2";
                 initDataBean();
-                break;
-//                TODO 城市房产
-            case R.id.commission_the_project_end_l5:
 
-                commission_the_project_end_l2.setVisibility(View.GONE);
-                commission_the_project_end_l4.setVisibility(View.GONE);
-                commission_the_project_end_l6.setVisibility(View.VISIBLE);
-                projectType = "1";
-                initDataBean();
                 break;
 //                TODO 佣金状态
             case R.id.commission_the_project_end_all:
@@ -467,11 +453,11 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
                                 all_no_information.setVisibility(View.VISIBLE);
                                 commission_the_project_end_rv.setVisibility(View.GONE);
                             }
-                            hideInput();
                         } else {
                             all_no_information.setVisibility(View.VISIBLE);
                             commission_the_project_end_rv.setVisibility(View.GONE);
                         }
+                        hideInput();
                     }
 
                     @Override
@@ -487,6 +473,17 @@ public class Captain_Team_CommissionTheProjectEndActivity extends AllActivity im
                     }
                 });
 
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 
 }

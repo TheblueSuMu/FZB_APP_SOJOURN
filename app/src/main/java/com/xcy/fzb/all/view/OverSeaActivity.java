@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,7 +39,6 @@ import com.xcy.fzb.all.adapter.IssueAdapter;
 import com.xcy.fzb.all.adapter.OverseaCityAdapter;
 import com.xcy.fzb.all.adapter.ProjectLabelAdapter;
 import com.xcy.fzb.all.adapter.RecyclerAdapter;
-import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.application.DemoApplication;
 import com.xcy.fzb.all.fragment.ComprehensiveFragment;
@@ -51,11 +52,9 @@ import com.xcy.fzb.all.modle.LabelBean;
 import com.xcy.fzb.all.modle.NationBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -131,9 +130,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private RecyclerView project_lable_rv;
     private SwipeRefreshLayout oversea_ptrclass;
     private ImageView banner_img;
-    private ImageView oversea_city_wide_img;
-    private ImageView oversea_across_the_city_img;
-    private ImageView oversea_map_img;
     private LinearLayout oversea_linear_issue;
     //    private DemoApplication application;
 
@@ -156,9 +152,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             initfvb();
             init();
             initView();
-            if (!FinalContents.getProjectType().equals("1")) {
-                initissue();
-            }
+            initissue();
             EventBus.getDefault().register(this);
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
@@ -172,7 +166,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -197,10 +191,10 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+        if (FinalContents.getCityIs().equals("")) {
             if (FinalContents.getIdentity().equals("63")) {
 
-            }else if (FinalContents.getIdentity().equals("7")) {
+            } else if (FinalContents.getIdentity().equals("7")) {
 
             } else {
                 int sensortype = event.sensor.getType();
@@ -215,10 +209,10 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
                         if (SharItOff.getShar().equals("隐")) {
                             SharItOff.setShar("显");
-                            ToastUtil.showToast(application, "佣金已显示，如需隐藏请摇动");
+                            Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
                         } else if (SharItOff.getShar().equals("显")) {
                             SharItOff.setShar("隐");
-                            ToastUtil.showToast(application, "佣金已隐藏，如需显示请摇动");
+                            Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
                         }
                         inithot();
 
@@ -258,16 +252,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             seview.setVisibility(View.VISIBLE);
             initcity();
             inithot();
-         }else if (FinalContents.getProjectType().equals("1")) {
-            title.setText("城市房产");
-            arrposid = "3";
-            oversea_linear.setVisibility(View.VISIBLE);
-            nationRv.setVisibility(View.GONE);
-            oversea_linear_issue.setVisibility(View.GONE);
-            oversea_rb_2s.setText("城市");
-            state.setText("城市");
-            seview.setVisibility(View.VISIBLE);
-            inithot();
         }
     }
 
@@ -290,47 +274,32 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
         initvoid();
 
-        //  TODO    城市房产
-
-        oversea_city_wide_img = findViewById(R.id.oversea_city_wide_img);
-        oversea_across_the_city_img = findViewById(R.id.oversea_across_the_city_img);
-        oversea_map_img = findViewById(R.id.oversea_map_img);
-        oversea_linear_issue = findViewById(R.id.oversea_linear_issue);
-
-        oversea_city_wide_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CityContents.setCityType("1");
-                FinalContents.setIfCityType("1");
-                Intent intent = new Intent(OverSeaActivity.this,CityWideActivity.class);
-                startActivity(intent);
-            }
-        });
-        oversea_across_the_city_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CityContents.setCityType("2");
-                FinalContents.setIfCityType("2");
-                Intent intent = new Intent(OverSeaActivity.this,CityWideActivity.class);
-                startActivity(intent);
-            }
-        });
-        oversea_map_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FinalContents.setIfCity(FinalContents.getCityID());
-                FinalContents.setIfCityType("");
-                Intent intent_overseas = new Intent(view.getContext(), MapHouseActivity.class);
-                startActivity(intent_overseas);
-            }
-        });
-
-
-        //  TODO    城市房产    结束
-
         oversea_ptrclass = findViewById(R.id.oversea_ptrclass);
 
         oversea_ptrclass.setOnRefreshListener(this);
+
+//        oversea_ptrclass.disableWhenHorizontalMove(true);
+//        oversea_ptrclass.setPtrHandler(new PtrHandler() {
+//            @Override
+//            public void onRefreshBegin(PtrFrameLayout frame) {
+//                frame.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        oversea_ptrclass.refreshComplete();
+//                        oversea_ptrclass.setLastUpdateTimeKey("2017-2-10");
+//                        initfvb();
+//                        initView();
+//                        initissue();
+//                        init();
+//                    }
+//                }, 1000);
+//            }
+//
+//            @Override
+//            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+//                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+//            }
+//        });
 
         application = (DemoApplication) getApplication();
         comprehensiveFragment = application.getComprehensiveFragment();
@@ -344,15 +313,18 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         imglist = application.getImglist();
         hotlist = application.getHotlist();
 
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         banner = findViewById(R.id.banner_2);
+        oversea_linear_issue = findViewById(R.id.oversea_linear_issue);
 
         nationRv = findViewById(R.id.overseas_nation);
         issueRv = findViewById(R.id.overseas_issue);
         hotRv = findViewById(R.id.overseas_hot);
+        banner_img = findViewById(R.id.banner_img);
 
         oversea_linear = findViewById(R.id.oversea_linear);
+
 
         sort = findViewById(R.id.overseas_sort);
         screen = findViewById(R.id.overseas_screen);
@@ -370,8 +342,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         oversea_ll = findViewById(R.id.oversea_ll);
         oversea_lll = findViewById(R.id.oversea_lll);
 
-        banner_img = findViewById(R.id.banner_img);
-
         all_no_information = findViewById(R.id.all_no_information);
 
         project_lable_rv = findViewById(R.id.project_Lable_rv);
@@ -381,13 +351,12 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         back = findViewById(R.id.oversea_back);
         report = findViewById(R.id.oversea_report);
 
+        if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
+            report.setVisibility(View.GONE);
+        }
+
         if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
             report.setVisibility(View.VISIBLE);
-            if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9") ) {
-                report.setVisibility(View.GONE);
-            }else {
-                report.setVisibility(View.VISIBLE);
-            }
         }else {
             report.setVisibility(View.GONE);
         }
@@ -430,7 +399,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 }else {
                     report.setVisibility(View.GONE);
                 }
-                if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7")  || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9")) {
+                if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
                     report.setVisibility(View.GONE);
                 }
                 oversea_ll.setVisibility(View.GONE);
@@ -445,7 +414,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                 }else {
                     report.setVisibility(View.GONE);
                 }
-                if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9") ) {
+                if (FinalContents.getIdentity().equals("63") || FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("7") ) {
                     report.setVisibility(View.GONE);
                 }
                 oversea_ll.setVisibility(View.GONE);
@@ -482,7 +451,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
 
     //点击事件
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -709,6 +677,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
                     @Override
                     public void onError(Throwable e) {
+                        banner_img.setVisibility(View.VISIBLE);
+                        banner.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 
@@ -743,12 +713,11 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                     @Override
                     public void onNext(ImgData imgData) {
                         imagelist = imgData.getData();
-                        if (imagelist.size() != 0) {
+                        if (imglist.size() != 0) {
                             oversea_linear_issue.setVisibility(View.VISIBLE);
                             issueRv.setVisibility(View.VISIBLE);
                             LinearLayoutManager layoutManager = new LinearLayoutManager(OverSeaActivity.this);
                             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-
                             issueRv.setLayoutManager(layoutManager);
                             IssueAdapter recyclerAdapter = new IssueAdapter(imagelist);
                             issueRv.setAdapter(recyclerAdapter);
@@ -757,6 +726,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                             oversea_linear_issue.setVisibility(View.GONE);
                             issueRv.setVisibility(View.GONE);
                         }
+
 
                     }
 
@@ -784,7 +754,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getCityID(), FinalContents.getComprehensiveSorting(), FinalContents.getProjectLabel(), FinalContents.getProjectType(),"", FinalContents.getNation(), FinalContents.getProjectPriceStart(), FinalContents.getProjectPriceEnd(), FinalContents.getApartment(), FinalContents.getAreaSection(), FinalContents.getFfProjectTrait(), FinalContents.getProcuctType(), FinalContents.getFitmentState(),"","1000");
+        Observable<HotBean> userMessage = fzbInterface.getList(FinalContents.getUserID(), FinalContents.getCityID(), FinalContents.getComprehensiveSorting(), FinalContents.getProjectLabel(), FinalContents.getProjectType(), FinalContents.getNation(), FinalContents.getProjectPriceStart(), FinalContents.getProjectPriceEnd(), FinalContents.getApartment(), FinalContents.getAreaSection(), FinalContents.getFfProjectTrait(), FinalContents.getProcuctType(), FinalContents.getFitmentState(), "1000");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HotBean>() {
@@ -887,9 +857,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         if (oversea_ptrclass.isRefreshing()) {//如果正在刷新
             initfvb();
             initView();
-            if (!FinalContents.getProjectType().equals("1")) {
-                initissue();
-            }
+            initissue();
             init();
             oversea_ptrclass.setRefreshing(false);//取消刷新
         }

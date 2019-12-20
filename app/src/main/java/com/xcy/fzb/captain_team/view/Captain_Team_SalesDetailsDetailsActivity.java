@@ -16,17 +16,13 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -46,20 +42,16 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.AgentDetailsBean;
 import com.xcy.fzb.all.database.DataStatisticsBean;
-import com.xcy.fzb.all.modle.TeamLeaderAmountBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_assistant.view.Assistant_Addteam_Activity;
-import com.xcy.fzb.captain_team.adapter.Captain_Team_YongAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -70,6 +62,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import top.defaults.view.DateTimePickerView;
 
 public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implements View.OnClickListener {
     private LinearLayout sales_details_details_ll1;
@@ -79,6 +72,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private LinearLayout sales_details_details_ll5;
     private LinearLayout sales_details_details_ll6;
     private LinearLayout sales_details_details_ll7;
+    private LinearLayout sales_details_details_picker;
 
     private TextView sales_details_details_tv1;
     private TextView sales_details_details_tv2;
@@ -92,6 +86,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private TextView sales_details_details_type;
     private TextView sales_details_details_time1;
     private TextView sales_details_details_time2;
+    private TextView sales_details_details_cancel;
+    private TextView sales_details_details_ensure;
     private TextView sales_details_details_name;
     private TextView sales_details_details_tv10;
     private TextView sales_details_details_tv11;
@@ -108,6 +104,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private List<Integer> colour = new ArrayList<>();//折线颜色集合
     private List<String> indexList;
 
+    private DateTimePickerView dateTimePickerView;
+
 
     private RelativeLayout sales_details_details_return;
     private RelativeLayout sales_details_details_amend;
@@ -118,21 +116,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private ImageView sales_details_details_xiugai;
     private AgentDetailsBean agentDetails;
     private PopupWindow p;
-    private RecyclerView sales_details_details_rv;
-    private LinearLayout sales_details_details_linear1;
-    private ImageView sales_details_details_access;
-
-    LinearLayout project_attache_ll1;
-    LinearLayout project_attache_ll2;
-    LinearLayout project_attache_ll3;
-    LinearLayout project_attache_ll4;
-
-    String tag = "1";
-    private String string;
-    private int year;
-    private int month;
-    private int dayOfMonth;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -160,7 +143,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -169,21 +152,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
 
         StatusBar.makeStatusBarTransparent(this);
 
-        //      TODO    城市版
-        sales_details_details_rv = findViewById(R.id.sales_details_details_rv);
-        sales_details_details_linear1 = findViewById(R.id.sales_details_details_linear1);
-        sales_details_details_access = findViewById(R.id.sales_details_details_access);
-
-        project_attache_ll1 = findViewById(R.id.project_attache_ll1);
-        project_attache_ll2 = findViewById(R.id.project_attache_ll2);
-        project_attache_ll3 = findViewById(R.id.project_attache_ll3);
-        project_attache_ll4 = findViewById(R.id.project_attache_ll4);
-
-        project_attache_ll1.setOnClickListener(this);
-        project_attache_ll3.setOnClickListener(this);
-
-        //      TODO    城市版
-
         sales_details_details_ll1 = findViewById(R.id.sales_details_details_ll1);
         sales_details_details_ll2 = findViewById(R.id.sales_details_details_ll2);
         sales_details_details_ll3 = findViewById(R.id.sales_details_details_ll3);
@@ -191,6 +159,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_ll5 = findViewById(R.id.sales_details_details_ll5);
         sales_details_details_ll6 = findViewById(R.id.sales_details_details_ll6);
         sales_details_details_ll7 = findViewById(R.id.sales_details_details_ll7);
+        sales_details_details_picker = findViewById(R.id.sales_details_details_picker);
         sales_details_details_return = findViewById(R.id.sales_details_details_return);
         sales_details_details_amend = findViewById(R.id.sales_details_details_amend);
 
@@ -208,7 +177,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_type = findViewById(R.id.sales_details_details_type);
         sales_details_details_time1 = findViewById(R.id.sales_details_details_time1);
         sales_details_details_time2 = findViewById(R.id.sales_details_details_time2);
-
+        sales_details_details_cancel = findViewById(R.id.sales_details_details_cancel);
+        sales_details_details_ensure = findViewById(R.id.sales_details_details_ensure);
         sales_details_details_name = findViewById(R.id.sales_details_details_name);
         sales_details_details_tv10 = findViewById(R.id.sales_details_details_tv10);
         sales_details_details_tv11 = findViewById(R.id.sales_details_details_tv11);
@@ -221,6 +191,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_img = findViewById(R.id.sales_details_details_img);
 
         sales_details_details_lc = findViewById(R.id.sales_details_details_lc);
+
+        dateTimePickerView = findViewById(R.id.sales_details_details_pickerView);
 
         sales_details_details_ll2.setOnClickListener(this);
         sales_details_details_ll3.setOnClickListener(this);
@@ -257,18 +229,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     sales_details_details_amend.setVisibility(View.VISIBLE);
                 }
             }
+
         }
-        initData();
-
-
-
-        sales_details_details_access.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, CommissionDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
 
         sales_details_details_tv2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -278,51 +240,9 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
             }
         });
 
+        initData();
     }
 
-    private void init(){
-        Retrofit.Builder builder = new Retrofit.Builder();
-        builder.baseUrl(FinalContents.getBaseUrl());
-        builder.addConverterFactory(GsonConverterFactory.create());
-        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-        Retrofit build = builder.build();
-        MyService fzbInterface = build.create(MyService.class);
-        Observable<TeamLeaderAmountBean> clientCommissions = fzbInterface.getTeamLeaderAmount(FinalContents.getAgentId(),"");
-        clientCommissions.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<TeamLeaderAmountBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(TeamLeaderAmountBean teamLeaderAmountBean) {
-                        List<TeamLeaderAmountBean.DataBean> list = teamLeaderAmountBean.getData();
-                        if (list.size() != 0) {
-                            sales_details_details_linear1.setVisibility(View.VISIBLE);
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Captain_Team_SalesDetailsDetailsActivity.this);
-                            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-                            sales_details_details_rv.setLayoutManager(linearLayoutManager);
-                            Captain_Team_YongAdapter captain_team_yongAdapter = new Captain_Team_YongAdapter(list);
-                            sales_details_details_rv.setAdapter(captain_team_yongAdapter);
-                            captain_team_yongAdapter.notifyDataSetChanged();
-                        }else {
-                            sales_details_details_linear1.setVisibility(View.GONE);
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("MyCL", "销售详情页佣金数据:" + e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
 
     private void initData() {
         Log.i("顾问", "从详情页获取的ID：" + FinalContents.getInforId());
@@ -356,6 +276,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                         Glide.with(Captain_Team_SalesDetailsDetailsActivity.this).load(FinalContents.getImageUrl() + agentDetailsBean.getData().getAgentInfo().getPhoto()).into(sales_details_details_img);
 
                         FinalContents.setAgentId(agentDetailsBean.getData().getAgentInfo().getId());
+
+
                         if (FinalContents.getIdentity().equals("60")) {
                             Log.i("测试", "第一个显示");
                             if (FinalContents.getManageFlag().equals("0")) {
@@ -451,7 +373,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                                 }
                             }
                             sales_details_details_tv10.setText("他的顾问");
-                        } else if (agentDetailsBean.getData().getAgentInfo().getType().equals("3")) {
+                        }
+                        else if (agentDetailsBean.getData().getAgentInfo().getType().equals("3")) {
                             sales_details_details_tv1.setText(agentDetailsBean.getData().getAgentInfo().getName() + "(" + agentDetailsBean.getData().getAgentInfo().getRatioName() + ")");
                             if (agentDetailsBean.getData().getAgentInfo().getSaleName().equals("")) {
                                 if (agentDetailsBean.getData().getAgentInfo().getLeaderName().equals("")) {
@@ -467,7 +390,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                                 }
                             }
                             sales_details_details_tv10.setText("他的销售");
-                        } else if (agentDetailsBean.getData().getAgentInfo().getType().equals("1")) {
+                        }
+                        else if (agentDetailsBean.getData().getAgentInfo().getType().equals("1")) {
                             sales_details_details_tv1.setText(agentDetailsBean.getData().getAgentInfo().getName());
                             if (agentDetailsBean.getData().getAgentInfo().getCounselorNum().equals("")) {
                                 if (agentDetailsBean.getData().getAgentInfo().getSaleNum().equals("")) {
@@ -495,20 +419,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                             }
                         }
 
-                        if (FinalContents.getIdentity().equals("63")) {
-                            if (agentDetails.getData().getAgentInfo().getIdentity().equals("60")) {
-                                sales_details_details_linear1.setVisibility(View.VISIBLE);
-                                init();
-                            }else {
-                                sales_details_details_linear1.setVisibility(View.GONE);
-                            }
-
-                        }else {
-                            sales_details_details_linear1.setVisibility(View.GONE);
-                        }
-
-
-
                         List<Integer> integers = agentDetailsBean.getData().getGsonOption().getSeries().get(0).getData();
                         indexList = agentDetailsBean.getData().getGsonOption().getXAxis().getData();
                         init(integers);
@@ -526,7 +436,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                 });
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         if (NewlyIncreased.getTag().equals("3")) {
@@ -537,13 +446,6 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
             NewlyIncreased.setEndDate("");
         }
 
-        if (NewlyIncreased.getYJType().equals("3")) {
-            NewlyIncreased.setYJstartDate(startTime);
-            NewlyIncreased.setYJendDate(endTime);
-        }else {
-            NewlyIncreased.setYJstartDate("");
-            NewlyIncreased.setYJendDate("");
-        }
         switch (view.getId()) {
             //      TODO 进入报备
             case R.id.sales_details_details_ll2:
@@ -623,12 +525,9 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
             //      TODO 数据统计 自定义
             case R.id.sales_details_details_rb4:
                 sales_details_details_ll1.setVisibility(View.VISIBLE);
-                type = "3";
-                startTime = string;
-                endTime = string;
                 initDate();
+                type = "3";
                 NewlyIncreased.setTag("3");
-                initDataStatistics();
                 break;
             //      TODO 选择开始时间
             case R.id.sales_details_details_time1:
@@ -731,6 +630,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                 break;
             //      TODO 修改
             case R.id.sales_details_details_xiugai:
+
                 if (FinalContents.getIdentity().equals("60")) {
                     finish();
                     FinalContents.setXiuGai("修改销售");
@@ -752,112 +652,32 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                      * 修改
                      */
                     Log.i("团助端修改", "63");
-                    if (agentDetails.getData().getAgentInfo().getType().equals("1")) {
-                        Log.i("团助端修改", "1");
-                        PopWindow1();
+                    if (agentDetails.getData().getAgentInfo().getType() != null) {
+                        if (agentDetails.getData().getAgentInfo().getType().equals("1")) {
+                            Log.i("团助端修改", "1");
+                            PopWindow1();
 //                        FinalContents.setOwnerId("");
 //                        intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Assistant_Addteam_Activity.class);
 //                        FinalContents.setXiuGai("修改团队长");
 //                        startActivity(intent);
-                    } else if (agentDetails.getData().getAgentInfo().getType().equals("2")) {
-                        Log.i("团助端修改", "2");
-                        PopWindow1();
+                        } else if (agentDetails.getData().getAgentInfo().getType().equals("2")) {
+                            Log.i("团助端修改", "2");
+                            PopWindow1();
 //                        FinalContents.setOwnerId("");
 //                        intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_AddSalesActivity.class);
 //                        FinalContents.setXiuGai("修改销售");
 //                        startActivity(intent);
-                    } else if (agentDetails.getData().getAgentInfo().getType().equals("3")) {
-                        Log.i("团助端修改", "3");
-                        FinalContents.setOwnerId("");
-                        intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_AddAConsultantActivity.class);
-                        FinalContents.setXiuGai("修改顾问");
-                        startActivity(intent);
-                        finish();
+                        } else if (agentDetails.getData().getAgentInfo().getType().equals("3")) {
+                            Log.i("团助端修改", "3");
+                            FinalContents.setOwnerId("");
+                            intent = new Intent(Captain_Team_SalesDetailsDetailsActivity.this, Captain_Team_AddAConsultantActivity.class);
+                            FinalContents.setXiuGai("修改顾问");
+                            startActivity(intent);
+                            finish();
+                        }
                     }
                 } else {
 
-                }
-                break;
-            case R.id.project_attache_ll1://实时
-                tag = "1";
-                project_attache_ll2.setVisibility(View.VISIBLE);
-                project_attache_ll4.setVisibility(View.INVISIBLE);
-                sales_details_details_ll2.setClickable(true);
-                sales_details_details_ll3.setClickable(true);
-                sales_details_details_ll4.setClickable(true);
-                sales_details_details_ll5.setClickable(true);
-                sales_details_details_ll6.setClickable(true);
-                sales_details_details_ll7.setClickable(true);
-                if (sales_details_details_rb1.isChecked() == true) {
-                    type = "0";
-                    startTime = "";
-                    endTime = "";
-                    initDataStatistics();
-                    NewlyIncreased.setTag("0");
-                    sales_details_details_ll1.setVisibility(View.GONE);
-                } else if (sales_details_details_rb2.isChecked() == true) {
-                    type = "1";
-                    startTime = "";
-                    endTime = "";
-                    initDataStatistics();
-                    NewlyIncreased.setTag("1");
-                    sales_details_details_ll1.setVisibility(View.GONE);
-                } else if (sales_details_details_rb3.isChecked() == true) {
-                    type = "2";
-                    startTime = "";
-                    endTime = "";
-                    initDataStatistics();
-                    NewlyIncreased.setTag("2");
-                    sales_details_details_ll1.setVisibility(View.GONE);
-                } else if (sales_details_details_rb4.isChecked() == true) {
-                    type = "3";
-                    startTime = string;
-                    endTime = string;
-                    initDate();
-                    initDataStatistics();
-                    NewlyIncreased.setTag("3");
-                    sales_details_details_ll1.setVisibility(View.VISIBLE);
-                }
-                break;
-            case R.id.project_attache_ll3://总体
-                tag = "2";
-                project_attache_ll2.setVisibility(View.INVISIBLE);
-                project_attache_ll4.setVisibility(View.VISIBLE);
-                sales_details_details_ll2.setClickable(false);
-                sales_details_details_ll3.setClickable(false);
-                sales_details_details_ll4.setClickable(false);
-                sales_details_details_ll5.setClickable(false);
-                sales_details_details_ll6.setClickable(false);
-                sales_details_details_ll7.setClickable(false);
-                if (sales_details_details_rb1.isChecked() == true) {
-                    type = "0";
-                    startTime = "";
-                    endTime = "";
-                    initDataStatistics();
-                    NewlyIncreased.setTag("0");
-                    sales_details_details_ll1.setVisibility(View.GONE);
-                } else if (sales_details_details_rb2.isChecked() == true) {
-                    type = "1";
-                    startTime = "";
-                    endTime = "";
-                    initDataStatistics();
-                    NewlyIncreased.setTag("1");
-                    sales_details_details_ll1.setVisibility(View.GONE);
-                } else if (sales_details_details_rb3.isChecked() == true) {
-                    type = "2";
-                    startTime = "";
-                    endTime = "";
-                    initDataStatistics();
-                    NewlyIncreased.setTag("2");
-                    sales_details_details_ll1.setVisibility(View.GONE);
-                } else if (sales_details_details_rb4.isChecked() == true) {
-                    type = "3";
-                    startTime = string;
-                    endTime = string;
-                    initDate();
-                    initDataStatistics();
-                    NewlyIncreased.setTag("3");
-                    sales_details_details_ll1.setVisibility(View.VISIBLE);
                 }
                 break;
         }
@@ -871,7 +691,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(), FinalContents.getAgentId(), type, startTime, endTime,tag);
+        Observable<DataStatisticsBean> clientCommissions = fzbInterface.getDataStatistics(FinalContents.getUserID(), FinalContents.getAgentId(), type, startTime, endTime);
         clientCommissions.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataStatisticsBean>() {
@@ -905,22 +725,53 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     //TODO 首页时间赋值
     private void initDate() {
         Calendar calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+1, dayOfMonth);
         sales_details_details_time1.setText("<" + string);
         sales_details_details_time2.setText("-" + string + " >");
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
+        // 注意：月份是从0开始计数的
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
 
         startTime = string;
         endTime = string;
+
+        sales_details_details_ensure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sales_details_details_picker.setVisibility(View.GONE);
+                initDataStatistics();
+            }
+        });
+
+        sales_details_details_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sales_details_details_picker.setVisibility(View.GONE);
+            }
+        });
 
         //            TODO 开始时间
         sales_details_details_time1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initTimePickerView1();
+                sales_details_details_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        startTime = dateString;
+                        sales_details_details_time1.setText("<" + dateString);
+                        NewlyIncreased.setStartDate(dateString);
+                    }
+                });
             }
         });
 
@@ -928,63 +779,23 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         sales_details_details_time2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initTimePickerView2();
+                sales_details_details_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        endTime = dateString;
+                        sales_details_details_time2.setText("-" + dateString + " >");
+                        NewlyIncreased.setEndDate(dateString);
+
+                    }
+                });
+
             }
         });
-    }
-
-    //TODO 详情页 数据统计 开始时间
-    private void initTimePickerView1(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(Captain_Team_SalesDetailsDetailsActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                sales_details_details_time1.setText("<" + getTime2(date));
-                startTime = getTime2(date);
-                NewlyIncreased.setStartDate(getTime2(date));
-                initDataStatistics();
-            }
-        })
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
-    }
-
-    //TODO 详情页 数据统计 结束时间
-    private void initTimePickerView2(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(Captain_Team_SalesDetailsDetailsActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                sales_details_details_time2.setText("-" + getTime2(date) + " >");
-                endTime = getTime2(date);
-                NewlyIncreased.setEndDate(getTime2(date));
-                initDataStatistics();
-            }
-        })
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
     }
 
     //TODO 详情页趋势图绘制
@@ -1119,6 +930,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         list.add("修改信息");
         list.add("修改佣金");
 
+
         //      监听选中
         OptionsPickerView pvOptions = new OptionsPickerBuilder(Captain_Team_SalesDetailsDetailsActivity.this, new OnOptionsSelectListener() {
             @Override
@@ -1166,6 +978,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         //      展示
         pvOptions.show();
     }
+
 
     @Override
     protected void onDestroy() {

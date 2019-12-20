@@ -12,29 +12,13 @@
         android:layout_marginLeft="15dp"
         android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_marginTop="20dp"
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/client_item_img"
             android:layout_width="60dp"
-            android:layout_height="60dp">
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/client_item_img"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:scaleType="fitXY"
-                app:riv_oval="true" />
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/client_item_unread"
-                android:layout_alignParentRight="true"
-                android:visibility="gone"
-                android:src="@mipmap/item_unread"
-                android:layout_width="12dp"
-                android:layout_height="12dp"/>
-
-        </RelativeLayout>
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitXY"
+            app:riv_oval="true" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -131,5 +115,5 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_alignParentBottom="true"
-        android:background="#EEEEEE"></LinearLayout>
+        android:background="#EEEEEE"/>
 </RelativeLayout>

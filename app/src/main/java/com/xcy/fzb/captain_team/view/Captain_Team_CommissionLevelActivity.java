@@ -22,11 +22,9 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.CommissionLevelAdapterAddBean;
 import com.xcy.fzb.all.database.CommissionLevelDeleteBean;
 import com.xcy.fzb.all.database.CommissionLevelSelectBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_CommissionLevelAdapter;
 
@@ -79,7 +77,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -164,7 +162,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                                 commission_binding_cancel.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        ToastUtil.showToast(Captain_Team_CommissionLevelActivity.this, "您已取消修改佣金比例");
+                                        Toast.makeText(Captain_Team_CommissionLevelActivity.this, "您已取消修改佣金比例", Toast.LENGTH_SHORT).show();
                                         show.dismiss();
                                     }
                                 });
@@ -173,7 +171,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                                     public void onClick(View v) {
                                         String s = commission_binding_proportion.getText().toString();
                                         if (s.equals("")) {
-                                            ToastUtil.showToast(Captain_Team_CommissionLevelActivity.this, "数值不能为空");
+                                            Toast.makeText(Captain_Team_CommissionLevelActivity.this, "数值不能为空", Toast.LENGTH_SHORT).show();
                                         } else {
                                             initDataAdd(commissionLevelSelectBean.getData().get(postion).getId(), s);
                                             show.dismiss();
@@ -248,7 +246,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                     @Override
                     public void onNext(CommissionLevelAdapterAddBean commissionLevelAdapterAddBean) {
                         if (commissionLevelAdapterAddBean.getMsg().equals("成功")) {
-                            ToastUtil.showToast(Captain_Team_CommissionLevelActivity.this, commissionLevelAdapterAddBean.getData().getMessage());
+                            Toast.makeText(Captain_Team_CommissionLevelActivity.this, commissionLevelAdapterAddBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                             if (FinalContents.getIdentity().equals("63")) {
                                 initDatas();
                             } else {
@@ -256,7 +254,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                             }
                             flag = 0;
                         } else {
-                            ToastUtil.showToast(Captain_Team_CommissionLevelActivity.this, commissionLevelAdapterAddBean.getData().getMessage());
+                            Toast.makeText(Captain_Team_CommissionLevelActivity.this, commissionLevelAdapterAddBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -273,7 +271,6 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -326,7 +323,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                                 commission_binding_cancel.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        ToastUtil.showToast(Captain_Team_CommissionLevelActivity.this, "您已取消修改佣金比例");
+                                        Toast.makeText(Captain_Team_CommissionLevelActivity.this, "您已取消修改佣金比例", Toast.LENGTH_SHORT).show();
                                         show.dismiss();
                                     }
                                 });
@@ -335,7 +332,7 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                                     public void onClick(View v) {
                                         String s = commission_binding_proportion.getText().toString();
                                         if (s.equals("")) {
-                                            ToastUtil.showToast(Captain_Team_CommissionLevelActivity.this, "数值不能为空");
+                                            Toast.makeText(Captain_Team_CommissionLevelActivity.this, "数值不能为空", Toast.LENGTH_SHORT).show();
                                         } else {
                                             initDataAdd(commissionLevelSelectBean.getData().get(postion).getId(), s);
                                             show.dismiss();
@@ -407,11 +404,11 @@ public class Captain_Team_CommissionLevelActivity extends AllActivity implements
                     @Override
                     public void onNext(CommissionLevelDeleteBean commissionLevelDeleteBean) {
                         if (commissionLevelDeleteBean.getMsg().equals("成功")) {
-                            ToastUtil.showToast(Captain_Team_CommissionLevelActivity.this, commissionLevelDeleteBean.getData().getMessage());
+                            Toast.makeText(Captain_Team_CommissionLevelActivity.this, commissionLevelDeleteBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
 //                            data.clear();
                             initData();
                         } else {
-                            ToastUtil.showToast(Captain_Team_CommissionLevelActivity.this, commissionLevelDeleteBean.getData().getMessage());
+                            Toast.makeText(Captain_Team_CommissionLevelActivity.this, commissionLevelDeleteBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
 

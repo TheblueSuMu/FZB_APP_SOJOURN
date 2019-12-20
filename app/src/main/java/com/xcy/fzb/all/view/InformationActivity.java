@@ -14,7 +14,6 @@ import com.xcy.fzb.all.fragment.DynamicFragment;
 import com.xcy.fzb.all.fragment.GoodNewsFragment;
 import com.xcy.fzb.all.fragment.GuestRoomFragment;
 import com.xcy.fzb.all.fragment.NoticeFragment;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 
 public class InformationActivity extends AllActivity implements View.OnClickListener {
@@ -75,7 +74,6 @@ public class InformationActivity extends AllActivity implements View.OnClickList
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         manager = getSupportFragmentManager();

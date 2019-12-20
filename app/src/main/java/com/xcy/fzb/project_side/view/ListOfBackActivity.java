@@ -16,7 +16,6 @@ import com.xcy.fzb.all.modle.ListOfBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 
 import io.reactivex.Observable;
@@ -61,7 +60,7 @@ public class ListOfBackActivity extends AllActivity {
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -85,7 +84,7 @@ public class ListOfBackActivity extends AllActivity {
             public void onClick(View view) {
                 message = list_of_back_et.getText().toString();
                 if (message.equals("")) {
-                    ToastUtil.showToast(ListOfBackActivity.this, "请填写退单说明内容");
+                    Toast.makeText(ListOfBackActivity.this, "请填写退单说明内容", Toast.LENGTH_SHORT).show();
                     return;
                 }else {
                     Retrofit.Builder builder = new Retrofit.Builder();
@@ -107,10 +106,10 @@ public class ListOfBackActivity extends AllActivity {
                                 @Override
                                 public void onNext(ListOfBean listOfBean) {
                                     if(listOfBean.getMsg().equals("成功")){
-                                        ToastUtil.showToast(ListOfBackActivity.this,listOfBean.getData().getMessage());
+                                        Toast.makeText(ListOfBackActivity.this,listOfBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
                                         finish();
                                     }else {
-                                        ToastUtil.showToast(ListOfBackActivity.this,listOfBean.getData().getMessage());
+                                        Toast.makeText(ListOfBackActivity.this,listOfBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

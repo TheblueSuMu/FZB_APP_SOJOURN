@@ -19,7 +19,6 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ClientFragmentAdapter;
 import com.xcy.fzb.all.adapter.ProcessDataAdapter;
-import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ClientFragmentBean;
@@ -124,12 +123,6 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
         if (FinalContents.getDetails().equals("项目详情")) {
             ProjectID = FinalContents.getProjectID();
         }
-        Log.i("专案","10:" + 10);
-        Log.i("专案","name:" + name);
-        Log.i("专案","FinalContents.getUserID():" + FinalContents.getUserID());
-        Log.i("专案"," NewlyIncreased.getTag():" +  NewlyIncreased.getTag());
-        Log.i("专案","NewlyIncreased.getStartDate():" + NewlyIncreased.getStartDate());
-        Log.i("专案","NewlyIncreased.getEndDate():" + NewlyIncreased.getEndDate());
         clientFragmentAdapter = new ClientFragmentAdapter();
         clientFragmentAdapter.setClick(this);
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -167,7 +160,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
                     public void onError(Throwable e) {
                         all_no_information.setVisibility(View.VISIBLE);
                         client_2_rv.setVisibility(View.GONE);
-                        Log.i("专案", "我的客户（报备）错误信息" + e.getMessage());
+                        Log.i("MyCL", "我的客户（报备）错误信息" + e.getMessage());
                     }
 
                     @Override
@@ -187,14 +180,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Log.i("MyCL","FinalContents.getStoreId():" + FinalContents.getStoreId());
-        Log.i("MyCL","10:" + 10);
-        Log.i("MyCL","name:" + name);
-        Log.i("MyCL","FinalContents.getUserID():" + FinalContents.getUserID());
-        Log.i("MyCL"," NewlyIncreased.getTag():" +  NewlyIncreased.getTag());
-        Log.i("MyCL","NewlyIncreased.getStartDate():" + NewlyIncreased.getStartDate());
-        Log.i("MyCL","NewlyIncreased.getEndDate():" + NewlyIncreased.getEndDate());
-        Observable<ProcessDataBean> clientFragment = fzbInterface.getProcessData(FinalContents.getStoreId(),FinalContents.getAgentId(), "10", name+"",FinalContents.getUserID(),"1000", NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate());
+        Observable<ProcessDataBean> clientFragment = fzbInterface.getProcessData(FinalContents.getStoreId(), "10", name+"",FinalContents.getUserID(),"1000", NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate());
         clientFragment.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ProcessDataBean>() {
@@ -235,7 +221,6 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
 
     @Override
     public void ItemOnClick(int position) {
-        CityContents.setReadRecordStatus("10");
         Intent intent = new Intent(getContext(), ReviewTheSuccessActivity.class);
         FinalContents.setPreparationId(rows.get(position).getPreparationId());
         startActivity(intent);

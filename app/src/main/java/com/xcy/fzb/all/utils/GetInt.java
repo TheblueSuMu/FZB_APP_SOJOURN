@@ -1,13 +1,7 @@
 package com.xcy.fzb.all.utils;
 
-import android.os.Build;
-import android.util.Log;
-
-import androidx.annotation.RequiresApi;
-
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.Optional;
 
 public class GetInt {
 
@@ -16,10 +10,9 @@ public class GetInt {
      * @param number
      * @return
      */
-    public static String getInt(double number){
+    public static int getInt(double number){
         BigDecimal bd=new BigDecimal(number).setScale(0, BigDecimal.ROUND_HALF_UP);
-        Log.i("长度","size"+bd.toString());
-        return bd.toString();
+        return Integer.parseInt(bd.toString());
     }
 
 
@@ -48,20 +41,10 @@ public class GetInt {
      * 测试
      * @param args
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public static void main(String[] args) {
         System.out.println("getInt============="+getInt(20.5));
         System.out.println("DoubleFormatInt=========="+DoubleFormatInt(20.5));
         System.out.println("ceilInt================="+ceilInt(20.01));
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public static Optional<Integer> StringToInt(String s){
-        try {
-            return Optional.of(Integer.parseInt(s));
-        } catch (NumberFormatException e) {
-            return Optional.empty();
-        }
     }
 
 }

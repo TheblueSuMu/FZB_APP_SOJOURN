@@ -1,10 +1,8 @@
 package com.xcy.fzb.all.modle;
 
-import com.mcxtzhang.indexlib.IndexBar.bean.BaseIndexPinyinBean;
-
 import java.util.List;
 
-public class ClientBean extends BaseIndexPinyinBean {
+public class ClientBean {
 
     /**
      * code : 1
@@ -38,11 +36,6 @@ public class ClientBean extends BaseIndexPinyinBean {
 
     public void setData(List<DataBean> data) {
         this.data = data;
-    }
-
-    @Override
-    public String getTarget() {
-        return null;
     }
 
     public static class DataBean {

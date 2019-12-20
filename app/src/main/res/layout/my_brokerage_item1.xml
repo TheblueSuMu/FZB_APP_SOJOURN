@@ -1,212 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
-    android:orientation="vertical"
     tools:ignore="ResourceName">
 
-    <RelativeLayout
-        android:id="@+id/my_brokerage_item_rl_1"
-        android:layout_marginTop="13dp"
-        android:visibility="gone"
+    <TextView
+        android:id="@+id/brokerage_item_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="1"
+        android:textColor="#111111"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/brokerage_item_roomNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:text="2"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/brokerage_item_projectName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="59dp"
+        android:text="3"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/brokerage_item_ziji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="130dp"
+        android:layout_marginTop="79dp"
+        android:text="4"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/brokerage_item_tradeDat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="5dp"
+        android:text="5"
+        android:textColor="#ff333333"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_marginLeft="15dp"
-            android:layout_centerVertical="true"
-            android:scaleType="fitXY"
-            android:src="@mipmap/hitory"></ImageView>
+            android:visibility="gone"
+            android:id="@+id/brokerage_item_img"
+            android:layout_width="48dp"
+            android:layout_height="41dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="2dp" />
 
         <TextView
-            android:id="@+id/my_brokerage_item_tv_1"
+            android:id="@+id/brokerage_item_totalAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:visibility="gone"
+            android:text="1"
+            android:textColor="#ff333333"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/brokerage_item_secondsAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:visibility="gone"
+            android:text="2"
+            android:textColor="#ff333333"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/brokerage_item_alreadyAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:visibility="gone"
+            android:text="3"
+            android:textColor="#ff43987c"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/brokerage_item_notAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:visibility="gone"
+            android:text="4"
+            android:textColor="#ffc25157"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/the_project_end_tv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="5dp"
+            android:text="已结清"
+            android:visibility="gone"
+            android:textColor="#999999"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/the_project_end_tv7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="5dp"
+            android:text="2019-03-11"
+            android:visibility="gone"
+            android:textColor="#999999"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/the_project_end_tv8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="5dp"
             android:text=""
-            android:layout_marginLeft="35dp"
-            android:textColor="#ff999999"
-            android:layout_centerVertical="true"
-            android:textSize="15sp" />
-    </RelativeLayout>
+            android:visibility="gone"
+            android:textColor="#ffc25157"
+            android:textSize="12sp" />
 
-    <LinearLayout
-        android:id="@+id/my_brokerage_item_ll_1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:visibility="gone"
-        android:layout_marginBottom="4dp"
-        android:background="#EEEEEE"
-        android:orientation="vertical"></LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/brokerage_item_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:text=""
-                android:textColor="#111111"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/brokerage_item_roomNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:text=""
-                android:textColor="#ff333333"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/brokerage_item_projectName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="9.5dp"
-                android:text=""
-                android:textColor="#ff333333"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/brokerage_item_ziji"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginRight="130dp"
-                android:text=""
-                android:textColor="#ff333333"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/brokerage_item_tradeDat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginBottom="5dp"
-                android:text=""
-                android:textColor="#ff333333"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/brokerage_item_img"
-                android:layout_width="48dp"
-                android:layout_height="41dp"
-                android:layout_gravity="right"
-                android:layout_marginRight="2dp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/brokerage_item_totalAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:gravity="right"
-                android:text=""
-                android:textColor="#ff333333"
-                android:textSize="12sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/brokerage_item_secondsAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:gravity="right"
-                android:text=""
-                android:textColor="#ff333333"
-                android:textSize="12sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/brokerage_item_alreadyAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:gravity="right"
-                android:text=""
-                android:textColor="#ff43987c"
-                android:textSize="12sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/brokerage_item_notAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:gravity="right"
-                android:text=""
-                android:textColor="#ffc25157"
-                android:textSize="12sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/the_project_end_tv6_S"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="5dp"
-                android:text="已结清"
-                android:textColor="#999999"
-                android:textSize="12sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/the_project_end_tv7_S"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="5dp"
-                android:text=""
-                android:textColor="#999999"
-                android:textSize="12sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/the_project_end_tv8_S"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="5dp"
-                android:text=""
-                android:textColor="#ffc25157"
-                android:textSize="12sp"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="15dp"
-        android:background="#EEEEEE"
-        android:orientation="vertical"></LinearLayout>
-</LinearLayout>
+        android:layout_marginTop="125dp"
+        android:background="#EEEEEE"></LinearLayout>
+</RelativeLayout>

@@ -8,136 +8,136 @@
     progressLayout:progressBackground="#999999"
     progressLayout:progress="false">
 
-     <RelativeLayout
-         android:layout_width="match_parent"
-         android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-          <FrameLayout
-              android:id="@+id/main_framelayout"
-              android:layout_above="@id/main_rg"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"/>
+        <FrameLayout
+            android:id="@+id/main_framelayout"
+            android:layout_above="@id/main_rg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-          <RadioGroup
-              android:id="@+id/main_rg"
-              android:paddingTop="10dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_alignParentBottom="true"
-              android:background="@drawable/back_yy"
-              android:orientation="horizontal">
+        <RadioGroup
+            android:id="@+id/main_rg"
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/back_yy"
+            android:orientation="horizontal">
 
-               <RadioButton
-                   android:id="@+id/button_home"
-                   android:layout_marginLeft="15dp"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:button="@null"
-                   android:checked="true"
-                   android:drawableTop="@drawable/checked_home"
-                   android:gravity="center"
-                   android:drawablePadding="6dp"
-                   android:text="首页"
-                   android:textColor="#ff333333"
-                   android:textSize="12sp"/>
+            <RadioButton
+                android:id="@+id/button_home"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:drawableTop="@drawable/checked_home"
+                android:gravity="center"
+                android:drawablePadding="6dp"
+                android:text="首页"
+                android:textColor="#ff333333"
+                android:textSize="12sp"/>
 
-               <RadioButton
-                   android:id="@+id/button_message"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:button="@null"
-                   android:drawableTop="@drawable/checked_message"
-                   android:gravity="center"
-                   android:drawablePadding="6dp"
-                   android:text="消息"
-                   android:textColor="#ff333333"
-                   android:textSize="12sp"/>
-
-
-               <RadioButton
-                   android:id="@+id/button_backup"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:button="@null"
-                   android:gravity="center_horizontal"
-                   android:text="报备"
-                   android:textColor="#ff333333"
-                   android:textSize="12sp"/>
+            <RadioButton
+                android:id="@+id/button_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/checked_message"
+                android:gravity="center"
+                android:drawablePadding="6dp"
+                android:text="消息"
+                android:textColor="#ff333333"
+                android:textSize="12sp"/>
 
 
-               <RadioButton
-                   android:id="@+id/button_economics"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:button="@null"
-                   android:drawableTop="@drawable/checked_circle"
-                   android:gravity="center"
-                   android:drawablePadding="6dp"
-                   android:text="经纪圈"
-                   android:textColor="#ff333333"
-                   android:textSize="12sp"
-                   />
-
-               <RadioButton
-                   android:id="@+id/button_me"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:button="@null"
-                   android:drawableTop="@drawable/checked_me"
-                   android:gravity="center"
-                   android:drawablePadding="6dp"
-                   android:text="我的"
-                   android:textColor="#ff333333"
-                   android:textSize="12sp"/>
-
-          </RadioGroup>
+            <RadioButton
+                android:id="@+id/button_backup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center_horizontal"
+                android:text="报备"
+                android:textColor="#ff333333"
+                android:textSize="12sp"/>
 
 
-          <ImageView
-              android:id="@+id/img_backup"
-              android:paddingTop="5dp"
-              android:layout_width="50dp"
-              android:layout_height="50dp"
-              android:layout_marginBottom="25dp"
-              android:src="@mipmap/z13"
-              android:layout_alignParentBottom="true"
-              android:layout_centerHorizontal="true"
-              android:background="@drawable/back_yuan"
-              tools:ignore="NotSibling" />
+            <RadioButton
+                android:id="@+id/button_economics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/checked_circle"
+                android:gravity="center"
+                android:drawablePadding="6dp"
+                android:text="经纪圈"
+                android:textColor="#ff333333"
+                android:textSize="12sp"
+                />
 
-     </RelativeLayout>
+            <RadioButton
+                android:id="@+id/button_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/checked_me"
+                android:gravity="center"
+                android:drawablePadding="6dp"
+                android:text="我的"
+                android:textColor="#ff333333"
+                android:textSize="12sp"/>
 
-     <RelativeLayout
-         android:id="@+id/all_no_network"
-         android:background="#fff"
-         android:visibility="gone"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent">
+        </RadioGroup>
 
-          <ImageView
-              android:id="@+id/imageimage"
-              android:layout_centerInParent="true"
-              android:src="@mipmap/no_network"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"/>
 
-          <Button
-              android:layout_below="@id/imageimage"
-              android:id="@+id/all_no_reload"
-              android:layout_marginTop="-40dp"
-              android:layout_centerHorizontal="true"
-              android:background="@drawable/button_back"
-              android:text="重新加载"
-              android:textSize="12sp"
-              android:textColor="#334485"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/img_backup"
+            android:paddingTop="5dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="25dp"
+            android:src="@mipmap/z13"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/back_yuan"
+            tools:ignore="NotSibling" />
 
-     </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/all_no_network"
+        android:background="#fff"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageimage"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_below="@id/imageimage"
+            android:id="@+id/all_no_reload"
+            android:layout_marginTop="-40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_back"
+            android:text="重新加载"
+            android:textSize="12sp"
+            android:textColor="#334485"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

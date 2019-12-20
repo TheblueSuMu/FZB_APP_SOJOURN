@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -21,11 +22,9 @@ import com.xcy.fzb.all.fragment.MoreInformationFragment;
 import com.xcy.fzb.all.fragment.MoreProjectFragment;
 import com.xcy.fzb.all.fragment.MoreTypeFragment;
 import com.xcy.fzb.all.modle.MoreBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.shopping_guide.adapter.BaseFragmentAdapter;
 
 import java.util.ArrayList;
@@ -79,7 +78,7 @@ public class MoreInformationActivity extends AllActivity implements View.OnClick
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -93,23 +92,17 @@ public class MoreInformationActivity extends AllActivity implements View.OnClick
         information_relative2 = findViewById(R.id.information_relative2);
         more_qt_call = findViewById(R.id.more_qt_call);
 
-
-
-        if (!FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+        if (FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5")|| FinalContents.getIdentity().equals("63")|| FinalContents.getIdentity().equals("7")) {
             information_relative1.setVisibility(View.GONE);
             information_relative2.setVisibility(View.VISIBLE);
         }else {
             information_relative1.setVisibility(View.VISIBLE);
             information_relative2.setVisibility(View.GONE);
-            if (FinalContents.getIdentity().equals("4") || FinalContents.getIdentity().equals("5")|| FinalContents.getIdentity().equals("63")|| FinalContents.getIdentity().equals("7") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9")) {
-                Log.i("身份验证","是团助");
-                information_relative1.setVisibility(View.GONE);
-                information_relative2.setVisibility(View.VISIBLE);
-            }else {
-                Log.i("身份验证","不是团助");
-                information_relative1.setVisibility(View.VISIBLE);
-                information_relative2.setVisibility(View.GONE);
-            }
+        }
+
+        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+            information_relative1.setVisibility(View.GONE);
+            information_relative2.setVisibility(View.VISIBLE);
         }
 
         initData();
@@ -185,7 +178,6 @@ public class MoreInformationActivity extends AllActivity implements View.OnClick
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

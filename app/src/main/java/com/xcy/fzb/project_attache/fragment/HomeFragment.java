@@ -50,14 +50,13 @@ import com.xcy.fzb.all.modle.ImgData;
 import com.xcy.fzb.all.modle.MessageBean2;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
-import com.xcy.fzb.all.utils.ToastUtil;
-import com.xcy.fzb.all.view.MapHouseActivity;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
+import com.xcy.fzb.project_attache.view.BrokersListActivity;
+import com.xcy.fzb.project_attache.view.StoreListActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -118,6 +117,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     private Vibrator vibrator;
     private DemoApplication application;
     private ImageView all_no_information;
+    private ImageView home_banner_img;
 
     @Nullable
     @Override
@@ -147,7 +147,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     @SuppressLint("MissingPermission")
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+        if (FinalContents.getCityIs().equals("")) {
             int sensortype = event.sensor.getType();
             float[] values = event.values;
             if (sensortype == Sensor.TYPE_ACCELEROMETER) {
@@ -160,19 +160,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
 
                     if (SharItOff.getShar().equals("隐")) {
                         SharItOff.setShar("显");
-                        ToastUtil.showLongToast(getContext(),"佣金已显示，如需隐藏请摇动");
+                        Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
                     } else if (SharItOff.getShar().equals("显")) {
                         SharItOff.setShar("隐");
-                        ToastUtil.showLongToast(getContext(),"佣金已隐藏，如需显示请摇动");
+                        Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
                     }
-                    Log.i("MyCL", "摇一摇");
+                    Log.i("MyCL","摇一摇");
                     initHotList();
 
                     vibrator.vibrate(100);
                 }
             }
         }
-
     }
 
     @Override
@@ -184,7 +183,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     @Override
     public void onResume() {
         super.onResume();
-        city.setText(FinalContents.getCityName());
+
         tvBanner2.startFlipping();
         //TODO 获取加速传感器
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
@@ -201,25 +200,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     }
 
     //命名区域
-    private void fvbId(View view) {
+    private void fvbId(View view){
 
         application = (DemoApplication) getActivity().getApplication();
 
         recyclerView = view.findViewById(R.id.home_recycler_vertical);
         all_no_information = view.findViewById(R.id.all_no_information_l);
 
+        home_banner_img = view.findViewById(R.id.project_attache_home_banner_img);
+
         banner = view.findViewById(R.id.home_banner);
 
         layout = view.findViewById(R.id.home_srl);
-        tvBanner2 = view.findViewById(R.id.tv_banner2);
+        tvBanner2 =  view.findViewById(R.id.tv_banner2);
 
         textView1 = view.findViewById(R.id.home_item_sojourn);
         textView2 = view.findViewById(R.id.home_item_overseas);
         textView3 = view.findViewById(R.id.home_item_client);
         textView4 = view.findViewById(R.id.home_item_brokerage);
         city = view.findViewById(R.id.home_city_selector);
-
         city.setText(FinalContents.getCityName());
+
         layout.setOnRefreshListener(this);
         search = view.findViewById(R.id.home_search);
         search.setFocusable(false);
@@ -241,11 +242,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     }
 
     //点击事件
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         if (hotlist.size() != 0) {
-            if (view.getId() == R.id.home_city_selector) {
+            if(view.getId() == R.id.home_city_selector){
                 showPickerView();
             } else if (view.getId() == R.id.home_search) {
                 Intent intent = new Intent(view.getContext(), SearchInterfaceActivity.class);
@@ -254,27 +254,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                 FinalContents.setProjectType("3");
                 Intent intent_sojourn = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent_sojourn);
-            } else if (view.getId() == R.id.home_item_overseas) {
+            }else if (view.getId() == R.id.home_item_overseas) {
                 FinalContents.setProjectType("2");
                 Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent_overseas);
-            } else if (view.getId() == R.id.home_item_client) {
-                FinalContents.setProjectType("1");
-                Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
+            }else if (view.getId() == R.id.home_item_client) {
+                Intent intent_overseas = new Intent(view.getContext(), StoreListActivity.class);
+                FinalContents.setMyAddType("");
                 startActivity(intent_overseas);
-
-//                Intent intent_overseas = new Intent(view.getContext(), StoreListActivity.class);
-//                FinalContents.setMyAddType("");
-//                startActivity(intent_overseas);
-            } else if (view.getId() == R.id.home_item_brokerage) {
+            }else if (view.getId() == R.id.home_item_brokerage) {
                 FinalContents.setStoreId("");
-
-                FinalContents.setIfCity("");
-                Intent intent_overseas = new Intent(view.getContext(), MapHouseActivity.class);
+                Intent intent_overseas = new Intent(view.getContext(), BrokersListActivity.class);
                 startActivity(intent_overseas);
             }
-        } else {
-            if (view.getId() == R.id.home_city_selector) {
+        }else {
+            if(view.getId() == R.id.home_city_selector){
                 showPickerView();
             }
         }
@@ -307,6 +301,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                         final List<String> list = new ArrayList<>();
                         for (int i = 0; i < citylist.size(); i++) {
                             list.add(citylist.get(i).getCity());
+                            if (citylist.get(i).getId().equals(FinalContents.getCityID())) {
+                                city.setText(citylist.get(i).getCity());
+                            }
                         }
                         //      监听选中
                         OptionsPickerView pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
@@ -321,7 +318,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                                     FinalContents.setCityIs("");
                                 }
                                 city.setText(list.get(options1));
-                                FinalContents.setCityName(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
                                 initHotList();
                             }
@@ -337,7 +333,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("城市列表", "获取：" + e.getMessage());
+                        Log.i("城市列表","获取："+e.getMessage());
                     }
 
                     @Override
@@ -354,7 +350,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<HotBean> userMessage = fzbInterface.getHotList(FinalContents.getUserID(), FinalContents.getCityID(), "1", "1000");
+        Observable<HotBean> userMessage = fzbInterface.getHotList(FinalContents.getUserID(),FinalContents.getCityID(),"1","1000");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HotBean>() {
@@ -382,13 +378,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                                 recyclerView.setNestedScrollingEnabled(false);
                                 recyclerView.setAdapter(recyclerAdapter);
                                 recyclerAdapter.notifyDataSetChanged();
-                            } else {
+                            }else {
                                 all_no_information.setVisibility(View.VISIBLE);
                                 recyclerView.setVisibility(View.GONE);
                             }
 
 
-                        } else {
+                        }else {
                             recyclerView.setVisibility(View.GONE);
                             all_no_information.setVisibility(View.VISIBLE);
                         }
@@ -398,7 +394,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                     public void onError(Throwable e) {
                         recyclerView.setVisibility(View.GONE);
                         all_no_information.setVisibility(View.VISIBLE);
-                        Log.i("列表数据获取错误", "错误" + e);
+                        Log.i("列表数据获取错误","错误"+e);
                     }
 
                     @Override
@@ -409,14 +405,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     }
 
     //文字轮播
-    private void tvBanner() {
+    private void tvBanner(){
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<MessageBean2> userMessage = fzbInterface.getMessageTextList(FinalContents.getUserID(), FinalContents.getCityID(), "");
+        Observable<MessageBean2> userMessage = fzbInterface.getMessageTextList(FinalContents.getUserID(),FinalContents.getCityID(),"");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MessageBean2>() {
@@ -431,13 +427,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                         MessageBean2.DataBean dataBean = messageBean.getData();
                         messagelist = dataBean.getRows();
 
-                        for (int i = 0; i < messagelist.size(); i++) {
+                        for (int i = 0; i < messagelist.size(); i++){
                             if (messagelist.get(i).getType().equals("0")) {
-                                messagelist2.add(new Bean(R.mipmap.give, messagelist.get(i).getTitle()));
-                            } else if (messagelist.get(i).getType().equals("2")) {
-                                messagelist2.add(new Bean(R.mipmap.lodger, messagelist.get(i).getTitle()));
-                            } else if (messagelist.get(i).getType().equals("5")) {
-                                messagelist2.add(new Bean(R.mipmap.goodnews, messagelist.get(i).getTitle()));
+                                messagelist2.add(new Bean(R.mipmap.give,messagelist.get(i).getTitle()));
+                            }else if (messagelist.get(i).getType().equals("2")){
+                                messagelist2.add(new Bean(R.mipmap.lodger,messagelist.get(i).getTitle()));
+                            }else if (messagelist.get(i).getType().equals("5")){
+                                messagelist2.add(new Bean(R.mipmap.goodnews,messagelist.get(i).getTitle()));
                             }
                         }
 
@@ -449,9 +445,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                             public void onItemClick(int postion) {
                                 if (messagelist.get(postion).getType().equals("0")) {
                                     listterner.process("0"); // 3.1 执行回调
-                                } else if (messagelist.get(postion).getType().equals("2")) {
+                                }else if (messagelist.get(postion).getType().equals("2")){
                                     listterner.process("2"); // 3.1 执行回调
-                                } else if (messagelist.get(postion).getType().equals("5")) {
+                                }else if (messagelist.get(postion).getType().equals("5")){
                                     listterner.process("5"); // 3.1 执行回调
                                 }
                             }
@@ -460,7 +456,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误", "错误" + e);
+                        Log.i("列表数据获取错误","错误"+e);
                     }
 
                     @Override
@@ -483,7 +479,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(), FinalContents.getCityID(), projectType, arrposid);
+        Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(),FinalContents.getCityID(),projectType,arrposid);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ImgData>() {
@@ -497,6 +493,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                     public void onNext(ImgData imgData) {
                         imglist = imgData.getData();
                         if (imglist.size() != 0) {
+                            home_banner_img.setVisibility(View.GONE);
+                            banner.setVisibility(View.VISIBLE);
                             for (int i = 0; i < imglist.size(); i++) {
                                 list_path.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                                 list_title.add(imglist.get(i).getTitle());
@@ -532,12 +530,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                                     startActivity(intent);
                                 }
                             });
+                        }else {
+                            home_banner_img.setVisibility(View.VISIBLE);
+                            banner.setVisibility(View.GONE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("列表数据获取错误", "错误" + e);
+                        home_banner_img.setVisibility(View.VISIBLE);
+                        banner.setVisibility(View.GONE);
+                        Log.i("列表数据获取错误","错误"+e);
                     }
 
                     @Override
@@ -584,9 +587,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        if (activity instanceof FragmentInteraction) {
-            listterner = (FragmentInteraction) activity; // 2.2 获取到宿主activity并赋值
-        } else {
+        if(activity instanceof FragmentInteraction) {
+            listterner = (FragmentInteraction)activity; // 2.2 获取到宿主activity并赋值
+        } else{
             throw new IllegalArgumentException("activity must implements FragmentInteraction");
         }
     }

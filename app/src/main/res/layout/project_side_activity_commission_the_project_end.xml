@@ -120,7 +120,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
-                       android:text="已结(万元)"
+                       android:text="已结佣金(万元)"
                        android:textColor="#FFFFFF"
                        android:textSize="11sp" />
 
@@ -154,7 +154,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
-                       android:text="待结(万元)"
+                       android:text="待结佣金(万元)"
                        android:textColor="#FFFFFF"
                        android:textSize="11sp" />
 
@@ -188,7 +188,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_gravity="center"
-                       android:text="未结(万元)"
+                       android:text="未结佣金(万元)"
                        android:textColor="#FFFFFF"
                        android:textSize="11sp" />
 
@@ -236,7 +236,7 @@
                        android:layout_gravity="center_horizontal"
                        android:layout_marginTop="10dp"
                        android:background="@drawable/the_project_end_underline"
-                       android:orientation="vertical"/>
+                       android:orientation="vertical"></LinearLayout>
                </LinearLayout>
 
                <LinearLayout
@@ -262,35 +262,8 @@
                        android:layout_marginTop="10dp"
                        android:background="@drawable/the_project_end_underline"
                        android:orientation="vertical"
-                       android:visibility="gone"/>
+                       android:visibility="gone"></LinearLayout>
                </LinearLayout>
-
-               <LinearLayout
-                   android:id="@+id/commission_the_project_end_l5"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginLeft="50dp"
-                   android:orientation="vertical">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center_horizontal"
-                       android:text="城市房产"
-                       android:textColor="#FFFFFF"
-                       android:textSize="15sp" />
-
-                   <LinearLayout
-                       android:id="@+id/commission_the_project_end_l6"
-                       android:layout_width="58dp"
-                       android:layout_height="3dp"
-                       android:layout_gravity="center_horizontal"
-                       android:layout_marginTop="10dp"
-                       android:background="@drawable/the_project_end_underline"
-                       android:orientation="vertical"
-                       android:visibility="gone"/>
-               </LinearLayout>
-
            </LinearLayout>
 
        </LinearLayout>
@@ -585,6 +558,64 @@
                     android:gravity="center"
                     android:layout_width="90dp"
                     android:layout_height="40dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/drawer_picker"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#e7e7e7"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/drawer_picker_cancel"
+                        android:text="取消"
+                        android:textSize="18sp"
+                        android:textColor="#ff666666"
+                        android:layout_marginLeft="10dp"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="请选择时间"
+                        android:gravity="center"
+                        android:textColor="#ff111111"
+                        android:textSize="18sp"
+                        />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/drawer_picker_ensure"
+                        android:text="确定"
+                        android:textSize="18sp"
+                        android:textColor="#334485"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical|right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp" />
+
+
+                </LinearLayout>
+
+                <top.defaults.view.DateTimePickerView
+                    android:id="@+id/drawer_pickerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:preferredMaxOffsetItemCount="4"
+                    android:background="#e7e7e7"/>
             </LinearLayout>
 
         </RelativeLayout>

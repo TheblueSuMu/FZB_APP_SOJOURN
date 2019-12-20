@@ -16,7 +16,7 @@ public class LetterComparator implements Comparator<ContactModel>{
 
     @Override
     public int compare(ContactModel contactModel, ContactModel t1) {
-        if (contactModel == null || t1 == null) {
+        if (contactModel == null || t1 == null){
             return 0;
         }
         String lhsSortLetters = contactModel.getIndex().substring(0, 1).toUpperCase();

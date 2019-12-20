@@ -33,11 +33,9 @@ import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.modle.DiscussBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -106,7 +104,7 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -130,12 +128,12 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
                                     int position, long id) {
 
                 if(mDatas.size() == 9){
-                    ToastUtil.showToast(ReleaseActivity.this,"图片最多九张");
+                    Toast.makeText(ReleaseActivity.this,"图片最多九张",Toast.LENGTH_SHORT).show();
                 }else {
 
                 if (position == parent.getChildCount() - 1) {
                     if (mDatas.size() == 9) {
-                        ToastUtil.showToast(ReleaseActivity.this,"图片数量不能超出9张");
+                        Toast.makeText(ReleaseActivity.this,"图片数量不能超出9张",Toast.LENGTH_SHORT).show();
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(ReleaseActivity.this);
                         builder.setTitle("请选择图片来源");
@@ -214,7 +212,7 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
         String s = stringBuffer.toString();
 
         if (release_message.getText().toString().equals("") && s.equals("")) {
-            ToastUtil.showToast(this, "请输入您要发布的内容");
+            Toast.makeText(this, "请输入您要发布的内容或图片", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -238,7 +236,7 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
 
                     @Override
                     public void onNext(DiscussBean discussBean) {
-                        ToastUtil.showToast(ReleaseActivity.this, discussBean.getMsg());
+                        Toast.makeText(ReleaseActivity.this, discussBean.getMsg(), Toast.LENGTH_SHORT).show();
                         Connector.setJJQ(true);
                         finish();
                     }
@@ -255,7 +253,6 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
                 });
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

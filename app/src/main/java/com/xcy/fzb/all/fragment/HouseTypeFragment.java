@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 
 import org.greenrobot.eventbus.EventBus;
@@ -88,7 +87,6 @@ public class HouseTypeFragment extends Fragment implements View.OnClickListener 
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()){

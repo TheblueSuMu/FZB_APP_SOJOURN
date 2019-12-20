@@ -8,7 +8,7 @@ public class BorkerageDownBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"total":3,"rows":[{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"哈哈黄金","customerPhone":"13358385835","projectName":"泰禾厦门湾","roomNumber":"5栋5单元802室","tradeDate":"2019-12-09","totalAmount":"1401.36","alreadyAmount":"","notAmount":"1401.36","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-09 10:11:35","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"","agentId":"","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"一键成交","customerPhone":"13412888668","projectName":"泰禾厦门湾","roomNumber":"5栋5单元508室","tradeDate":"2019-12-06","totalAmount":"1460.16","alreadyAmount":"","notAmount":"1460.16","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-06 14:11:44","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"","agentId":"","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"不错","customerPhone":"13505685866","projectName":"泰禾厦门湾","roomNumber":"5栋8单元801室","tradeDate":"2019-12-06","totalAmount":"1935.00","alreadyAmount":"","notAmount":"1935.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-06 13:08:41","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"","agentId":"","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""}]}
+     * data : {"total":10,"rows":[{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"那楠娜","customerPhone":"15614780963","projectName":"天泰·大理十畝","roomNumber":"1栋1单元408号","tradeDate":"2019-10-25","totalAmount":"48600.00","alreadyAmount":"","notAmount":"48600.00","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"李丽丽","customerPhone":"15808089988","projectName":"大理的小院子","roomNumber":"1栋1单元1号","tradeDate":"2019-10-25","totalAmount":"0.17","alreadyAmount":"","notAmount":"0.17","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"ni","customerPhone":"18312345689","projectName":"天泰·大理十畝","roomNumber":"5栋5单元5号","tradeDate":"2019-10-24","totalAmount":"3022.10","alreadyAmount":"","notAmount":"3022.10","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"hhhh","customerPhone":"15323658963","projectName":"天泰·大理十畝","roomNumber":"1栋1单元1号","tradeDate":"2019-09-24","totalAmount":"0.08","alreadyAmount":"","notAmount":"0.08","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"12122222","customerPhone":"12","projectName":"融创孔雀镇","roomNumber":"1栋1单元1号","tradeDate":"2019-09-24","totalAmount":"0.40","alreadyAmount":"","notAmount":"0.40","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"1","customerPhone":"1","projectName":"丽江项目测试1","roomNumber":"1栋1单元1号","tradeDate":"2019-09-09","totalAmount":"0.04","alreadyAmount":"","notAmount":"0.04","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"1","customerPhone":"1","projectName":"丽江项目测试1","roomNumber":"1栋1单元1号","tradeDate":"2019-09-09","totalAmount":"0.04","alreadyAmount":"","notAmount":"0.04","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"1","customerPhone":"1","projectName":"丽江项目测试1","roomNumber":"1栋1单元1号","tradeDate":"2019-09-09","totalAmount":"0.04","alreadyAmount":"","notAmount":"0.04","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"1","customerPhone":"1","projectName":"丽江项目测试1","roomNumber":"1栋1单元1号","tradeDate":"2019-09-09","totalAmount":"0.04","alreadyAmount":"","notAmount":"0.04","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"hh","customerPhone":"1","projectName":"丽江项目测试1","roomNumber":"1栋1单元1号","tradeDate":"2019-09-09","totalAmount":"0.04","alreadyAmount":"","notAmount":"0.04","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""}]}
      */
 
     private String code;
@@ -41,8 +41,8 @@ public class BorkerageDownBean {
 
     public static class DataBean {
         /**
-         * total : 3
-         * rows : [{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"哈哈黄金","customerPhone":"13358385835","projectName":"泰禾厦门湾","roomNumber":"5栋5单元802室","tradeDate":"2019-12-09","totalAmount":"1401.36","alreadyAmount":"","notAmount":"1401.36","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-09 10:11:35","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"","agentId":"","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"一键成交","customerPhone":"13412888668","projectName":"泰禾厦门湾","roomNumber":"5栋5单元508室","tradeDate":"2019-12-06","totalAmount":"1460.16","alreadyAmount":"","notAmount":"1460.16","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-06 14:11:44","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"","agentId":"","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"不错","customerPhone":"13505685866","projectName":"泰禾厦门湾","roomNumber":"5栋8单元801室","tradeDate":"2019-12-06","totalAmount":"1935.00","alreadyAmount":"","notAmount":"1935.00","invoiceMoney":"","secondsAmount":"","closingTime":"2019-12-06 13:08:41","moneyStatus":0,"returnedMoney":"0.00","moneyStatusImg":"","companyName":"","companyId":"","storeName":"","storeId":"","agentName":"","agentId":"","agentPhone":"","status":"0","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":"","historyData":""}]
+         * total : 10
+         * rows : [{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"那楠娜","customerPhone":"15614780963","projectName":"天泰·大理十畝","roomNumber":"1栋1单元408号","tradeDate":"2019-10-25","totalAmount":"48600.00","alreadyAmount":"","notAmount":"48600.00","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"李丽丽","customerPhone":"15808089988","projectName":"大理的小院子","roomNumber":"1栋1单元1号","tradeDate":"2019-10-25","totalAmount":"0.17","alreadyAmount":"","notAmount":"0.17","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"ni","customerPhone":"18312345689","projectName":"天泰·大理十畝","roomNumber":"5栋5单元5号","tradeDate":"2019-10-24","totalAmount":"3022.10","alreadyAmount":"","notAmount":"3022.10","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"hhhh","customerPhone":"15323658963","projectName":"天泰·大理十畝","roomNumber":"1栋1单元1号","tradeDate":"2019-09-24","totalAmount":"0.08","alreadyAmount":"","notAmount":"0.08","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"12122222","customerPhone":"12","projectName":"融创孔雀镇","roomNumber":"1栋1单元1号","tradeDate":"2019-09-24","totalAmount":"0.40","alreadyAmount":"","notAmount":"0.40","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"1","customerPhone":"1","projectName":"丽江项目测试1","roomNumber":"1栋1单元1号","tradeDate":"2019-09-09","totalAmount":"0.04","alreadyAmount":"","notAmount":"0.04","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"1","customerPhone":"1","projectName":"丽江项目测试1","roomNumber":"1栋1单元1号","tradeDate":"2019-09-09","totalAmount":"0.04","alreadyAmount":"","notAmount":"0.04","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"1","customerPhone":"1","projectName":"丽江项目测试1","roomNumber":"1栋1单元1号","tradeDate":"2019-09-09","totalAmount":"0.04","alreadyAmount":"","notAmount":"0.04","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"1","customerPhone":"1","projectName":"丽江项目测试1","roomNumber":"1栋1单元1号","tradeDate":"2019-09-09","totalAmount":"0.04","alreadyAmount":"","notAmount":"0.04","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerName":"hh","customerPhone":"1","projectName":"丽江项目测试1","roomNumber":"1栋1单元1号","tradeDate":"2019-09-09","totalAmount":"0.04","alreadyAmount":"","notAmount":"0.04","invoiceMoney":"","secondsAmount":"","closingTime":"","moneyStatus":0,"returnedMoney":"0","moneyStatusImg":"","companyName":"","storeName":"","agentName":"","agentPhone":"","status":"","isMy":"","commission":"","userId":"","type":"","projectType":"","projectId":"","search":"","beforeDate":"","afterDate":""}]
          */
 
         private int total;
@@ -72,28 +72,25 @@ public class BorkerageDownBean {
              * createDate :
              * updateBy :
              * updateDate :
-             * customerName : 哈哈黄金
-             * customerPhone : 13358385835
-             * projectName : 泰禾厦门湾
-             * roomNumber : 5栋5单元802室
-             * tradeDate : 2019-12-09
-             * totalAmount : 1401.36
+             * customerName : 那楠娜
+             * customerPhone : 15614780963
+             * projectName : 天泰·大理十畝
+             * roomNumber : 1栋1单元408号
+             * tradeDate : 2019-10-25
+             * totalAmount : 48600.00
              * alreadyAmount :
-             * notAmount : 1401.36
+             * notAmount : 48600.00
              * invoiceMoney :
              * secondsAmount :
-             * closingTime : 2019-12-09 10:11:35
+             * closingTime :
              * moneyStatus : 0
-             * returnedMoney : 0.00
+             * returnedMoney : 0
              * moneyStatusImg :
              * companyName :
-             * companyId :
              * storeName :
-             * storeId :
              * agentName :
-             * agentId :
              * agentPhone :
-             * status : 0
+             * status :
              * isMy :
              * commission :
              * userId :
@@ -103,7 +100,6 @@ public class BorkerageDownBean {
              * search :
              * beforeDate :
              * afterDate :
-             * historyData :
              */
 
             private String id;
@@ -127,11 +123,8 @@ public class BorkerageDownBean {
             private String returnedMoney;
             private String moneyStatusImg;
             private String companyName;
-            private String companyId;
             private String storeName;
-            private String storeId;
             private String agentName;
-            private String agentId;
             private String agentPhone;
             private String status;
             private String isMy;
@@ -143,7 +136,6 @@ public class BorkerageDownBean {
             private String search;
             private String beforeDate;
             private String afterDate;
-            private String historyData;
 
             public String getId() {
                 return id;
@@ -313,14 +305,6 @@ public class BorkerageDownBean {
                 this.companyName = companyName;
             }
 
-            public String getCompanyId() {
-                return companyId;
-            }
-
-            public void setCompanyId(String companyId) {
-                this.companyId = companyId;
-            }
-
             public String getStoreName() {
                 return storeName;
             }
@@ -329,28 +313,12 @@ public class BorkerageDownBean {
                 this.storeName = storeName;
             }
 
-            public String getStoreId() {
-                return storeId;
-            }
-
-            public void setStoreId(String storeId) {
-                this.storeId = storeId;
-            }
-
             public String getAgentName() {
                 return agentName;
             }
 
             public void setAgentName(String agentName) {
                 this.agentName = agentName;
-            }
-
-            public String getAgentId() {
-                return agentId;
-            }
-
-            public void setAgentId(String agentId) {
-                this.agentId = agentId;
             }
 
             public String getAgentPhone() {
@@ -439,14 +407,6 @@ public class BorkerageDownBean {
 
             public void setAfterDate(String afterDate) {
                 this.afterDate = afterDate;
-            }
-
-            public String getHistoryData() {
-                return historyData;
-            }
-
-            public void setHistoryData(String historyData) {
-                this.historyData = historyData;
             }
         }
     }

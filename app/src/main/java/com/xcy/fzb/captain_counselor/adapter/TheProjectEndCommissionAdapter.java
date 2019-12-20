@@ -61,7 +61,7 @@ public class TheProjectEndCommissionAdapter extends RecyclerView.Adapter<TheProj
             holder.the_project_end_tv1.setVisibility(View.GONE);
         }else {
             holder.the_project_end_tv1.setVisibility(View.VISIBLE);
-            holder.the_project_end_tv1.setText("总佣金：￥" + rowsBeanList.get(position).getTotalAmount());
+            holder.the_project_end_tv1.setText("总佣金：¥" + rowsBeanList.get(position).getTotalAmount());
         }
 
         if (rowsBeanList.get(position).getMoneyStatus() == 0) {

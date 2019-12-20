@@ -39,11 +39,9 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.modle.LandBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -130,7 +128,7 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -194,7 +192,6 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
         });
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -244,28 +241,19 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                                     ProjectProgressApi.setPassportNumber(to_apply_for_an_island_et2.getText().toString());        //      TODO    护照号码
                                     ProjectProgressApi.setPassportimg(imgUrl);        //      TODO    身份证或护照 照片
                                     startActivity(intent);
-                                } else if (FinalContents.getProjectType().equals("1")) {
-                                    //  TODO 城市
-                                    intent = new Intent(ToApplyForAnIslandActivity.this, ToApplyForAnlsland2Activity.class);
-                                    ProjectProgressApi.setGender(to_apply_for_an_island_tv2.getText().toString());        //      TODO    性别
-                                    ProjectProgressApi.setIdNumber(to_apply_for_an_island_et1.getText().toString());        //      TODO    身份证号码
-                                    ProjectProgressApi.setAge(to_apply_for_an_island_tv3.getText().toString());        //      TODO    年龄
-                                    ProjectProgressApi.setPassportNumber(to_apply_for_an_island_et2.getText().toString());        //      TODO    护照号码
-                                    ProjectProgressApi.setPassportimg(imgUrl);        //      TODO    身份证或护照 照片
-                                    startActivity(intent);
                                 }
 
                             } else {
-                                ToastUtil.showToast(this, "请输入年龄");
+                                Toast.makeText(this, "请输入年龄", Toast.LENGTH_SHORT).show();
                             }
                         }else {
-                            ToastUtil.showToast(this, "请上传照片");
+                            Toast.makeText(this, "请上传照片", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        ToastUtil.showToast(this, "请选择性别");
+                        Toast.makeText(this, "请选择性别", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    ToastUtil.showToast(this, "请输入身份证");
+                    Toast.makeText(this, "请输入身份证", Toast.LENGTH_SHORT).show();
                 }
                 break;
             //TODO 图片
@@ -385,6 +373,10 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
     }
 
     private void initComplemented() {
+        Log.i("补全信息","FinalContents.getUserID()："+FinalContents.getUserID());
+        Log.i("补全信息","FinalContents.getPreparationId()："+FinalContents.getPreparationId());
+
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -408,7 +400,9 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
                         to_apply_for_an_island_tv3.setText(landBean.getData().getAge());
                         to_apply_for_an_island_et2.setText(landBean.getData().getPassportNumber());
                         imgUrl = landBean.getData().getPassportImg();
-                        Glide.with(ToApplyForAnIslandActivity.this).load(FinalContents.getImageUrl() + landBean.getData().getPassportImg()).into(to_apply_for_an_island_img);
+                        if (!imgUrl.equals("")) {
+                            Glide.with(ToApplyForAnIslandActivity.this).load(FinalContents.getImageUrl() + landBean.getData().getPassportImg()).into(to_apply_for_an_island_img);
+                        }
                     }
 
                     @Override

@@ -48,10 +48,8 @@ import com.baidu.mapapi.utils.route.RouteParaOption;
 import com.google.android.material.tabs.TabLayout;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.overlayutil.OverlayManager;
 
 import java.util.ArrayList;
@@ -120,7 +118,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
                     init_No_Network();
                 }
             });
-            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -177,11 +175,10 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
             ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
         } else {
 //            initMap();
-            ToastUtil.showToast(MapActivity.this, "已开启定位权限");
+            Toast.makeText(MapActivity.this, "已开启定位权限", Toast.LENGTH_LONG).show();
         }
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -295,7 +292,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
                 overlay.addToMap();
                 overlay.zoomToSpan();
             } else {
-//                Toast.makeText(MapActivity.this, "没有找到相应的建筑物", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapActivity.this, "没有找到相应的建筑物", Toast.LENGTH_SHORT).show();
             }
             mPoiSearch.destroy();
         }
@@ -356,7 +353,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
             List<PoiInfo> pois = result.getAllPoi();
             OverlayOptions op = null;
             BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_gcoding);
-            BitmapDescriptor bitmap2 = BitmapDescriptorFactory.fromResource(R.drawable.icon_gcoding);
+            BitmapDescriptor bitmap2 = BitmapDescriptorFactory.fromResource(R.drawable.icon_marka);
             for (int i = 0; i < pois.size(); i++) {
                 if (flag) {
                     op = new MarkerOptions().position(pois.get(i).location).icon(bitmap);
@@ -481,7 +478,7 @@ public class MapActivity extends AllActivity implements View.OnClickListener {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
 //                    initMap();//开始定位
                 } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                    ToastUtil.showToast(MapActivity.this, "未开启定位权限,请手动到设置去开启权限");
+                    Toast.makeText(MapActivity.this, "未开启定位权限,请手动到设置去开启权限", Toast.LENGTH_LONG).show();
                     initMap();
                 }
                 break;

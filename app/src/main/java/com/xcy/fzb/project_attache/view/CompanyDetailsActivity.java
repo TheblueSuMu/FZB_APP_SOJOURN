@@ -14,10 +14,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -37,18 +35,16 @@ import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.DataNumBean;
 import com.xcy.fzb.all.database.FinanceBean;
 import com.xcy.fzb.all.modle.CompanyDetailsBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.view.MyClientActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -59,6 +55,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import top.defaults.view.DateTimePickerView;
 
 public class CompanyDetailsActivity extends AllActivity implements View.OnClickListener {
 
@@ -101,11 +98,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
     LinearLayout details_ll7;
     LinearLayout ll1;
 
-    LinearLayout project_attache_ll1;
-    LinearLayout project_attache_ll2;
-    LinearLayout project_attache_ll3;
-    LinearLayout project_attache_ll4;
-
     TextView details_tv1;
     TextView details_tv2;
     TextView details_tv3;
@@ -115,10 +107,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
     TextView details_tv7;
     TextView details_tv8;
     TextView tv1;
-    TextView company_details_new_tv1;
-    TextView company_details_new_tv2;
-    TextView company_details_ttv;
-    TextView company_details_ttcall;
 
     private LineChart details_chart;
     private List<Integer> integers;
@@ -128,12 +116,11 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
     RadioGroup details_rg2;
     private Intent intent;
 
+    DateTimePickerView dateTimePickerView;
+    LinearLayout report_picker;
+    TextView report_cancel;
+    TextView report_ensure;
     private CompanyDetailsBean.DataBean.StoreInfoBean storeInfo;
-    private int year;
-    private int month;
-    private int dayOfMonth;
-    private String string1;
-    private String string2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,7 +152,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showLongToast(CompanyDetailsActivity.this, "当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -176,11 +163,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         company_details_return = findViewById(R.id.company_details_return);
         company_details_call = findViewById(R.id.company_details_call);
         details_change = findViewById(R.id.details_change);
-        company_details_ttcall = findViewById(R.id.company_details_ttcall);
-        company_details_ttv = findViewById(R.id.company_details_ttv);
-
-        company_details_new_tv1 = findViewById(R.id.company_details_new_tv1);
-        company_details_new_tv2 = findViewById(R.id.company_details_new_tv2);
 
         details_rg1 = findViewById(R.id.details_rg1);
         details_rg2 = findViewById(R.id.details_rg2);
@@ -232,21 +214,17 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         company_details_rb7 = findViewById(R.id.company_details_rb7);
         company_details_rb8 = findViewById(R.id.company_details_rb8);
 
-        project_attache_ll1 = findViewById(R.id.project_attache_ll1);
-        project_attache_ll2 = findViewById(R.id.project_attache_ll2);
-        project_attache_ll3 = findViewById(R.id.project_attache_ll3);
-        project_attache_ll4 = findViewById(R.id.project_attache_ll4);
+        dateTimePickerView = findViewById(R.id.details_report_pickerView);
+        report_picker = findViewById(R.id.details_report_picker);
+        report_cancel = findViewById(R.id.details_report_picker_cancel);
+        report_ensure = findViewById(R.id.details_report_picker_ensure);
 
-        project_attache_ll1.setOnClickListener(this);
-        project_attache_ll3.setOnClickListener(this);
         company_details_return.setOnClickListener(this);
         company_details_call.setOnClickListener(this);
-//        company_details_ll3.setOnClickListener(this);
-//        company_details_ll4.setOnClickListener(this);
-//        company_details_ll5.setOnClickListener(this);
+        company_details_ll3.setOnClickListener(this);
+        company_details_ll4.setOnClickListener(this);
+        company_details_ll5.setOnClickListener(this);
 
-        company_details_new_tv1.setOnClickListener(this);
-        company_details_new_tv2.setOnClickListener(this);
         details_change.setOnClickListener(this);
         details_ll1.setOnClickListener(this);
         details_ll2.setOnClickListener(this);
@@ -255,46 +233,113 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         details_ll5.setOnClickListener(this);
         details_ll6.setOnClickListener(this);
         details_ll7.setOnClickListener(this);
-        company_details_ttcall.setOnClickListener(this);
 
         Calendar calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth - 1);
-        string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+1, dayOfMonth - 1);
+        String string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month+1, dayOfMonth);
         company_details_tv4.setText(string1);
         company_details_tv5.setText(string2);
         company_details_tv8.setText(string1);
         company_details_tv9.setText(string2);
+        dateTimePickerView.setStartDate(new GregorianCalendar(year, month, dayOfMonth-15));
+        // 注意：月份是从0开始计数的
+        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
+        dateTimePickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth+15));
 
         company_details_tv4.setOnClickListener(new View.OnClickListener() {
-            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                initTime1_Date1();
+                report_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        company_details_tv4.setText(dateString);
+                        NewlyIncreased.setStartDate(dateString);
+                        initDataNum("3", company_details_tv4.getText().toString(), company_details_tv5.getText().toString());
+
+                    }
+                });
             }
         });
         company_details_tv5.setOnClickListener(new View.OnClickListener() {
-            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                initTime1_Date2();
+                report_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        company_details_tv5.setText(dateString);
+                        NewlyIncreased.setEndDate(dateString);
+                        initDataNum("3", company_details_tv4.getText().toString(), company_details_tv5.getText().toString());
+                    }
+                });
+            }
+        });
+        report_ensure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                report_picker.setVisibility(View.GONE);
+            }
+        });
+
+        report_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                report_picker.setVisibility(View.GONE);
             }
         });
         company_details_tv8.setOnClickListener(new View.OnClickListener() {
-            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                initTime2_Date1();
+                report_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        company_details_tv8.setText(dateString);
+                        String s = company_details_tv8.getText().toString();
+                        String s1 = company_details_tv9.getText().toString();
+                        NewlyIncreased.setYJstartDate(dateString);
+                        initDataNum("3", s, s1);
+
+                    }
+                });
             }
         });
         company_details_tv9.setOnClickListener(new View.OnClickListener() {
-            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                initTime2_Date2();
+                report_picker.setVisibility(View.VISIBLE);
+                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+                    @Override
+                    public void onSelectedDateChanged(Calendar date) {
+                        int year = date.get(Calendar.YEAR);
+                        int month = date.get(Calendar.MONTH);
+                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+                        company_details_tv9.setText(dateString);
+                        Log.d("wsw", "new date: " + dateString);
+                        String s = company_details_tv8.getText().toString();
+                        String s1 = company_details_tv9.getText().toString();
+                        NewlyIncreased.setYJendDate(dateString);
+                        initDataNum("3", s, s1);
+                    }
+                });
             }
         });
         initData();
@@ -303,41 +348,23 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.company_details_rb1) {
-                    if (project_attache_ll2.getVisibility() == View.VISIBLE) {
-                        initDataNum("0", "", "", "1");
-                    } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
-                        initDataNum("0", "", "", "2");
-                    }
+                    initDataNum("0", "", "");
                     NewlyIncreased.setTag("0");
                     company_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb2) {
-                    if (project_attache_ll2.getVisibility() == View.VISIBLE) {
-                        initDataNum("1", "", "", "1");
-                    } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
-                        initDataNum("1", "", "", "2");
-                    }
+                    initDataNum("1", "", "");
                     NewlyIncreased.setTag("1");
                     company_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb3) {
-                    if (project_attache_ll2.getVisibility() == View.VISIBLE) {
-                        initDataNum("2", "", "", "1");
-                    } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
-                        initDataNum("2", "", "", "2");
-                    }
+                    initDataNum("2", "", "");
                     NewlyIncreased.setTag("2");
                     company_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb4) {
-                    company_details_tv4.setText(string1);
-                    company_details_tv5.setText(string2);
                     String s = company_details_tv4.getText().toString();
                     String s1 = company_details_tv5.getText().toString();
                     NewlyIncreased.setStartDate(s);
                     NewlyIncreased.setEndDate(s1);
-                    if (project_attache_ll2.getVisibility() == View.VISIBLE) {
-                        initDataNum("3", s, s1, "1");
-                    } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
-                        initDataNum("3", s, s1, "2");
-                    }
+                    initDataNum("3", s, s1);
                     NewlyIncreased.setTag("3");
                     company_details_ll1.setVisibility(View.VISIBLE);
                 }
@@ -359,130 +386,16 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                     NewlyIncreased.setYJType("2");
                     company_details_ll2.setVisibility(View.GONE);
                 } else if (i == R.id.company_details_rb8) {
-                    company_details_tv8.setText(string1);
-                    company_details_tv9.setText(string2);
                     String s = company_details_tv8.getText().toString();
                     String s1 = company_details_tv9.getText().toString();
-                    NewlyIncreased.setYJstartDate(s);
-                    NewlyIncreased.setYJendDate(s1);
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
                     initFinanceNum("3", s, s1);
                     NewlyIncreased.setYJType("3");
                     company_details_ll2.setVisibility(View.VISIBLE);
                 }
             }
         });
-    }
-
-    //            TODO 数据统计 时间选择 开始时间
-    private void initTime1_Date1(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(CompanyDetailsActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                company_details_tv4.setText(getTime2(date));
-                NewlyIncreased.setStartDate(getTime2(date));
-                if (project_attache_ll2.getVisibility() == View.VISIBLE) {
-                    initDataNum("3", company_details_tv4.getText().toString(), company_details_tv5.getText().toString(), "1");
-                } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
-                    initDataNum("3", company_details_tv4.getText().toString(), company_details_tv5.getText().toString(), "2");
-                }
-            }
-        })
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
-    }
-
-    //            TODO 数据统计 时间选择 结束时间
-    private void initTime1_Date2(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(CompanyDetailsActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                company_details_tv5.setText(getTime2(date));
-                NewlyIncreased.setEndDate(getTime2(date));
-                if (project_attache_ll2.getVisibility() == View.VISIBLE) {
-                    initDataNum("3", company_details_tv4.getText().toString(), company_details_tv5.getText().toString(), "1");
-                } else if (project_attache_ll4.getVisibility() == View.VISIBLE) {
-                    initDataNum("3", company_details_tv4.getText().toString(), company_details_tv5.getText().toString(), "2");
-                }
-            }
-        })
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
-    }
-
-    //            TODO 财务数据 时间选择 开始时间
-    private void initTime2_Date1(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(CompanyDetailsActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                company_details_tv8.setText(getTime2(date));
-                NewlyIncreased.setYJstartDate(getTime2(date));
-                initFinanceNum("3", company_details_tv8.getText().toString(), company_details_tv9.getText().toString());
-            }
-        })
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
-    }
-
-    //            TODO 财务数据 时间选择 结束时间
-    private void initTime2_Date2(){
-        Calendar selectedDate = Calendar.getInstance();//系统当前时间
-        Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
-        TimePickerView pvTime = new TimePickerBuilder(CompanyDetailsActivity.this, new OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date, View v) {
-                company_details_tv9.setText(getTime2(date));
-                NewlyIncreased.setYJendDate(getTime2(date));
-                initFinanceNum("3", company_details_tv8.getText().toString(), company_details_tv9.getText().toString());
-            }
-        })
-                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
-                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
-                .isCenterLabel(false)
-                .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
-                .setRangDate(startDate, endDate)
-                .build();
-        pvTime.show();
     }
 
     private void initFinanceNum(String type, String startTime, String endTime) {
@@ -493,7 +406,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), "", FinalContents.getStoreId(), "", type, startTime, endTime);
+        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(),"", FinalContents.getStoreId(), "", type, startTime, endTime);
         financeBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -523,7 +436,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
 
     }
 
-    private void initDataNum(String type, String startTime, String endTime, String tag) {
+    private void initDataNum(String type, String startTime, String endTime) {
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -531,7 +444,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), FinalContents.getStoreId(), "", tag, type, startTime, endTime);
+        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), FinalContents.getStoreId(), "", type, startTime, endTime);
         dataNum.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataNumBean>() {
@@ -548,6 +461,8 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                         details_tv5.setText(dataNumBean.getData().getEarnestMoneyNumber() + "");
                         details_tv6.setText(dataNumBean.getData().getTradeNumber() + "");
                         details_tv7.setText(dataNumBean.getData().getLandingNumber() + "");
+
+
                     }
 
                     @Override
@@ -600,26 +515,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                                 company_details_call.setText(storeInfo.getShopownerPhone());
                             }
                         }
-                        if (storeInfo.getIsMy().equals("1")) {
-                            company_details_ttv.setVisibility(View.GONE);
-                            company_details_ttcall.setVisibility(View.GONE);
-                        } else {
-                            if (storeInfo.getAttacheName().equals("")) {
-                                company_details_ttv.setVisibility(View.GONE);
-                                company_details_ttcall.setVisibility(View.GONE);
-                            } else {
-                                company_details_ttv.setVisibility(View.VISIBLE);
-                                company_details_ttcall.setVisibility(View.VISIBLE);
-                                if (storeInfo.getAttacheIdentity().equals("5")) {
-                                    company_details_ttv.setText("负责专员:" + storeInfo.getAttacheName());
-                                } else if (storeInfo.getAttacheIdentity().equals("8")) {
-                                    company_details_ttv.setText("负责经理:" + storeInfo.getAttacheName());
-                                } else if (storeInfo.getAttacheIdentity().equals("9")) {
-                                    company_details_ttv.setText("负责总监:" + storeInfo.getAttacheName());
-                                }
-                                company_details_ttcall.setText(storeInfo.getAttachePhone());
-                            }
-                        }
 //                        TODO 数据统计
                         CompanyDetailsBean.DataBean.StoreDataStatisticsBean storeDataStatistics = companyDetailsBean.getData().getStoreDataStatistics();
                         details_tv1.setText(storeDataStatistics.getAgentNum() + "");
@@ -670,7 +565,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -681,7 +575,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 break;
             case R.id.company_details_call:
                 if (storeInfo.getShopownerPhone().equals("")) {
-                    ToastUtil.showLongToast(CompanyDetailsActivity.this, "暂无电话信息，无法拨打");
+                    Toast.makeText(CompanyDetailsActivity.this, "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + storeInfo.getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
                     startActivity(dialIntent);
@@ -756,96 +650,6 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 FinalContents.setStoreChange("修改");
                 startActivity(intent);
                 finish();
-                break;
-            case R.id.company_details_ttcall:
-                Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + storeInfo.getAttachePhone()));//跳转到拨号界面，同时传递电话号码
-                startActivity(callIntent);
-                break;
-            case R.id.company_details_new_tv1://电话拜访
-                if (storeInfo.getShopownerPhone().equals("")) {
-                    ToastUtil.showLongToast(CompanyDetailsActivity.this, "暂无电话信息，无法拨打");
-                } else {
-                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + storeInfo.getShopownerPhone()));//跳转到拨号界面，同时传递电话号码
-                    startActivity(dialIntent);
-                }
-                break;
-            case R.id.company_details_new_tv2://门店打卡
-                try {
-                    if (storeInfo.getLocation().equals("")) {
-                        ToastUtil.showLongToast(CompanyDetailsActivity.this, "门店暂不支持打卡");
-                    } else {
-                        Intent intent = new Intent(CompanyDetailsActivity.this, ClockStoresActivity.class);
-                        intent.putExtra("MyStoreRise", storeInfo.getStoreRise());
-                        intent.putExtra("MyStoreName", storeInfo.getStoreName());
-                        intent.putExtra("MyLocation", storeInfo.getLocation());
-                        intent.putExtra("MyStoreId", storeInfo.getStoreId());
-                        startActivity(intent);
-                    }
-                    break;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            case R.id.project_attache_ll1://实时
-                project_attache_ll2.setVisibility(View.VISIBLE);
-                project_attache_ll4.setVisibility(View.INVISIBLE);
-                details_ll2.setClickable(true);
-                details_ll3.setClickable(true);
-                details_ll4.setClickable(true);
-                details_ll5.setClickable(true);
-                details_ll6.setClickable(true);
-                details_ll7.setClickable(true);
-                if (company_details_rb1.isChecked() == true) {
-                    initDataNum("0", "", "", "1");
-                    NewlyIncreased.setTag("0");
-                    company_details_ll1.setVisibility(View.GONE);
-                } else if (company_details_rb2.isChecked() == true) {
-                    initDataNum("1", "", "", "1");
-                    NewlyIncreased.setTag("1");
-                    company_details_ll1.setVisibility(View.GONE);
-                } else if (company_details_rb3.isChecked() == true) {
-                    initDataNum("2", "", "", "1");
-                    NewlyIncreased.setTag("2");
-                    company_details_ll1.setVisibility(View.GONE);
-                } else if (company_details_rb4.isChecked() == true) {
-                    String s = company_details_tv4.getText().toString();
-                    String s1 = company_details_tv5.getText().toString();
-                    NewlyIncreased.setStartDate(s);
-                    NewlyIncreased.setEndDate(s1);
-                    initDataNum("3", s, s1, "1");
-                    NewlyIncreased.setTag("3");
-                    company_details_ll1.setVisibility(View.VISIBLE);
-                }
-                break;
-            case R.id.project_attache_ll3://总体
-                project_attache_ll2.setVisibility(View.INVISIBLE);
-                project_attache_ll4.setVisibility(View.VISIBLE);
-                details_ll2.setClickable(false);
-                details_ll3.setClickable(false);
-                details_ll4.setClickable(false);
-                details_ll5.setClickable(false);
-                details_ll6.setClickable(false);
-                details_ll7.setClickable(false);
-                if (company_details_rb1.isChecked() == true) {
-                    initDataNum("0", "", "", "2");
-                    NewlyIncreased.setTag("0");
-                    company_details_ll1.setVisibility(View.GONE);
-                } else if (company_details_rb2.isChecked() == true) {
-                    initDataNum("1", "", "", "2");
-                    NewlyIncreased.setTag("1");
-                    company_details_ll1.setVisibility(View.GONE);
-                } else if (company_details_rb3.isChecked() == true) {
-                    initDataNum("2", "", "", "2");
-                    NewlyIncreased.setTag("2");
-                    company_details_ll1.setVisibility(View.GONE);
-                } else if (company_details_rb4.isChecked() == true) {
-                    String s = company_details_tv4.getText().toString();
-                    String s1 = company_details_tv5.getText().toString();
-                    NewlyIncreased.setStartDate(s);
-                    NewlyIncreased.setEndDate(s1);
-                    initDataNum("3", s, s1, "2");
-                    NewlyIncreased.setTag("3");
-                    company_details_ll1.setVisibility(View.VISIBLE);
-                }
                 break;
         }
 

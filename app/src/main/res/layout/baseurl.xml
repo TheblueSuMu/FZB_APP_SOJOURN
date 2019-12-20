@@ -18,7 +18,7 @@
             <EditText
                 android:id="@+id/baseUrl"
                 android:hint="请输入您要进入的域名"
-                android:text="http://192.168.0.125:8080"
+                android:text="http://192.168.0.118:8080"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

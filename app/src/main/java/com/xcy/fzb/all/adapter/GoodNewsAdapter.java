@@ -37,8 +37,6 @@ public class GoodNewsAdapter extends RecyclerView.Adapter<GoodNewsAdapter.GoodNe
             Glide.with(holder.itemView.getContext()).load(R.mipmap.hwimg).into(holder.news_img);
         }else if(rows.get(position).getProjectType().equals("3")){//旅居
             Glide.with(holder.itemView.getContext()).load(R.mipmap.ljimg).into(holder.news_img);
-        }else if(rows.get(position).getProjectType().equals("1")){//城市
-            Glide.with(holder.itemView.getContext()).load(R.mipmap.city_id).into(holder.news_img);
         }
 
         holder.news_title.setText(rows.get(position).getTitle());

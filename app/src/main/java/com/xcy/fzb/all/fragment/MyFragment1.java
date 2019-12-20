@@ -6,14 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.xcy.fzb.R;
-import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.persente.Fragnemt_SS;
 
@@ -29,7 +27,6 @@ public class MyFragment1 extends Fragment {
 
     private TextView textView;
     private String name;
-    private ImageView fragment1_iv_img;
 
     public MyFragment1() {
         // Required empty public constructor
@@ -50,14 +47,9 @@ public class MyFragment1 extends Fragment {
 //        EventBus.getDefault().register(this);
 
         textView = getActivity().findViewById(R.id.fragment1_tv_name);
-        fragment1_iv_img = getActivity().findViewById(R.id.fragment1_iv_img);
         name = NewlyIncreased.getStoreCount();
         textView.setText(name);
-        if (CityContents.getStore().equals("1")) {
-            fragment1_iv_img.setImageResource(R.mipmap.md_ss2);
-        }else {
-            fragment1_iv_img.setImageResource(R.mipmap.md_ss);
-        }
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, priority = 100, sticky = false) //在ui线程执行，优先级为100

@@ -29,7 +29,7 @@ public class ContactModel {
         this.name = name;
     }
 
-    public ContactModel(String name) {
+    public ContactModel(String name){
         this.index = Pinyin4jUtil.getAllFirstLetter(name);
         this.name = name;
     }

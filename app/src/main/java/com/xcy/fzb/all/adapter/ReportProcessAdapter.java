@@ -51,13 +51,6 @@ public class ReportProcessAdapter extends RecyclerView.Adapter<ReportProcessAdap
         holder.client_item_time.setText(rows.get(position).getDate());
         holder.client_item_project_name.setText(rows.get(position).getProjectName());
         Log.i("折行","数据"+rows.get(position).getRelatedData());
-
-        if (rows.get(position).getIsRead().equals("0")){
-            holder.client_item_unread.setVisibility(View.VISIBLE);
-        }else if(rows.get(position).getIsRead().equals("1")){
-            holder.client_item_unread.setVisibility(View.GONE);
-        }
-
         if (!rows.get(position).getRelatedData().equals("")) {
             if (rows.get(position).getRelatedData().contains("保")) {
                 String[] split = rows.get(position).getRelatedData().split("保");
@@ -130,7 +123,6 @@ public class ReportProcessAdapter extends RecyclerView.Adapter<ReportProcessAdap
         TextView client_item_cg;
         TextView client_item_title;
         TextView client_item_project_add;
-        ImageView client_item_unread;
 
         public ClientFragmentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -143,7 +135,6 @@ public class ReportProcessAdapter extends RecyclerView.Adapter<ReportProcessAdap
             client_item_cg = itemView.findViewById(R.id.client_item_cg);
             client_item_title = itemView.findViewById(R.id.client_item_title);
             client_item_project_add = itemView.findViewById(R.id.client_item_project_add);
-            client_item_unread = itemView.findViewById(R.id.client_item_unread);
 
         }
     }

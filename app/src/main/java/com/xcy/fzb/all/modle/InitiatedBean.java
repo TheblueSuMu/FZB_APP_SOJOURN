@@ -4,10 +4,11 @@ import java.util.List;
 
 public class InitiatedBean {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"total":1,"rows":[{"date":"认筹时间2019-12-10 13:28:45","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"1","customerName":"刘一一","customerPhone":"13558588888","customerId":"d04c16fd59924515a1500226933d0a5d","preparationId":"7a3218ee05fb4faea2171ef85dc30fac","relatedData":"退筹审核","intentionArea":"","projectName":"鼎龙湾国际海洋王国度假区","projectId":"7c809d817257415fbded8d52879b4288","status":"50"}]}
+     * data : {"total":1,"rows":[{"date":"认筹时间2019-06-15 20:40:42","customerPhone":"133****6677","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","customerId":"c3a39e3ed0f64d82bc0641752a6993ba","preparationId":"37fde01be56845ecad2f72bcb271dfa7","relatedData":"退筹审核","intentionArea":"","projectName":"丽江时光","projectId":"73c35fda713946de8cd0d411716ff070","customerName":"测试问题344","status":"50"}]}
      */
 
     private String code;
@@ -41,7 +42,7 @@ public class InitiatedBean {
     public static class DataBean {
         /**
          * total : 1
-         * rows : [{"date":"认筹时间2019-12-10 13:28:45","customerImg":"/fangfang/static/common/images/flat-avatar.png","isRead":"0","projectType":"1","customerName":"刘一一","customerPhone":"13558588888","customerId":"d04c16fd59924515a1500226933d0a5d","preparationId":"7a3218ee05fb4faea2171ef85dc30fac","relatedData":"退筹审核","intentionArea":"","projectName":"鼎龙湾国际海洋王国度假区","projectId":"7c809d817257415fbded8d52879b4288","status":"50"}]
+         * rows : [{"date":"认筹时间2019-06-15 20:40:42","customerPhone":"133****6677","customerImg":"/fangfang/static/common/images/flat-avatar.png","projectType":"3","customerId":"c3a39e3ed0f64d82bc0641752a6993ba","preparationId":"37fde01be56845ecad2f72bcb271dfa7","relatedData":"退筹审核","intentionArea":"","projectName":"丽江时光","projectId":"73c35fda713946de8cd0d411716ff070","customerName":"测试问题344","status":"50"}]
          */
 
         private int total;
@@ -65,33 +66,31 @@ public class InitiatedBean {
 
         public static class RowsBean {
             /**
-             * date : 认筹时间2019-12-10 13:28:45
+             * date : 认筹时间2019-06-15 20:40:42
+             * customerPhone : 133****6677
              * customerImg : /fangfang/static/common/images/flat-avatar.png
-             * isRead : 0
-             * projectType : 1
-             * customerName : 刘一一
-             * customerPhone : 13558588888
-             * customerId : d04c16fd59924515a1500226933d0a5d
-             * preparationId : 7a3218ee05fb4faea2171ef85dc30fac
+             * projectType : 3
+             * customerId : c3a39e3ed0f64d82bc0641752a6993ba
+             * preparationId : 37fde01be56845ecad2f72bcb271dfa7
              * relatedData : 退筹审核
              * intentionArea :
-             * projectName : 鼎龙湾国际海洋王国度假区
-             * projectId : 7c809d817257415fbded8d52879b4288
+             * projectName : 丽江时光
+             * projectId : 73c35fda713946de8cd0d411716ff070
+             * customerName : 测试问题344
              * status : 50
              */
 
             private String date;
-            private String customerImg;
-            private String isRead;
-            private String projectType;
-            private String customerName;
             private String customerPhone;
+            private String customerImg;
+            private String projectType;
             private String customerId;
             private String preparationId;
             private String relatedData;
             private String intentionArea;
             private String projectName;
             private String projectId;
+            private String customerName;
             private String status;
 
             public String getDate() {
@@ -102,6 +101,14 @@ public class InitiatedBean {
                 this.date = date;
             }
 
+            public String getCustomerPhone() {
+                return customerPhone;
+            }
+
+            public void setCustomerPhone(String customerPhone) {
+                this.customerPhone = customerPhone;
+            }
+
             public String getCustomerImg() {
                 return customerImg;
             }
@@ -110,36 +117,12 @@ public class InitiatedBean {
                 this.customerImg = customerImg;
             }
 
-            public String getIsRead() {
-                return isRead;
-            }
-
-            public void setIsRead(String isRead) {
-                this.isRead = isRead;
-            }
-
             public String getProjectType() {
                 return projectType;
             }
 
             public void setProjectType(String projectType) {
                 this.projectType = projectType;
-            }
-
-            public String getCustomerName() {
-                return customerName;
-            }
-
-            public void setCustomerName(String customerName) {
-                this.customerName = customerName;
-            }
-
-            public String getCustomerPhone() {
-                return customerPhone;
-            }
-
-            public void setCustomerPhone(String customerPhone) {
-                this.customerPhone = customerPhone;
             }
 
             public String getCustomerId() {
@@ -188,6 +171,14 @@ public class InitiatedBean {
 
             public void setProjectId(String projectId) {
                 this.projectId = projectId;
+            }
+
+            public String getCustomerName() {
+                return customerName;
+            }
+
+            public void setCustomerName(String customerName) {
+                this.customerName = customerName;
             }
 
             public String getStatus() {

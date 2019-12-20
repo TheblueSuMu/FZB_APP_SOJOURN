@@ -31,10 +31,8 @@ import com.xcy.fzb.all.database.MyDataBean;
 import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.modle.UserBean;
 import com.xcy.fzb.all.persente.CleanDataUtils;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AboutFZBActivity;
 import com.xcy.fzb.all.view.CollectActivity;
 import com.xcy.fzb.all.view.FeedbackActivity;
@@ -42,7 +40,6 @@ import com.xcy.fzb.all.view.PersonalInformationActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -51,7 +48,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AssistantMeFragment extends AllFragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class AssistantMeFragment extends AllFragment implements View.OnClickListener {
 
     RelativeLayout my_collect;
     RelativeLayout my_comment;
@@ -80,7 +77,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
     private TextView me_tv_name;
     private TextView me_tv_phone;
     private TextView my_tv_huancun;
-    private SwipeRefreshLayout layout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -108,7 +105,6 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
         me_tv_name = getActivity().findViewById(R.id.me_tv_name);
         me_tv_phone = getActivity().findViewById(R.id.me_tv_phone);
         rls = getActivity().findViewById(R.id.rls);
-        layout = getActivity().findViewById(R.id.e_ssrfl_5);
 
         rls.setVisibility(View.GONE);
 
@@ -121,7 +117,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
         me_identity = getActivity().findViewById(R.id.me_identity);
         me_city = getActivity().findViewById(R.id.me_city);
         me_store = getActivity().findViewById(R.id.me_store);
-        layout.setOnRefreshListener(this);
+
         try {
             my_tv_huancun.setText(CleanDataUtils.getTotalCacheSize(getActivity()));
         } catch (Exception e) {
@@ -195,7 +191,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
     }
 
     //点击事件
-    @SingleClick(1000)
+
     @Override
     public void onClick(View view) {
 
@@ -246,7 +242,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
                     try {
                         String totalCacheSize = CleanDataUtils.getTotalCacheSize(getActivity());
                         CleanDataUtils.clearAllCache(getActivity());
-                        ToastUtil.showLongToast(getContext(),"清理缓存成功,共清理了" + totalCacheSize + "内存");
+                        Toast.makeText(getActivity(), "清理缓存成功,共清理了" + totalCacheSize + "内存", Toast.LENGTH_SHORT).show();
                         my_tv_huancun.setText("0 M");
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -256,7 +252,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
             builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-//                    Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
                 }
             });
             AlertDialog show = builder.show();
@@ -265,7 +261,7 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
         } else if (id == R.id.my_exit) {
 //            TODO 退出登录
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("确定要退出程序吗?");
+            builder.setTitle("退出完成");
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -352,20 +348,6 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
 
     // 2.1 定义用来与外部activity交互，获取到宿主activity
     private FragmentInteraction listterner;
-
-    @Override
-    public void onRefresh() {
-
-
-        if (layout.isRefreshing()) {//如果正在刷新
-//            initView();
-//            initHotList();
-            initUserMessage();
-            initClientCommissions();
-            layout.setRefreshing(false);//取消刷新
-        }
-
-    }
 
     // 1 定义了所有activity必须实现的接口方法
     public interface FragmentInteraction {

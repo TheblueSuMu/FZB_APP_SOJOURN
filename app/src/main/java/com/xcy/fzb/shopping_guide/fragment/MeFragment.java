@@ -28,15 +28,12 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.UserBean;
 import com.xcy.fzb.all.persente.CleanDataUtils;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.service.MyService;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AboutFZBActivity;
 import com.xcy.fzb.all.view.CollectActivity;
 import com.xcy.fzb.all.view.FeedbackActivity;
 import com.xcy.fzb.all.view.PersonalInformationActivity;
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -49,7 +46,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MeFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class MeFragment extends Fragment implements View.OnClickListener {
 
     ImageView img_my_the_project_end;
     TextView name_my_the_project_end;
@@ -65,7 +62,7 @@ public class MeFragment extends Fragment implements View.OnClickListener, SwipeR
     RelativeLayout guide_rl;
     private Intent intent;
     private TextView my_tv_huancun;
-    private SwipeRefreshLayout layout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,7 +80,7 @@ public class MeFragment extends Fragment implements View.OnClickListener, SwipeR
         position_my_the_project_end = getActivity().findViewById(R.id.position_my_the_project_end);
         shop_my_the_project_end = getActivity().findViewById(R.id.shop_my_the_project_end);
         guide_rl = getActivity().findViewById(R.id.guide_rl);
-        layout = getActivity().findViewById(R.id.e_ssrfl_2);
+
         collect_my_the_project_end = getActivity().findViewById(R.id.collect_my_the_project_end);
         comment_my_the_project_end = getActivity().findViewById(R.id.comment_my_the_project_end);
         about_my_the_project_end = getActivity().findViewById(R.id.about_my_the_project_end);
@@ -96,7 +93,7 @@ public class MeFragment extends Fragment implements View.OnClickListener, SwipeR
         } catch (Exception e) {
             e.printStackTrace();
         }
-        layout.setOnRefreshListener(this);
+
         guide_rl.setOnClickListener(this);
         collect_my_the_project_end.setOnClickListener(this);
         comment_my_the_project_end.setOnClickListener(this);
@@ -108,7 +105,6 @@ public class MeFragment extends Fragment implements View.OnClickListener, SwipeR
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -143,7 +139,7 @@ public class MeFragment extends Fragment implements View.OnClickListener, SwipeR
                         try {
                             String totalCacheSize = CleanDataUtils.getTotalCacheSize(getActivity());
                             CleanDataUtils.clearAllCache(getActivity());
-                            ToastUtil.showLongToast(getContext(),"清理缓存成功,共清理了" + totalCacheSize + "内存");
+                            Toast.makeText(getActivity(), "清理缓存成功,共清理了" + totalCacheSize + "内存", Toast.LENGTH_SHORT).show();
                             my_tv_huancun.setText("0 M");
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -153,7 +149,7 @@ public class MeFragment extends Fragment implements View.OnClickListener, SwipeR
                 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//                        Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
                     }
                 });
                 AlertDialog show = builder.show();
@@ -164,7 +160,7 @@ public class MeFragment extends Fragment implements View.OnClickListener, SwipeR
             case R.id.exit_my_the_project_end:
                 //            TODO 退出登录
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                builder2.setTitle("确定要退出程序吗?");
+                builder2.setTitle("退出完成");
                 builder2.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -249,13 +245,4 @@ public class MeFragment extends Fragment implements View.OnClickListener, SwipeR
         }
     }
 
-    @Override
-    public void onRefresh() {
-        if (layout.isRefreshing()) {//如果正在刷新
-//            initView();
-//            initHotList();
-            initUser();
-            layout.setRefreshing(false);//取消刷新
-        }
-    }
 }

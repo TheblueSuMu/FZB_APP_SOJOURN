@@ -33,11 +33,9 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.APKVersionCodeUtils;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.AppPackageBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
-import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -112,7 +110,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -138,7 +136,6 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
 
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -188,7 +185,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
 //                        Toast.makeText(AboutFZBActivity.this, appPackageBean.getData().getComment(), Toast.LENGTH_SHORT).show();
                         panduan = appPackageBean.getData().getIsUpgrade();
                         if (appPackageBean.getData().getIsUpgrade().equals("0")) {
-                            ToastUtil.showToast(AboutFZBActivity.this,"当前版本已是最新版本");
+                            Toast.makeText(AboutFZBActivity.this, "当前版本已是最新版本", Toast.LENGTH_SHORT).show();
                         } else if (appPackageBean.getData().getIsUpgrade().equals("1")) {
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(AboutFZBActivity.this);
                             builder1.setTitle("提示");

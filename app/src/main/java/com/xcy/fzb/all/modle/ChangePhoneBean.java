@@ -2,10 +2,11 @@ package com.xcy.fzb.all.modle;
 
 public class ChangePhoneBean {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"business":"","message":"该客户已报备成功，请等待审核！","status":"1"}
+     * data : {"status":"1","message":"修改成功"}
      */
 
     private String code;
@@ -38,21 +39,19 @@ public class ChangePhoneBean {
 
     public static class DataBean {
         /**
-         * business :
-         * message : 该客户已报备成功，请等待审核！
          * status : 1
+         * message : 修改成功
          */
 
-        private String business;
-        private String message;
         private String status;
+        private String message;
 
-        public String getBusiness() {
-            return business;
+        public String getStatus() {
+            return status;
         }
 
-        public void setBusiness(String business) {
-            this.business = business;
+        public void setStatus(String status) {
+            this.status = status;
         }
 
         public String getMessage() {
@@ -61,14 +60,6 @@ public class ChangePhoneBean {
 
         public void setMessage(String message) {
             this.message = message;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public void setStatus(String status) {
-            this.status = status;
         }
     }
 }

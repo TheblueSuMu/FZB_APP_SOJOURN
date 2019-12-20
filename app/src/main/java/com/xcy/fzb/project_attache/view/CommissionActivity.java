@@ -2,16 +2,17 @@ package com.xcy.fzb.project_attache.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,12 +23,10 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.CommissionListBean;
 import com.xcy.fzb.all.modle.CommissionUpBean;
-import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.KeyUtils;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_attache.adapter.CommissionListAdapter;
 
@@ -59,8 +58,6 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     LinearLayout commission_ll2;
     LinearLayout commission_ll3;
     LinearLayout commission_ll4;
-    LinearLayout commission_ll5;
-    LinearLayout commission_ll6;
 
     CheckBox commission_cb;
     String ifCheckBox = "";
@@ -71,9 +68,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
     private String s = "";
     private RelativeLayout myBrokerage_rl;
     private PtrClassicFrameLayout commission_ptrclass;
-    String projecttype = "1";
-
-    //    private AVLoadingIndicatorView avi;
+    String projecttype = "3";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +77,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         init_No_Network();
     }
 
-    private void init_No_Network() {
+    private void init_No_Network(){
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initView();
@@ -98,8 +93,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                     startActivity(getIntent());
                 }
             });
-            ToastUtil.showLongToast(CommissionActivity.this, "当前无网络，请检查网络后再进行登录");
-
+            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -116,8 +110,6 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         commission_ll2 = findViewById(R.id.commission_ll2);
         commission_ll3 = findViewById(R.id.commission_ll3);
         commission_ll4 = findViewById(R.id.commission_ll4);
-        commission_ll5 = findViewById(R.id.commission_ll5);
-        commission_ll6 = findViewById(R.id.commission_ll6);
         commission_et = findViewById(R.id.commission_et);
         commission_cb = findViewById(R.id.commission_cb);
         myBrokerage_rl = findViewById(R.id.myBrokerage_rl);
@@ -126,17 +118,12 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         commission_rv.setLayoutManager(manager);
 
-//        avi = findViewById(R.id.commission_avi);
-//
-//        avi.show();
-//        avi.setVisibility(View.VISIBLE);
-
         commission_return.setOnClickListener(this);
         commission_ll1.setOnClickListener(this);
         commission_ll3.setOnClickListener(this);
-        commission_ll5.setOnClickListener(this);
+
         initDataUp();
-        initData("1", s);
+
         commission_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
@@ -180,23 +167,19 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         commission_cb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (commission_cb.isChecked()) {
+                if(commission_cb.isChecked()){
                     ifCheckBox = "0";
-                    if (commission_ll2.getVisibility() == View.VISIBLE) {
+                    if(commission_ll2.getVisibility() == View.VISIBLE){
                         initData("3", s);
-                    } else if (commission_ll4.getVisibility() == View.VISIBLE) {
+                    }else {
                         initData("2", s);
-                    } else if (commission_ll6.getVisibility() == View.VISIBLE) {
-                        initData("1", s);
                     }
-                } else {
+                }else {
                     ifCheckBox = "";
-                    if (commission_ll2.getVisibility() == View.VISIBLE) {
+                    if(commission_ll2.getVisibility() == View.VISIBLE){
                         initData("3", s);
-                    } else if (commission_ll4.getVisibility() == View.VISIBLE) {
+                    }else {
                         initData("2", s);
-                    } else if (commission_ll6.getVisibility() == View.VISIBLE) {
-                        initData("1", s);
                     }
                 }
             }
@@ -211,7 +194,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<CommissionUpBean> commissionUpBeanObservable = myService.getcommissionUpBean(FinalContents.getUserID(), FinalContents.getCompanyId(), FinalContents.getStoreId(), FinalContents.getAgentId(), NewlyIncreased.getYJType(), NewlyIncreased.getYJstartDate(), NewlyIncreased.getYJendDate());
+        Observable<CommissionUpBean> commissionUpBeanObservable = myService.getcommissionUpBean(FinalContents.getUserID(),FinalContents.getCompanyId(),FinalContents.getStoreId(),FinalContents.getAgentId(), NewlyIncreased.getYJType(),NewlyIncreased.getYJstartDate(),NewlyIncreased.getYJendDate());
         commissionUpBeanObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CommissionUpBean>() {
@@ -237,9 +220,11 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
 
                     }
                 });
+
+        initData("3", s);
+
     }
 
-    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -249,45 +234,28 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.commission_ll1:
-//                        avi.show();
-//                        avi.setVisibility(View.GONE);
                 s = commission_et.getText().toString();
                 commission_ll2.setVisibility(View.VISIBLE);
                 commission_ll4.setVisibility(View.INVISIBLE);
-                commission_ll6.setVisibility(View.INVISIBLE);
                 projecttype = "3";
                 initData("3", s);
 
                 break;
             case R.id.commission_ll3:
-//                        avi.show();
-//                        avi.setVisibility(View.GONE);
                 s = commission_et.getText().toString();
                 commission_ll2.setVisibility(View.INVISIBLE);
                 commission_ll4.setVisibility(View.VISIBLE);
-                commission_ll6.setVisibility(View.INVISIBLE);
                 projecttype = "2";
                 initData("2", s);
 
                 break;
-            case R.id.commission_ll5:
-//                        avi.show();
-//                        avi.setVisibility(View.GONE);
-                s = commission_et.getText().toString();
-                commission_ll2.setVisibility(View.INVISIBLE);
-                commission_ll4.setVisibility(View.INVISIBLE);
-                commission_ll6.setVisibility(View.VISIBLE);
-                projecttype = "1";
-                initData("1", s);
 
-                break;
 
         }
 
     }
 
     private void initData(String projectType, String search) {
-        Log.i("专员佣金", "佣金列表信息" + projectType);
 
         adapter = new CommissionListAdapter();
 
@@ -297,7 +265,7 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<CommissionListBean> commissionListBean = myService.getCommissionListBean(FinalContents.getUserID(), projectType, FinalContents.getCompanyId(), FinalContents.getStoreId(), FinalContents.getAgentId(), search, ifCheckBox, "1000", NewlyIncreased.getYJType(), NewlyIncreased.getYJstartDate(), NewlyIncreased.getYJendDate());
+        Observable<CommissionListBean> commissionListBean = myService.getCommissionListBean(FinalContents.getUserID(), projectType, FinalContents.getCompanyId(),FinalContents.getStoreId(),FinalContents.getAgentId(),search, ifCheckBox,"1000", NewlyIncreased.getYJType(),NewlyIncreased.getYJstartDate(),NewlyIncreased.getYJendDate());
         commissionListBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CommissionListBean>() {
@@ -308,15 +276,13 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
 
                     @Override
                     public void onNext(CommissionListBean commissionListBean) {
-//                        avi.hide();
-//                        avi.setVisibility(View.GONE);
                         rows = commissionListBean.getData().getRows();
                         if (rows.size() != 0) {
                             myBrokerage_rl.setVisibility(View.GONE);
                             commission_rv.setVisibility(View.VISIBLE);
                             adapter.setRows(rows);
                             commission_rv.setAdapter(adapter);
-                        } else {
+                        }else {
                             commission_rv.setVisibility(View.GONE);
                             myBrokerage_rl.setVisibility(View.VISIBLE);
                         }
@@ -325,11 +291,8 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
 
                     @Override
                     public void onError(Throwable e) {
-//                        avi.hide();
-//                        avi.setVisibility(View.GONE);
                         commission_rv.setVisibility(View.GONE);
                         myBrokerage_rl.setVisibility(View.VISIBLE);
-                        Log.i("专员佣金", "佣金列表错误信息" + e.getMessage());
                     }
 
                     @Override
@@ -338,5 +301,16 @@ public class CommissionActivity extends AllActivity implements View.OnClickListe
                     }
                 });
 
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 }

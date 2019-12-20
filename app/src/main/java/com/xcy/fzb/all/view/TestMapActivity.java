@@ -35,15 +35,12 @@ import com.baidu.mapapi.search.core.SearchResult;
 import com.baidu.mapapi.search.geocode.GeoCodeResult;
 import com.baidu.mapapi.search.geocode.GeoCoder;
 import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
-import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
-import com.baidu.mapapi.search.route.OnGetRoutePlanResultListener;
 import com.baidu.mapapi.search.route.RoutePlanSearch;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.persente.StatusBar;
-import com.xcy.fzb.all.utils.ToastUtil;
 
-public class TestMapActivity extends AppCompatActivity{
+public class TestMapActivity extends AppCompatActivity {
 
     // 定位相关
     LocationClient mLocClient;
@@ -55,7 +52,7 @@ public class TestMapActivity extends AppCompatActivity{
     BDLocation mlocation;
     private double latitude = 0;
     private double longitude = 0;
-//    private GeoCoder mCoder;
+    private GeoCoder mCoder;
     private LatLng latLng1;
     private RoutePlanSearch mSearch;
     GeoCoder geoCoder = GeoCoder.newInstance();
@@ -90,10 +87,10 @@ public class TestMapActivity extends AppCompatActivity{
         text_map_rl = findViewById(R.id.text_map_rl);
         text_map_img = findViewById(R.id.text_map_img);
 
-        if (la.equals("") || lo.equals("")) {
+        if(la.equals("") || lo.equals("")){
             text_map_rl.setVisibility(View.VISIBLE);
             text_map_img.setVisibility(View.VISIBLE);
-        } else {
+        }else {
             text_map_rl.setVisibility(View.GONE);
             text_map_img.setVisibility(View.GONE);
         }
@@ -125,6 +122,7 @@ public class TestMapActivity extends AppCompatActivity{
         initView();
 
 
+
     }
 
     private void initView() {
@@ -147,10 +145,8 @@ public class TestMapActivity extends AppCompatActivity{
         option.setScanSpan(1000);
         option.setAddrType("all");
         mLocClient.setLocOption(option);
-        //经纬度转地址
-//        mSearch = RoutePlanSearch.newInstance();
-//        mCoder = GeoCoder.newInstance();
-//        mSearch.setOnGetRoutePlanResultListener((OnGetRoutePlanResultListener) this);
+        mCoder = GeoCoder.newInstance();
+
 
         BaiduMap.OnMapClickListener listener = new BaiduMap.OnMapClickListener() {
 
@@ -173,11 +169,6 @@ public class TestMapActivity extends AppCompatActivity{
                 mBaiduMap.addOverlay(option);
                 latitude = latLng.latitude;
                 longitude = latLng.longitude;
-                //经纬度转地址
-//                mCoder.reverseGeoCode(new ReverseGeoCodeOption()
-//                        .location(point)
-//                        // POI召回半径，允许设置区间为0-1000米，超过1000米按1000米召回。默认值为1000
-//                        .radius(500));
 
                 latLng1 = latLng;
             }
@@ -195,26 +186,6 @@ public class TestMapActivity extends AppCompatActivity{
 
     }
 
-//    //经纬度转地址
-//    OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
-//        @Override
-//        public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
-//
-//        }
-//
-//        @Override
-//        public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
-//            if (reverseGeoCodeResult == null || reverseGeoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
-//                //没有找到检索结果
-//                return;
-//            } else {
-//                //详细地址
-//                String address = reverseGeoCodeResult.getAddress();
-////                //行政区号
-////                int adCode = reverseGeoCodeResult. getCityCode();
-//            }
-//        }
-//    };
 
     /**
      * 定位SDK监听函数
@@ -229,13 +200,13 @@ public class TestMapActivity extends AppCompatActivity{
             }
             mlocation = location;
 
-            if (lo.equals("") || la.equals("")) {
+            if(lo.equals("") || la.equals("")){
                 locData = new MyLocationData.Builder()
                         .accuracy(mlocation.getRadius())
                         // 此处设置开发者获取到的方向信息，顺时针0-360
                         .direction(100).latitude(mlocation.getLatitude())
                         .longitude(mlocation.getLongitude()).build();
-            } else {
+            }else {
                 locData = new MyLocationData.Builder()
                         .accuracy(mlocation.getRadius())
                         // 此处设置开发者获取到的方向信息，顺时针0-360
@@ -250,13 +221,13 @@ public class TestMapActivity extends AppCompatActivity{
                 if (lo.equals("") || la.equals("")) {
                     ll = new LatLng(location.getLatitude(),
                             location.getLongitude());
-                } else {
+                }else {
                     ll = new LatLng(Double.parseDouble(la),
                             Double.parseDouble(lo));
                 }
 
                 MapStatus.Builder builder = new MapStatus.Builder();
-                builder.target(ll).zoom(20.0f);
+                builder.target(ll).zoom(18.0f);
                 mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             }
         }
@@ -290,7 +261,7 @@ public class TestMapActivity extends AppCompatActivity{
         mBaiduMap.setMyLocationEnabled(false);
         mMapView.onDestroy();
         mMapView = null;
-//        mCoder.destroy();
+        mCoder.destroy();
 
         super.onDestroy();
     }
@@ -301,16 +272,16 @@ public class TestMapActivity extends AppCompatActivity{
     public void sendMessage() {
 
         if (mlocation == null || mMapView == null) {
-            ToastUtil.showToast(TestMapActivity.this, "点击了发送按钮");
+            Toast.makeText(TestMapActivity.this, "点击了发送按钮", Toast.LENGTH_SHORT).show();
             return;
         }
 
 //        Log.i("地图", "latitude：" + latitude);
 //        Log.i("地图", "longitude：" + longitude);
 
-        if (latitude == 0 || longitude == 0) {
-            ToastUtil.showToast(TestMapActivity.this, "请选择定位");
-        } else {
+        if(latitude == 0 || longitude == 0){
+            Toast.makeText(TestMapActivity.this, "请选择定位", Toast.LENGTH_SHORT).show();
+        }else {
             Intent intent = new Intent();
             //纬度
             intent.putExtra("getLatitude", latitude + "");
@@ -321,6 +292,7 @@ public class TestMapActivity extends AppCompatActivity{
             setResult(RESULT_OK, intent);
             finish();
         }
+
 
 
         //        Intent intent = new Intent();
@@ -344,7 +316,7 @@ public class TestMapActivity extends AppCompatActivity{
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
 //                    initMap();//开始定位
                 } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
-                    ToastUtil.showToast(TestMapActivity.this, "未开启定位权限,请手动到设置去开启权限");
+                    Toast.makeText(TestMapActivity.this, "未开启定位权限,请手动到设置去开启权限", Toast.LENGTH_LONG).show();
                     initView();
                 }
                 break;
@@ -360,8 +332,8 @@ public class TestMapActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
-        ToastUtil.showToast(TestMapActivity.this, "请选择坐标并且发送");
-        Log.i("键", "点击了回退键");
+        Toast.makeText(TestMapActivity.this,"请选择坐标并且发送", Toast.LENGTH_SHORT).show();
+        Log.i("键","点击了回退键");
 
     }
 

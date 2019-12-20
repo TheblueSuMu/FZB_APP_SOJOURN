@@ -248,7 +248,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginRight="30dp"
                             android:gravity="right"
-                            android:hint="省/市/区"
+                            android:text="省/市/区"
                             android:textColor="#ff666666"
                             android:textSize="15sp" />
 
@@ -391,7 +391,6 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:visibility="gone"
                                 android:text="*"
                                 android:textColor="#AC1E26"
                                 android:textSize="15sp" />
@@ -442,7 +441,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="*"
-                                android:visibility="gone"
                                 android:textColor="#AC1E26"
                                 android:textSize="15sp" />
                         </LinearLayout>
@@ -452,7 +450,6 @@
                         android:id="@+id/rl3"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:visibility="gone"
                         android:background="#FFFFFF">
 
                         <EditText
@@ -497,7 +494,6 @@
 
                     <RelativeLayout
                         android:id="@+id/rl4"
-                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:background="#FFFFFF">
@@ -604,16 +600,6 @@
                                 android:button="@null"
                                 android:drawableLeft="@drawable/checkbox_check_s"
                                 android:text="  取消合作" />
-
-                            <RadioButton
-                                android:id="@+id/add_company_rb4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:button="@null"
-                                android:visibility="gone"
-                                android:drawableLeft="@drawable/checkbox_check_s"
-                                android:text="  倒闭" />
                         </RadioGroup>
                     </RelativeLayout>
 

@@ -33,7 +33,6 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.MessageBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
-import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.BigPhotoActivity;
 
 import java.io.File;
@@ -97,8 +96,7 @@ public class NoticeFragment extends Fragment {
     private List<MessageBean.DataBean.RowsBean> rows;
     Bitmap bitmap;
     private ProgressDialog progressDialog;
-    private ImageView all_no_information_notice;
-    private NoticeAdapter adapter;
+    private ImageView all_no_information;
 
     public NoticeFragment() {
         // Required empty public constructor
@@ -120,7 +118,7 @@ public class NoticeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         notice_rv = getActivity().findViewById(R.id.notice_rv);
-        all_no_information_notice = getActivity().findViewById(R.id.all_no_information_notice);
+        all_no_information = getActivity().findViewById(R.id.all_notice_fragment_no_information_notice);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -173,31 +171,19 @@ public class NoticeFragment extends Fragment {
                         rows = data1.getRows();
                         Log.i("列表数据加载", "加载");
                         if (rows.size() != 0) {
-                            try {
-                                all_no_information_notice.setVisibility(View.GONE);
-                                notice_rv.setVisibility(View.VISIBLE);
+                            all_no_information.setVisibility(View.GONE);
+                            notice_rv.setVisibility(View.VISIBLE);
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            NoticeAdapter adapter = new NoticeAdapter();
+                            adapter.setRows(rows);
 
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-
-                            try {
-                                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                                adapter = new NoticeAdapter();
-                                adapter.setRows(rows);
-                                notice_rv.setAdapter(adapter);
-                                adapter.notifyDataSetChanged();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
                             adapter.setClick(new NoticeAdapter.Click() {
                                 @Override
                                 public void ItemOnClick(int position) {
                                     String phone = rows.get(position).getPhone();
                                     if (phone.equals("")) {
-                                        ToastUtil.showLongToast(getContext(),"暂无电话信息，无法拨打");
+                                        Toast.makeText(getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));//跳转到拨号界面，同时传递电话号码
                                         startActivity(dialIntent);
@@ -269,31 +255,24 @@ public class NoticeFragment extends Fragment {
                                             }
                                         }
                                     }
-                                    ToastUtil.showLongToast(getContext(),"复制成功");
+                                    Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
                                     num = 0;
                                 }
                             });
 
+                            notice_rv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
                         }else {
-                            try {
-                                all_no_information_notice.setVisibility(View.VISIBLE);
-                                notice_rv.setVisibility(View.GONE);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
+                            all_no_information.setVisibility(View.VISIBLE);
+                            notice_rv.setVisibility(View.GONE);
                         }
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        try {
-                            all_no_information_notice.setVisibility(View.VISIBLE);
-                            notice_rv.setVisibility(View.GONE);
-                        } catch (Exception ee) {
-                            ee.printStackTrace();
-                        }
+                        all_no_information.setVisibility(View.VISIBLE);
+                        notice_rv.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

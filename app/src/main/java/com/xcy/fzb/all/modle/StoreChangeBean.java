@@ -2,10 +2,11 @@ package com.xcy.fzb.all.modle;
 
 public class StoreChangeBean {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"isstorePerson":0,"storePerson":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","state":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"storeManage":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company1":"","company":"","storeName":"","area":"","zoneId":"","location":"","address":"","storeInfo":"","attache":"","managerId":"","directorId":"","flag":"","state":"","lProvince":"","lCity":"","lRegion":"","officeId":"","storeRise":"","storeImg":"","reason":"","userId":"","storeNum":"","userName":"","phone":"","loginName":"","password":"","attacheName":"","attachePhone":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","commissionLevelId":"","roleNames":"","admin":false},"storeManage":{"id":"fbeae5e59dbe4f26adcaee721b1d9ff5","remarks":"","createBy":"","createDate":"2019-11-12 13:34:36","updateBy":"","updateDate":"2019-11-21 16:56:13","company1":"","company":{"id":"04ef76d6e02a44999b48d3584b354d59","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"苹果公司","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","state":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"storeName":"苹果门店","area":"海南省/三亚市/吉阳区","zoneId":"","location":"116.71043,39.788041","address":"北京市北京市通州区","storeInfo":"","attache":"","managerId":"","directorId":"","flag":"1","state":"","lProvince":"海南省","lCity":"三亚市","lRegion":"吉阳区","officeId":"c241db93cbd247f5a8aadf501806b56a","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191112123739/2019/11/1573536866753.png","storeImg":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/store_20191112123746/2019/11/1573536873731.png","reason":"","userId":"","storeNum":"0000784","userName":"","phone":"","loginName":"","password":"","attacheName":"文章","attachePhone":"13241693578","startTime":"","endTime":"","lprovince":"海南省","lcity":"三亚市","lregion":"吉阳区"}}
+     * data : {"isstorePerson":1,"storePerson":{"id":"66d293e451db4400979d8b3bac0b167f","remarks":"","createBy":"","createDate":"2019-10-26 16:43:15","updateBy":"","updateDate":"2019-10-30 10:00:45","company":"","office":"","post":"","loginName":"nyn","newPassword":"","oldLoginName":"","no":"","name":"你呀你","position":"","directLeaderId":"","email":"","phone":"18655221470","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"湖南省","city":"长沙市","county":"长沙县","identity":"3","companyManage":{"id":"71bfda821c1841c182ce32568689bc78","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"娇娇公司","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"storeManage":{"id":"7233ef790059406881e8121622bbf979","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company1":"","company":"","storeName":"娇娇设置的门店","area":"","zoneId":"","location":"","address":"","storeInfo":"","attache":"","managerId":"","directorId":"","flag":"","lProvince":"","lCity":"","lRegion":"","officeId":"","storeRise":"","storeImg":"","reason":"","userId":"","storeNum":"","userName":"","phone":"","loginName":"","password":"","attacheName":"","attachePhone":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"borkerId":"","storeId":"7233ef790059406881e8121622bbf979","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","commissionLevelId":"","admin":false,"roleNames":""},"storeManage":{"id":"7233ef790059406881e8121622bbf979","remarks":"","createBy":"","createDate":"2019-10-26 15:32:46","updateBy":"","updateDate":"2019-11-01 11:34:27","company1":"","company":{"id":"946ee5b7800443f4a6379e4df42712b9","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"大大经纪公司","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"storeName":"娇娇设置的门店","area":"湖南省/长沙市/长沙县","zoneId":"","location":"","address":"长泾大陆街道处","storeInfo":"","attache":"","managerId":"","directorId":"","flag":"1","lProvince":"湖南省","lCity":"长沙市","lRegion":"长沙县","officeId":"c241db93cbd247f5a8aadf501806b56a","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191029143726/2019/10/file.png","storeImg":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/zhuanyuan/2019/10/Ask2(10).png","reason":"","userId":"66d293e451db4400979d8b3bac0b167f","storeNum":"0000534","userName":"你呀你","phone":"18655221470","loginName":"nyn","password":"","attacheName":"叫我亲爱的","attachePhone":"18513271146","startTime":"","endTime":"","lprovince":"湖南省","lcity":"长沙市","lregion":"长沙县"}}
      */
 
     private String code;
@@ -38,9 +39,9 @@ public class StoreChangeBean {
 
     public static class DataBean {
         /**
-         * isstorePerson : 0
-         * storePerson : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","newPassword":"","oldLoginName":"","no":"","name":"","position":"","directLeaderId":"","email":"","phone":"","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"","city":"","county":"","identity":"","companyManage":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","state":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"storeManage":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company1":"","company":"","storeName":"","area":"","zoneId":"","location":"","address":"","storeInfo":"","attache":"","managerId":"","directorId":"","flag":"","state":"","lProvince":"","lCity":"","lRegion":"","officeId":"","storeRise":"","storeImg":"","reason":"","userId":"","storeNum":"","userName":"","phone":"","loginName":"","password":"","attacheName":"","attachePhone":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"borkerId":"","storeId":"","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","commissionLevelId":"","roleNames":"","admin":false}
-         * storeManage : {"id":"fbeae5e59dbe4f26adcaee721b1d9ff5","remarks":"","createBy":"","createDate":"2019-11-12 13:34:36","updateBy":"","updateDate":"2019-11-21 16:56:13","company1":"","company":{"id":"04ef76d6e02a44999b48d3584b354d59","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"苹果公司","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","state":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"storeName":"苹果门店","area":"海南省/三亚市/吉阳区","zoneId":"","location":"116.71043,39.788041","address":"北京市北京市通州区","storeInfo":"","attache":"","managerId":"","directorId":"","flag":"1","state":"","lProvince":"海南省","lCity":"三亚市","lRegion":"吉阳区","officeId":"c241db93cbd247f5a8aadf501806b56a","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191112123739/2019/11/1573536866753.png","storeImg":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/store_20191112123746/2019/11/1573536873731.png","reason":"","userId":"","storeNum":"0000784","userName":"","phone":"","loginName":"","password":"","attacheName":"文章","attachePhone":"13241693578","startTime":"","endTime":"","lprovince":"海南省","lcity":"三亚市","lregion":"吉阳区"}
+         * isstorePerson : 1
+         * storePerson : {"id":"66d293e451db4400979d8b3bac0b167f","remarks":"","createBy":"","createDate":"2019-10-26 16:43:15","updateBy":"","updateDate":"2019-10-30 10:00:45","company":"","office":"","post":"","loginName":"nyn","newPassword":"","oldLoginName":"","no":"","name":"你呀你","position":"","directLeaderId":"","email":"","phone":"18655221470","oldPhone":"","mobile":"","photo":"","loginIp":"","loginDate":"","loginFlag":"1","qrcode":"","sign":"","sex":"","province":"湖南省","city":"长沙市","county":"长沙县","identity":"3","companyManage":{"id":"71bfda821c1841c182ce32568689bc78","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"娇娇公司","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"storeManage":{"id":"7233ef790059406881e8121622bbf979","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company1":"","company":"","storeName":"娇娇设置的门店","area":"","zoneId":"","location":"","address":"","storeInfo":"","attache":"","managerId":"","directorId":"","flag":"","lProvince":"","lCity":"","lRegion":"","officeId":"","storeRise":"","storeImg":"","reason":"","userId":"","storeNum":"","userName":"","phone":"","loginName":"","password":"","attacheName":"","attachePhone":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"borkerId":"","storeId":"7233ef790059406881e8121622bbf979","role":"","isCircle":"","parent":"","industry":"","type":"","teamLeader":"","level":"","teamRatio":"","manager":"","startTime":"","endTime":"","startTime1":"","endTime1":"","manageFlag":"","commissionLevelId":"","admin":false,"roleNames":""}
+         * storeManage : {"id":"7233ef790059406881e8121622bbf979","remarks":"","createBy":"","createDate":"2019-10-26 15:32:46","updateBy":"","updateDate":"2019-11-01 11:34:27","company1":"","company":{"id":"946ee5b7800443f4a6379e4df42712b9","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"大大经纪公司","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""},"storeName":"娇娇设置的门店","area":"湖南省/长沙市/长沙县","zoneId":"","location":"","address":"长泾大陆街道处","storeInfo":"","attache":"","managerId":"","directorId":"","flag":"1","lProvince":"湖南省","lCity":"长沙市","lRegion":"长沙县","officeId":"c241db93cbd247f5a8aadf501806b56a","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191029143726/2019/10/file.png","storeImg":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/zhuanyuan/2019/10/Ask2(10).png","reason":"","userId":"66d293e451db4400979d8b3bac0b167f","storeNum":"0000534","userName":"你呀你","phone":"18655221470","loginName":"nyn","password":"","attacheName":"叫我亲爱的","attachePhone":"18513271146","startTime":"","endTime":"","lprovince":"湖南省","lcity":"长沙市","lregion":"长沙县"}
          */
 
         private int isstorePerson;
@@ -73,24 +74,24 @@ public class StoreChangeBean {
 
         public static class StorePersonBean {
             /**
-             * id :
+             * id : 66d293e451db4400979d8b3bac0b167f
              * remarks :
              * createBy :
-             * createDate :
+             * createDate : 2019-10-26 16:43:15
              * updateBy :
-             * updateDate :
+             * updateDate : 2019-10-30 10:00:45
              * company :
              * office :
              * post :
-             * loginName :
+             * loginName : nyn
              * newPassword :
              * oldLoginName :
              * no :
-             * name :
+             * name : 你呀你
              * position :
              * directLeaderId :
              * email :
-             * phone :
+             * phone : 18655221470
              * oldPhone :
              * mobile :
              * photo :
@@ -100,14 +101,14 @@ public class StoreChangeBean {
              * qrcode :
              * sign :
              * sex :
-             * province :
-             * city :
-             * county :
-             * identity :
-             * companyManage : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","state":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""}
-             * storeManage : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company1":"","company":"","storeName":"","area":"","zoneId":"","location":"","address":"","storeInfo":"","attache":"","managerId":"","directorId":"","flag":"","state":"","lProvince":"","lCity":"","lRegion":"","officeId":"","storeRise":"","storeImg":"","reason":"","userId":"","storeNum":"","userName":"","phone":"","loginName":"","password":"","attacheName":"","attachePhone":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""}
+             * province : 湖南省
+             * city : 长沙市
+             * county : 长沙县
+             * identity : 3
+             * companyManage : {"id":"71bfda821c1841c182ce32568689bc78","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"娇娇公司","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""}
+             * storeManage : {"id":"7233ef790059406881e8121622bbf979","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company1":"","company":"","storeName":"娇娇设置的门店","area":"","zoneId":"","location":"","address":"","storeInfo":"","attache":"","managerId":"","directorId":"","flag":"","lProvince":"","lCity":"","lRegion":"","officeId":"","storeRise":"","storeImg":"","reason":"","userId":"","storeNum":"","userName":"","phone":"","loginName":"","password":"","attacheName":"","attachePhone":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""}
              * borkerId :
-             * storeId :
+             * storeId : 7233ef790059406881e8121622bbf979
              * role :
              * isCircle :
              * parent :
@@ -123,8 +124,8 @@ public class StoreChangeBean {
              * endTime1 :
              * manageFlag :
              * commissionLevelId :
-             * roleNames :
              * admin : false
+             * roleNames :
              */
 
             private String id;
@@ -177,8 +178,8 @@ public class StoreChangeBean {
             private String endTime1;
             private String manageFlag;
             private String commissionLevelId;
-            private String roleNames;
             private boolean admin;
+            private String roleNames;
 
             public String getId() {
                 return id;
@@ -580,14 +581,6 @@ public class StoreChangeBean {
                 this.commissionLevelId = commissionLevelId;
             }
 
-            public String getRoleNames() {
-                return roleNames;
-            }
-
-            public void setRoleNames(String roleNames) {
-                this.roleNames = roleNames;
-            }
-
             public boolean isAdmin() {
                 return admin;
             }
@@ -596,16 +589,24 @@ public class StoreChangeBean {
                 this.admin = admin;
             }
 
+            public String getRoleNames() {
+                return roleNames;
+            }
+
+            public void setRoleNames(String roleNames) {
+                this.roleNames = roleNames;
+            }
+
             public static class CompanyManageBean {
                 /**
-                 * id :
+                 * id : 71bfda821c1841c182ce32568689bc78
                  * remarks :
                  * createBy :
                  * createDate :
                  * updateBy :
                  * updateDate :
                  * companyCityName :
-                 * companyName :
+                 * companyName : 娇娇公司
                  * area :
                  * zoneId :
                  * location :
@@ -615,7 +616,6 @@ public class StoreChangeBean {
                  * managerId :
                  * directorId :
                  * flag :
-                 * state :
                  * officeId :
                  * userId :
                  * userName :
@@ -646,7 +646,6 @@ public class StoreChangeBean {
                 private String managerId;
                 private String directorId;
                 private String flag;
-                private String state;
                 private String officeId;
                 private String userId;
                 private String userName;
@@ -795,14 +794,6 @@ public class StoreChangeBean {
                     this.flag = flag;
                 }
 
-                public String getState() {
-                    return state;
-                }
-
-                public void setState(String state) {
-                    this.state = state;
-                }
-
                 public String getOfficeId() {
                     return officeId;
                 }
@@ -894,7 +885,7 @@ public class StoreChangeBean {
 
             public static class StoreManageBean {
                 /**
-                 * id :
+                 * id : 7233ef790059406881e8121622bbf979
                  * remarks :
                  * createBy :
                  * createDate :
@@ -902,7 +893,7 @@ public class StoreChangeBean {
                  * updateDate :
                  * company1 :
                  * company :
-                 * storeName :
+                 * storeName : 娇娇设置的门店
                  * area :
                  * zoneId :
                  * location :
@@ -912,7 +903,6 @@ public class StoreChangeBean {
                  * managerId :
                  * directorId :
                  * flag :
-                 * state :
                  * lProvince :
                  * lCity :
                  * lRegion :
@@ -953,7 +943,6 @@ public class StoreChangeBean {
                 private String managerId;
                 private String directorId;
                 private String flag;
-                private String state;
                 private String lProvince;
                 private String lCity;
                 private String lRegion;
@@ -1117,14 +1106,6 @@ public class StoreChangeBean {
 
                 public void setFlag(String flag) {
                     this.flag = flag;
-                }
-
-                public String getState() {
-                    return state;
-                }
-
-                public void setState(String state) {
-                    this.state = state;
                 }
 
                 public String getLProvince() {
@@ -1291,45 +1272,44 @@ public class StoreChangeBean {
 
         public static class StoreManageBeanX {
             /**
-             * id : fbeae5e59dbe4f26adcaee721b1d9ff5
+             * id : 7233ef790059406881e8121622bbf979
              * remarks :
              * createBy :
-             * createDate : 2019-11-12 13:34:36
+             * createDate : 2019-10-26 15:32:46
              * updateBy :
-             * updateDate : 2019-11-21 16:56:13
+             * updateDate : 2019-11-01 11:34:27
              * company1 :
-             * company : {"id":"04ef76d6e02a44999b48d3584b354d59","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"苹果公司","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","state":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""}
-             * storeName : 苹果门店
-             * area : 海南省/三亚市/吉阳区
+             * company : {"id":"946ee5b7800443f4a6379e4df42712b9","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","companyCityName":"","companyName":"大大经纪公司","area":"","zoneId":"","location":"","address":"","companyInfo":"","attacheId":"","managerId":"","directorId":"","flag":"","officeId":"","userId":"","userName":"","phone":"","loginName":"","password":"","startTime":"","endTime":"","lprovince":"","lcity":"","lregion":""}
+             * storeName : 娇娇设置的门店
+             * area : 湖南省/长沙市/长沙县
              * zoneId :
-             * location : 116.71043,39.788041
-             * address : 北京市北京市通州区
+             * location :
+             * address : 长泾大陆街道处
              * storeInfo :
              * attache :
              * managerId :
              * directorId :
              * flag : 1
-             * state :
-             * lProvince : 海南省
-             * lCity : 三亚市
-             * lRegion : 吉阳区
+             * lProvince : 湖南省
+             * lCity : 长沙市
+             * lRegion : 长沙县
              * officeId : c241db93cbd247f5a8aadf501806b56a
-             * storeRise : /fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191112123739/2019/11/1573536866753.png
-             * storeImg : /fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/store_20191112123746/2019/11/1573536873731.png
+             * storeRise : /fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191029143726/2019/10/file.png
+             * storeImg : /fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/zhuanyuan/2019/10/Ask2(10).png
              * reason :
-             * userId :
-             * storeNum : 0000784
-             * userName :
-             * phone :
-             * loginName :
+             * userId : 66d293e451db4400979d8b3bac0b167f
+             * storeNum : 0000534
+             * userName : 你呀你
+             * phone : 18655221470
+             * loginName : nyn
              * password :
-             * attacheName : 文章
-             * attachePhone : 13241693578
+             * attacheName : 叫我亲爱的
+             * attachePhone : 18513271146
              * startTime :
              * endTime :
-             * lprovince : 海南省
-             * lcity : 三亚市
-             * lregion : 吉阳区
+             * lprovince : 湖南省
+             * lcity : 长沙市
+             * lregion : 长沙县
              */
 
             private String id;
@@ -1350,7 +1330,6 @@ public class StoreChangeBean {
             private String managerId;
             private String directorId;
             private String flag;
-            private String state;
             private String lProvince;
             private String lCity;
             private String lRegion;
@@ -1516,14 +1495,6 @@ public class StoreChangeBean {
                 this.flag = flag;
             }
 
-            public String getState() {
-                return state;
-            }
-
-            public void setState(String state) {
-                this.state = state;
-            }
-
             public String getLProvince() {
                 return lProvince;
             }
@@ -1686,14 +1657,14 @@ public class StoreChangeBean {
 
             public static class CompanyBean {
                 /**
-                 * id : 04ef76d6e02a44999b48d3584b354d59
+                 * id : 946ee5b7800443f4a6379e4df42712b9
                  * remarks :
                  * createBy :
                  * createDate :
                  * updateBy :
                  * updateDate :
                  * companyCityName :
-                 * companyName : 苹果公司
+                 * companyName : 大大经纪公司
                  * area :
                  * zoneId :
                  * location :
@@ -1703,7 +1674,6 @@ public class StoreChangeBean {
                  * managerId :
                  * directorId :
                  * flag :
-                 * state :
                  * officeId :
                  * userId :
                  * userName :
@@ -1734,7 +1704,6 @@ public class StoreChangeBean {
                 private String managerId;
                 private String directorId;
                 private String flag;
-                private String state;
                 private String officeId;
                 private String userId;
                 private String userName;
@@ -1881,14 +1850,6 @@ public class StoreChangeBean {
 
                 public void setFlag(String flag) {
                     this.flag = flag;
-                }
-
-                public String getState() {
-                    return state;
-                }
-
-                public void setState(String state) {
-                    this.state = state;
                 }
 
                 public String getOfficeId() {

@@ -8,7 +8,7 @@ public class StoreListBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"total":20,"rows":[{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"3db11016e35c4af796f34057cee3d29c","companyName":"测试公司","companyAddress":"","storeNum":"","storeName":"互联网金融","storeId":"efd95b4f26b64f1883cc4f96643eb873","storeIdCode":"0000889","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"江苏省/常州市/天宁区","address":"江南皮革厂","storeRise":"","storeImg":"","location":"","comLocation":"117.386421,39.170700","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"3db11016e35c4af796f34057cee3d29c","companyName":"测试公司","companyAddress":"","storeNum":"","storeName":"互联网络信息","storeId":"1203072f00b645c485462bfe35dcf4f7","storeIdCode":"0000864","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"2","state":"","cmState":"","area":"河北石家庄市长安区","address":"互联网络","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191127143403/2019/11/1574836444222.png","storeImg":"","location":"","comLocation":"117.386421,39.170700","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"e636152802b04f72a13ef7c3d3a0b56a","companyName":"幸福冲冲冲公司","companyAddress":"","storeNum":"","storeName":"幸福门店","storeId":"47c8f3b275394ddb89fb3920d45dea0b","storeIdCode":"0000844","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"2","cmState":"2","area":"天津市/天津市/南开区","address":"天津市天津市南开区白堤路222号","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191125142344/2019/11/1574663024424.png","storeImg":"","location":"117.16261,39.117136","comLocation":"125.314240,43.794003","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"2","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"d3d7c870c45641fcaccfbeb301da58ec","companyName":"长春房产科技公司","companyAddress":"","storeNum":"","storeName":"互联网络发展有限公司","storeId":"5a405bdf959e4539a6bbeea3205ac39c","storeIdCode":"0000843","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"天津市/天津市/和平区","address":"天津市天津市南开区白堤路222号","storeRise":"","storeImg":"","location":"117.162597,39.117136","comLocation":"117.171021,39.125038","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"e081773e40624c1797083a8b885c11de","companyName":"好公司","companyAddress":"","storeNum":"","storeName":"门店","storeId":"2023052026ee4dd884ef4e13e532382f","storeIdCode":"0000815","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"1","cmState":"1","area":"安徽省/芜湖市/弋江区","address":"天津市天津市南开区白堤路222号","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/zhuanyuan/2019/11/1574824487024.png","storeImg":"","location":"117.162615,39.117138","comLocation":"116.54964227009859,40.47325458230447","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"1","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"946ee5b7800443f4a6379e4df42712b9","companyName":"大大经纪公司","companyAddress":"","storeNum":"","storeName":"互联网","storeId":"5beeb664094b411386ab5c71474b4696","storeIdCode":"0000794","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"3","state":"","cmState":"","area":"北京市/北京市/顺义区","address":"天津市天津市南开区白堤路222号","storeRise":"","storeImg":"","location":"","comLocation":"117.16172069543227,39.11713053593799","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"1","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"d3d7c870c45641fcaccfbeb301da58ec","companyName":"长春房产科技公司","companyAddress":"","storeNum":"","storeName":"互联网业","storeId":"ed1eb42f7a2545e2bfa4a4e9fe372e64","storeIdCode":"0000793","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"甘肃省/兰州市/城关区","address":"北京市北京市顺义区","storeRise":"","storeImg":"","location":"116.750674,40.056304","comLocation":"117.171021,39.125038","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"1","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"04ef76d6e02a44999b48d3584b354d59","companyName":"苹果公司","companyAddress":"","storeNum":"","storeName":"苹果门店","storeId":"fbeae5e59dbe4f26adcaee721b1d9ff5","storeIdCode":"0000784","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"海南省/三亚市/吉阳区","address":"北京市北京市通州区","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191112123739/2019/11/1573536866753.png","storeImg":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/store_20191112123746/2019/11/1573536873731.png","location":"116.71043,39.788041","comLocation":"125.314880,43.797153","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"1","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"061b8a79e63743f9b87e604ef3f621c2","companyName":"婆婆家","companyAddress":"","storeNum":"","storeName":"丈母娘家门店","storeId":"f9cec5c3f12a4aecba3e6b96d0162fdd","storeIdCode":"0000682","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"湖北省/武汉市/江岸区","address":"北京市北京市海淀区","storeRise":"/fangfang/userfiles/190d0b4f97f94f2297535613f7f10728/attachment/storerise_20191104173905/2019/11/1572860345775.png","storeImg":"/fangfang/userfiles/190d0b4f97f94f2297535613f7f10728/attachment/store_20191104173912/2019/11/1572860352839.png","location":"116.276369,39.922747","comLocation":"117.168564,39.125477","attacheId":"190d0b4f97f94f2297535613f7f10728","attacheName":"经服专员","attachePhone":"19943355236","attacheIdentity":"5","isMy":"0","reason":"","agentNum":"2","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"589408f8a78342e7bd5dd0996d8cc5a5","companyName":"秃头公司","companyAddress":"","storeNum":"","storeName":"秃头门店","storeId":"2cfb1f5d4f7146b69e4d716d7ebdb0cd","storeIdCode":"0000671","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"湖南省/怀化市/鹤城区","address":"北京市北京市门头沟区","storeRise":"/fangfang/userfiles/190d0b4f97f94f2297535613f7f10728/attachment/storerise_20191104173206/2019/11/1572859926560.png","storeImg":"/fangfang/userfiles/190d0b4f97f94f2297535613f7f10728/attachment/store_20191104173215/2019/11/1572859935543.png","location":"116.118267,39.92983","comLocation":"117.162849,39.117085","attacheId":"190d0b4f97f94f2297535613f7f10728","attacheName":"经服专员","attachePhone":"19943355236","attacheIdentity":"5","isMy":"0","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""}]}
+     * data : {"total":10,"rows":[{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"bf38ccb2df8243cd86c320f309df44e0","companyName":"001","companyAddress":"姑姑呼呼呼不不不阿拉","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"1","shopownerName":"001","shopownerPhone":"15423546213","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"d44a13b6141d4600bd59b5157149bec5","companyName":"开发测试一","companyAddress":"金钟河大街","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"baa267b6cd0340e4bad097ba0a1b9014","companyName":"于","companyAddress":"","storeNum":"0","storeName":"","storeId":"","storeIdCode":"","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"4f3bbbb8643f43b7816f5b32e4fde2b2","companyName":"雪茄","companyAddress":"123","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"1","shopownerName":"雪茄01","shopownerPhone":"15506014085","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"bab6ae2572ec4c25bad6b3875be36c28","companyName":"测试公司","companyAddress":"朝阳区南湖大路","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"c56d4aea06454af0a77d435160710214","companyName":"杨进礼测试","companyAddress":"还不睡呢是呢你呢","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"1","shopownerName":"qazxc","shopownerPhone":"12345678901","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"8e381e93aad04945b96046ad6410230f","companyName":"苹果","companyAddress":"123","storeNum":"2","storeName":"","storeId":"","storeIdCode":"","isShopowner":"1","shopownerName":"苹果1店01","shopownerPhone":"16948732565","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"004c70f2438249039728411b50d996a7","companyName":"唐老鸭","companyAddress":"吉林省长春市南关区人民大街辅路","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"1","shopownerName":"cs5","shopownerPhone":"18235195941","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"221408846cce4194a60a7e7d647daf3e","companyName":"刘喆测试分店","companyAddress":"长春市南三环亚泰大街交汇","storeNum":"0","storeName":"","storeId":"","storeIdCode":"","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"c1af35d848ec45ae9aab71429c9005ab","companyName":"刘喆测试","companyAddress":"长春市南三环亚泰大街交汇","storeNum":"0","storeName":"","storeId":"","storeIdCode":"","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""}]}
      */
 
     private String code;
@@ -41,8 +41,8 @@ public class StoreListBean {
 
     public static class DataBean {
         /**
-         * total : 20
-         * rows : [{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"3db11016e35c4af796f34057cee3d29c","companyName":"测试公司","companyAddress":"","storeNum":"","storeName":"互联网金融","storeId":"efd95b4f26b64f1883cc4f96643eb873","storeIdCode":"0000889","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"江苏省/常州市/天宁区","address":"江南皮革厂","storeRise":"","storeImg":"","location":"","comLocation":"117.386421,39.170700","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"3db11016e35c4af796f34057cee3d29c","companyName":"测试公司","companyAddress":"","storeNum":"","storeName":"互联网络信息","storeId":"1203072f00b645c485462bfe35dcf4f7","storeIdCode":"0000864","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"2","state":"","cmState":"","area":"河北石家庄市长安区","address":"互联网络","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191127143403/2019/11/1574836444222.png","storeImg":"","location":"","comLocation":"117.386421,39.170700","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"e636152802b04f72a13ef7c3d3a0b56a","companyName":"幸福冲冲冲公司","companyAddress":"","storeNum":"","storeName":"幸福门店","storeId":"47c8f3b275394ddb89fb3920d45dea0b","storeIdCode":"0000844","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"2","cmState":"2","area":"天津市/天津市/南开区","address":"天津市天津市南开区白堤路222号","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191125142344/2019/11/1574663024424.png","storeImg":"","location":"117.16261,39.117136","comLocation":"125.314240,43.794003","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"2","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"d3d7c870c45641fcaccfbeb301da58ec","companyName":"长春房产科技公司","companyAddress":"","storeNum":"","storeName":"互联网络发展有限公司","storeId":"5a405bdf959e4539a6bbeea3205ac39c","storeIdCode":"0000843","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"天津市/天津市/和平区","address":"天津市天津市南开区白堤路222号","storeRise":"","storeImg":"","location":"117.162597,39.117136","comLocation":"117.171021,39.125038","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"e081773e40624c1797083a8b885c11de","companyName":"好公司","companyAddress":"","storeNum":"","storeName":"门店","storeId":"2023052026ee4dd884ef4e13e532382f","storeIdCode":"0000815","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"1","cmState":"1","area":"安徽省/芜湖市/弋江区","address":"天津市天津市南开区白堤路222号","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/zhuanyuan/2019/11/1574824487024.png","storeImg":"","location":"117.162615,39.117138","comLocation":"116.54964227009859,40.47325458230447","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"1","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"946ee5b7800443f4a6379e4df42712b9","companyName":"大大经纪公司","companyAddress":"","storeNum":"","storeName":"互联网","storeId":"5beeb664094b411386ab5c71474b4696","storeIdCode":"0000794","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"3","state":"","cmState":"","area":"北京市/北京市/顺义区","address":"天津市天津市南开区白堤路222号","storeRise":"","storeImg":"","location":"","comLocation":"117.16172069543227,39.11713053593799","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"1","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"d3d7c870c45641fcaccfbeb301da58ec","companyName":"长春房产科技公司","companyAddress":"","storeNum":"","storeName":"互联网业","storeId":"ed1eb42f7a2545e2bfa4a4e9fe372e64","storeIdCode":"0000793","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"甘肃省/兰州市/城关区","address":"北京市北京市顺义区","storeRise":"","storeImg":"","location":"116.750674,40.056304","comLocation":"117.171021,39.125038","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"1","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"04ef76d6e02a44999b48d3584b354d59","companyName":"苹果公司","companyAddress":"","storeNum":"","storeName":"苹果门店","storeId":"fbeae5e59dbe4f26adcaee721b1d9ff5","storeIdCode":"0000784","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"海南省/三亚市/吉阳区","address":"北京市北京市通州区","storeRise":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/storerise_20191112123739/2019/11/1573536866753.png","storeImg":"/fangfang/userfiles/badb8e2d394d4841a8376437471970a5/attachment/store_20191112123746/2019/11/1573536873731.png","location":"116.71043,39.788041","comLocation":"125.314880,43.797153","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"1","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"061b8a79e63743f9b87e604ef3f621c2","companyName":"婆婆家","companyAddress":"","storeNum":"","storeName":"丈母娘家门店","storeId":"f9cec5c3f12a4aecba3e6b96d0162fdd","storeIdCode":"0000682","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"湖北省/武汉市/江岸区","address":"北京市北京市海淀区","storeRise":"/fangfang/userfiles/190d0b4f97f94f2297535613f7f10728/attachment/storerise_20191104173905/2019/11/1572860345775.png","storeImg":"/fangfang/userfiles/190d0b4f97f94f2297535613f7f10728/attachment/store_20191104173912/2019/11/1572860352839.png","location":"116.276369,39.922747","comLocation":"117.168564,39.125477","attacheId":"190d0b4f97f94f2297535613f7f10728","attacheName":"经服专员","attachePhone":"19943355236","attacheIdentity":"5","isMy":"0","reason":"","agentNum":"2","search":"","beforeDate":"","afterDate":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"589408f8a78342e7bd5dd0996d8cc5a5","companyName":"秃头公司","companyAddress":"","storeNum":"","storeName":"秃头门店","storeId":"2cfb1f5d4f7146b69e4d716d7ebdb0cd","storeIdCode":"0000671","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"湖南省/怀化市/鹤城区","address":"北京市北京市门头沟区","storeRise":"/fangfang/userfiles/190d0b4f97f94f2297535613f7f10728/attachment/storerise_20191104173206/2019/11/1572859926560.png","storeImg":"/fangfang/userfiles/190d0b4f97f94f2297535613f7f10728/attachment/store_20191104173215/2019/11/1572859935543.png","location":"116.118267,39.92983","comLocation":"117.162849,39.117085","attacheId":"190d0b4f97f94f2297535613f7f10728","attacheName":"经服专员","attachePhone":"19943355236","attacheIdentity":"5","isMy":"0","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""}]
+         * total : 10
+         * rows : [{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"bf38ccb2df8243cd86c320f309df44e0","companyName":"001","companyAddress":"姑姑呼呼呼不不不阿拉","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"1","shopownerName":"001","shopownerPhone":"15423546213","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"d44a13b6141d4600bd59b5157149bec5","companyName":"开发测试一","companyAddress":"金钟河大街","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"baa267b6cd0340e4bad097ba0a1b9014","companyName":"于","companyAddress":"","storeNum":"0","storeName":"","storeId":"","storeIdCode":"","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"4f3bbbb8643f43b7816f5b32e4fde2b2","companyName":"雪茄","companyAddress":"123","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"1","shopownerName":"雪茄01","shopownerPhone":"15506014085","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"bab6ae2572ec4c25bad6b3875be36c28","companyName":"测试公司","companyAddress":"朝阳区南湖大路","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"c56d4aea06454af0a77d435160710214","companyName":"杨进礼测试","companyAddress":"还不睡呢是呢你呢","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"1","shopownerName":"qazxc","shopownerPhone":"12345678901","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"8e381e93aad04945b96046ad6410230f","companyName":"苹果","companyAddress":"123","storeNum":"2","storeName":"","storeId":"","storeIdCode":"","isShopowner":"1","shopownerName":"苹果1店01","shopownerPhone":"16948732565","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"004c70f2438249039728411b50d996a7","companyName":"唐老鸭","companyAddress":"吉林省长春市南关区人民大街辅路","storeNum":"1","storeName":"","storeId":"","storeIdCode":"","isShopowner":"1","shopownerName":"cs5","shopownerPhone":"18235195941","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"221408846cce4194a60a7e7d647daf3e","companyName":"刘喆测试分店","companyAddress":"长春市南三环亚泰大街交汇","storeNum":"0","storeName":"","storeId":"","storeIdCode":"","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""},{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"c1af35d848ec45ae9aab71429c9005ab","companyName":"刘喆测试","companyAddress":"长春市南三环亚泰大街交汇","storeNum":"0","storeName":"","storeId":"","storeIdCode":"","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"","address":"","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"","search":""}]
          */
 
         private int total;
@@ -73,36 +73,26 @@ public class StoreListBean {
              * updateBy :
              * updateDate :
              * user :
-             * companyId : 3db11016e35c4af796f34057cee3d29c
-             * companyName : 测试公司
-             * companyAddress :
-             * storeNum :
-             * storeName : 互联网金融
-             * storeId : efd95b4f26b64f1883cc4f96643eb873
-             * storeIdCode : 0000889
-             * isShopowner : 0
-             * shopownerName :
-             * shopownerPhone :
+             * companyId : bf38ccb2df8243cd86c320f309df44e0
+             * companyName : 001
+             * companyAddress : 姑姑呼呼呼不不不阿拉
+             * storeNum : 1
+             * storeName :
+             * storeId :
+             * storeIdCode :
+             * isShopowner : 1
+             * shopownerName : 001
+             * shopownerPhone : 15423546213
              * loginName :
              * status : 1
-             * state :
-             * cmState :
-             * area : 江苏省/常州市/天宁区
-             * address : 江南皮革厂
+             * area :
+             * address :
              * storeRise :
              * storeImg :
              * location :
-             * comLocation : 117.386421,39.170700
-             * attacheId : badb8e2d394d4841a8376437471970a5
-             * attacheName : 文章
-             * attachePhone : 13241693578
-             * attacheIdentity : 5
-             * isMy : 1
              * reason :
-             * agentNum : 0
+             * agentNum :
              * search :
-             * beforeDate :
-             * afterDate :
              */
 
             private String id;
@@ -124,24 +114,14 @@ public class StoreListBean {
             private String shopownerPhone;
             private String loginName;
             private String status;
-            private String state;
-            private String cmState;
             private String area;
             private String address;
             private String storeRise;
             private String storeImg;
             private String location;
-            private String comLocation;
-            private String attacheId;
-            private String attacheName;
-            private String attachePhone;
-            private String attacheIdentity;
-            private String isMy;
             private String reason;
             private String agentNum;
             private String search;
-            private String beforeDate;
-            private String afterDate;
 
             public String getId() {
                 return id;
@@ -295,22 +275,6 @@ public class StoreListBean {
                 this.status = status;
             }
 
-            public String getState() {
-                return state;
-            }
-
-            public void setState(String state) {
-                this.state = state;
-            }
-
-            public String getCmState() {
-                return cmState;
-            }
-
-            public void setCmState(String cmState) {
-                this.cmState = cmState;
-            }
-
             public String getArea() {
                 return area;
             }
@@ -351,54 +315,6 @@ public class StoreListBean {
                 this.location = location;
             }
 
-            public String getComLocation() {
-                return comLocation;
-            }
-
-            public void setComLocation(String comLocation) {
-                this.comLocation = comLocation;
-            }
-
-            public String getAttacheId() {
-                return attacheId;
-            }
-
-            public void setAttacheId(String attacheId) {
-                this.attacheId = attacheId;
-            }
-
-            public String getAttacheName() {
-                return attacheName;
-            }
-
-            public void setAttacheName(String attacheName) {
-                this.attacheName = attacheName;
-            }
-
-            public String getAttachePhone() {
-                return attachePhone;
-            }
-
-            public void setAttachePhone(String attachePhone) {
-                this.attachePhone = attachePhone;
-            }
-
-            public String getAttacheIdentity() {
-                return attacheIdentity;
-            }
-
-            public void setAttacheIdentity(String attacheIdentity) {
-                this.attacheIdentity = attacheIdentity;
-            }
-
-            public String getIsMy() {
-                return isMy;
-            }
-
-            public void setIsMy(String isMy) {
-                this.isMy = isMy;
-            }
-
             public String getReason() {
                 return reason;
             }
@@ -422,22 +338,7 @@ public class StoreListBean {
             public void setSearch(String search) {
                 this.search = search;
             }
-
-            public String getBeforeDate() {
-                return beforeDate;
-            }
-
-            public void setBeforeDate(String beforeDate) {
-                this.beforeDate = beforeDate;
-            }
-
-            public String getAfterDate() {
-                return afterDate;
-            }
-
-            public void setAfterDate(String afterDate) {
-                this.afterDate = afterDate;
-            }
         }
     }
 }
+
