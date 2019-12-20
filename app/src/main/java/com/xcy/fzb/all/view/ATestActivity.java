@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.utils.DataBase;
 import com.xcy.fzb.all.utils.DataBaseUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,7 @@ public class ATestActivity extends AppCompatActivity {
 
                 long index = DataBaseUtil.initAdd(ATestActivity.this, s1, s);
                 if (index != -1) {
-                    Toast.makeText(ATestActivity.this, "插入成功", Toast.LENGTH_LONG).show();
+                    ToastUtil.showToast(ATestActivity.this,"插入成功");
                 }
                 int i = DataBaseUtil.initSize(ATestActivity.this);
                 Log.i("数据库","数据库长度：" + i);
@@ -83,9 +84,9 @@ public class ATestActivity extends AppCompatActivity {
 
                 int numbers = DataBaseUtil.initDelete(ATestActivity.this, s);
                 if (numbers == 0) {
-                    Toast.makeText(ATestActivity.this, "没有找到符合条件的", Toast.LENGTH_LONG).show();
+                    ToastUtil.showToast(ATestActivity.this,"没有找到符合条件的");
                 } else {
-                    Toast.makeText(ATestActivity.this, "删除成功", Toast.LENGTH_LONG).show();
+                    ToastUtil.showToast(ATestActivity.this,"删除成功");
                 }
                 int i = DataBaseUtil.initSize(ATestActivity.this);
                 Log.i("数据库","数据库长度：" + i);
@@ -100,9 +101,9 @@ public class ATestActivity extends AppCompatActivity {
                 String s1 = dataBase_11.getText().toString();
                 int affectNum = DataBaseUtil.initUpData(ATestActivity.this, s1, s);
                 if (affectNum == 0) {
-                    Toast.makeText(ATestActivity.this, "没有找到符合条件的，没有修改", Toast.LENGTH_LONG).show();
+                    ToastUtil.showToast(ATestActivity.this,"没有找到符合条件的，没有修改");
                 } else {
-                    Toast.makeText(ATestActivity.this, "修改成功", Toast.LENGTH_LONG).show();
+                    ToastUtil.showToast(ATestActivity.this,"修改成功");
                 }
                 int i = DataBaseUtil.initSize(ATestActivity.this);
                 Log.i("数据库","数据库长度：" + i);
@@ -117,7 +118,7 @@ public class ATestActivity extends AppCompatActivity {
                 list.clear();
                 list = DataBaseUtil.initSelect(ATestActivity.this, s);
                 if(list.size() == 0){
-                    Toast.makeText(ATestActivity.this, "没有找到相关数据", Toast.LENGTH_LONG).show();
+                    ToastUtil.showToast(ATestActivity.this,"没有找到相关数据");
                 }else {
                     for (int i = 0; i < list.size(); ++i){
                         Log.i("数据库","数据-->" + list.get(i).getUserName() + "***" + list.get(i).getUserPassword());

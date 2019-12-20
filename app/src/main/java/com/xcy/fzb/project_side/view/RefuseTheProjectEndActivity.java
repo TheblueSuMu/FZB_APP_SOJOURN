@@ -18,9 +18,11 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.InitiatedBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.adapter.InitiatedAdapter;
 
@@ -45,6 +47,8 @@ public class RefuseTheProjectEndActivity extends AllActivity implements View.OnC
     LinearLayout the_project_end_refuse_ll4;
     LinearLayout the_project_end_refuse_ll5;
     LinearLayout the_project_end_refuse_ll6;
+    LinearLayout the_project_end_refuse_ll7;
+    LinearLayout the_project_end_refuse_ll8;
 
     InitiatedAdapter adapter;
     private List<InitiatedBean.DataBean.RowsBean> rows;
@@ -73,7 +77,7 @@ public class RefuseTheProjectEndActivity extends AllActivity implements View.OnC
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -90,6 +94,8 @@ public class RefuseTheProjectEndActivity extends AllActivity implements View.OnC
         the_project_end_refuse_ll4 = findViewById(R.id.the_project_end_refuse_ll4);
         the_project_end_refuse_ll5 = findViewById(R.id.the_project_end_refuse_ll5);
         the_project_end_refuse_ll6 = findViewById(R.id.the_project_end_refuse_ll6);
+        the_project_end_refuse_ll7 = findViewById(R.id.the_project_end_refuse_ll7);
+        the_project_end_refuse_ll8 = findViewById(R.id.the_project_end_refuse_ll8);
 
         initData(1);
 
@@ -97,8 +103,10 @@ public class RefuseTheProjectEndActivity extends AllActivity implements View.OnC
         the_project_end_refuse_ll1.setOnClickListener(this);
         the_project_end_refuse_ll3.setOnClickListener(this);
         the_project_end_refuse_ll5.setOnClickListener(this);
+        the_project_end_refuse_ll7.setOnClickListener(this);
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -110,7 +118,7 @@ public class RefuseTheProjectEndActivity extends AllActivity implements View.OnC
                 the_project_end_refuse_ll2.setVisibility(View.VISIBLE);
                 the_project_end_refuse_ll4.setVisibility(View.GONE);
                 the_project_end_refuse_ll6.setVisibility(View.GONE);
-
+                the_project_end_refuse_ll8.setVisibility(View.GONE);
                 initData(1);
 
                 break;
@@ -118,7 +126,7 @@ public class RefuseTheProjectEndActivity extends AllActivity implements View.OnC
                 the_project_end_refuse_ll2.setVisibility(View.GONE);
                 the_project_end_refuse_ll4.setVisibility(View.VISIBLE);
                 the_project_end_refuse_ll6.setVisibility(View.GONE);
-
+                the_project_end_refuse_ll8.setVisibility(View.GONE);
                 initData(2);
 
                 break;
@@ -126,8 +134,16 @@ public class RefuseTheProjectEndActivity extends AllActivity implements View.OnC
                 the_project_end_refuse_ll2.setVisibility(View.GONE);
                 the_project_end_refuse_ll4.setVisibility(View.GONE);
                 the_project_end_refuse_ll6.setVisibility(View.VISIBLE);
-
+                the_project_end_refuse_ll8.setVisibility(View.GONE);
                 initData(3);
+
+                break;
+            case R.id.the_project_end_refuse_ll7:
+                the_project_end_refuse_ll2.setVisibility(View.GONE);
+                the_project_end_refuse_ll4.setVisibility(View.GONE);
+                the_project_end_refuse_ll6.setVisibility(View.GONE);
+                the_project_end_refuse_ll8.setVisibility(View.VISIBLE);
+                initData(4);
 
                 break;
         }

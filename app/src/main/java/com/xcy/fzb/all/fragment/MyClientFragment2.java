@@ -19,6 +19,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ClientFragmentAdapter;
 import com.xcy.fzb.all.adapter.ReportProcessAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ClientFragmentBean;
@@ -27,6 +28,7 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.ReviewTheSuccessActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -118,6 +120,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
     }
 
     private void initData() {
+        rows = new ArrayList<>();
         clientFragmentAdapter = new ClientFragmentAdapter();
         clientFragmentAdapter.setClick(this);
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -169,6 +172,7 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
     }
 
     private void initData2() {
+        rows = new ArrayList<>();
         reportProcessAdapter = new ReportProcessAdapter();
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -217,10 +221,10 @@ public class MyClientFragment2 extends Fragment implements ClientFragmentAdapter
 
     @Override
     public void ItemOnClick(int position) {
+        CityContents.setReadRecordStatus("10");
         Intent intent = new Intent(getContext(), ReviewTheSuccessActivity.class);
         FinalContents.setCustomerID(rows.get(position).getCustomerId());
         FinalContents.setPreparationId(rows.get(position).getPreparationId());
-
         startActivity(intent);
     }
 

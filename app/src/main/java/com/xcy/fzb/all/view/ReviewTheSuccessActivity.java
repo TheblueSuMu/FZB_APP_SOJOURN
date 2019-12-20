@@ -24,18 +24,22 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ReviewTheSuccessAdapter;
 import com.xcy.fzb.all.adapter.ReviewTheSuccessPhoneAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.database.FieldBean;
 import com.xcy.fzb.all.modle.CBean;
 import com.xcy.fzb.all.modle.CheckBean;
 import com.xcy.fzb.all.modle.FailureAlertBean;
+import com.xcy.fzb.all.modle.ReadRecordBean;
 import com.xcy.fzb.all.modle.ReportProcessDetailsBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.OkHttpPost;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.project_side.view.BackToRaiseThatActivity;
 import com.xcy.fzb.project_side.view.ConfessToRaiseInformationActivity;
 import com.xcy.fzb.project_side.view.FillInTransactionInformationActivity;
@@ -144,13 +148,15 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
     private void initView() {
 
         StatusBar.makeStatusBarTransparent(this);
+
+        initReadRecord();
 
         FieldBean fieldBean = new FieldBean();
         ProjectProgressApi.setFieldBean(fieldBean);
@@ -222,8 +228,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         success_linear13 = findViewById(R.id.success_linear13);
 
 
-
-        review_the_success_return.setOnClickListener(this);
         review_the_success_bt1.setOnClickListener(this);
         review_the_success_bt2.setOnClickListener(this);
         review_the_success_bt3.setOnClickListener(this);
@@ -299,6 +303,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
                     @Override
                     public void onNext(ReportProcessDetailsBean reportProcessDetailsBean) {
+
                         lien.setVisibility(View.VISIBLE);
                         all_no_information.setVisibility(View.GONE);
                         if (reportProcessDetailsBean.getData().getMenuData().size() > 1) {
@@ -372,7 +377,8 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                                     review_the_success_bt13.setText(reportProcessDetailsBean.getData().getMenuData().get(i).getMenuname());
                                 }
                             }
-                        } else if (reportProcessDetailsBean.getData().getMenuData().size() == 1){
+                        }
+                        else if (reportProcessDetailsBean.getData().getMenuData().size() == 1){
                             linearlayout_ll.setVisibility(View.GONE);
                             linearlayout_l.setVisibility(View.VISIBLE);
                             for (int i = 0;i < reportProcessDetailsBean.getData().getMenuData().size();i++){
@@ -434,7 +440,12 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
 
                         infoData = reportProcessDetailsBean.getData().getInfoData();
-                        Glide.with(ReviewTheSuccessActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(review_the_success_img1);
+                        if (infoData.getCustomerImg() != null) {
+                            if (!infoData.getCustomerImg().equals("")) {
+                                Glide.with(ReviewTheSuccessActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(review_the_success_img1);
+                            }
+                        }
+
                         review_the_success_tv1.setText(infoData.getCustomerName()+"("+infoData.getCustomerPhone()+")");
                         processData = reportProcessDetailsBean.getData().getProcessData();
 
@@ -458,6 +469,14 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                         FinalContents.setProjectID(infoData.getProjectId());
                         Log.i("项目路线","项目ID："+ FinalContents.getProjectID());
                         initRV();
+
+                        review_the_success_return.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                FinalContents.setTiaozhuang("");
+                                finish();
+                            }
+                        });
                     }
 
                     @Override
@@ -476,7 +495,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
     @SuppressLint("WrongConstant")
     private void initRV() {
-
         MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.setScrollEnabled(false);
@@ -487,16 +505,12 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         adapter.notifyDataSetChanged();
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
 
         switch (view.getId()) {
-            //            TODO 返回上一层
-            case R.id.review_the_success_return:
-                FinalContents.setTiaozhuang("");
-                finish();
-                break;
             //            TODO 失效
             case R.id.review_the_success_bt1:
                 initShiXiao();
@@ -694,7 +708,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
     }
 
-
     @SuppressLint("WrongConstant")
     private void initBTN() {
         Log.i("MyCL", "getUserID：" + FinalContents.getUserID());
@@ -707,10 +720,10 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             Gson gson = new Gson();
             CBean cBean = gson.fromJson(data, CBean.class);
             if (cBean.getMsg().equals("成功")) {
-                Toast.makeText(ReviewTheSuccessActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, cBean.getData().getMessage());
                 finish();
             } else {
-                Toast.makeText(ReviewTheSuccessActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, cBean.getData().getMessage());
                 finish();
             }
         } else if (name.equals("认筹")) {
@@ -720,10 +733,10 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             Gson gson = new Gson();
             CheckBean checkBean = gson.fromJson(data, CheckBean.class);
             if (checkBean.getMsg().equals("成功")) {
-                Toast.makeText(ReviewTheSuccessActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, checkBean.getMsg());
                 finish();
             } else {
-                Toast.makeText(ReviewTheSuccessActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, checkBean.getMsg());
                 finish();
             }
         } else if (name.equals("成功")) {
@@ -733,10 +746,10 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             Gson gson = new Gson();
             CheckBean checkBean = gson.fromJson(data, CheckBean.class);
             if (checkBean.getMsg().equals("成功")) {
-                Toast.makeText(ReviewTheSuccessActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, checkBean.getMsg());
                 finish();
             } else {
-                Toast.makeText(ReviewTheSuccessActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(ReviewTheSuccessActivity.this, checkBean.getMsg());
                 finish();
             }
         }
@@ -755,11 +768,11 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                 Gson gson = new Gson();
                 FailureAlertBean failureAlertBean = gson.fromJson(post, FailureAlertBean.class);
                 if(failureAlertBean.getMsg().equals("成功")){
-                    Toast.makeText(ReviewTheSuccessActivity.this,failureAlertBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(ReviewTheSuccessActivity.this,failureAlertBean.getData().getMessage());
                     FinalContents.setTiaozhuang("失效成功");
                     finish();
                 }else{
-                    Toast.makeText(ReviewTheSuccessActivity.this,failureAlertBean.getData().getMessage(),Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(ReviewTheSuccessActivity.this,failureAlertBean.getData().getMessage());
                 }
             }
         });
@@ -770,6 +783,40 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             }
         });
         builder.show();
+    }
+
+    private void initReadRecord(){
+        Log.i("状态", "项目进度中状态"+CityContents.getReadRecordStatus());
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ReadRecordBean> clientFragment = fzbInterface.getReadRecord(FinalContents.getUserID(),FinalContents.getPreparationId(), CityContents.getReadRecordStatus());
+        clientFragment.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ReadRecordBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ReadRecordBean readRecordBean) {
+                        Log.i("MyCL", "项目进度中未浏览信息"+readRecordBean.getData().getMessage());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "项目进度中未浏览错误信息" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @Override

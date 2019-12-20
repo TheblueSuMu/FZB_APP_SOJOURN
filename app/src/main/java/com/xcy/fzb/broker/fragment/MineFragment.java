@@ -194,7 +194,7 @@ public class MineFragment extends Fragment implements TotalAdapter.EPinLun, Tota
 
     @Override
     public void pl(int position) {
-
+        FinalContents.setEconomicCircleID(hotlist.get(position).getId());
         Intent intent = new Intent(getContext(), EconomicCircleParticularsActivity.class);
         startActivity(intent);
 
@@ -316,12 +316,6 @@ public class MineFragment extends Fragment implements TotalAdapter.EPinLun, Tota
         if (Connector.isJJQ()) {
             initView();
             Connector.setJJQ(false);
-        }
-
-        if (FinalContents.getCityIs().equals("")) {
-        }else if (FinalContents.getCityIs().equals("不是当前城市")){
-            FinalContents.setCityIs("不是");
-            initView();
         }
     }
 

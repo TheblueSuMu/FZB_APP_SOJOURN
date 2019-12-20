@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,8 +15,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -35,16 +38,18 @@ import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.database.BrokerBean;
 import com.xcy.fzb.all.database.DataNumBean;
 import com.xcy.fzb.all.database.FinanceBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.view.MyClientActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -55,7 +60,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 public class BrokerActivity extends AllActivity implements View.OnClickListener {
 
@@ -89,6 +93,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
     LinearLayout broker_ll11;
     LinearLayout broker_ll12;
 
+    LinearLayout project_attache_broker_ll1;
+    LinearLayout project_attache_broker_ll2;
+    LinearLayout project_attache_broker_ll3;
+    LinearLayout project_attache_broker_ll4;
+
     RelativeLayout broker_return;
     ImageView broker_change;
 
@@ -112,11 +121,12 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
     private List<String> indexList;
     private Intent intent;
 
-    DateTimePickerView dateTimePickerView;
-    LinearLayout report_picker;
-    TextView report_cancel;
-    TextView report_ensure;
     private BrokerBean.DataBean.AgentInfoBean agentInfo;
+    private String string1;
+    private String string2;
+    private int year;
+    private int month;
+    private int dayOfMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,12 +157,12 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(BrokerActivity.this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
     private void initView() {
-
+        Log.i("销毁","数1："+FinalContents.getStoreId());
         StatusBar.makeStatusBarTransparent(this);
 
         broker_rb1 = findViewById(R.id.broker_rb1);
@@ -165,6 +175,11 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         broker_rb8 = findViewById(R.id.broker_rb8);
         broker_rl = findViewById(R.id.broker_rl);
         broker_tv = findViewById(R.id.broker_tv);
+
+        project_attache_broker_ll1 = findViewById(R.id.project_attache_broker_ll1);
+        project_attache_broker_ll2 = findViewById(R.id.project_attache_broker_ll2);
+        project_attache_broker_ll3 = findViewById(R.id.project_attache_broker_ll3);
+        project_attache_broker_ll4 = findViewById(R.id.project_attache_broker_ll4);
 
         broker_rg1 = findViewById(R.id.broker_rg1);
         broker_rg2 = findViewById(R.id.broker_rg2);
@@ -204,10 +219,8 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
 
         details_chart = findViewById(R.id.lc_broker);
 
-        dateTimePickerView = findViewById(R.id.broker_report_pickerView);
-        report_picker = findViewById(R.id.broker_report_picker);
-        report_cancel = findViewById(R.id.broker_report_picker_cancel);
-        report_ensure = findViewById(R.id.broker_report_picker_ensure);
+        project_attache_broker_ll1.setOnClickListener(this);
+        project_attache_broker_ll3.setOnClickListener(this);
 
         broker_return.setOnClickListener(this);
         broker_change.setOnClickListener(this);
@@ -217,33 +230,104 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         broker_ll5.setOnClickListener(this);
         broker_ll6.setOnClickListener(this);
         broker_ll7.setOnClickListener(this);
-        broker_ll10.setOnClickListener(this);
-        broker_ll11.setOnClickListener(this);
-        broker_ll12.setOnClickListener(this);
+//        broker_ll10.setOnClickListener(this);
+//        broker_ll11.setOnClickListener(this);
+//        broker_ll12.setOnClickListener(this);
 
         initData();
+
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth - 1);
+        string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+        broker_tv4.setText(string1);
+        broker_tv5.setText(string2);
+        broker_tv13.setText(string1);
+        broker_tv14.setText(string2);
+
+        broker_tv4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                initTime1_Date1();
+            }
+        });
+        broker_tv5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                initTime1_Date2();
+            }
+        });
+        broker_tv13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                initTime2_Date1();
+            }
+        });
+        broker_tv14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                initTime2_Date2();
+            }
+        });
+
+        broker_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (agentInfo.getAgentPhone().equals("")) {
+                    ToastUtil.showLongToast(BrokerActivity.this,"暂无电话信息，无法拨打");
+                } else {
+                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + agentInfo.getAgentPhone()));//跳转到拨号界面，同时传递电话号码
+                    startActivity(dialIntent);
+                }
+
+            }
+        });
 
         broker_rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.broker_rb1) {
-                    initDataNum("0", "", "");
+                    if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("0", "", "", "1");
+                    } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("0", "", "", "2");
+                    }
                     NewlyIncreased.setTag("0");
                     broker_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb2) {
-                    initDataNum("1", "", "");
+                    if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("1", "", "", "1");
+                    } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("1", "", "", "2");
+                    }
+
                     NewlyIncreased.setTag("1");
                     broker_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb3) {
-                    initDataNum("2", "", "");
+                    if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("2", "", "", "1");
+                    } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("2", "", "", "2");
+                    }
+
                     NewlyIncreased.setTag("2");
                     broker_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb4) {
+                    broker_tv4.setText(string1);
+                    broker_tv5.setText(string2);
                     String s = broker_tv4.getText().toString();
-                    String s1 = broker_tv4.getText().toString();
+                    String s1 = broker_tv5.getText().toString();
                     NewlyIncreased.setStartDate(s);
                     NewlyIncreased.setEndDate(s1);
-                    initDataNum("3", s, s1);
+                    if (project_attache_broker_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("3", s, s1, "1");
+                    } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("3", s, s1, "2");
+                    }
                     NewlyIncreased.setTag("3");
                     broker_ll1.setVisibility(View.VISIBLE);
                 }
@@ -265,143 +349,18 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                     NewlyIncreased.setYJType("2");
                     broker_ll9.setVisibility(View.GONE);
                 } else if (i == R.id.broker_rb8) {
+                    broker_tv13.setText(string1);
+                    broker_tv14.setText(string2);
                     String s = broker_tv13.getText().toString();
                     String s1 = broker_tv14.getText().toString();
-                    NewlyIncreased.setStartDate(s);
-                    NewlyIncreased.setEndDate(s1);
-                    initFinanceNum("3", s, s1);
+                    NewlyIncreased.setYJstartDate(s);
+                    NewlyIncreased.setYJendDate(s1);
                     NewlyIncreased.setYJType("3");
+                    initFinanceNum("3", s, s1);
                     broker_ll9.setVisibility(View.VISIBLE);
                 }
             }
         });
-
-
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-
-        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth - 1);
-        String string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
-        broker_tv4.setText(string1);
-        broker_tv5.setText(string2);
-        broker_tv13.setText(string1);
-        broker_tv14.setText(string2);
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
-
-        broker_tv4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        broker_tv4.setText(dateString);
-                        String s = broker_tv4.getText().toString();
-                        String s1 = broker_tv5.getText().toString();
-                        initDataNum("3", s, s1);
-                        NewlyIncreased.setStartDate(dateString);
-                    }
-                });
-            }
-        });
-        broker_tv5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        broker_tv5.setText(dateString);
-                        String s = broker_tv4.getText().toString();
-                        String s1 = broker_tv5.getText().toString();
-                        initDataNum("3", s, s1);
-                        NewlyIncreased.setEndDate(dateString);
-                    }
-                });
-            }
-        });
-        broker_tv13.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        broker_tv13.setText(dateString);
-                        String s = broker_tv13.getText().toString();
-                        String s1 = broker_tv14.getText().toString();
-                        NewlyIncreased.setYJstartDate(dateString);
-                        initDataNum("3", s, s1);
-
-                    }
-                });
-            }
-        });
-        broker_tv14.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        broker_tv14.setText(dateString);
-                        String s = broker_tv13.getText().toString();
-                        String s1 = broker_tv14.getText().toString();
-                        NewlyIncreased.setYJendDate(dateString);
-                        initDataNum("3", s, s1);
-                    }
-                });
-            }
-        });
-        report_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-            }
-        });
-
-        report_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-            }
-        });
-
-        broker_call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (agentInfo.getAgentPhone().equals("")) {
-                    Toast.makeText(BrokerActivity.this, "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + agentInfo.getAgentPhone()));//跳转到拨号界面，同时传递电话号码
-                    startActivity(dialIntent);
-                }
-
-            }
-        });
-
 
 //        broker_tv1.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -417,6 +376,118 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
 
     }
 
+    //            TODO 数据统计 时间选择 开始时间
+    private void initTime1_Date1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(BrokerActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                broker_tv4.setText(getTime2(date));
+                NewlyIncreased.setStartDate(getTime2(date));
+                if (project_attache_broker_ll2. getVisibility() == View.VISIBLE) {
+                    initDataNum("3", broker_tv4.getText().toString(), broker_tv5.getText().toString(), "1");
+                } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                    initDataNum("3", broker_tv4.getText().toString(), broker_tv5.getText().toString(), "2");
+                }
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 数据统计 时间选择 结束时间
+    private void initTime1_Date2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(BrokerActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                broker_tv5.setText(getTime2(date));
+                NewlyIncreased.setEndDate(getTime2(date));
+                if (project_attache_broker_ll2. getVisibility() == View.VISIBLE) {
+                    initDataNum("3", broker_tv4.getText().toString(), broker_tv5.getText().toString(), "1");
+                } else if (project_attache_broker_ll4.getVisibility() == View.VISIBLE) {
+                    initDataNum("3", broker_tv4.getText().toString(), broker_tv5.getText().toString(), "2");
+                }
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 财务数据 时间选择 开始时间
+    private void initTime2_Date1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(BrokerActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                broker_tv13.setText(getTime2(date));
+                NewlyIncreased.setYJstartDate(getTime2(date));
+                initFinanceNum("3", broker_tv13.getText().toString(), broker_tv14.getText().toString());
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 财务数据 时间选择 结束时间
+    private void initTime2_Date2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(BrokerActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                broker_tv14.setText(getTime2(date));
+                NewlyIncreased.setYJendDate(getTime2(date));
+                initFinanceNum("3", broker_tv13.getText().toString(), broker_tv14.getText().toString());
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
     private void initFinanceNum(String type, String startTime, String endTime) {
 
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -425,7 +496,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), "", "",FinalContents.getAgentId(), type, startTime, endTime);
+        Observable<FinanceBean> financeBean = myService.getFinanceBean(FinalContents.getUserID(), "", "", FinalContents.getAgentId(), type, startTime, endTime);
         financeBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -455,7 +526,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
 
     }
 
-    private void initDataNum(String type, String startTime, String endTime) {
+    private void initDataNum(String type, String startTime, String endTime, String tag) {
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -463,7 +534,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), "", FinalContents.getAgentId(), type, startTime, endTime);
+        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), "", FinalContents.getAgentId(), tag, type, startTime, endTime);
         dataNum.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataNumBean>() {
@@ -579,6 +650,7 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -590,36 +662,42 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
             case R.id.broker_ll2:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "1");
                 startActivity(intent);
                 break;
             case R.id.broker_ll3:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "2");
                 startActivity(intent);
                 break;
             case R.id.broker_ll4:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "3");
                 startActivity(intent);
                 break;
             case R.id.broker_ll5:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "4");
                 startActivity(intent);
                 break;
             case R.id.broker_ll6:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "5");
                 startActivity(intent);
                 break;
             case R.id.broker_ll7:
                 intent = new Intent(BrokerActivity.this, MyClientActivity.class);
                 FinalContents.setStoreId(agentInfo.getStoreId());
+                FinalContents.setAgentId(agentInfo.getAgentId());
                 intent.putExtra("client", "6");
                 startActivity(intent);
                 break;
@@ -650,6 +728,76 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
                 FinalContents.setAgentId(agentInfo.getAgentId());
                 FinalContents.setBorkerChange("修改");
                 startActivity(intent);
+                break;
+            case R.id.project_attache_broker_ll1:
+                project_attache_broker_ll2.setVisibility(View.VISIBLE);
+                project_attache_broker_ll4.setVisibility(View.INVISIBLE);
+                broker_ll2.setClickable(true);
+                broker_ll3.setClickable(true);
+                broker_ll4.setClickable(true);
+                broker_ll5.setClickable(true);
+                broker_ll6.setClickable(true);
+                broker_ll7.setClickable(true);
+//                if (broker_ll1.getVisibility() == View.VISIBLE) {
+                    if (broker_rb1.isChecked() == true) {
+                        initDataNum("0", "", "", "1");
+                        NewlyIncreased.setTag("0");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb2.isChecked() == true) {
+                        initDataNum("1", "", "", "1");
+                        NewlyIncreased.setTag("1");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb3.isChecked() == true) {
+                        initDataNum("2", "", "", "1");
+                        NewlyIncreased.setTag("2");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb4.isChecked() == true) {
+                        String s = broker_tv4.getText().toString();
+                        String s1 = broker_tv4.getText().toString();
+                        NewlyIncreased.setStartDate(s);
+                        NewlyIncreased.setEndDate(s1);
+                        initDataNum("3", s, s1, "1");
+                        NewlyIncreased.setTag("3");
+                        broker_ll1.setVisibility(View.VISIBLE);
+                    }
+//                } else {
+//                    initDataNum("", "", "", "1");
+//                }
+                break;
+            case R.id.project_attache_broker_ll3:
+                project_attache_broker_ll2.setVisibility(View.INVISIBLE);
+                project_attache_broker_ll4.setVisibility(View.VISIBLE);
+                broker_ll2.setClickable(false);
+                broker_ll3.setClickable(false);
+                broker_ll4.setClickable(false);
+                broker_ll5.setClickable(false);
+                broker_ll6.setClickable(false);
+                broker_ll7.setClickable(false);
+//                if (broker_ll1.getVisibility() == View.VISIBLE) {
+                    if (broker_rb1.isChecked() == true) {
+                        initDataNum("0", "", "", "2");
+                        NewlyIncreased.setTag("0");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb2.isChecked() == true) {
+                        initDataNum("1", "", "", "2");
+                        NewlyIncreased.setTag("1");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb3.isChecked() == true) {
+                        initDataNum("2", "", "", "2");
+                        NewlyIncreased.setTag("2");
+                        broker_ll1.setVisibility(View.GONE);
+                    } else if (broker_rb4.isChecked() == true) {
+                        String s = broker_tv4.getText().toString();
+                        String s1 = broker_tv4.getText().toString();
+                        NewlyIncreased.setStartDate(s);
+                        NewlyIncreased.setEndDate(s1);
+                        initDataNum("3", s, s1, "2");
+                        NewlyIncreased.setTag("3");
+                        broker_ll1.setVisibility(View.VISIBLE);
+                    }
+//                }else {
+//                    initDataNum("", "", "", "2");
+//                }
                 break;
         }
 
@@ -781,11 +929,30 @@ public class BrokerActivity extends AllActivity implements View.OnClickListener 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.i("销毁","数："+FinalContents.getStoreId());
+        FinalContents.setStoreId("");
+        FinalContents.setAgentId("");
         NewlyIncreased.setTag("0");
         NewlyIncreased.setStartDate("");
         NewlyIncreased.setEndDate("");
         NewlyIncreased.setYJType("");
         NewlyIncreased.setYJstartDate("");
         NewlyIncreased.setYJendDate("");
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)
+        {
+            FinalContents.setStoreId("");
+            FinalContents.setAgentId("");
+            finish();
+            // your code
+            return true;// true 事件不继续传递， false 事件继续传递
+        }
+        else
+        {
+            return super.onKeyDown(keyCode, event);
+        }
     }
 }

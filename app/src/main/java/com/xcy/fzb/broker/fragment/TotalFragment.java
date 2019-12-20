@@ -313,13 +313,11 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
             initView();
             Connector.setJJQ(false);
         }
-
-        if (FinalContents.getCityIs().equals("")) {
-        }else if (FinalContents.getCityIs().equals("不是当前城市")){
-            FinalContents.setCityIs("不是");
-            initView();
-        }
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        FinalContents.setEconomicCircleID("");
+    }
 }

@@ -26,9 +26,11 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CircleBean;
 import com.xcy.fzb.all.modle.EconomicCircleBean;
 import com.xcy.fzb.all.modle.TotalZanBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +95,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -110,7 +112,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                     if (flag == 0) {
                         String s = particulars_et_comment.getText().toString();
                         if (s.equals("")) {
-                            Toast.makeText(EconomicCircleParticularsActivity.this, "评论不能为空", Toast.LENGTH_SHORT);
+                            ToastUtil.showToast(EconomicCircleParticularsActivity.this,"评论不能为空");
                             flag = 0;
                         } else {
                             flag = 1;
@@ -134,13 +136,13 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
                                             public void onNext(CircleBean circleBean) {
                                                 circleBean.getData().getMessage();
                                                 if (circleBean.getMsg().equals("成功")) {
-                                                    Toast.makeText(EconomicCircleParticularsActivity.this, circleBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                                    ToastUtil.showToast(EconomicCircleParticularsActivity.this, circleBean.getData().getMessage());
                                                     particulars_et_comment.setText("");
                                                     initData();
                                                     flag = 0;
 
                                                 } else {
-                                                    Toast.makeText(EconomicCircleParticularsActivity.this, "评论失败", Toast.LENGTH_SHORT).show();
+                                                    ToastUtil.showToast(EconomicCircleParticularsActivity.this, "评论失败");
                                                     particulars_et_comment.setText("");
                                                 }
                                                 initData();
@@ -196,6 +198,8 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     }
 
     private void initData() {
+        Log.i("我的经济圈","用户："+FinalContents.getUserID());
+        Log.i("我的经济圈","id："+FinalContents.getEconomicCircleID());
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -288,6 +292,7 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
         whehter = true;
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 

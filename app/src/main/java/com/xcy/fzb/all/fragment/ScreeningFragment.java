@@ -21,6 +21,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.Project_Label_Adapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.LabelBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.service.MyService;
 
 import org.greenrobot.eventbus.EventBus;
@@ -282,6 +283,7 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
                 });
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -477,6 +479,7 @@ public class ScreeningFragment extends Fragment implements View.OnClickListener 
                 for (int i = 0;i < stateMap.size();i++){
                     fitmentState = fitmentState + stateMap.get(i);
                 }
+
                 eventUrl = url+ "&areaSection="+areaSection+"&ffProjectTrait="+projectLabel+"&procuctType="+procuctType+"&fitmentState="+fitmentState;
                 FinalContents.setAreaSection(areaSection);
                 FinalContents.setFfProjectTrait(projectLabel);

@@ -15,6 +15,53 @@ public class StoreListData {
     String companyAddress;
     String storeNum;
 
+    String attacheName;
+    String attachePhone;
+
+    String attacheIdentity;
+    String state;
+    String IsMy;
+
+    public String getIsMy() {
+        return IsMy;
+    }
+
+    public void setIsMy(String isMy) {
+        IsMy = isMy;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getAttacheIdentity() {
+        return attacheIdentity;
+    }
+
+    public void setAttacheIdentity(String attacheIdentity) {
+        this.attacheIdentity = attacheIdentity;
+    }
+
+    public String getAttacheName() {
+        return attacheName;
+    }
+
+    public void setAttacheName(String attacheName) {
+        this.attacheName = attacheName;
+    }
+
+    public String getAttachePhone() {
+        return attachePhone;
+    }
+
+    public void setAttachePhone(String attachePhone) {
+        this.attachePhone = attachePhone;
+    }
+
     public String getCompanyName() {
         return companyName;
     }

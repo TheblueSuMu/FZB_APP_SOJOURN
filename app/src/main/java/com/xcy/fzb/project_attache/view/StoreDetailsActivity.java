@@ -12,14 +12,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.MyFragmentPagerAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.fragment.MyFragment1;
@@ -27,17 +30,19 @@ import com.xcy.fzb.all.fragment.MyFragment2;
 import com.xcy.fzb.all.modle.CompanyBean;
 import com.xcy.fzb.all.modle.CompanyDataBean;
 import com.xcy.fzb.all.persente.Fragnemt_SS;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MyViewPager;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.Locale;
 
 import io.reactivex.Observable;
@@ -47,7 +52,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 public class StoreDetailsActivity extends AllActivity implements View.OnClickListener , MyViewPager.OnSingleTouchListener {
 
@@ -92,10 +96,6 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
     LinearLayout store_details_ll5;
     private Intent intent;
 
-    DateTimePickerView dateTimePickerView;
-    LinearLayout report_picker;
-    TextView report_cancel;
-    TextView report_ensure;
     private CompanyBean.DataBean.CompanyDataStatisticsBean companyDataStatistics;
     private CompanyBean.DataBean.CompanyInfoBean companyInfo;
 
@@ -108,6 +108,13 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
     private String type;
     private String s;
     private String s1;
+    String indextype = "";
+    private int year;
+    private int month;
+    private int dayOfMonth;
+    private String string1;
+    private String string2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +146,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(StoreDetailsActivity.this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -147,6 +154,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
         StatusBar.makeStatusBarTransparent(this);
 
+        CityContents.setStore("1");
 
         fragment_ll_2 = findViewById(R.id.fragment_llss_2);
         fragment_ll_1 = findViewById(R.id.fragment_llss_1);
@@ -229,11 +237,6 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         store_details_ll4 = findViewById(R.id.store_details_ll4);
         store_details_ll5 = findViewById(R.id.store_details_ll5);
 
-        dateTimePickerView = findViewById(R.id.store_details_report_pickerView);
-        report_picker = findViewById(R.id.store_details_report_picker);
-        report_cancel = findViewById(R.id.store_details_report_picker_cancel);
-        report_ensure = findViewById(R.id.store_details_report_picker_ensure);
-
         store_details_return.setOnClickListener(this);
         store_details_change.setOnClickListener(this);
         store_details_tv4.setOnClickListener(this);
@@ -242,9 +245,9 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 //        store_details_rl2.setOnClickListener(this);
         store_details_tv8.setOnClickListener(this);
         store_details_tv9.setOnClickListener(this);
-        store_details_ll3.setOnClickListener(this);
-        store_details_ll4.setOnClickListener(this);
-        store_details_ll5.setOnClickListener(this);
+//        store_details_ll3.setOnClickListener(this);
+//        store_details_ll4.setOnClickListener(this);
+//        store_details_ll5.setOnClickListener(this);
         store_details_call.setOnClickListener(this);
 
         store_details_rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -263,6 +266,8 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                     NewlyIncreased.setTag("2");
                     store_details_ll1.setVisibility(View.GONE);
                 } else if (i == R.id.store_details_rb4) {
+                    store_details_tv4.setText(string1);
+                    store_details_tv5.setText(string2);
                     String s1 = store_details_tv4.getText().toString();
                     String s = store_details_tv5.getText().toString();
                     NewlyIncreased.setStartDate(s1);
@@ -289,10 +294,12 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                     NewlyIncreased.setYJType("2");
                     store_details_ll2.setVisibility(View.GONE);
                 } else if (i == R.id.store_details_rb8) {
+                    store_details_tv8.setText(string1);
+                    store_details_tv9.setText(string2);
                     String s1 = store_details_tv8.getText().toString();
                     String s = store_details_tv9.getText().toString();
-                    NewlyIncreased.setStartDate(s1);
-                    NewlyIncreased.setEndDate(s);
+                    NewlyIncreased.setYJstartDate(s1);
+                    NewlyIncreased.setYJendDate(s);
                     NewlyIncreased.setYJType("3");
                     initFinanceNum("3", s1, s);
                     store_details_ll2.setVisibility(View.VISIBLE);
@@ -301,36 +308,16 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         });
 
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH) + 1;
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth - 1);
-        String string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth - 1);
+        string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
         store_details_tv4.setText(string1);
         store_details_tv5.setText(string2);
         store_details_tv8.setText(string1);
         store_details_tv9.setText(string2);
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
-
-        report_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-            }
-        });
-
-        report_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-            }
-        });
-
         initData();
 
     }
@@ -490,6 +477,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -512,83 +500,16 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.store_details_tv4:
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        store_details_tv4.setText(dateString);
-                        String s = store_details_tv4.getText().toString();
-                        String s1 = store_details_tv5.getText().toString();
-                        NewlyIncreased.setStartDate(dateString);
-                        initDataNum("3", s, s1);
-                    }
-                });
+                initTime1_Date1();
                 break;
             case R.id.store_details_tv5:
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        store_details_tv5.setText(dateString);
-                        String s = store_details_tv4.getText().toString();
-                        String s1 = store_details_tv5.getText().toString();
-                        NewlyIncreased.setEndDate(dateString);
-                        initDataNum("3", s, s1);
-                    }
-                });
+                initTime1_Date2();
                 break;
-//            case R.id.store_details_rl1:
-//                intent = new Intent(StoreDetailsActivity.this, StoreListActivity.class);
-//                FinalContents.setMyAddType("");
-//                FinalContents.setCompanyId(companyInfo.getCompanyId());
-//                startActivity(intent);
-//                break;
-//            case R.id.store_details_rl2:
-//                initDataS();
-//                break;
             case R.id.store_details_tv8:
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        store_details_tv8.setText(dateString);
-                        String s = store_details_tv8.getText().toString();
-                        String s1 = store_details_tv9.getText().toString();
-                        NewlyIncreased.setYJstartDate(dateString);
-                        initFinanceNum("3", s, s1);
-
-                    }
-                });
+                initTime2_Date1();
                 break;
             case R.id.store_details_tv9:
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        store_details_tv8.setText(dateString);
-                        String s = store_details_tv8.getText().toString();
-                        String s1 = store_details_tv9.getText().toString();
-                        NewlyIncreased.setYJendDate(dateString);
-                        initFinanceNum("3", s, s1);
-
-                    }
-                });
+                initTime2_Date2();
                 break;
             case R.id.store_details_ll3:
                 intent = new Intent(StoreDetailsActivity.this, CommissionActivity.class);
@@ -613,7 +534,110 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
 
                 break;
         }
+    }
 
+    //            TODO 数据统计 时间选择 开始时间
+    private void initTime1_Date1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(StoreDetailsActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                store_details_tv4.setText(getTime2(date));
+                NewlyIncreased.setStartDate(getTime2(date));
+                initDataNum("3", store_details_tv4.getText().toString(), store_details_tv5.getText().toString());
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 数据统计 时间选择 结束时间
+    private void initTime1_Date2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(StoreDetailsActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                store_details_tv5.setText(getTime2(date));
+                NewlyIncreased.setEndDate(getTime2(date));
+                initDataNum("3", store_details_tv4.getText().toString(), store_details_tv5.getText().toString());
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 数据统计 时间选择 开始时间
+    private void initTime2_Date1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(StoreDetailsActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                store_details_tv8.setText(getTime2(date));
+                NewlyIncreased.setYJstartDate(getTime2(date));
+                initFinanceNum("3", store_details_tv8.getText().toString(), store_details_tv9.getText().toString());
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //            TODO 数据统计 时间选择 开始时间
+    private void initTime2_Date2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(StoreDetailsActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                store_details_tv9.setText(getTime2(date));
+                NewlyIncreased.setYJendDate(getTime2(date));
+                initFinanceNum("3", store_details_tv8.getText().toString(), store_details_tv9.getText().toString());
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
     }
 
     private void initDataS() {
@@ -642,6 +666,7 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
         NewlyIncreased.setYJType("");
         NewlyIncreased.setYJstartDate("");
         NewlyIncreased.setYJendDate("");
+        CityContents.setStore("");
     }
 
     @Override
@@ -670,11 +695,12 @@ public class StoreDetailsActivity extends AllActivity implements View.OnClickLis
             intent.putExtra("starts",s);
             intent.putExtra("ends",s1);
 
-                FinalContents.setMyAddType("");
-                FinalContents.setCompanyId(companyInfo.getCompanyId());
-                startActivity(intent);
+            FinalContents.setMyAddType("");
+            FinalContents.setCompanyId(companyInfo.getCompanyId());
+            startActivity(intent);
         }else if(currentItem == 1){
             initDataS();
         }
     }
+
 }

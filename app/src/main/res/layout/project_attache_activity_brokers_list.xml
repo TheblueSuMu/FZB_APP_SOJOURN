@@ -126,6 +126,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/broker_avi"
+                style="@style/AVLoadingIndicatorView.Small"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:visibility="gone"
+                app:indicatorColor="#334485"
+                android:layout_centerInParent="true"
+                app:indicatorName="LineSpinFadeLoaderIndicator" />
         </RelativeLayout>
 
     </LinearLayout>

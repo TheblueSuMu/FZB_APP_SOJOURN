@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -11,11 +12,29 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp">
 
-        <ImageView
-            android:id="@+id/item_refuse_the_project_end_img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true" />
+        <RelativeLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/item_refuse_the_project_end_img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="fitXY"
+                android:layout_centerVertical="true"
+                app:riv_oval="true" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/item_refuse_the_project_end_unread"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:src="@mipmap/item_unread"
+                android:layout_width="12dp"
+                android:layout_height="12dp"/>
+
+        </RelativeLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -52,7 +71,7 @@
         </LinearLayout>
 
         <TextView
-		    android:id="@+id/item_refuse_the_project_end_tv4"
+		android:id="@+id/item_refuse_the_project_end_tv4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

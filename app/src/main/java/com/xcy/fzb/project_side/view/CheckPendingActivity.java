@@ -23,10 +23,13 @@ import com.xcy.fzb.all.adapter.ReviewTheSuccessPhoneAdapter;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CBean;
 import com.xcy.fzb.all.modle.CheckBean;
+import com.xcy.fzb.all.modle.ReadRecordBean;
 import com.xcy.fzb.all.modle.ReportProcessDetailsBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.adapter.Project_Side_MakeABargainAdapter;
 
@@ -97,7 +100,7 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -128,8 +131,6 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
             check_pending_ll.setVisibility(View.VISIBLE);
         }
 
-
-        check_pending_return.setOnClickListener(this);
         check_pending_bt1.setOnClickListener(this);
         check_pending_bt2.setOnClickListener(this);
 
@@ -165,7 +166,12 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                     @Override
                     public void onNext(ReportProcessDetailsBean reportProcessDetailsBean) {
                         infoData = reportProcessDetailsBean.getData().getInfoData();
-                        Glide.with(CheckPendingActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(check_pending_img1);
+                        if (infoData.getCustomerImg() != null) {
+                            if (!infoData.getCustomerImg().equals("")) {
+                                Glide.with(CheckPendingActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(check_pending_img1);
+                            }
+                        }
+
                         check_pending_tv1.setText(infoData.getCustomerName());
 
                         processData = reportProcessDetailsBean.getData().getProcessData();
@@ -184,6 +190,13 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
 //                        check_pending_tv3.setText(infoData.getCustomerName() + "[" + infoData.getCustomerPhone() + "]");
                         FinalContents.setJJrID(infoData.getAgentId());
                         initRV();
+
+                        check_pending_return.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                finish();
+                            }
+                        });
                     }
 
                     @Override
@@ -211,14 +224,11 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
         check_pending_rv.setAdapter(adapter);
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
-            //            TODO 返回上一层
-            case R.id.check_pending_return:
-                finish();
-                break;
             //            TODO 通过
             case R.id.check_pending_bt1:
                 if (isnum1 == 0) {
@@ -271,11 +281,11 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         @Override
                         public void onNext(CBean cBean) {
                             if (cBean.getMsg().equals("成功")) {
-                                Toast.makeText(CheckPendingActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, cBean.getData().getMessage());
                                 FinalContents.setEndStart("成功");
                                 finish();
                             } else {
-                                Toast.makeText(CheckPendingActivity.this, cBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, cBean.getData().getMessage());
                                 finish();
                             }
                         }
@@ -310,10 +320,10 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         @Override
                         public void onNext(CheckBean checkBean) {
                             if (checkBean.getMsg().equals("成功")) {
-                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
                                 finish();
                             } else {
-                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
                                 finish();
                             }
                         }
@@ -348,10 +358,10 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         @Override
                         public void onNext(CheckBean checkBean) {
                             if (checkBean.getMsg().equals("成功")) {
-                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
                                 finish();
                             } else {
-                                Toast.makeText(CheckPendingActivity.this, checkBean.getMsg(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
                                 finish();
                             }
                         }
@@ -368,5 +378,44 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                     });
         }
 
+    }
+
+    private void initReadRecord(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ReadRecordBean> clientFragment = fzbInterface.getReadRecord(FinalContents.getUserID(),FinalContents.getPreparationId(), "");
+        clientFragment.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ReadRecordBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ReadRecordBean readRecordBean) {
+                        Log.i("MyCL", "项目进度中未浏览信息"+readRecordBean.getData().getMessage());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "项目进度中未浏览错误信息" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initReadRecord();
     }
 }

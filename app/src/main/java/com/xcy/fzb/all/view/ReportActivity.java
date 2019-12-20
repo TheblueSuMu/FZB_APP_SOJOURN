@@ -2,37 +2,56 @@ package com.xcy.fzb.all.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.tuacy.azlist.LettersComparator;
+import com.tuacy.fuzzysearchlibrary.PinyinUtil;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.adapter.FuzzySearchAdapter;
 import com.xcy.fzb.all.adapter.ReportItemAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.ChangePhoneBean;
+import com.xcy.fzb.all.modle.ClientBean;
 import com.xcy.fzb.all.modle.IdNumberBean;
+import com.xcy.fzb.all.modle.ItemEntity;
 import com.xcy.fzb.all.modle.ReportBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -45,7 +64,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 public class ReportActivity extends AllActivity implements View.OnClickListener {
 
@@ -55,8 +73,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     TextView report_tv_sq;
     TextView report_start;
     TextView report_end;
-    TextView report_cancel;
-    TextView report_ensure;
     EditText IDcard;
     EditText price_start;
     EditText price_end;
@@ -64,10 +80,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
     RelativeLayout back;
 
-    LinearLayout report_picker;
     LinearLayout report_ll_start_sq;
 
-    DateTimePickerView dateTimePickerView;
 
     private CheckBox area1;
     private CheckBox area2;
@@ -96,7 +110,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
     private TextView ensure;
 
-    private TextView client_name;
+    private ImageView report_client_name_img;
+    private EditText report_client_name_et;
     private TextView project_name;
 
     private String areaSection = "";
@@ -104,13 +119,13 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private String procuctType = "";
     private String fitmentState = "";
 
-    private String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonSelect/projectList?"+ "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
+    private String url = FinalContents.getImageUrl() + "/fangfang/app/v1/commonSelect/projectList?" + "&userId=" + FinalContents.getUserID() + "&city=" + FinalContents.getCityID();
     private String eventUrl;
 
-    private Map<Integer,String> areaMap = new HashMap<>();
-    private Map<Integer,String> traitMap = new HashMap<>();
-    private Map<Integer,String> typeMap = new HashMap<>();
-    private Map<Integer,String> goalMap = new HashMap<>();
+    private Map<Integer, String> areaMap = new HashMap<>();
+    private Map<Integer, String> traitMap = new HashMap<>();
+    private Map<Integer, String> typeMap = new HashMap<>();
+    private Map<Integer, String> goalMap = new HashMap<>();
     private List<ReportBean.DataBean.AreaSectionListBean> areaSectionListBean = new ArrayList<>();
     private List<ReportBean.DataBean.ProductTypeListBean> productTypeListBeans = new ArrayList<>();
     private List<ReportBean.DataBean.ProjectLabelListBean> projectLabelListBeans = new ArrayList<>();
@@ -126,13 +141,21 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private LinearLayout report_ll_start_sq1;
     private LinearLayout report_ll_start_sq2;
 
-    int year1 = 0;
-    int month1 = 0;
-    int dayOfMonth1 = 0;
-
     int ifnum1 = 0;
     private LinearLayout report_linear;
-    boolean blean = false;
+    private EditText report_client_phone;
+    private FuzzySearchAdapter fuzzySearchAdapter;
+    private RecyclerView report_associating_inputing_rv;
+    private RelativeLayout report_relative;
+    private List<ClientBean.DataBean> list;
+    private String customerID = "";
+    private LinearLayout report_nosearch;
+    private LinearLayout report_issure;
+    private List<ItemEntity> dateList;
+    private int year;
+    private int month;
+    private int dayOfMonth;
+    private Date selectdate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -141,7 +164,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         init_No_Network();
     }
 
-    private void init_No_Network(){
+    private void init_No_Network() {
         boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
         if (networkAvailable) {
             initDataReport();
@@ -162,14 +185,28 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
-    private void initView(){
-
+    private void initView() {
+        if (CityContents.getIsReport().equals("")) {
+            Log.i("数据","1走一走:"+FinalContents.getProjectType());
+            FinalContents.setProjectType("");
+        }
+        Log.i("数据","2走一走:"+FinalContents.getProjectType());
+        CityContents.setAddClient("");
         StatusBar.makeStatusBarTransparent(this);
         report_linear = findViewById(R.id.report_linear);
+
+        report_nosearch = findViewById(R.id.report_nosearch);
+        report_associating_inputing_rv = findViewById(R.id.report_associating_inputing_rv);
+        report_relative = findViewById(R.id.report_relative);
+
+        //  TODO    城市版
+        report_issure = findViewById(R.id.report_issure);
+
+        //  TODO    城市版
 
         report_btn_s = findViewById(R.id.report_btn_yes);
         report_btn_f = findViewById(R.id.report_btn_no);
@@ -181,16 +218,17 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         report_ll_start_sq2 = findViewById(R.id.report_ll_start_sq2);
 
         report_ll_start_sq = findViewById(R.id.report_ll_start_sq);
-        dateTimePickerView = findViewById(R.id.report_pickerView);
         report_start = findViewById(R.id.report_start);
         report_end = findViewById(R.id.report_end);
         IDcard = findViewById(R.id.report_IDcard);
         price_start = findViewById(R.id.report_price_start);
         price_end = findViewById(R.id.report_price_end);
         report_remarks = findViewById(R.id.report_remarks);
-        client_name = findViewById(R.id.report_client_name);
+        report_client_name_img = findViewById(R.id.report_client_name_img);
+        report_client_name_et = findViewById(R.id.report_client_name_et);
+        report_client_phone = findViewById(R.id.report_client_phone);
         project_name = findViewById(R.id.report_project_name);
-        client_name.setOnClickListener(this);
+        report_client_name_img.setOnClickListener(this);
         project_name.setOnClickListener(this);
 
         back = findViewById(R.id.report_back);
@@ -204,8 +242,79 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             }
         });
 
+
+        report_client_name_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+
+            public void afterTextChanged(Editable editable) {
+                //长度发生变化，监听到输入的长度为 editText.getText().length()
+                if (dateList != null) {
+                    if (report_client_name_et.getText().toString().length() > 0) {
+                        if (dateList.size() != 0) {
+                            report_associating_inputing_rv.setVisibility(View.VISIBLE);
+                        }else {
+                            report_associating_inputing_rv.setVisibility(View.GONE);
+                        }
+                    } else {
+                        report_associating_inputing_rv.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
+
+        report_client_name_et.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    // 获得焦点
+                } else {
+                    // 失去焦点
+                    report_associating_inputing_rv.setVisibility(View.GONE);
+                }
+
+            }
+
+
+        });
+
+        report_relative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                report_associating_inputing_rv.setVisibility(View.GONE);
+            }
+        });
+
+        report_nosearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                report_associating_inputing_rv.setVisibility(View.GONE);
+            }
+        });
+
+        report_client_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                report_associating_inputing_rv.setVisibility(View.GONE);
+            }
+        });
+
         if (FinalContents.isChecked()) {
-            client_name.setText(FinalContents.getClientName());
+            if (!FinalContents.getClientName().equals("")) {
+                report_client_name_et.setText(FinalContents.getClientName());
+                report_client_phone.setText(FinalContents.getClientPhone());
+            }
         } else {
             project_name.setText("");
         }
@@ -215,10 +324,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             project_name.setText("");
         }
 
-        report_cancel = findViewById(R.id.report_picker_cancel);
-        report_ensure = findViewById(R.id.report_picker_ensure);
-
-        report_picker = findViewById(R.id.report_picker);
 
         report_btn_s.setOnClickListener(this);
         report_btn_f.setOnClickListener(this);
@@ -253,8 +358,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
         ensure = findViewById(R.id.report_ensure);
 
-        Log.i("报备跳转","数据zhon："+FinalContents.getClientName());
-        Log.i("报备跳转","数据zhon："+FinalContents.getCustomerID());
+        Log.i("报备跳转", "数据zhon：" + FinalContents.getClientName());
+        Log.i("报备跳转", "数据zhon：" + FinalContents.getCustomerID());
 
         area1.setOnClickListener(this);
         area2.setOnClickListener(this);
@@ -279,123 +384,123 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         goal8.setOnClickListener(this);
         ensure.setOnClickListener(this);
 
+    }
+
+    private void initData() {
+        areaMap.put(0, "");
+        areaMap.put(1, "");
+        areaMap.put(2, "");
+        areaMap.put(3, "");
+        areaMap.put(4, "");
+        areaMap.put(5, "");
+        areaMap.put(6, "");
+        areaMap.put(7, "");
+
+        typeMap.put(0, "");
+        typeMap.put(1, "");
+        typeMap.put(2, "");
+        typeMap.put(3, "");
+        typeMap.put(4, "");
+
+        goalMap.put(0, "");
+        goalMap.put(1, "");
+        goalMap.put(2, "");
+        goalMap.put(3, "");
+        goalMap.put(4, "");
+        goalMap.put(5, "");
+        goalMap.put(6, "");
+        goalMap.put(7, "");
 
     }
 
-    private void initData(){
-        areaMap.put(0,"");
-        areaMap.put(1,"");
-        areaMap.put(2,"");
-        areaMap.put(3,"");
-        areaMap.put(4,"");
-        areaMap.put(5,"");
-        areaMap.put(6,"");
-        areaMap.put(7,"");
-
-        typeMap.put(0,"");
-        typeMap.put(1,"");
-        typeMap.put(2,"");
-        typeMap.put(3,"");
-        typeMap.put(4,"");
-
-        goalMap.put(0,"");
-        goalMap.put(1,"");
-        goalMap.put(2,"");
-        goalMap.put(3,"");
-        goalMap.put(4,"");
-        goalMap.put(5,"");
-        goalMap.put(6,"");
-        goalMap.put(7,"");
-
-    }
-
-    private void initDate(){
+    private void initDate() {
         Calendar calendar = Calendar.getInstance();
-        final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH)+1;
-        final int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
-        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth + 1);
+        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth + 1);
 
-        timeStart = string;
-        timeEnd = string1;
-        report_start.setText("<"+string);
-        report_end.setText("-"+string1+" >");
-        dateTimePickerView.setStartDate(Calendar.getInstance());
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        dateTimePickerView.setEndDate(new GregorianCalendar(year+3, month, dayOfMonth));
-
-
-        report_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-                Log.d("判断", "判断: " + blean);
-                if (blean) {
-                    initDate2();
-                }
-            }
-        });
-
-        report_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-            }
-        });
+        report_start.setText("<" + string);
+        report_end.setText("-" + string1 + " >");
 
         report_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setStartDate(Calendar.getInstance());
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                         year1 = date.get(Calendar.YEAR);
-                         month1 = date.get(Calendar.MONTH);
-                         dayOfMonth1 = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year1, month1 + 1, dayOfMonth1);
-                        timeStart = dateString;
-                        report_start.setText("<"+dateString);
-                    }
-                });
-                blean = true;
+                initTimePickerView1();
+
             }
         });
-
-    }
-
-    private void initDate2(){
 
         report_end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                Log.d("判断", "n 判断: " + blean);
-                dateTimePickerView.setStartDate(new GregorianCalendar(year1, month1, dayOfMonth1));
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        timeEnd = dateString;
-                        report_end.setText("-"+dateString+" >");
-                        Log.d("wsw", "new date: " + dateString);
-                    }
-                });
-                blean = false;
-                Log.d("判断", "new 判断: " + blean);
+                initTimePickerView2();
             }
         });
+
     }
 
-    private void initDataReport(){
+    private void initTimePickerView1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year+3, month, dayOfMonth);
+        TimePickerView pvTime = new TimePickerBuilder(ReportActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                selectdate = date;
+                timeStart = getTime2(date);
+                report_start.setText("<" + getTime2(date));
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    private void initTimePickerView2(){
+        Calendar calendar = Calendar.getInstance();
+        if (selectdate != null) {
+            calendar.setTime(selectdate);
+        }
+        int year3 = calendar.get(Calendar.YEAR);
+        int month3 = calendar.get(Calendar.MONTH);
+        int dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
+
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        final Calendar endDate = Calendar.getInstance();
+        selectedDate.set(year3, month3, dayOfMonth3);
+        startDate.set(year3, month3, dayOfMonth3);
+        endDate.set(year3, month3, dayOfMonth3+15);
+        TimePickerView pvTime = new TimePickerBuilder(ReportActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                timeEnd = getTime2(date);
+                report_end.setText("-" + getTime2(date) + " >");
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    private void initDataReport() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -418,11 +523,11 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                         projectLabelListBeans = reportBean.getData().getProjectLabelList();
                         purposeListBeans = reportBean.getData().getPurposeList();
 
-                        for (int i = 0;i < projectLabelListBeans.size();i++){
-                            traitMap.put(i,"");
+                        for (int i = 0; i < projectLabelListBeans.size(); i++) {
+                            traitMap.put(i, "");
                         }
 
-                        GridLayoutManager gridLayoutManager = new GridLayoutManager(ReportActivity.this,4);
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(ReportActivity.this, 4);
                         gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
                         report_rv.setLayoutManager(gridLayoutManager);
                         ReportItemAdapter reportItemAdapter = new ReportItemAdapter(projectLabelListBeans);
@@ -432,19 +537,19 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                             @Override
                             public void onItemClick(CheckBox checkBox, int postion) {
                                 if (checkBox.isChecked()) {
-                                    traitMap.put(postion,","+ projectLabelListBeans.get(postion).getId());
-                                    Log.i("楼盘特色","来来来："+traitMap.get(postion)+"名字:"+projectLabelListBeans.get(postion).getLable());
-                                }else {
-                                    traitMap.put(postion,"");
+                                    traitMap.put(postion, "," + projectLabelListBeans.get(postion).getId());
+                                    Log.i("楼盘特色", "来来来：" + traitMap.get(postion) + "名字:" + projectLabelListBeans.get(postion).getLable());
+                                } else {
+                                    traitMap.put(postion, "");
                                 }
-                                Log.i("楼盘特色","数据："+traitMap.get(postion));
+                                Log.i("楼盘特色", "数据：" + traitMap.get(postion));
                             }
                         });
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("wsw","返回的数据"+e.getMessage());
+                        Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
                     @Override
@@ -454,7 +559,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 });
     }
 
-    private void initIdNumber(){
+    private void initIdNumber() {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -474,14 +579,14 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     public void onNext(IdNumberBean idNumberBean) {
                         if (idNumberBean.getData().getIsPapers() == 0) {
                             report_linear.setVisibility(View.GONE);
-                        }else if (idNumberBean.getData().getIsPapers() == 1){
+                        } else if (idNumberBean.getData().getIsPapers() == 1) {
                             report_linear.setVisibility(View.VISIBLE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("wsw","报备的数据"+e.getMessage());
+                        Log.i("wsw", "报备的数据" + e.getMessage());
                     }
 
                     @Override
@@ -491,6 +596,8 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 });
     }
 
+    //点击事件
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -503,12 +610,12 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 report_tv_timer.setVisibility(View.GONE);
                 break;
             case R.id.report_tv_sq:
-                if(report_ll_start_sq.getVisibility() == View.VISIBLE){
+                if (report_ll_start_sq.getVisibility() == View.VISIBLE) {
                     report_tv_sq.setText("展开");
                     report_ll_start_sq.setVisibility(View.GONE);
                     report_ll_start_sq1.setVisibility(View.GONE);
                     report_ll_start_sq2.setVisibility(View.GONE);
-                }else if (report_ll_start_sq.getVisibility() == View.GONE){
+                } else if (report_ll_start_sq.getVisibility() == View.GONE) {
                     report_tv_sq.setText("收起");
                     report_ll_start_sq.setVisibility(View.VISIBLE);
                     report_ll_start_sq1.setVisibility(View.VISIBLE);
@@ -518,213 +625,212 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             //面积
             case R.id.report_area_1:
                 if (area1.isChecked()) {
-                    areaMap.put(0,",-50");
-                }else {
-                    areaMap.put(0,"");
+                    areaMap.put(0, ",-50");
+                } else {
+                    areaMap.put(0, "");
                 }
                 break;
             case R.id.report_area_2:
                 if (area2.isChecked()) {
-                    areaMap.put(1,",50-70");
-                }else {
-                    areaMap.put(1,"");
+                    areaMap.put(1, ",50-70");
+                } else {
+                    areaMap.put(1, "");
                 }
                 break;
             case R.id.report_area_3:
                 if (area3.isChecked()) {
-                    areaMap.put(2,",70-90");
-                }else {
-                    areaMap.put(2,"");
+                    areaMap.put(2, ",70-90");
+                } else {
+                    areaMap.put(2, "");
                 }
                 break;
             case R.id.report_area_4:
                 if (area4.isChecked()) {
-                    areaMap.put(3,",90-110");
-                }else {
-                    areaMap.put(3,"");
+                    areaMap.put(3, ",90-110");
+                } else {
+                    areaMap.put(3, "");
                 }
                 break;
             case R.id.report_area_5:
                 if (area5.isChecked()) {
-                    areaMap.put(4,",110-130");
-                }else {
-                    areaMap.put(4,"");
+                    areaMap.put(4, ",110-130");
+                } else {
+                    areaMap.put(4, "");
                 }
                 break;
             case R.id.report_area_6:
                 if (area6.isChecked()) {
-                    areaMap.put(5,",130-150");
-                }else {
-                    areaMap.put(5,"");
+                    areaMap.put(5, ",130-150");
+                } else {
+                    areaMap.put(5, "");
                 }
                 break;
             case R.id.report_area_7:
                 if (area7.isChecked()) {
-                    areaMap.put(6,",150-200");
-                }else {
-                    areaMap.put(6,"");
+                    areaMap.put(6, ",150-200");
+                } else {
+                    areaMap.put(6, "");
                 }
                 break;
             case R.id.report_area_8:
                 if (area8.isChecked()) {
-                    areaMap.put(7,",200-");
-                }else {
-                    areaMap.put(7,"");
+                    areaMap.put(7, ",200-");
+                } else {
+                    areaMap.put(7, "");
                 }
                 break;
             //类型
             case R.id.report_type_1:
                 if (type1.isChecked()) {
-                    typeMap.put(0,",1");
-                }else {
-                    typeMap.put(0,"");
+                    typeMap.put(0, ",1");
+                } else {
+                    typeMap.put(0, "");
                 }
 
                 break;
             case R.id.report_type_2:
                 if (type2.isChecked()) {
-                    typeMap.put(1,",2");
-                }else {
-                    typeMap.put(1,"");
+                    typeMap.put(1, ",2");
+                } else {
+                    typeMap.put(1, "");
                 }
 
                 break;
             case R.id.report_type_3:
                 if (type3.isChecked()) {
-                    typeMap.put(2,",3");
-                }else {
-                    typeMap.put(2,"");
+                    typeMap.put(2, ",3");
+                } else {
+                    typeMap.put(2, "");
                 }
 
                 break;
             case R.id.report_type_4:
                 if (type4.isChecked()) {
-                    typeMap.put(3,",4");
-                }else {
-                    typeMap.put(3,"");
+                    typeMap.put(3, ",4");
+                } else {
+                    typeMap.put(3, "");
                 }
 
                 break;
             case R.id.report_type_5:
                 if (type5.isChecked()) {
-                    typeMap.put(4,",5");
-                }else {
-                    typeMap.put(4,"");
+                    typeMap.put(4, ",5");
+                } else {
+                    typeMap.put(4, "");
                 }
 
                 break;
             //目的
             case R.id.report_goal_1:
                 if (goal1.isChecked()) {
-                    goalMap.put(0,",0");
-                }else {
-                    goalMap.put(0,"");
+                    goalMap.put(0, ",0");
+                } else {
+                    goalMap.put(0, "");
                 }
 
                 break;
             case R.id.report_goal_2:
                 if (goal2.isChecked()) {
-                    goalMap.put(1,",1");
-                }else {
-                    goalMap.put(1,"");
+                    goalMap.put(1, ",1");
+                } else {
+                    goalMap.put(1, "");
                 }
 
                 break;
             case R.id.report_goal_3:
                 if (goal3.isChecked()) {
-                    goalMap.put(2,",2");
-                }else {
-                    goalMap.put(2,"");
+                    goalMap.put(2, ",2");
+                } else {
+                    goalMap.put(2, "");
                 }
 
                 break;
             case R.id.report_goal_4:
                 if (goal4.isChecked()) {
-                    goalMap.put(3,",3");
-                }else {
-                    goalMap.put(3,"");
+                    goalMap.put(3, ",3");
+                } else {
+                    goalMap.put(3, "");
                 }
 
                 break;
             case R.id.report_goal_5:
                 if (goal5.isChecked()) {
-                    goalMap.put(4,",4");
-                }else {
-                    goalMap.put(4,"");
+                    goalMap.put(4, ",4");
+                } else {
+                    goalMap.put(4, "");
                 }
 
                 break;
             case R.id.report_goal_6:
                 if (goal6.isChecked()) {
-                    goalMap.put(5,",5");
-                }else {
-                    goalMap.put(5,"");
+                    goalMap.put(5, ",5");
+                } else {
+                    goalMap.put(5, "");
                 }
 
                 break;
             case R.id.report_goal_7:
                 if (goal7.isChecked()) {
-                    goalMap.put(6,",6");
-                }else {
-                    goalMap.put(6,"");
+                    goalMap.put(6, ",6");
+                } else {
+                    goalMap.put(6, "");
                 }
 
                 break;
             case R.id.report_goal_8:
                 if (goal8.isChecked()) {
-                    goalMap.put(7,",7");
-                }else {
-                    goalMap.put(7,"");
+                    goalMap.put(7, ",7");
+                } else {
+                    goalMap.put(7, "");
                 }
                 break;
-            case R.id.report_client_name:
-                Intent clientIntent = new Intent(ReportActivity.this,MyClientActivity.class);
+            case R.id.report_client_name_img:
+                Intent clientIntent = new Intent(ReportActivity.this, MyClientActivity.class);
                 FinalContents.setNUM("1");
                 startActivity(clientIntent);
-                FinalContents.setChecked(true);
                 break;
             case R.id.report_project_name:
-                Intent projectIntent = new Intent(ReportActivity.this,SearchInterfaceActivity.class);
+                Intent projectIntent = new Intent(ReportActivity.this, SearchInterfaceActivity.class);
                 FinalContents.setProject("1");
                 startActivity(projectIntent);
                 FinalContents.setChecked2(true);
                 break;
             case R.id.report_ensure:
-                for (int i = 0;i < areaMap.size();i++){
+                for (int i = 0; i < areaMap.size(); i++) {
                     areaSection = areaSection + areaMap.get(i);
                 }
-                for (int i = 0;i < traitMap.size();i++){
+                for (int i = 0; i < traitMap.size(); i++) {
                     ffProjectTrait = ffProjectTrait + traitMap.get(i);
                 }
-                for (int i = 0;i < typeMap.size();i++){
+                for (int i = 0; i < typeMap.size(); i++) {
                     procuctType = procuctType + typeMap.get(i);
                 }
-                for (int i = 0;i < goalMap.size();i++){
+                for (int i = 0; i < goalMap.size(); i++) {
                     fitmentState = fitmentState + goalMap.get(i);
                 }
 
                 if (areaSection.equals("") || ffProjectTrait.equals("") || procuctType.equals("") || fitmentState.equals("")) {
 
                 } else {
-                    areaSection = areaSection.substring(1,areaSection.length());
-                    ffProjectTrait = ffProjectTrait.substring(1,ffProjectTrait.length());
-                    procuctType = procuctType.substring(1,procuctType.length());
-                    fitmentState = fitmentState.substring(1,fitmentState.length());
+                    areaSection = areaSection.substring(1, areaSection.length());
+                    ffProjectTrait = ffProjectTrait.substring(1, ffProjectTrait.length());
+                    procuctType = procuctType.substring(1, procuctType.length());
+                    fitmentState = fitmentState.substring(1, fitmentState.length());
                 }
 
-                eventUrl = url+ "&areaSection="+areaSection+"&ffProjectTrait="+ffProjectTrait+"&procuctType="+procuctType+"&fitmentState="+fitmentState;
+                eventUrl = url + "&areaSection=" + areaSection + "&ffProjectTrait=" + ffProjectTrait + "&procuctType=" + procuctType + "&fitmentState=" + fitmentState;
 
-                Log.i("楼盘特色","数据："+ffProjectTrait);
+                Log.i("楼盘特色", "数据：" + ffProjectTrait);
 
                 if (report_linear.getVisibility() == View.VISIBLE) {
                     if (IDcard.getText().length() == 18) {
                         initReport();
-                    } else if (IDcard.getText().length() == 0){
-                        Toast.makeText(ReportActivity.this, "请输入身份证号码", Toast.LENGTH_SHORT).show();
+                    } else if (IDcard.getText().length() == 0) {
+                        ToastUtil.showLongToast(ReportActivity.this, "请输入身份证号码");
                     } else if (IDcard.getText().length() < 18) {
-                        Toast.makeText(ReportActivity.this, "请输入正确的身份证号码", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(ReportActivity.this, "请输入正确的身份证号码");
                     }
-                }else if (report_linear.getVisibility() == View.GONE){
+                } else if (report_linear.getVisibility() == View.GONE) {
                     initReport();
                 }
 
@@ -737,22 +843,125 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         }
     }
 
-    private void initReport(){
-        
-        if (client_name.getText().toString().equals("")) {
-            Toast.makeText(this, "请选择客户", Toast.LENGTH_SHORT).show();
+    private void initAssociatingInputing() {
+        list = new ArrayList<>();
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ClientBean> client = fzbInterface.getClient("", FinalContents.getUserID(), "1000");
+        client.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ClientBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ClientBean clientBean) {
+                        list = clientBean.getData();
+                        if (list.size() != 0) {
+                            initSearch();
+                        } else {
+                            report_associating_inputing_rv.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "客户列表错误信息：" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void initSearch() {
+        dateList = fillData(list);
+        if (dateList.size() != 0) {
+            Collections.sort(dateList, new LettersComparator<ItemEntity>());
+            report_associating_inputing_rv.setLayoutManager(new LinearLayoutManager(ReportActivity.this));
+            fuzzySearchAdapter = new FuzzySearchAdapter(dateList);
+            report_associating_inputing_rv.setAdapter(fuzzySearchAdapter);
+            fuzzySearchAdapter.notifyDataSetChanged();
+
+            report_client_name_et.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    fuzzySearchAdapter.getFilter().filter(s);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            fuzzySearchAdapter.setItemOnClick(new FuzzySearchAdapter.ItemOnClick() {
+                @Override
+                public void itemClick(int position, String phone) {
+                    Log.i("显示", "模糊：" + phone);
+                    for (int i = 0; i < list.size(); i++) {
+                        if (phone.equals(list.get(i).getContactsPhone1())) {
+                            report_associating_inputing_rv.setVisibility(View.GONE);
+                            FinalContents.setClientPhone(list.get(i).getContactsPhone1());
+                            FinalContents.setClientName(list.get(i).getCustomerName());
+                            FinalContents.setCustomerID(list.get(i).getId());
+                            customerID = list.get(i).getId();
+                            if (!FinalContents.getClientName().equals("")) {
+                                report_client_name_et.setText(FinalContents.getClientName());
+                                report_client_phone.setText(FinalContents.getClientPhone());
+                            }
+                            break;
+                        }
+                    }
+                    report_associating_inputing_rv.setVisibility(View.GONE);
+                }
+            });
+        }else{
+            report_associating_inputing_rv.setVisibility(View.GONE);
+        }
+
+    }
+
+    private void initReport() {
+
+        if (report_client_name_et.getText().toString().equals("")) {
+            ToastUtil.showLongToast(this, "请选择客户");
             return;
         }
 
         if (project_name.getText().toString().equals("")) {
-            Toast.makeText(this, "请选择项目", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this, "请选择项目");
             return;
         }
 
-        if (project_name.getText().toString().equals("")) {
-            Toast.makeText(this, "请选择项目", Toast.LENGTH_SHORT).show();
+        if (!MatcherUtils.isMobile(report_client_phone.getText().toString())) {
+            ToastUtil.showLongToast(this, "请输入正确的手机号");
             return;
         }
+
+        if (FinalContents.getClientPhone().equals(report_client_phone.getText().toString()) && FinalContents.getClientName().equals(report_client_name_et.getText().toString())) {
+            customerID = FinalContents.getCustomerID();
+        } else {
+            customerID = "";
+        }
+        FinalContents.setCustomerID(customerID);
+        FinalContents.setClientPhone(report_client_phone.getText().toString());
+        FinalContents.setClientName(report_client_name_et.getText().toString());
+
+        Log.i("报备", "客户" + FinalContents.getCustomerID());
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -760,7 +969,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ChangePhoneBean> userMessage = fzbInterface.getReportPostBean(FinalContents.getCustomerID(),procuctType,areaSection,fitmentState,ffProjectTrait,price_start.getText().toString(),price_end.getText().toString(),FinalContents.getProjectID(),"",FinalContents.getGuideRuleId(),isIsland,IDcard.getText().toString(),report_remarks.getText().toString(),timeStart,timeEnd,FinalContents.getUserID());
+        Observable<ChangePhoneBean> userMessage = fzbInterface.getReportPostBean(FinalContents.getCustomerID(), procuctType, areaSection, fitmentState, ffProjectTrait, price_start.getText().toString(), price_end.getText().toString(), FinalContents.getProjectID(), "", FinalContents.getGuideRuleId(), isIsland, IDcard.getText().toString(), report_remarks.getText().toString(), timeStart, timeEnd, FinalContents.getUserID(), FinalContents.getClientName(), FinalContents.getClientPhone());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ChangePhoneBean>() {
@@ -770,21 +979,104 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                     }
 
                     @Override
-                    public void onNext(ChangePhoneBean changePhoneBean) {
-                        Log.i("报备",""+FinalContents.getProjectID());
-                        Toast.makeText(ReportActivity.this, changePhoneBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                        finish();
-                        FinalContents.setClientName("");
-                        FinalContents.setCustomerID("");
-                        FinalContents.setProjectName("");
-                        FinalContents.setProjectSearchID("");
-                        FinalContents.setGuideRuleId("");
-                        FinalContents.setProjectID("");
+                    public void onNext(final ChangePhoneBean changePhoneBean) {
+                        Log.i("报备", "客户" + FinalContents.getCustomerID());
+                        Log.i("报备", "" + FinalContents.getProjectID());
+                        if (changePhoneBean.getData().getStatus().equals("1")) {//报备成功
+                            ToastUtil.showLongToast(ReportActivity.this, changePhoneBean.getData().getMessage());
+                            finish();
+                        } else if (changePhoneBean.getData().getStatus().equals("2")) {//已有报备
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ReportActivity.this);
+                            View inflate = LayoutInflater.from(ReportActivity.this).inflate(R.layout.binding_report, null, false);
+                            builder1.setView(inflate);
+                            TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
+                            TextView report_binding_confirm_tv = inflate.findViewById(R.id.report_binding_confirm_tv);
+                            TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
+                            RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
+                            RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
+                            report_binding_title.setText(changePhoneBean.getData().getMessage());//内容
+                            report_binding_confirm_tv.setText("前去看看");
+                            report_binding_cancel_tv.setText("我知道了");
+                            final AlertDialog show = builder1.show();
+                            report_binding_cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    finish();
+                                    show.dismiss();
+                                }
+                            });
+                            report_binding_confirm.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(ReportActivity.this, ReviewTheSuccessActivity.class);
+//                                    FinalContents.setCustomerID(rows.get(position).getCustomerId());
+                                    FinalContents.setPreparationId(changePhoneBean.getData().getBusiness());
+                                    startActivity(intent);
+                                    finish();
+                                    show.dismiss();
+                                }
+                            });
+                        } else if (changePhoneBean.getData().getStatus().equals("3")) {//提示信息
+
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ReportActivity.this);
+                            View inflate = LayoutInflater.from(ReportActivity.this).inflate(R.layout.binding_report, null, false);
+                            builder1.setView(inflate);
+                            TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
+                            RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
+                            TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
+                            RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
+                            LinearLayout report_binding_confirm_LinearLayout = inflate.findViewById(R.id.report_binding_confirm_LinearLayout);
+                            report_binding_title.setText(changePhoneBean.getData().getMessage());//内容
+                            report_binding_confirm.setVisibility(View.GONE);
+                            report_binding_confirm_LinearLayout.setVisibility(View.GONE);
+                            report_binding_cancel_tv.setText("我知道了");
+                            final AlertDialog show = builder1.show();
+                            report_binding_cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    finish();
+                                    show.dismiss();
+                                }
+                            });
+
+                        } else if (changePhoneBean.getData().getStatus().equals("4")) {//联系管理员(前去致电)
+
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ReportActivity.this);
+                            View inflate = LayoutInflater.from(ReportActivity.this).inflate(R.layout.binding_report, null, false);
+                            builder1.setView(inflate);
+                            TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
+                            TextView report_binding_confirm_tv = inflate.findViewById(R.id.report_binding_confirm_tv);
+                            TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
+                            RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
+                            RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
+                            report_binding_title.setText(changePhoneBean.getData().getMessage());//内容
+                            report_binding_confirm_tv.setText("前去致电");
+                            report_binding_cancel_tv.setText("我知道了");
+                            final AlertDialog show = builder1.show();
+                            report_binding_cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    finish();
+                                    show.dismiss();
+                                }
+                            });
+                            report_binding_confirm.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + changePhoneBean.getData().getBusiness()));//跳转到拨号界面，同时传递电话号码
+                                    startActivity(dialIntent);
+                                    finish();
+                                    show.dismiss();
+                                }
+                            });
+
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("wsw","返回的数据"+e.getMessage());
+                        Log.i("wsw", "返回的数据" + e.getMessage());
                     }
 
                     @Override
@@ -792,6 +1084,30 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
                     }
                 });
+    }
+
+    private List<ItemEntity> fillData(List<ClientBean.DataBean> list) {
+        List<ItemEntity> sortList = new ArrayList<>();
+        for (ClientBean.DataBean item : list) {
+            String letter;
+            //汉字转换成拼音
+            List<String> pinyinList = PinyinUtil.getPinYinList(item.getCustomerName() + "@" + item.getContactsPhone1());
+            if (pinyinList != null && !pinyinList.isEmpty()) {
+                // A-Z导航
+                String letters = pinyinList.get(0).substring(0, 1).toUpperCase();
+                // 正则表达式，判断首字母是否是英文字母
+                if (letters.matches("[A-Z]")) {
+                    letter = letters.toUpperCase();
+                } else {
+                    letter = "#";
+                }
+            } else {
+                letter = "#";
+            }
+            sortList.add(new ItemEntity(item.getCustomerName() + "@" + item.getContactsPhone1(), letter, pinyinList));
+        }
+        return sortList;
+
     }
 
     @Override
@@ -814,9 +1130,9 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         return onTouchEvent(ev);
     }
 
-    public  boolean isShouldHideInput(View v, MotionEvent event) {
+    public boolean isShouldHideInput(View v, MotionEvent event) {
         if (v != null && (v instanceof EditText)) {
-            int[] leftTop = { 0, 0 };
+            int[] leftTop = {0, 0};
             //获取输入框当前的location位置
             v.getLocationInWindow(leftTop);
 
@@ -836,34 +1152,69 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onResume() {
+        super.onResume();
+        Log.i("报备","恢复");
+        if (FinalContents.getProjectName().equals("")) {
+        } else {
+            initIdNumber();
+            if (FinalContents.getProjectType().equals("1")) {
+                report_issure.setVisibility(View.GONE);
+            } else if (FinalContents.getProjectType().equals("2") || FinalContents.getProjectType().equals("3")){
+                report_issure.setVisibility(View.VISIBLE);
+            } else {
+                report_issure.setVisibility(View.GONE);
+            }
+            if (FinalContents.getCustomerID().equals("")) {
+                report_associating_inputing_rv.setVisibility(View.VISIBLE);
+            }else {
+                report_associating_inputing_rv.setVisibility(View.GONE);
+            }
+            if (FinalContents.getProjectID().equals("")) {
+                report_associating_inputing_rv.setVisibility(View.VISIBLE);
+            }else {
+                report_associating_inputing_rv.setVisibility(View.GONE);
+            }
+        }
         if (FinalContents.isChecked()) {
-            client_name.setText(FinalContents.getClientName());
+            if (!FinalContents.getClientName().equals("")) {
+                report_client_name_et.setText(FinalContents.getClientName());
+                report_client_phone.setText(FinalContents.getClientPhone());
+            }
+            report_associating_inputing_rv.setVisibility(View.GONE);
         } else {
             project_name.setText("");
         }
         if (FinalContents.isChecked2()) {
+            if (FinalContents.getProjectType().equals("1")) {
+                report_issure.setVisibility(View.GONE);
+            } else if (FinalContents.getProjectType().equals("2") || FinalContents.getProjectType().equals("3")){
+                report_issure.setVisibility(View.VISIBLE);
+            } else {
+                report_issure.setVisibility(View.GONE);
+            }
             project_name.setText(FinalContents.getProjectName());
         } else {
             project_name.setText("");
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (FinalContents.getProjectName().equals("")) {
-
-        }else {
-            initIdNumber();
-        }
+        initAssociatingInputing();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        FinalContents.setProjectID("");
+        if (CityContents.getIsReport().equals("")) {
+            Log.i("数据","1走一走:"+FinalContents.getProjectType());
+            FinalContents.setProjectType("");
+            FinalContents.setProjectName("");
+            FinalContents.setGuideRuleId("");
+            FinalContents.setProjectID("");
+        }
+        FinalContents.setClientName("");
+        FinalContents.setClientPhone("");
         FinalContents.setCustomerID("");
+        FinalContents.setProjectSearchID("");
+        FinalContents.setNUM("");
+        FinalContents.setProject("");
     }
 }

@@ -77,7 +77,6 @@
             android:id="@+id/member_name_img"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:visibility="gone"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:scaleType="fitXY"
@@ -91,7 +90,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/shape_team_member"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <TextView
                 android:layout_width="wrap_content"

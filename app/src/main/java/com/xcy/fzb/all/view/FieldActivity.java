@@ -39,10 +39,12 @@ import com.xcy.fzb.all.database.ColleagueBean;
 import com.xcy.fzb.all.database.FieldBean;
 import com.xcy.fzb.all.modle.AddPhotoBean;
 import com.xcy.fzb.all.modle.LandSaveBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -145,7 +147,7 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -196,6 +198,7 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -218,44 +221,44 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
             case R.id.field_btn:
 
                 if (!MatcherUtils.isMobile(field_et3.getText().toString())) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(this, "请输入正确的手机号");
                     return;
                 } else {
                     if (field_et1.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入客户名", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入客户名");
                         return;
                     }
 
                     if (field_tv1.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入性别", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入性别");
                         return;
                     }
 
                     if (field_et2.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入关系", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入关系");
                         return;
                     }
 
 
                     if (field_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入手机号");
                         return;
                     }
 
                     if (field_et4.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入身份证号码", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入身份证号码");
                         return;
                     }
 
                     if (FinalContents.getProjectType().equals("2")) {
                         if (field_et5.getText().toString().equals("")) {
-                            Toast.makeText(this, "请输入护照号码", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(this, "请输入护照号码");
                             return;
                         }
                     }
 
                     if (imgUrl.equals("")) {
-                        Toast.makeText(this, "请选择照片", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择照片");
                         return;
                     }
 
@@ -347,13 +350,13 @@ public class FieldActivity extends AllActivity implements View.OnClickListener {
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(LandSaveBean landSaveBean) {
-                        Toast.makeText(FieldActivity.this, landSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(FieldActivity.this, landSaveBean.getData().getMessage());
                         finish();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(FieldActivity.this, "请确定您的输入信息是否完整", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(FieldActivity.this, "请确定您的输入信息是否完整");
                         Log.i("列表数据获取错误","错误"+e);
                     }
 

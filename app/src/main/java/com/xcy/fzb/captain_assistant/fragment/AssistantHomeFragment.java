@@ -46,13 +46,13 @@ import com.xcy.fzb.all.modle.ImgData;
 import com.xcy.fzb.all.modle.MessageBean2;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SharItOff;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
 import com.xcy.fzb.captain_assistant.view.Assistant_Teams_Activity;
-import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -113,7 +113,6 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
     private Vibrator vibrator;
     private DemoApplication application;
     private ImageView all_no_information;
-    private ImageView home_banner_img;
 
     @Nullable
     @Override
@@ -177,14 +176,14 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
     @Override
     public void onResume() {
         super.onResume();
-
+        city.setText(FinalContents.getCityName());
         tvBanner2.startFlipping();
 //        //TODO 获取加速传感器
 //        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 //                SensorManager.SENSOR_DELAY_NORMAL);
     }
-//
-//
+
+
 //    @Override
 //    public void onPause() {
 //        super.onPause();
@@ -202,8 +201,6 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
         all_no_information = view.findViewById(R.id.all_no_information_a);
 
         banner = view.findViewById(R.id.home_banner);
-
-        home_banner_img = view.findViewById(R.id.assisant_home_banner_img);
 
         layout = view.findViewById(R.id.home_srl);
         tvBanner2 =  view.findViewById(R.id.tv_banner2);
@@ -236,6 +233,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
     }
 
     //点击事件
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         if (hotlist.size() != 0) {
@@ -253,18 +251,27 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                 Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent_overseas);
             } else if (view.getId() == R.id.home_item_client) {
+                FinalContents.setProjectType("1");
+                Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
+                startActivity(intent_overseas);
+
+//                Intent intent_overseas = new Intent(view.getContext(), Assistant_Teams_Activity.class);
+//                FinalContents.setMyAddType("");
+//                intent_overseas.putExtra("Iftz", "1");
+//                startActivity(intent_overseas);
+            } else if (view.getId() == R.id.home_item_brokerage) {
                 Intent intent_overseas = new Intent(view.getContext(), Assistant_Teams_Activity.class);
                 FinalContents.setMyAddType("");
                 intent_overseas.putExtra("Iftz", "1");
                 startActivity(intent_overseas);
-            } else if (view.getId() == R.id.home_item_brokerage) {
-                FinalContents.setStoreId("");
-                FinalContents.setAgentId(FinalContents.getUserID());
-                Intent intent_overseas = new Intent(view.getContext(), Captain_Team_MyClientActivity.class);
-                FinalContents.setQuanceng("1");
-                FinalContents.setMySelf("0");
-                intent_overseas.putExtra("client", "1");
-                startActivity(intent_overseas);
+
+//                FinalContents.setStoreId("");
+//                FinalContents.setAgentId(FinalContents.getUserID());
+//                Intent intent_overseas = new Intent(view.getContext(), Captain_Team_MyClientActivity.class);
+//                FinalContents.setQuanceng("1");
+//                FinalContents.setMySelf("0");
+//                intent_overseas.putExtra("client", "1");
+//                startActivity(intent_overseas);
             }
         }else {
             if (view.getId() == R.id.home_city_selector) {
@@ -300,9 +307,6 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                         final List<String> list = new ArrayList<>();
                         for (int i = 0; i < citylist.size(); i++) {
                             list.add(citylist.get(i).getCity());
-                            if (citylist.get(i).getId().equals(FinalContents.getCityID())) {
-                                city.setText(citylist.get(i).getCity());
-                            }
                         }
                         //      监听选中
                         OptionsPickerView pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
@@ -317,6 +321,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                                     FinalContents.setCityIs("");
                                 }
                                 city.setText(list.get(options1));
+                                FinalContents.setCityName(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
                                 Log.i("city",FinalContents.getCityID());
                                 initHotList();
@@ -496,8 +501,6 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                     public void onNext(ImgData imgData) {
                         imglist = imgData.getData();
                         if (imglist.size() != 0) {
-                            home_banner_img.setVisibility(View.GONE);
-                            banner.setVisibility(View.VISIBLE);
                             for (int i = 0; i < imglist.size(); i++) {
                                 list_path.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                                 list_title.add(imglist.get(i).getTitle());
@@ -525,27 +528,26 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                             banner.setOnBannerListener(new OnBannerListener() {
                                 @Override
                                 public void OnBannerClick(int position) {
-                                    FinalContents.setProjectID(imglist.get(position).getProject().getId());
-                                    FinalContents.setNewID(imglist.get(position).getId());
-                                    Log.i("详情", "项目ID" + FinalContents.getProjectID());
-                                    Log.i("详情", "用户ID" + FinalContents.getUserID());
-                                    Log.i("详情", "用户ID" + FinalContents.getNewID());
-                                    Intent intent = new Intent(view.getContext(), WebViewActivity.class);
-                                    intent.putExtra("title", "新闻详情");
-                                    intent.putExtra("webview", imglist.get(position).getContent());
-                                    startActivity(intent);
+                                    try {
+                                        FinalContents.setProjectID(imglist.get(position).getProject().getId());
+                                        FinalContents.setNewID(imglist.get(position).getId());
+                                        Log.i("详情", "项目ID" + FinalContents.getProjectID());
+                                        Log.i("详情", "用户ID" + FinalContents.getUserID());
+                                        Log.i("详情", "用户ID" + FinalContents.getNewID());
+                                        Intent intent = new Intent(view.getContext(), WebViewActivity.class);
+                                        intent.putExtra("title", "新闻详情");
+                                        intent.putExtra("webview", imglist.get(position).getContent());
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
-                        }else {
-                            home_banner_img.setVisibility(View.VISIBLE);
-                            banner.setVisibility(View.GONE);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        home_banner_img.setVisibility(View.VISIBLE);
-                        banner.setVisibility(View.GONE);
                         Log.i("列表数据获取错误","错误"+e);
                     }
 

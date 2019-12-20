@@ -19,6 +19,7 @@ import com.xcy.fzb.all.fragment.DynamicFragment;
 import com.xcy.fzb.all.fragment.GoodNewsFragment;
 import com.xcy.fzb.all.fragment.GuestRoomFragment;
 import com.xcy.fzb.all.fragment.NoticeFragment;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 
 //TODO 消息界面
@@ -135,6 +136,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         manager = getActivity().getSupportFragmentManager();

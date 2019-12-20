@@ -76,7 +76,6 @@
                 android:id="@+id/the_project_end_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_gravity="right"
                 android:layout_marginRight="2dp" />
 
@@ -86,8 +85,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
-                android:text=""
                 android:visibility="gone"
+                android:text=""
                 android:textColor="#ff333333"
                 android:textSize="12sp" />
 
@@ -97,9 +96,20 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
+                android:visibility="gone"
+                android:text=""
+                android:textColor="#ff333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/the_project_end_tv5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
                 android:text=""
                 android:visibility="gone"
-                android:textColor="#ff333333"
+                android:textColor="#111"
                 android:textSize="12sp" />
 
             <TextView
@@ -108,8 +118,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
-                android:text=""
                 android:visibility="gone"
+                android:text=""
                 android:textColor="#ff43987c"
                 android:textSize="12sp" />
 
@@ -119,8 +129,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
-                android:text=""
                 android:visibility="gone"
+                android:text=""
                 android:textColor="#ff334485"
                 android:textSize="12sp" />
 
@@ -130,20 +140,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
+                android:visibility="gone"
                 android:text=""
-                android:visibility="gone"
                 android:textColor="#ffc3555b"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/the_project_end_tv5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="5dp"
-                android:text="*需追款"
-                android:visibility="gone"
-                android:textColor="#ff333333"
                 android:textSize="12sp" />
 
             <TextView
@@ -175,6 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginTop="5dp"
+                android:gravity="right"
                 android:text=""
                 android:visibility="gone"
                 android:textColor="#ffc3555b"
@@ -189,5 +189,5 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
-        android:background="#EEEEEE"/>
+        android:background="#EEEEEE"></LinearLayout>
 </LinearLayout>

@@ -7,7 +7,6 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,12 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
@@ -28,15 +29,17 @@ import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.MoneyCountBean;
 import com.xcy.fzb.all.modle.ReceivableBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.KeyUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.adapter.TheProjectEndCommissionAdapter;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -51,7 +54,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 public class CommissionTheProjectEndActivity extends AllActivity implements View.OnClickListener {
 
@@ -69,6 +71,8 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
     LinearLayout commission_the_project_end_l2;
     LinearLayout commission_the_project_end_l3;
     LinearLayout commission_the_project_end_l4;
+    LinearLayout commission_the_project_end_l5;
+    LinearLayout commission_the_project_end_l6;
 
     RelativeLayout commission_the_project_end_rl;
     RecyclerView commission_the_project_end_rv;
@@ -84,7 +88,6 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
 
     private LinearLayout mRlRight;
     private LinearLayout drawer_linear;
-    private LinearLayout drawer_picker;
     private DrawerLayout mDlMain;
 
     RadioButton drawer_time_all;
@@ -99,11 +102,10 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
     TextView drawer_reset;
     TextView drawer_ensure;
 
-    TextView drawer_picker_cancel;
-    TextView drawer_picker_ensure;
-
-    DateTimePickerView drawer_pickerView;
     private PtrClassicFrameLayout project_side_commission_the_project_end_ptrclass;
+    private int year;
+    private int month;
+    private int dayOfMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +131,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -148,6 +150,8 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
         commission_the_project_end_l2 = findViewById(R.id.commission_the_project_end_l2);
         commission_the_project_end_l3 = findViewById(R.id.commission_the_project_end_l3);
         commission_the_project_end_l4 = findViewById(R.id.commission_the_project_end_l4);
+        commission_the_project_end_l5 = findViewById(R.id.commission_the_project_end_l5);
+        commission_the_project_end_l6 = findViewById(R.id.commission_the_project_end_l6);
         commission_the_project_end_rl = findViewById(R.id.commission_the_project_end_rl);
         commission_the_project_end_rv = findViewById(R.id.commission_the_project_end_rv);
 
@@ -191,11 +195,6 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
         drawer_reset = findViewById(R.id.drawer_reset);
         drawer_ensure = findViewById(R.id.drawer_ensure);
 
-        drawer_picker = findViewById(R.id.drawer_picker);
-        drawer_picker_cancel = findViewById(R.id.drawer_picker_cancel);
-        drawer_picker_ensure = findViewById(R.id.drawer_picker_ensure);
-        drawer_pickerView = findViewById(R.id.drawer_pickerView);
-
         initData();
         initDataBean();
 
@@ -216,6 +215,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
         commission_the_project_end_screen.setOnClickListener(this);
         commission_the_project_end_l1.setOnClickListener(this);
         commission_the_project_end_l3.setOnClickListener(this);
+        commission_the_project_end_l5.setOnClickListener(this);
 
         commission_the_project_end_et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -240,6 +240,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
         drawer_end_time.setText("-"+string+" >");
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -257,6 +258,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
 
                 commission_the_project_end_l2.setVisibility(View.VISIBLE);
                 commission_the_project_end_l4.setVisibility(View.GONE);
+                commission_the_project_end_l6.setVisibility(View.GONE);
                 projectType = "3";
                 initDataBean();
 
@@ -266,7 +268,18 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
 
                 commission_the_project_end_l2.setVisibility(View.GONE);
                 commission_the_project_end_l4.setVisibility(View.VISIBLE);
+                commission_the_project_end_l6.setVisibility(View.GONE);
                 projectType = "2";
+                initDataBean();
+
+                break;
+//                TODO 城市房产
+            case R.id.commission_the_project_end_l5:
+
+                commission_the_project_end_l2.setVisibility(View.GONE);
+                commission_the_project_end_l4.setVisibility(View.GONE);
+                commission_the_project_end_l6.setVisibility(View.VISIBLE);
+                projectType = "1";
                 initDataBean();
 
                 break;
@@ -323,69 +336,80 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
     //TODO 我的佣金侧滑菜单时间赋值
     private void initDate(){
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
         drawer_start_time.setText("<"+string);
         drawer_end_time.setText("-"+string+" >");
-        drawer_pickerView.setStartDate(new GregorianCalendar(year-2, month, dayOfMonth));
         startTime = drawer_start_time.getText().toString();
         endTime = drawer_end_time.getText().toString();
-        // 注意：月份是从0开始计数的
-        drawer_pickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        drawer_pickerView.setEndDate(new GregorianCalendar(year+1, month, dayOfMonth));
-        drawer_picker_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer_picker.setVisibility(View.GONE);
-            }
-        });
-
-        drawer_picker_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer_picker.setVisibility(View.GONE);
-            }
-        });
 
         //            TODO 开始时间
         drawer_start_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawer_picker.setVisibility(View.VISIBLE);
-                drawer_pickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        startTime = dateString;
-                        drawer_start_time.setText("<"+dateString);
-                    }
-                });
+                initTimePickerView1();
             }
         });
         //                TODO 结束时间
         drawer_end_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawer_picker.setVisibility(View.VISIBLE);
-                drawer_pickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        endTime = dateString;
-                        drawer_end_time.setText("-"+dateString+" >");
-                    }
-                });
+                initTimePickerView2();
             }
         });
+    }
+
+    //    TODO 我的佣金 右滑菜单栏 时间选择 开始时间
+    private void initTimePickerView1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year-2, month, dayOfMonth);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year+1, month, dayOfMonth);
+        TimePickerView pvTime = new TimePickerBuilder(CommissionTheProjectEndActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                drawer_start_time.setText("<"+ getTime2(date));
+                startTime = getTime2(date);
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //    TODO 我的佣金 右滑菜单栏 时间选择 结束时间
+    private void initTimePickerView2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year-2, month, dayOfMonth);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year+1, month, dayOfMonth);
+        TimePickerView pvTime = new TimePickerBuilder(CommissionTheProjectEndActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                drawer_end_time.setText("-"+ getTime2(date) +" >");
+                endTime = getTime2(date);
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
     }
 
     //    TODO 我的佣金上半部分数据填充
@@ -481,7 +505,6 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
                                     TheProjectEndCommissionAdapter recyclerAdapter = new TheProjectEndCommissionAdapter(rowsBeanList);
                                     commission_the_project_end_rv.setAdapter(recyclerAdapter);
                                     recyclerAdapter.notifyDataSetChanged();
-                                    hideInput();
                                 }else {
                                     commission_the_project_end_rl.setVisibility(View.VISIBLE);
                                     commission_the_project_end_rv.setVisibility(View.GONE);
@@ -495,6 +518,7 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
                             commission_the_project_end_rv.setVisibility(View.GONE);
                             commission_the_project_end_rl.setVisibility(View.VISIBLE);
                         }
+                        hideInput();
                     }
 
                     @Override
@@ -510,17 +534,6 @@ public class CommissionTheProjectEndActivity extends AllActivity implements View
                     }
                 });
 
-    }
-
-    /**
-     * 隐藏键盘
-     */
-    protected void hideInput() {
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        View v = getWindow().peekDecorView();
-        if (null != v) {
-            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-        }
     }
 
 }

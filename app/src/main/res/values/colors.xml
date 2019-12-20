@@ -18,9 +18,7 @@
     <color name="textcolor2">#334485</color>
     <color name="textcolor3">#999999</color>
     <color name="circlecolor">#5484FF</color>
-
-    <color name="colornn1">#ac1e26</color>
-    <color name="colornn2">#43987C</color>
-    <color name="colornn3">#334485</color>
-    <color name="colornn4">#999999</color>
+    <color name="GridColor">#D6DEE5</color>
+    <color name="LableColor">#C6D0D8</color>
+    <color name="partTranslucent">#39000000</color>
 </resources>

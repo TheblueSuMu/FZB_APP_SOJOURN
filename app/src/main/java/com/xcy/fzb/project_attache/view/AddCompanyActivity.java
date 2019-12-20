@@ -28,10 +28,12 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.AddCompanyBean;
 import com.xcy.fzb.all.modle.ChangeAddress;
 import com.xcy.fzb.all.modle.ComapnyManage;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.TestMapActivity;
 
@@ -56,22 +58,23 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     EditText add_company_et2;
     EditText add_company_et3;
     EditText add_company_et4;
-    EditText add_company_et5;
-    EditText add_company_et6;
+//    EditText add_company_et5;
+//    EditText add_company_et6;
     TextView add_company_tvs;
 
     Button add_company_btn;
 
     RelativeLayout add_company_rl1;
     RelativeLayout add_company_rl2;
-    RelativeLayout rl1;
-    RelativeLayout rl2;
-    RelativeLayout rl3;
-    RelativeLayout rl4;
+//    RelativeLayout rl1;
+//    RelativeLayout rl2;
+//    RelativeLayout rl3;
+//    RelativeLayout rl4;
 
     RadioButton add_company_rb1;
     RadioButton add_company_rb2;
     RadioButton add_company_rb3;
+    RadioButton add_company_rb4;
 
 
     private String num;
@@ -82,8 +85,8 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     private String s4;
     private String s5;
     private String s6;
-    private String s7;
-    private String s8;
+//    private String s7;
+//    private String s8;
     private String getLatitude = "";
     private String getLongitude = "";
     private ComapnyManage.DataBean.CompanyManageBean companyManage;
@@ -117,7 +120,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -134,19 +137,20 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
         add_company_et3 = findViewById(R.id.add_company_et3);
         add_company_et4 = findViewById(R.id.add_company_et4);
         add_company_et4.setInputType(EditorInfo.TYPE_CLASS_PHONE);
-        add_company_et5 = findViewById(R.id.add_company_et5);
-        add_company_et6 = findViewById(R.id.add_company_et6);
+//        add_company_et5 = findViewById(R.id.add_company_et5);
+//        add_company_et6 = findViewById(R.id.add_company_et6);
         add_company_btn = findViewById(R.id.add_company_btn);
         add_company_rl1 = findViewById(R.id.add_company_rl1);
         add_company_rl2 = findViewById(R.id.add_company_rl2);
         add_company_rb1 = findViewById(R.id.add_company_rb1);
         add_company_rb2 = findViewById(R.id.add_company_rb2);
         add_company_rb3 = findViewById(R.id.add_company_rb3);
+        add_company_rb4 = findViewById(R.id.add_company_rb4);
         add_company_tvs = findViewById(R.id.tvs);
-        rl1 = findViewById(R.id.rl1);
-        rl2 = findViewById(R.id.rl2);
-        rl3 = findViewById(R.id.rl3);
-        rl4 = findViewById(R.id.rl4);
+//        rl1 = findViewById(R.id.rl1);
+//        rl2 = findViewById(R.id.rl2);
+//        rl3 = findViewById(R.id.rl3);
+//        rl4 = findViewById(R.id.rl4);
 
         add_company_return.setOnClickListener(this);
         add_company_rl1.setOnClickListener(this);
@@ -161,10 +165,12 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 
         if (FinalContents.getStoreChange().equals("修改")) {
 
-            rl1.setVisibility(View.GONE);
-            rl2.setVisibility(View.GONE);
-            rl3.setVisibility(View.GONE);
-            rl4.setVisibility(View.GONE);
+//            rl1.setVisibility(View.GONE);
+//            rl2.setVisibility(View.GONE);
+//            rl3.setVisibility(View.GONE);
+//            rl4.setVisibility(View.GONE);
+
+            add_company_rb4.setVisibility(View.VISIBLE);
 
             add_company_tvs.setText("修改公司");
             Retrofit.Builder builder = new Retrofit.Builder();
@@ -197,7 +203,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                             add_company_et2.setText(companyManage.getAddress());
                             add_company_et3.setText(companyManage.getUserName());
                             add_company_et4.setText(companyManage.getPhone());
-                            add_company_et5.setText(companyManage.getLoginName());
+//                            add_company_et5.setText(companyManage.getLoginName());
 
                             if (companyManage.getFlag().equals("0")) {
                                 add_company_rb1.setChecked(true);
@@ -205,6 +211,8 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                                 add_company_rb2.setChecked(true);
                             } else if (companyManage.getFlag().equals("2")) {
                                 add_company_rb3.setChecked(true);
+                            } else if (companyManage.getFlag().equals("3")) {
+                                add_company_rb4.setChecked(true);
                             }
 
                         }
@@ -222,10 +230,11 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 
         } else {
 
-            rl1.setVisibility(View.VISIBLE);
-            rl2.setVisibility(View.VISIBLE);
-            rl3.setVisibility(View.VISIBLE);
-            rl4.setVisibility(View.VISIBLE);
+//            rl1.setVisibility(View.VISIBLE);
+//            rl2.setVisibility(View.VISIBLE);
+//            rl3.setVisibility(View.VISIBLE);
+//            rl4.setVisibility(View.VISIBLE);
+            add_company_rb4.setVisibility(View.GONE);
             add_company_tvs.setText("添加公司");
             add_company_tv1.setText(FinalContents.getCityName());
         }
@@ -233,6 +242,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -265,22 +275,30 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 //                add_company_tv3.setText("117.155243,39.112389");
                 break;
             case R.id.add_company_btn:
-                if (!MatcherUtils.isMobile(add_company_et4.getText().toString())) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 s = add_company_tv1.getText().toString();
                 s1 = add_company_tv2.getText().toString();
                 s2 = add_company_tv3.getText().toString();
                 s3 = add_company_et1.getText().toString();
                 s4 = add_company_et2.getText().toString();
-                if (FinalContents.getStoreChange().equals("修改")) {
+//                if (FinalContents.getStoreChange().equals("修改")) {
+//
+//                } else {
+//
+//
+////                    s7 = add_company_et5.getText().toString();
+////                    s8 = add_company_et6.getText().toString();
+//                }
 
-                } else {
-                    s5 = add_company_et3.getText().toString();
-                    s6 = add_company_et4.getText().toString();
-                    s7 = add_company_et5.getText().toString();
-                    s8 = add_company_et6.getText().toString();
+                s5 = add_company_et3.getText().toString();
+                s6 = add_company_et4.getText().toString();
+
+                if(s6.equals("")){
+
+                }else {
+                    if (!MatcherUtils.isMobile(add_company_et4.getText().toString())) {
+                        ToastUtil.showLongToast(AddCompanyActivity.this,"请输入正确的手机号");
+                        return;
+                    }
                 }
 
                 if (add_company_rb1.isChecked()) {
@@ -289,10 +307,12 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                     num = "1";
                 } else if (add_company_rb3.isChecked()) {
                     num = "2";
+                }else if (add_company_rb4.isChecked()) {
+                    num = "3";
                 }
-                if (add_company_et6.getText().toString().equals("")) {
-                    s8 = "123456";
-                }
+//                if (add_company_et6.getText().toString().equals("")) {
+//                    s8 = "123456";
+//                }
                 if (FinalContents.getStoreChange().equals("修改")) {
                     s2 = add_company_tv3.getText().toString();
                     initDatas1();
@@ -315,8 +335,8 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
 
     private void initdatas2() {
 
-        if (s.equals("") || s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("") || s5.equals("") || s6.equals("") || s7.equals("") || s8.equals("")) {
-            Toast.makeText(this, "带*号的数据不能为空，请完成填写再提交", Toast.LENGTH_SHORT).show();
+        if (s.equals("") || s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
+            ToastUtil.showLongToast(AddCompanyActivity.this,"带*号的数据不能为空，请完成填写再提交");
         } else {
 
 //经度117.155243  纬度39.112389
@@ -326,8 +346,17 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-
-            addCompanyBean = fzbInterface.getAddCompanyBean("", s3, s1, s4, s2, s5, s6, s7, s8, num, FinalContents.getUserID());
+            Log.i("公司数据","s3:" + s3);
+            Log.i("公司数据","s1:" + s1);
+            Log.i("公司数据","s4:" + s4);
+            Log.i("公司数据","s2:" + s2);
+            Log.i("公司数据","s5:" + s5);
+            Log.i("公司数据","s6:" + s6);
+//            Log.i("公司数据","s7:" + s7);
+//            Log.i("公司数据","s8:" + s8);
+            Log.i("公司数据","num:" + num);
+            Log.i("公司数据","FinalContents.getUserID():" + FinalContents.getUserID());
+            addCompanyBean = fzbInterface.getAddCompanyBean("", s3, s1, s4, s2, s5, s6, num, FinalContents.getUserID());
 
             addCompanyBean.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -341,11 +370,10 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                             if (addCompanyBean.getData().getMessage().equals("保存成功")) {
                                 FinalContents.setStoreChange("");
                                 FinalContents.setMyAddType("公司");
-                                Toast.makeText(AddCompanyActivity.this, addCompanyBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showLongToast(AddCompanyActivity.this,addCompanyBean.getData().getMessage());
                                 finish();
                             } else {
-                                Toast.makeText(AddCompanyActivity.this, addCompanyBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
+                                ToastUtil.showLongToast(AddCompanyActivity.this,addCompanyBean.getData().getMessage());
                             }
                         }
 
@@ -366,7 +394,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     private void initDatas1() {
 
         if (s.equals("") || s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
-            Toast.makeText(this, "带*号的数据不能为空，请完成填写再提交", Toast.LENGTH_SHORT).show();
+            ToastUtil.showLongToast(AddCompanyActivity.this,"带*号的数据不能为空，请完成填写再提交");
         } else {
 
 //经度117.155243  纬度39.112389
@@ -377,7 +405,7 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
 
-            addCompanyBean = fzbInterface.getAddCompanyBean(companyManage.getId(), s3, s1, s4, s2, "", "", "", "", num, FinalContents.getUserID());
+            addCompanyBean = fzbInterface.getAddCompanyBean(companyManage.getId(), s3, s1, s4, s2, s5, s6, num, FinalContents.getUserID());
             addCompanyBean.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<AddCompanyBean>() {
@@ -391,11 +419,10 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
                             if (addCompanyBean.getData().getMessage().equals("保存成功")) {
                                 FinalContents.setStoreChange("");
                                 FinalContents.setMyAddType("公司");
-                                Toast.makeText(AddCompanyActivity.this, addCompanyBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                                ToastUtil.showLongToast(AddCompanyActivity.this, addCompanyBean.getData().getMessage());
                                 finish();
                             } else {
-                                Toast.makeText(AddCompanyActivity.this, addCompanyBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                                finish();
+                                ToastUtil.showLongToast(AddCompanyActivity.this, addCompanyBean.getData().getMessage());
                             }
                         }
 
@@ -459,59 +486,59 @@ public class AddCompanyActivity extends AllActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-       if(isnum == 1){
-           if (requestCode == 1 && resultCode == RESULT_OK) {
-               add_company_tv3.setText(data.getStringExtra("getLatitude") + "\n" + data.getStringExtra("getLongitude"));
-           }
+        if(isnum == 1){
+            if (requestCode == 1 && resultCode == RESULT_OK) {
+                add_company_tv3.setText(data.getStringExtra("getLatitude") + "\n" + data.getStringExtra("getLongitude"));
+            }
 
-           getLatitude = data.getStringExtra("getLatitude");
-           getLongitude = data.getStringExtra("getLongitude");
+            getLatitude = data.getStringExtra("getLatitude");
+            getLongitude = data.getStringExtra("getLongitude");
 
 
-           StringBuffer stringBuffer1 = new StringBuffer();
-           StringBuffer stringBuffer2 = new StringBuffer();
+            StringBuffer stringBuffer1 = new StringBuffer();
+            StringBuffer stringBuffer2 = new StringBuffer();
 
-           StringBuffer append1 = stringBuffer1.append(getLatitude);
-           StringBuffer append2 = stringBuffer2.append(getLongitude);
+            StringBuffer append1 = stringBuffer1.append(getLatitude);
+            StringBuffer append2 = stringBuffer2.append(getLongitude);
 
-           Retrofit.Builder builder = new Retrofit.Builder();
-           builder.baseUrl(FinalContents.getBaseUrl());
-           builder.addConverterFactory(GsonConverterFactory.create());
-           builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-           Retrofit build = builder.build();
-           MyService fzbInterface = build.create(MyService.class);
+            Retrofit.Builder builder = new Retrofit.Builder();
+            builder.baseUrl(FinalContents.getBaseUrl());
+            builder.addConverterFactory(GsonConverterFactory.create());
+            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+            Retrofit build = builder.build();
+            MyService fzbInterface = build.create(MyService.class);
 
-           Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
-           changeAddress.subscribeOn(Schedulers.io())
-                   .observeOn(AndroidSchedulers.mainThread())
-                   .subscribe(new Observer<ChangeAddress>() {
-                       @Override
-                       public void onSubscribe(Disposable d) {
+            Observable<ChangeAddress> changeAddress = fzbInterface.getChangeAddress(getLongitude, getLatitude);
+            changeAddress.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<ChangeAddress>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
 
-                       }
+                        }
 
-                       @Override
-                       public void onNext(ChangeAddress changeAddress) {
+                        @Override
+                        public void onNext(ChangeAddress changeAddress) {
 
-                           add_company_et2.setText(changeAddress.getData().getValue());
+                            add_company_et2.setText(changeAddress.getData().getValue());
 
-                       }
+                        }
 
-                       @Override
-                       public void onError(Throwable e) {
+                        @Override
+                        public void onError(Throwable e) {
+//                            ToastUtil.showToast(AddCompanyActivity.this,"请重新定位详情地址");
+                            Log.i("经纬度转坐标","经纬度转坐标错误信息：" + e.getMessage());
 
-                           Log.i("经纬度转坐标","经纬度转坐标错误信息：" + e.getMessage());
+                        }
 
-                       }
+                        @Override
+                        public void onComplete() {
 
-                       @Override
-                       public void onComplete() {
+                        }
+                    });
+        }
 
-                       }
-                   });
-       }
-
-       isnum = 0;
+        isnum = 0;
 
     }
 

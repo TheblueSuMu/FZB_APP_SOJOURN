@@ -123,7 +123,33 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/the_project_end_underline"
                         android:orientation="horizontal"
-                        android:visibility="gone"></LinearLayout>
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/the_project_end_refuse_ll7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="成交"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/the_project_end_refuse_ll8"
+                        android:layout_width="30dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/the_project_end_underline"
+                        android:orientation="horizontal"
+                        android:visibility="gone"/>
                 </LinearLayout>
 
             </LinearLayout>

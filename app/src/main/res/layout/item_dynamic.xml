@@ -188,7 +188,7 @@
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
             android:paddingRight="3dp"
-            android:text=" 一键复制"
+            android:text=" 复制"
             android:gravity="center"
             android:textColor="#ff999999"
             android:textSize="12sp" />

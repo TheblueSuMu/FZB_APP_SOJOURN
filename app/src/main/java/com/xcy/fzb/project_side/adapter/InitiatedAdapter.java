@@ -47,6 +47,13 @@ public class InitiatedAdapter extends RecyclerView.Adapter<InitiatedAdapter.Chec
         holder.item_refuse_the_project_end_tv2.setText(rows.get(position).getProjectName());
         holder.item_refuse_the_project_end_tv3.setText(rows.get(position).getDate());
         holder.item_refuse_the_project_end_tv4.setText(rows.get(position).getRelatedData());
+
+        if (rows.get(position).getIsRead().equals("0")){
+            holder.item_refuse_the_project_end_unread.setVisibility(View.VISIBLE);
+        }else if(rows.get(position).getIsRead().equals("1")){
+            holder.item_refuse_the_project_end_unread.setVisibility(View.GONE);
+        }
+
         holder.item_refuse_the_project_end_tv4.setTextColor(Color.parseColor("#AC1E26"));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +75,7 @@ public class InitiatedAdapter extends RecyclerView.Adapter<InitiatedAdapter.Chec
         TextView item_refuse_the_project_end_tv2;
         TextView item_refuse_the_project_end_tv3;
         TextView item_refuse_the_project_end_tv4;
+        ImageView item_refuse_the_project_end_unread;
 
         public CheckPendingTheProjectEndViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,7 +85,7 @@ public class InitiatedAdapter extends RecyclerView.Adapter<InitiatedAdapter.Chec
             item_refuse_the_project_end_tv2 = itemView.findViewById(R.id.item_refuse_the_project_end_tv2);
             item_refuse_the_project_end_tv3 = itemView.findViewById(R.id.item_refuse_the_project_end_tv3);
             item_refuse_the_project_end_tv4 = itemView.findViewById(R.id.item_refuse_the_project_end_tv4);
-
+            item_refuse_the_project_end_unread = itemView.findViewById(R.id.item_refuse_the_project_end_unread);
         }
     }
 

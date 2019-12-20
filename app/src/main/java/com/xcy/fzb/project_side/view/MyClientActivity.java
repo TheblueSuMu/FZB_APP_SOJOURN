@@ -2,6 +2,7 @@ package com.xcy.fzb.project_side.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,11 +16,18 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.api.NewlyIncreased;
+import com.xcy.fzb.all.modle.ReportNoReadListBean;
 import com.xcy.fzb.all.persente.MyClientData;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
+import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.MyClientAddActivity;
 import com.xcy.fzb.project_side.fragment.MyClientFragment2;
@@ -31,6 +39,14 @@ import com.xcy.fzb.project_side.fragment.MyClientFragment7;
 
 import org.greenrobot.eventbus.EventBus;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MyClientActivity extends AllActivity implements View.OnClickListener {
 
     LinearLayout my_client_return;
@@ -40,12 +56,12 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
 
     TextView my_client_tv;
 
-    LinearLayout my_client_11_2;
-    LinearLayout my_client_11_3;
-    LinearLayout my_client_11_4;
-    LinearLayout my_client_11_5;
-    LinearLayout my_client_11_6;
-    LinearLayout my_client_11_7;
+    RelativeLayout my_client_11_2;
+    RelativeLayout my_client_11_3;
+    RelativeLayout my_client_11_4;
+    RelativeLayout my_client_11_5;
+    RelativeLayout my_client_11_6;
+    RelativeLayout my_client_11_7;
     LinearLayout my_client_11_9;
     LinearLayout my_client_11_10;
     LinearLayout my_client_11_11;
@@ -63,6 +79,13 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
     MyClientFragment6 myClientFragment6 = new MyClientFragment6();
     MyClientFragment7 myClientFragment7 = new MyClientFragment7();
     private String client = "1";
+    private ImageView client_one_key;
+    private TextView my_client_unread_1;
+    private TextView my_client_unread_2;
+    private TextView my_client_unread_3;
+    private TextView my_client_unread_4;
+    private TextView my_client_unread_5;
+    private TextView my_client_unread_6;
 
 
     @Override
@@ -88,7 +111,7 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -115,12 +138,40 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
         my_client_11_13 = findViewById(R.id.my_client_ll_13);
         my_client_11_14 = findViewById(R.id.my_client_ll_14);
 
-        my_client_ss.setVisibility(View.GONE);
-        my_client_tv.setVisibility(View.VISIBLE);
+        client_one_key = findViewById(R.id.client_one_key);
+
+        //  TODO    客户未读
+        my_client_unread_1 = findViewById(R.id.my_client_unread_1);
+        my_client_unread_2 = findViewById(R.id.my_client_unread_2);
+        my_client_unread_3 = findViewById(R.id.my_client_unread_3);
+        my_client_unread_4 = findViewById(R.id.my_client_unread_4);
+        my_client_unread_5 = findViewById(R.id.my_client_unread_5);
+        my_client_unread_6 = findViewById(R.id.my_client_unread_6);
+
+        my_client_unread_1.bringToFront();
+        my_client_unread_2.bringToFront();
+        my_client_unread_3.bringToFront();
+        my_client_unread_4.bringToFront();
+        my_client_unread_5.bringToFront();
+        my_client_unread_6.bringToFront();
+
+
+
+        if (FinalContents.getIdentity().equals("4")) {
+            my_client_ss.setVisibility(View.VISIBLE);
+            my_client_tv.setVisibility(View.GONE);
+            client_one_key.setVisibility(View.VISIBLE);
+        }else {
+            my_client_ss.setVisibility(View.GONE);
+            my_client_tv.setVisibility(View.VISIBLE);
+            client_one_key.setVisibility(View.GONE);
+        }
+
 
         myClientFragment2 = new MyClientFragment2();
-       initClient();
+        initClient();
 
+        client_one_key.setOnClickListener(this);
         my_client_return.setOnClickListener(this);
         client_add.setOnClickListener(this);
         my_client_11_2.setOnClickListener(this);
@@ -233,6 +284,87 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
         }
     }
 
+    private void initData(){
+        String ProjectID = "";
+        if (!CityContents.getIsRead().equals("1")) {
+            ProjectID = FinalContents.getProjectID();
+        }
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ReportNoReadListBean> clientFragment = fzbInterface.getReportNoReadList(FinalContents.getUserID(),ProjectID, NewlyIncreased.getTag(), NewlyIncreased.getStartDate(), NewlyIncreased.getEndDate(),"","");
+        clientFragment.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ReportNoReadListBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ReportNoReadListBean reportNoReadListBean) {
+
+                        if (reportNoReadListBean.getData().getReports().equals("0") || reportNoReadListBean.getData().getReports().equals("")) {//  TODO 报备
+                            my_client_unread_1.setVisibility(View.INVISIBLE);
+                        }else {
+                            my_client_unread_1.setVisibility(View.VISIBLE);
+                            my_client_unread_1.setText(reportNoReadListBean.getData().getReports());
+                        }
+
+                        if (reportNoReadListBean.getData().getAccessing().equals("0") || reportNoReadListBean.getData().getAccessing().equals("")) {//  TODO 到访
+                            my_client_unread_2.setVisibility(View.INVISIBLE);
+                        }else {
+                            my_client_unread_2.setVisibility(View.VISIBLE);
+                            my_client_unread_2.setText(reportNoReadListBean.getData().getAccessing());
+                        }
+
+                        if (reportNoReadListBean.getData().getTrade().equals("0") || reportNoReadListBean.getData().getTrade().equals("")) {//  TODO 成交
+                            my_client_unread_5.setVisibility(View.INVISIBLE);
+                        }else {
+                            my_client_unread_5.setVisibility(View.VISIBLE);
+                            my_client_unread_5.setText(reportNoReadListBean.getData().getTrade());
+                        }
+
+                        if (reportNoReadListBean.getData().getLose().equals("0") || reportNoReadListBean.getData().getLose().equals("")) {//  TODO 失效
+                            my_client_unread_6.setVisibility(View.INVISIBLE);
+                        }else {
+                            my_client_unread_6.setVisibility(View.VISIBLE);
+                            my_client_unread_6.setText(reportNoReadListBean.getData().getLose());
+                        }
+
+                        if (reportNoReadListBean.getData().getEarnest().equals("0") || reportNoReadListBean.getData().getEarnest().equals("")) {//  TODO 认筹
+                            my_client_unread_4.setVisibility(View.INVISIBLE);
+                        }else {
+                            my_client_unread_4.setVisibility(View.VISIBLE);
+                            my_client_unread_4.setText(reportNoReadListBean.getData().getEarnest());
+                        }
+
+                        if (reportNoReadListBean.getData().getIsIsland().equals("0") || reportNoReadListBean.getData().getIsIsland().equals("")) {//  TODO 登岛
+                            my_client_unread_3.setVisibility(View.INVISIBLE);
+                        }else {
+                            my_client_unread_3.setVisibility(View.VISIBLE);
+                            my_client_unread_3.setText(reportNoReadListBean.getData().getIsIsland());
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("MyCL", "未浏览错误信息" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         manager = getSupportFragmentManager();
@@ -305,6 +437,10 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
                 my_client_11_13.setVisibility(View.INVISIBLE);
                 my_client_11_14.setVisibility(View.VISIBLE);
                 transaction.replace(R.id.my_client_fl, myClientFragment7);
+                break;
+            case R.id.client_one_key:
+                Intent one_key_intent = new Intent(MyClientActivity.this,OneKeyActivity.class);
+                startActivity(one_key_intent);
                 break;
         }
         transaction.commit();
@@ -402,6 +538,7 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
             my_client_11_14.setVisibility(View.INVISIBLE);
         }
 
+        initData();
     }
 
 

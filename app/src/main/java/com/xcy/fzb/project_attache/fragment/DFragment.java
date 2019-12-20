@@ -1,5 +1,6 @@
 package com.xcy.fzb.project_attache.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -22,8 +23,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -48,6 +52,7 @@ import com.xcy.fzb.all.fragment.MyFragment3;
 import com.xcy.fzb.all.modle.DBean;
 import com.xcy.fzb.all.modle.TendentcyBean;
 import com.xcy.fzb.all.persente.Fragnemt_SS;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.MyViewPager;
@@ -58,12 +63,14 @@ import com.xcy.fzb.project_side.view.MyClientActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -72,7 +79,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 
 public class DFragment extends Fragment implements View.OnClickListener, MyViewPager.OnSingleTouchListener, SwipeRefreshLayout.OnRefreshListener {
@@ -87,6 +93,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     LinearLayout fragment_ll_1;
     LinearLayout fragment_ll_2;
     LinearLayout fragment_ll_3;
+
+    LinearLayout project_attache_fragment_ll4;
+    LinearLayout project_attache_fragment_ll3;
+    LinearLayout project_attache_fragment_ll2;
+    LinearLayout project_attache_fragment_ll1;
 
     RadioButton rb1_modulebroker;
     RadioButton rb2_modulebroker;
@@ -127,23 +138,31 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     private PopupWindow popupWindow;
     private View inflate;
 
-    DateTimePickerView dateTimePickerView;
-    LinearLayout report_picker;
-    TextView report_cancel;
-    TextView report_ensure;
     private SwipeRefreshLayout ptrClassicFrameLayout;
 
     private MyViewPager vpager_one;
-    private ArrayList<Fragment> aList = new ArrayList<>();
+    private ArrayList<Fragment> aList;
     private MyFragmentPagerAdapter mAdapter;
+    private View view;
+    private Context context;
+    private MyFragment1 myFragment1;
+    private MyFragment2 myFragment2;
+    private MyFragment3 myFragment3;
+    private int year;
+    private int month;
+    private int dayOfMonth;
+    private String string1;
+    private String string2;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         StatusBar.makeStatusBarTransparent(getActivity());
         FinalContents.setZhuanyuan("1");
-
-        return inflater.inflate(R.layout.project_attache_modulebroker_fragment_economics, container, false);
+        view = inflater.inflate(R.layout.project_attache_modulebroker_fragment_economics, container, false);
+        context = container.getContext();
+        return view;
     }
 
     @Override
@@ -154,11 +173,17 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     }
 
     private void initView() {
-        ptrClassicFrameLayout = getActivity().findViewById(R.id.PtrClassic_modulebroke);
-        fragment_ll_3 = getActivity().findViewById(R.id.fragment_ll_3);
-        fragment_ll_2 = getActivity().findViewById(R.id.fragment_ll_2);
-        fragment_ll_1 = getActivity().findViewById(R.id.fragment_ll_1);
-        vpager_one = getActivity().findViewById(R.id.vpager_one);
+        ptrClassicFrameLayout = view.findViewById(R.id.PtrClassic_modulebroke);
+
+        aList = new ArrayList<>();
+        myFragment1 = new MyFragment1();
+        myFragment2 = new MyFragment2();
+        myFragment3 = new MyFragment3();
+
+        fragment_ll_3 = view.findViewById(R.id.fragment_ll_3);
+        fragment_ll_2 = view.findViewById(R.id.fragment_ll_2);
+        fragment_ll_1 = view.findViewById(R.id.fragment_ll_1);
+        vpager_one = view.findViewById(R.id.vpager_one);
         vpager_one.setOnSingleTouchListener(this);
 
         vpager_one.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -230,86 +255,61 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 //            }
 //        });
 
-        ll1_modulebroker = getActivity().findViewById(R.id.ll1_modulebroke);
-        ll2_modulebroker = getActivity().findViewById(R.id.ll2_modulebroke);
-        ll3_modulebroker = getActivity().findViewById(R.id.ll3_modulebroke);
-        ll4_modulebroker = getActivity().findViewById(R.id.ll4_modulebroke);
-        ll5_modulebroker = getActivity().findViewById(R.id.ll5_modulebroke);
-        ll6_modulebroker = getActivity().findViewById(R.id.ll6_modulebroke);
-        ll7_modulebroker = getActivity().findViewById(R.id.ll7_modulebroke);
+        ll1_modulebroker = view.findViewById(R.id.ll1_modulebroke);
+        ll2_modulebroker = view.findViewById(R.id.ll2_modulebroke);
+        ll3_modulebroker = view.findViewById(R.id.ll3_modulebroke);
+        ll4_modulebroker = view.findViewById(R.id.ll4_modulebroke);
+        ll5_modulebroker = view.findViewById(R.id.ll5_modulebroke);
+        ll6_modulebroker = view.findViewById(R.id.ll6_modulebroke);
+        ll7_modulebroker = view.findViewById(R.id.ll7_modulebroke);
 
-        rb1_modulebroker = getActivity().findViewById(R.id.rb1_modulebroke);
-        rb2_modulebroker = getActivity().findViewById(R.id.rb2_modulebroke);
-        rb3_modulebroker = getActivity().findViewById(R.id.rb3_modulebroke);
-        rb4_modulebroker = getActivity().findViewById(R.id.rb4_modulebroke);
-        rb5_modulebroker = getActivity().findViewById(R.id.rb5_modulebroke);
-        rb6_modulebroker = getActivity().findViewById(R.id.rb6_modulebroke);
+        project_attache_fragment_ll4 = view.findViewById(R.id.project_attache_fragment_ll4);
+        project_attache_fragment_ll3 = view.findViewById(R.id.project_attache_fragment_ll3);
+        project_attache_fragment_ll2 = view.findViewById(R.id.project_attache_fragment_ll2);
+        project_attache_fragment_ll1 = view.findViewById(R.id.project_attache_fragment_ll1);
+
+        rb1_modulebroker = view.findViewById(R.id.rb1_modulebroke);
+        rb2_modulebroker = view.findViewById(R.id.rb2_modulebroke);
+        rb3_modulebroker = view.findViewById(R.id.rb3_modulebroke);
+        rb4_modulebroker = view.findViewById(R.id.rb4_modulebroke);
+        rb5_modulebroker = view.findViewById(R.id.rb5_modulebroke);
+        rb6_modulebroker = view.findViewById(R.id.rb6_modulebroke);
 
 //        tv1_modulebroker = getActivity().findViewById(R.id.tv1_modulebroke);
 //        tv2_modulebroker = getActivity().findViewById(R.id.tv2_modulebroke);
 //        tv3_modulebroker = getActivity().findViewById(R.id.tv3_modulebroke);
-        modulebroke_tv_type = getActivity().findViewById(R.id.modulebroke_tv_type);
+        modulebroke_tv_type = view.findViewById(R.id.modulebroke_tv_type);
 
-        tv4_modulebroker = getActivity().findViewById(R.id.tv4_modulebroke);
-        tv5_modulebroker = getActivity().findViewById(R.id.tv5_modulebroke);
-        tv6_modulebroker = getActivity().findViewById(R.id.tv6_modulebroke);
-        tv7_modulebroker = getActivity().findViewById(R.id.tv7_modulebroke);
-        tv8_modulebroker = getActivity().findViewById(R.id.tv8_modulebroke);
-        tv9_modulebroker = getActivity().findViewById(R.id.tv9_modulebroke);
+        tv4_modulebroker = view.findViewById(R.id.tv4_modulebroke);
+        tv5_modulebroker = view.findViewById(R.id.tv5_modulebroke);
+        tv6_modulebroker = view.findViewById(R.id.tv6_modulebroke);
+        tv7_modulebroker = view.findViewById(R.id.tv7_modulebroke);
+        tv8_modulebroker = view.findViewById(R.id.tv8_modulebroke);
+        tv9_modulebroker = view.findViewById(R.id.tv9_modulebroke);
 
-        time1_modulebroker = getActivity().findViewById(R.id.time1_modulebroke);
-        time2_modulebroker = getActivity().findViewById(R.id.time2_modulebroke);
+        time1_modulebroker = view.findViewById(R.id.time1_modulebroke);
+        time2_modulebroker = view.findViewById(R.id.time2_modulebroke);
 
 //        rl1_modulebroke = getActivity().findViewById(R.id.rl1_modulebroke);
 //        rl2_modulebroke = getActivity().findViewById(R.id.rl2_modulebroke);
 //        rl3_modulebroke = getActivity().findViewById(R.id.rl3_modulebroke);
 
-        modulebroke_rg1 = getActivity().findViewById(R.id.modulebroke_rg1);
-        modulebroke_rg2 = getActivity().findViewById(R.id.modulebroke_rg2);
+        modulebroke_rg1 = view.findViewById(R.id.modulebroke_rg1);
+        modulebroke_rg2 = view.findViewById(R.id.modulebroke_rg2);
 
-        dateTimePickerView = getActivity().findViewById(R.id.fragment_report_pickerView);
-        report_picker = getActivity().findViewById(R.id.fragment_report_picker);
-        report_cancel = getActivity().findViewById(R.id.fragment_report_picker_cancel);
-        report_ensure = getActivity().findViewById(R.id.fragment_report_picker_ensure);
-        details_chart = getActivity().findViewById(R.id.lc_modulebroke);
+        details_chart = view.findViewById(R.id.lc_modulebroke);
 
         ptrClassicFrameLayout.setOnRefreshListener(this);
 
-//        ptrClassicFrameLayout.setPtrHandler(new PtrHandler() {
-//            @Override
-//            public void onRefreshBegin(PtrFrameLayout frame) {
-//                frame.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        ptrClassicFrameLayout.refreshComplete();
-//                        ptrClassicFrameLayout.setLastUpdateTimeKey("2017-2-10");
-//                        initData();
-//                        rb1_modulebroker.setChecked(true);
-//                    }
-//                }, 1000);
-//            }
-//
-//            @Override
-//            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-//                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
-//            }
-//        });
-
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth - 1);
-        String string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month, dayOfMonth);
+        string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
+        string2 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth+1);
         time1_modulebroker.setText(string1);
         time2_modulebroker.setText(string2);
-
-        dateTimePickerView.setStartDate(new GregorianCalendar(year, month - 1, dayOfMonth-15));
-        // 注意：月份是从0开始计数的
-        dateTimePickerView.setSelectedDate(new GregorianCalendar(year, month - 1, dayOfMonth));
-
-        dateTimePickerView.setEndDate(new GregorianCalendar(year, month - 1, dayOfMonth+15));
 
         modulebroke_rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -317,82 +317,61 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 if (i == R.id.rb1_modulebroke) {
                     ll1_modulebroker.setVisibility(View.GONE);
                     NewlyIncreased.setTag("0");
-                    initDataNum("0", "", "");
+                    if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("0", "", "", "1");
+                    } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("0", "", "", "2");
+                    }
                 } else if (i == R.id.rb2_modulebroke) {
-                    initDataNum("1", "", "");
+                    if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("1", "", "", "1");
+                    } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("1", "", "", "2");
+                    }
+
                     NewlyIncreased.setTag("1");
                     ll1_modulebroker.setVisibility(View.GONE);
                 } else if (i == R.id.rb3_modulebroke) {
-                    initDataNum("2", "", "");
+                    if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("2", "", "", "1");
+                    } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("2", "", "", "2");
+                    }
                     NewlyIncreased.setTag("2");
                     ll1_modulebroker.setVisibility(View.GONE);
                 } else if (i == R.id.rb4_modulebroke) {
+                    time1_modulebroker.setText(string1);
+                    time2_modulebroker.setText(string2);
                     String s = time1_modulebroker.getText().toString();
                     String s1 = time2_modulebroker.getText().toString();
                     NewlyIncreased.setStartDate(s);
                     NewlyIncreased.setEndDate(s1);
                     NewlyIncreased.setTag("3");
-                    initDataNum("3", s, s1);
+                    if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                        initDataNum("3", s, s1, "1");
+                    } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                        initDataNum("3", s, s1, "2");
+                    }
                     ll1_modulebroker.setVisibility(View.VISIBLE);
                 }
             }
         });
 
         time1_modulebroker.setOnClickListener(new View.OnClickListener() {
+            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        time1_modulebroker.setText(dateString);
-                        String s = time1_modulebroker.getText().toString();
-                        String s1 = time2_modulebroker.getText().toString();
-                        NewlyIncreased.setStartDate(dateString);
-                        initDataNum("3", s, s1);
-                    }
-                });
+                initTimePickerView1();
             }
         });
         time2_modulebroker.setOnClickListener(new View.OnClickListener() {
+            @SingleClick(1000)
             @Override
             public void onClick(View view) {
-                report_picker.setVisibility(View.VISIBLE);
-                dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-                        time2_modulebroker.setText(dateString);
-                        String s = time1_modulebroker.getText().toString();
-                        String s1 = time2_modulebroker.getText().toString();
-                        NewlyIncreased.setEndDate(dateString);
-                        initDataNum("3", s, s1);
-                    }
-                });
+                initTimePickerView2();
             }
         });
 
-        report_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-
-            }
-        });
-
-        report_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                report_picker.setVisibility(View.GONE);
-            }
-        });
 
         modulebroke_rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -429,6 +408,8 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 //        rl2_modulebroke.setOnClickListener(this);
 //        rl3_modulebroke.setOnClickListener(this);
         modulebroke_tv_type.setOnClickListener(this);
+        project_attache_fragment_ll3.setOnClickListener(this);
+        project_attache_fragment_ll1.setOnClickListener(this);
 
         initData();
     }
@@ -473,7 +454,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
     }
 
-    private void initDataNum(String type, String startTime, String endTime) {
+    private void initDataNum(String type, String startTime, String endTime, String tag) {
 
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
@@ -481,11 +462,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         builder.addConverterFactory(GsonConverterFactory.create());
         Retrofit build = builder.build();
         MyService myService = build.create(MyService.class);
-        Log.i("专员","FinalContents.getUserID():" + FinalContents.getUserID());
-        Log.i("专员","type:" + type);
-        Log.i("专员","startTime:" + startTime);
-        Log.i("专员","endTime:" + endTime);
-        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), "", "", type, startTime, endTime);
+        Log.i("专员", "FinalContents.getUserID():" + FinalContents.getUserID());
+        Log.i("专员", "type:" + type);
+        Log.i("专员", "startTime:" + startTime);
+        Log.i("专员", "endTime:" + endTime);
+        Observable<DataNumBean> dataNum = myService.getDataNum(FinalContents.getUserID(), "", "", tag, type, startTime, endTime);
         dataNum.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DataNumBean>() {
@@ -539,19 +520,20 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                     public void onNext(DBean dBean) {
                         dataMap = dBean.getData().getDataMap();
 
-                        Log.i("广播数据","数据：" + dBean.getData().getStoreCount());
-                        Log.i("广播数据","数据：" + dBean.getData().getPeopleCount());
+                        Log.i("广播数据", "数据：" + dBean.getData().getStoreCount());
+                        Log.i("广播数据", "数据：" + dBean.getData().getPeopleCount());
 
                         EventBus.getDefault().post(new Fragnemt_SS(dBean.getData().getStoreCount() + "", dBean.getData().getPeopleCount() + "", "", "", ""));
-                        NewlyIncreased.setPeopleCount(dBean.getData().getPeopleCount()+"");
-                        NewlyIncreased.setStoreCount(dBean.getData().getStoreCount()+"");
+
+                        NewlyIncreased.setStoreCount(dBean.getData().getStoreCount() + "");
+                        NewlyIncreased.setPeopleCount(dBean.getData().getPeopleCount() + "");
 
                         if (FinalContents.getFragmentSS().equals("0")) {
-                            mAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
+                            mAdapter = new MyFragmentPagerAdapter(Objects.requireNonNull(getActivity()).getSupportFragmentManager());
                             FinalContents.setFragmentSS("1");
-                            aList.add(new MyFragment2());
-                            aList.add(new MyFragment1());
-                            aList.add(new MyFragment3());
+                            aList.add(myFragment2);
+                            aList.add(myFragment1);
+                            aList.add(myFragment3);
 
                             mAdapter.setListfragment(aList);
                             vpager_one.setAdapter(mAdapter);
@@ -584,6 +566,67 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 });
     }
 
+    //   TODO 数据统计 时间选择 开始时间
+    private void initTimePickerView1(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                time1_modulebroker.setText(getTime2(date));
+                NewlyIncreased.setStartDate(getTime2(date));
+                if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                    initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString(), "1");
+                } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                    initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString(), "2");
+                }
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    //   TODO 数据统计 时间选择 结束时间
+    private void initTimePickerView2(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(year, month, dayOfMonth-15);
+        final Calendar endDate = Calendar.getInstance();
+        endDate.set(year, month, dayOfMonth+15);
+        TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                time2_modulebroker.setText(getTime2(date));
+                NewlyIncreased.setEndDate(getTime2(date));
+                if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
+                    initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString(), "1");
+                } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
+                    initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString(), "2");
+                }
+            }
+        })
+                .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+                .build();
+        pvTime.show();
+    }
+
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -615,6 +658,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "1");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
@@ -623,6 +667,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "2");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
@@ -631,6 +676,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "3");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
@@ -639,6 +685,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "4");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
@@ -647,6 +694,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "5");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
@@ -655,6 +703,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
                 intent = new Intent(getContext(), MyClientActivity.class);
                 intent.putExtra("client", "6");
                 FinalContents.setStoreId("");
+                FinalContents.setAgentId("");
                 FinalContents.setMyClientType("1");
                 startActivity(intent);
                 break;
@@ -662,65 +711,84 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
                 initPopWindow();
 
-//                popupWindow = new PopupWindow(getContext());
-//                inflate = LayoutInflater.from(getContext()).inflate(R.layout.project_attache_item_popwindow, null);
-//                popupWindow.setContentView(inflate);
-//
-//                popupWindow.setWidth(modulebroke_tv_type.getMeasuredWidth());
-//                popupWindow.setHeight(modulebroke_tv_type.getMeasuredHeight() * 3 + 20);
-//
-//                final TextView item_popwindoe_1 = inflate.findViewById(R.id.item_popwindoe_1);
-//                final TextView item_popwindoe_2 = inflate.findViewById(R.id.item_popwindoe_2);
-//                final TextView item_popwindoe_3 = inflate.findViewById(R.id.item_popwindoe_3);
-//
-//                item_popwindoe_1.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        modulebroke_tv_type.setText("近七天的活动度   ");
-//                        if (rb5_modulebroker.isChecked()) {
-//                            initDatatTendency("0", "0");
-//                        } else if (rb6_modulebroker.isChecked()) {
-//                            initDatatTendency("0", "1");
-//                        }
-//                        popupWindow.dismiss();
-//                    }
-//                });
-//                item_popwindoe_2.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        modulebroke_tv_type.setText("近七天的新增量   ");
-//                        if (rb5_modulebroker.isChecked()) {
-//                            initDatatTendency("1", "0");
-//                        } else if (rb6_modulebroker.isChecked()) {
-//                            initDatatTendency("1", "1");
-//                        }
-//                        popupWindow.dismiss();
-//                    }
-//                });
-//                item_popwindoe_3.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        modulebroke_tv_type.setText("近七天的递减量   ");
-//                        if (rb5_modulebroker.isChecked()) {
-//                            initDatatTendency("2", "0");
-//                        } else if (rb6_modulebroker.isChecked()) {
-//                            initDatatTendency("2", "1");
-//                        }
-//                        popupWindow.dismiss();
-//                    }
-//                });
-//
-//                popupWindow.setFocusable(true); //设置PopupWindow可获得焦点
-//                popupWindow.setTouchable(true); //设置PopupWindow可触摸
-//                popupWindow.setOutsideTouchable(true);
-//                popupWindow.showAsDropDown(modulebroke_tv_type, 0, 0);
+                break;
+            case R.id.project_attache_fragment_ll1://实时
+                project_attache_fragment_ll2.setVisibility(View.VISIBLE);
+                project_attache_fragment_ll4.setVisibility(View.INVISIBLE);
+                ll2_modulebroker.setClickable(true);
+                ll3_modulebroker.setClickable(true);
+                ll4_modulebroker.setClickable(true);
+                ll5_modulebroker.setClickable(true);
+                ll6_modulebroker.setClickable(true);
+                ll7_modulebroker.setClickable(true);
 
+//                if (ll1_modulebroker.getVisibility() == View.VISIBLE) {
+                if (rb1_modulebroker.isChecked() == true) {
+                    ll1_modulebroker.setVisibility(View.GONE);
+                    NewlyIncreased.setTag("0");
+                    initDataNum("0", "", "", "1");
+                } else if (rb2_modulebroker.isChecked() == true) {
+                    initDataNum("1", "", "", "1");
+                    NewlyIncreased.setTag("1");
+                    ll1_modulebroker.setVisibility(View.GONE);
+                } else if (rb3_modulebroker.isChecked() == true) {
+                    initDataNum("2", "", "", "1");
+                    NewlyIncreased.setTag("2");
+                    ll1_modulebroker.setVisibility(View.GONE);
+                } else if (rb4_modulebroker.isChecked() == true) {
+                    String s = time1_modulebroker.getText().toString();
+                    String s1 = time2_modulebroker.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    NewlyIncreased.setTag("3");
+                    initDataNum("3", s, s1, "1");
+                    ll1_modulebroker.setVisibility(View.VISIBLE);
+                }
+//                } else {
+//                    initDataNum("", "", "", "1");
+//                }
 
+                break;
+            case R.id.project_attache_fragment_ll3://总体
+                project_attache_fragment_ll2.setVisibility(View.INVISIBLE);
+                project_attache_fragment_ll4.setVisibility(View.VISIBLE);
+                ll2_modulebroker.setClickable(false);
+                ll3_modulebroker.setClickable(false);
+                ll4_modulebroker.setClickable(false);
+                ll5_modulebroker.setClickable(false);
+                ll6_modulebroker.setClickable(false);
+                ll7_modulebroker.setClickable(false);
+//                if (ll1_modulebroker.getVisibility() == View.VISIBLE) {
+                if (rb1_modulebroker.isChecked() == true) {
+                    ll1_modulebroker.setVisibility(View.GONE);
+                    NewlyIncreased.setTag("0");
+                    initDataNum("0", "", "", "2");
+                } else if (rb2_modulebroker.isChecked() == true) {
+                    initDataNum("1", "", "", "2");
+                    NewlyIncreased.setTag("1");
+                    ll1_modulebroker.setVisibility(View.GONE);
+                } else if (rb3_modulebroker.isChecked() == true) {
+                    initDataNum("2", "", "", "2");
+                    NewlyIncreased.setTag("2");
+                    ll1_modulebroker.setVisibility(View.GONE);
+                } else if (rb4_modulebroker.isChecked() == true) {
+                    String s = time1_modulebroker.getText().toString();
+                    String s1 = time2_modulebroker.getText().toString();
+                    NewlyIncreased.setStartDate(s);
+                    NewlyIncreased.setEndDate(s1);
+                    NewlyIncreased.setTag("3");
+                    initDataNum("3", s, s1, "2");
+                    ll1_modulebroker.setVisibility(View.VISIBLE);
+                }
+//                } else {
+//                    initDataNum("", "", "", "2");
+//                }
                 break;
         }
 
     }
 
+    //弹窗
     private void initPopWindow() {
 
 
@@ -734,19 +802,19 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
 
                 modulebroke_tv_type.setText(list1.get(options1) + "   ");
 
-                if(options1 == 0){
+                if (options1 == 0) {
                     if (rb5_modulebroker.isChecked()) {
                         initDatatTendency("0", "0");
                     } else if (rb6_modulebroker.isChecked()) {
                         initDatatTendency("0", "1");
                     }
-                }else if(options1 == 1){
+                } else if (options1 == 1) {
                     if (rb5_modulebroker.isChecked()) {
                         initDatatTendency("1", "0");
                     } else if (rb6_modulebroker.isChecked()) {
                         initDatatTendency("1", "1");
                     }
-                }else if(options1 == 2){
+                } else if (options1 == 2) {
                     if (rb5_modulebroker.isChecked()) {
                         initDatatTendency("2", "0");
                     } else if (rb6_modulebroker.isChecked()) {
@@ -788,7 +856,7 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
         //不显示网格线
         xAxis.setDrawGridLines(false);
         // 标签倾斜
-        xAxis.setLabelRotationAngle(45);
+        xAxis.setLabelRotationAngle(0);
         //设置X轴值为字符串
         xAxis.setValueFormatter(new IndexAxisValueFormatter(indexList));
         //得到Y轴
@@ -933,5 +1001,11 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
             ptrClassicFrameLayout.setRefreshing(false);//取消刷新
         }
 
+    }
+
+    public String getTime2(Date date) {//可根据需要自行截取数据显示
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+        return format.format(date);
     }
 }

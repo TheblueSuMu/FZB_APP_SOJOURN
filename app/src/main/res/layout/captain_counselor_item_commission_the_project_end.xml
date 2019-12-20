@@ -55,7 +55,7 @@
 
             <TextView
                 android:id="@+id/the_project_end_people"
-                android:layout_width="240dp"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:text=""

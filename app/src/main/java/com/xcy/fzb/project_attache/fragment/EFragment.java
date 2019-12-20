@@ -11,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -27,12 +29,17 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ZYDataBean;
 import com.xcy.fzb.all.persente.CleanDataUtils;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AboutFZBActivity;
 import com.xcy.fzb.all.view.CollectActivity;
 import com.xcy.fzb.all.view.FeedbackActivity;
 import com.xcy.fzb.all.view.PersonalInformationActivity;
+import com.xcy.fzb.project_attache.adapter.MyDataStoreBean;
+import com.xcy.fzb.project_attache.view.CommissionActivity;
+import com.xcy.fzb.project_attache.view.PunchingCardRecordActivity;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -42,7 +49,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class EFragment extends Fragment implements View.OnClickListener {
+public class EFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     RelativeLayout my_collect;
     RelativeLayout my_comment;
@@ -61,6 +68,11 @@ public class EFragment extends Fragment implements View.OnClickListener {
     private Intent intent;
     private ZYDataBean.DataBean data;
 
+    LinearLayout attache_ll_1;
+    LinearLayout attache_ll_2;
+    TextView attache_tv_1;
+    TextView attache_tv_2;
+    private SwipeRefreshLayout layout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,6 +94,11 @@ public class EFragment extends Fragment implements View.OnClickListener {
         my_empty = getActivity().findViewById(R.id.my_empty);//清空缓存
         my_exit = getActivity().findViewById(R.id.my_exit);//退出登录
 
+        attache_ll_1 = getActivity().findViewById(R.id.attache_ll_1);
+        attache_ll_2 = getActivity().findViewById(R.id.attache_ll_2);
+        attache_tv_1 = getActivity().findViewById(R.id.attache_tv_1);
+        attache_tv_2 = getActivity().findViewById(R.id.attache_tv_2);
+        layout = getActivity().findViewById(R.id.e_ssrfl_4);
         my_rl_1 = getActivity().findViewById(R.id.my_rl_1);
         me_photo = getActivity().findViewById(R.id.me_photo);
         me_name = getActivity().findViewById(R.id.me_name);
@@ -95,14 +112,52 @@ public class EFragment extends Fragment implements View.OnClickListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        layout.setOnRefreshListener(this);
         my_rl_1.setOnClickListener(this);
         my_collect.setOnClickListener(this);
         my_comment.setOnClickListener(this);
         my_about.setOnClickListener(this);
         my_empty.setOnClickListener(this);
         my_exit.setOnClickListener(this);
+        attache_ll_1.setOnClickListener(this);
+        attache_ll_2.setOnClickListener(this);
         initUserMessage();
+        initMyDataStore();
+    }
+
+    private void initMyDataStore() {
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<MyDataStoreBean> userMessage = fzbInterface.getMyDataStore(FinalContents.getUserID());
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MyDataStoreBean>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+
+                    }
+
+                    @Override
+                    public void onNext(MyDataStoreBean myDataStoreBean) {
+                        attache_tv_1.setText(myDataStoreBean.getData().getRecordNum());
+                        attache_tv_2.setText(myDataStoreBean.getData().getTotalAmountStr());
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
 
@@ -137,6 +192,10 @@ public class EFragment extends Fragment implements View.OnClickListener {
 
                         if (userMessageBean.getData().getIdentity().equals("5")) {
                             me_identity.setText("专员");
+                        }else if (userMessageBean.getData().getIdentity().equals("8")) {
+                            me_identity.setText("经理");
+                        }else if (userMessageBean.getData().getIdentity().equals("9")) {
+                            me_identity.setText("总监");
                         }
                         me_city.setText(data.getCity());
                         me_store.setText(data.getStoreManage() + "");
@@ -155,21 +214,37 @@ public class EFragment extends Fragment implements View.OnClickListener {
                     }
                 });
 
+
+
+
     }
 
     //点击事件
-
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
-
+        Log.i("MyCL","onClick");
         int id = view.getId();
         if (id == R.id.my_collect) {
 //            TODO 我的收藏
             intent = new Intent(getContext(), CollectActivity.class);
-
             startActivity(intent);
-        } else if (id == R.id.my_rl_1) {
+        } else if(id == R.id.attache_ll_1){
+            //TODO 打卡历史记录
+            Log.i("MyCL","attache_ll_1");
+            intent = new Intent(getContext(), PunchingCardRecordActivity.class);
+            startActivity(intent);
+        } else if(id == R.id.attache_ll_2){
+            //TODO 我的佣金
+            Log.i("MyCL","attache_ll_1");
+            intent = new Intent(getContext(), CommissionActivity.class);
+            FinalContents.setCompanyId("");
+            FinalContents.setStoreId("");
+            FinalContents.setAgentId("");
+            startActivity(intent);
+        }else if (id == R.id.my_rl_1) {
 //            TODO 个人信息
+            Log.i("MyCL","my_rl_1");
             intent = new Intent(getContext(), PersonalInformationActivity.class);
 
             startActivity(intent);
@@ -191,7 +266,7 @@ public class EFragment extends Fragment implements View.OnClickListener {
                     try {
                         String totalCacheSize = CleanDataUtils.getTotalCacheSize(getActivity());
                         CleanDataUtils.clearAllCache(getActivity());
-                        Toast.makeText(getActivity(), "清理缓存成功,共清理了" + totalCacheSize + "内存", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showLongToast(getContext(),"清理缓存成功,共清理了" + totalCacheSize + "内存");
                         my_tv_huancun.setText("0 M");
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -201,7 +276,7 @@ public class EFragment extends Fragment implements View.OnClickListener {
             builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
                 }
             });
             AlertDialog show = builder.show();
@@ -210,7 +285,7 @@ public class EFragment extends Fragment implements View.OnClickListener {
         } else if (id == R.id.my_exit) {
 //            TODO 退出登录
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("退出完成");
+            builder.setTitle("确定要退出程序吗?");
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -242,6 +317,10 @@ public class EFragment extends Fragment implements View.OnClickListener {
 
         if (userMessageBean.getData().getIdentity().equals("5")) {
             me_identity.setText("专员");
+        }else if(userMessageBean.getData().getIdentity().equals("8")){
+            me_identity.setText("经理");
+        }else if(userMessageBean.getData().getIdentity().equals("9")){
+            me_identity.setText("总监");
         }
         me_city.setText(data.getCity());
         me_store.setText(data.getStoreManage() + "");
@@ -250,9 +329,24 @@ public class EFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        if (NewlyIncreased.getUserMessage().equals("5")){
+        initMyDataStore();
+        if (NewlyIncreased.getUserMessage().equals("5") || NewlyIncreased.getUserMessage().equals("8") || NewlyIncreased.getUserMessage().equals("9")){
             init();
             NewlyIncreased.setUserMessage("");
         }
+
+    }
+
+    @Override
+    public void onRefresh() {
+
+        if (layout.isRefreshing()) {//如果正在刷新
+//            initView();
+//            initHotList();
+            initUserMessage();
+            initMyDataStore();
+            layout.setRefreshing(false);//取消刷新
+        }
+
     }
 }

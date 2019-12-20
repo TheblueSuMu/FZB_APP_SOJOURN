@@ -21,6 +21,7 @@ import com.xcy.fzb.all.database.TeamMemberBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_team.adapter.Captain_Team_SalesDetailsAdapter;
 
@@ -65,14 +66,14 @@ public class Captain_Team_SalesDetails extends AllActivity {
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
     private void initView() {
-		
-		StatusBar.makeStatusBarTransparent(this);
-		
+
+        StatusBar.makeStatusBarTransparent(this);
+
         sales_details_img = findViewById(R.id.sales_details_img);
         sales_details_rv = findViewById(R.id.sales_details_rv);
         sales_tv = findViewById(R.id.sales_tv);

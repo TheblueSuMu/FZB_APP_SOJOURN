@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".all.view.DynamicDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@drawable/my_brokerage">
+
+            <RelativeLayout
+                android:id="@+id/dynamic_details_return_img"
+                android:layout_width="50dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/return2" />
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:id="@+id/dynamic_details_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:text="我的动态"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dynamic_details_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/dynamic_details_information_S"
+                android:background="#fff"
+                android:visibility="gone"
+                android:src="@mipmap/no_information"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/dynamic_details_no_network"
+        android:background="#fff"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/dynamic_details_img"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/no_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_below="@id/dynamic_details_img"
+            android:id="@+id/dynamic_details_reload"
+            android:layout_marginTop="-40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_back"
+            android:text="重新加载"
+            android:textSize="12sp"
+            android:textColor="#334485"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

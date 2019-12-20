@@ -148,7 +148,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#EEEEEE"/>
+                        android:background="#EEEEEE"></LinearLayout>
 
                     <RelativeLayout
                         android:id="@+id/add_store_rl3"
@@ -228,7 +228,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="*"
                                 android:textColor="#AC1E26"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp"></TextView>
                         </LinearLayout>
 
 
@@ -253,6 +253,61 @@
                             android:layout_marginRight="15dp"
                             android:src="@mipmap/next" />
 
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#EEEEEE"></LinearLayout>
+                    <RelativeLayout
+                        android:id="@+id/add_store_rl4"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="#FFFFFF">
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="15dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:src="@mipmap/next" />
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="地图坐标"
+                                android:textColor="#ff333333"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textColor="#AC1E26"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/add_broker_tv4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="100dp"
+                            android:layout_marginRight="30dp"
+                            android:gravity="right"
+                            android:text=""
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
                     </RelativeLayout>
 
                     <LinearLayout
@@ -341,6 +396,7 @@
 
 
                         <RadioGroup
+                            android:id="@+id/add_broker_rg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -356,26 +412,94 @@
                                 android:button="@null"
                                 android:checked="true"
                                 android:drawableLeft="@drawable/checkbox_check_s"
-                                android:text="  是" />
+                                android:text="  未合作" />
 
                             <RadioButton
                                 android:id="@+id/add_broker_rb2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
+                                android:layout_marginLeft="10dp"
                                 android:button="@null"
                                 android:drawableLeft="@drawable/checkbox_check_s"
-                                android:text="  否" />
+                                android:text="  已合作" />
 
                             <RadioButton
                                 android:id="@+id/add_broker_rb3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
+                                android:layout_marginLeft="10dp"
                                 android:button="@null"
                                 android:drawableLeft="@drawable/checkbox_check_s"
                                 android:text="  取消合作" />
+
+                            <RadioButton
+                                android:id="@+id/add_broker_rb4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:button="@null"
+                                android:visibility="gone"
+                                android:drawableLeft="@drawable/checkbox_check_s"
+                                android:text="  倒闭" />
                         </RadioGroup>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#EEEEEE"></LinearLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/add_broker_rl2"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="#FFFFFF"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="15dp"
+                                android:text="合作状态"
+                                android:textColor="#ff333333"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="*"
+                                android:textColor="#AC1E26"
+                                android:textSize="15sp"></TextView>
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/add_broker_tv3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="30dp"
+                            android:gravity="right"
+                            android:textColor="#ff666666"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:src="@mipmap/next" />
+
                     </RelativeLayout>
 
                     <LinearLayout

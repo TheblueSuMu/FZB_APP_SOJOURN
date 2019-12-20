@@ -26,9 +26,11 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.application.DemoApplication;
 import com.xcy.fzb.all.modle.HotBean;
 import com.xcy.fzb.all.persente.SharItOff;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.List;
 
@@ -51,6 +53,8 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
     private RelativeLayout collect_img;
     private LinearLayout collect_l1;
     private LinearLayout collect_l2;
+    private LinearLayout collect_l3;
+    private LinearLayout collect_ll3;
     private LinearLayout collect_ll1;
     private LinearLayout collect_ll2;
 
@@ -91,7 +95,7 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this,"当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -104,6 +108,8 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
         collect_img = findViewById(R.id.collect_img);
         collect_l1 = findViewById(R.id.collect_l1);
         collect_l2 = findViewById(R.id.collect_l2);
+        collect_l3 = findViewById(R.id.collect_l3);
+        collect_ll3 = findViewById(R.id.collect_ll3);
         collect_ll1 = findViewById(R.id.collect_ll1);
         collect_ll2 = findViewById(R.id.collect_ll2);
 
@@ -113,6 +119,7 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
         collect_img.setOnClickListener(this);
         collect_l1.setOnClickListener(this);
         collect_l2.setOnClickListener(this);
+        collect_l3.setOnClickListener(this);
 
 
         ptrClassicFrameLayout = findViewById(R.id.store_house_ptr_frame_9);
@@ -128,6 +135,8 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
                             recyclerViewData("3");
                         }else if(collect_ll2.getVisibility() == View.VISIBLE){
                             recyclerViewData("2");
+                        }else if(collect_ll3.getVisibility() == View.VISIBLE){
+                            recyclerViewData("1");
                         }
                     }
                 }, 1000);
@@ -139,7 +148,7 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
             }
         });
 
-        recyclerViewData("3");
+        recyclerViewData("1");
 
     }
 
@@ -197,6 +206,7 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
                 });
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -206,12 +216,20 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
             case R.id.collect_l1:
                 collect_ll1.setVisibility(View.VISIBLE);
                 collect_ll2.setVisibility(View.INVISIBLE);
+                collect_ll3.setVisibility(View.INVISIBLE);
                 recyclerViewData("3");
                 break;
             case R.id.collect_l2:
                 collect_ll1.setVisibility(View.INVISIBLE);
                 collect_ll2.setVisibility(View.VISIBLE);
+                collect_ll3.setVisibility(View.INVISIBLE);
                 recyclerViewData("2");
+                break;
+            case R.id.collect_l3:
+                collect_ll1.setVisibility(View.INVISIBLE);
+                collect_ll2.setVisibility(View.INVISIBLE);
+                collect_ll3.setVisibility(View.VISIBLE);
+                recyclerViewData("1");
                 break;
         }
     }
@@ -223,6 +241,8 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
             recyclerViewData("3");
         }else if(collect_ll2.getVisibility() == View.VISIBLE){
             recyclerViewData("2");
+        }else if(collect_ll3.getVisibility() == View.VISIBLE){
+            recyclerViewData("1");
         }
     }
 
@@ -230,12 +250,12 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (FinalContents.getCityIs().equals("")) {
-            if (FinalContents.getIdentity().equals("63")) {
+        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+            if(FinalContents.getIdentity().equals("63")){
 
-            } else if (FinalContents.getIdentity().equals("7")) {
+            }else if (FinalContents.getIdentity().equals("7")) {
 
-            } else {
+            }else {
                 int sensortype = event.sensor.getType();
                 float[] values = event.values;
                 if (sensortype == Sensor.TYPE_ACCELEROMETER) {
@@ -248,15 +268,17 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
 
                         if (SharItOff.getShar().equals("隐")) {
                             SharItOff.setShar("显");
-                            Toast.makeText(application, "佣金已显示，如需隐藏请摇动", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(this,"佣金已显示，如需隐藏请摇动");
                         } else if (SharItOff.getShar().equals("显")) {
                             SharItOff.setShar("隐");
-                            Toast.makeText(application, "佣金已隐藏，如需显示请摇动", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(this,"佣金已隐藏，如需显示请摇动");
                         }
-                        if (collect_ll1.getVisibility() == View.VISIBLE) {
+                        if(collect_ll1.getVisibility() == View.VISIBLE){
                             recyclerViewData("3");
-                        } else if (collect_ll2.getVisibility() == View.VISIBLE) {
+                        }else if(collect_ll2.getVisibility() == View.VISIBLE){
                             recyclerViewData("2");
+                        }else if(collect_ll3.getVisibility() == View.VISIBLE){
+                            recyclerViewData("1");
                         }
 
 

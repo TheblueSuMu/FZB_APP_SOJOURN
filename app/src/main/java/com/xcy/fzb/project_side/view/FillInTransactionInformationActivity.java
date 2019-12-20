@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -39,12 +40,14 @@ import com.xcy.fzb.all.modle.FindAdjustApplyBean;
 import com.xcy.fzb.all.modle.FindTradeBean;
 import com.xcy.fzb.all.modle.TradeSaveBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.GetInt;
 import com.xcy.fzb.all.utils.KeyUtils;
 import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.utils.MoneyValueFilter;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.project_side.adapter.TimeRangeAdapter;
 
 import java.util.ArrayList;
@@ -111,7 +114,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
     private EditText fill_in_transaction_information_et4;
     private EditText fill_in_transaction_information_et3;
     private String gender = "";     //  TODO    性别
-    private int sum = 0;
+    private String sum = "";
     private String projecttype;
     private RecyclerView fill_in_transaction_information_rv;
     private TextView fill_in_transaction_information_tishi;
@@ -154,7 +157,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -225,31 +228,6 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
         fill_in_transaction_information_rl5.setOnClickListener(this);
         fill_in_transaction_information_rl6.setOnClickListener(this);
 
-//        fill_in_transaction_information_et5.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View view, boolean b) {
-//                if (b) {
-//                    // 此处为得到焦点时的处理内容
-//                    Log.i("焦点事件", "此处为得到焦点时的处理内容");
-//                } else {
-//                    // 此处为失去焦点时的处理内容
-//                    String s1 = fill_in_transaction_information_et4.getText().toString();
-//                    String s2 = fill_in_transaction_information_et5.getText().toString();
-//                    if (s1.equals("") && s2.equals("")) {
-//
-//                    } else {
-//                        double area = Double.parseDouble(s1);
-//                        double price = Double.parseDouble(s2);
-//                        sum = (area * price);
-//                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0.00");
-//                        str = myformat.format(sum);
-//                        fill_in_transaction_information_et6.setText(str + "元");
-//                        fill_in_transaction_information_tishi.setVisibility(View.GONE);
-//                        Log.i("焦点事件", "此处为失去焦点时的处理内容");
-//                    }
-//                }
-//            }
-//        });
         fill_in_transaction_information_et5.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
@@ -262,13 +240,12 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                     KeyUtils.hideKeyboard(fill_in_transaction_information_et5);
                     String s1 = fill_in_transaction_information_et4.getText().toString();
                     String s2 = fill_in_transaction_information_et5.getText().toString();
-                    if (s1.equals("") && s2.equals("")) {
+                    if (s1.equals("") || s2.equals("")) {
                     } else {
                         double area = Double.parseDouble(s1);
                         double price = Double.parseDouble(s2);
                         sum = GetInt.getInt((area * price));
-                        java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                        str = myformat.format(sum);
+                        str = sum;
                         fill_in_transaction_information_et6.setText(str + "元");
                         fill_in_transaction_information_tishi.setVisibility(View.GONE);
                         return true;
@@ -290,16 +267,15 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                     //注意，这是一定要判断event != null。因为在某些输入法上会返回null。
                     if (actionId == EditorInfo.IME_ACTION_SEND || actionId == EditorInfo.IME_ACTION_DONE || (event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode() && KeyEvent.ACTION_DOWN == event.getAction())) {
                         //处理事件
-                        KeyUtils.hideKeyboard(fill_in_transaction_information_et5);
+                        KeyUtils.hideKeyboard(fill_in_transaction_information_et4);
                         String s1 = fill_in_transaction_information_et4.getText().toString();
                         String s2 = fill_in_transaction_information_et5.getText().toString();
-                        if (s1.equals("") && s2.equals("")) {
+                        if (s1.equals("") || s2.equals("")) {
                         } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
                             sum = GetInt.getInt((area * price));
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                            str = myformat.format(sum);
+                            str = sum;
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
@@ -322,16 +298,15 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                     //注意，这是一定要判断event != null。因为在某些输入法上会返回null。
                     if (actionId == EditorInfo.IME_ACTION_SEND || actionId == EditorInfo.IME_ACTION_DONE || (event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode() && KeyEvent.ACTION_DOWN == event.getAction())) {
                         //处理事件
-                        KeyUtils.hideKeyboard(fill_in_transaction_information_et5);
+                        KeyUtils.hideKeyboard(fill_in_transaction_information_et4);
                         String s1 = fill_in_transaction_information_et4.getText().toString();
                         String s2 = fill_in_transaction_information_et5.getText().toString();
-                        if (s1.equals("") && s2.equals("")) {
+                        if (s1.equals("") || s2.equals("")) {
                         } else {
                             double area = Double.parseDouble(s1);
                             double price = Double.parseDouble(s2);
                             sum = GetInt.getInt((area * price));
-                            java.text.DecimalFormat myformat = new java.text.DecimalFormat("0");
-                            str = myformat.format(sum);
+                            str = sum;
                             fill_in_transaction_information_et6.setText(str + "元");
                             fill_in_transaction_information_tishi.setVisibility(View.GONE);
                             return true;
@@ -348,6 +323,60 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
         } else {
             fill_in_transaction_information_tishi.setVisibility(View.GONE);
         }
+
+        fill_in_transaction_information_et4.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 获得焦点
+                } else {
+                    // 失去焦点
+                    hideInput();
+                    String s1 = fill_in_transaction_information_et4.getText().toString();
+                    String s2 = fill_in_transaction_information_et5.getText().toString();
+                    if (s1.equals("") || s2.equals("")) {
+                    } else {
+                        double area = Double.parseDouble(s1);
+                        double price = Double.parseDouble(s2);
+                        sum = GetInt.getInt((area * price));
+                        str = sum;
+                        fill_in_transaction_information_et6.setText(str + "元");
+                        fill_in_transaction_information_tishi.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+
+        });
+
+        fill_in_transaction_information_et5.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (hasFocus) {
+                    // 获得焦点
+                } else {
+                    // 失去焦点
+                    hideInput();
+                    String s1 = fill_in_transaction_information_et4.getText().toString();
+                    String s2 = fill_in_transaction_information_et5.getText().toString();
+                    if (s1.equals("") || s2.equals("")) {
+                    } else {
+                        double area = Double.parseDouble(s1);
+                        double price = Double.parseDouble(s2);
+                        sum = GetInt.getInt((area * price));
+                        str = sum;
+                        fill_in_transaction_information_et6.setText(str + "元");
+                        fill_in_transaction_information_tishi.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+
+        });
+
     }
 
     private void initselect() {
@@ -413,7 +442,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                         @SuppressLint("WrongConstant")
                         @Override
                         public void onNext(TradeSaveBean tradeSaveBean) {
-                            Toast.makeText(FillInTransactionInformationActivity.this, tradeSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(FillInTransactionInformationActivity.this, tradeSaveBean.getData().getMessage());
                             finish();
                             Log.i("判断", "shuju2：" + ifnum6);
                         }
@@ -429,12 +458,12 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                         }
                     });
             if (FinalContents.getCommissionId().equals("")) {
-                Toast.makeText(FillInTransactionInformationActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
+                ToastUtil.showToast(FillInTransactionInformationActivity.this, "请选择佣金");
             } else {
                 FinalContents.setTiaozhuang("成交");
             }
         } else {
-            Toast.makeText(FillInTransactionInformationActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(FillInTransactionInformationActivity.this, "请选择佣金");
         }
     }
 
@@ -460,7 +489,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(TradeSaveBean tradeSaveBean) {
-                        Toast.makeText(FillInTransactionInformationActivity.this, tradeSaveBean.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(FillInTransactionInformationActivity.this, tradeSaveBean.getData().getMessage());
                         if (FinalContents.getCommissionId().equals("")) {
                             ifnum6 = 0;
                         } else {
@@ -483,6 +512,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
         FinalContents.setTiaozhuang("调单");
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -494,67 +524,67 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
             //            TODO 提交
             case R.id.fill_in_transaction_information_btn:
                 if (!MatcherUtils.isMobile(fill_in_transaction_information_et2.getText().toString())) {
-                    Toast.makeText(this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(this, "请输入正确的手机号");
                     return;
                 } else {
 
                     if (project_type.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择产品类型", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择产品类型");
                         return;
                     }
 
                     if (fill_in_transaction_information_et1.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户姓名", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交客户姓名");
                         return;
                     }
 
                     if (fill_in_transaction_information_et2.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户电话", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交客户电话");
                         return;
                     }
 
                     if (fill_in_transaction_information_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交客户身份证号", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交客户身份证号");
                         return;
                     }
 
                     if (project_relation.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交客户与报备客户关系", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择成交客户与报备客户关系");
                         return;
                     }
 
                     if (fang_hao_et1.getText().toString().equals("") || fang_hao_et2.getText().toString().equals("") || fang_hao_et3.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交房号", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交房号");
                         return;
                     }
 
                     if (house_type.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交户型", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择成交户型");
                         return;
                     }
 
                     if (fill_in_transaction_information_et4.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入成交面积", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请输入成交面积");
                         return;
                     }
 
                     if (fill_in_transaction_information_et5.getText().toString().equals("")) {
-                        Toast.makeText(this, "请填写成交单价", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请填写成交单价");
                         return;
                     }
 
                     if (str.equals("")) {
-                        Toast.makeText(this, "请填写成交单价并确认", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请填写成交单价并确认");
                         return;
                     }
 
                     if (payment_way.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择付款方式", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择付款方式");
                         return;
                     }
 
                     if (project_time.getText().toString().equals("")) {
-                        Toast.makeText(this, "请选择成交时间", Toast.LENGTH_SHORT).show();
+                        ToastUtil.showToast(this, "请选择成交时间");
                         return;
                     }
 
@@ -624,6 +654,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                 if (ifnum3 == 0) {
                     ifnum3 = 1;
                     picker.setVisibility(View.VISIBLE);
+                    hideInput();
                     initDate();
                     ifnum3 = 0;
                 }
@@ -660,7 +691,6 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
         int month = calendar.get(Calendar.MONTH) + 1;
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month, dayOfMonth);
-        project_time.setText(dateString);
         dateTimePickerView.setStartDate(new GregorianCalendar(year - 2, month - 1, dayOfMonth));
         // 注意：月份是从0开始计数的
         dateTimePickerView.setSelectedDate(new GregorianCalendar(2019, month - 1, dayOfMonth));
@@ -677,6 +707,17 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
             @Override
             public void onClick(View view) {
                 picker.setVisibility(View.GONE);
+            }
+        });
+
+        dateTimePickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
+            @Override
+            public void onSelectedDateChanged(Calendar date) {
+                int year = date.get(Calendar.YEAR);
+                int month = date.get(Calendar.MONTH);
+                int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
+                project_time.setText(dateString);
             }
         });
 
@@ -882,7 +923,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                         fill_in_transaction_information_et4.setText(findTradeBean.getData().getFfServerTrade().getArea());
                         fill_in_transaction_information_et5.setText(findTradeBean.getData().getFfServerTrade().getPrice());
                         fill_in_transaction_information_et6.setText(findTradeBean.getData().getFfServerTrade().getTotalPrice() + "元");
-                        sum = Integer.parseInt(findTradeBean.getData().getFfServerTrade().getTotalPrice());
+                        sum = findTradeBean.getData().getFfServerTrade().getTotalPrice();
                         str = findTradeBean.getData().getFfServerTrade().getTotalPrice();
                         payment_way.setText(findTradeBean.getData().getFfServerTrade().getPaymentMethod());
                         project_time.setText(findTradeBean.getData().getFfServerTrade().getTradeDate());
@@ -972,5 +1013,17 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
         pvOptions.setPicker(list);
         //      展示
         pvOptions.show();
+    }
+
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 }

@@ -72,24 +72,8 @@ public class JourneyFragment extends AllFragment {
             }
         });
 
-        initData2();
+        initData();
         return view;
-    }
-
-    private void initData2(){
-        if (taskDetailsBean.getData().getRouteInfo().size() != 0) {
-            all_no_information.setVisibility(View.GONE);
-            journey_rv.setVisibility(View.VISIBLE);
-            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(getContext());
-            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-            journey_rv.setLayoutManager(layoutManager);
-            JourneyAdapter recyclerAdapter = new JourneyAdapter(taskDetailsBean.getData().getRouteInfo());
-            journey_rv.setAdapter(recyclerAdapter);
-            recyclerAdapter.notifyDataSetChanged();
-        }else {
-            all_no_information.setVisibility(View.VISIBLE);
-            journey_rv.setVisibility(View.GONE);
-        }
     }
 
     private void initData(){

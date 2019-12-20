@@ -14,9 +14,11 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.NickNameBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -65,7 +67,7 @@ public class SetPasswordActivity extends AllActivity implements View.OnClickList
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -85,7 +87,7 @@ public class SetPasswordActivity extends AllActivity implements View.OnClickList
         set_z_password.setOnClickListener(this);
 
     }
-
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -103,17 +105,17 @@ public class SetPasswordActivity extends AllActivity implements View.OnClickList
                 x = set_x_password.getText().toString();
                 x_again = set_x_again_password.getText().toString();
                 if (j.equals("")) {
-                    Toast.makeText(SetPasswordActivity.this, "请输入要更改的旧密码", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(SetPasswordActivity.this, "请输入要更改的旧密码");
                     return;
                 }
 
                 if (x.equals("")) {
-                    Toast.makeText(SetPasswordActivity.this, "请输入要更改的新密码", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(SetPasswordActivity.this, "请输入要更改的新密码");
                     return;
                 }
 
                 if (x_again.equals("")) {
-                    Toast.makeText(SetPasswordActivity.this, "请输入确认要更改的新密码", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(SetPasswordActivity.this, "请输入确认要更改的新密码");
                     return;
                 }
 
@@ -137,7 +139,7 @@ public class SetPasswordActivity extends AllActivity implements View.OnClickList
                                 @Override
                                 public void onNext(NickNameBean nickNameBean) {
                                     NickNameBean.DataBean data1 = nickNameBean.getData();
-                                    Toast.makeText(SetPasswordActivity.this, data1.getMessage(), Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showToast(SetPasswordActivity.this, data1.getMessage());
                                     if (data1.getMessage().equals("密码修改成功，请牢记！")) {
                                         finish();
                                         intent = new Intent(SetPasswordActivity.this, PersonalInformationActivity.class);
@@ -157,7 +159,7 @@ public class SetPasswordActivity extends AllActivity implements View.OnClickList
                                 }
                             });
                 } else {
-                    Toast.makeText(this, "新密码两次不一致,请重新输入", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(this, "新密码两次不一致,请重新输入");
                 }
 
                 break;

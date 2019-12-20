@@ -62,6 +62,7 @@
                 android:id="@+id/oversea_scroll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scrollbars="none"
                 android:background="#fff">
 
                 <LinearLayout
@@ -93,7 +94,6 @@
                             <ImageView
                                 android:id="@+id/banner_img"
                                 android:src="@mipmap/banner_img"
-                                android:visibility="gone"
                                 android:layout_width="match_parent"
                                 android:layout_height="140dp"/>
 
@@ -118,44 +118,37 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="15dp"
-                            android:visibility="invisible">
+                            android:visibility="gone">
 
                         </androidx.recyclerview.widget.RecyclerView>
 
                         <LinearLayout
+                            android:layout_marginTop="26dp"
                             android:id="@+id/oversea_linear"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_height="match_parent">
 
-                            <co.lujun.androidtagview.TagContainerLayout
-                                android:id="@+id/oversea_tagview"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="25dp"
-                                app:container_background_color="#fff"
-                                app:container_border_color="#fff"
-                                app:horizontal_interval="10dp"
-                                app:tag_background_color="#ffeceff3"
-                                app:tag_border_color="#fff"
-                                app:tag_border_width="0dp"
-                                app:tag_clickable="true"
-                                app:tag_corner_radius="3dp"
-                                app:tag_horizontal_padding="15dp"
-                                app:tag_text_color="#000"
-                                app:tag_text_size="15sp"
-                                app:tag_vertical_padding="12dp" />
+                            <ImageView
+                                android:id="@+id/oversea_city_wide_img"
+                                android:src="@mipmap/oversea_city_wide"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="23dp"
-                                android:layout_marginRight="16dp"
-                                android:background="#fff3f2f7"
-                                android:visibility="gone" />
+                            <ImageView
+                                android:id="@+id/oversea_across_the_city_img"
+                                android:src="@mipmap/oversea_across_the_city"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
+                            <ImageView
+                                android:id="@+id/oversea_map_img"
+                                android:src="@mipmap/oversea_map"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
                         </LinearLayout>
 
 
@@ -191,7 +184,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
-                            android:layout_marginRight="15dp"/>
+                            android:layout_marginRight="15dp">
+
+                        </androidx.recyclerview.widget.RecyclerView>
 
                         <LinearLayout
                             android:layout_width="match_parent"

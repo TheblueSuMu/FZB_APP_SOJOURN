@@ -20,9 +20,12 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.CheckPendingBean;
+import com.xcy.fzb.all.modle.ToAuditNumBean;
+import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.project_side.adapter.CheckPendingTheProjectEndAdapter;
 
@@ -60,6 +63,10 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
     private List<CheckPendingBean.DataBean.RowsBean> rows;
     private Intent intent;
     private ImageView all_no_information;
+    private TextView check_pending_the_project_end_tv1;
+    private TextView check_pending_the_project_end_tv2;
+    private TextView check_pending_the_project_end_tv3;
+    private TextView check_pending_the_project_end_tv4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +91,7 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -105,6 +112,12 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
         check_pending_the_project_end_ll7 = findViewById(R.id.check_pending_the_project_end_ll7);
         check_pending_the_project_end_ll8 = findViewById(R.id.check_pending_the_project_end_ll8);
         check_pending_the_project_end_rv = findViewById(R.id.check_pending_the_project_end_rv);
+
+        check_pending_the_project_end_tv1 = findViewById(R.id.check_pending_the_project_end_tv1);
+        check_pending_the_project_end_tv2 = findViewById(R.id.check_pending_the_project_end_tv2);
+        check_pending_the_project_end_tv3 = findViewById(R.id.check_pending_the_project_end_tv3);
+        check_pending_the_project_end_tv4 = findViewById(R.id.check_pending_the_project_end_tv4);
+
 
         check_pending_the_project_end_return.setOnClickListener(this);
         check_pending_the_project_end_tv.setOnClickListener(this);
@@ -142,6 +155,7 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
         });
     }
 
+    @SingleClick(1000)
     @Override
     public void onClick(View view) {
 
@@ -273,7 +287,7 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
                             all_no_information.setVisibility(View.VISIBLE);
                             check_pending_the_project_end_rv.setVisibility(View.GONE);
                         }
-
+                        initRead();
                     }
 
                     @Override
@@ -290,6 +304,67 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
                 });
 
 
+    }
+
+    private void initRead(){
+        String ProjectID = "";
+
+        if (FinalContents.getDetails().equals("项目详情")) {
+            ProjectID = FinalContents.getProjectID();
+        }
+
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ToAuditNumBean> userMessage = fzbInterface.getToAuditNum(FinalContents.getUserID(),ProjectID,"1","1000", NewlyIncreased.getTag(),NewlyIncreased.getStartDate(),NewlyIncreased.getEndDate());
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ToAuditNumBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @SuppressLint("WrongConstant")
+                    @Override
+                    public void onNext(ToAuditNumBean toAuditNumBean) {
+                        if (toAuditNumBean.getData().getReport() == 0) {
+                            check_pending_the_project_end_tv1.setText("报备");
+                        }else {
+                            check_pending_the_project_end_tv1.setText("报备("+toAuditNumBean.getData().getReport()+")");
+                        }
+                        if (toAuditNumBean.getData().getAccess() == 0) {
+                            check_pending_the_project_end_tv2.setText("到访");
+                        }else {
+                            check_pending_the_project_end_tv2.setText("到访("+toAuditNumBean.getData().getAccess()+")");
+                        }
+                        if (toAuditNumBean.getData().getEarnest() == 0) {
+                            check_pending_the_project_end_tv3.setText("认筹");
+                        }else {
+                            check_pending_the_project_end_tv3.setText("认筹("+toAuditNumBean.getData().getEarnest()+")");
+                        }
+                        if (toAuditNumBean.getData().getTrade() == 0) {
+                            check_pending_the_project_end_tv4.setText("成交");
+                        }else {
+                            check_pending_the_project_end_tv4.setText("成交("+toAuditNumBean.getData().getTrade()+")");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        all_no_information.setVisibility(View.VISIBLE);
+                        check_pending_the_project_end_rv.setVisibility(View.GONE);
+                        Log.i("列表数据获取错误","错误"+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 
@@ -316,5 +391,6 @@ public class CheckPendingTheProjectEndActivity extends AllActivity implements Vi
         } else {
             initData(1);
         }
+        initRead();
     }
 }

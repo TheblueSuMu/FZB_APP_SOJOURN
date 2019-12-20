@@ -24,17 +24,22 @@ public class FinalContents {
     public static final String SP_FILE_NAME = "fzb";
     public static final String SP_LOGIN_NAME = "fzbLogin";
 
-//    static String ImageUrl = "http://39.98.173.250:8080";
+//    static String ImageUrl = "http://192.168.0.121:8080";
+//    static String ImageUrl = "http://39.98.173.250:8081";
+//    static String ImageUrl = "http://test.fangzuobiao.com:88";
 //    static String ImageUrl = "http://yanshi.fangzuobiao.com:88";
+//    static String ImageUrl = "http://39.100.13.183:8080";       //      TODO    IP版
+    static String ImageUrl = "http://city.fangzuobiao.com:88";       //      TODO     域名版
+//    static String ImageUrl = "http://39.98.237.23:8082";       //      TODO     远程版
+
 //    static String ImageUrl = "http://39.100.13.183:8080";
 //    static String ImageUrl = "http://39.98.224.67:8080";
-//    static String ImageUrl = "http://39.98.173.250:8080";
-    static String ImageUrl = "http://admin.fangzuobiao.com:88";
-
+//    static String ImageUrl = "http://admin.fangzuobiao.com:88";
 
 //    static String AdminUrl = "http://admin.fangzuobiao.com:88";
+    static String AdminUrl = "http://city.fangzuobiao.com:88";
 //    static String AdminUrl = "http://yanshi.fangzuobiao.com:88";
-    static String AdminUrl = "http://admin.fangzuobiao.com:88";
+//    static String AdminUrl = "http://test.fangzuobiao.com:88";
 
     public static String getAdminUrl() {
         return AdminUrl;
@@ -52,11 +57,15 @@ public class FinalContents {
         ImageUrl = imageUrl;
     }
 
-//    static String BaseUrl = "http://39.98.173.250:8080/fangfang/app/v1/";
+//    static String BaseUrl = "http://192.168.0.121:8080/fangfang/app/v1/";
+//    static String BaseUrl = "http://39.98.173.250:8081/fangfang/app/v1/";
+//    static String BaseUrl = "http://test.fangzuobiao.com:88/fangfang/app/v1/";
 //    static String BaseUrl = "http://yanshi.fangzuobiao.com:88/fangfang/app/v1/";
-//    static String BaseUrl = "http://39.100.13.183:8080/fangfang/app/v1/";
+//    static String BaseUrl = "http://39.100.13.183:8080/fangfang/app/v1/";      //      TODO    IP版
+    static String BaseUrl = "http://city.fangzuobiao.com:88/fangfang/app/v1/";      //      TODO    域名版
+//    static String BaseUrl = "http://39.98.237.23:8082/fangfang/app/v1/";      //      TODO    远程版
 //    static String BaseUrl = "http://39.98.224.67:8080/fangfang/app/v1/";
-    static String BaseUrl = "http://admin.fangzuobiao.com:88/fangfang/app/v1/";
+//    static String BaseUrl = "http://admin.fangzuobiao.com:88/fangfang/app/v1/";
 
     static String userID = "";
     static String projectID = "";
@@ -187,6 +196,12 @@ public class FinalContents {
 
     static String FragmentSSS = "0";
 
+    static String ClientPhone = "";
+
+    static String IfCity = "";
+
+    static String IfCityType = "";
+
     static String CityIs = "";
 
     static String OldCityId = "";
@@ -205,6 +220,30 @@ public class FinalContents {
 
     public static void setCityIs(String cityIs) {
         CityIs = cityIs;
+    }
+
+    public static String getIfCityType() {
+        return IfCityType;
+    }
+
+    public static void setIfCityType(String ifCityType) {
+        IfCityType = ifCityType;
+    }
+
+    public static String getIfCity() {
+        return IfCity;
+    }
+
+    public static void setIfCity(String ifCity) {
+        IfCity = ifCity;
+    }
+
+    public static String getClientPhone() {
+        return ClientPhone;
+    }
+
+    public static void setClientPhone(String clientPhone) {
+        ClientPhone = clientPhone;
     }
 
     public static String getFragmentSSS() {

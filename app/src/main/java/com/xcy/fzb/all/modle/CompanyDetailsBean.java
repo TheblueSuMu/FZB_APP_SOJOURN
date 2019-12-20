@@ -5,10 +5,11 @@ import java.util.List;
 
 public class CompanyDetailsBean {
 
+
     /**
      * code : 1
      * msg : 成功
-     * data : {"storeMoneyData":{"totalAmount":"0","notAmount":"0","alreadyAmount":"0"},"gsonOption":{"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["04","05","06","07","08","09"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[1,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]},"storeInfo":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"bab6ae2572ec4c25bad6b3875be36c28","companyName":"测试公司","companyAddress":"","storeName":"测试一下","storeId":"025d9946751d45228454cd1d2458b941","storeIdCode":"0000027","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"天津/天津/和平区","address":"0000","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"1","search":""},"storeDataStatistics":{"agentNum":1,"accessingNumber":0,"tradeNumber":0,"reportNumber":0,"isIslandNumber":0,"earnestMoneyNumber":0,"landingNumber":0,"InvalidNum":0}}
+     * data : {"storeMoneyData":{"totalAmount":"0","notAmount":"0","alreadyAmount":"0"},"gsonOption":{"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["26","27","28","29","30","01","02"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]},"storeInfo":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"3db11016e35c4af796f34057cee3d29c","companyName":"测试公司","companyAddress":"","storeNum":"","storeName":"互联网金融","storeId":"efd95b4f26b64f1883cc4f96643eb873","storeIdCode":"0000889","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"江苏省/常州市/天宁区","address":"江南皮革厂","storeRise":"","storeImg":"","location":"","comLocation":"117.386421,39.170700","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""},"storeDataStatistics":{"agentNum":0,"accessingNumber":0,"tradeNumber":0,"reportNumber":0,"isIslandNumber":0,"earnestMoneyNumber":0,"landingNumber":0,"InvalidNum":0}}
      */
 
     private String code;
@@ -42,9 +43,9 @@ public class CompanyDetailsBean {
     public static class DataBean {
         /**
          * storeMoneyData : {"totalAmount":"0","notAmount":"0","alreadyAmount":"0"}
-         * gsonOption : {"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["04","05","06","07","08","09"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[1,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]}
-         * storeInfo : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"bab6ae2572ec4c25bad6b3875be36c28","companyName":"测试公司","companyAddress":"","storeName":"测试一下","storeId":"025d9946751d45228454cd1d2458b941","storeIdCode":"0000027","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","area":"天津/天津/和平区","address":"0000","storeRise":"","storeImg":"","location":"","reason":"","agentNum":"1","search":""}
-         * storeDataStatistics : {"agentNum":1,"accessingNumber":0,"tradeNumber":0,"reportNumber":0,"isIslandNumber":0,"earnestMoneyNumber":0,"landingNumber":0,"InvalidNum":0}
+         * gsonOption : {"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["26","27","28","29","30","01","02"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]}
+         * storeInfo : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","user":"","companyId":"3db11016e35c4af796f34057cee3d29c","companyName":"测试公司","companyAddress":"","storeNum":"","storeName":"互联网金融","storeId":"efd95b4f26b64f1883cc4f96643eb873","storeIdCode":"0000889","isShopowner":"0","shopownerName":"","shopownerPhone":"","loginName":"","status":"1","state":"","cmState":"","area":"江苏省/常州市/天宁区","address":"江南皮革厂","storeRise":"","storeImg":"","location":"","comLocation":"117.386421,39.170700","attacheId":"badb8e2d394d4841a8376437471970a5","attacheName":"文章","attachePhone":"13241693578","attacheIdentity":"5","isMy":"1","reason":"","agentNum":"0","search":"","beforeDate":"","afterDate":""}
+         * storeDataStatistics : {"agentNum":0,"accessingNumber":0,"tradeNumber":0,"reportNumber":0,"isIslandNumber":0,"earnestMoneyNumber":0,"landingNumber":0,"InvalidNum":0}
          */
 
         private StoreMoneyDataBean storeMoneyData;
@@ -123,8 +124,8 @@ public class CompanyDetailsBean {
         public static class GsonOptionBean {
             /**
              * yAxis : {"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"}
-             * xAxis : {"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["04","05","06","07","08","09"],"type":"category","boundaryGap":false}
-             * series : [{"areaStyle":{"color":"#e6eefe"},"data":[1,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]
+             * xAxis : {"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["26","27","28","29","30","01","02"],"type":"category","boundaryGap":false}
+             * series : [{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]
              */
 
             private YAxisBean yAxis;
@@ -278,7 +279,7 @@ public class CompanyDetailsBean {
             public static class XAxisBean {
                 /**
                  * axisLabel : {"textStyle":{"color":"#a8b6cc"}}
-                 * data : ["04","05","06","07","08","09"]
+                 * data : ["26","27","28","29","30","01","02"]
                  * type : category
                  * boundaryGap : false
                  */
@@ -356,7 +357,7 @@ public class CompanyDetailsBean {
             public static class SeriesBean {
                 /**
                  * areaStyle : {"color":"#e6eefe"}
-                 * data : [1,0,0,0,0,0]
+                 * data : [0,0,0,0,0,0,0]
                  * itemStyle : {"color":"#3b82d2"}
                  * type : line
                  */
@@ -441,25 +442,36 @@ public class CompanyDetailsBean {
              * updateBy :
              * updateDate :
              * user :
-             * companyId : bab6ae2572ec4c25bad6b3875be36c28
+             * companyId : 3db11016e35c4af796f34057cee3d29c
              * companyName : 测试公司
              * companyAddress :
-             * storeName : 测试一下
-             * storeId : 025d9946751d45228454cd1d2458b941
-             * storeIdCode : 0000027
+             * storeNum :
+             * storeName : 互联网金融
+             * storeId : efd95b4f26b64f1883cc4f96643eb873
+             * storeIdCode : 0000889
              * isShopowner : 0
              * shopownerName :
              * shopownerPhone :
              * loginName :
              * status : 1
-             * area : 天津/天津/和平区
-             * address : 0000
+             * state :
+             * cmState :
+             * area : 江苏省/常州市/天宁区
+             * address : 江南皮革厂
              * storeRise :
              * storeImg :
              * location :
+             * comLocation : 117.386421,39.170700
+             * attacheId : badb8e2d394d4841a8376437471970a5
+             * attacheName : 文章
+             * attachePhone : 13241693578
+             * attacheIdentity : 5
+             * isMy : 1
              * reason :
-             * agentNum : 1
+             * agentNum : 0
              * search :
+             * beforeDate :
+             * afterDate :
              */
 
             private String id;
@@ -472,6 +484,7 @@ public class CompanyDetailsBean {
             private String companyId;
             private String companyName;
             private String companyAddress;
+            private String storeNum;
             private String storeName;
             private String storeId;
             private String storeIdCode;
@@ -480,14 +493,24 @@ public class CompanyDetailsBean {
             private String shopownerPhone;
             private String loginName;
             private String status;
+            private String state;
+            private String cmState;
             private String area;
             private String address;
             private String storeRise;
             private String storeImg;
             private String location;
+            private String comLocation;
+            private String attacheId;
+            private String attacheName;
+            private String attachePhone;
+            private String attacheIdentity;
+            private String isMy;
             private String reason;
             private String agentNum;
             private String search;
+            private String beforeDate;
+            private String afterDate;
 
             public String getId() {
                 return id;
@@ -569,6 +592,14 @@ public class CompanyDetailsBean {
                 this.companyAddress = companyAddress;
             }
 
+            public String getStoreNum() {
+                return storeNum;
+            }
+
+            public void setStoreNum(String storeNum) {
+                this.storeNum = storeNum;
+            }
+
             public String getStoreName() {
                 return storeName;
             }
@@ -633,6 +664,22 @@ public class CompanyDetailsBean {
                 this.status = status;
             }
 
+            public String getState() {
+                return state;
+            }
+
+            public void setState(String state) {
+                this.state = state;
+            }
+
+            public String getCmState() {
+                return cmState;
+            }
+
+            public void setCmState(String cmState) {
+                this.cmState = cmState;
+            }
+
             public String getArea() {
                 return area;
             }
@@ -673,6 +720,54 @@ public class CompanyDetailsBean {
                 this.location = location;
             }
 
+            public String getComLocation() {
+                return comLocation;
+            }
+
+            public void setComLocation(String comLocation) {
+                this.comLocation = comLocation;
+            }
+
+            public String getAttacheId() {
+                return attacheId;
+            }
+
+            public void setAttacheId(String attacheId) {
+                this.attacheId = attacheId;
+            }
+
+            public String getAttacheName() {
+                return attacheName;
+            }
+
+            public void setAttacheName(String attacheName) {
+                this.attacheName = attacheName;
+            }
+
+            public String getAttachePhone() {
+                return attachePhone;
+            }
+
+            public void setAttachePhone(String attachePhone) {
+                this.attachePhone = attachePhone;
+            }
+
+            public String getAttacheIdentity() {
+                return attacheIdentity;
+            }
+
+            public void setAttacheIdentity(String attacheIdentity) {
+                this.attacheIdentity = attacheIdentity;
+            }
+
+            public String getIsMy() {
+                return isMy;
+            }
+
+            public void setIsMy(String isMy) {
+                this.isMy = isMy;
+            }
+
             public String getReason() {
                 return reason;
             }
@@ -696,11 +791,27 @@ public class CompanyDetailsBean {
             public void setSearch(String search) {
                 this.search = search;
             }
+
+            public String getBeforeDate() {
+                return beforeDate;
+            }
+
+            public void setBeforeDate(String beforeDate) {
+                this.beforeDate = beforeDate;
+            }
+
+            public String getAfterDate() {
+                return afterDate;
+            }
+
+            public void setAfterDate(String afterDate) {
+                this.afterDate = afterDate;
+            }
         }
 
         public static class StoreDataStatisticsBean {
             /**
-             * agentNum : 1
+             * agentNum : 0
              * accessingNumber : 0
              * tradeNumber : 0
              * reportNumber : 0

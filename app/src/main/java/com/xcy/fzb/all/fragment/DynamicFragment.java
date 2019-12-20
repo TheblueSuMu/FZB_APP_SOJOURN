@@ -36,6 +36,7 @@ import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.Dynamic2Bean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.BigPhotoActivity;
 import com.xcy.fzb.all.view.MessageCommentActivity;
 import com.xcy.fzb.all.view.ProjectDetails;
@@ -182,7 +183,7 @@ public class DynamicFragment extends Fragment {
                                 public void Click(final int position) {
                                     String phone = list.get(position).getAttaches().get(0).getPhone();
                                     if (phone.equals("")) {
-                                        Toast.makeText(getContext(), "暂无电话信息，无法拨打", Toast.LENGTH_SHORT).show();
+                                        ToastUtil.showLongToast(getContext(),"暂无电话信息，无法拨打");
                                     } else {
                                         final List<String> arrayList = new ArrayList<>();
                                         for (int i = 0; i < list.get(position).getAttaches().size(); i++) {
@@ -219,7 +220,6 @@ public class DynamicFragment extends Fragment {
                                     intent.putExtra("headPortrait", list.get(position).getCreateBy().getPhoto());
                                     intent.putExtra("title", list.get(position).getCreateBy().getName());
                                     intent.putExtra("message", list.get(position).getContent());
-                                    intent.putExtra("time", list.get(position).getCreateDate());
                                     intent.putExtra("img", list.get(position).getImgUrl());
                                     intent.putExtra("isLike", list.get(position).getIsLike());
                                     startActivity(intent);
@@ -261,7 +261,7 @@ public class DynamicFragment extends Fragment {
                                         }
                                     //        TODO 图片保存到本地
                                     }
-                                    Toast.makeText(getContext(), "复制成功", Toast.LENGTH_SHORT).show();
+                                    ToastUtil.showLongToast(getContext(),"复制成功");
                                 }
                             });
 

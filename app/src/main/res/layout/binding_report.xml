@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="325dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/report_shape"
+    android:orientation="vertical"
+    android:paddingTop="15dp"
+    tools:ignore="ResourceName">
+
+    <TextView
+        android:id="@+id/report_binding_title_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:visibility="gone"
+        android:text="该客户已报备"
+        android:textColor="#111111"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/report_binding_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/report_binding_title_S"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:gravity="center"
+        android:lineSpacingExtra="15dp"
+        android:layout_marginRight="15dp"
+        android:text=""
+        android:textColor="#111111"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/report_binding_title"
+        android:layout_marginTop="30dp"
+        android:background="#EEEEEE"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_below="@id/report_binding_title"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/report_binding_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/report_binding_cancel_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text=""
+                android:textColor="#333333"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/report_binding_confirm_LinearLayout"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE"
+            android:orientation="horizontal" />
+
+        <RelativeLayout
+            android:id="@+id/report_binding_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/report_binding_confirm_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text=""
+                android:textColor="#334485"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
