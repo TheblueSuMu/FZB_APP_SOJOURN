@@ -279,7 +279,15 @@
 
             </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
-
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/commission_avi"
+                style="@style/AVLoadingIndicatorView.Small"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:visibility="gone"
+                app:indicatorColor="#334485"
+                android:layout_centerInParent="true"
+                app:indicatorName="LineSpinFadeLoaderIndicator" />
 
             <RelativeLayout
                 android:id="@+id/myBrokerage_rl"
