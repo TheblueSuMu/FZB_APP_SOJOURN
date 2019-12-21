@@ -23,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,8 +56,11 @@ import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
+import com.xcy.fzb.captain_counselor.view.Captain_Counselor_CommissionTheProjectEndActivity;
+import com.xcy.fzb.captain_market.view.Captain_Market_MyTeamActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
 import com.xcy.fzb.captain_team.view.Captain_Team_MyClientActivity;
+import com.xcy.fzb.captain_team.view.Captain_Team_MyTeamActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -223,9 +225,24 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
 
         city.setText(FinalContents.getCityName());
 
-        if (FinalContents.getDengLu().equals("顾问")) {
-            home_item_text4.setText("我的客户");
-            home_item_img4.setImageResource(R.mipmap.adds4);
+//        if (FinalContents.getDengLu().equals("顾问")) {
+//            home_item_text4.setText("我的客户");
+//            home_item_img4.setImageResource(R.mipmap.adds4);
+//        }
+
+        //  TODO    判断不同的身份显示不同的首页
+        if (FinalContents.getIdentity().equals("60")) {
+            //  TODO    团队长
+            home_item_yongjin.setText("我的团队");
+            home_item_text4.setText("团队佣金");
+        } else if (FinalContents.getIdentity().equals("61")) {
+            //  TODO    销售
+            home_item_yongjin.setText("我的团队");
+            home_item_text4.setText("团队佣金");
+        } else if (FinalContents.getIdentity().equals("62")) {
+            //  TODO    顾问
+            home_item_yongjin.setText("我的客户");
+            home_item_text4.setText("我的佣金");
         }
 
         layout.setOnRefreshListener(this);
@@ -268,32 +285,14 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                 Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent);
             } else if (view.getId() == R.id.home_item_client) {
-                FinalContents.setProjectType("1");
-                Intent intent = new Intent(view.getContext(), OverSeaActivity.class);
-                startActivity(intent);
-
-//                FinalContents.setStoreId("");
-//                FinalContents.setAgentId(FinalContents.getUserID());
-//                Intent intent_overseas = new Intent(getContext(), Captain_Team_MyClientActivity.class);
-//                FinalContents.setQuanceng("1");
-//                FinalContents.setMySelf("0");
-//                intent_overseas.putExtra("client", "1");
-//                startActivity(intent_overseas);
-            } else if (view.getId() == R.id.home_item_brokerage) {
-                //  TODO    判断不同的身份进入不同的佣金界面
+                //  TODO    判断不同的身份进入不同的我的团队界面
                 if (FinalContents.getIdentity().equals("60")) {
                     //  TODO    团队长
-                    FinalContents.setMySelf("1");
-                    Intent intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
-                    intent.putExtra("client", "0");
-                    FinalContents.setAgentId(FinalContents.getUserID());
+                    Intent intent = new Intent(getContext(), Captain_Team_MyTeamActivity.class);
                     startActivity(intent);
                 } else if (FinalContents.getIdentity().equals("61")) {
                     //  TODO    销售
-                    FinalContents.setMySelf("1");
-                    Intent intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
-                    intent.putExtra("client", "0");
-                    FinalContents.setAgentId(FinalContents.getUserID());
+                    Intent intent = new Intent(getContext(), Captain_Market_MyTeamActivity.class);
                     startActivity(intent);
                 } else if (FinalContents.getIdentity().equals("62")) {
                     //  TODO    顾问
@@ -301,6 +300,25 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     Intent intent = new Intent(getContext(), Captain_Team_MyClientActivity.class);
                     intent.putExtra("client", "0");
                     FinalContents.setAgentId(FinalContents.getUserID());
+                    startActivity(intent);
+                }
+            } else if (view.getId() == R.id.home_item_brokerage) {
+                //  TODO    判断不同的身份进入不同的佣金界面
+                if (FinalContents.getIdentity().equals("60")) {
+                    //  TODO    团队长
+                    FinalContents.setMySelf("1");
+                    Intent intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
+                    FinalContents.setAgentId(FinalContents.getUserID());
+                    startActivity(intent);
+                } else if (FinalContents.getIdentity().equals("61")) {
+                    //  TODO    销售
+                    FinalContents.setMySelf("1");
+                    Intent intent = new Intent(getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
+                    FinalContents.setAgentId(FinalContents.getUserID());
+                    startActivity(intent);
+                } else if (FinalContents.getIdentity().equals("62")) {
+                    //  TODO    顾问
+                    Intent intent = new Intent(getContext(), Captain_Counselor_CommissionTheProjectEndActivity.class);
                     startActivity(intent);
                 }
             }

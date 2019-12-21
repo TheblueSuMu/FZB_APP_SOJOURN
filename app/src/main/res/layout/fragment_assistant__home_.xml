@@ -69,9 +69,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <FrameLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/assisant_home_banner_img"
+                        android:src="@mipmap/banner_img"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"/>
 
                     <com.youth.banner.Banner
                         android:id="@+id/home_banner"
@@ -81,7 +88,7 @@
                         />
 
 
-                </FrameLayout>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -90,32 +97,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/home_item_client"
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
 
-                        <ImageView
-                            android:layout_gravity="center"
-                            android:src="@mipmap/city_icon"
-                            android:layout_width="43dp"
-                            android:layout_height="43dp"/>
-
-                        <TextView
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:text="城市房产"
-                            android:textSize="12sp"
-                            android:textColor="#111"
-                            android:gravity="center"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
                     <LinearLayout
                         android:id="@+id/home_item_sojourn"
                         android:layout_weight="1"
@@ -171,11 +153,8 @@
                     </LinearLayout>
 
 
-
-
-
                     <LinearLayout
-                        android:id="@+id/home_item_brokerage"
+                        android:id="@+id/home_item_client"
                         android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -192,6 +171,34 @@
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:text="我的团队"
+                            android:textSize="12sp"
+                            android:textColor="#111"
+                            android:gravity="center"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/home_item_brokerage"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:src="@mipmap/home_item_brokerage"
+                            android:layout_width="43dp"
+                            android:layout_height="43dp"/>
+
+                        <TextView
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:text="团队佣金"
                             android:textSize="12sp"
                             android:textColor="#111"
                             android:gravity="center"

@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
@@ -194,7 +193,6 @@ public class TaskDetailsActivity extends AllActivity {
                         }else {
                             task_details_constraintlayout_layout.setVisibility(View.VISIBLE);
                             task_details_constraintlayout_project_name.setText(taskDetailsBean.getData().getProjectSpecialInfo().get(0).getName());
-
 
                             MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(TaskDetailsActivity.this);
                             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

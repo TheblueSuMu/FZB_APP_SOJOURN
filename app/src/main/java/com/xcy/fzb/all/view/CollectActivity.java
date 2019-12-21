@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -148,7 +147,7 @@ public class CollectActivity extends AllActivity implements View.OnClickListener
             }
         });
 
-        recyclerViewData("1");
+        recyclerViewData("3");
 
     }
 

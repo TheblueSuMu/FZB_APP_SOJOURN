@@ -52,7 +52,7 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
-import com.xcy.fzb.captain_assistant.view.Assistant_Teams_Activity;
+import com.xcy.fzb.project_side.view.CommissionTheProjectEndActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -251,27 +251,10 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                 Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
                 startActivity(intent_overseas);
             } else if (view.getId() == R.id.home_item_client) {
-                FinalContents.setProjectType("1");
-                Intent intent_overseas = new Intent(view.getContext(), OverSeaActivity.class);
-                startActivity(intent_overseas);
-
-//                Intent intent_overseas = new Intent(view.getContext(), Assistant_Teams_Activity.class);
-//                FinalContents.setMyAddType("");
-//                intent_overseas.putExtra("Iftz", "1");
-//                startActivity(intent_overseas);
+                listterner.process("63"); // 3.1 执行回调
             } else if (view.getId() == R.id.home_item_brokerage) {
-                Intent intent_overseas = new Intent(view.getContext(), Assistant_Teams_Activity.class);
-                FinalContents.setMyAddType("");
-                intent_overseas.putExtra("Iftz", "1");
+                Intent intent_overseas = new Intent(view.getContext(), CommissionTheProjectEndActivity.class);
                 startActivity(intent_overseas);
-
-//                FinalContents.setStoreId("");
-//                FinalContents.setAgentId(FinalContents.getUserID());
-//                Intent intent_overseas = new Intent(view.getContext(), Captain_Team_MyClientActivity.class);
-//                FinalContents.setQuanceng("1");
-//                FinalContents.setMySelf("0");
-//                intent_overseas.putExtra("client", "1");
-//                startActivity(intent_overseas);
             }
         }else {
             if (view.getId() == R.id.home_city_selector) {

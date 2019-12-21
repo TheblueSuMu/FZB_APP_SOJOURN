@@ -119,7 +119,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:id="@+id/commission_the_project_end_l5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
