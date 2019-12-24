@@ -164,14 +164,14 @@
 
                         <ImageView
                             android:layout_gravity="center"
-                            android:src="@mipmap/home_item_client"
+                            android:src="@mipmap/my_renwu"
                             android:layout_width="43dp"
                             android:layout_height="43dp"/>
 
                         <TextView
                             android:layout_margin="10dp"
                             android:layout_weight="1"
-                            android:text="任务列表"
+                            android:text="我的任务"
                             android:textSize="12sp"
                             android:textColor="#111"
                             android:gravity="center"
@@ -192,14 +192,14 @@
 
                         <ImageView
                             android:layout_gravity="center"
-                            android:src="@mipmap/my_project"
+                            android:src="@mipmap/my_dangqian"
                             android:layout_width="43dp"
                             android:layout_height="43dp"/>
 
                         <TextView
                             android:layout_margin="10dp"
                             android:layout_weight="1"
-                            android:text="我的任务"
+                            android:text="当前任务"
                             android:textSize="12sp"
                             android:textColor="#111"
                             android:gravity="center"

@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -44,6 +45,7 @@ import com.xcy.fzb.all.database.CaptainBean;
 import com.xcy.fzb.all.database.ExemplaryUserBean;
 import com.xcy.fzb.all.modle.CodeBean;
 import com.xcy.fzb.all.modle.LoginUserBean;
+import com.xcy.fzb.all.modle.OnLineBean;
 import com.xcy.fzb.all.modle.UserIdentity;
 import com.xcy.fzb.all.modle.UserSaveBean;
 import com.xcy.fzb.all.persente.SharItOff;
@@ -150,6 +152,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
     private List<UserSaveBean> xlist;
     private List<DataBase> list1;
     private boolean dial = true;
+    private RelativeLayout login_relative;
+    private LinearLayout login_select;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +180,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             ToastUtil.showLongToast(LoginActivity.this,"当前无网络，请检查网络后再进行登录");
         }
         initClear();
+
     }
 
 
@@ -209,6 +214,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         login_tv_forget_password = findViewById(R.id.tv_forget_password);
         login_tv_wechat = findViewById(R.id.tv_wechat);
 
+        login_relative = findViewById(R.id.login_relative);
+        login_select = findViewById(R.id.login_select);
         checkBoxed = findViewById(R.id.checkboxed);
 
         login_et_username = findViewById(R.id.et_user_name);
@@ -254,7 +261,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         Log.i("登录", "加载4：" + pref.getString("forget", ""));
 
 
-
+        initOnLine();
         click();
     }
 
@@ -631,6 +638,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             initExemplary();
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
+                        }else {
+                            ToastUtil.showLongToast(LoginActivity.this,"无权限登录");
                         }
                         type = "2";
                     }
@@ -648,6 +657,50 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                 });
     }
 
+    /**
+     * 是否上线
+     */
+    private void initOnLine(){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<OnLineBean> userMessage = fzbInterface.getOnLine("android");
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<OnLineBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(OnLineBean onLineBean) {
+                        if (onLineBean.getData().getOnline().equals("1")) {
+                            login_relative.setVisibility(View.VISIBLE);
+                            login_select.setVisibility(View.VISIBLE);
+                        } else if (onLineBean.getData().getOnline().equals("0")) {
+                            login_relative.setVisibility(View.GONE);
+                            login_select.setVisibility(View.GONE);
+                        }else {
+                            login_relative.setVisibility(View.GONE);
+                            login_select.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("数据格式", "上线" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
 
     /**
      * 账号登录
@@ -700,6 +753,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             initExemplary();
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
+                        }else {
+                            ToastUtil.showLongToast(LoginActivity.this,"无权限登录");
                         }
                         type = "1";
                     }
@@ -1512,6 +1567,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             initExemplary();
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
+                        }else {
+                            ToastUtil.showLongToast(LoginActivity.this,"无权限登录");
                         }
                     }
 

@@ -164,7 +164,7 @@
 
                         <ImageView
                             android:layout_gravity="center"
-                            android:src="@mipmap/home_item_client"
+                            android:src="@mipmap/side_project"
                             android:layout_width="43dp"
                             android:layout_height="43dp"/>
 
@@ -192,7 +192,7 @@
 
                         <ImageView
                             android:layout_gravity="center"
-                            android:src="@mipmap/my_project"
+                            android:src="@mipmap/home_item_brokerage"
                             android:layout_width="43dp"
                             android:layout_height="43dp"/>
 

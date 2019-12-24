@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,7 +53,7 @@ public class MyProjectActivity extends AllActivity implements View.OnClickListen
     LinearLayout my_project_ll3;
 
     RecyclerView my_project_recyler;
-    String projectType = "2";
+    String projectType = "3";
     private ImageView all_no_information;
 
     @Override

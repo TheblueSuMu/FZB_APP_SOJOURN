@@ -52,7 +52,7 @@ import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.OverSeaActivity;
 import com.xcy.fzb.all.view.SearchInterfaceActivity;
 import com.xcy.fzb.all.view.WebViewActivity;
-import com.xcy.fzb.project_side.view.CommissionTheProjectEndActivity;
+import com.xcy.fzb.captain_team.view.Captain_Team_CommissionTheProjectEndActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -253,7 +253,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
             } else if (view.getId() == R.id.home_item_client) {
                 listterner.process("63"); // 3.1 执行回调
             } else if (view.getId() == R.id.home_item_brokerage) {
-                Intent intent_overseas = new Intent(view.getContext(), CommissionTheProjectEndActivity.class);
+                Intent intent_overseas = new Intent(view.getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
                 startActivity(intent_overseas);
             }
         }else {
@@ -470,7 +470,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(),FinalContents.getCityID(),projectType,arrposid);
+        Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(),FinalContents.getCityID(),"",arrposid);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ImgData>() {

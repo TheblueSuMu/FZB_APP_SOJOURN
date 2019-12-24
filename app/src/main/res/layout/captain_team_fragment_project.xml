@@ -157,8 +157,9 @@
                         >
 
                         <ImageView
+                            android:id="@+id/home_team"
                             android:layout_gravity="center"
-                            android:src="@mipmap/home_item_client"
+                            android:src="@mipmap/assistant_team"
                             android:layout_width="43dp"
                             android:layout_height="43dp"/>
 

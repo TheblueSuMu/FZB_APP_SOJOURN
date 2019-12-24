@@ -50,35 +50,9 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/my_project_l1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="海外房产"
-                        android:textColor="#ffffff"
-                        android:textSize="15sp" />
-
-                    <LinearLayout
-                        android:id="@+id/my_project_ll1"
-                        android:layout_width="59dp"
-                        android:layout_height="3dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/the_project_end_underline"
-                        android:orientation="vertical">
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/my_project_l2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="70dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -96,8 +70,37 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/the_project_end_underline"
                         android:orientation="vertical"
-                        android:visibility="invisible"></LinearLayout>
+                        android:visibility="visible"/>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/my_project_l1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="海外房产"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/my_project_ll1"
+                        android:layout_width="59dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/the_project_end_underline"
+                        android:visibility="invisible"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
 
                 <LinearLayout
                     android:id="@+id/my_project_l3"

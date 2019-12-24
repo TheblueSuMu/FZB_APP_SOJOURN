@@ -120,6 +120,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     private ImageView all_no_information;
     private TextView home_item_text4;
     private ImageView home_item_img4;
+    private ImageView home_team;
 
     @Nullable
     @Override
@@ -213,6 +214,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         home_item_img4 = view.findViewById(R.id.home_item_img4);
 
         banner = view.findViewById(R.id.home_banner);
+        home_team = view.findViewById(R.id.home_team);
 
         layout = view.findViewById(R.id.home_srl);
         tvBanner2 = view.findViewById(R.id.tv_banner2);
@@ -235,14 +237,17 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
             //  TODO    团队长
             home_item_yongjin.setText("我的团队");
             home_item_text4.setText("团队佣金");
+            home_team.setImageResource(R.mipmap.assistant_team);
         } else if (FinalContents.getIdentity().equals("61")) {
             //  TODO    销售
             home_item_yongjin.setText("我的团队");
             home_item_text4.setText("团队佣金");
+            home_team.setImageResource(R.mipmap.assistant_team);
         } else if (FinalContents.getIdentity().equals("62")) {
             //  TODO    顾问
             home_item_yongjin.setText("我的客户");
             home_item_text4.setText("我的佣金");
+            home_team.setImageResource(R.mipmap.side_yellow);
         }
 
         layout.setOnRefreshListener(this);
@@ -536,7 +541,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(), FinalContents.getCityID(), projectType, arrposid);
+        Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(), FinalContents.getCityID(), "", arrposid);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ImgData>() {
