@@ -41,23 +41,53 @@
 
                 </RelativeLayout>
 
+                <TextView
+                    android:text="我的佣金"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp"
+                    android:textColor="#FFF"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <EditText
+                    android:layout_weight="5"
                     android:id="@+id/commission_the_project_end_et"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="60dp"
-                    android:layout_marginRight="60dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:background="@drawable/comment"
                     android:gravity="center"
-                    android:hint="搜索"
+                    android:hint="按客户姓名/手机号/项目名称搜索"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:singleLine="true"
                     android:textColor="#333333"
                     android:textSize="12sp" />
 
-            </RelativeLayout>
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/commission_the_project_end_select"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
+                    android:text="全部"
+                    android:textSize="14sp"
+                    android:textColor="#FFF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -7,7 +7,7 @@ public class 	AgentDetailsBean {
 	/**
 	 * code : 1
 	 * msg : 成功
-	 * data : {"agentDataStatistics":{"accessingNumber":0,"tradeNumber":3,"reportNumber":3,"isIslandNumber":1,"earnestMoneyNumber":2,"landingNumber":0,"InvalidNum":0},"agentInfo":{"id":"b50bf8ff03384c108983ee34f2622959","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"xs2","phone":"18235195902","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"61","loginDate":"2019-09-27 17:50:42","loginFlag":"1","type":"2","searcName":"","parentId":"ce73555ff4764cf6917a17ba9e7f228f","parentIds":"ce73555ff4764cf6917a17ba9e7f228f","user":"","leaderName":"张冰","saleName":"","saleNum":"","counselorNum":"","ratioName":"销售(三级)"},"gsonOption":{"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["21","22","23","24","25","26"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]},"agentMoneyData":{"totalAmount":"0","notAmount":"0","alreadyAmount":"0"}}
+	 * data : {"agentDataStatistics":{"accessingNumber":0,"tradeNumber":0,"reportNumber":0,"isIslandNumber":0,"earnestMoneyNumber":0,"landingNumber":0,"InvalidNum":0},"agentInfo":{"id":"d3a553cda06d46a48aaab89d500caba5","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","name":"吉娜","phone":"15608085566","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"60","loginDate":"","loginFlag":"1","type":"1","searcName":"","parentId":"","teamLeaderId":"","parentIds":"","user":"","leaderName":"","saleName":"","saleNum":"0","counselorNum":"0","ratioName":"","levelName":""},"gsonOption":{"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["18","19","20","21","22","23","24"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]},"agentMoneyData":{"totalAmount":"0","notAmount":"0","alreadyAmount":"0"}}
 	 */
 
 	private String code;
@@ -40,9 +40,9 @@ public class 	AgentDetailsBean {
 
 	public static class DataBean {
 		/**
-		 * agentDataStatistics : {"accessingNumber":0,"tradeNumber":3,"reportNumber":3,"isIslandNumber":1,"earnestMoneyNumber":2,"landingNumber":0,"InvalidNum":0}
-		 * agentInfo : {"id":"b50bf8ff03384c108983ee34f2622959","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","name":"xs2","phone":"18235195902","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"61","loginDate":"2019-09-27 17:50:42","loginFlag":"1","type":"2","searcName":"","parentId":"ce73555ff4764cf6917a17ba9e7f228f","parentIds":"ce73555ff4764cf6917a17ba9e7f228f","user":"","leaderName":"张冰","saleName":"","saleNum":"","counselorNum":"","ratioName":"销售(三级)"}
-		 * gsonOption : {"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["21","22","23","24","25","26"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]}
+		 * agentDataStatistics : {"accessingNumber":0,"tradeNumber":0,"reportNumber":0,"isIslandNumber":0,"earnestMoneyNumber":0,"landingNumber":0,"InvalidNum":0}
+		 * agentInfo : {"id":"d3a553cda06d46a48aaab89d500caba5","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","name":"吉娜","phone":"15608085566","photo":"/fangfang/static/common/images/flat-avatar.png","identity":"60","loginDate":"","loginFlag":"1","type":"1","searcName":"","parentId":"","teamLeaderId":"","parentIds":"","user":"","leaderName":"","saleName":"","saleNum":"0","counselorNum":"0","ratioName":"","levelName":""}
+		 * gsonOption : {"yAxis":{"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"},"xAxis":{"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["18","19","20","21","22","23","24"],"type":"category","boundaryGap":false},"series":[{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]}
 		 * agentMoneyData : {"totalAmount":"0","notAmount":"0","alreadyAmount":"0"}
 		 */
 
@@ -86,10 +86,10 @@ public class 	AgentDetailsBean {
 		public static class AgentDataStatisticsBean {
 			/**
 			 * accessingNumber : 0
-			 * tradeNumber : 3
-			 * reportNumber : 3
-			 * isIslandNumber : 1
-			 * earnestMoneyNumber : 2
+			 * tradeNumber : 0
+			 * reportNumber : 0
+			 * isIslandNumber : 0
+			 * earnestMoneyNumber : 0
 			 * landingNumber : 0
 			 * InvalidNum : 0
 			 */
@@ -161,28 +161,31 @@ public class 	AgentDetailsBean {
 
 		public static class AgentInfoBean {
 			/**
-			 * id : b50bf8ff03384c108983ee34f2622959
+			 * id : d3a553cda06d46a48aaab89d500caba5
 			 * remarks :
 			 * createBy :
 			 * createDate :
 			 * updateBy :
 			 * updateDate :
-			 * name : xs2
-			 * phone : 18235195902
+			 * filterField :
+			 * name : 吉娜
+			 * phone : 15608085566
 			 * photo : /fangfang/static/common/images/flat-avatar.png
-			 * identity : 61
-			 * loginDate : 2019-09-27 17:50:42
+			 * identity : 60
+			 * loginDate :
 			 * loginFlag : 1
-			 * type : 2
+			 * type : 1
 			 * searcName :
-			 * parentId : ce73555ff4764cf6917a17ba9e7f228f
-			 * parentIds : ce73555ff4764cf6917a17ba9e7f228f
+			 * parentId :
+			 * teamLeaderId :
+			 * parentIds :
 			 * user :
-			 * leaderName : 张冰
+			 * leaderName :
 			 * saleName :
-			 * saleNum :
-			 * counselorNum :
-			 * ratioName : 销售(三级)
+			 * saleNum : 0
+			 * counselorNum : 0
+			 * ratioName :
+			 * levelName :
 			 */
 
 			private String id;
@@ -191,6 +194,7 @@ public class 	AgentDetailsBean {
 			private String createDate;
 			private String updateBy;
 			private String updateDate;
+			private String filterField;
 			private String name;
 			private String phone;
 			private String photo;
@@ -200,6 +204,7 @@ public class 	AgentDetailsBean {
 			private String type;
 			private String searcName;
 			private String parentId;
+			private String teamLeaderId;
 			private String parentIds;
 			private String user;
 			private String leaderName;
@@ -207,6 +212,7 @@ public class 	AgentDetailsBean {
 			private String saleNum;
 			private String counselorNum;
 			private String ratioName;
+			private String levelName;
 
 			public String getId() {
 				return id;
@@ -254,6 +260,14 @@ public class 	AgentDetailsBean {
 
 			public void setUpdateDate(String updateDate) {
 				this.updateDate = updateDate;
+			}
+
+			public String getFilterField() {
+				return filterField;
+			}
+
+			public void setFilterField(String filterField) {
+				this.filterField = filterField;
 			}
 
 			public String getName() {
@@ -328,6 +342,14 @@ public class 	AgentDetailsBean {
 				this.parentId = parentId;
 			}
 
+			public String getTeamLeaderId() {
+				return teamLeaderId;
+			}
+
+			public void setTeamLeaderId(String teamLeaderId) {
+				this.teamLeaderId = teamLeaderId;
+			}
+
 			public String getParentIds() {
 				return parentIds;
 			}
@@ -383,13 +405,21 @@ public class 	AgentDetailsBean {
 			public void setRatioName(String ratioName) {
 				this.ratioName = ratioName;
 			}
+
+			public String getLevelName() {
+				return levelName;
+			}
+
+			public void setLevelName(String levelName) {
+				this.levelName = levelName;
+			}
 		}
 
 		public static class GsonOptionBean {
 			/**
 			 * yAxis : {"axisLabel":{"show":true,"textStyle":{"color":"#a8b6cc"}},"splitLine":{"lineStyle":{"color":"#eeeeee"},"show":true},"type":"value"}
-			 * xAxis : {"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["21","22","23","24","25","26"],"type":"category","boundaryGap":false}
-			 * series : [{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]
+			 * xAxis : {"axisLabel":{"textStyle":{"color":"#a8b6cc"}},"data":["18","19","20","21","22","23","24"],"type":"category","boundaryGap":false}
+			 * series : [{"areaStyle":{"color":"#e6eefe"},"data":[0,0,0,0,0,0,0],"itemStyle":{"color":"#3b82d2"},"type":"line"}]
 			 */
 
 			private YAxisBean yAxis;
@@ -543,7 +573,7 @@ public class 	AgentDetailsBean {
 			public static class XAxisBean {
 				/**
 				 * axisLabel : {"textStyle":{"color":"#a8b6cc"}}
-				 * data : ["21","22","23","24","25","26"]
+				 * data : ["18","19","20","21","22","23","24"]
 				 * type : category
 				 * boundaryGap : false
 				 */
@@ -621,7 +651,7 @@ public class 	AgentDetailsBean {
 			public static class SeriesBean {
 				/**
 				 * areaStyle : {"color":"#e6eefe"}
-				 * data : [0,0,0,0,0,0]
+				 * data : [0,0,0,0,0,0,0]
 				 * itemStyle : {"color":"#3b82d2"}
 				 * type : line
 				 */

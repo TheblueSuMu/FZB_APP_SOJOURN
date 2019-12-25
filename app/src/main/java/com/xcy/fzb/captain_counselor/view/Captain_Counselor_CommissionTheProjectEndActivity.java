@@ -12,11 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
@@ -32,6 +34,7 @@ import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.captain_counselor.adapter.TheProjectEndCommissionAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -72,6 +75,7 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
     String endTime = "";
     private PopupWindow p;
     private PtrClassicFrameLayout captain_counselor_commission_the_project_end_ptrclass;
+    private TextView commission_the_project_end_select;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +117,7 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
         commission_the_project_end_l6 = findViewById(R.id.commission_the_project_end_l6);
         commission_the_project_end_rl = findViewById(R.id.commission_the_project_end_rl);
         commission_the_project_end_rv = findViewById(R.id.commission_the_project_end_rv);
+        commission_the_project_end_select = findViewById(R.id.commission_the_project_end_select);
 
         initDataBean();
 
@@ -122,6 +127,7 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
         commission_the_project_end_l1.setOnClickListener(this);
         commission_the_project_end_l3.setOnClickListener(this);
         commission_the_project_end_l5.setOnClickListener(this);
+        commission_the_project_end_select.setOnClickListener(this);
 
         captain_counselor_commission_the_project_end_ptrclass.setPtrHandler(new PtrHandler() {
             @Override
@@ -154,7 +160,7 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
                     search = commission_the_project_end_et.getText().toString();
                     initDataBean();
                 }
-                return false;    
+                return false;
             }
         });
 
@@ -195,6 +201,52 @@ public class Captain_Counselor_CommissionTheProjectEndActivity extends AllActivi
                 commission_the_project_end_l4.setVisibility(View.VISIBLE);
                 projectType = "2";
                 initDataBean();
+                break;
+//            TODO 筛选条件
+            case R.id.commission_the_project_end_select:
+                final List<String> list = new ArrayList<>();
+                list.add("全部");
+                list.add("只看未结清");
+                list.add("只看已结清");
+                list.add("只看调单");
+                list.add("只看退单");
+
+                //      监听选中
+                OptionsPickerView pvOptions = new OptionsPickerBuilder(view.getContext(), new OnOptionsSelectListener() {
+                    @Override
+                    public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                        //               返回的分别是三个级别的选中位置
+                        //              展示选中数据
+                        if (list.get(options1).equals("全部")) {
+                            commission_the_project_end_select.setText("全部");
+                            status = "";
+                            initDataBean();
+                        } else if (list.get(options1).equals("只看未结清")) {
+                            commission_the_project_end_select.setText("只看未结清");
+                            status = "1";
+                            initDataBean();
+                        } else if (list.get(options1).equals("只看已结清")) {
+                            commission_the_project_end_select.setText("只看已结清");
+                            status = "2";
+                            initDataBean();
+                        } else if (list.get(options1).equals("只看调单")) {
+                            commission_the_project_end_select.setText("只看调单");
+                            status = "4";
+                            initDataBean();
+                        } else if (list.get(options1).equals("只看退单")) {
+                            commission_the_project_end_select.setText("只看退单");
+                            status = "5";
+                            initDataBean();
+                        }
+                    }
+                })
+                        .setSelectOptions(0)//设置选择第一个
+                        .setOutSideCancelable(false)//点击背的地方不消失
+                        .build();//创建
+                //      把数据绑定到控件上面
+                pvOptions.setPicker(list);
+                //      展示
+                pvOptions.show();
                 break;
         }
 

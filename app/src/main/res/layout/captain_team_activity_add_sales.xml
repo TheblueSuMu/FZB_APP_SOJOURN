@@ -453,7 +453,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text="是否禁用"
+                            android:text="是否启用"
                             android:textColor="#ff111111"
                             android:textSize="15sp" />
 
@@ -501,7 +501,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="25dp"
-                            android:text="未启用"
+                            android:text="已禁用"
                             android:textColor="#ffffffff"
                             android:textSize="11sp" />
                     </RelativeLayout>
