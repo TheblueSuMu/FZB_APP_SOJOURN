@@ -468,7 +468,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                             }
                             sales_details_details_tv10.setText("他的销售");
                         } else if (agentDetailsBean.getData().getAgentInfo().getType().equals("1")) {
-                            sales_details_details_tv1.setText(agentDetailsBean.getData().getAgentInfo().getName());
+                            sales_details_details_tv1.setText(agentDetailsBean.getData().getAgentInfo().getName() + "(" + agentDetailsBean.getData().getAgentInfo().getRatioName() + ")");
                             if (agentDetailsBean.getData().getAgentInfo().getCounselorNum().equals("")) {
                                 if (agentDetailsBean.getData().getAgentInfo().getSaleNum().equals("")) {
                                     sales_details_details_tv3.setText("销售：0 人  顾问：0人");

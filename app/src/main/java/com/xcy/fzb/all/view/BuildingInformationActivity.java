@@ -38,7 +38,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class BuildingInformationActivity extends AllActivity {
 
     private LinearLayout building_img;
-    private TextView name;
     private TextView ladder;
     private TextView tier;
     private TextView cell;
@@ -88,7 +87,6 @@ public class BuildingInformationActivity extends AllActivity {
 
     private void initView() {
         StatusBar.makeStatusBarTransparent(this);
-        name = findViewById(R.id.building_name);
         building_standard_S = findViewById(R.id.building_standard_S);
         ladder = findViewById(R.id.building_ladder);
         project_details_family_tablayout = findViewById(R.id.project_details_family_tablayout_S);
@@ -141,7 +139,6 @@ public class BuildingInformationActivity extends AllActivity {
                         if (list.size() != 0) {
                             tabLayout.setSelectedTabIndicatorColor(R.color.colorIndicator);
                             tabLayout.setSelectedTabIndicator(R.drawable.tab_indicator);
-                            name.setText(list.get(0).getProject().getProjectName());
                             if (list.get(0).getElevator().equals("") || list.get(0).getFamily().equals("")) {
                                 ladder.setText("暂无");
                             } else {
@@ -470,7 +467,6 @@ public class BuildingInformationActivity extends AllActivity {
                                             //                添加选中Tab的逻辑
                                             for (int j = 0; j < list.size(); j++) {
                                                 if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
-                                                    name.setText(list.get(j).getProject().getProjectName());
                                                     if (list.get(j).getElevator().equals("") || list.get(0).getFamily().equals("")) {
                                                         ladder.setText("暂无");
                                                     } else {
@@ -577,7 +573,6 @@ public class BuildingInformationActivity extends AllActivity {
                                             //                添加选中Tab的逻辑
                                             for (int j = 0; j < list.size(); j++) {
                                                 if (tab.getText().toString().equals(list.get(j).getBuildingName())) {
-                                                    name.setText(list.get(j).getProject().getProjectName());
                                                     if (list.get(j).getElevator().equals("") || list.get(0).getFamily().equals("")) {
                                                         ladder.setText("暂无");
                                                     } else {

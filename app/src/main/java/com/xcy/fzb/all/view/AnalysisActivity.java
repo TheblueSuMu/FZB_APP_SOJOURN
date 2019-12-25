@@ -63,7 +63,6 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
     private TextView all_activity_analysis_loans;
     private TextView all_activity_analysis_interest;
     private TextView all_activity_analysis_price_title;
-    private GradationScrollView all_activity_analysis_scrollview;
     private PieChart mChart;
 
     // 饼图数据
@@ -87,8 +86,6 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
     }
 
     private void initfvb() {
-        all_activity_analysis_scrollview = findViewById(R.id.all_activity_analysis_scrollview);
-        all_activity_analysis_scrollview.setVisibility(View.GONE);
 
         all_activity_analysis_linear = findViewById(R.id.all_activity_analysis_linear);
         all_activity_analysis_analysis_linear = findViewById(R.id.all_activity_analysis_analysis_linear);
@@ -121,8 +118,6 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
         all_activity_analysis_down_payment = findViewById(R.id.all_activity_analysis_down_payment);
         all_activity_analysis_loans = findViewById(R.id.all_activity_analysis_loans);
         all_activity_analysis_interest = findViewById(R.id.all_activity_analysis_interest);
-
-        all_activity_analysis_scrollview.setScrollViewListener(this);
 
         initData();
         initClick();
@@ -170,8 +165,12 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(final FamilyInfoBean familyInfoBean) {
-                        all_activity_analysis_scrollview.setVisibility(View.VISIBLE);
-                        Glide.with(AnalysisActivity.this).load(FinalContents.getImageUrl() + familyInfoBean.getData().getFloorPlan()).into(all_activity_analysis_backImage);
+                        Log.i("测试",familyInfoBean.getData().getSaleStatus());
+                        try {
+                            Glide.with(AnalysisActivity.this).load(FinalContents.getImageUrl() + familyInfoBean.getData().getFloorPlan()).into(all_activity_analysis_backImage);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         all_activity_analysis_salestatus.setText(familyInfoBean.getData().getSaleStatus());
                         switch (familyInfoBean.getData().getProductType()) {
                             case "1":
@@ -244,7 +243,7 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
                             all_activity_analysis_percentage_area.setText("暂无");
                         }
 
-
+                        Log.i("测试","sd"+familyInfoBean.getData().getBuild());
                         all_activity_analysis_building.setText(familyInfoBean.getData().getBuild());
                         all_activity_analysis_houses.setText(familyInfoBean.getData().getProject().getProjectName());
                         all_activity_analysis_site.setText(familyInfoBean.getData().getProject().getAddress());
