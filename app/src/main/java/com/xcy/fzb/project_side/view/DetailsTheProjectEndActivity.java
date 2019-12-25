@@ -886,6 +886,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
             // set data
             details_chart.setData(data);
+            details_chart.setDragYEnabled(true);
             // 设置放大限制
             details_chart.getViewPortHandler().setMaximumScaleX(1.0f); // 限制X轴放大限制
             details_chart.getViewPortHandler().setMaximumScaleY(1.0f); // 限制Y轴放大限制
