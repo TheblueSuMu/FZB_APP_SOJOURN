@@ -517,9 +517,9 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                     ToastUtil.showToast(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交");
                 } else {
                     if (txt.getVisibility() == View.VISIBLE) {
-                        loginFlag = "0";
-                    } else {
                         loginFlag = "1";
+                    } else {
+                        loginFlag = "0";
                     }
                     userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getOwnerId001(), type, "");
                     userMessage.subscribeOn(Schedulers.io())
@@ -561,9 +561,9 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                 Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
             } else {
                 if (txt.getVisibility() == View.VISIBLE) {
-                    loginFlag = "0";
-                } else {
                     loginFlag = "1";
+                } else {
+                    loginFlag = "0";
                 }
                 if (FinalContents.getIdentity().equals("60")) {
                     userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), FinalContents.getRatioId(), FinalContents.getOwnerId001(), type, "");

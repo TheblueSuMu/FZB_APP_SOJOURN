@@ -170,13 +170,16 @@ public class AssistantMeFragment extends AllFragment implements View.OnClickList
                         me_name.setText(data.getName());
                         if (data.getIdentity().equals("61")) {
                             me_identity.setText("销售");
+                            me_store.setText(data.getCityName());
                         } else if (data.getIdentity().equals("62")) {
                             me_identity.setText("顾问");
+                            me_store.setText(data.getCityName());
                         } else if (data.getIdentity().equals("63")) {
                             me_identity.setText("团助");
+                            me_store.setText(data.getCityName());
                         }
                         me_city.setText(data.getCity());
-                        me_store.setText(data.getCounty());
+
 
                         Connector.setUserBean(userMessageBean);
                     }

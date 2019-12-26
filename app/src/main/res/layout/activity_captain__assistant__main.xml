@@ -62,7 +62,7 @@
             <RadioButton
                 android:id="@+id/team_main_project"
                 android:layout_weight="1"
-                android:text="团队"
+                android:text="我的团队"
                 android:textSize="12sp"
                 android:textColor="#333333"
                 android:button="@null"

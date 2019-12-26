@@ -284,9 +284,9 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
             }
 
             if (txt.getVisibility() == View.VISIBLE) {
-                loginFlag = "0";
-            } else {
                 loginFlag = "1";
+            } else {
+                loginFlag = "0";
             }
 
             Observable<BrokerSaveBean> userMessage = fzbInterface.getBrokerSave(id, industry, name, phone, loginName, password, loginFlag, manageFlag, FinalContents.getUserID(), "", FinalContents.getUserID(), type, FinalContents.getRatioId());

@@ -199,6 +199,7 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
                 break;
             //            TODO 报备客户与认筹客户关系
             case R.id.confess_to_raise_information_rl1:
+                hideInput();
                 if (ifnum1 == 0) {
                     ifnum1 = 1;
                     list = new ArrayList<>();
@@ -228,6 +229,7 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
                 break;
             //            TODO 意向户型
             case R.id.confess_to_raise_information_rl2:
+                hideInput();
                 if (ifnum2 == 0) {
                     ifnum2 = 1;
                     list = new ArrayList<>();
@@ -453,6 +455,17 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
                 });
             }
         });
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 
     /**

@@ -25,6 +25,16 @@ public class CityContents {
 
     static String Store = "";
 
+    static String SuaX = "";
+
+    public static String getSuaX() {
+        return SuaX;
+    }
+
+    public static void setSuaX(String suaX) {
+        SuaX = suaX;
+    }
+
     public static String getStore() {
         return Store;
     }

@@ -22,6 +22,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.TaskDetailsBean;
 import com.xcy.fzb.all.persente.AppBarStateChangeListener;
@@ -273,11 +274,22 @@ public class TaskDetailsActivity extends AllActivity {
         mFragments.add(clientFragment);
         BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), mFragments, mTitles);
         viewPager.setAdapter(adapter);
+        if (CityContents.getSuaX().equals("1")) {
+            viewPager.setCurrentItem(2);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        initData();
+        if (CityContents.getSuaX().equals("1")) {
+            initData();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CityContents.setSuaX("");
     }
 }

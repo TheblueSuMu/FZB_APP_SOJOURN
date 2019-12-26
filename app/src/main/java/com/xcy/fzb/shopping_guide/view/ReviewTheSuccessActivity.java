@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.persente.SingleClick;
@@ -291,7 +291,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             case R.id.review_the_success_bt4:
                 if (isnum3 == 0) {
                     isnum3 = 1;
-                    finish();
                     intent = new Intent(ReviewTheSuccessActivity.this, ConfessToRaiseInformationActivity.class);
                     ProjectProgressApi.setCustomerName(infoData.getCustomerName());
                     ProjectProgressApi.setProjectName(infoData.getProjectName());
@@ -305,7 +304,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             case R.id.review_the_success_bt5:
                 if (isnum4 == 0) {
                     isnum4 = 1;
-                    finish();
                     intent = new Intent(ReviewTheSuccessActivity.this, FillInTransactionInformationActivity.class);
                     FinalContents.setPreparationId(infoData.getPreparationId());
                     FinalContents.setTiaodan("成交");
@@ -318,7 +316,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             case R.id.review_the_success_b1:
                 if (isnum1 == 0) {
                     isnum1 = 1;
-                    finish();
                     ProjectProgressApi.setComplemented("1");
                     intent = new Intent(ReviewTheSuccessActivity.this, ToApplyForAnIslandActivity.class);
                     intent.putExtra("name", infoData.getCustomerName());
@@ -331,7 +328,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             case R.id.review_the_success_b3:
                 if (isnum2 == 0) {
                     isnum2 = 1;
-                    finish();
                     intent = new Intent(ReviewTheSuccessActivity.this, WCJActivity.class);
                     startActivity(intent);
                     isnum2 = 0;
@@ -342,7 +338,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             case R.id.review_the_success_b4:
                 if (isnum3 == 0) {
                     isnum3 = 1;
-                    finish();
                     intent = new Intent(ReviewTheSuccessActivity.this, ConfessToRaiseInformationActivity.class);
                     ProjectProgressApi.setCustomerName(infoData.getCustomerName());
                     ProjectProgressApi.setProjectName(infoData.getProjectName());
@@ -356,7 +351,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
             case R.id.review_the_success_b5:
                 if (isnum4 == 0) {
                     isnum4 = 1;
-                    finish();
                     intent = new Intent(ReviewTheSuccessActivity.this, FillInTransactionInformationActivity.class);
                     FinalContents.setPreparationId(infoData.getPreparationId());
                     FinalContents.setTiaodan("成交");
@@ -375,5 +369,9 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         initData();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CityContents.setSuaX("1");
+    }
 }

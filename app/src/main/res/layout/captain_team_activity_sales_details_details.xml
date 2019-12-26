@@ -651,7 +651,7 @@
                 </RelativeLayout>
 
 
-                <com.github.mikephil.charting.charts.LineChart
+                <com.github.mikephil.charting.charts.CombinedChart
                     android:id="@+id/sales_details_details_lc"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"

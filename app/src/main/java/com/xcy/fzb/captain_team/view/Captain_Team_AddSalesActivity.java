@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
@@ -429,9 +428,9 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
             password = add_sales_et5.getText().toString();
 
             if (txt.getVisibility() == View.VISIBLE) {
-                loginFlag = "0";
-            } else {
                 loginFlag = "1";
+            } else {
+                loginFlag = "0";
             }
 
             Retrofit.Builder builder = new Retrofit.Builder();

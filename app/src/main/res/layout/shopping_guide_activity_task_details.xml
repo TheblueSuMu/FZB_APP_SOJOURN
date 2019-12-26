@@ -189,9 +189,10 @@
 
 
                         <TextView
-                            android:text=""
+                            android:text="123"
+                            android:textColor="#FFF"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="30dp"/>
 
                     </LinearLayout>
 

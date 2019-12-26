@@ -24,7 +24,7 @@ import com.xcy.fzb.all.persente.StatusBar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AllActivity extends AppCompatActivity {
+public class AllActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static boolean exit = false;
     private static final int REQUEST_EXTERNAL_STORAGE = 2;
@@ -35,6 +35,7 @@ public class AllActivity extends AppCompatActivity {
             "android.permission.ACCESS_FINE_LOCATION",
             "android.permission.CAMERA"
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,6 @@ public class AllActivity extends AppCompatActivity {
 
     private void initView() {
         StatusBar.makeStatusBarTransparent(this);
-
 
 
         Log.i("MyCL","进入initView");
@@ -156,6 +156,8 @@ public class AllActivity extends AppCompatActivity {
         }
     }
 
+
+
     /**
      * 隐藏键盘
      */
@@ -231,5 +233,10 @@ public class AllActivity extends AppCompatActivity {
             return im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
         return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+        hideInput();
     }
 }

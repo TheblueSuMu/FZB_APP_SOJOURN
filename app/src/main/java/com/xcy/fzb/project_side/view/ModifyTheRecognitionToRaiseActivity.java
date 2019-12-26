@@ -381,6 +381,7 @@ public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
 
     //选择器
     private void initSelect(final List<String> list, final TextView textView) {
+        hideInput();
         //      监听选中
         OptionsPickerView pvOptions = new OptionsPickerBuilder(ModifyTheRecognitionToRaiseActivity.this, new OnOptionsSelectListener() {
             @Override
@@ -493,6 +494,17 @@ public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 
     /**

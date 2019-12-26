@@ -366,6 +366,7 @@ public class ToApplyForAnIslandActivity extends AllActivity implements View.OnCl
 
     //选择器
     private void initSelect(final List<String> list, final TextView textView) {
+        hideInput();
         //      监听选中
         OptionsPickerView pvOptions = new OptionsPickerBuilder(ToApplyForAnIslandActivity.this, new OnOptionsSelectListener() {
             @Override

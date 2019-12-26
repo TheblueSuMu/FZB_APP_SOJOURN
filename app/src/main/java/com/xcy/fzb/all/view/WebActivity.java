@@ -108,7 +108,7 @@ public class WebActivity extends AllActivity {
                     public void onNext(final ProjectTalkToolShareBean projectTalkToolShareBean) {
                         if (titleUrl.equals("海报详情")) {
                             web_webview.setVisibility(View.VISIBLE);
-                            Log.i("网址加载","http://admin.fangzuobiao.com:88/expandingCustomersDetail?userId="+FinalContents.getUserID()+"&talkToolId="+FinalContents.getTalkToolId());
+                            Log.i("网址加载",FinalContents.getImageUrl()+"/expandingCustomersDetail?userId="+FinalContents.getUserID()+"&talkToolId="+FinalContents.getTalkToolId());
                             WebSettings mWebSettings = web_webview.getSettings();
 
                             mWebSettings.setJavaScriptEnabled(true);//是否允许JavaScript脚本运行，默认为false
@@ -123,12 +123,12 @@ public class WebActivity extends AllActivity {
                             mWebSettings.setDomStorageEnabled(true);//开启本地DOM存储
                             mWebSettings.setLoadsImagesAutomatically(true); // 加载图片
                             mWebSettings.setMediaPlaybackRequiresUserGesture(false);//播放音频，多媒体需要用户手动？设置为false为可自动播放
-                            web_webview.loadUrl("http://admin.fangzuobiao.com:88/expandingCustomersDetail?userId="+FinalContents.getUserID()+"&talkToolId="+FinalContents.getTalkToolId());
+                            web_webview.loadUrl(FinalContents.getImageUrl()+"/expandingCustomersDetail?userId="+FinalContents.getUserID()+"&talkToolId="+FinalContents.getTalkToolId());
 
                         } else if (titleUrl.equals("卖点详情")) {
                             web_webview.setVisibility(View.VISIBLE);
                             web_webview.setVisibility(View.VISIBLE);
-                            Log.i("网址加载","http://admin.fangzuobiao.com:88/expandingCustomersDetail?userId="+FinalContents.getUserID()+"&talkToolId="+FinalContents.getTalkToolId());
+                            Log.i("网址加载",FinalContents.getImageUrl()+"/expandingCustomersDetail?userId="+FinalContents.getUserID()+"&talkToolId="+FinalContents.getTalkToolId());
                             WebSettings mWebSettings = web_webview.getSettings();
 
                             mWebSettings.setJavaScriptEnabled(true);//是否允许JavaScript脚本运行，默认为false
@@ -143,7 +143,7 @@ public class WebActivity extends AllActivity {
                             mWebSettings.setDomStorageEnabled(true);//开启本地DOM存储
                             mWebSettings.setLoadsImagesAutomatically(true); // 加载图片
                             mWebSettings.setMediaPlaybackRequiresUserGesture(false);//播放音频，多媒体需要用户手动？设置为false为可自动播放
-                            web_webview.loadUrl("http://admin.fangzuobiao.com:88/expandingCustomersDetail?userId="+FinalContents.getUserID()+"&talkToolId="+FinalContents.getTalkToolId());
+                            web_webview.loadUrl(FinalContents.getImageUrl()+"/expandingCustomersDetail?userId="+FinalContents.getUserID()+"&talkToolId="+FinalContents.getTalkToolId());
                         }
 
 

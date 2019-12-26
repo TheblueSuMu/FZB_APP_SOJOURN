@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.CommissionListBean;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.List;
 
@@ -44,7 +45,6 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
         holder.the_project_end_title.setText(rowsBeanList.get(position).getCustomerName() + "[" + rowsBeanList.get(position).getCustomerPhone() + "]");
         holder.the_project_end_name.setText(rowsBeanList.get(position).getProjectName());
         holder.the_project_end_time.setText(rowsBeanList.get(position).getRoomNumber());
-        holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName() + "(" + rowsBeanList.get(position).getAgentPhone() + ")");
         if (rowsBeanList.get(position).getTradeDate().equals("")) {
             holder.the_project_end_bargain_time.setVisibility(View.GONE);
         } else {
@@ -55,7 +55,26 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
             holder.the_project_end_company.setText("自己");
         } else {
             holder.the_project_end_company.setText(rowsBeanList.get(position).getAgentName());
+            if (rowsBeanList.get(position).getAgentPhone().equals("")) {
+                holder.the_project_end_phone.setVisibility(View.GONE);
+            }else {
+                holder.the_project_end_phone.setText(rowsBeanList.get(position).getAgentPhone());
+                holder.the_project_end_phone.setVisibility(View.VISIBLE);
+            }
         }
+
+
+        holder.the_project_end_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(rowsBeanList.get(position).getAgentPhone().equals("")){
+                    ToastUtil.showLongToast(context,"暂无电话");
+                }else {
+                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rowsBeanList.get(position).getAgentPhone()));//跳转到拨号界面，同时传递电话号码
+                    holder.itemView.getContext().startActivity(dialIntent);
+                }
+            }
+        });
 
         holder.the_project_end_title.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,17 +83,6 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
 
                 }else {
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rowsBeanList.get(position).getCustomerPhone()));//跳转到拨号界面，同时传递电话号码
-                    holder.itemView.getContext().startActivity(dialIntent);
-                }
-            }
-        });
-        holder.the_project_end_company.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(rowsBeanList.get(position).getAgentPhone().equals("")){
-
-                }else {
-                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rowsBeanList.get(position).getAgentPhone()));//跳转到拨号界面，同时传递电话号码
                     holder.itemView.getContext().startActivity(dialIntent);
                 }
             }
@@ -489,6 +497,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
         TextView the_project_end_tv5;
         TextView the_project_end_tv6;
         TextView the_project_end_tv7;
+        TextView the_project_end_phone;
 
         public TheProjectEndCommissionViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -506,6 +515,7 @@ public class Captain_Team_TheProjectEndCommissionAdapter extends RecyclerView.Ad
             the_project_end_tv5 = itemView.findViewById(R.id.the_project_end_tv5);
             the_project_end_tv6 = itemView.findViewById(R.id.the_project_end_tv6);
             the_project_end_tv7 = itemView.findViewById(R.id.the_project_end_tv7);
+            the_project_end_phone = itemView.findViewById(R.id.the_project_end_phone);
 
         }
     }

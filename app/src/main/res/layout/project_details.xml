@@ -1390,7 +1390,7 @@
                 </RelativeLayout>
 
 
-                <com.github.mikephil.charting.charts.LineChart
+                <com.github.mikephil.charting.charts.CombinedChart
                     android:id="@+id/project_details_chart"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"

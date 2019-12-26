@@ -108,6 +108,8 @@ public class DemoApplication extends Application {
         setImagelist(new ArrayList<ImgData.DataBean>());
     }
 
+
+
     /**
      * 获取进程号对应的进程名
      *
