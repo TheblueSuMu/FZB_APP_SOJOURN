@@ -794,6 +794,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             combinedChart.setDoubleTapToZoomEnabled(false);
             combinedChart.setHighlightPerTapEnabled(false);
             combinedChart.getAxisRight().setEnabled(false);
+//            combinedChart.setVisibleXRangeMinimum(5);
 
             XAxis xAxis = combinedChart.getXAxis();
             xAxis.setDrawGridLines(false);
@@ -883,8 +884,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 combinedChart.setVisibleXRange(0,5);
             }
             combinedChart.setData(combinedData); // 为组合图设置数据源
-//            combinedChart.setVisibleXRangeMaximum(12);
-//            combinedChart.setVisibleXRangeMinimum(6);
+            combinedChart.setVisibleXRangeMaximum(12);
+            combinedChart.setVisibleXRangeMinimum(5);
         }
         combinedChart.animateXY(2000, 2000);
 
