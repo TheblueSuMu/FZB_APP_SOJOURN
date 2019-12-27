@@ -32,6 +32,7 @@
             android:layout_marginTop="27dp"
             android:layout_marginRight="58dp"
             android:imeOptions="actionSearch"
+            android:singleLine="true"
             android:background="@drawable/comment"
             android:gravity="center"
             android:hint="按项目搜索"

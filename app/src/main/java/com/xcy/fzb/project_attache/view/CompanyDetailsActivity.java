@@ -396,7 +396,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
                 .isCenterLabel(false)
                 .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
+                .setLineSpacingMultiplier(1.5f)
                 .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
                 .setRangDate(startDate, endDate)
                 .build();
@@ -426,7 +426,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
                 .isCenterLabel(false)
                 .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
+                .setLineSpacingMultiplier(1.5f)
                 .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
                 .setRangDate(startDate, endDate)
                 .build();
@@ -452,7 +452,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
                 .isCenterLabel(false)
                 .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
+                .setLineSpacingMultiplier(1.5f)
                 .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
                 .setRangDate(startDate, endDate)
                 .build();
@@ -478,7 +478,7 @@ public class CompanyDetailsActivity extends AllActivity implements View.OnClickL
                 .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
                 .isCenterLabel(false)
                 .setDate(selectedDate)
-                .setLineSpacingMultiplier(1.2f)
+                .setLineSpacingMultiplier(1.5f)
                 .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
                 .setRangDate(startDate, endDate)
                 .build();

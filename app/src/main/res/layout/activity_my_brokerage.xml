@@ -39,6 +39,8 @@
                 android:layout_height="30dp"
                 android:background="@drawable/comment"
                 android:hint="搜索"
+                android:singleLine="true"
+                android:imeOptions="actionSearch"
                 android:textColor="#333333"
                 android:gravity="center"
                 android:textSize="12sp"/>

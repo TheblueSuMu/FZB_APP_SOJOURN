@@ -7,8 +7,10 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +25,6 @@ import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.modle.CustomerListBean;
 import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.service.MyService;
-import com.xcy.fzb.all.utils.KeyUtils;
 import com.xcy.fzb.shopping_guide.adapter.ClientAdapter;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -58,17 +59,16 @@ public class ClientFragment extends AllFragment {
         all_no_information = view.findViewById(R.id.all_no_information);
         client_search = view.findViewById(R.id.client_search);
         client_ptrclass = view.findViewById(R.id.client_ptrclass);
-        client_search.setOnKeyListener(new View.OnKeyListener() {
+
+        client_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (KeyEvent.KEYCODE_ENTER == i && KeyEvent.ACTION_DOWN == keyEvent.getAction()) {
-                    KeyUtils.hideKeyboard(client_search);
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     search = client_search.getText().toString();
                     if (isnum == 0) {
                         initData();
                         isnum = 1;
                     }
-
                     return true;
                 }
                 return false;

@@ -44,6 +44,8 @@
                     android:background="@drawable/comment"
                     android:gravity="center"
                     android:hint="按客户姓名/手机号搜索"
+                    android:singleLine="true"
+                    android:imeOptions="actionSearch"
                     android:textColor="#333333"
                     android:textSize="12sp" />
 

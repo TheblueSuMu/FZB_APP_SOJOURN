@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,7 +42,6 @@ import com.xcy.fzb.project_attache.adapter.ContactsAdapter;
 import com.xcy.fzb.project_attache.adapter.StoreListAdapter;
 import com.xcy.fzb.project_attache.view.CompanyDetailsActivity;
 import com.xcy.fzb.project_attache.view.StoreDetailsActivity;
-import com.xcy.fzb.project_attache.view.StoreListActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -160,31 +159,30 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
         search_l3.setOnClickListener(this);
         search_l4.setOnClickListener(this);
 
-
-        search_edit_text.setOnKeyListener(new View.OnKeyListener() {
+        search_edit_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (KeyEvent.KEYCODE_ENTER == i && KeyEvent.ACTION_DOWN == keyEvent.getAction()) {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     if (search_ll1.getVisibility() == View.VISIBLE) {
 //                        if(FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9")){
 //                            String s = search_edit_text.getText().toString();
 //                            initComPany("", s, "");
 //                        }else {
-                            recyclerViewData("3");
+                        recyclerViewData("3");
 //                        }
                     } else if (search_ll2.getVisibility() == View.VISIBLE) {
 //                        if(FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9")){
 //                            String s = search_edit_text.getText().toString();
 //                            initStore("", s, "", "", "", "");
 //                        }else {
-                            recyclerViewData("2");
+                        recyclerViewData("2");
 //                        }
                     } else if (search_ll3.getVisibility() == View.VISIBLE) {
 //                        if(FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9")){
 //                            String s = search_edit_text.getText().toString();
 //                            initBroker("", s, "", "", "", "");
 //                        }else {
-                            recyclerViewData("1");
+                        recyclerViewData("1");
 //                        }
                     } else if (search_ll4.getVisibility() == View.VISIBLE) {
                         if(SearchIndext == 0){
@@ -201,7 +199,6 @@ public class SearchInterfaceActivity extends AllActivity implements View.OnClick
                 }
                 return false;
             }
-
         });
 
 //        if (FinalContents.getIdentity().equals("5") || FinalContents.getIdentity().equals("8") || FinalContents.getIdentity().equals("9")) {
