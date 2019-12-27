@@ -14,7 +14,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -24,8 +23,11 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
@@ -37,9 +39,10 @@ import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.MatcherUtils;
 import com.xcy.fzb.all.utils.ToastUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -50,7 +53,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import top.defaults.view.DateTimePickerView;
 
 //TODO 填写认筹信息
 public class ConfessToRaiseInformationActivity extends AppCompatActivity implements View.OnClickListener {
@@ -98,16 +100,15 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
     private String s8;
 
     private String beforeDate;
-    private TextView picker_cancel;
-    private TextView picker_ensure;
-    private DateTimePickerView pickerView;
-    private LinearLayout picker;
 
     int ifnum1 = 0;
     int ifnum2 = 0;
     int ifnum3 = 0;
 
     int isnum1 = 0;
+    private int year;
+    private int month;
+    private int dayOfMonth;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -156,11 +157,6 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
         confess_to_raise_information_et3 = findViewById(R.id.confess_to_raise_information_et3);
         confess_to_raise_information_et4 = findViewById(R.id.confess_to_raise_information_et4);
         confess_to_raise_information_et5 = findViewById(R.id.confess_to_raise_information_et5);
-
-        picker_cancel = findViewById(R.id.picker_cancel);
-        picker_ensure = findViewById(R.id.picker_ensure);
-        pickerView = findViewById(R.id.pickerView);
-        picker = findViewById(R.id.picker);
 
         confess_to_raise_information_rg = findViewById(R.id.confess_to_raise_information_rg);
 
@@ -261,12 +257,32 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
                 break;
             //            TODO 认筹时间
             case R.id.confess_to_raise_information_rl3:
-                if (ifnum3 == 0) {
-                    ifnum3 = 1;
-                    picker.setVisibility(View.VISIBLE);
-                    initDate();
-                    ifnum3 = 0;
-                }
+                hideInput();
+                Calendar calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
+                Calendar selectedDate = Calendar.getInstance();//系统当前时间
+                Calendar startDate = Calendar.getInstance();
+                startDate.set(year-2, month, dayOfMonth);
+                final Calendar endDate = Calendar.getInstance();
+                endDate.set(year, month, dayOfMonth);
+                TimePickerView pvTime = new TimePickerBuilder(ConfessToRaiseInformationActivity.this, new OnTimeSelectListener() {
+                    @Override
+                    public void onTimeSelect(Date date, View v) {
+                        confess_to_raise_information_tv6.setText(getTime1(date));
+                    }
+                })
+                        .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                        .setLabel("年", "月", "日", "", "", "")//默认设置为年月日时分秒
+                        .isCenterLabel(false)
+                        .setDate(selectedDate)
+                        .setLineSpacingMultiplier(1.5f)
+                        .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                        .setRangDate(startDate, endDate)
+                        .build();
+                pvTime.show();
                 break;
             //            TODO 提交
             case R.id.confess_to_raise_information_btn:
@@ -401,62 +417,6 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
     }
 
 
-    //TODO 认筹时间赋值
-    private void initDate() {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-        String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
-        pickerView.setStartDate(new GregorianCalendar(year - 2, month, dayOfMonth));
-        // 注意：月份是从0开始计数的
-        pickerView.setSelectedDate(new GregorianCalendar(year, month, dayOfMonth));
-        pickerView.setEndDate(new GregorianCalendar(year, month, dayOfMonth));
-
-        picker_ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                picker.setVisibility(View.GONE);
-            }
-        });
-
-        picker_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                picker.setVisibility(View.GONE);
-            }
-        });
-
-        pickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-            @Override
-            public void onSelectedDateChanged(Calendar date) {
-                int year = date.get(Calendar.YEAR);
-                int month = date.get(Calendar.MONTH);
-                int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
-                confess_to_raise_information_tv6.setText(dateString);
-            }
-        });
-
-        //            TODO 时间
-        confess_to_raise_information_tv6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                picker.setVisibility(View.VISIBLE);
-                pickerView.setOnSelectedDateChangedListener(new DateTimePickerView.OnSelectedDateChangedListener() {
-                    @Override
-                    public void onSelectedDateChanged(Calendar date) {
-                        int year = date.get(Calendar.YEAR);
-                        int month = date.get(Calendar.MONTH);
-                        int dayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                        String dateString = String.format(Locale.getDefault(), "%d年%02d月%02d日", year, month + 1, dayOfMonth);
-                        confess_to_raise_information_tv6.setText(dateString);
-                    }
-                });
-            }
-        });
-    }
-
     /**
      * 隐藏键盘
      */
@@ -505,5 +465,11 @@ public class ConfessToRaiseInformationActivity extends AppCompatActivity impleme
             return im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
         return false;
+    }
+
+    public String getTime1(Date date) {//可根据需要自行截取数据显示
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+        return format.format(date);
     }
 }

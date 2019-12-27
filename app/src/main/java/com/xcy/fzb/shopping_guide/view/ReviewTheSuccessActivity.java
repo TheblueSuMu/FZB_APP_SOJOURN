@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
-import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.persente.SingleClick;
@@ -378,6 +377,6 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        CityContents.setSuaX("1");
+
     }
 }

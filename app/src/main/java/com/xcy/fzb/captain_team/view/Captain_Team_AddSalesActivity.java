@@ -227,9 +227,9 @@ public class Captain_Team_AddSalesActivity extends AllActivity implements View.O
                         add_sales_et3.setText(sysUser2Bean.getData().getSysUser().getPhone());
                         add_sales_et4.setText(sysUser2Bean.getData().getSysUser().getLoginName());
 
-                        if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
+                        if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("1")) {
                             slide.setState(true);
-                        } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("1")) {
+                        } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
                             slide.setState(false);
                         }
 

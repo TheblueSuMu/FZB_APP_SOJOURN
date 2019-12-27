@@ -651,9 +651,9 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
                                     @Override
                                     public void onNext(final SysUser2Bean sysUser2Bean) {
                                         add_aconsultant_tv1.setText(sysUser2Bean.getData().getSysUser().getParent().getName());
-                                        if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
+                                        if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("1")) {
                                             slide.setState(true);
-                                        } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("1")) {
+                                        } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
                                             slide.setState(false);
                                         }
 

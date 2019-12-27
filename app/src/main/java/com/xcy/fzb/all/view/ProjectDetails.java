@@ -379,25 +379,31 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                     if (projectDetailsBeanData.getProjectListVo().getFfAttacheList().size() != 0) {
                         List<String> arrayList = new ArrayList<>();
                         for (int index = 0; index < projectDetailsBeanData.getProjectListVo().getFfAttacheList().size(); index++) {
-                            arrayList.add(projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(index).getName());
-                        }
-                        //      监听选中
-                        OptionsPickerView pvOptions = new OptionsPickerBuilder(ProjectDetails.this, new OnOptionsSelectListener() {
-                            @Override
-                            public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                                //               返回的分别是三个级别的选中位置
-                                //              展示选中数据
-                                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(options1).getPhone()));//跳转到拨号界面，同时传递电话号码
-                                startActivity(dialIntent);
+                            if (!projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(index).getName().equals("")) {
+                                arrayList.add(projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(index).getName());
                             }
-                        })
-                                .setSelectOptions(0)//设置选择第一个
-                                .setOutSideCancelable(false)//点击背的地方不消失
-                                .build();//创建
-                        //      把数据绑定到控件上面
-                        pvOptions.setPicker(arrayList);
-                        //      展示
-                        pvOptions.show();
+                        }
+                        if (arrayList.size() != 0) {
+                            //      监听选中
+                            OptionsPickerView pvOptions = new OptionsPickerBuilder(ProjectDetails.this, new OnOptionsSelectListener() {
+                                @Override
+                                public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                                    //               返回的分别是三个级别的选中位置
+                                    //              展示选中数据
+                                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(options1).getPhone()));//跳转到拨号界面，同时传递电话号码
+                                    startActivity(dialIntent);
+                                }
+                            })
+                                    .setSelectOptions(0)//设置选择第一个
+                                    .setOutSideCancelable(false)//点击背的地方不消失
+                                    .build();//创建
+                            //      把数据绑定到控件上面
+                            pvOptions.setPicker(arrayList);
+                            //      展示
+                            pvOptions.show();
+                        }else {
+                            ToastUtil.showLongToast(ProjectDetails.this,"暂无专案");
+                        }
                     }else {
                         ToastUtil.showLongToast(ProjectDetails.this,"暂无专案");
                     }
@@ -1480,8 +1486,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                                 }
                             }
 
-                            indexList = projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthList();
-                            setData(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthPriceList());
+                            if (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthPriceList().size() != 0) {
+                                indexList = projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthList();
+                                setData(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthPriceList());
+                            }
+
 
 
                             project_details_tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -1576,24 +1585,28 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             values.add(new Entry(i, list.get(i)));
         }
 
-        LineDataSet set1;
 
-        if (combinedChart.getData() != null && combinedChart.getData().getDataSetCount() > 0) {
-            set1 = (LineDataSet) combinedChart.getData().getDataSetByIndex(0);
-            set1.setValues(values);
-            combinedChart.getData().notifyDataChanged();
-            combinedChart.notifyDataSetChanged();
-        } else {
+        {
             combinedChart.setDrawBorders(false); // 显示边界
             combinedChart.getDescription().setEnabled(false);  // 不显示备注信息
             combinedChart.setPinchZoom(false); // 比例缩放
             combinedChart.animateY(1500);
-            combinedChart.setTouchEnabled(true);
+            combinedChart.setTouchEnabled(false);
             combinedChart.setDragEnabled(true);
             combinedChart.getLegend().setEnabled(false);
             combinedChart.setDoubleTapToZoomEnabled(false);
             combinedChart.setHighlightPerTapEnabled(false);
             combinedChart.getAxisRight().setEnabled(false);
+
+            float max = 0;
+
+            for (int i = 0;i < list.size();i++){
+                if (list.get(i) > max) {
+                    max = list.get(i);
+                }
+            }
+
+            max = (float) (max * 1.1);
 
             XAxis xAxis = combinedChart.getXAxis();
             xAxis.setDrawGridLines(false);
@@ -1601,7 +1614,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             xAxis.setAxisMinimum(-0.2f);
             xAxis.setAxisMaximum(values.size() - 0.5f);
             xAxis.setGranularity(1f);
-
+            xAxis.setTextColor(Color.parseColor("#666666"));
             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // 设置X轴标签位置，BOTTOM在底部显示，TOP在顶部显示
             xAxis.setValueFormatter(new ValueFormatter() {
                 @Override
@@ -1616,12 +1629,10 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
             YAxis axisLeft = combinedChart.getAxisLeft(); // 获取左边Y轴操作类
             axisLeft.setAxisMinimum(0); // 设置最小值
-            axisLeft.setGranularity(10); // 设置Label间隔
-
-            YAxis axisRight = combinedChart.getAxisRight(); // 获取右边Y轴操作类
-            axisRight.setDrawGridLines(false); // 不绘制背景线，上面左边Y轴并没有设置此属性，因为不设置默认是显示的
-            axisRight.setGranularity(10); // 设置Label间隔
-            axisRight.setAxisMinimum(0); // 设置最小值
+            axisLeft.setAxisMaximum(max+10); // 设置最大值
+            axisLeft.setLabelCount(5); // 设置最大值
+            axisLeft.setAxisLineColor(Color.parseColor("#00000000"));
+            axisLeft.setTextColor(Color.parseColor("#999999"));
 
             List<Entry> lineEntries = new ArrayList<>();
             List<BarEntry> barEntries = new ArrayList<>();
@@ -1638,8 +1649,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             /******************BarData start********************/
 
             BarDataSet barDataSet = new BarDataSet(barEntries, "LAR");  // 新建一组柱形图，"LAR"为本组柱形图的Label
-            barDataSet.setColor(Color.parseColor("#a3bef4")); // 设置柱形图颜色
-            barDataSet.setValueTextColor(Color.parseColor("#0288d1")); //  设置柱形图顶部文本颜色
+            barDataSet.setColor(Color.parseColor("#6596ba")); // 设置柱形图颜色
             barDataSet.setDrawValues(false);
             BarData barData = new BarData();
             barData.addDataSet(barDataSet);// 添加一组柱形图，如果有多组柱形图数据，则可以多次addDataSet来设置
@@ -1654,13 +1664,15 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             /******************LineData start********************/
 
             LineDataSet lineDataSet = new LineDataSet(lineEntries, "不良率");
-            lineDataSet.setColor(Color.parseColor("#5484ff"));
-            lineDataSet.setCircleColor(Color.parseColor("#5484ff"));
+            lineDataSet.setColor(Color.parseColor("#ce7951"));
+            lineDataSet.setCircleColor(Color.parseColor("#ce7951"));
             lineDataSet.setCircleHoleColor(Color.parseColor("#FFFFFF"));
-            lineDataSet.setLineWidth(2);
+            lineDataSet.setValueTextColor(Color.parseColor("#666666")); //  设置线形图顶部文本颜色
+            lineDataSet.setLineWidth(1);
             lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             lineDataSet.setHighlightEnabled(false);
             lineDataSet.setCubicIntensity(0.2f);
+            lineDataSet.setValueTextSize(10);
             lineDataSet.setDrawValues(true);
             LineData lineData = new LineData();
             lineData.addDataSet(lineDataSet);
@@ -1669,7 +1681,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             CombinedData combinedData = new CombinedData(); // 创建组合图的数据
             combinedData.setData(barData);  // 添加柱形图数据源
             combinedData.setData(lineData); // 添加折线图数据源
-            combinedChart.setVisibleXRange(0,5);
+            if (indexList.size() > 5) {
+                combinedChart.setVisibleXRange(0,5);
+            }
             combinedChart.setData(combinedData); // 为组合图设置数据源
         }
         combinedChart.animateXY(2000, 2000);

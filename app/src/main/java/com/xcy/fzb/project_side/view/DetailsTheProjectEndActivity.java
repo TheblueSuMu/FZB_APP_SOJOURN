@@ -634,10 +634,12 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         details_the_project_end_tv9.setText(""+detailsBean.getData().getOperation().getEarnestMoneyNumber());
                         details_the_project_end_tv10.setText(""+detailsBean.getData().getOperation().getTradeNumber());
                         details_the_project_end_tv11.setText(""+detailsBean.getData().getOperation().getInvalidNum());
+                        if (detailsBean.getData().getGsonOption().getSeries().get(0).getData().size() != 0) {
+                            List<Integer> integers = detailsBean.getData().getGsonOption().getSeries().get(0).getData();
+                            indexList = detailsBean.getData().getGsonOption().getXAxis().getData();
+                            setData(integers);
+                        }
 
-                        List<Integer> integers = detailsBean.getData().getGsonOption().getSeries().get(0).getData();
-                        indexList = detailsBean.getData().getGsonOption().getXAxis().getData();
-                        setData(integers);
                     }
 
                     @Override
@@ -752,9 +754,11 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(BusinessBean businessBean) {
-                        List<Integer> integers = businessBean.getData().getSeries().get(0).getData();
-                        indexList = businessBean.getData().getXAxis().getData();
-                        setData(integers);
+                        if (businessBean.getData().getSeries().get(0).getData().size() != 0) {
+                            List<Integer> integers = businessBean.getData().getSeries().get(0).getData();
+                            indexList = businessBean.getData().getXAxis().getData();
+                            setData(integers);
+                        }
                     }
 
                     @Override
@@ -791,7 +795,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             combinedChart.setHighlightPerTapEnabled(false);
             combinedChart.getAxisRight().setEnabled(false);
 
-
             XAxis xAxis = combinedChart.getXAxis();
             xAxis.setDrawGridLines(false);
             /*解决左右两端柱形图只显示一半的情况 只有使用CombinedChart时会出现，如果单独使用BarChart不会有这个问题*/
@@ -801,7 +804,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             Log.i("长度","indexList.size()"+indexList.size());
             xAxis.setAxisMaximum(values.size() - 0.5f);
             xAxis.setGranularity(1f);
-
+            xAxis.setTextColor(Color.parseColor("#666666"));
             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // 设置X轴标签位置，BOTTOM在底部显示，TOP在顶部显示
             xAxis.setValueFormatter(new ValueFormatter() {
                 @Override
@@ -814,14 +817,20 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 }
             });
 
+            float max = 0;
+
+            for (int i = 0;i < list.size();i++){
+                if (list.get(i) > max) {
+                    max = list.get(i);
+                }
+            }
+
             YAxis axisLeft = combinedChart.getAxisLeft(); // 获取左边Y轴操作类
             axisLeft.setAxisMinimum(0); // 设置最小值
-            axisLeft.setGranularity(10); // 设置Label间隔
-
-            YAxis axisRight = combinedChart.getAxisRight(); // 获取右边Y轴操作类
-            axisRight.setDrawGridLines(false); // 不绘制背景线，上面左边Y轴并没有设置此属性，因为不设置默认是显示的
-            axisRight.setGranularity(10); // 设置Label间隔
-            axisRight.setAxisMinimum(0); // 设置最小值
+            axisLeft.setAxisMaximum(max+5); // 设置最大值
+            axisLeft.setLabelCount(5); // 设置最大值
+            axisLeft.setAxisLineColor(Color.parseColor("#00000000"));
+            axisLeft.setTextColor(Color.parseColor("#999999"));
 
             List<Entry> lineEntries = new ArrayList<>();
             List<BarEntry> barEntries = new ArrayList<>();
@@ -838,8 +847,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             /******************BarData start********************/
 
             BarDataSet barDataSet = new BarDataSet(barEntries, "LAR");  // 新建一组柱形图，"LAR"为本组柱形图的Label
-            barDataSet.setColor(Color.parseColor("#a3bef4")); // 设置柱形图颜色
-            barDataSet.setValueTextColor(Color.parseColor("#0288d1")); //  设置柱形图顶部文本颜色
+            barDataSet.setColor(Color.parseColor("#6596ba")); // 设置柱形图颜色
             barDataSet.setDrawValues(false);
             BarData barData = new BarData();
             barData.addDataSet(barDataSet);// 添加一组柱形图，如果有多组柱形图数据，则可以多次addDataSet来设置
@@ -854,13 +862,15 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             /******************LineData start********************/
 
             LineDataSet lineDataSet = new LineDataSet(lineEntries, "不良率");
-            lineDataSet.setColor(Color.parseColor("#5484ff"));
-            lineDataSet.setCircleColor(Color.parseColor("#5484ff"));
+            lineDataSet.setColor(Color.parseColor("#ce7951"));
+            lineDataSet.setCircleColor(Color.parseColor("#ce7951"));
             lineDataSet.setCircleHoleColor(Color.parseColor("#FFFFFF"));
-            lineDataSet.setLineWidth(2);
+            lineDataSet.setValueTextColor(Color.parseColor("#666666")); //  设置线形图顶部文本颜色
+            lineDataSet.setLineWidth(1);
             lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             lineDataSet.setHighlightEnabled(false);
             lineDataSet.setCubicIntensity(0.2f);
+            lineDataSet.setValueTextSize(10);
             lineDataSet.setDrawValues(true);
             LineData lineData = new LineData();
             lineData.addDataSet(lineDataSet);

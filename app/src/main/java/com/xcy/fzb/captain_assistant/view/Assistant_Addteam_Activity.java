@@ -351,9 +351,9 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
                         add_aconsultant_et3.setText(sysUser2Bean.getData().getSysUser().getPhone());
                         add_aconsultant_et4.setText(sysUser2Bean.getData().getSysUser().getLoginName());
 
-                        if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
+                        if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("1")) {
                             slide.setState(true);
-                        } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("1")) {
+                        } else if (sysUser2Bean.getData().getSysUser().getLoginFlag().equals("0")) {
                             slide.setState(false);
                         }
                         if (sysUser2Bean.getData().getSysUser().getManageFlag().equals("1")) {
