@@ -1593,6 +1593,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             combinedChart.animateY(1500);
             combinedChart.setTouchEnabled(false);
             combinedChart.setDragEnabled(true);
+            combinedChart.setExtraTopOffset(10);
             combinedChart.getLegend().setEnabled(false);
             combinedChart.setDoubleTapToZoomEnabled(false);
             combinedChart.setHighlightPerTapEnabled(false);
@@ -1629,8 +1630,8 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
             YAxis axisLeft = combinedChart.getAxisLeft(); // 获取左边Y轴操作类
             axisLeft.setAxisMinimum(0); // 设置最小值
-            axisLeft.setAxisMaximum(max+10); // 设置最大值
-            axisLeft.setLabelCount(5); // 设置最大值
+//            axisLeft.setAxisMaximum(max+10); // 设置最大值
+//            axisLeft.setLabelCount(5); // 设置最大值
             axisLeft.setAxisLineColor(Color.parseColor("#00000000"));
             axisLeft.setTextColor(Color.parseColor("#999999"));
 
@@ -1669,7 +1670,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             lineDataSet.setCircleHoleColor(Color.parseColor("#FFFFFF"));
             lineDataSet.setValueTextColor(Color.parseColor("#666666")); //  设置线形图顶部文本颜色
             lineDataSet.setLineWidth(1);
-            lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            lineDataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
             lineDataSet.setHighlightEnabled(false);
             lineDataSet.setCubicIntensity(0.2f);
             lineDataSet.setValueTextSize(10);
