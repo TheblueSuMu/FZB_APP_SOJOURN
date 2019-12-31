@@ -38,12 +38,15 @@ public class FuzzySearchAdapter extends FuzzySearchBaseAdapter<ItemEntity, Fuzzy
 
     @Override
     public void onBindViewHolder(@NonNull final ItemHolder holder, final int position) {
-        for (int i = 0; i < mDataList.get(position).getValue().length(); ++i) {
-            if (mDataList.get(position).getValue().substring(i, i + 1).equals("@")) {
-                holder.text_item_name.setText(mDataList.get(position).getValue().substring(0, i));
-                holder.text_item_phone.setText(mDataList.get(position).getValue().substring(i+1));
+        if (mDataList.size() != 0) {
+            for (int i = 0; i < mDataList.get(position).getValue().length(); ++i) {
+                if (mDataList.get(position).getValue().substring(i, i + 1).equals("@")) {
+                    holder.text_item_name.setText(mDataList.get(position).getValue().substring(0, i));
+                    holder.text_item_phone.setText(mDataList.get(position).getValue().substring(i+1));
+                }
             }
         }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

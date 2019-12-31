@@ -1037,11 +1037,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
                         name.setText(projectDetailsBeanData.getProjectListVo().getProjectName());
                         location.setText(projectDetailsBeanData.getProjectListVo().getDetailAddress());
-                        toatl.setText(projectDetailsBeanData.getProjectListVo().getProductTotalPrice());
+                        toatl.setText(projectDetailsBeanData.getProjectListVo().getReferenceToatlPrice());
 
                         unit.setText(projectDetailsBeanData.getProjectListVo().getProductUnitPrice());
 
-                        tary.setText(projectDetailsBeanData.getProjectListVo().getMonetaryUnit());
+                        tary.setText(projectDetailsBeanData.getProjectListVo().getReferenceToatlUnit());
                         areainterval.setText(projectDetailsBeanData.getProjectListVo().getAreaInterval());
 
                         if (FinalContents.getIdentity().equals("63")) {

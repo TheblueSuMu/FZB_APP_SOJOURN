@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,6 +31,7 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.tuacy.azlist.LettersComparator;
+import com.tuacy.fuzzysearchlibrary.FuzzySearchBaseAdapter;
 import com.tuacy.fuzzysearchlibrary.PinyinUtil;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.FuzzySearchAdapter;
@@ -242,35 +244,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             }
         });
 
-
-        report_client_name_et.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-
-            public void afterTextChanged(Editable editable) {
-                //长度发生变化，监听到输入的长度为 editText.getText().length()
-                if (dateList != null) {
-                    if (report_client_name_et.getText().toString().length() > 0) {
-                        if (dateList.size() != 0) {
-                            report_associating_inputing_rv.setVisibility(View.VISIBLE);
-                        }else {
-                            report_associating_inputing_rv.setVisibility(View.GONE);
-                        }
-                    } else {
-                        report_associating_inputing_rv.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
 
         report_client_name_et.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
 
@@ -888,6 +861,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
             Collections.sort(dateList, new LettersComparator<ItemEntity>());
             report_associating_inputing_rv.setLayoutManager(new LinearLayoutManager(ReportActivity.this));
             fuzzySearchAdapter = new FuzzySearchAdapter(dateList);
+            fuzzySearchAdapter.setRecyclerView(report_associating_inputing_rv);
             report_associating_inputing_rv.setAdapter(fuzzySearchAdapter);
             fuzzySearchAdapter.notifyDataSetChanged();
 
@@ -904,9 +878,29 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
                 @Override
                 public void afterTextChanged(Editable s) {
-
+                    //长度发生变化，监听到输入的长度为 editText.getText().length()
+                    if (dateList != null) {
+                        if (report_client_name_et.getText().toString().length() > 0) {
+                            if (dateList.size() != 0) {
+                                report_associating_inputing_rv.setVisibility(View.VISIBLE);
+                                if (fuzzySearchAdapter.getmDataList().size() != 0) {
+                                    report_associating_inputing_rv.setVisibility(View.VISIBLE);
+                                    Log.i("判断", "判断走了");
+                                }else {
+                                    report_associating_inputing_rv.setVisibility(View.GONE);
+                                    Log.i("判断", "判断走零陵");
+                                }
+                            }else {
+                                report_associating_inputing_rv.setVisibility(View.GONE);
+                            }
+                        } else {
+                            report_associating_inputing_rv.setVisibility(View.GONE);
+                        }
+                    }
                 }
             });
+
+
 
             fuzzySearchAdapter.setItemOnClick(new FuzzySearchAdapter.ItemOnClick() {
                 @Override
@@ -932,7 +926,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         }else{
             report_associating_inputing_rv.setVisibility(View.GONE);
         }
-
     }
 
     private void initReport() {

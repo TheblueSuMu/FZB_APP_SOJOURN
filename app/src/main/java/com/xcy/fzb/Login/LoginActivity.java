@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
+import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -154,6 +156,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
     private boolean dial = true;
     private RelativeLayout login_relative;
     private LinearLayout login_select;
+    private CheckBox login_select_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,6 +228,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         login_iv_user_state = findViewById(R.id.iv_user_state);
         login_iv_login_type = findViewById(R.id.iv_login_type);
 
+        login_select_password = findViewById(R.id.login_select_password);
+
         fuwu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -235,6 +240,21 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
         FinalContents.setIFSP("1");
 
+
+        login_select_password.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+                    //选择状态 显示明文--设置为可见的密码
+                    login_et_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    login_et_password.setSelection(login_et_password.getText().length());
+                } else {
+                    //默认状态显示密码--设置文本
+                    login_et_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    login_et_password.setSelection(login_et_password.getText().length());
+                }
+            }
+        });
 
         if (index > 0) {
             if (!pref.getString("user_name"+(index-1), "").equals("")) {
@@ -266,7 +286,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
     }
 
     private void initDengLu() {
-        Log.i("登录", "数据：" + pref.getString("DengLu", ""));
+        Log.i("登录", "身份数据：" + pref.getString("denglu", ""));
         if (pref.getString("denglu", "").equals("经纪人")) {
             if (pref.getString("user_name"+(index-1), "").equals("")) {
 
@@ -682,11 +702,11 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             login_relative.setVisibility(View.VISIBLE);
                             login_select.setVisibility(View.VISIBLE);
                         } else if (onLineBean.getData().getOnline().equals("0")) {
-                            login_relative.setVisibility(View.GONE);
-                            login_select.setVisibility(View.GONE);
+                            login_relative.setVisibility(View.INVISIBLE);
+                            login_select.setVisibility(View.INVISIBLE);
                         }else {
-                            login_relative.setVisibility(View.GONE);
-                            login_select.setVisibility(View.GONE);
+                            login_relative.setVisibility(View.INVISIBLE);
+                            login_select.setVisibility(View.INVISIBLE);
                         }
                     }
 
@@ -744,11 +764,11 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onNext(UserIdentity userIdentity) {
-                        //                        if (userIdentity.getData().getIdentity().equals("1") || userIdentity.getData().getIdentity().equals("2") || userIdentity.getData().getIdentity().equals("3")) {
+//                        if (userIdentity.getData().getIdentity().equals("1") || userIdentity.getData().getIdentity().equals("2") || userIdentity.getData().getIdentity().equals("3")) {
 //                            initBroker();
 //                        } else
 //                        if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63") || userIdentity.getData().getIdentity().equals("8") || userIdentity.getData().getIdentity().equals("9")) {
-//                            }
+//                        }
                         if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63") ) {
                             initExemplary();
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
@@ -829,9 +849,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             FinalContents.setOldCityId(loginUserBean.getData().getCityId());
                             FinalContents.setCityName(loginUserBean.getData().getCity());
                             FinalContents.setIdentity(loginUserBean.getData().getIdentity());
-                            editor.putString("denglu", "经纪人");
-                            editor.commit();
                             Log.i("登录", "数据中：" + pref.getString("denglu", ""));
+                            editor.putString("denglu", "经纪人");
                             editor.putString("userID", FinalContents.getUserID());
                             editor.putString("cityID", FinalContents.getCityID());
                             editor.putString("cityname", FinalContents.getCityName());
@@ -921,9 +940,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 FinalContents.setOldCityId(userBean.getData().getCityId());
                                 FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
-                                editor.putString("denglu", "专员");
-                                editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
+                                editor.putString("denglu", "专员");
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
@@ -941,9 +959,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 FinalContents.setOldCityId(userBean.getData().getCityId());
                                 FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
-                                editor.putString("denglu", "专案");
-                                editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
+                                editor.putString("denglu", "专案");
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
@@ -960,9 +977,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 FinalContents.setOldCityId(userBean.getData().getCityId());
                                 FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
-                                editor.putString("denglu", "导购");
-                                editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
+                                editor.putString("denglu", "导购");
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
@@ -980,9 +996,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
                                 FinalContents.setXSName(userBean.getData().getName());
-                                editor.putString("denglu", "团助");
-                                editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
+                                editor.putString("denglu", "团助");
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
@@ -1071,9 +1086,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
                                 FinalContents.setUserName(userBean.getData().getName());
-                                editor.putString("denglu", "团队长");
-                                editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
+                                editor.putString("denglu", "团队长");
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
@@ -1090,9 +1104,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 FinalContents.setOldCityId(userBean.getData().getCityId());
                                 FinalContents.setCityName(userBean.getData().getCity());
                                 FinalContents.setIdentity(userBean.getData().getIdentity());
-                                editor.putString("denglu", "顾问");
-                                editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
+                                editor.putString("denglu", "顾问");
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
@@ -1113,9 +1126,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 FinalContents.setXSTeamName(userBean.getData().getLayerTeamVo().getTeamLeader().getParent().getName());
                                 FinalContents.setUserName(userBean.getData().getName());
                                 FinalContents.setParentName(userBean.getData().getLayerTeamVo().getTeamLeader().getParent().getName());
-                                editor.putString("denglu", "销售");
-                                editor.commit();
                                 Log.i("登录", "数据中：" + pref.getString("denglu", ""));
+                                editor.putString("denglu", "销售");
                                 editor.putString("userID", FinalContents.getUserID());
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
@@ -1287,7 +1299,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         }else if(appPackageBean.getData().getIsUpgrade().equals("1")){
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
                             builder1.setTitle("提示");
-                            builder1.setMessage("是否更新当前版本");
+                            builder1.setMessage(appPackageBean.getData().getComment());
                             builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -1320,7 +1332,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         }else if(appPackageBean.getData().getIsUpgrade().equals("2")){
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
                             builder1.setTitle("提示");
-                            builder1.setMessage("是否更新当前版本");
+                            builder1.setMessage(appPackageBean.getData().getComment());
                             builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

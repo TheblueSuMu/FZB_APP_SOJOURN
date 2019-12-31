@@ -192,7 +192,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
                         } else if (appPackageBean.getData().getIsUpgrade().equals("1")) {
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(AboutFZBActivity.this);
                             builder1.setTitle("提示");
-                            builder1.setMessage("是否更新当前版本");
+                            builder1.setMessage(appPackageBean.getData().getComment());
                             builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -210,7 +210,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
                         } else if (appPackageBean.getData().getIsUpgrade().equals("2")) {
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(AboutFZBActivity.this);
                             builder1.setTitle("提示");
-                            builder1.setMessage("是否更新当前版本");
+                            builder1.setMessage(appPackageBean.getData().getComment());
                             builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

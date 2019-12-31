@@ -1,6 +1,7 @@
 package com.tuacy.fuzzysearchlibrary;
 
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Filter;
 import android.widget.Filterable;
 
@@ -16,6 +17,15 @@ public abstract class FuzzySearchBaseAdapter<ITEM extends IFuzzySearchItem, VH e
 	private   List<ITEM>        mBackDataList;
 	protected List<ITEM>        mDataList;
 	private   IFuzzySearchRule  mIFuzzySearchRule;
+	RecyclerView recyclerView;
+
+	public RecyclerView getRecyclerView() {
+		return recyclerView;
+	}
+
+	public void setRecyclerView(RecyclerView recyclerView) {
+		this.recyclerView = recyclerView;
+	}
 
 	public FuzzySearchBaseAdapter(IFuzzySearchRule rule) {
 		this(rule, null);
@@ -34,6 +44,9 @@ public abstract class FuzzySearchBaseAdapter<ITEM extends IFuzzySearchItem, VH e
 		mDataList = dataList;
 	}
 
+	public List<ITEM> getmDataList() {
+		return mDataList;
+	}
 
 	@Override
 	public int getItemCount() {

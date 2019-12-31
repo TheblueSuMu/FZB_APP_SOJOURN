@@ -3,6 +3,7 @@ package com.xcy.fzb.all.view;
 import android.Manifest;
 import android.app.AppOpsManager;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +34,7 @@ import com.xcy.fzb.all.modle.AddPhoneBean;
 import com.xcy.fzb.all.modle.PhoneDto;
 import com.xcy.fzb.all.persente.ContactModel;
 import com.xcy.fzb.all.persente.DividerItemDecoration;
+import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.PhoneUtil;
 import com.xcy.fzb.all.utils.ToastUtil;
@@ -46,7 +50,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PhoneActivity extends AllActivity{
+public class PhoneActivity extends AppCompatActivity {
 
 
     private TextView all_activity_phone_cancle;
@@ -61,6 +65,14 @@ public class PhoneActivity extends AllActivity{
     private List<ContactModel> mContactModels;
     private List<PhoneDto> jsonList = new ArrayList<>();
     private String fieldbeanlist = "";
+    private static final int REQUEST_EXTERNAL_STORAGE = 2;
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.READ_CONTACTS",
+            "android.permission.ACCESS_FINE_LOCATION",
+            "android.permission.CAMERA"
+    };
 
     /**
      * 右侧边栏导航区域
@@ -79,11 +91,32 @@ public class PhoneActivity extends AllActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_activity_phone);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);      //  TODO    始终竖屏
+        StatusBar.makeStatusBarTransparent(this);
+        if (Build.VERSION.SDK_INT >= 23) {
+            //判断是否有权限
+            int permission = ActivityCompat.checkSelfPermission(PhoneActivity.this, "android.permission.READ_CONTACTS");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                Log.i("权限获取","未开启读取通讯录权限");
+                ActivityCompat.requestPermissions(PhoneActivity.this, new String[]{Manifest.permission.READ_CONTACTS}, 1);
+            } else {
+                //已经开启权限
+                Log.i("权限获取","已开启读取通讯录权限");
+            }
+
+            int permission1 = ActivityCompat.checkSelfPermission(PhoneActivity.this, "android.permission.WRITE_EXTERNAL_STORAGE");
+            if (permission1 != PackageManager.PERMISSION_GRANTED) {// 没有写的权限，去申请写的权限，
+                ActivityCompat.requestPermissions(PhoneActivity.this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+                Log.i("权限获取","1未开启读取通讯录权限");
+            }else {
+                //已经开启权限
+                Log.i("权限获取","1已开启读取通讯录权限");
+            }
+        }
         initfvb();
     }
 
     private void initfvb(){
-        havaReadContacts(PhoneActivity.this,"READ_CONTACTS ");
         all_activity_phone_cancle = findViewById(R.id.all_activity_phone_cancle);
         all_activity_phone_search = findViewById(R.id.all_activity_phone_search);
         all_activity_phone_ensure = findViewById(R.id.all_activity_phone_ensure);
@@ -106,8 +139,45 @@ public class PhoneActivity extends AllActivity{
                 .setmLayoutManager(linearLayoutManager);//设置RecyclerView的LayoutManager
 
         mContactModels = new ArrayList<>();
+
         initClick();
         initViews();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults != null) {
+            if (grantResults.length != 0) {
+                switch (requestCode) {
+                    case 1://刚才的识别码
+                        try {
+                            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
+                                Log.i("权限获取","开启读取通讯录权限");
+                            } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
+                                //                            ToastUtil.showLongToast(AllActivity.this, "未开启读取通讯录权限,请手动到设置去开启读取通讯录权限");
+                                Log.i("权限获取","未开启读取通讯录权限,请手动到设置去开启读取通讯录权限");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 2://刚才的识别码
+                        try {
+                            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {//用户同意权限,执行我们的操作
+                            } else {//用户拒绝之后,当然我们也可以弹出一个窗口,直接跳转到系统设置页面
+                                //                            ToastUtil.showLongToast(AllActivity.this, "未开启存储权限,请手动到设置去开启权限");
+                                Log.i("权限获取","未开启存储权限,请手动到设置去开启权限");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 
     private void initClick(){
@@ -145,55 +215,6 @@ public class PhoneActivity extends AllActivity{
         });
     }
 
-    /**
-     * 判断是否拥有联系人读取权限
-     *
-     * @param context
-     * @return
-     * XXX代表权限字符串，比如 READ_CONTACTS 通讯录读取权限
-     */
-    public boolean havaReadContacts(Context context, String xxx) {
-
-        boolean have = false;
-
-        ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS);
-        if (Build.VERSION.SDK_INT >= 23) {
-            AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
-            int checkOp = appOpsManager.checkOp(AppOpsManager.OPSTR_READ_CONTACTS, android.os.Process.myUid(), context.getPackageName());
-            Log.e("通讯录权限", "checkOp:" + checkOp);
-            ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ："+checkOp);
-            switch (checkOp) {
-                case AppOpsManager.MODE_ALLOWED:
-                    Log.e("通讯录权限", "AppOpsManager.MODE_ALLOWED ：有权限");
-                    ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：有权限");
-                    have = true;
-                    break;
-                case AppOpsManager.MODE_IGNORED:
-                    Log.e("通讯录权限", "AppOpsManager.MODE_IGNORED：被禁止了");
-                    ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：被禁止了");
-                    have = false;
-                    break;
-                case AppOpsManager.MODE_DEFAULT:
-                    Log.e("通讯录权限", "AppOpsManager.MODE_DEFAULT");
-                    ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：默认");
-                    break;
-                case AppOpsManager.MODE_ERRORED:
-                    Log.e("通讯录权限", "AppOpsManager.MODE_ERRORED：出错了");
-                    ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：出错了");
-                    have = false;
-                    break;
-                case 4:
-                    Log.e("通讯录权限", "AppOpsManager.OTHER：权限需要询问");
-                    ToastUtil.showLongToast(context,"AppOpsManager.MODE_ALLOWED ：权限需要询问");
-                    have = false;
-                    break;
-            }
-        } else {
-            have = ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS)
-                    == PackageManager.PERMISSION_GRANTED;
-        }
-        return have;
-    }
 
     private void initViews() {
         PhoneUtil phoneUtil = new PhoneUtil(PhoneActivity.this);
