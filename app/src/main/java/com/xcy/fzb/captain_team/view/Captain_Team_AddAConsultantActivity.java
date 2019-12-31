@@ -1,14 +1,21 @@
 package com.xcy.fzb.captain_team.view;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
@@ -41,7 +48,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 //TODO 圈层5-2添加顾问
-public class Captain_Team_AddAConsultantActivity extends AllActivity implements View.OnClickListener, SlideSwitch.SlideListener {
+public class Captain_Team_AddAConsultantActivity extends AppCompatActivity implements View.OnClickListener, SlideSwitch.SlideListener {
 
     RelativeLayout add_aconsultant_img;
 
@@ -83,10 +90,15 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
     int ifnum2 = 0;
     int ifnum3 = 0;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.captain_team_activity_add_aconsultant);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);      //  TODO    始终竖屏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setStatusBarColor(Color.parseColor("#ff546da6"));
         init_No_Network();
     }
 
@@ -111,8 +123,6 @@ public class Captain_Team_AddAConsultantActivity extends AllActivity implements 
     }
 
     private void initView() {
-
-        StatusBar.makeStatusBarTransparent(this);
 
         add_aconsultant_img = findViewById(R.id.add_aconsultant_img1);
 

@@ -37,6 +37,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.wang.avi.AVLoadingIndicatorView;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.PopAdapter;
 import com.xcy.fzb.all.api.APKVersionCodeUtils;
@@ -157,6 +158,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
     private RelativeLayout login_relative;
     private LinearLayout login_select;
     private CheckBox login_select_password;
+    private AVLoadingIndicatorView login_avi;
+    private RelativeLayout login_avi_rl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -230,6 +233,9 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         login_iv_login_type = findViewById(R.id.iv_login_type);
 
         login_select_password = findViewById(R.id.login_select_password);
+
+        login_avi = findViewById(R.id.avi_login);
+        login_avi_rl = findViewById(R.id.avi_login_rl);
 
         fuwu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -488,6 +494,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.tv_user_login:
+                login_avi.show();
+                login_avi_rl.setVisibility(View.VISIBLE);
                 boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
                 if (networkAvailable) {
                     if (type.equals("1")) {
@@ -513,6 +521,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         Log.i("json","授权成功");
                         json = new JSONObject(hashMap);
                         Log.i("json","授权成功"+ json.toString());
+                        login_avi.show();
+                        login_avi_rl.setVisibility(View.VISIBLE);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -667,6 +677,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+                        login_avi.show();
+                        login_avi_rl.setVisibility(View.VISIBLE);
                         ToastUtil.showLongToast(LoginActivity.this, "请确认您输入的验证码或手机号是否正确");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
@@ -782,6 +794,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+                        login_avi.show();
+                        login_avi_rl.setVisibility(View.VISIBLE);
                         ToastUtil.showLongToast(LoginActivity.this, "请输入正确的账户或用户名");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
@@ -841,6 +855,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             }
                         }
 
+                        login_avi.show();
+                        login_avi_rl.setVisibility(View.VISIBLE);
 
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
@@ -870,6 +886,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+                        login_avi.show();
+                        login_avi_rl.setVisibility(View.VISIBLE);
                         ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
@@ -930,6 +948,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             }
                         }
 
+                        login_avi.show();
+                        login_avi_rl.setVisibility(View.VISIBLE);
 
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
@@ -1016,6 +1036,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+                        login_avi.show();
+                        login_avi_rl.setVisibility(View.VISIBLE);
                         ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
@@ -1075,6 +1097,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             }
                         }
 
+                        login_avi.show();
+                        login_avi_rl.setVisibility(View.VISIBLE);
 
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
@@ -1148,6 +1172,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+                        login_avi.show();
+                        login_avi_rl.setVisibility(View.VISIBLE);
                         ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
@@ -1587,6 +1613,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+                        login_avi.show();
+                        login_avi_rl.setVisibility(View.VISIBLE);
                         ToastUtil.showLongToast(LoginActivity.this, "当前微信未绑定");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }

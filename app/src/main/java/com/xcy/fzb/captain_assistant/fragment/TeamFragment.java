@@ -765,16 +765,14 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     private void initTime1_Date1(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 market_time_time_tv1.setText(getTime2(date));
                 startDate1 = getTime2(date);
                 NewlyIncreased.setStartDate(getTime2(date));
-                initDataStatistics();
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
@@ -792,9 +790,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     private void initTime1_Date2(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
@@ -819,16 +816,14 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     private void initTime2_Date1(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 market_time_time_tv3.setText(getTime2(date));
                 startDate2 = getTime2(date);
                 NewlyIncreased.setYJstartDate(getTime2(date));
-                initTeamCommissions();
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
@@ -846,16 +841,14 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     private void initTime2_Date2(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 market_time_time_tv4.setText(getTime2(date));
                 endDate2 = getTime2(date);
                 NewlyIncreased.setYJendDate(getTime2(date));
-                initTeamCommissions();
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
@@ -873,15 +866,13 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     private void initTime3_Date1(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 market_time_time_tv5.setText(getTime2(date));
                 startDate3 = getTime2(date);
-                initDailyTurnover();
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
@@ -899,15 +890,13 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
     private void initTime3_Date2(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 market_time_time_tv6.setText(getTime2(date));
                 endDate3 = getTime2(date);
-                initDailyTurnover();
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示

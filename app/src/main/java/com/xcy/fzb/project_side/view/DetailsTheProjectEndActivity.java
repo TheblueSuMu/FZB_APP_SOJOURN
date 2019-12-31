@@ -49,6 +49,8 @@ import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.MapActivity;
 import com.xcy.fzb.all.view.ProjectDetails;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -169,7 +171,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     LinearLayout project_attache_ll4;
     String tag = "1";
     private String string;
-    private Date selectdate;
+    private Date select;
 
 
     @Override
@@ -422,16 +424,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private void initTime1_Date1(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 details_the_project_end_time1.setText("<" + getTime2(date));
                 beforeDate1 = getTime2(date);
                 NewlyIncreased.setStartDate(getTime2(date));
-                initViewData2();
             }
         })
 
@@ -450,9 +450,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private void initTime1_Date2(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
@@ -478,16 +477,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private void initTime2_Date1(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 beforeDate2 = getTime2(date);
                 details_the_project_end_time3.setText("<" + getTime2(date));
                 NewlyIncreased.setYJstartDate(getTime2(date));
-                initViewData1();
             }
         })
 
@@ -506,9 +503,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private void initTime2_Date2(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
@@ -534,16 +530,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     private void initTime3_Date1(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                selectdate = date;
+                select = date;
                 beforeDate3 = getTime2(date);
                 details_the_project_end_time5.setText("<" + getTime2(date));
-                initViewData3();
             }
         })
 
@@ -561,26 +555,29 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     //            TODO  项目详情    业务趋势   结束时间
     private void initTime3_Date2(){
         Calendar calendar = Calendar.getInstance();
-        if (selectdate != null) {
-            calendar.setTime(selectdate);
-        }
+        calendar.setTime(select);
+        int selectyear = calendar.get(Calendar.YEAR);
+        int selectmonth = calendar.get(Calendar.MONTH);
+        int selectdayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        year3 = calendar.get(Calendar.YEAR);
-        month3 = calendar.get(Calendar.MONTH);
-        dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
+        final Calendar selected = Calendar.getInstance();
+        selected.set(selectyear,selectmonth,selectdayOfMonth+100);
+        select = selected.getTime();
 
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        final Calendar endDate = Calendar.getInstance();
-        selectedDate.set(year3, month3, dayOfMonth3);
-        startDate.set(year3, month3, dayOfMonth3);
-        endDate.set(year3, month3, dayOfMonth3+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                afterDate3 = getTime2(date);
-                details_the_project_end_time6.setText("-" + getTime2(date) + " >");
-                initViewData3();
+                if (select.before(date)) {
+                    ToastUtil.showLongToast(DetailsTheProjectEndActivity.this,"时间间隔不能大于100天");
+                } else {
+                    afterDate3 = getTime2(date);
+                    details_the_project_end_time6.setText("-" + getTime2(date) + " >");
+                    initViewData3();
+                }
             }
         })
 
@@ -1191,4 +1188,28 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         NewlyIncreased.setYJstartDate("");
         NewlyIncreased.setYJendDate("");
     }
+
+    /**
+     * 比较当前时间和服务器返回时间大小
+     *
+     * @param nowDate
+     * @param compareDate
+     * @return
+     */
+    public boolean compareDate(String nowDate, String compareDate) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        try {
+            Date now = df.parse(nowDate);
+            Date compare = df.parse(compareDate);
+            if (now.before(compare)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

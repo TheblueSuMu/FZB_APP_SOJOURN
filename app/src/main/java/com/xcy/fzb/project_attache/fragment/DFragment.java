@@ -570,19 +570,13 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     private void initTimePickerView1(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 time1_modulebroker.setText(getTime2(date));
                 NewlyIncreased.setStartDate(getTime2(date));
-                if (project_attache_fragment_ll2.getVisibility() == View.VISIBLE) {
-                    initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString(), "1");
-                } else if (project_attache_fragment_ll4.getVisibility() == View.VISIBLE) {
-                    initDataNum("3", time1_modulebroker.getText().toString(), time2_modulebroker.getText().toString(), "2");
-                }
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
@@ -600,9 +594,8 @@ public class DFragment extends Fragment implements View.OnClickListener, MyViewP
     private void initTimePickerView2(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {

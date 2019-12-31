@@ -163,18 +163,18 @@
 
         <!--TODO 可能会修改区域 start-->
         <activity android:name=".all.view.ReviewTheSuccessActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 公用 项目进度-->
-        <activity android:name=".all.view.FieldActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>                  <!--TODO 公用 同行人员-->
-        <activity android:name=".all.view.ToApplyForAnIslandActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>     <!--TODO 公用 申请登岛1-->
-        <activity android:name=".all.view.ToApplyForAnlsland2Activity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>    <!--TODO 公用 申请登岛2 最后确认界面-->
+        <activity android:name=".all.view.FieldActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>                  <!--TODO 公用 同行人员-->
+        <activity android:name=".all.view.ToApplyForAnIslandActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>     <!--TODO 公用 申请登岛1-->
+        <activity android:name=".all.view.ToApplyForAnlsland2Activity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>    <!--TODO 公用 申请登岛2 最后确认界面-->
         <activity android:name=".all.view.ConfirmTheVisitActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 确认到访-->
-        <activity android:name=".all.view.EssentialInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>   <!--TODO 公用 用戶基本信息描摹-->
+        <activity android:name=".all.view.EssentialInformationActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>   <!--TODO 公用 用戶基本信息描摹-->
         <!--TODO 可能会修改区域 end-->
 
         <!--TODO 圈层-->
         <activity android:name=".captain_team.view.Captain_Team_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>  <!--TODO 圈层 主页-->
         <activity android:name=".captain_team.view.Captain_Team_TeamMemberActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 团队人员-->
-        <activity android:name=".captain_team.view.Captain_Team_AddAConsultantActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 添加顾问-->
-        <activity android:name=".captain_team.view.Captain_Team_AddSalesActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 添加销售-->
+        <activity android:name=".captain_team.view.Captain_Team_AddAConsultantActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>       <!--TODO 添加顾问-->
+        <activity android:name=".captain_team.view.Captain_Team_AddSalesActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>       <!--TODO 添加销售-->
         <activity android:name=".captain_team.view.Captain_Team_BatchModifyingActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 批量修改级别-->
         <activity android:name=".captain_team.view.Captain_Team_SelectBrokerActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 选择经纪人-->
         <activity android:name=".captain_team.view.Captain_Team_SalesDetails" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 销售详情-他的顾问-->
@@ -240,7 +240,7 @@
         <activity android:name=".captain_market.view.TeamMemberActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 销售 团队人员-->
 
         <!--TODO 圈层 团助-->
-        <activity android:name=".captain_assistant.view.Assistant_Addteam_Activity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 团助 添加团队长-->
+        <activity android:name=".captain_assistant.view.Assistant_Addteam_Activity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>       <!--TODO 团助 添加团队长-->
         <activity android:name=".captain_assistant.view.Assistant_Teams_Activity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 团助 团队人员-->
         <activity android:name=".captain_assistant.view.Captain_Assistant_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 团助 主页-->
 

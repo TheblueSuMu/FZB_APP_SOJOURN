@@ -1,14 +1,21 @@
 package com.xcy.fzb.all.view;
 
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
@@ -31,7 +38,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 //TODO 用戶基本信息描摹
-public class EssentialInformationActivity extends AllActivity {
+public class EssentialInformationActivity extends AppCompatActivity {
 
     RelativeLayout essential_information_return;
 
@@ -50,21 +57,18 @@ public class EssentialInformationActivity extends AllActivity {
     RadioButton essential_information_rb2;
 
     RadioGroup essential_information_rg;
-    private String et1;
-    private String et3;
-    private String et4;
-    private String et5;
-    private String et6;
-    private String et2;
-    private String et7;
-    private String et8;
     private String authority = "";
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_essential_information);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);      //  TODO    始终竖屏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setStatusBarColor(Color.parseColor("#ff546da6"));
         init_No_Network();
     }
 
@@ -103,8 +107,6 @@ public class EssentialInformationActivity extends AllActivity {
 
     private void initView() {
 
-        StatusBar.makeStatusBarTransparent(this);
-
         essential_information_return = findViewById(R.id.essential_information_return);
 
         essential_information_et1 = findViewById(R.id.essential_information_et1);
@@ -133,14 +135,6 @@ public class EssentialInformationActivity extends AllActivity {
         essential_information_tbn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                et1 = essential_information_et1.getText().toString();
-                et2 = essential_information_et2.getText().toString();
-                et3 = essential_information_et3.getText().toString();
-                et4 = essential_information_et4.getText().toString();
-                et5 = essential_information_et5.getText().toString();
-                et6 = essential_information_et6.getText().toString();
-                et7 = essential_information_et7.getText().toString();
-                et8 = essential_information_et8.getText().toString();
 
                 if(essential_information_rb1.isChecked() == true){
                     authority = "是";

@@ -157,7 +157,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     private int year;
     private int month;
     private int dayOfMonth;
-    private Date selectdate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -424,7 +423,6 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
         TimePickerView pvTime = new TimePickerBuilder(ReportActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                selectdate = date;
                 timeStart = getTime2(date);
                 report_start.setText("<" + getTime2(date));
             }
@@ -441,20 +439,10 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
     }
 
     private void initTimePickerView2(){
-        Calendar calendar = Calendar.getInstance();
-        if (selectdate != null) {
-            calendar.setTime(selectdate);
-        }
-        int year3 = calendar.get(Calendar.YEAR);
-        int month3 = calendar.get(Calendar.MONTH);
-        int dayOfMonth3 = calendar.get(Calendar.DAY_OF_MONTH);
-
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
         final Calendar endDate = Calendar.getInstance();
-        selectedDate.set(year3, month3, dayOfMonth3);
-        startDate.set(year3, month3, dayOfMonth3);
-        endDate.set(year3, month3, dayOfMonth3+15);
+        endDate.set(year+3, month, dayOfMonth);
         TimePickerView pvTime = new TimePickerBuilder(ReportActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {

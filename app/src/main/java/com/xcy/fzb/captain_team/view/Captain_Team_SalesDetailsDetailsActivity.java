@@ -936,16 +936,15 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private void initTimePickerView1(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(Captain_Team_SalesDetailsDetailsActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 sales_details_details_time1.setText("<" + getTime2(date));
                 startTime = getTime2(date);
                 NewlyIncreased.setStartDate(getTime2(date));
-                initDataStatistics();
+
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
@@ -963,9 +962,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private void initTimePickerView2(){
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year, month, dayOfMonth-15);
-        final Calendar endDate = Calendar.getInstance();
-        endDate.set(year, month, dayOfMonth+15);
+        startDate.set(year-3, month, dayOfMonth);
+        Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(Captain_Team_SalesDetailsDetailsActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {

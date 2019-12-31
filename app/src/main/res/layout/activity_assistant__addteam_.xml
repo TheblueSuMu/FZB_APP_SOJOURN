@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:background="@drawable/my_brokerage">
 
         <RelativeLayout
@@ -47,8 +47,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
+            android:layout_height="match_parent"
             android:background="#FFFFFF">
 
             <LinearLayout
@@ -519,25 +518,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
+                        android:background="#EEEEEE"/>
                 </RelativeLayout>
+
+                <Button
+                    android:id="@+id/add_team_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="50dp"
+                    android:background="@drawable/points_dialog_but"
+                    android:text="确定"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp" />
 
                 <!--TODO LinearLayout-->
             </LinearLayout>
         </ScrollView>
 
-        <Button
-            android:id="@+id/add_team_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/points_dialog_but"
-            android:text="确定"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp" />
     </RelativeLayout>
 
 </LinearLayout>
