@@ -880,22 +880,31 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
                 public void afterTextChanged(Editable s) {
                     //长度发生变化，监听到输入的长度为 editText.getText().length()
                     if (dateList != null) {
+                        Log.i("判断", "1");
                         if (report_client_name_et.getText().toString().length() > 0) {
+                            Log.i("判断", "2");
                             if (dateList.size() != 0) {
-                                report_associating_inputing_rv.setVisibility(View.VISIBLE);
-                                if (fuzzySearchAdapter.getmDataList().size() != 0) {
-                                    report_associating_inputing_rv.setVisibility(View.VISIBLE);
+                                Log.i("判断", "3");
+                                if (fuzzySearchAdapter.getCount() != 0) {
+                                    Log.i("判断", "4");
                                     Log.i("判断", "判断走了");
+                                    report_associating_inputing_rv.setVisibility(View.VISIBLE);
                                 }else {
+                                    Log.i("判断", "a");
                                     report_associating_inputing_rv.setVisibility(View.GONE);
                                     Log.i("判断", "判断走零陵");
                                 }
                             }else {
+                                Log.i("判断", "b");
                                 report_associating_inputing_rv.setVisibility(View.GONE);
                             }
                         } else {
+                            Log.i("判断", "c");
                             report_associating_inputing_rv.setVisibility(View.GONE);
                         }
+                    }else {
+                        Log.i("判断", "d");
+                        report_associating_inputing_rv.setVisibility(View.GONE);
                     }
                 }
             });

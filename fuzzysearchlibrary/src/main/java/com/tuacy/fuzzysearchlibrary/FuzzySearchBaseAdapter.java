@@ -1,6 +1,7 @@
 package com.tuacy.fuzzysearchlibrary;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -18,6 +19,11 @@ public abstract class FuzzySearchBaseAdapter<ITEM extends IFuzzySearchItem, VH e
 	protected List<ITEM>        mDataList;
 	private   IFuzzySearchRule  mIFuzzySearchRule;
 	RecyclerView recyclerView;
+	protected int count = 0;
+
+	public int getCount() {
+		return count;
+	}
 
 	public RecyclerView getRecyclerView() {
 		return recyclerView;
@@ -61,6 +67,8 @@ public abstract class FuzzySearchBaseAdapter<ITEM extends IFuzzySearchItem, VH e
 		return mFilter;
 	}
 
+
+
 	private class FuzzySearchFilter extends Filter {
 
 		/**
@@ -82,6 +90,8 @@ public abstract class FuzzySearchBaseAdapter<ITEM extends IFuzzySearchItem, VH e
 			}
 			result.values = filterList;
 			result.count = filterList.size();
+			count = filterList.size();
+            Log.i("可长可长了", "可长可长了"+result.count);
 			return result;
 		}
 
