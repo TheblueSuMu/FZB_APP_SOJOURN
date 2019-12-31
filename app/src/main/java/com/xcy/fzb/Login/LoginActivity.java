@@ -165,6 +165,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         editor = getSharedPreferences("data", MODE_PRIVATE).edit();
         pref = getSharedPreferences("data", MODE_PRIVATE);
         index = pref.getInt("index",0);
+        Log.i("打印","数据");
 
         if (FinalContents.getClean().equals("")) {
 
