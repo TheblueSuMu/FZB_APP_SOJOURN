@@ -114,6 +114,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     private Vibrator vibrator;
     private DemoApplication application;
     private ImageView all_no_information;
+    private ImageView shopping_guide_home_banner_img;
 
     @Nullable
     @Override
@@ -206,6 +207,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         recyclerView = view.findViewById(R.id.home_recycler_vertical);
 
         banner = view.findViewById(R.id.home_banner);
+
+        shopping_guide_home_banner_img = view.findViewById(R.id.shopping_guide_home_banner_img);
 
         layout = view.findViewById(R.id.home_srl);
         tvBanner2 =  view.findViewById(R.id.tv_banner2);
@@ -525,6 +528,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     public void onNext(ImgData imgData) {
                         imglist = imgData.getData();
                         if (imglist.size() != 0) {
+                            shopping_guide_home_banner_img.setVisibility(View.GONE);
+                            banner.setVisibility(View.VISIBLE);
                             for (int i = 0; i < imglist.size(); i++) {
                                 list_path.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                                 list_title.add(imglist.get(i).getTitle());
@@ -561,10 +566,16 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                 }
                             });
                         }
+                        else {
+                            shopping_guide_home_banner_img.setVisibility(View.VISIBLE);
+                            banner.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        shopping_guide_home_banner_img.setVisibility(View.VISIBLE);
+                        banner.setVisibility(View.GONE);
                         Log.i("列表数据获取错误","错误"+e);
                     }
 

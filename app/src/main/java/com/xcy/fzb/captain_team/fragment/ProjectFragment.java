@@ -121,6 +121,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     private TextView home_item_text4;
     private ImageView home_item_img4;
     private ImageView home_team;
+    private ImageView home_captain_banner_no;
 
     @Nullable
     @Override
@@ -212,6 +213,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         all_no_information = view.findViewById(R.id.all_no_information_p);
         home_item_text4 = view.findViewById(R.id.home_item_text4);
         home_item_img4 = view.findViewById(R.id.home_item_img4);
+
+        home_captain_banner_no = view.findViewById(R.id.home_captain_banner_no);
 
         banner = view.findViewById(R.id.home_banner);
         home_team = view.findViewById(R.id.home_team);
@@ -555,6 +558,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     public void onNext(ImgData imgData) {
                         imglist = imgData.getData();
                         if (imglist.size() != 0) {
+                            banner.setVisibility(View.VISIBLE);
+                            home_captain_banner_no.setVisibility(View.GONE);
                             for (int i = 0; i < imglist.size(); i++) {
                                 list_path.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                                 list_title.add(imglist.get(i).getTitle());
@@ -594,10 +599,16 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                 }
                             });
                         }
+                        else {
+                            banner.setVisibility(View.GONE);
+                            home_captain_banner_no.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        banner.setVisibility(View.GONE);
+                        home_captain_banner_no.setVisibility(View.VISIBLE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 

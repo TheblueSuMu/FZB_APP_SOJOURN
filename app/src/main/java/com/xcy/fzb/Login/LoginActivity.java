@@ -286,7 +286,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         }
 
         Log.i("登录", "加载4：" + pref.getString("forget", ""));
-
+        Log.i("登录", "加载");
 
         initOnLine();
         click();
@@ -296,8 +296,9 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         Log.i("登录", "身份数据：" + pref.getString("denglu", ""));
         if (pref.getString("denglu", "").equals("经纪人")) {
             if (pref.getString("user_name"+(index-1), "").equals("")) {
-
+                Log.i("登录", "加载b");
             } else {
+                Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Broker_MainActivity.class);
@@ -309,14 +310,16 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     startActivity(intent);
                     finish();
                 } else {
+                    Log.i("登录", "加载99");
                     editor.putString("login", "1");
                     editor.commit();
                 }
             }
         } else if (pref.getString("denglu", "").equals("销售")) {
             if (pref.getString("user_name"+(index-1), "").equals("")) {
-
+                Log.i("登录", "加载b");
             } else {
+                Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Market_MainActivity.class);
@@ -328,14 +331,16 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     startActivity(intent);
                     finish();
                 } else {
+                    Log.i("登录", "加载99");
                     editor.putString("login", "1");
                     editor.commit();
                 }
             }
         } else if (pref.getString("denglu", "").equals("顾问")) {
             if (pref.getString("user_name"+(index-1), "").equals("")) {
-
+                Log.i("登录", "加载b");
             } else {
+                Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Counselor_MainActivity.class);
@@ -347,14 +352,16 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     startActivity(intent);
                     finish();
                 } else {
+                    Log.i("登录", "加载99");
                     editor.putString("login", "1");
                     editor.commit();
                 }
             }
         } else if (pref.getString("denglu", "").equals("团队长")) {
             if (pref.getString("user_name"+(index-1), "").equals("")) {
-
+                Log.i("登录", "加载b");
             } else {
+                Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Team_MainActivity.class);
@@ -366,14 +373,16 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     startActivity(intent);
                     finish();
                 } else {
+                    Log.i("登录", "加载99");
                     editor.putString("login", "1");
                     editor.commit();
                 }
             }
         } else if (pref.getString("denglu", "").equals("团助")) {
             if (pref.getString("user_name"+(index-1), "").equals("")) {
-
+                Log.i("登录", "加载b");
             } else {
+                Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Assistant_MainActivity.class);
@@ -385,14 +394,16 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     startActivity(intent);
                     finish();
                 } else {
+                    Log.i("登录", "加载99");
                     editor.putString("login", "1");
                     editor.commit();
                 }
             }
         } else if (pref.getString("denglu", "").equals("专员")) {
             if (pref.getString("user_name"+(index-1), "").equals("")) {
-
+                Log.i("登录", "加载b");
             } else {
+                Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Project_Attache_MainActivity.class);
@@ -404,14 +415,16 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     startActivity(intent);
                     finish();
                 } else {
+                    Log.i("登录", "加载99");
                     editor.putString("login", "1");
                     editor.commit();
                 }
             }
         } else if (pref.getString("denglu", "").equals("专案")) {
             if (pref.getString("user_name"+(index-1), "").equals("")) {
-
+                Log.i("登录", "加载b");
             } else {
+                Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Project_Side_MainActivity.class);
@@ -423,14 +436,16 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     startActivity(intent);
                     finish();
                 } else {
+                    Log.i("登录", "加载99");
                     editor.putString("login", "1");
                     editor.commit();
                 }
             }
         } else if (pref.getString("denglu", "").equals("导购")) {
             if (pref.getString("user_name"+(index-1), "").equals("")) {
-
+                Log.i("登录", "加载b");
             } else {
+                Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Shopping_Guide_MainActivity.class);
@@ -442,6 +457,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     startActivity(intent);
                     finish();
                 } else {
+                    Log.i("登录", "加载99");
                     editor.putString("login", "1");
                     editor.commit();
                 }
@@ -873,6 +889,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             editor.putString("cityname", FinalContents.getCityName());
                             editor.putString("identity", FinalContents.getIdentity());
                             editor.putString("forget", "");
+                            editor.putString("login", "1");
                             editor.commit();
                             startActivity(intent);
                             finish();
@@ -967,6 +984,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("login", "1");
                                 editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
@@ -986,6 +1004,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("login", "1");
                                 editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
@@ -1004,6 +1023,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("login", "1");
                                 editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
@@ -1023,6 +1043,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("login", "1");
                                 editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
@@ -1117,6 +1138,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("login", "1");
                                 editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
@@ -1135,6 +1157,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("login", "1");
                                 editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);
@@ -1157,6 +1180,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 editor.putString("cityID", FinalContents.getCityID());
                                 editor.putString("cityname", FinalContents.getCityName());
                                 editor.putString("identity", FinalContents.getIdentity());
+                                editor.putString("login", "1");
                                 editor.putString("forget", "");
                                 editor.commit();
                                 startActivity(intent);

@@ -67,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <FrameLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -78,7 +78,7 @@
                         app:indicator_drawable_selected="@drawable/banner_back" />
 
 
-                </FrameLayout>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

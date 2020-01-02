@@ -114,6 +114,7 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
     private Vibrator vibrator;
     private DemoApplication application;
     private ImageView all_no_information;
+    private ImageView home_banner_img;
 
     @Nullable
     @Override
@@ -202,6 +203,8 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
 
         recyclerView = view.findViewById(R.id.home_recycler_vertical);
         all_no_information = view.findViewById(R.id.all_no_information_i);
+
+        home_banner_img = view.findViewById(R.id.home_banner_img);
 
         banner = view.findViewById(R.id.home_banner);
 
@@ -488,6 +491,8 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
                     public void onNext(ImgData imgData) {
                         imglist = imgData.getData();
                         if (imglist.size() != 0) {
+                            home_banner_img.setVisibility(View.GONE);
+                            banner.setVisibility(View.VISIBLE);
                             for (int i = 0; i < imglist.size(); i++) {
                                 list_path.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                                 list_title.add(imglist.get(i).getTitle());
@@ -524,10 +529,16 @@ public class ProjectFragment extends Fragment implements View.OnClickListener, S
                                 }
                             });
                         }
+                        else {
+                            home_banner_img.setVisibility(View.VISIBLE);
+                            banner.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        home_banner_img.setVisibility(View.VISIBLE);
+                        banner.setVisibility(View.GONE);
                         Log.i("列表数据获取错误","错误"+e);
                     }
 

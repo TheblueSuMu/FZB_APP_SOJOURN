@@ -113,6 +113,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
     private Vibrator vibrator;
     private DemoApplication application;
     private ImageView all_no_information;
+    private ImageView assisant_home_banner_img;
 
     @Nullable
     @Override
@@ -199,6 +200,8 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
 
         recyclerView = view.findViewById(R.id.home_recycler_vertical);
         all_no_information = view.findViewById(R.id.all_no_information_a);
+
+        assisant_home_banner_img = view.findViewById(R.id.assisant_home_banner_img);
 
         banner = view.findViewById(R.id.home_banner);
 
@@ -484,6 +487,8 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                     public void onNext(ImgData imgData) {
                         imglist = imgData.getData();
                         if (imglist.size() != 0) {
+                            assisant_home_banner_img.setVisibility(View.GONE);
+                            banner.setVisibility(View.VISIBLE);
                             for (int i = 0; i < imglist.size(); i++) {
                                 list_path.add(FinalContents.getImageUrl() + imglist.get(i).getCoverImg());
                                 list_title.add(imglist.get(i).getTitle());
@@ -527,10 +532,16 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                                 }
                             });
                         }
+                        else {
+                            assisant_home_banner_img.setVisibility(View.VISIBLE);
+                            banner.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        assisant_home_banner_img.setVisibility(View.VISIBLE);
+                        banner.setVisibility(View.GONE);
                         Log.i("列表数据获取错误","错误"+e);
                     }
 
