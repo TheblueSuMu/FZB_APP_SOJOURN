@@ -166,10 +166,14 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                     @Override
                     public void onNext(ReportProcessDetailsBean reportProcessDetailsBean) {
                         infoData = reportProcessDetailsBean.getData().getInfoData();
-                        if (infoData.getCustomerImg() != null) {
-                            if (!infoData.getCustomerImg().equals("")) {
-                                Glide.with(CheckPendingActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(check_pending_img1);
+                        try {
+                            if (infoData.getCustomerImg() != null) {
+                                if (!infoData.getCustomerImg().equals("")) {
+                                    Glide.with(CheckPendingActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(check_pending_img1);
+                                }
                             }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
 
                         check_pending_tv1.setText(infoData.getCustomerName());

@@ -113,8 +113,6 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     HouseTypeFragment houseTypeFragment;
     ScreeningFragment screeningFragment;
 
-    FragmentManager manager;
-    FragmentTransaction transaction;
     private List<NationBean.DataBean> nationlist;
     private List<ImgData.DataBean> imglist;
     private List<ImgData.DataBean> imagelist;
@@ -136,6 +134,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
     private ImageView oversea_map_img;
     private LinearLayout oversea_linear_issue;
     //    private DemoApplication application;
+    private int selecttype = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -417,8 +416,8 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
 
         scrollView = findViewById(R.id.oversea_scroll);
 
-        manager = getSupportFragmentManager();
-        transaction = manager.beginTransaction();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.oversea_fl, comprehensiveFragment);
         transaction.commit();
 
@@ -452,71 +451,110 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
             }
         });
 
-        oversea_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                manager = getSupportFragmentManager();
-                transaction = manager.beginTransaction();
-                if (oversea_rb_1.isChecked() == true) {
-                    transaction.replace(R.id.oversea_fl, comprehensiveFragment);
-                } else if (oversea_rb_2s.isChecked() == true) {
-                    transaction.replace(R.id.oversea_fl, countryFragment);
-                } else if (oversea_rb_3.isChecked() == true) {
-                    transaction.replace(R.id.oversea_fl, priceFragment);
-                } else if (oversea_rb_4.isChecked() == true) {
-                    transaction.replace(R.id.oversea_fl, houseTypeFragment);
-                } else if (oversea_rb_5.isChecked() == true) {
-                    transaction.replace(R.id.oversea_fl, screeningFragment);
-                }
-                transaction.commit();
-            }
-        });
-
         initProjectLabel();
         sort.setOnClickListener(this);
         screen.setOnClickListener(this);
         state.setOnClickListener(this);
         price.setOnClickListener(this);
         house_type.setOnClickListener(this);
-    }
+        oversea_rb_1.setOnClickListener(this);
+        oversea_rb_2s.setOnClickListener(this);
+        oversea_rb_3.setOnClickListener(this);
+        oversea_rb_4.setOnClickListener(this);
+        oversea_rb_5.setOnClickListener(this);
 
+    }
 
     //点击事件
     @SingleClick(1000)
     @Override
     public void onClick(View view) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
         switch (view.getId()) {
             case R.id.overseas_sort:
                 report.setVisibility(View.GONE);
                 oversea_rb_1.setChecked(true);
+                selecttype = 1;
+                transaction.replace(R.id.oversea_fl, comprehensiveFragment);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_screen:
                 report.setVisibility(View.GONE);
                 oversea_rb_5.setChecked(true);
+                selecttype = 5;
+                transaction.replace(R.id.oversea_fl, screeningFragment);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_state:
                 report.setVisibility(View.GONE);
                 oversea_rb_2s.setChecked(true);
+                selecttype = 2;
+                transaction.replace(R.id.oversea_fl, countryFragment);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_price:
                 report.setVisibility(View.GONE);
                 oversea_rb_3.setChecked(true);
+                selecttype = 3;
+                transaction.replace(R.id.oversea_fl, priceFragment);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
             case R.id.overseas_house_type:
                 report.setVisibility(View.GONE);
                 oversea_rb_4.setChecked(true);
+                selecttype = 4;
+                transaction.replace(R.id.oversea_fl, houseTypeFragment);
                 oversea_ll.setVisibility(View.VISIBLE);
                 scrollView.setOnClickListener(null);
                 break;
+            case R.id.oversea_rb_1:
+                if (selecttype != 1) {
+                    selecttype = 1;
+                    transaction.replace(R.id.oversea_fl, comprehensiveFragment);
+                }else {
+                    oversea_ll.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.oversea_rb_2s:
+                if (selecttype != 2) {
+                    selecttype = 2;
+                    transaction.replace(R.id.oversea_fl, countryFragment);
+                }else {
+                    oversea_ll.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.oversea_rb_3:
+                if (selecttype != 3) {
+                    selecttype = 3;
+                    transaction.replace(R.id.oversea_fl, priceFragment);
+                }else {
+                    oversea_ll.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.oversea_rb_4:
+                if (selecttype != 4) {
+                    selecttype = 4;
+                    transaction.replace(R.id.oversea_fl, houseTypeFragment);
+                }else {
+                    oversea_ll.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.oversea_rb_5:
+                if (selecttype != 5) {
+                    selecttype = 5;
+                    transaction.replace(R.id.oversea_fl, screeningFragment);
+                }else {
+                    oversea_ll.setVisibility(View.GONE);
+                }
+                break;
+
         }
+        transaction.commit();
     }
 
     private void initProjectLabel() {
