@@ -122,6 +122,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     private ImageView home_item_img4;
     private ImageView home_team;
     private ImageView home_captain_banner_no;
+    private TextView captain_message_no;
 
     @Nullable
     @Override
@@ -213,6 +214,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         all_no_information = view.findViewById(R.id.all_no_information_p);
         home_item_text4 = view.findViewById(R.id.home_item_text4);
         home_item_img4 = view.findViewById(R.id.home_item_img4);
+
+        captain_message_no = view.findViewById(R.id.captain_message_no);
 
         home_captain_banner_no = view.findViewById(R.id.home_captain_banner_no);
 
@@ -490,37 +493,47 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                     public void onNext(MessageBean2 messageBean) {
                         MessageBean2.DataBean dataBean = messageBean.getData();
                         messagelist = dataBean.getRows();
-
-                        for (int i = 0; i < messagelist.size(); i++) {
-                            if (messagelist.get(i).getType().equals("0")) {
-                                messagelist2.add(new Bean(R.mipmap.give, messagelist.get(i).getTitle()));
-                            } else if (messagelist.get(i).getType().equals("2")) {
-                                messagelist2.add(new Bean(R.mipmap.lodger, messagelist.get(i).getTitle()));
-                            } else if (messagelist.get(i).getType().equals("5")) {
-                                messagelist2.add(new Bean(R.mipmap.goodnews, messagelist.get(i).getTitle()));
-                            }
-                        }
-
-
-                        TextBannerAdapter textBannerAdapter = new TextBannerAdapter(messagelist2, view.getContext());
-                        tvBanner2.setAdapter(textBannerAdapter);
-
-                        textBannerAdapter.setOnItemClickListener(new TextBannerAdapter.OnItemClickLisenter() {
-                            @Override
-                            public void onItemClick(int postion) {
-                                if (messagelist.get(postion).getType().equals("0")) {
-                                    listterner.process("0"); // 3.1 执行回调
-                                } else if (messagelist.get(postion).getType().equals("2")) {
-                                    listterner.process("2"); // 3.1 执行回调
-                                } else if (messagelist.get(postion).getType().equals("5")) {
-                                    listterner.process("5"); // 3.1 执行回调
+                        if (messagelist.size() != 0) {
+                            captain_message_no.setVisibility(View.GONE);
+                            tvBanner2.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < messagelist.size(); i++) {
+                                if (messagelist.get(i).getType().equals("0")) {
+                                    messagelist2.add(new Bean(R.mipmap.give, messagelist.get(i).getTitle()));
+                                } else if (messagelist.get(i).getType().equals("2")) {
+                                    messagelist2.add(new Bean(R.mipmap.lodger, messagelist.get(i).getTitle()));
+                                } else if (messagelist.get(i).getType().equals("5")) {
+                                    messagelist2.add(new Bean(R.mipmap.goodnews, messagelist.get(i).getTitle()));
                                 }
                             }
-                        });
+
+
+                            TextBannerAdapter textBannerAdapter = new TextBannerAdapter(messagelist2, view.getContext());
+                            tvBanner2.setAdapter(textBannerAdapter);
+
+                            textBannerAdapter.setOnItemClickListener(new TextBannerAdapter.OnItemClickLisenter() {
+                                @Override
+                                public void onItemClick(int postion) {
+                                    if (messagelist.get(postion).getType().equals("0")) {
+                                        listterner.process("0"); // 3.1 执行回调
+                                    } else if (messagelist.get(postion).getType().equals("2")) {
+                                        listterner.process("2"); // 3.1 执行回调
+                                    } else if (messagelist.get(postion).getType().equals("5")) {
+                                        listterner.process("5"); // 3.1 执行回调
+                                    }
+                                }
+                            });
+                        }
+                        else {
+                            captain_message_no.setVisibility(View.VISIBLE);
+                            tvBanner2.setVisibility(View.GONE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        captain_message_no.setVisibility(View.VISIBLE);
+                        tvBanner2.setVisibility(View.GONE);
                         Log.i("新闻头条列表获取错误", "错误" + e);
                     }
 
