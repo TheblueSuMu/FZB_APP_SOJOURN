@@ -393,7 +393,7 @@ public class ReportActivity extends AllActivity implements View.OnClickListener 
 
 
         String string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
-        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth + 1);
+        String string1 = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
 
         report_start.setText("<" + string);
         report_end.setText("-" + string1 + " >");

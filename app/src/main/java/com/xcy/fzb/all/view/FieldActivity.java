@@ -39,6 +39,7 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.database.ColleagueBean;
@@ -214,12 +215,16 @@ public class FieldActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
             //            TODO 选择性别
             case R.id.field_tv1:
-                hideInput();
-                initGender();
+                if (CityContents.isEnabled()) {
+                    hideInput();
+                    initGender();
+                }
                 break;
             //            TODO 添加图片
             case R.id.field_rl2:
-                initAlot();
+                if (CityContents.isEnabled()) {
+                    initAlot();
+                }
                 break;
             //            TODO 客户基本信息描摹
             case R.id.field_rl1:
@@ -395,6 +400,19 @@ public class FieldActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onNext(ColleagueBean colleagueBean) {
+                        if (CityContents.isEnabled()) {
+                            field_et1.setEnabled(true);
+                            field_et2.setEnabled(true);
+                            field_et3.setEnabled(true);
+                            field_et4.setEnabled(true);
+                            field_et5.setEnabled(true);
+                        }else {
+                            field_et1.setEnabled(false);
+                            field_et2.setEnabled(false);
+                            field_et3.setEnabled(false);
+                            field_et4.setEnabled(false);
+                            field_et5.setEnabled(false);
+                        }
                         field_et1.setText(colleagueBean.getData().getFullName());
                         field_tv1.setText(colleagueBean.getData().getGender());
                         field_et2.setText(colleagueBean.getData().getRelation());

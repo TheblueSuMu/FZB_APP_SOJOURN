@@ -37,6 +37,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.FieldAdapter;
 import com.xcy.fzb.all.adapter.FieldBeanListAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.ProjectProgressApi;
 import com.xcy.fzb.all.database.FieldBean;
@@ -126,6 +127,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
     int ifnum2 = 0;
     int ifnum3 = 0;
     private String fieldbeanlist;
+    private boolean enabled = true;
 
 
     @Override
@@ -212,40 +214,48 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 break;
             //            TODO 选择路线
             case R.id.to_apply_for_an_island2_rl1:
-                if (ifnum1 == 0) {
-                    ifnum1 = 1;
-                    initGetLandLine();
-                    ifnum1 = 0;
+                if (enabled) {
+                    if (ifnum1 == 0) {
+                        ifnum1 = 1;
+                        initGetLandLine();
+                        ifnum1 = 0;
+                    }
                 }
                 break;
             //            TODO 登岛时间
             case R.id.to_apply_for_an_island2_rl2:
-                if (ifnum2 == 0) {
-                    ifnum2 = 1;
-                    initGetLandLineTime();
-                    ifnum2 = 0;
+                if (enabled) {
+                    if (ifnum2 == 0) {
+                        ifnum2 = 1;
+                        initGetLandLineTime();
+                        ifnum2 = 0;
+                    }
                 }
                 break;
             //            TODO 添加图片
             case R.id.to_apply_for_an_island2_rl3:
-                ProjectProgressApi.setChongfu("重复");
-                initAlot();
+                if (enabled) {
+                    ProjectProgressApi.setChongfu("重复");
+                    initAlot();
+                }
                 break;
             //            TODO 完成
             case R.id.to_apply_for_an_island2_btn:
-                if (ifnum3 == 0) {
-                    ifnum3 = 1;
-                    ProjectProgressApi.setChongfu("重复");
-                    if (ProjectProgressApi.getComplemented().equals("0")) {
-                        if (!to_apply_for_an_island2_tv1.getText().toString().equals("")) {
-                            initPostReport();
-                        } else {
-                            ToastUtil.showToast(ToApplyForAnlsland2Activity.this, "请选择登岛路线时间，如果没有请及时联系管理员");
+                if (enabled) {
+                    if (ifnum3 == 0) {
+                        ifnum3 = 1;
+                        ProjectProgressApi.setChongfu("重复");
+                        if (ProjectProgressApi.getComplemented().equals("0")) {
+                            if (!to_apply_for_an_island2_tv1.getText().toString().equals("")) {
+                                initPostReport();
+                            } else {
+                                ToastUtil.showToast(ToApplyForAnlsland2Activity.this, "请选择登岛路线时间，如果没有请及时联系管理员");
+                            }
+                        } else if (ProjectProgressApi.getComplemented().equals("1")) {
+                            initlandUpdate();
                         }
-                    } else if (ProjectProgressApi.getComplemented().equals("1")) {
-                        initlandUpdate();
+                        ifnum3 = 0;
                     }
-                    ifnum3 = 0;
                 }
                 break;
             //            TODO 编辑
@@ -580,6 +590,13 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                     @Override
                     public void onNext(LandBean landBean) {
                         ProjectProgressApi.setID(landBean.getData().getId());
+                        if (landBean.getData().getAuditStatus().equals("0")) {
+                            enabled = true;
+                            CityContents.setEnabled(true);
+                        } else if (landBean.getData().getAuditStatus().equals("1") || landBean.getData().getAuditStatus().equals("3")) {
+                            enabled = false;
+                            CityContents.setEnabled(false);
+                        }
 
                         getlandLine.setText(landBean.getData().getRoute());
                         getlandLinetime.setText(landBean.getData().getIslandTime());
@@ -864,4 +881,9 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
         ProjectProgressApi.setChongfu("1");
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CityContents.setEnabled(true);
+    }
 }

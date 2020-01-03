@@ -527,6 +527,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                 break;
             case R.id.tv_wechat:
+                login_avi.show();
+                login_avi_rl.setVisibility(View.VISIBLE);
                 Platform plat = ShareSDK.getPlatform(Wechat.NAME);
                 plat.removeAccount(true); //移除授权状态和本地缓存，下次授权会重新授权
                 plat.SSOSetting(false); //SSO授权，传false默认是客户端授权，没有客户端授权或者不支持客户端授权会跳web授权
@@ -537,8 +539,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         Log.i("json","授权成功");
                         json = new JSONObject(hashMap);
                         Log.i("json","授权成功"+ json.toString());
-                        login_avi.show();
-                        login_avi_rl.setVisibility(View.VISIBLE);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -627,8 +627,10 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onNext(CodeBean codeBean) {
-                        CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(login_tv_get_code, 60000, 1000);
-                        mCountDownTimerUtils.start();
+                        if (codeBean.getData().getStatus().equals("1")) {
+                            CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(login_tv_get_code, 60000, 1000);
+                            mCountDownTimerUtils.start();
+                        }
                         ToastUtil.showLongToast(LoginActivity.this, codeBean.getData().getMessage());
                     }
 
@@ -693,8 +695,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        login_avi.show();
-                        login_avi_rl.setVisibility(View.VISIBLE);
+                        login_avi.setVisibility(View.GONE);
+                        login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "请确认您输入的验证码或手机号是否正确");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
@@ -810,8 +812,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        login_avi.show();
-                        login_avi_rl.setVisibility(View.VISIBLE);
+                        login_avi.setVisibility(View.GONE);
+                        login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "请输入正确的账户或用户名");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
@@ -871,8 +873,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             }
                         }
 
-                        login_avi.show();
-                        login_avi_rl.setVisibility(View.VISIBLE);
+                        login_avi.setVisibility(View.GONE);
+                        login_avi_rl.setVisibility(View.GONE);
 
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
@@ -903,8 +905,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        login_avi.show();
-                        login_avi_rl.setVisibility(View.VISIBLE);
+                        login_avi.setVisibility(View.GONE);
+                        login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
@@ -965,8 +967,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             }
                         }
 
-                        login_avi.show();
-                        login_avi_rl.setVisibility(View.VISIBLE);
+                        login_avi.setVisibility(View.GONE);
+                        login_avi_rl.setVisibility(View.GONE);
 
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
@@ -1057,8 +1059,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        login_avi.show();
-                        login_avi_rl.setVisibility(View.VISIBLE);
+                        login_avi.setVisibility(View.GONE);
+                        login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
@@ -1118,8 +1120,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             }
                         }
 
-                        login_avi.show();
-                        login_avi_rl.setVisibility(View.VISIBLE);
+                        login_avi.setVisibility(View.GONE);
+                        login_avi_rl.setVisibility(View.GONE);
 
                         boolean networkAvailable = CommonUtil.isNetworkAvailable(LoginActivity.this);
                         if (networkAvailable) {
@@ -1196,8 +1198,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        login_avi.show();
-                        login_avi_rl.setVisibility(View.VISIBLE);
+                        login_avi.setVisibility(View.GONE);
+                        login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }
@@ -1637,8 +1639,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-                        login_avi.show();
-                        login_avi_rl.setVisibility(View.VISIBLE);
+                        login_avi.setVisibility(View.GONE);
+                        login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "当前微信未绑定");
                         Log.i("wsw", "返回的数据" + e.getMessage());
                     }

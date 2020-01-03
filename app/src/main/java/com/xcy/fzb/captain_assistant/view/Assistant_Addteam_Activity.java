@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -168,7 +169,7 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
     @SingleClick(1000)
     @Override
     public void onClick(View view) {
-
+        hideInput();
         switch (view.getId()) {
 //            TODO 返回上一层
             case R.id.add_team_img1:
@@ -384,6 +385,17 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
 
                     }
                 });
+    }
+
+    /**
+     * 隐藏键盘
+     */
+    protected void hideInput() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View v = getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 
     //    TODO 新增

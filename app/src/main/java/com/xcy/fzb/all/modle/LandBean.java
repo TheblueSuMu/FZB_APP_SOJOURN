@@ -7,7 +7,7 @@ public class LandBean {
     /**
      * code : 1
      * msg : 成功
-     * data : {"id":"eaf5a77403ba48418f79171c74b66d3f","remarks":"","createBy":"","createDate":"2019-09-27 10:39:45","updateBy":"","updateDate":"","preparationId":"85987d7665e04f9d9279b41686c44043","idNumber":"220102198008087744","passportNumber":"5555","passportImg":"/fangfang/userfiles/3a0ee28065a84d548c96ee51849b5222/attachment/myClient/2019/9/1569551586431.jpg","age":"39","city":"","industry":"","annualIncome":"","intentionalPrice":"","intentionalHous":"","route":"长春-厦门","islandTime":"2019-09-27 - 2019-09-27","routeId":"7c12df58739347cf9c218f176115a010","isPay":"0","sumCost":"1000.00","landingImg":"","isColleague":"0","colleagueUserNum":"0","noTrade":"","projectType":"3","idealArea":"","auditStatusList":"","ffServerNewspaperPreparation":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerId":"","isIsland":"","project":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"泰禾厦门湾","developer":"","houseCompany":"","cityCompany":"","projectType":"3","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"旅居","isgroup":"","groupNum":""},"procuctType":"","areaSection":"","areaMin":"","areaMax":"","purpose":"","projectLabel":"","priceMin":"","priceMax":"","intentionalRegion":"","auditTime":"","auditStatus":"","idCard":"","protectDay":"","guideRuleId":"","status":"","landingStatus":"","projectId":"","customerName":"张飞","customerPhone":"","customerImg":"","customerGender":"","projectName":"","userName":"","refuseReason":"","landingStartDate":"","landingEndDate":"","landingStartDateStr":"","landingEndDateStr":"","earnestStatus":"","processStatus":"","tradeStatus":"","visitStatus":"","backReportAudit":"","reversion":"","examineType":"","examineState":"","state":"","reason":"","earnest":"","trade":"","isearnest":"","attacheUserId":"","searchName":"","startDate":"","endDate":"","layersUserId":""},"gender":"男","occupation":"","focus":"","intentionalBuilding":"","paymentMethod":"","hasDecision":"","resistance":"","objective":"","auditStatus":"3","landingTime":"2019/09/27 11:01","auditUser":{"id":"e56ae1ca8957463aa709df49fed0f015","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"导购","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"landingReason":"1111","landingApplicationTime":"2019/09/27 10:39","landingApplicationUser":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"王珊珊","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"4","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"routetime":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","route":"","islandTime":"","endTime":"","expenses":"1000","cityCompany":"","company":"","numberPeople":"","matter":"","taskStatus":"","enrollNumber":"","earnestNumber":"","tradeNumber":"","noTradeNumber":"","guideUser":"","isAccept":"","acceptTime":"","endCloseTime":"","travelWay":"","travelWayImg":"","taskStatusName":"","taskStatusColor":"","startIslandTime":"","endIslandTime":"","datePicker":"","searchSatus":"","endCloseTimeStr":"","projectIds":"","projectNames":"","project":"","startTime":"","startEndTime":"","planning":""},"colleagues":[{"id":"6700a7413dd0432a9c327b81669413f9","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"createDate":"2019-09-27 10:49:18","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"updateDate":"","landingId":"eaf5a77403ba48418f79171c74b66d3f","preparationId":"85987d7665e04f9d9279b41686c44043","fullName":"诸葛亮","phone":"13344552211","idNumber":"220111194607081114","passportNumber":"666","passportImg":"","gender":"男","relation":"朋友","city":"","occupation":"","focus":"","intentionalBuilding":"","paymentMethod":"","hasDecision":"","resistance":"","objective":"","idealArea":""}],"project":"","customerName":"","singleCost":""}
+     * data : {"id":"d6789839b9194892abdb018c49c3d7e3","remarks":"","createBy":"","createDate":"2020-01-03 13:41:28","updateBy":"","updateDate":"","filterField":"","preparationId":"cb18ff73e687488694e4502125718d16","idNumber":"168686898909889688","passportNumber":"186686868","passportImg":"/fangfang/userfiles/b039a1215f1e465298e81f18d89f435b/attachment/myClient/2020/1/1578029934450.png","age":"-6970","city":"","industry":"","annualIncome":"","intentionalPrice":"","intentionalHous":"","route":"11\u2014\u201422","islandTime":"2020-01-04 - 2020-01-08","routeId":"7855e0d373c1410e8700b53d65992599","isPay":"1","sumCost":"912.00","landingImg":"/fangfang/userfiles/b039a1215f1e465298e81f18d89f435b/attachment/myClient/2020/1/1578030086857.png","isColleague":"1","colleagueUserNum":"1","noTrade":"","projectType":"2","idealArea":"","officeId":"c241db93cbd247f5a8aadf501806b56a","officeName":"吉海旅居（长春）","userId":"","auditStatusList":"","ffServerNewspaperPreparation":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","customerId":"","isIsland":"","project":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","projectName":"碧桂园城市之光","developer":"","houseCompany":"","cityCompany":"","projectType":"2","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"海外","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"procuctType":"","areaSection":"","areaMin":"","areaMax":"","purpose":"","projectLabel":"","priceMin":"","priceMax":"","intentionalRegion":"","auditTime":"","auditStatus":"","idCard":"","protectDay":"","guideRuleId":"","status":"","landingStatus":"","projectId":"","customerName":"曹操","customerPhone":"","customerImg":"","customerGender":"","projectName":"","userName":"","refuseReason":"","landingStartDate":"","landingEndDate":"","landingStartDateStr":"","landingEndDateStr":"","earnestStatus":"","processStatus":"","tradeStatus":"","visitStatus":"","officeId":"","officeName":"","isRead":"","backReportAudit":"","reversion":"","examineType":"","examineState":"","state":"","reason":"","earnest":"","trade":"","isearnest":"","attacheUserId":"","searchName":"","startDate":"","endDate":"","layersUserId":"","identity":"","createDates":""},"gender":"男","occupation":"","focus":"","intentionalBuilding":"","paymentMethod":"","hasDecision":"","resistance":"","objective":"","auditStatus":"0","landingTime":"","auditUser":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"landingReason":"","landingApplicationTime":"2020/01/03 13:41","landingApplicationUser":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","company":"","office":"","post":"","loginName":"","no":"","name":"专案","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"4","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"routetime":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","route":"","islandTime":"","endTime":"","expenses":"456","cityCompany":"","company":"","numberPeople":"","matter":"","taskStatus":"","enrollNumber":"","earnestNumber":"","tradeNumber":"","noTradeNumber":"","guideUser":"","isAccept":"","acceptTime":"","endCloseTime":"","travelWay":"","travelWayImg":"","taskStatusName":"","taskStatusColor":"","startIslandTime":"","endIslandTime":"","datePicker":"","searchSatus":"","endCloseTimeStr":"","projectIds":"","projectNames":"","project":"","startTime":"","startEndTime":"","assemble":"","planning":""},"colleagues":[{"id":"365a0f943239432b914bcf6666a54368","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2020-01-03 13:41:28","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"","filterField":"","landingId":"d6789839b9194892abdb018c49c3d7e3","preparationId":"cb18ff73e687488694e4502125718d16","fullName":"gv","phone":"15286686868","idNumber":"424586868668865858","passportNumber":"566556656","passportImg":"/fangfang/userfiles/b039a1215f1e465298e81f18d89f435b/attachment/myClient/2020/1/1578030075681.png","gender":"男","relation":"join","city":"","occupation":"","focus":"","intentionalBuilding":"","paymentMethod":"","hasDecision":"","resistance":"","objective":"","idealArea":""}],"project":"","customerName":"","oldRouteId":"807b3245247b4b7e9b3aebe3a7755fc1","singleCost":""}
      */
 
     private String code;
@@ -40,35 +40,39 @@ public class LandBean {
 
     public static class DataBean {
         /**
-         * id : eaf5a77403ba48418f79171c74b66d3f
+         * id : d6789839b9194892abdb018c49c3d7e3
          * remarks :
          * createBy :
-         * createDate : 2019-09-27 10:39:45
+         * createDate : 2020-01-03 13:41:28
          * updateBy :
          * updateDate :
-         * preparationId : 85987d7665e04f9d9279b41686c44043
-         * idNumber : 220102198008087744
-         * passportNumber : 5555
-         * passportImg : /fangfang/userfiles/3a0ee28065a84d548c96ee51849b5222/attachment/myClient/2019/9/1569551586431.jpg
-         * age : 39
+         * filterField :
+         * preparationId : cb18ff73e687488694e4502125718d16
+         * idNumber : 168686898909889688
+         * passportNumber : 186686868
+         * passportImg : /fangfang/userfiles/b039a1215f1e465298e81f18d89f435b/attachment/myClient/2020/1/1578029934450.png
+         * age : -6970
          * city :
          * industry :
          * annualIncome :
          * intentionalPrice :
          * intentionalHous :
-         * route : 长春-厦门
-         * islandTime : 2019-09-27 - 2019-09-27
-         * routeId : 7c12df58739347cf9c218f176115a010
-         * isPay : 0
-         * sumCost : 1000.00
-         * landingImg :
-         * isColleague : 0
-         * colleagueUserNum : 0
+         * route : 11——22
+         * islandTime : 2020-01-04 - 2020-01-08
+         * routeId : 7855e0d373c1410e8700b53d65992599
+         * isPay : 1
+         * sumCost : 912.00
+         * landingImg : /fangfang/userfiles/b039a1215f1e465298e81f18d89f435b/attachment/myClient/2020/1/1578030086857.png
+         * isColleague : 1
+         * colleagueUserNum : 1
          * noTrade :
-         * projectType : 3
+         * projectType : 2
          * idealArea :
+         * officeId : c241db93cbd247f5a8aadf501806b56a
+         * officeName : 吉海旅居（长春）
+         * userId :
          * auditStatusList :
-         * ffServerNewspaperPreparation : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","customerId":"","isIsland":"","project":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"泰禾厦门湾","developer":"","houseCompany":"","cityCompany":"","projectType":"3","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"旅居","isgroup":"","groupNum":""},"procuctType":"","areaSection":"","areaMin":"","areaMax":"","purpose":"","projectLabel":"","priceMin":"","priceMax":"","intentionalRegion":"","auditTime":"","auditStatus":"","idCard":"","protectDay":"","guideRuleId":"","status":"","landingStatus":"","projectId":"","customerName":"张飞","customerPhone":"","customerImg":"","customerGender":"","projectName":"","userName":"","refuseReason":"","landingStartDate":"","landingEndDate":"","landingStartDateStr":"","landingEndDateStr":"","earnestStatus":"","processStatus":"","tradeStatus":"","visitStatus":"","backReportAudit":"","reversion":"","examineType":"","examineState":"","state":"","reason":"","earnest":"","trade":"","isearnest":"","attacheUserId":"","searchName":"","startDate":"","endDate":"","layersUserId":""}
+         * ffServerNewspaperPreparation : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","customerId":"","isIsland":"","project":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","projectName":"碧桂园城市之光","developer":"","houseCompany":"","cityCompany":"","projectType":"2","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"海外","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""},"procuctType":"","areaSection":"","areaMin":"","areaMax":"","purpose":"","projectLabel":"","priceMin":"","priceMax":"","intentionalRegion":"","auditTime":"","auditStatus":"","idCard":"","protectDay":"","guideRuleId":"","status":"","landingStatus":"","projectId":"","customerName":"曹操","customerPhone":"","customerImg":"","customerGender":"","projectName":"","userName":"","refuseReason":"","landingStartDate":"","landingEndDate":"","landingStartDateStr":"","landingEndDateStr":"","earnestStatus":"","processStatus":"","tradeStatus":"","visitStatus":"","officeId":"","officeName":"","isRead":"","backReportAudit":"","reversion":"","examineType":"","examineState":"","state":"","reason":"","earnest":"","trade":"","isearnest":"","attacheUserId":"","searchName":"","startDate":"","endDate":"","layersUserId":"","identity":"","createDates":""}
          * gender : 男
          * occupation :
          * focus :
@@ -77,16 +81,17 @@ public class LandBean {
          * hasDecision :
          * resistance :
          * objective :
-         * auditStatus : 3
-         * landingTime : 2019/09/27 11:01
-         * auditUser : {"id":"e56ae1ca8957463aa709df49fed0f015","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"导购","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""}
-         * landingReason : 1111
-         * landingApplicationTime : 2019/09/27 10:39
-         * landingApplicationUser : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"王珊珊","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"4","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""}
-         * routetime : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","route":"","islandTime":"","endTime":"","expenses":"1000","cityCompany":"","company":"","numberPeople":"","matter":"","taskStatus":"","enrollNumber":"","earnestNumber":"","tradeNumber":"","noTradeNumber":"","guideUser":"","isAccept":"","acceptTime":"","endCloseTime":"","travelWay":"","travelWayImg":"","taskStatusName":"","taskStatusColor":"","startIslandTime":"","endIslandTime":"","datePicker":"","searchSatus":"","endCloseTimeStr":"","projectIds":"","projectNames":"","project":"","startTime":"","startEndTime":"","planning":""}
-         * colleagues : [{"id":"6700a7413dd0432a9c327b81669413f9","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"createDate":"2019-09-27 10:49:18","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""},"updateDate":"","landingId":"eaf5a77403ba48418f79171c74b66d3f","preparationId":"85987d7665e04f9d9279b41686c44043","fullName":"诸葛亮","phone":"13344552211","idNumber":"220111194607081114","passportNumber":"666","passportImg":"","gender":"男","relation":"朋友","city":"","occupation":"","focus":"","intentionalBuilding":"","paymentMethod":"","hasDecision":"","resistance":"","objective":"","idealArea":""}]
+         * auditStatus : 0
+         * landingTime :
+         * auditUser : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""}
+         * landingReason :
+         * landingApplicationTime : 2020/01/03 13:41
+         * landingApplicationUser : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","company":"","office":"","post":"","loginName":"","no":"","name":"专案","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"4","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""}
+         * routetime : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","route":"","islandTime":"","endTime":"","expenses":"456","cityCompany":"","company":"","numberPeople":"","matter":"","taskStatus":"","enrollNumber":"","earnestNumber":"","tradeNumber":"","noTradeNumber":"","guideUser":"","isAccept":"","acceptTime":"","endCloseTime":"","travelWay":"","travelWayImg":"","taskStatusName":"","taskStatusColor":"","startIslandTime":"","endIslandTime":"","datePicker":"","searchSatus":"","endCloseTimeStr":"","projectIds":"","projectNames":"","project":"","startTime":"","startEndTime":"","assemble":"","planning":""}
+         * colleagues : [{"id":"365a0f943239432b914bcf6666a54368","remarks":"","createBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"createDate":"2020-01-03 13:41:28","updateBy":{"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""},"updateDate":"","filterField":"","landingId":"d6789839b9194892abdb018c49c3d7e3","preparationId":"cb18ff73e687488694e4502125718d16","fullName":"gv","phone":"15286686868","idNumber":"424586868668865858","passportNumber":"566556656","passportImg":"/fangfang/userfiles/b039a1215f1e465298e81f18d89f435b/attachment/myClient/2020/1/1578030075681.png","gender":"男","relation":"join","city":"","occupation":"","focus":"","intentionalBuilding":"","paymentMethod":"","hasDecision":"","resistance":"","objective":"","idealArea":""}]
          * project :
          * customerName :
+         * oldRouteId : 807b3245247b4b7e9b3aebe3a7755fc1
          * singleCost :
          */
 
@@ -96,6 +101,7 @@ public class LandBean {
         private String createDate;
         private String updateBy;
         private String updateDate;
+        private String filterField;
         private String preparationId;
         private String idNumber;
         private String passportNumber;
@@ -117,6 +123,9 @@ public class LandBean {
         private String noTrade;
         private String projectType;
         private String idealArea;
+        private String officeId;
+        private String officeName;
+        private String userId;
         private String auditStatusList;
         private FfServerNewspaperPreparationBean ffServerNewspaperPreparation;
         private String gender;
@@ -136,6 +145,7 @@ public class LandBean {
         private RoutetimeBean routetime;
         private String project;
         private String customerName;
+        private String oldRouteId;
         private String singleCost;
         private List<ColleaguesBean> colleagues;
 
@@ -185,6 +195,14 @@ public class LandBean {
 
         public void setUpdateDate(String updateDate) {
             this.updateDate = updateDate;
+        }
+
+        public String getFilterField() {
+            return filterField;
+        }
+
+        public void setFilterField(String filterField) {
+            this.filterField = filterField;
         }
 
         public String getPreparationId() {
@@ -355,6 +373,30 @@ public class LandBean {
             this.idealArea = idealArea;
         }
 
+        public String getOfficeId() {
+            return officeId;
+        }
+
+        public void setOfficeId(String officeId) {
+            this.officeId = officeId;
+        }
+
+        public String getOfficeName() {
+            return officeName;
+        }
+
+        public void setOfficeName(String officeName) {
+            this.officeName = officeName;
+        }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
         public String getAuditStatusList() {
             return auditStatusList;
         }
@@ -507,6 +549,14 @@ public class LandBean {
             this.customerName = customerName;
         }
 
+        public String getOldRouteId() {
+            return oldRouteId;
+        }
+
+        public void setOldRouteId(String oldRouteId) {
+            this.oldRouteId = oldRouteId;
+        }
+
         public String getSingleCost() {
             return singleCost;
         }
@@ -531,9 +581,10 @@ public class LandBean {
              * createDate :
              * updateBy :
              * updateDate :
+             * filterField :
              * customerId :
              * isIsland :
-             * project : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","projectName":"泰禾厦门湾","developer":"","houseCompany":"","cityCompany":"","projectType":"3","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"旅居","isgroup":"","groupNum":""}
+             * project : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","projectName":"碧桂园城市之光","developer":"","houseCompany":"","cityCompany":"","projectType":"2","cityType":"","showroom":"1","attache":"","cooperationState":"","onlineState":"","belongsArea":"","address":"","location":"","totalBuildings":"","hot":"","sort":"","remark":"","province":"","city":"","region":"","forwardingAmount":"","reportAmount":"","nation":"","hotSort":"","projectImg":"","projectListImg":"","buildingImg":"","browseNum":"","awardRules":"","commissionRules":"","searchName":"","collectionNum":"","productTypeId":"","productTypeSize":"","amountIncentiveId":"","cityName":"","haveInformation":"","projectTypeName":"海外","isgroup":"","groupNum":"","developerId":"","onlineAuditState":"","applyBy":"","applyDate":"","auditBy":"","auditDate":"","reason":""}
              * procuctType :
              * areaSection :
              * areaMin :
@@ -551,7 +602,7 @@ public class LandBean {
              * status :
              * landingStatus :
              * projectId :
-             * customerName : 张飞
+             * customerName : 曹操
              * customerPhone :
              * customerImg :
              * customerGender :
@@ -566,6 +617,9 @@ public class LandBean {
              * processStatus :
              * tradeStatus :
              * visitStatus :
+             * officeId :
+             * officeName :
+             * isRead :
              * backReportAudit :
              * reversion :
              * examineType :
@@ -580,6 +634,8 @@ public class LandBean {
              * startDate :
              * endDate :
              * layersUserId :
+             * identity :
+             * createDates :
              */
 
             private String id;
@@ -588,6 +644,7 @@ public class LandBean {
             private String createDate;
             private String updateBy;
             private String updateDate;
+            private String filterField;
             private String customerId;
             private String isIsland;
             private ProjectBean project;
@@ -623,6 +680,9 @@ public class LandBean {
             private String processStatus;
             private String tradeStatus;
             private String visitStatus;
+            private String officeId;
+            private String officeName;
+            private String isRead;
             private String backReportAudit;
             private String reversion;
             private String examineType;
@@ -637,6 +697,8 @@ public class LandBean {
             private String startDate;
             private String endDate;
             private String layersUserId;
+            private String identity;
+            private String createDates;
 
             public String getId() {
                 return id;
@@ -684,6 +746,14 @@ public class LandBean {
 
             public void setUpdateDate(String updateDate) {
                 this.updateDate = updateDate;
+            }
+
+            public String getFilterField() {
+                return filterField;
+            }
+
+            public void setFilterField(String filterField) {
+                this.filterField = filterField;
             }
 
             public String getCustomerId() {
@@ -966,6 +1036,30 @@ public class LandBean {
                 this.visitStatus = visitStatus;
             }
 
+            public String getOfficeId() {
+                return officeId;
+            }
+
+            public void setOfficeId(String officeId) {
+                this.officeId = officeId;
+            }
+
+            public String getOfficeName() {
+                return officeName;
+            }
+
+            public void setOfficeName(String officeName) {
+                this.officeName = officeName;
+            }
+
+            public String getIsRead() {
+                return isRead;
+            }
+
+            public void setIsRead(String isRead) {
+                this.isRead = isRead;
+            }
+
             public String getBackReportAudit() {
                 return backReportAudit;
             }
@@ -1078,6 +1172,22 @@ public class LandBean {
                 this.layersUserId = layersUserId;
             }
 
+            public String getIdentity() {
+                return identity;
+            }
+
+            public void setIdentity(String identity) {
+                this.identity = identity;
+            }
+
+            public String getCreateDates() {
+                return createDates;
+            }
+
+            public void setCreateDates(String createDates) {
+                this.createDates = createDates;
+            }
+
             public static class ProjectBean {
                 /**
                  * id :
@@ -1086,11 +1196,14 @@ public class LandBean {
                  * createDate :
                  * updateBy :
                  * updateDate :
-                 * projectName : 泰禾厦门湾
+                 * filterField :
+                 * projectName : 碧桂园城市之光
                  * developer :
                  * houseCompany :
                  * cityCompany :
-                 * projectType : 3
+                 * projectType : 2
+                 * cityType :
+                 * showroom : 1
                  * attache :
                  * cooperationState :
                  * onlineState :
@@ -1121,9 +1234,16 @@ public class LandBean {
                  * amountIncentiveId :
                  * cityName :
                  * haveInformation :
-                 * projectTypeName : 旅居
+                 * projectTypeName : 海外
                  * isgroup :
                  * groupNum :
+                 * developerId :
+                 * onlineAuditState :
+                 * applyBy :
+                 * applyDate :
+                 * auditBy :
+                 * auditDate :
+                 * reason :
                  */
 
                 private String id;
@@ -1132,11 +1252,14 @@ public class LandBean {
                 private String createDate;
                 private String updateBy;
                 private String updateDate;
+                private String filterField;
                 private String projectName;
                 private String developer;
                 private String houseCompany;
                 private String cityCompany;
                 private String projectType;
+                private String cityType;
+                private String showroom;
                 private String attache;
                 private String cooperationState;
                 private String onlineState;
@@ -1170,6 +1293,13 @@ public class LandBean {
                 private String projectTypeName;
                 private String isgroup;
                 private String groupNum;
+                private String developerId;
+                private String onlineAuditState;
+                private String applyBy;
+                private String applyDate;
+                private String auditBy;
+                private String auditDate;
+                private String reason;
 
                 public String getId() {
                     return id;
@@ -1219,6 +1349,14 @@ public class LandBean {
                     this.updateDate = updateDate;
                 }
 
+                public String getFilterField() {
+                    return filterField;
+                }
+
+                public void setFilterField(String filterField) {
+                    this.filterField = filterField;
+                }
+
                 public String getProjectName() {
                     return projectName;
                 }
@@ -1257,6 +1395,22 @@ public class LandBean {
 
                 public void setProjectType(String projectType) {
                     this.projectType = projectType;
+                }
+
+                public String getCityType() {
+                    return cityType;
+                }
+
+                public void setCityType(String cityType) {
+                    this.cityType = cityType;
+                }
+
+                public String getShowroom() {
+                    return showroom;
+                }
+
+                public void setShowroom(String showroom) {
+                    this.showroom = showroom;
                 }
 
                 public String getAttache() {
@@ -1522,23 +1676,80 @@ public class LandBean {
                 public void setGroupNum(String groupNum) {
                     this.groupNum = groupNum;
                 }
+
+                public String getDeveloperId() {
+                    return developerId;
+                }
+
+                public void setDeveloperId(String developerId) {
+                    this.developerId = developerId;
+                }
+
+                public String getOnlineAuditState() {
+                    return onlineAuditState;
+                }
+
+                public void setOnlineAuditState(String onlineAuditState) {
+                    this.onlineAuditState = onlineAuditState;
+                }
+
+                public String getApplyBy() {
+                    return applyBy;
+                }
+
+                public void setApplyBy(String applyBy) {
+                    this.applyBy = applyBy;
+                }
+
+                public String getApplyDate() {
+                    return applyDate;
+                }
+
+                public void setApplyDate(String applyDate) {
+                    this.applyDate = applyDate;
+                }
+
+                public String getAuditBy() {
+                    return auditBy;
+                }
+
+                public void setAuditBy(String auditBy) {
+                    this.auditBy = auditBy;
+                }
+
+                public String getAuditDate() {
+                    return auditDate;
+                }
+
+                public void setAuditDate(String auditDate) {
+                    this.auditDate = auditDate;
+                }
+
+                public String getReason() {
+                    return reason;
+                }
+
+                public void setReason(String reason) {
+                    this.reason = reason;
+                }
             }
         }
 
         public static class AuditUserBean {
             /**
-             * id : e56ae1ca8957463aa709df49fed0f015
+             * id :
              * remarks :
              * createBy :
              * createDate :
              * updateBy :
              * updateDate :
+             * filterField :
              * company :
              * office :
              * post :
              * loginName :
              * no :
-             * name : 导购
+             * name :
              * email :
              * phone :
              * oldPhone :
@@ -1555,6 +1766,8 @@ public class LandBean {
              * oldLoginDate :
              * wechatOpenid :
              * wechatData :
+             * industry :
+             * manageFlag :
              * role :
              * sex :
              * province :
@@ -1568,6 +1781,9 @@ public class LandBean {
              * classics : 0
              * team :
              * layerTeamVo :
+             * teamParentId :
+             * commissionLevelId :
+             * identityStr :
              * admin : false
              * roleNames :
              */
@@ -1578,6 +1794,7 @@ public class LandBean {
             private String createDate;
             private String updateBy;
             private String updateDate;
+            private String filterField;
             private String company;
             private String office;
             private String post;
@@ -1600,6 +1817,8 @@ public class LandBean {
             private String oldLoginDate;
             private String wechatOpenid;
             private String wechatData;
+            private String industry;
+            private String manageFlag;
             private String role;
             private String sex;
             private String province;
@@ -1613,6 +1832,9 @@ public class LandBean {
             private int classics;
             private String team;
             private String layerTeamVo;
+            private String teamParentId;
+            private String commissionLevelId;
+            private String identityStr;
             private boolean admin;
             private String roleNames;
 
@@ -1662,6 +1884,14 @@ public class LandBean {
 
             public void setUpdateDate(String updateDate) {
                 this.updateDate = updateDate;
+            }
+
+            public String getFilterField() {
+                return filterField;
+            }
+
+            public void setFilterField(String filterField) {
+                this.filterField = filterField;
             }
 
             public String getCompany() {
@@ -1840,6 +2070,22 @@ public class LandBean {
                 this.wechatData = wechatData;
             }
 
+            public String getIndustry() {
+                return industry;
+            }
+
+            public void setIndustry(String industry) {
+                this.industry = industry;
+            }
+
+            public String getManageFlag() {
+                return manageFlag;
+            }
+
+            public void setManageFlag(String manageFlag) {
+                this.manageFlag = manageFlag;
+            }
+
             public String getRole() {
                 return role;
             }
@@ -1942,6 +2188,30 @@ public class LandBean {
 
             public void setLayerTeamVo(String layerTeamVo) {
                 this.layerTeamVo = layerTeamVo;
+            }
+
+            public String getTeamParentId() {
+                return teamParentId;
+            }
+
+            public void setTeamParentId(String teamParentId) {
+                this.teamParentId = teamParentId;
+            }
+
+            public String getCommissionLevelId() {
+                return commissionLevelId;
+            }
+
+            public void setCommissionLevelId(String commissionLevelId) {
+                this.commissionLevelId = commissionLevelId;
+            }
+
+            public String getIdentityStr() {
+                return identityStr;
+            }
+
+            public void setIdentityStr(String identityStr) {
+                this.identityStr = identityStr;
             }
 
             public boolean isAdmin() {
@@ -1969,12 +2239,13 @@ public class LandBean {
              * createDate :
              * updateBy :
              * updateDate :
+             * filterField :
              * company :
              * office :
              * post :
              * loginName :
              * no :
-             * name : 王珊珊
+             * name : 专案
              * email :
              * phone :
              * oldPhone :
@@ -1991,6 +2262,8 @@ public class LandBean {
              * oldLoginDate :
              * wechatOpenid :
              * wechatData :
+             * industry :
+             * manageFlag :
              * role :
              * sex :
              * province :
@@ -2004,6 +2277,9 @@ public class LandBean {
              * classics : 0
              * team :
              * layerTeamVo :
+             * teamParentId :
+             * commissionLevelId :
+             * identityStr :
              * admin : false
              * roleNames :
              */
@@ -2014,6 +2290,7 @@ public class LandBean {
             private String createDate;
             private String updateBy;
             private String updateDate;
+            private String filterField;
             private String company;
             private String office;
             private String post;
@@ -2036,6 +2313,8 @@ public class LandBean {
             private String oldLoginDate;
             private String wechatOpenid;
             private String wechatData;
+            private String industry;
+            private String manageFlag;
             private String role;
             private String sex;
             private String province;
@@ -2049,6 +2328,9 @@ public class LandBean {
             private int classics;
             private String team;
             private String layerTeamVo;
+            private String teamParentId;
+            private String commissionLevelId;
+            private String identityStr;
             private boolean admin;
             private String roleNames;
 
@@ -2098,6 +2380,14 @@ public class LandBean {
 
             public void setUpdateDate(String updateDate) {
                 this.updateDate = updateDate;
+            }
+
+            public String getFilterField() {
+                return filterField;
+            }
+
+            public void setFilterField(String filterField) {
+                this.filterField = filterField;
             }
 
             public String getCompany() {
@@ -2276,6 +2566,22 @@ public class LandBean {
                 this.wechatData = wechatData;
             }
 
+            public String getIndustry() {
+                return industry;
+            }
+
+            public void setIndustry(String industry) {
+                this.industry = industry;
+            }
+
+            public String getManageFlag() {
+                return manageFlag;
+            }
+
+            public void setManageFlag(String manageFlag) {
+                this.manageFlag = manageFlag;
+            }
+
             public String getRole() {
                 return role;
             }
@@ -2380,6 +2686,30 @@ public class LandBean {
                 this.layerTeamVo = layerTeamVo;
             }
 
+            public String getTeamParentId() {
+                return teamParentId;
+            }
+
+            public void setTeamParentId(String teamParentId) {
+                this.teamParentId = teamParentId;
+            }
+
+            public String getCommissionLevelId() {
+                return commissionLevelId;
+            }
+
+            public void setCommissionLevelId(String commissionLevelId) {
+                this.commissionLevelId = commissionLevelId;
+            }
+
+            public String getIdentityStr() {
+                return identityStr;
+            }
+
+            public void setIdentityStr(String identityStr) {
+                this.identityStr = identityStr;
+            }
+
             public boolean isAdmin() {
                 return admin;
             }
@@ -2405,10 +2735,11 @@ public class LandBean {
              * createDate :
              * updateBy :
              * updateDate :
+             * filterField :
              * route :
              * islandTime :
              * endTime :
-             * expenses : 1000
+             * expenses : 456
              * cityCompany :
              * company :
              * numberPeople :
@@ -2436,6 +2767,7 @@ public class LandBean {
              * project :
              * startTime :
              * startEndTime :
+             * assemble :
              * planning :
              */
 
@@ -2445,6 +2777,7 @@ public class LandBean {
             private String createDate;
             private String updateBy;
             private String updateDate;
+            private String filterField;
             private String route;
             private String islandTime;
             private String endTime;
@@ -2476,6 +2809,7 @@ public class LandBean {
             private String project;
             private String startTime;
             private String startEndTime;
+            private String assemble;
             private String planning;
 
             public String getId() {
@@ -2524,6 +2858,14 @@ public class LandBean {
 
             public void setUpdateDate(String updateDate) {
                 this.updateDate = updateDate;
+            }
+
+            public String getFilterField() {
+                return filterField;
+            }
+
+            public void setFilterField(String filterField) {
+                this.filterField = filterField;
             }
 
             public String getRoute() {
@@ -2774,6 +3116,14 @@ public class LandBean {
                 this.startEndTime = startEndTime;
             }
 
+            public String getAssemble() {
+                return assemble;
+            }
+
+            public void setAssemble(String assemble) {
+                this.assemble = assemble;
+            }
+
             public String getPlanning() {
                 return planning;
             }
@@ -2785,21 +3135,22 @@ public class LandBean {
 
         public static class ColleaguesBean {
             /**
-             * id : 6700a7413dd0432a9c327b81669413f9
+             * id : 365a0f943239432b914bcf6666a54368
              * remarks :
-             * createBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""}
-             * createDate : 2019-09-27 10:49:18
-             * updateBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","admin":false,"roleNames":""}
+             * createBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""}
+             * createDate : 2020-01-03 13:41:28
+             * updateBy : {"id":"","remarks":"","createBy":"","createDate":"","updateBy":"","updateDate":"","filterField":"","company":"","office":"","post":"","loginName":"","no":"","name":"","email":"","phone":"","oldPhone":"","mobile":"","loginIp":"","loginDate":"","loginFlag":"1","photo":"/fangfang/static/common/images/flat-avatar.png","qrCode":"","oldLoginName":"","newPassword":"","sign":"","oldLoginIp":"","oldLoginDate":"","wechatOpenid":"","wechatData":"","industry":"","manageFlag":"","role":"","sex":"","province":"","city":"","county":"","identity":"","brokerId":"","storeId":"","companyManage":"","storeManage":"","classics":0,"team":"","layerTeamVo":"","teamParentId":"","commissionLevelId":"","identityStr":"","admin":false,"roleNames":""}
              * updateDate :
-             * landingId : eaf5a77403ba48418f79171c74b66d3f
-             * preparationId : 85987d7665e04f9d9279b41686c44043
-             * fullName : 诸葛亮
-             * phone : 13344552211
-             * idNumber : 220111194607081114
-             * passportNumber : 666
-             * passportImg :
+             * filterField :
+             * landingId : d6789839b9194892abdb018c49c3d7e3
+             * preparationId : cb18ff73e687488694e4502125718d16
+             * fullName : gv
+             * phone : 15286686868
+             * idNumber : 424586868668865858
+             * passportNumber : 566556656
+             * passportImg : /fangfang/userfiles/b039a1215f1e465298e81f18d89f435b/attachment/myClient/2020/1/1578030075681.png
              * gender : 男
-             * relation : 朋友
+             * relation : join
              * city :
              * occupation :
              * focus :
@@ -2817,6 +3168,7 @@ public class LandBean {
             private String createDate;
             private UpdateByBean updateBy;
             private String updateDate;
+            private String filterField;
             private String landingId;
             private String preparationId;
             private String fullName;
@@ -2882,6 +3234,14 @@ public class LandBean {
 
             public void setUpdateDate(String updateDate) {
                 this.updateDate = updateDate;
+            }
+
+            public String getFilterField() {
+                return filterField;
+            }
+
+            public void setFilterField(String filterField) {
+                this.filterField = filterField;
             }
 
             public String getLandingId() {
@@ -3036,6 +3396,7 @@ public class LandBean {
                  * createDate :
                  * updateBy :
                  * updateDate :
+                 * filterField :
                  * company :
                  * office :
                  * post :
@@ -3058,6 +3419,8 @@ public class LandBean {
                  * oldLoginDate :
                  * wechatOpenid :
                  * wechatData :
+                 * industry :
+                 * manageFlag :
                  * role :
                  * sex :
                  * province :
@@ -3071,6 +3434,9 @@ public class LandBean {
                  * classics : 0
                  * team :
                  * layerTeamVo :
+                 * teamParentId :
+                 * commissionLevelId :
+                 * identityStr :
                  * admin : false
                  * roleNames :
                  */
@@ -3081,6 +3447,7 @@ public class LandBean {
                 private String createDate;
                 private String updateBy;
                 private String updateDate;
+                private String filterField;
                 private String company;
                 private String office;
                 private String post;
@@ -3103,6 +3470,8 @@ public class LandBean {
                 private String oldLoginDate;
                 private String wechatOpenid;
                 private String wechatData;
+                private String industry;
+                private String manageFlag;
                 private String role;
                 private String sex;
                 private String province;
@@ -3116,6 +3485,9 @@ public class LandBean {
                 private int classics;
                 private String team;
                 private String layerTeamVo;
+                private String teamParentId;
+                private String commissionLevelId;
+                private String identityStr;
                 private boolean admin;
                 private String roleNames;
 
@@ -3165,6 +3537,14 @@ public class LandBean {
 
                 public void setUpdateDate(String updateDate) {
                     this.updateDate = updateDate;
+                }
+
+                public String getFilterField() {
+                    return filterField;
+                }
+
+                public void setFilterField(String filterField) {
+                    this.filterField = filterField;
                 }
 
                 public String getCompany() {
@@ -3343,6 +3723,22 @@ public class LandBean {
                     this.wechatData = wechatData;
                 }
 
+                public String getIndustry() {
+                    return industry;
+                }
+
+                public void setIndustry(String industry) {
+                    this.industry = industry;
+                }
+
+                public String getManageFlag() {
+                    return manageFlag;
+                }
+
+                public void setManageFlag(String manageFlag) {
+                    this.manageFlag = manageFlag;
+                }
+
                 public String getRole() {
                     return role;
                 }
@@ -3445,6 +3841,30 @@ public class LandBean {
 
                 public void setLayerTeamVo(String layerTeamVo) {
                     this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getTeamParentId() {
+                    return teamParentId;
+                }
+
+                public void setTeamParentId(String teamParentId) {
+                    this.teamParentId = teamParentId;
+                }
+
+                public String getCommissionLevelId() {
+                    return commissionLevelId;
+                }
+
+                public void setCommissionLevelId(String commissionLevelId) {
+                    this.commissionLevelId = commissionLevelId;
+                }
+
+                public String getIdentityStr() {
+                    return identityStr;
+                }
+
+                public void setIdentityStr(String identityStr) {
+                    this.identityStr = identityStr;
                 }
 
                 public boolean isAdmin() {
@@ -3472,6 +3892,7 @@ public class LandBean {
                  * createDate :
                  * updateBy :
                  * updateDate :
+                 * filterField :
                  * company :
                  * office :
                  * post :
@@ -3494,6 +3915,8 @@ public class LandBean {
                  * oldLoginDate :
                  * wechatOpenid :
                  * wechatData :
+                 * industry :
+                 * manageFlag :
                  * role :
                  * sex :
                  * province :
@@ -3507,6 +3930,9 @@ public class LandBean {
                  * classics : 0
                  * team :
                  * layerTeamVo :
+                 * teamParentId :
+                 * commissionLevelId :
+                 * identityStr :
                  * admin : false
                  * roleNames :
                  */
@@ -3517,6 +3943,7 @@ public class LandBean {
                 private String createDate;
                 private String updateBy;
                 private String updateDate;
+                private String filterField;
                 private String company;
                 private String office;
                 private String post;
@@ -3539,6 +3966,8 @@ public class LandBean {
                 private String oldLoginDate;
                 private String wechatOpenid;
                 private String wechatData;
+                private String industry;
+                private String manageFlag;
                 private String role;
                 private String sex;
                 private String province;
@@ -3552,6 +3981,9 @@ public class LandBean {
                 private int classics;
                 private String team;
                 private String layerTeamVo;
+                private String teamParentId;
+                private String commissionLevelId;
+                private String identityStr;
                 private boolean admin;
                 private String roleNames;
 
@@ -3601,6 +4033,14 @@ public class LandBean {
 
                 public void setUpdateDate(String updateDate) {
                     this.updateDate = updateDate;
+                }
+
+                public String getFilterField() {
+                    return filterField;
+                }
+
+                public void setFilterField(String filterField) {
+                    this.filterField = filterField;
                 }
 
                 public String getCompany() {
@@ -3779,6 +4219,22 @@ public class LandBean {
                     this.wechatData = wechatData;
                 }
 
+                public String getIndustry() {
+                    return industry;
+                }
+
+                public void setIndustry(String industry) {
+                    this.industry = industry;
+                }
+
+                public String getManageFlag() {
+                    return manageFlag;
+                }
+
+                public void setManageFlag(String manageFlag) {
+                    this.manageFlag = manageFlag;
+                }
+
                 public String getRole() {
                     return role;
                 }
@@ -3881,6 +4337,30 @@ public class LandBean {
 
                 public void setLayerTeamVo(String layerTeamVo) {
                     this.layerTeamVo = layerTeamVo;
+                }
+
+                public String getTeamParentId() {
+                    return teamParentId;
+                }
+
+                public void setTeamParentId(String teamParentId) {
+                    this.teamParentId = teamParentId;
+                }
+
+                public String getCommissionLevelId() {
+                    return commissionLevelId;
+                }
+
+                public void setCommissionLevelId(String commissionLevelId) {
+                    this.commissionLevelId = commissionLevelId;
+                }
+
+                public String getIdentityStr() {
+                    return identityStr;
+                }
+
+                public void setIdentityStr(String identityStr) {
+                    this.identityStr = identityStr;
                 }
 
                 public boolean isAdmin() {

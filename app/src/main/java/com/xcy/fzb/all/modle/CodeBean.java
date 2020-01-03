@@ -1,7 +1,5 @@
 package com.xcy.fzb.all.modle;
 
-import java.io.Serializable;
-
 /**
  * 创建：Sun
  * 时间：2019/7/23
@@ -11,7 +9,7 @@ public class CodeBean  {
     /**
      * code : 1
      * msg : 成功
-     * data : {"phone":"18600503212","message":"短信验证码已发送，请填写验证码"}
+     * data : {"message":"手机号不存在","status":"1"}
      */
 
     private String code;
@@ -42,22 +40,14 @@ public class CodeBean  {
         this.data = data;
     }
 
-    public static class DataBean implements Serializable {
+    public static class DataBean {
         /**
-         * phone : 18600503212
-         * message : 短信验证码已发送，请填写验证码
+         * message : 手机号不存在
+         * status : 1
          */
 
-        private String phone;
         private String message;
-
-        public String getPhone() {
-            return phone;
-        }
-
-        public void setPhone(String phone) {
-            this.phone = phone;
-        }
+        private String status;
 
         public String getMessage() {
             return message;
@@ -65,6 +55,14 @@ public class CodeBean  {
 
         public void setMessage(String message) {
             this.message = message;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
     }
 }
