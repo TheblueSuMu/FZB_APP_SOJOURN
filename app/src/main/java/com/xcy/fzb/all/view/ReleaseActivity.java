@@ -197,7 +197,6 @@ public class ReleaseActivity extends AllActivity implements View.OnClickListener
                         show.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#334485"));
                         adapter = new GridViewAdapter(ReleaseActivity.this, mDatas);
                         mGridView.setAdapter(adapter);
-
                     }
 
                 }

@@ -241,21 +241,19 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
                 break;
             //            TODO 完成
             case R.id.to_apply_for_an_island2_btn:
-                if (enabled) {
-                    if (ifnum3 == 0) {
-                        ifnum3 = 1;
-                        ProjectProgressApi.setChongfu("重复");
-                        if (ProjectProgressApi.getComplemented().equals("0")) {
-                            if (!to_apply_for_an_island2_tv1.getText().toString().equals("")) {
-                                initPostReport();
-                            } else {
-                                ToastUtil.showToast(ToApplyForAnlsland2Activity.this, "请选择登岛路线时间，如果没有请及时联系管理员");
-                            }
-                        } else if (ProjectProgressApi.getComplemented().equals("1")) {
-                            initlandUpdate();
+                if (ifnum3 == 0) {
+                    ifnum3 = 1;
+                    ProjectProgressApi.setChongfu("重复");
+                    if (ProjectProgressApi.getComplemented().equals("0")) {
+                        if (!to_apply_for_an_island2_tv1.getText().toString().equals("")) {
+                            initPostReport();
+                        } else {
+                            ToastUtil.showToast(ToApplyForAnlsland2Activity.this, "请选择登岛路线时间，如果没有请及时联系管理员");
                         }
-                        ifnum3 = 0;
+                    } else if (ProjectProgressApi.getComplemented().equals("1")) {
+                        initlandUpdate();
                     }
+                    ifnum3 = 0;
                 }
                 break;
             //            TODO 编辑

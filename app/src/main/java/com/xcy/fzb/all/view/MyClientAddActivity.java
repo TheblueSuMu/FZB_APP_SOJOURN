@@ -385,7 +385,6 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
         pvOptions.setPicker(list1);
         //      展示
         pvOptions.show();
-
     }
 
     @Override
@@ -508,12 +507,12 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                             @Override
                             public void onNext(AddClientBean addClientBean) {
                                 String msg = addClientBean.getMsg();
-                                if (msg.equals("成功")) {
-                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户成功");
+                                if (addClientBean.getData().getStatus().equals("1")) {
+                                    ToastUtil.showToast(MyClientAddActivity.this, addClientBean.getData().getMessage());
                                     CityContents.setAddClient("1");
                                     finish();
                                 } else {
-                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户失败");
+                                    ToastUtil.showToast(MyClientAddActivity.this, addClientBean.getData().getMessage());
                                 }
                             }
 
@@ -551,12 +550,12 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                             @Override
                             public void onNext(AddClientBean addClientBean) {
                                 String msg = addClientBean.getMsg();
-                                if (msg.equals("成功")) {
-                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户成功");
+                                if (addClientBean.getData().getStatus().equals("1")) {
+                                    ToastUtil.showToast(MyClientAddActivity.this, addClientBean.getData().getMessage());
                                     CityContents.setAddClient("1");
                                     finish();
                                 } else {
-                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户失败");
+                                    ToastUtil.showToast(MyClientAddActivity.this, addClientBean.getData().getMessage());
                                 }
                             }
 
@@ -594,12 +593,12 @@ public class MyClientAddActivity extends AllActivity implements View.OnClickList
                             @Override
                             public void onNext(AddClientBean addClientBean) {
                                 String msg = addClientBean.getMsg();
-                                if (msg.equals("成功")) {
-                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户成功");
+                                if (addClientBean.getData().getStatus().equals("1")) {
+                                    ToastUtil.showToast(MyClientAddActivity.this, addClientBean.getData().getMessage());
                                     CityContents.setAddClient("1");
                                     finish();
                                 } else {
-                                    ToastUtil.showToast(MyClientAddActivity.this, "添加客户失败");
+                                    ToastUtil.showToast(MyClientAddActivity.this, addClientBean.getData().getMessage());
                                 }
                             }
 

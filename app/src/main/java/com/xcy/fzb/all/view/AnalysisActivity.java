@@ -293,11 +293,10 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
                             showChart(getPieData());
                         }
 
-
                         if (familyInfoBean.getData().getFamilySlideImgList().size() != 0) {
                             bigPhotoimg = familyInfoBean.getData().getFamilySlideImgList().get(0);
                             for (int i = 1;i < familyInfoBean.getData().getFamilySlideImgList().size();i++){
-                                bigPhotoimg = bigPhotoimg + "|" + familyInfoBean.getData().getFamilySlideImgList().get(i) ;
+                                bigPhotoimg = bigPhotoimg + "|" + familyInfoBean.getData().getFamilySlideImgList().get(i);
                             }
                         }
 
@@ -310,7 +309,6 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
                                 startActivity(intent);
                             }
                         });         //      TODO    进入图片轮播图
-
 
                     }
 

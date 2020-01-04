@@ -36,6 +36,8 @@ import com.xcy.fzb.project_attache.adapter.MyDataStoreBean;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -443,6 +445,11 @@ public interface MyService {
     @Multipart
     @POST("commonSelect/upload")
     Observable<AddPhotoBean> getAddPhoto(@Query("userId") String userId, @Query("uploadPath") String uploadPath, @Part MultipartBody.Part file);
+
+    //圖片批量上傳
+    @Multipart
+    @POST("commonSelect/batchUpload")
+    Observable<AddPhotoBeanS> getAddPhotoS(@Query("userId") String userId, @Query("uploadPath") String uploadPath, @Part List<MultipartBody.Part> partLis);
 
     //修改密码
     @POST("commonUpdate/updatePassword")
