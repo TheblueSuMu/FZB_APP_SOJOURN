@@ -75,7 +75,7 @@ import top.defaults.view.DateTimePickerView;
 
 
 @SuppressLint("NewApi")
-public class AssistantHomeFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener{
+public class AssistantHomeFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     private View view;
     private Banner banner;
     private ArrayList<String> list_path;
@@ -198,7 +198,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
 //    }
 
     //命名区域
-    private void fvbId(View view){
+    private void fvbId(View view) {
 
         application = (DemoApplication) getActivity().getApplication();
 
@@ -211,7 +211,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
         banner = view.findViewById(R.id.home_banner);
 
         layout = view.findViewById(R.id.home_srl);
-        tvBanner2 =  view.findViewById(R.id.tv_banner2);
+        tvBanner2 = view.findViewById(R.id.tv_banner2);
         tvBanner2_S = view.findViewById(R.id.tv_banner2_S);
         textView1 = view.findViewById(R.id.home_item_sojourn);
         textView2 = view.findViewById(R.id.home_item_overseas);
@@ -264,7 +264,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                 Intent intent_overseas = new Intent(view.getContext(), Captain_Team_CommissionTheProjectEndActivity.class);
                 startActivity(intent_overseas);
             }
-        }else {
+        } else {
             if (view.getId() == R.id.home_city_selector) {
                 showPickerView();
             }
@@ -308,13 +308,13 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                                 if (!citylist.get(options1).getId().equals(FinalContents.getOldCityId())) {
                                     FinalContents.setCityIs("不是当前城市");
                                     SharItOff.setShar("隐");
-                                }else {
+                                } else {
                                     FinalContents.setCityIs("");
                                 }
                                 city.setText(list.get(options1));
                                 FinalContents.setCityName(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
-                                Log.i("city",FinalContents.getCityID());
+                                Log.i("city", FinalContents.getCityID());
                                 initHotList();
                             }
                         })
@@ -329,7 +329,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("城市列表","获取："+e.getMessage());
+                        Log.i("城市列表", "获取：" + e.getMessage());
                     }
 
                     @Override
@@ -346,7 +346,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<HotBean> userMessage = fzbInterface.getHotList(FinalContents.getUserID(),FinalContents.getCityID(),"1","1000");
+        Observable<HotBean> userMessage = fzbInterface.getHotList(FinalContents.getUserID(), FinalContents.getCityID(), "1", "1000");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<HotBean>() {
@@ -358,7 +358,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(HotBean hotBean) {
-                        Log.i("hotBean",hotBean.getMsg());
+                        Log.i("hotBean", hotBean.getMsg());
                         if (hotBean.getCode().equals("1")) {
                             HotBean.DataBean hotBeanData = hotBean.getData();
                             hotlist = hotBeanData.getRows();
@@ -375,13 +375,13 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                                 recyclerView.setNestedScrollingEnabled(false);
                                 recyclerView.setAdapter(recyclerAdapter);
                                 recyclerAdapter.notifyDataSetChanged();
-                            }else {
+                            } else {
                                 all_no_information.setVisibility(View.VISIBLE);
                                 recyclerView.setVisibility(View.GONE);
                             }
 
 
-                        }else {
+                        } else {
                             recyclerView.setVisibility(View.GONE);
                             all_no_information.setVisibility(View.VISIBLE);
                         }
@@ -391,7 +391,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                     public void onError(Throwable e) {
                         recyclerView.setVisibility(View.GONE);
                         all_no_information.setVisibility(View.VISIBLE);
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -447,12 +447,13 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
 
                         } else if (messagelist.size() == 1) {
 
-                            Log.i("文字轮播","messagelist.size() == 1");
+                            Log.i("文字轮播", "messagelist.size() == 1");
 
                             tvBanner2.setVisibility(View.VISIBLE);
                             tvBanner2_S.setVisibility(View.INVISIBLE);
                             assistant_message_no.setVisibility(View.GONE);
-                            tvBanner2.stopFlipping();
+                            tvBanner2.setFlipInterval(500000000);
+                            tvBanner2_S.setFlipInterval(500000000);
                             for (int i = 0; i < messagelist.size(); i++) {
                                 if (messagelist.get(i).getType().equals("0")) {
                                     messagelist2.add(new Bean(R.mipmap.give, messagelist.get(i).getTitle()));
@@ -478,17 +479,16 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                             });
 
                         } else {
-                            Log.i("文字轮播","else");
+                            Log.i("文字轮播", "else");
 
                             tvBanner2.setVisibility(View.VISIBLE);
                             tvBanner2_S.setVisibility(View.VISIBLE);
                             assistant_message_no.setVisibility(View.GONE);
-                            if(messagelist.size() == 2){
-                                tvBanner2.stopFlipping();
-                                tvBanner2_S.stopFlipping();
-                            }else {
-                                tvBanner2.startFlipping();
-                                tvBanner2_S.startFlipping();
+                            if (messagelist.size() == 2) {
+                                tvBanner2.setFlipInterval(500000000);
+                                tvBanner2_S.setFlipInterval(500000000);
+                            } else {
+
                             }
                             //TODO 第一行
                             for (int i = 0; i < messagelist.size(); i++) {
@@ -515,8 +515,8 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                                 }
                             });
 
-                            for (int i = 0; i < messagelist2.size(); ++i){
-                                Log.i("文字轮播","第一行：" + messagelist2.get(i).getName());
+                            for (int i = 0; i < messagelist2.size(); ++i) {
+                                Log.i("文字轮播", "第一行：" + messagelist2.get(i).getName());
                             }
 
                             //TODO 第二行
@@ -554,9 +554,9 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                                     }
                                 }
                             });
-                            Log.i("文字轮播","*********************************************************************");
-                            for (int i = 0; i < messagelist2_S.size(); ++i){
-                                Log.i("文字轮播","第二行：" + messagelist2_S.get(i).getName());
+                            Log.i("文字轮播", "*********************************************************************");
+                            for (int i = 0; i < messagelist2_S.size(); ++i) {
+                                Log.i("文字轮播", "第二行：" + messagelist2_S.get(i).getName());
                             }
                         }
 
@@ -591,7 +591,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(),FinalContents.getCityID(),"",arrposid);
+        Observable<ImgData> userMessage = fzbInterface.getBannerList(FinalContents.getUserID(), FinalContents.getCityID(), "", arrposid);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ImgData>() {
@@ -649,8 +649,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                                     }
                                 }
                             });
-                        }
-                        else {
+                        } else {
                             assisant_home_banner_img.setVisibility(View.VISIBLE);
                             banner.setVisibility(View.GONE);
                         }
@@ -660,7 +659,7 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
                     public void onError(Throwable e) {
                         assisant_home_banner_img.setVisibility(View.VISIBLE);
                         banner.setVisibility(View.GONE);
-                        Log.i("列表数据获取错误","错误"+e);
+                        Log.i("列表数据获取错误", "错误" + e);
                     }
 
                     @Override
@@ -706,9 +705,9 @@ public class AssistantHomeFragment extends Fragment implements View.OnClickListe
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        if(activity instanceof AssistantHomeFragment.FragmentInteraction) {
+        if (activity instanceof AssistantHomeFragment.FragmentInteraction) {
             listterner = (AssistantHomeFragment.FragmentInteraction) activity; // 2.2 获取到宿主activity并赋值
-        } else{
+        } else {
             throw new IllegalArgumentException("activity must implements FragmentInteraction");
         }
     }

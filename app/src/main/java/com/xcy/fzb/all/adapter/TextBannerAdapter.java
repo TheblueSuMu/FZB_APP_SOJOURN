@@ -42,7 +42,12 @@ public class TextBannerAdapter extends XMarqueeViewAdapter<Bean> {
         TextView text = (TextView) view.findViewById(R.id.textbanner);
         ImageView image =  view.findViewById(R.id.imagebanner);
         text.setText(mDatas.get(position).getName());
-        image.setImageResource(mDatas.get(position).getPic());
+        if(mDatas.get(position).getPic() == R.mipmap.no_information){
+            image.setVisibility(View.GONE);
+        }else {
+            image.setVisibility(View.VISIBLE);
+            image.setImageResource(mDatas.get(position).getPic());
+        }
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

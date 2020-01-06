@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imagebanner_s"
+        android:layout_width="40dp"
+        android:layout_height="15dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="3dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="1dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/goodnews" />
+
+    <TextView
+        android:id="@+id/textbanner_s"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:gravity="top"
+        android:text=""
+        android:textColor="#ff333333"
+        android:textSize="11sp" />
+
+</LinearLayout>

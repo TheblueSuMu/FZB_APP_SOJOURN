@@ -52,17 +52,17 @@
 
             </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:layout_weight="5"
                     android:id="@+id/commission_the_project_end_et"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/commission_the_project_end_select"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/comment"
@@ -75,19 +75,18 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:layout_weight="1"
                     android:id="@+id/commission_the_project_end_select"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="3dp"
+                    android:layout_marginRight="15sp"
                     android:gravity="center"
                     android:text="全部"
                     android:textSize="14sp"
                     android:textColor="#FFF"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

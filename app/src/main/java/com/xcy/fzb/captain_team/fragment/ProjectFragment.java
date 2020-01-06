@@ -525,7 +525,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                             tvBanner2.setVisibility(View.VISIBLE);
                             tvBanner2_S.setVisibility(View.INVISIBLE);
                             captain_message_no.setVisibility(View.GONE);
-                            tvBanner2.stopFlipping();
+                             tvBanner2.setFlipInterval(500000000);
+                            tvBanner2_S.setFlipInterval(500000000);
                             for (int i = 0; i < messagelist.size(); i++) {
                                 if (messagelist.get(i).getType().equals("0")) {
                                     messagelist2.add(new Bean(R.mipmap.give, messagelist.get(i).getTitle()));
@@ -557,11 +558,10 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                             tvBanner2_S.setVisibility(View.VISIBLE);
                             captain_message_no.setVisibility(View.GONE);
                             if(messagelist.size() == 2){
-                                tvBanner2.stopFlipping();
-                                tvBanner2_S.stopFlipping();
+                                 tvBanner2.setFlipInterval(500000000);
+                            tvBanner2_S.setFlipInterval(500000000);
                             }else {
-                                tvBanner2.startFlipping();
-                                tvBanner2_S.startFlipping();
+
                             }
                             //TODO 第一行
                             for (int i = 0; i < messagelist.size(); i++) {

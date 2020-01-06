@@ -25,7 +25,7 @@ import java.util.List;
 
 public class BannerViewPager extends RelativeLayout implements ViewPager.OnPageChangeListener{
     private View mLayout;//布局
-    private Activity mContext;//上下文
+    private Context mContext;//上下文
     private ViewPager mViewPager;//viewpager
     private BannerPagerAdapter mPagerAdapter;//adapter
     private LinearLayout mLineIndicator;//指示器集合容器
