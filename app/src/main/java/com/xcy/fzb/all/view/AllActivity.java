@@ -98,16 +98,12 @@ public class AllActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-
         if (AllActivity.exit) {
             finish();
             Log.i("王", "123");
         } else {
             Log.i("王", "321");
         }
-
-
-
     }
 
     @Override
