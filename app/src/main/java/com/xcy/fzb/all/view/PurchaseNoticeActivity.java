@@ -22,6 +22,7 @@ import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.Item_Share;
 import com.xcy.fzb.all.utils.ToastUtil;
 
 import io.reactivex.Observable;
@@ -242,7 +243,7 @@ public class PurchaseNoticeActivity extends AllActivity implements View.OnClickL
             }
 
         } else if (id == R.id.notice_btn) {
-            FinalContents.showShare(title.getText().toString(), FinalContents.getAdminUrl()+"/sellingPoint?" + "&userId=" + FinalContents.getUserID() + "&talkToolId=" + talkToolId, content.getText().toString(), FinalContents.getImageUrl() + houseDataData.getPropertyHouseList().get(0).getShareIcon(), FinalContents.getAdminUrl()+"/sellingPoint?" + "&userId=" + FinalContents.getUserID() + "&talkToolId=" + talkToolId, this);
+            Item_Share.initDaown(PurchaseNoticeActivity.this,title.getText().toString(), FinalContents.getAdminUrl()+"/sellingPoint?" + "&userId=" + FinalContents.getUserID() + "&talkToolId=" + talkToolId, content.getText().toString(), FinalContents.getImageUrl() + houseDataData.getPropertyHouseList().get(0).getShareIcon(), FinalContents.getAdminUrl()+"/sellingPoint?" + "&userId=" + FinalContents.getUserID() + "&talkToolId=" + talkToolId);
         }
     }
 

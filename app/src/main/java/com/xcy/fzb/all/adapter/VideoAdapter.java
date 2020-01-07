@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.SellingPointsBean;
+import com.xcy.fzb.all.utils.Item_Share;
 
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>{
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FinalContents.showShare(rows.get(position).getTitle(),FinalContents.getAdminUrl()+"/VideoSharing?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),rows.get(position).getContent(),FinalContents.getImageUrl()+rows.get(position).getShareIcon(),FinalContents.getAdminUrl()+"/VideoSharing?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),context);
+                Item_Share.initDaown(context,rows.get(position).getTitle(),FinalContents.getAdminUrl()+"/VideoSharing?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),rows.get(position).getContent(),FinalContents.getImageUrl()+rows.get(position).getShareIcon(),FinalContents.getAdminUrl()+"/VideoSharing?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId());
             }
         });
     }

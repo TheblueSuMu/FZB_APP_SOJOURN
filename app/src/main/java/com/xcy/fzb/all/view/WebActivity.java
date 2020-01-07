@@ -30,6 +30,7 @@ import com.xcy.fzb.all.modle.ProjectTalkToolShareBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.Item_Share;
 import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.File;
@@ -196,7 +197,7 @@ public class WebActivity extends AllActivity {
                         share.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectTalkToolShareBean.getData().getTalkToolInfo().getTitle(), webUrl, titleUrl, FinalContents.getImageUrl() + projectTalkToolShareBean.getData().getTalkToolInfo().getShareIcon(), webUrl, WebActivity.this);
+                                Item_Share.initDaown(WebActivity.this,projectTalkToolShareBean.getData().getTalkToolInfo().getTitle(), webUrl, titleUrl, FinalContents.getImageUrl() + projectTalkToolShareBean.getData().getTalkToolInfo().getShareIcon(), webUrl);
                             }
                         });
 

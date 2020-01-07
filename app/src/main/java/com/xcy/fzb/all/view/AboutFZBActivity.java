@@ -37,6 +37,7 @@ import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.Item_Share;
 import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -149,7 +150,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
                 break;
 //                TODO 分享
             case R.id.fzb_fx:
-                FinalContents.showShare("房app下载", FinalContents.getAdminUrl()+"/fangfang/static/down/index.html", "app下载", FinalContents.getImageUrl()+"/fangfang/static/common/images/logo.png", FinalContents.getAdminUrl()+"/fangfang/static/down/index.html", AboutFZBActivity.this);
+                Item_Share.initDaown(AboutFZBActivity.this,"房app下载", FinalContents.getAdminUrl()+"/fangfang/static/down/index.html", "app下载", FinalContents.getImageUrl()+"/fangfang/static/common/images/logo.png", FinalContents.getAdminUrl()+"/fangfang/static/down/index.html");
                 break;
 //                TODO 检测版本
             case R.id.fzb_jc:
@@ -211,13 +212,6 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(AboutFZBActivity.this);
                             builder1.setTitle("提示");
                             builder1.setMessage(appPackageBean.getData().getComment());
-                            builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    AllActivity.exit = true;
-                                    finish();
-                                }
-                            });
                             builder1.setPositiveButton("更新", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

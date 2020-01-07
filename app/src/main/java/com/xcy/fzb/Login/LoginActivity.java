@@ -1386,13 +1386,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
                             builder1.setTitle("提示");
                             builder1.setMessage(appPackageBean.getData().getComment());
-                            builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    AllActivity.exit = true;
-                                    finish();
-                                }
-                            });
                             builder1.setPositiveButton("更新", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

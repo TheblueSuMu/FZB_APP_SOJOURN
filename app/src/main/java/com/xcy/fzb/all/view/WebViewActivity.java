@@ -23,6 +23,7 @@ import com.xcy.fzb.all.modle.NewsDetailsBean;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
+import com.xcy.fzb.all.utils.Item_Share;
 import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -142,8 +143,7 @@ public class WebViewActivity extends AllActivity {
                                 public void onClick(View view) {
                                     Log.i("轮播图详情数据","点击分享");
                                     Log.i("轮播图详情数据","图片"+FinalContents.getImageUrl()+newsDetailsBean.getData().getShareImg());
-
-                                    FinalContents.showShare(newsDetailsBean.getData().getTitle(),FinalContents.getAdminUrl()+"/NewsSharing?userId="+FinalContents.getUserID()+"&id="+FinalContents.getNewID(),newsDetailsBean.getData().getProject().getProjectName(),FinalContents.getImageUrl()+newsDetailsBean.getData().getShareImg(),FinalContents.getAdminUrl()+"/NewsSharing?userId="+FinalContents.getUserID()+"&id="+FinalContents.getNewID(),WebViewActivity.this);
+                                    Item_Share.initDaown(WebViewActivity.this,newsDetailsBean.getData().getTitle(),FinalContents.getAdminUrl()+"/NewsSharing?userId="+FinalContents.getUserID()+"&id="+FinalContents.getNewID(),newsDetailsBean.getData().getProject().getProjectName(),FinalContents.getImageUrl()+newsDetailsBean.getData().getShareImg(),FinalContents.getAdminUrl()+"/NewsSharing?userId="+FinalContents.getUserID()+"&id="+FinalContents.getNewID());
                                 }
                             });
                             web_call.setOnClickListener(new View.OnClickListener() {

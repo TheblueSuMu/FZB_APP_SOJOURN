@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.SellingPointsBean;
+import com.xcy.fzb.all.utils.Item_Share;
+import com.xcy.fzb.all.view.AboutFZBActivity;
 import com.xcy.fzb.all.view.WebActivity;
 
 import java.util.List;
@@ -50,7 +52,8 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.ViewHolder
         holder.project_points_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FinalContents.showShare(rows.get(position).getTitle(),FinalContents.getAdminUrl()+"/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),rows.get(position).getContent(),FinalContents.getImageUrl()+rows.get(position).getImg(),FinalContents.getAdminUrl()+"/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),context);
+                Item_Share.initDaown(context,rows.get(position).getTitle(),FinalContents.getAdminUrl()+"/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId(),rows.get(position).getContent(),FinalContents.getImageUrl()+rows.get(position).getImg(),FinalContents.getAdminUrl()+"/sellingPoint?"+"&userId="+FinalContents.getUserID()+"&talkToolId="+rows.get(position).getId());
+
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -4,8 +4,14 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
+import android.view.View;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.modle.ReportNoReadListBean;
+import com.xcy.fzb.all.modle.ShareLogSaveBean;
+import com.xcy.fzb.all.service.MyService;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -13,11 +19,22 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.wechat.favorite.WechatFavorite;
 import cn.sharesdk.wechat.friends.Wechat;
+import cn.sharesdk.wechat.moments.WechatMoments;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * 创建：Sun
@@ -1039,11 +1056,12 @@ public class FinalContents {
         FinalContents.cityID = cityID;
     }
 
-    public static void showShare(String title, String titleUrl, String text, String imagePath, String url, Context context) {
+    public static void showShare(String platform,String title, String titleUrl, String text, String imagePath, String url, Context context) {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
 
+        oks.setPlatform(platform);
         // title标题，微信、QQ和QQ空间等平台使用
         oks.setTitle(title);
         // titleUrl QQ和QQ空间跳转链接
@@ -1057,19 +1075,71 @@ public class FinalContents {
             Bitmap bmp = BitmapFactory.decodeResource(res, R.mipmap.logo_garden);
             oks.setImageData(bmp);
         }else if(imagePath != null){
-//            Bitmap bitmap = returnBitMap(imagePath);
-//            byte[] bytes = bitmap2Bytes(bitmap, 32);
-//            Bitmap bitmap2 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             oks.setImageUrl(imagePath); //网络地址
         }else if (imagePath.equals("") || imagePath == null ){
             oks.setImageUrl(FinalContents.getImageUrl()+"/fangfang/static/common/images/logo.png");
         }
+        oks.setCallback(new PlatformActionListener() {
+            @Override
+            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+                // TODO 分享成功后的操作或者提示
+                if (platform.equals(WechatMoments.NAME)) {
+                    initShare("微信朋友圈");
+                } else if (platform.equals(Wechat.NAME)) {
+                    initShare("微信朋友");
+                }else if (platform.equals(WechatFavorite.NAME)){
+                    initShare("微信收藏");
+                }
+            }
+
+            @Override
+            public void onError(Platform platform, int i, Throwable throwable) {
+                // TODO 失败，打印throwable为错误码
+            }
+
+            @Override
+            public void onCancel(Platform platform, int i) {
+                // TODO 分享取消操作
+            }
+        });
         // url在微信、微博，Facebook等平台中使用
         oks.setUrl(url);
         // 启动分享GUI
         oks.show(context);
 
-        Platform weibo = ShareSDK.getPlatform(Wechat.NAME);
+
+    }
+
+    public static void initShare(String shareType){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<ShareLogSaveBean> clientFragment = fzbInterface.getShareLogSave(shareType,FinalContents.getProjectID(),FinalContents.getUserID());
+        clientFragment.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ShareLogSaveBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ShareLogSaveBean shareLogSaveBean) {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("分享", "分享记录错误信息" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     /**

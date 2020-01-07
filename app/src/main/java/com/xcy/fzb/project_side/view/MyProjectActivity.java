@@ -71,7 +71,6 @@ public class MyProjectActivity extends AllActivity implements View.OnClickListen
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
             Button all_no_reload = findViewById(R.id.all_no_reload);
-
             all_no_network.setVisibility(View.VISIBLE);
             all_no_reload.setOnClickListener(new View.OnClickListener() {
                 @Override

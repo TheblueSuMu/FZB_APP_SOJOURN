@@ -61,6 +61,10 @@ public interface MyService {
     @POST("layersSelect/getSysUser")
     Observable<GWDataBean> getGWDataBean(@Query("userId") String userId, @Query("sysUserId") String sysUserId);
 
+    //分享记录
+    @POST("commonUpdate/shareLogSave")
+    Observable<ShareLogSaveBean> getShareLogSave(@Query("shareType") String shareType,@Query("projectId") String projectId,@Query("userId") String userId);
+
     //经纪人根据用户Id获取用户信息
     @POST("commonSelect/getUserInfo")
     Observable<UserMessageBean> getUserMessage(@Query("userId") String userId);

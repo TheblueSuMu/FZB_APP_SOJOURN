@@ -61,6 +61,7 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.DetailsData;
+import com.xcy.fzb.all.utils.Item_Share;
 import com.xcy.fzb.all.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -974,14 +975,17 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         share.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", ProjectDetails.this);
+//                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", ProjectDetails.this);
+                                Item_Share.initDaown(ProjectDetails.this,projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1");
                             }
                         });
 
                         project_details_share_all.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", ProjectDetails.this);
+//                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", ProjectDetails.this);
+                                Item_Share.initDaown(ProjectDetails.this,projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1");
+
                             }
                         });
 
