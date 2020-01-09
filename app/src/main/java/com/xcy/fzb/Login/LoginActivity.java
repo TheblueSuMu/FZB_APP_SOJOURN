@@ -688,6 +688,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
                         }else {
+                            login_avi.setVisibility(View.GONE);
+                            login_avi_rl.setVisibility(View.GONE);
                             ToastUtil.showLongToast(LoginActivity.this,"无权限登录");
                         }
                         type = "2";
@@ -805,6 +807,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
                         }else {
+                            login_avi.setVisibility(View.GONE);
+                            login_avi_rl.setVisibility(View.GONE);
                             ToastUtil.showLongToast(LoginActivity.this,"无权限登录");
                         }
                         type = "1";
@@ -1212,6 +1216,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
     }
 
     private void iii() {
+        login_select_password.setVisibility(View.GONE);
         login_et_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         login_tv_username.setText("手机号");
         login_tv_password.setText("验证码");
@@ -1225,6 +1230,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
     }
 
     private void ccc() {
+        login_select_password.setVisibility(View.VISIBLE);
         login_et_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
         login_tv_username.setText("账号");
         login_tv_password.setText("密码");
@@ -1626,6 +1632,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
                         }else {
+                            login_avi.setVisibility(View.GONE);
+                            login_avi_rl.setVisibility(View.GONE);
                             ToastUtil.showLongToast(LoginActivity.this,"无权限登录");
                         }
                     }

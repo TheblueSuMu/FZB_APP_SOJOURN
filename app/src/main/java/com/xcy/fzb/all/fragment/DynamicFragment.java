@@ -84,21 +84,38 @@ public class DynamicFragment extends Fragment {
     private static final int SAVE_SUCCESS = 0;//保存图片成功
     private static final int SAVE_FAILURE = 1;//保存图片失败
     private static final int SAVE_BEGIN = 2;//开始保存图片
+    int countNum1 = 0;
+    int countNum2 = 0;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SAVE_BEGIN:
-                    Toast.makeText(getContext(), "开始保存图片...", Toast.LENGTH_SHORT).show();
+                    if(countNum1 == 0){
+                        ToastUtil.showToast(getContext(), "开始保存图片...");
+                    }
+                    countNum1++;
+                    if(countNum1 == a.length){
+                        countNum1 = 0;
+                    }
 //                    mSaveBtn.setClickable(false);
                     break;
                 case SAVE_SUCCESS:
-                    Toast.makeText(getContext(), "图片保存成功,请到相册查找...", Toast.LENGTH_SHORT).show();
+                    if(countNum2 == 0){
+                        ToastUtil.showToast(getContext(), "图片保存成功,请到相册查找...");
+                    }
+                    countNum2++;
+                    Log.i("图片保存","countNum2：" + countNum2);
+                    Log.i("图片保存","a.length：" + a.length);
+                    if(countNum2 == a.length){
+                        countNum2 = 0;
+                    }
+//                    mSaveB
                     num = 1;
 //                    mSaveBtn.setClickable(true);
                     break;
                 case SAVE_FAILURE:
-                    Toast.makeText(getContext(), "图片保存失败,请稍后再试...", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(getContext(), "图片保存失败,请稍后再试...");
 //                    mSaveBtn.setClickable(true);
                     break;
             }
@@ -107,6 +124,7 @@ public class DynamicFragment extends Fragment {
     private View view;
     private String url;
     private ImageView all_no_information;
+    private String[] a;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -219,6 +237,7 @@ public class DynamicFragment extends Fragment {
                                     Intent intent = new Intent(getContext(), MessageCommentActivity.class);
                                     intent.putExtra("headPortrait", list.get(position).getCreateBy().getPhoto());
                                     intent.putExtra("title", list.get(position).getCreateBy().getName());
+                                    intent.putExtra("time", list.get(position).getCreateBy().getCreateDate());
                                     intent.putExtra("message", list.get(position).getContent());
                                     intent.putExtra("img", list.get(position).getImgUrl());
                                     intent.putExtra("isLike", list.get(position).getIsLike());
@@ -242,7 +261,7 @@ public class DynamicFragment extends Fragment {
 
                                     } else {
                                         String UrlImage = list.get(position).getImgUrl();
-                                        final String[] a = list.get(position).getImgUrl().split("[|]");
+                                        a = list.get(position).getImgUrl().split("[|]");
                                         for (int i = 0; i < a.length; i++) {
                                             Log.i("分割图片", "图片：" + a[i]);
                                             final int finalI = i;

@@ -30,6 +30,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.fragment.AllFragment;
 import com.xcy.fzb.all.modle.TotalBean;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.EconomicCircleParticularsActivity;
 import com.xcy.fzb.broker.adapter.TotalAdapter;
 
@@ -64,20 +65,34 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
     private static final int SAVE_SUCCESS = 0;//保存图片成功
     private static final int SAVE_FAILURE = 1;//保存图片失败
     private static final int SAVE_BEGIN = 2;//开始保存图片
+    int countNum1 = 0;
+    int countNum2 = 0;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case SAVE_BEGIN:
-                    Toast.makeText(getContext(), "开始保存图片...", Toast.LENGTH_SHORT).show();
+                    if(countNum1 == 0){
+                        ToastUtil.showToast(getContext(), "开始保存图片...");
+                    }
+                    countNum1++;
+                    if(countNum1 == a.length){
+                        countNum1 = 0;
+                    }
 //                    mSaveBtn.setClickable(false);
                     break;
                 case SAVE_SUCCESS:
-                    Toast.makeText(getContext(), "图片保存成功,请到相册查找...", Toast.LENGTH_SHORT).show();
+                    if(countNum2 == 0){
+                        ToastUtil.showToast(getContext(), "图片保存成功,请到相册查找...");
+                    }
+                    countNum2++;
+                    if(countNum2 == a.length){
+                        countNum2 = 0;
+                    }
 //                    mSaveBtn.setClickable(true);
                     break;
                 case SAVE_FAILURE:
-                    Toast.makeText(getContext(), "图片保存失败,请稍后再试...", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showToast(getContext(), "图片保存失败,请稍后再试...");
 //                    mSaveBtn.setClickable(true);
                     break;
             }
@@ -98,6 +113,7 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
     private String url;
     private ImageView all_no_information;
     private PtrClassicFrameLayout total_ptrclass;
+    private String[] a;
 
     @Nullable
     @Override
@@ -209,7 +225,7 @@ public class TotalFragment extends AllFragment implements TotalAdapter.EPinLun, 
 
         }else {
             String UrlImage = hotlist.get(position).getImgUrl();
-            final String[] a = hotlist.get(position).getImgUrl().split("[|]");
+            a = hotlist.get(position).getImgUrl().split("[|]");
             for (int i = 0; i < a.length; i++) {
                 Log.i("分割图片", "图片：" + a[i]);
                 final int finalI = i;
