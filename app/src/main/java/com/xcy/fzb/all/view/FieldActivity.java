@@ -254,7 +254,6 @@ public class FieldActivity extends AppCompatActivity implements View.OnClickList
                         return;
                     }
 
-
                     if (field_et3.getText().toString().equals("")) {
                         ToastUtil.showToast(this, "请输入手机号");
                         return;
@@ -262,6 +261,11 @@ public class FieldActivity extends AppCompatActivity implements View.OnClickList
 
                     if (field_et4.getText().toString().equals("")) {
                         ToastUtil.showToast(this, "请输入身份证号码");
+                        return;
+                    }
+
+                    if (field_et4.getText().toString().length() < 18){
+                        ToastUtil.showToast(this, "请输入正确身份证号码");
                         return;
                     }
 

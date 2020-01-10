@@ -48,6 +48,7 @@ import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
 import com.xcy.fzb.all.view.MapActivity;
 import com.xcy.fzb.all.view.ProjectDetails;
+import com.xcy.fzb.all.view.ReportActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -172,7 +173,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     String tag = "1";
     private String string;
     private Date select;
-
+    private Date endselect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -351,7 +352,8 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-
+        select = calendar.getTime();
+        endselect = calendar.getTime();
         string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
         details_the_project_end_time1.setText("<" + string);
         details_the_project_end_time2.setText("-" + string + " >");
@@ -561,9 +563,10 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                if (select.before(date)) {
+                if (select.after(date)) {
                     ToastUtil.showLongToast(DetailsTheProjectEndActivity.this,"开始时间不能大于结束时间");
                 } else {
+                    endselect = date;
                     afterDate3 = getTime2(date);
                     details_the_project_end_time6.setText("-" + getTime2(date) + " >");
                     initViewData3();
@@ -723,6 +726,11 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
     //TODO 详情页趋势数据赋值
     private void initViewData3() {
+        if (select.after(endselect)) {
+            ToastUtil.showLongToast(DetailsTheProjectEndActivity.this,"开始时间不能大于结束时间");
+            return;
+        }
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());

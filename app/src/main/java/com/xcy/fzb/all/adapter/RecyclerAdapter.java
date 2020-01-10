@@ -22,6 +22,7 @@ import com.xcy.fzb.all.modle.HotBean;
 import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.all.view.ProjectDetails;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -70,7 +71,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         String ids = beanList.get(position).getProductFeature();//从pd里取出字符串
         List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
-
+        List tag = new ArrayList();
+        if (tags.size() > 4) {
+            for (int i = 0;i < 4;i++){
+                tag.add(tags.get(i));
+            }
+        }else {
+            for (int i = 0;i < tags.size();i++){
+                tag.add(tags.get(i));
+            }
+        }
         Log.i("2222", "标签" + beanList.get(position).getProductFeature());
 
         if (beanList.get(position).getProductFeature().equals("")) {
@@ -78,7 +88,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         } else {
             holder.tagView.setVisibility(View.VISIBLE);
             holder.tagView.setTheme(ColorFactory.NONE);
-            holder.tagView.setTags(tags);
+            holder.tagView.setTags(tag);
         }
 
 //        if(FinalContents.getZyHome().equals("1")){

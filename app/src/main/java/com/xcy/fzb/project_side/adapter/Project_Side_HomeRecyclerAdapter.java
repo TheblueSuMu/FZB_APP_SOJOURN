@@ -24,6 +24,7 @@ import com.xcy.fzb.all.persente.SharItOff;
 import com.xcy.fzb.project_side.view.DetailsTheProjectEndActivity;
 import com.xcy.fzb.project_side.view.MessageIssueActivity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -73,7 +74,16 @@ public class Project_Side_HomeRecyclerAdapter extends RecyclerView.Adapter<Proje
 
         String ids = beanList.get(position).getProductFeature();//从pd里取出字符串
         List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
-
+        List tag = new ArrayList();
+        if (tags.size() > 4) {
+            for (int i = 0;i < 4;i++){
+                tag.add(tags.get(i));
+            }
+        }else {
+            for (int i = 0;i < tags.size();i++){
+                tag.add(tags.get(i));
+            }
+        }
         if (beanList.get(position).getOnlineState().equals("0")) {
             holder.item_OnlineState.setVisibility(View.VISIBLE);
         } else if (beanList.get(position).getOnlineState().equals("1")){
@@ -85,7 +95,7 @@ public class Project_Side_HomeRecyclerAdapter extends RecyclerView.Adapter<Proje
         }else {
             holder.tagView.setVisibility(View.VISIBLE);
             holder.tagView.setTheme(ColorFactory.NONE);
-            holder.tagView.setTags(tags);
+            holder.tagView.setTags(tag);
         }
 
         if (beanList.get(position).getIsgroup().equals("1")) {

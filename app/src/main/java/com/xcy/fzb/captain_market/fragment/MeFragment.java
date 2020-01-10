@@ -8,9 +8,11 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -290,37 +292,45 @@ public class MeFragment extends AllFragment implements View.OnClickListener, Swi
         } else if (id == R.id.my_exit) {
 //            TODO 退出登录
             AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-            View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.binding_report, null, false);
-            builder1.setView(inflate);
-            TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
-            TextView report_binding_confirm_tv = inflate.findViewById(R.id.report_binding_confirm_tv);
-            TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
-            RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
-            RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
-            report_binding_title.setText("确定要退出程序吗?");//内容
-            report_binding_confirm_tv.setText("确定");
-            report_binding_cancel_tv.setText("取消");
-            report_binding_title.setTextColor(Color.parseColor("#111111"));
-            report_binding_cancel_tv.setTextColor(Color.parseColor("#334485"));
-            report_binding_confirm_tv.setTextColor(Color.parseColor("#334485"));
-            final AlertDialog show1 = builder1.show();
-            report_binding_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    show1.dismiss();
-                }
-            });
-            report_binding_confirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FinalContents.setIFSP("1");
-                    intent = new Intent(getContext(), LoginActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                    FinalContents.setDengLu("0");
-                    show1.dismiss();
-                }
-            });
+                View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.binding_report, null, false);
+                builder1.setView(inflate);
+                final AlertDialog show1 = builder1.show();
+                show1.getWindow().setBackgroundDrawableResource(R.drawable.report_shape);
+
+                WindowManager m = getActivity().getWindowManager();
+                Display d = m.getDefaultDisplay();
+                WindowManager.LayoutParams attributes = show1.getWindow().getAttributes();
+                attributes.width = (int)(d.getWidth() - 200);
+                show1.getWindow().setAttributes(attributes);
+                show1.getWindow().setBackgroundDrawableResource(R.drawable.report_shape);
+                TextView report_binding_title = inflate.findViewById(R.id.report_binding_title);
+                TextView report_binding_confirm_tv = inflate.findViewById(R.id.report_binding_confirm_tv);
+                TextView report_binding_cancel_tv = inflate.findViewById(R.id.report_binding_cancel_tv);
+                RelativeLayout report_binding_cancel = inflate.findViewById(R.id.report_binding_cancel);
+                RelativeLayout report_binding_confirm = inflate.findViewById(R.id.report_binding_confirm);
+                report_binding_title.setText("确定要退出程序吗?");//内容
+                report_binding_confirm_tv.setText("确定");
+                report_binding_cancel_tv.setText("取消");
+                report_binding_title.setTextColor(Color.parseColor("#111111"));
+                report_binding_cancel_tv.setTextColor(Color.parseColor("#334485"));
+                report_binding_confirm_tv.setTextColor(Color.parseColor("#334485"));
+                report_binding_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        show1.dismiss();
+                    }
+                });
+                report_binding_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FinalContents.setIFSP("1");
+                        intent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                        FinalContents.setDengLu("0");
+                        show1.dismiss();
+                    }
+                });
 
         }
 
