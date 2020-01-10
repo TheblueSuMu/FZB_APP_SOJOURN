@@ -511,6 +511,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                 break;
             case R.id.tv_user_login:
                 login_avi.show();
+                login_avi.setVisibility(View.VISIBLE);
                 login_avi_rl.setVisibility(View.VISIBLE);
                 boolean networkAvailable = CommonUtil.isNetworkAvailable(this);
                 if (networkAvailable) {
@@ -528,6 +529,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                 break;
             case R.id.tv_wechat:
                 login_avi.show();
+                login_avi.setVisibility(View.VISIBLE);
                 login_avi_rl.setVisibility(View.VISIBLE);
                 Platform plat = ShareSDK.getPlatform(Wechat.NAME);
                 plat.removeAccount(true); //移除授权状态和本地缓存，下次授权会重新授权
@@ -655,10 +657,14 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         passWord = login_et_password.getText().toString();
         if (userName.equals("")) {
             ToastUtil.showLongToast(this, "请输入手机号");
+            login_avi.setVisibility(View.GONE);
+            login_avi_rl.setVisibility(View.GONE);
             return;
         }
         if (passWord.equals("")) {
             ToastUtil.showLongToast(this, "请输入验证码");
+            login_avi.setVisibility(View.GONE);
+            login_avi_rl.setVisibility(View.GONE);
             return;
         }
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -697,6 +703,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+
                         login_avi.setVisibility(View.GONE);
                         login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "请确认您输入的验证码或手机号是否正确");
@@ -762,16 +769,22 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         userName = login_et_username.getText().toString();
         passWord = login_et_password.getText().toString();
         if (userName.equals("")) {
+            login_avi.setVisibility(View.GONE);
+            login_avi_rl.setVisibility(View.GONE);
             ToastUtil.showLongToast(this, "请输入账号");
             return;
         }
         if (passWord.equals("")) {
+            login_avi.setVisibility(View.GONE);
+            login_avi_rl.setVisibility(View.GONE);
             ToastUtil.showLongToast(this, "请输入密码");
             return;
         }
         if (checkBoxed.isChecked()) {
             initlogin();
         } else {
+            login_avi.setVisibility(View.GONE);
+            login_avi_rl.setVisibility(View.GONE);
             ToastUtil.showLongToast(this, "请同意服务条款后进行登录");
         }
     }
@@ -807,6 +820,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
                         }else {
+
                             login_avi.setVisibility(View.GONE);
                             login_avi_rl.setVisibility(View.GONE);
                             ToastUtil.showLongToast(LoginActivity.this,"无权限登录");
@@ -816,6 +830,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+
                         login_avi.setVisibility(View.GONE);
                         login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "请输入正确的账户或用户名");
@@ -909,6 +924,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+
                         login_avi.setVisibility(View.GONE);
                         login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
@@ -1063,6 +1079,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+
                         login_avi.setVisibility(View.GONE);
                         login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
@@ -1202,6 +1219,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
+
                         login_avi.setVisibility(View.GONE);
                         login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "您输入的账号或密码有误");
@@ -1632,6 +1650,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
                         }else {
+
                             login_avi.setVisibility(View.GONE);
                             login_avi_rl.setVisibility(View.GONE);
                             ToastUtil.showLongToast(LoginActivity.this,"无权限登录");
