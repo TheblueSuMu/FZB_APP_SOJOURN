@@ -26,6 +26,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.CircleBean;
 import com.xcy.fzb.all.modle.EconomicCircleBean;
 import com.xcy.fzb.all.modle.TotalZanBean;
+import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -282,11 +283,13 @@ public class EconomicCircleParticularsActivity extends AllActivity implements Vi
     @SuppressLint("WrongConstant")
     private void initLinear() {
         particulars_xiao_size.setText("全部" + commentList.size() + "条评论");
-        LinearLayoutManager manager = new LinearLayoutManager(EconomicCircleParticularsActivity.this);
+        MyLinearLayoutManager manager = new MyLinearLayoutManager(EconomicCircleParticularsActivity.this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+        manager.setScrollEnabled(false);
         particulars_rv_comment.setLayoutManager(manager);
 //        TODO 适配器
         adapter = new CommentListAdapter();
+        particulars_rv_comment.setNestedScrollingEnabled(false);
         adapter.setCommentList(commentList);
         particulars_rv_comment.setAdapter(adapter);
         whehter = true;

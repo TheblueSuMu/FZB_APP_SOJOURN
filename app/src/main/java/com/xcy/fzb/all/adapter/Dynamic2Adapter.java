@@ -228,10 +228,11 @@ public class Dynamic2Adapter extends RecyclerView.Adapter<Dynamic2Adapter.ViewHo
             public void onClick(View v) {
                 FinalContents.setTargetId(list.get(position).getId());
                 Log.i("MyCL", "ID：" + list.get(position).getId());
+                Log.i("时间", "time：" + list.get(position).getCreateDate());
                 Intent intent = new Intent(holder.itemView.getContext(), MessageCommentActivity.class);
                 intent.putExtra("headPortrait", list.get(position).getCreateBy().getPhoto());
                 intent.putExtra("title", list.get(position).getCreateBy().getName());
-                intent.putExtra("time", list.get(position).getCreateBy().getCreateDate());
+                intent.putExtra("time", list.get(position).getCreateDate());
                 intent.putExtra("message", list.get(position).getContent());
                 intent.putExtra("img", list.get(position).getImgUrl());
                 intent.putExtra("isLike", list.get(position).getIsLike());

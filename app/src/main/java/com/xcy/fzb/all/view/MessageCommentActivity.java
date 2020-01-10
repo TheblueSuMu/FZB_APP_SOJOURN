@@ -28,6 +28,7 @@ import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.LikeNumBean;
 import com.xcy.fzb.all.modle.CommentBean;
 import com.xcy.fzb.all.modle.DynamicDetailsBean;
+import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -66,7 +67,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
     private String isLike;
     int num = 0;
     private TextView comment_time;
-    private String time;
+    private String time = "";
     private RecyclerView comment_img_rv;
 
     @Override
@@ -181,6 +182,7 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
             comment_message.setVisibility(View.VISIBLE);
         }
 
+        Log.i("时间", "2time：" + time);
         comment_title.setText(title);
         comment_time.setText(time);
         comment_message.setText(message);
@@ -258,13 +260,14 @@ public class MessageCommentActivity extends AllActivity implements View.OnClickL
 
                     @Override
                     public void onNext(DynamicDetailsBean dynamicDetailsBean) {
-                        LinearLayoutManager manager = new LinearLayoutManager(MessageCommentActivity.this);
+                        MyLinearLayoutManager manager = new MyLinearLayoutManager(MessageCommentActivity.this);
                         manager.setOrientation(LinearLayoutManager.VERTICAL);
+                        manager.setScrollEnabled(false);
                         comment_rv.setLayoutManager(manager);
-
                         commentList = dynamicDetailsBean.getData().getCommentList();
                         particulars_xiao_pinglun.setText("全部" + commentList.size() + "条评论");
                         adapter = new MessageCommentAdapter();
+                        comment_rv.setNestedScrollingEnabled(false);
                         adapter.setCommentList(commentList);
                         comment_rv.setAdapter(adapter);
 
