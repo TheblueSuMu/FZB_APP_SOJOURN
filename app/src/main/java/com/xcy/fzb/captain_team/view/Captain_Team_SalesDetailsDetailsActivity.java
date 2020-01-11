@@ -810,8 +810,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     sales_details_details_ll1.setVisibility(View.GONE);
                 } else if (sales_details_details_rb4.isChecked() == true) {
                     type = "3";
-                    startTime = string;
-                    endTime = string;
+//                    startTime = string;
+//                    endTime = string;
                     initDate();
                     initDataStatistics();
                     NewlyIncreased.setTag("3");
@@ -851,8 +851,8 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
                     sales_details_details_ll1.setVisibility(View.GONE);
                 } else if (sales_details_details_rb4.isChecked() == true) {
                     type = "3";
-                    startTime = string;
-                    endTime = string;
+//                    startTime = string;
+//                    endTime = string;
                     initDate();
                     initDataStatistics();
                     NewlyIncreased.setTag("3");

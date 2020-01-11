@@ -710,8 +710,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
-                    startDate1 = string;
-                    endDate1 = string;
+//                    startDate1 = string;
+//                    endDate1 = string;
                     NewlyIncreased.setTag("3");
                     initDataStatistics();
                     market_time_ll10.setVisibility(View.VISIBLE);
@@ -750,8 +750,8 @@ public class TeamFragment extends Fragment implements View.OnClickListener, MyVi
                     market_time_ll10.setVisibility(View.GONE);
                 } else if (market_time_rb4.isChecked() == true) {
                     type1 = "3";
-                    startDate1 = string;
-                    endDate1 = string;
+//                    startDate1 = string;
+//                    endDate1 = string;
                     NewlyIncreased.setTag("3");
                     initDataStatistics();
                     market_time_ll10.setVisibility(View.VISIBLE);

@@ -3,6 +3,7 @@ package com.xcy.fzb.project_side.view;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.CityContents;
@@ -863,6 +865,13 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             lineDataSet.setCircleColor(Color.parseColor("#ce7951"));
             lineDataSet.setCircleHoleColor(Color.parseColor("#FFFFFF"));
             lineDataSet.setValueTextColor(Color.parseColor("#666666")); //  设置线形图顶部文本颜色
+            lineDataSet.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value, com.github.mikephil.charting.data.Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                    int n = (int) value;
+                    return n+"";
+                }
+            });
             lineDataSet.setLineWidth(1);
             lineDataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
             lineDataSet.setHighlightEnabled(false);
@@ -1130,6 +1139,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 } else if (details_the_project_end_rb4.isChecked() == true) {
                     type1 = "3";
                     NewlyIncreased.setTag("3");
+                    initViewData2();
                     details_the_project_end_time_ll1.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -1168,6 +1178,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 } else if (details_the_project_end_rb4.isChecked() == true) {
                     type1 = "3";
                     NewlyIncreased.setTag("3");
+                    initViewData2();
                     details_the_project_end_time_ll1.setVisibility(View.VISIBLE);
                 }
                 break;

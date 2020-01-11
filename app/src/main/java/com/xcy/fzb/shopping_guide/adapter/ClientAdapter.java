@@ -44,8 +44,6 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder
         Glide.with(context).load(FinalContents.getImageUrl() + list.get(position).getCustomerImg()).into(holder.item_client_icon);
         holder.item_client_status.setText(list.get(position).getStatusStr());
 
-
-
         if (list.get(position).getNoTrade().equals("")) {
             if (list.get(position).getStatus().equals("50")) {
                 holder.item_client_status.setTextColor(R.color.textcolor2);
@@ -76,13 +74,14 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder
         private ImageView item_client_icon;
         private TextView item_client_name;
         private TextView item_client_status;
-
+        ImageView client_item_unread;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             item_client_icon = itemView.findViewById(R.id.item_client_icon);
             item_client_name = itemView.findViewById(R.id.item_client_name);
             item_client_status = itemView.findViewById(R.id.item_client_status);
+            client_item_unread = itemView.findViewById(R.id.client_item_unread);
         }
     }
 }

@@ -1650,7 +1650,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
                         }else {
-
                             login_avi.setVisibility(View.GONE);
                             login_avi_rl.setVisibility(View.GONE);
                             ToastUtil.showLongToast(LoginActivity.this,"无权限登录");

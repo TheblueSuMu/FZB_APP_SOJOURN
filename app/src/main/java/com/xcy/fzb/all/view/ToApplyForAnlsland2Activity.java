@@ -199,7 +199,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
         });
     }
 
-    @SingleClick(1000)
+    @SingleClick(2000)
     @Override
     public void onClick(View view) {
 
@@ -344,6 +344,7 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
 
                     }
 
+                    @SingleClick
                     @Override
                     public void onNext(GetLandLineBean getLandLineBean) {
                         List<GetLandLineBean.DataBean> list = getLandLineBean.getData();
