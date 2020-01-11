@@ -324,10 +324,10 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         @Override
                         public void onNext(CheckBean checkBean) {
                             if (checkBean.getMsg().equals("成功")) {
-                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getData().getMessage());
                                 finish();
                             } else {
-                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getData().getMessage());
                                 finish();
                             }
                         }
@@ -362,10 +362,10 @@ public class CheckPendingActivity extends AllActivity implements View.OnClickLis
                         @Override
                         public void onNext(CheckBean checkBean) {
                             if (checkBean.getMsg().equals("成功")) {
-                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getData().getMessage());
                                 finish();
                             } else {
-                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getMsg());
+                                ToastUtil.showToast(CheckPendingActivity.this, checkBean.getData().getMessage());
                                 finish();
                             }
                         }
