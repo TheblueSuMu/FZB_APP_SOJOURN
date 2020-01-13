@@ -344,7 +344,6 @@ public class ToApplyForAnlsland2Activity extends AllActivity implements View.OnC
 
                     }
 
-                    @SingleClick
                     @Override
                     public void onNext(GetLandLineBean getLandLineBean) {
                         List<GetLandLineBean.DataBean> list = getLandLineBean.getData();

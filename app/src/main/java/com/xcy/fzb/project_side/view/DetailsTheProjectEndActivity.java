@@ -865,13 +865,6 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             lineDataSet.setCircleColor(Color.parseColor("#ce7951"));
             lineDataSet.setCircleHoleColor(Color.parseColor("#FFFFFF"));
             lineDataSet.setValueTextColor(Color.parseColor("#666666")); //  设置线形图顶部文本颜色
-            lineDataSet.setValueFormatter(new ValueFormatter() {
-                @Override
-                public String getFormattedValue(float value, com.github.mikephil.charting.data.Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-                    int n = (int) value;
-                    return n+"";
-                }
-            });
             lineDataSet.setLineWidth(1);
             lineDataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
             lineDataSet.setHighlightEnabled(false);
@@ -879,6 +872,13 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             lineDataSet.setValueTextSize(10);
             lineDataSet.setDrawValues(true);
             LineData lineData = new LineData();
+            lineData.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value, com.github.mikephil.charting.data.Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                    int n = (int) value;
+                    return n+"";
+                }
+            });
             lineData.addDataSet(lineDataSet);
             /******************LineData end********************/
 

@@ -36,6 +36,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.android.material.tabs.TabLayout;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
@@ -1682,6 +1683,13 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             lineDataSet.setValueTextSize(10);
             lineDataSet.setDrawValues(true);
             LineData lineData = new LineData();
+            lineData.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value, com.github.mikephil.charting.data.Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                    int n = (int) value;
+                    return n+"";
+                }
+            });
             lineData.addDataSet(lineDataSet);
             /******************LineData end********************/
 

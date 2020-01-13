@@ -136,30 +136,48 @@ public class MeFragment extends Fragment implements View.OnClickListener, SwipeR
                 break;
 //                TODO 清空缓存
             case R.id.empty_my_the_project_end:
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setMessage("确认清除缓存吗?");
-                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(getActivity());
+                View inflate2 = LayoutInflater.from(getActivity()).inflate(R.layout.binding_report, null, false);
+                builder2.setView(inflate2);
+                final AlertDialog show2 = builder2.show();
+                show2.getWindow().setBackgroundDrawableResource(R.drawable.report_shape);
+                WindowManager m2 = getActivity().getWindowManager();
+                Display d2 = m2.getDefaultDisplay();
+                WindowManager.LayoutParams attributes2 = show2.getWindow().getAttributes();
+                attributes2.width = (int)(d2.getWidth() - 200);
+                show2.getWindow().setAttributes(attributes2);
+                show2.getWindow().setBackgroundDrawableResource(R.drawable.report_shape);
+                TextView report_binding_title2 = inflate2.findViewById(R.id.report_binding_title);
+                TextView report_binding_confirm_tv2 = inflate2.findViewById(R.id.report_binding_confirm_tv);
+                TextView report_binding_cancel_tv2 = inflate2.findViewById(R.id.report_binding_cancel_tv);
+                RelativeLayout report_binding_cancel2 = inflate2.findViewById(R.id.report_binding_cancel);
+                RelativeLayout report_binding_confirm2 = inflate2.findViewById(R.id.report_binding_confirm);
+                report_binding_title2.setText("确认清除缓存吗?");//内容
+                report_binding_confirm_tv2.setText("确定");
+                report_binding_cancel_tv2.setText("取消");
+                report_binding_title2.setTextColor(Color.parseColor("#111111"));
+                report_binding_cancel_tv2.setTextColor(Color.parseColor("#334485"));
+                report_binding_confirm_tv2.setTextColor(Color.parseColor("#334485"));
+                report_binding_cancel2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(View v) {
+                        show2.dismiss();
+                    }
+                });
+                report_binding_confirm2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                         try {
                             String totalCacheSize = CleanDataUtils.getTotalCacheSize(getActivity());
                             CleanDataUtils.clearAllCache(getActivity());
                             ToastUtil.showLongToast(getContext(),"清理缓存成功,共清理了" + totalCacheSize + "内存");
                             my_tv_huancun.setText("0 M");
+                            show2.dismiss();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        Toast.makeText(getActivity(), "取消清理", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                AlertDialog show = builder.show();
-                show.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#334485"));
-                show.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#334485"));
                 break;
 //                TODO 退出登录
             case R.id.exit_my_the_project_end:
