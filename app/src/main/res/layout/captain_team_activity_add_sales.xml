@@ -381,11 +381,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
+                        android:background="#EEEEEE"/>
                 </RelativeLayout>
 
                 <RelativeLayout
-
+                    android:visibility="gone"
+                    android:id="@+id/add_sales_relative1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -406,12 +407,6 @@
                             android:textColor="#ff111111"
                             android:textSize="15sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="*"
-                            android:textColor="#AC1E26"
-                            android:textSize="15sp" />
                     </LinearLayout>
 
 
@@ -424,7 +419,7 @@
                         android:layout_marginRight="15dp"
                         android:background="#FFFFFF"
                         android:gravity="right"
-                        android:hint="123456"
+                        android:hint="         "
                         android:textColor="#ff666666"
                         android:textSize="15sp" />
 
@@ -432,7 +427,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
-                        android:background="#EEEEEE"></LinearLayout>
+                        android:background="#EEEEEE"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -511,6 +506,23 @@
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
                         android:background="#EEEEEE"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/add_sales_relative2"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="#FFFFFF">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:text="注:密码会自动生成,提交后账号密码短信发送哦! "
+                        android:textColor="#AC1E26"
+                        android:textSize="12sp" />
                 </RelativeLayout>
 
                 <Button

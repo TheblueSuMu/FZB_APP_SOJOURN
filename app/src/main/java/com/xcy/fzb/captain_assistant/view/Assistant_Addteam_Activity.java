@@ -84,6 +84,8 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
     private String id = "";
 
     int ifnum = 0;
+    private RelativeLayout add_tean_relative2;
+    private RelativeLayout add_team_relative;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -131,6 +133,9 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
 
         add_aconsultant_et3.setInputType(EditorInfo.TYPE_CLASS_PHONE);
 
+        add_tean_relative2 = findViewById(R.id.add_tean_relative2);
+        add_team_relative = findViewById(R.id.add_team_relative);
+
         add_aconsultant_btn = findViewById(R.id.add_team_btn);
         add_team_rb1 = findViewById(R.id.add_team_rb1);
         add_team_rb2 = findViewById(R.id.add_team_rb2);
@@ -156,10 +161,14 @@ public class Assistant_Addteam_Activity extends AppCompatActivity implements Vie
 
         if (FinalContents.getXiuGai().equals("修改团队长")) {
             add_aconsultant_title.setText("修改团队长");
+            add_team_relative.setVisibility(View.VISIBLE);
+            add_tean_relative2.setVisibility(View.GONE);
             initSysUser();
         } else if (FinalContents.getXiuGai().equals("添加团队长")) {
             add_aconsultant_title.setText("添加团队长");
             FinalContents.setRatioId("");
+            add_team_relative.setVisibility(View.GONE);
+            add_tean_relative2.setVisibility(View.VISIBLE);
 //            add_aconsultant_tv2.setText(FinalContents.getUserName());
 //            add_aconsultant_tv1.setText(FinalContents.getParentName());
         }

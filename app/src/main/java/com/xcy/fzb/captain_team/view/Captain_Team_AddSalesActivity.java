@@ -82,7 +82,8 @@ public class Captain_Team_AddSalesActivity extends AppCompatActivity implements 
     private Observable<BrokerSaveBean> userMessage;
     private Observable<TeamMemberBean> teamMemberBeane;
     private Observable<RatioByOwnerIdBean> userMessage1;
-
+    private RelativeLayout add_sales_relative2;
+    private RelativeLayout add_sales_relative1;
     int ifnum1 = 0;
     int ifnum2 = 0;
 
@@ -133,6 +134,9 @@ public class Captain_Team_AddSalesActivity extends AppCompatActivity implements 
         add_sales_et4 = findViewById(R.id.add_sales_et4);
         add_sales_et5 = findViewById(R.id.add_sales_et5);
 
+        add_sales_relative2 = findViewById(R.id.add_sales_relative2);
+        add_sales_relative1 = findViewById(R.id.add_sales_relative1);
+
         add_sales_btn = findViewById(R.id.add_sales_btn);
 
         add_sales_rl1 = findViewById(R.id.add_sales_rl1);
@@ -141,11 +145,15 @@ public class Captain_Team_AddSalesActivity extends AppCompatActivity implements 
         Log.i("销售啊啊啊", "修改销售：" + FinalContents.getXiuGai());
         if (FinalContents.getXiuGai().equals("修改销售")) {
             add_sales_title.setText("修改销售");
+            add_sales_relative1.setVisibility(View.VISIBLE);
+            add_sales_relative2.setVisibility(View.GONE);
             initSysUser();
         } else if (FinalContents.getXiuGai().equals("添加销售")) {
             add_sales_title.setText("添加销售");
             FinalContents.setAgentId("");
             FinalContents.setRatioId("");
+            add_sales_relative1.setVisibility(View.GONE);
+            add_sales_relative2.setVisibility(View.VISIBLE);
         }
 
         add_sales_img.setOnClickListener(this);

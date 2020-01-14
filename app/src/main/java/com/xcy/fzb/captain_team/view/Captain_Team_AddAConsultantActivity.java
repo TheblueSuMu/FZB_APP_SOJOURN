@@ -90,6 +90,8 @@ public class Captain_Team_AddAConsultantActivity extends AppCompatActivity imple
     int ifnum1 = 0;
     int ifnum2 = 0;
     int ifnum3 = 0;
+    private RelativeLayout add_aconsultant_relative2;
+    private RelativeLayout add_aconsultant_relative1;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -137,6 +139,10 @@ public class Captain_Team_AddAConsultantActivity extends AppCompatActivity imple
         add_aconsultant_et4 = findViewById(R.id.add_aconsultant_et4);
         add_aconsultant_et5 = findViewById(R.id.add_aconsultant_et5);
 
+        add_aconsultant_relative2 = findViewById(R.id.add_aconsultant_relative2);
+        add_aconsultant_relative1 = findViewById(R.id.add_aconsultant_relative1);
+
+
         add_aconsultant_btn = findViewById(R.id.add_aconsultant_btn);
 
         add_aconsultant_rl1 = findViewById(R.id.add_aconsultant_rl1);
@@ -164,10 +170,14 @@ public class Captain_Team_AddAConsultantActivity extends AppCompatActivity imple
 
         if (FinalContents.getXiuGai().equals("修改顾问")) {
             add_aconsultant_title.setText("修改顾问");
+            add_aconsultant_relative2.setVisibility(View.GONE);
+            add_aconsultant_relative1.setVisibility(View.VISIBLE);
             initSysUser();
         } else if (FinalContents.getXiuGai().equals("添加顾问")) {
             add_aconsultant_title.setText("添加顾问");
             FinalContents.setRatioId("");
+            add_aconsultant_relative2.setVisibility(View.VISIBLE);
+            add_aconsultant_relative1.setVisibility(View.GONE);
             if (FinalContents.getIdentity().equals("63")) {
                 Log.i("顾问", "63");
             } else {
@@ -550,8 +560,6 @@ public class Captain_Team_AddAConsultantActivity extends AppCompatActivity imple
                                         FinalContents.setOwnerId001("");
                                         FinalContents.setOwnerId002("");
                                         finish();
-                                    } else {
-
                                     }
                                 }
 
@@ -567,7 +575,8 @@ public class Captain_Team_AddAConsultantActivity extends AppCompatActivity imple
                             });
                 }
             }
-        } else {
+        }
+        else {
             if (add_aconsultant_et1.getText().toString().equals("") || add_aconsultant_et3.getText().toString().equals("") || add_aconsultant_et4.getText().toString().equals("") || add_aconsultant_tv1.getText().toString().equals("") || add_aconsultant_tv2.getText().toString().equals("") || add_aconsultant_tv3.getText().toString().equals("")) {
                 Toast.makeText(Captain_Team_AddAConsultantActivity.this, "请把数据填充完整再提交", Toast.LENGTH_SHORT).show();
             } else {
@@ -598,8 +607,6 @@ public class Captain_Team_AddAConsultantActivity extends AppCompatActivity imple
                                     FinalContents.setOwnerId001("");
                                     FinalContents.setOwnerId002("");
                                     finish();
-                                } else {
-
                                 }
                             }
 

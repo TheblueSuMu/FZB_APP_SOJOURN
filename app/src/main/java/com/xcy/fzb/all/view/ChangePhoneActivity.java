@@ -138,7 +138,7 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
 
                     @Override
                     public void onNext(CodeBean codeBean) {
-                        if (codeBean.getData().getStatus().equals("0")) {
+                        if (codeBean.getData().getStatus().equals("1")) {
                             CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(change_phone_yanzhengma_1, 60000, 1000);
                             mCountDownTimerUtils.start();
                         }

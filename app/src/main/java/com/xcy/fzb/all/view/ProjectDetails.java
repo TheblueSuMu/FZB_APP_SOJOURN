@@ -1660,9 +1660,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             barDataSet.setColor(Color.parseColor("#6596ba")); // 设置柱形图颜色
             barDataSet.setValueTextColor(Color.parseColor("#666666")); //  设置线形图顶部文本颜色
             barDataSet.setDrawValues(true);
-            barDataSet.setValueFormatter(new ValueFormatter() {
+             barDataSet.setValueFormatter(new ValueFormatter() {
                 @Override
-                public String getFormattedValue(float value, com.github.mikephil.charting.data.Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                public String getFormattedValue(float value) {
                     int n = (int) value;
                     return n+"";
                 }

@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,8 +16,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -33,6 +36,7 @@ import com.xcy.fzb.R;
 import com.xcy.fzb.all.api.APKVersionCodeUtils;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.AppPackageBean;
+import com.xcy.fzb.all.persente.CleanDataUtils;
 import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
@@ -191,35 +195,87 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
                         if (appPackageBean.getData().getIsUpgrade().equals("0")) {
                             ToastUtil.showToast(AboutFZBActivity.this,"当前版本已是最新版本");
                         } else if (appPackageBean.getData().getIsUpgrade().equals("1")) {
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(AboutFZBActivity.this);
-                            builder1.setTitle("提示");
-                            builder1.setMessage(appPackageBean.getData().getComment());
-                            builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            AlertDialog.Builder builder2 = new AlertDialog.Builder(AboutFZBActivity.this);
+                            View inflate2 = LayoutInflater.from(AboutFZBActivity.this).inflate(R.layout.binding_report, null, false);
+                            builder2.setView(inflate2);
+                            final AlertDialog show2 = builder2.show();
+                            show2.getWindow().setBackgroundDrawableResource(R.drawable.report_shape);
+                            WindowManager m2 = AboutFZBActivity.this.getWindowManager();
+                            Display d2 = m2.getDefaultDisplay();
+                            WindowManager.LayoutParams attributes2 = show2.getWindow().getAttributes();
+                            attributes2.width = (int)(d2.getWidth() - 200);
+                            show2.getWindow().setAttributes(attributes2);
+                            show2.getWindow().setBackgroundDrawableResource(R.drawable.report_shape);
+                            TextView report_binding_title2 = inflate2.findViewById(R.id.report_binding_title);
+                            TextView report_binding_confirm_tv2 = inflate2.findViewById(R.id.report_binding_confirm_tv);
+                            TextView report_binding_cancel_tv2 = inflate2.findViewById(R.id.report_binding_cancel_tv);
+                            RelativeLayout report_binding_cancel2 = inflate2.findViewById(R.id.report_binding_cancel);
+                            RelativeLayout report_binding_confirm2 = inflate2.findViewById(R.id.report_binding_confirm);
+                            report_binding_title2.setText(appPackageBean.getData().getComment());//内容
+                            report_binding_confirm_tv2.setText("更新");
+                            report_binding_cancel_tv2.setText("取消");
+                            report_binding_title2.setTextColor(Color.parseColor("#111111"));
+                            report_binding_cancel_tv2.setTextColor(Color.parseColor("#334485"));
+                            report_binding_confirm_tv2.setTextColor(Color.parseColor("#334485"));
+                            report_binding_cancel2.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
+                                public void onClick(View v) {
+                                    show2.dismiss();
                                 }
                             });
-                            builder1.setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                            report_binding_confirm2.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    url = appPackageBean.getData().getAppurl();
-                                    showDownloadDialog();
+                                public void onClick(View v) {
+                                    try {
+                                        url = appPackageBean.getData().getAppurl();
+                                        showDownloadDialog();
+                                        show2.dismiss();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
-                            builder1.show();
                         } else if (appPackageBean.getData().getIsUpgrade().equals("2")) {
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(AboutFZBActivity.this);
-                            builder1.setTitle("提示");
-                            builder1.setMessage(appPackageBean.getData().getComment());
-                            builder1.setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                            AlertDialog.Builder builder2 = new AlertDialog.Builder(AboutFZBActivity.this);
+                            View inflate2 = LayoutInflater.from(AboutFZBActivity.this).inflate(R.layout.binding_report, null, false);
+                            builder2.setView(inflate2);
+                            final AlertDialog show2 = builder2.show();
+                            show2.getWindow().setBackgroundDrawableResource(R.drawable.report_shape);
+                            WindowManager m2 = AboutFZBActivity.this.getWindowManager();
+                            Display d2 = m2.getDefaultDisplay();
+                            WindowManager.LayoutParams attributes2 = show2.getWindow().getAttributes();
+                            attributes2.width = (int)(d2.getWidth() - 200);
+                            show2.getWindow().setAttributes(attributes2);
+                            show2.getWindow().setBackgroundDrawableResource(R.drawable.report_shape);
+                            TextView report_binding_title2 = inflate2.findViewById(R.id.report_binding_title);
+                            TextView report_binding_confirm_tv2 = inflate2.findViewById(R.id.report_binding_confirm_tv);
+                            TextView report_binding_cancel_tv2 = inflate2.findViewById(R.id.report_binding_cancel_tv);
+                            RelativeLayout report_binding_cancel2 = inflate2.findViewById(R.id.report_binding_cancel);
+                            RelativeLayout report_binding_confirm2 = inflate2.findViewById(R.id.report_binding_confirm);
+                            report_binding_title2.setText(appPackageBean.getData().getComment());//内容
+                            report_binding_confirm_tv2.setText("更新");
+                            report_binding_cancel_tv2.setText("取消");
+                            report_binding_title2.setTextColor(Color.parseColor("#111111"));
+                            report_binding_cancel_tv2.setTextColor(Color.parseColor("#334485"));
+                            report_binding_confirm_tv2.setTextColor(Color.parseColor("#334485"));
+                            report_binding_cancel2.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    url = appPackageBean.getData().getAppurl();
-                                    showDownloadDialog();
+                                public void onClick(View v) {
+                                    show2.dismiss();
                                 }
                             });
-                            builder1.show();
+                            report_binding_confirm2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    try {
+                                        url = appPackageBean.getData().getAppurl();
+                                        showDownloadDialog();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                    show2.dismiss();
+                                }
+                            });
                         }
 
                     }
