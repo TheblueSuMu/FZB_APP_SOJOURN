@@ -43,7 +43,6 @@ public class AllActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all);
 
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);      //  TODO    始终竖屏
         initView();
 
@@ -55,12 +54,10 @@ public class AllActivity extends AppCompatActivity {
                 return;
             }
         }
-
     }
 
     private void initView() {
         StatusBar.makeStatusBarTransparent(this);
-
 
         Log.i("MyCL","进入initView");
         if (Build.VERSION.SDK_INT >= 23) {

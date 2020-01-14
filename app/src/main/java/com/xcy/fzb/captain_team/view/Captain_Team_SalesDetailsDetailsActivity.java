@@ -1066,7 +1066,15 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
 
             BarDataSet barDataSet = new BarDataSet(barEntries, "LAR");  // 新建一组柱形图，"LAR"为本组柱形图的Label
             barDataSet.setColor(Color.parseColor("#6596ba")); // 设置柱形图颜色
-            barDataSet.setDrawValues(false);
+            barDataSet.setValueTextColor(Color.parseColor("#666666")); //  设置线形图顶部文本颜色
+            barDataSet.setDrawValues(true);
+            barDataSet.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value, com.github.mikephil.charting.data.Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                    int n = (int) value;
+                    return n+"";
+                }
+            });
             BarData barData = new BarData();
             barData.addDataSet(barDataSet);// 添加一组柱形图，如果有多组柱形图数据，则可以多次addDataSet来设置
             barData.setBarWidth(0.1f);
@@ -1083,21 +1091,13 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
             lineDataSet.setColor(Color.parseColor("#ce7951"));
             lineDataSet.setCircleColor(Color.parseColor("#ce7951"));
             lineDataSet.setCircleHoleColor(Color.parseColor("#FFFFFF"));
-            lineDataSet.setValueTextColor(Color.parseColor("#666666")); //  设置线形图顶部文本颜色
             lineDataSet.setLineWidth(1);
             lineDataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
             lineDataSet.setHighlightEnabled(false);
             lineDataSet.setCubicIntensity(0.2f);
             lineDataSet.setValueTextSize(10);
-            lineDataSet.setDrawValues(true);
+            lineDataSet.setDrawValues(false);
             LineData lineData = new LineData();
-            lineData.setValueFormatter(new ValueFormatter() {
-                @Override
-                public String getFormattedValue(float value, com.github.mikephil.charting.data.Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-                    int n = (int) value;
-                    return n+"";
-                }
-            });
             lineData.addDataSet(lineDataSet);
             /******************LineData end********************/
 

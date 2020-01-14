@@ -120,6 +120,7 @@ public class AnalysisActivity extends AllActivity implements GradationScrollView
         all_activity_analysis_loans = findViewById(R.id.all_activity_analysis_loans);
         all_activity_analysis_interest = findViewById(R.id.all_activity_analysis_interest);
 
+
         initData();
         initClick();
     }

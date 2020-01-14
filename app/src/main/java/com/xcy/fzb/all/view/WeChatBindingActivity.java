@@ -131,8 +131,10 @@ public class WeChatBindingActivity extends AllActivity{
 
                         @Override
                         public void onNext(CodeBean codeBean) {
-                            CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(change_wechat_yanzhengma_1, 60000, 1000);
-                            mCountDownTimerUtils.start();
+                            if (codeBean.getData().getStatus().equals("1")) {
+                                CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(change_wechat_yanzhengma_1, 60000, 1000);
+                                mCountDownTimerUtils.start();
+                            }
                             ToastUtil.showLongToast(WeChatBindingActivity.this, codeBean.getData().getMessage());
                         }
 

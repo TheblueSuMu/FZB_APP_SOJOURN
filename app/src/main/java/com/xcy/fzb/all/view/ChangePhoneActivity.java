@@ -14,6 +14,7 @@ import com.xcy.fzb.all.api.Connector;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.api.NewlyIncreased;
 import com.xcy.fzb.all.modle.ChangePhoneBean;
+import com.xcy.fzb.all.modle.CodeBean;
 import com.xcy.fzb.all.modle.GWDataBean;
 import com.xcy.fzb.all.modle.UserBean;
 import com.xcy.fzb.all.modle.UserMessageBean;
@@ -126,21 +127,22 @@ public class ChangePhoneActivity extends AllActivity implements View.OnClickList
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        final Observable<VerificationBean> code = fzbInterface.getCode(phone);
+        final Observable<CodeBean> code = fzbInterface.getSendCode(phone);
         code.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<VerificationBean>() {
+                .subscribe(new Observer<CodeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(VerificationBean codeBean) {
-                        CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(change_phone_yanzhengma_1, 60000, 1000);
-                        mCountDownTimerUtils.start();
-                        VerificationBean.DataBean data = codeBean.getData();
-                        ToastUtil.showToast(ChangePhoneActivity.this,data.getMessage());
+                    public void onNext(CodeBean codeBean) {
+                        if (codeBean.getData().getStatus().equals("0")) {
+                            CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(change_phone_yanzhengma_1, 60000, 1000);
+                            mCountDownTimerUtils.start();
+                        }
+                        ToastUtil.showToast(ChangePhoneActivity.this,codeBean.getData().getMessage());
                     }
 
                     @Override

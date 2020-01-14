@@ -87,8 +87,6 @@ public class ToLoginActivity extends AllActivity implements View.OnClickListener
         to_login_img_3 = findViewById(R.id.to_login_img_3);
         to_login_img_4 = findViewById(R.id.to_login_img_4);
 
-
-
         to_return.setOnClickListener(this);
         to_login_rl.setOnClickListener(new View.OnClickListener() {
             @Override

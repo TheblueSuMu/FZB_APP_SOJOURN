@@ -36,6 +36,7 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.xcy.fzb.R;
@@ -160,6 +161,10 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
     private CheckBox login_select_password;
     private AVLoadingIndicatorView login_avi;
     private RelativeLayout login_avi_rl;
+    private RelativeLayout login_upload_relative;
+    private ImageView login_upload_image;
+    private ImageView login_cancle_image;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +174,9 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         pref = getSharedPreferences("data", MODE_PRIVATE);
         index = pref.getInt("index",0);
         Log.i("打印","数据");
-
+        login_upload_relative = findViewById(R.id.login_upload_relative);
+        login_upload_image = findViewById(R.id.login_upload_image);
+        login_cancle_image = findViewById(R.id.login_cancle_image);
         if (FinalContents.getClean().equals("")) {
 
         }else {
@@ -727,7 +734,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<OnLineBean> userMessage = fzbInterface.getOnLine("android");
+        Observable<OnLineBean> userMessage = fzbInterface.getOnLine("android",FinalContents.getVersionNumBer());
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<OnLineBean>() {
@@ -820,7 +827,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
                             initCaptain();
                         }else {
-
                             login_avi.setVisibility(View.GONE);
                             login_avi_rl.setVisibility(View.GONE);
                             ToastUtil.showLongToast(LoginActivity.this,"无权限登录");
@@ -830,7 +836,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onError(Throwable e) {
-
                         login_avi.setVisibility(View.GONE);
                         login_avi_rl.setVisibility(View.GONE);
                         ToastUtil.showLongToast(LoginActivity.this, "请输入正确的账户或用户名");
@@ -1372,59 +1377,55 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                     @Override
                     public void onNext(final AppPackageBean appPackageBean) {
                         if(appPackageBean.getData().getIsUpgrade().equals("0")){
+                            login_upload_relative.setVisibility(View.GONE);
                             initfvb();
                         }else if(appPackageBean.getData().getIsUpgrade().equals("1")){
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
-                            builder1.setTitle("提示");
-                            builder1.setMessage(appPackageBean.getData().getComment());
-                            builder1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            login_upload_relative.setVisibility(View.VISIBLE);
+                            try {
+                                Glide.with(LoginActivity.this).load(FinalContents.getImageUrl() + appPackageBean.getData().getImg()).into(login_upload_image);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            login_upload_image.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    initfvb();
-                                }
-                            });
-                            builder1.setPositiveButton("更新", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                public void onClick(View view) {
+                                    login_upload_relative.setVisibility(View.GONE);
                                     dial = false;
                                     url = appPackageBean.getData().getAppurl();
                                     showDownloadDialog();
                                 }
                             });
-                            builder1.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            login_cancle_image.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onDismiss(DialogInterface dialogInterface) {
-                                    if (dial) {
-                                        initfvb();
-                                        Log.i("消失","1事件触发");
-                                    }
-                                    Log.i("消失","事件触发");
-//                                    initfvb();
+                                public void onClick(View view) {
+                                    login_upload_relative.setVisibility(View.GONE);
+                                    initfvb();
                                 }
                             });
-                            builder1.show();
-                            Log.i("消失","2事件触发");
-
 
                         }else if(appPackageBean.getData().getIsUpgrade().equals("2")){
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
-                            builder1.setTitle("提示");
-                            builder1.setMessage(appPackageBean.getData().getComment());
-                            builder1.setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                            login_upload_relative.setVisibility(View.VISIBLE);
+                            try {
+                                Glide.with(LoginActivity.this).load(FinalContents.getImageUrl() + appPackageBean.getData().getImg()).into(login_upload_image);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            login_upload_image.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                public void onClick(View view) {
+                                    login_upload_relative.setVisibility(View.GONE);
                                     url = appPackageBean.getData().getAppurl();
                                     showDownloadDialog();
                                 }
                             });
-                            builder1.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            login_cancle_image.setOnClickListener(new View.OnClickListener() {
                                 @Override
-                                public void onDismiss(DialogInterface dialogInterface) {
+                                public void onClick(View view) {
+                                    login_upload_relative.setVisibility(View.GONE);
                                     AllActivity.exit = true;
                                     finish();
                                 }
                             });
-                            builder1.show();
                         }
 
                     }
