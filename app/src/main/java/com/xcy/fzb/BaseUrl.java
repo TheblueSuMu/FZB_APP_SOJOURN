@@ -1,12 +1,18 @@
 package com.xcy.fzb;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -15,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.xcy.fzb.Login.LoginActivity;
 import com.xcy.fzb.all.api.APKVersionCodeUtils;
 import com.xcy.fzb.all.api.FinalContents;
+import com.xcy.fzb.all.persente.CleanDataUtils;
+import com.xcy.fzb.all.utils.ToastUtil;
 
 public class BaseUrl extends AppCompatActivity {
     private TextView ensure;
