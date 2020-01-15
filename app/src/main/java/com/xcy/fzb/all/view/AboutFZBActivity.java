@@ -255,6 +255,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
                             report_binding_title2.setText(appPackageBean.getData().getComment());//内容
                             report_binding_confirm_tv2.setText("更新");
                             report_binding_cancel_tv2.setText("取消");
+                            report_binding_cancel2.setVisibility(View.GONE);
                             report_binding_title2.setTextColor(Color.parseColor("#111111"));
                             report_binding_cancel_tv2.setTextColor(Color.parseColor("#334485"));
                             report_binding_confirm_tv2.setTextColor(Color.parseColor("#334485"));
@@ -296,7 +297,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
      * 显示正在下载对话框
      */
     protected void showDownloadDialog() {
-
+        mIsCancel = false;
         AlertDialog.Builder builder = new AlertDialog.Builder(AboutFZBActivity.this);
         builder.setTitle("下载中");
         View view = LayoutInflater.from(AboutFZBActivity.this).inflate(R.layout.dialog_progress, null);

@@ -625,7 +625,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<CodeBean> userMessage = fzbInterface.getSendCode(userName);
+        Observable<CodeBean> userMessage = fzbInterface.getSendCode(userName,"");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CodeBean>() {
@@ -1119,7 +1119,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         CaptainBean userBean = captainBean;
                         if (type.equals("1")) {
                             boolean add = true;
-
                             for (int i = index-4;i < index;i++){
                                 if (pref.getString("user_name"+i, "").equals(userName)) {
                                     add = false;
@@ -1131,7 +1130,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                                 Log.i("MyCL","数据库数据：" + list.get(i).getUserName());
                             }
                             if (add) {
-
                                 editor.putString("user_name"+index, userName);
                                 editor.putString("user_password"+index, passWord);
                                 editor.putInt("index", pref.getInt("index",0)+1);
@@ -1376,6 +1374,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onNext(final AppPackageBean appPackageBean) {
+                        Log.i("提示更新","数据："+appPackageBean.getData().getAppurl());
                         if(appPackageBean.getData().getIsUpgrade().equals("0")){
                             login_upload_relative.setVisibility(View.GONE);
                             initfvb();
@@ -1405,6 +1404,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                         }else if(appPackageBean.getData().getIsUpgrade().equals("2")){
                             login_upload_relative.setVisibility(View.VISIBLE);
+                            login_cancle_image.setVisibility(View.GONE);
                             try {
                                 Glide.with(LoginActivity.this).load(FinalContents.getImageUrl() + appPackageBean.getData().getImg()).into(login_upload_image);
                             } catch (Exception e) {
@@ -1413,7 +1413,6 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             login_upload_image.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    login_upload_relative.setVisibility(View.GONE);
                                     url = appPackageBean.getData().getAppurl();
                                     showDownloadDialog();
                                 }
@@ -1446,7 +1445,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
      * 显示正在下载对话框
      */
     protected void showDownloadDialog() {
-
+        mIsCancel = false;
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
         builder.setTitle("下载中");
         View view = LayoutInflater.from(LoginActivity.this).inflate(R.layout.dialog_progress, null);

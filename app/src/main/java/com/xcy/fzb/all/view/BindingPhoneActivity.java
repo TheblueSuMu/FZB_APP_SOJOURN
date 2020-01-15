@@ -253,7 +253,7 @@ public class BindingPhoneActivity extends AllActivity implements View.OnClickLis
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        final Observable<CodeBean> code = fzbInterface.getSendCode(phone);
+        final Observable<CodeBean> code = fzbInterface.getSendCode(phone,"1");
         code.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CodeBean>() {
