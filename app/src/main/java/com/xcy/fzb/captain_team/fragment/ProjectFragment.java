@@ -126,6 +126,8 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
     private ImageView home_team;
     private ImageView home_captain_banner_no;
     private TextView captain_message_no;
+    private TextBannerAdapter textBannerAdapter;
+    private TextBannerAdapter_S textBannerAdapter_s;
 
     @Nullable
     @Override
@@ -505,7 +507,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                             messagelist2.add(new Bean(R.mipmap.no_information, "暂无数据"));
                             messagelist2.add(new Bean(R.mipmap.no_information, "暂无数据"));
 
-                            TextBannerAdapter textBannerAdapter = new TextBannerAdapter(messagelist2, view.getContext());
+                            textBannerAdapter = new TextBannerAdapter(messagelist2, view.getContext());
                             tvBanner2.setAdapter(textBannerAdapter);
 
                             //TODO 第二行
@@ -514,7 +516,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                             messagelist2_S.add(new Bean_S(R.mipmap.no_information, "暂无数据"));
                             messagelist2_S.add(new Bean_S(R.mipmap.no_information, "暂无数据"));
 
-                            TextBannerAdapter_S textBannerAdapter_s = new TextBannerAdapter_S(messagelist2_S, view.getContext());
+                            textBannerAdapter_s = new TextBannerAdapter_S(messagelist2_S, view.getContext());
                             tvBanner2_S.setAdapter(textBannerAdapter_s);
 
 
@@ -536,7 +538,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                     messagelist2.add(new Bean(R.mipmap.goodnews, messagelist.get(i).getTitle()));
                                 }
                             }
-                            TextBannerAdapter textBannerAdapter = new TextBannerAdapter(messagelist2, view.getContext());
+                            textBannerAdapter = new TextBannerAdapter(messagelist2, view.getContext());
                             tvBanner2.setAdapter(textBannerAdapter);
                             textBannerAdapter.setOnItemClickListener(new TextBannerAdapter.OnItemClickLisenter() {
                                 @Override
@@ -573,7 +575,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                     messagelist2.add(new Bean(R.mipmap.goodnews, messagelist.get(i).getTitle()));
                                 }
                             }
-                            TextBannerAdapter textBannerAdapter = new TextBannerAdapter(messagelist2, view.getContext());
+                            textBannerAdapter = new TextBannerAdapter(messagelist2, view.getContext());
                             tvBanner2.setAdapter(textBannerAdapter);
                             textBannerAdapter.setOnItemClickListener(new TextBannerAdapter.OnItemClickLisenter() {
                                 @Override
@@ -613,7 +615,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                                 messagelist2_S.add(new Bean_S(R.mipmap.goodnews, messagelist.get(0).getTitle()));
                             }
 //                            }
-                            TextBannerAdapter_S textBannerAdapter_s = new TextBannerAdapter_S(messagelist2_S, view.getContext());
+                            textBannerAdapter_s = new TextBannerAdapter_S(messagelist2_S, view.getContext());
                             tvBanner2_S.setAdapter(textBannerAdapter_s);
                             textBannerAdapter_s.setOnItemClickListener(new TextBannerAdapter_S.OnItemClickLisenter() {
                                 @Override
@@ -633,6 +635,69 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
                             }
                         }
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        tvBanner2.setVisibility(View.GONE);
+                        tvBanner2_S.setVisibility(View.GONE);
+                        captain_message_no.setVisibility(View.VISIBLE);
+                        Log.i("列表数据获取错误", "错误" + e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    //文字轮播
+    private void tvBanner2() {
+        tvBanner2.stopFlipping();
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<MessageBean2> userMessage = fzbInterface.getMessageTextList(FinalContents.getUserID(), FinalContents.getCityID(), "");
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MessageBean2>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @SuppressLint("WrongConstant")
+                    @Override
+                    public void onNext(MessageBean2 messageBean) {
+                        MessageBean2.DataBean dataBean = messageBean.getData();
+                        messagelist = dataBean.getRows();
+                        //TODO 第一行
+                        for (int i = 0; i < messagelist.size(); i++) {
+                            if (messagelist.get(i).getType().equals("0")) {
+                                messagelist2.add(new Bean(R.mipmap.give, messagelist.get(i).getTitle()));
+                            } else if (messagelist.get(i).getType().equals("2")) {
+                                messagelist2.add(new Bean(R.mipmap.lodger, messagelist.get(i).getTitle()));
+                            } else if (messagelist.get(i).getType().equals("5")) {
+                                messagelist2.add(new Bean(R.mipmap.goodnews, messagelist.get(i).getTitle()));
+                            }
+                        }
+                        int numSize = 0;
+                        for (int i = 1; i < messagelist.size(); ++i) {
+                            if (messagelist.get(i).getType().equals("0")) {
+                                messagelist2_S.add(new Bean_S(R.mipmap.give, messagelist.get(i).getTitle()));
+                            } else if (messagelist.get(i).getType().equals("2")) {
+                                messagelist2_S.add(new Bean_S(R.mipmap.lodger, messagelist.get(i).getTitle()));
+                            } else if (messagelist.get(i).getType().equals("5")) {
+                                messagelist2_S.add(new Bean_S(R.mipmap.goodnews, messagelist.get(i).getTitle()));
+                            }
+                            numSize = i;
+                        }
+                        textBannerAdapter.setData(messagelist2);
+                        textBannerAdapter_s.setData(messagelist2_S);
                     }
 
                     @Override
@@ -743,6 +808,7 @@ public class ProjectFragment extends AllFragment implements View.OnClickListener
         if (layout.isRefreshing()) {//如果正在刷新
             initView();
             initHotList();
+            tvBanner2();
             layout.setRefreshing(false);//取消刷新
         }
     }
