@@ -93,7 +93,7 @@ public class Commission_To_Choose extends AllActivity {
                             });
                             timeRangeAdapter.notifyDataSetChanged();
                         }else {
-                            ToastUtil.showLongToast(Commission_To_Choose.this,"暂无佣金");
+                            ToastUtil.showLongToast(Commission_To_Choose.this,"该成交时间下没有可用的佣金内容");
                         }
                     }
 

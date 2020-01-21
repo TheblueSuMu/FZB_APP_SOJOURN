@@ -341,11 +341,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         business = findViewById(R.id.project_details_business);
         business_content = findViewById(R.id.project_details_business_content);
 
-
         project_details_all = findViewById(R.id.project_details_all);
         project_details_share_all = findViewById(R.id.project_details_share_all);
         project_details_collect_all = findViewById(R.id.project_details_collect_all);
-
 
         linear0 = findViewById(R.id.linear0);
         linear3 = findViewById(R.id.linear3);
@@ -614,6 +612,8 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                 if (projectDetailsBeanData.getProjectListVo().getFfAttacheList().size() != 0) {
                     FinalContents.setIPhone(projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(0).getPhone());
                 }
+                List<ProjectDetailsBean.DataBean.ProjectListVoBean.FfAttacheListBean> list = projectDetailsBeanData.getProjectListVo().getFfAttacheList();
+                CityContents.setFfAttacheList(list);
                 FinalContents.setProjectName(projectDetailsBeanData.getProjectListVo().getProjectName());
                 FinalContents.setProjectSearchID(projectDetailsBeanData.getProjectListVo().getProjectId());
                 FinalContents.setGuideRuleId(projectDetailsBeanData.getProjectListVo().getGuideRuleId());
@@ -1751,5 +1751,6 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         super.onDestroy();
         Log.i("数据","走一走:"+CityContents.getIsReport());
         CityContents.setIsReport("");
+        CityContents.setFfAttacheList(new ArrayList<>());
     }
 }

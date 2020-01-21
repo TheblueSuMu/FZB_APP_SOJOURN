@@ -1,5 +1,10 @@
 package com.xcy.fzb.all.api;
 
+import com.xcy.fzb.all.modle.ProjectDetailsBean;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CityContents {
     static String familyId = "";
 
@@ -28,6 +33,16 @@ public class CityContents {
     static boolean Enabled = true;
 
     static String CommissionFormat = "";
+
+    static List<ProjectDetailsBean.DataBean.ProjectListVoBean.FfAttacheListBean> FfAttacheList = new ArrayList<>();
+
+    public static List<ProjectDetailsBean.DataBean.ProjectListVoBean.FfAttacheListBean> getFfAttacheList() {
+        return FfAttacheList;
+    }
+
+    public static void setFfAttacheList(List<ProjectDetailsBean.DataBean.ProjectListVoBean.FfAttacheListBean> ffAttacheList) {
+        FfAttacheList = ffAttacheList;
+    }
 
     public static String getCommissionFormat() {
         return CommissionFormat;
