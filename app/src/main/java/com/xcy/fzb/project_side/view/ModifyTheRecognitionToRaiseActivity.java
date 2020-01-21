@@ -203,9 +203,9 @@ public class ModifyTheRecognitionToRaiseActivity extends AppCompatActivity {
 
                 Calendar selectedDate = Calendar.getInstance();//系统当前时间
                 Calendar startDate = Calendar.getInstance();
-                startDate.set(year, month, dayOfMonth -15);
+                startDate.set(year-2, month, dayOfMonth);
                 final Calendar endDate = Calendar.getInstance();
-                endDate.set(year, month, dayOfMonth +15);
+                endDate.set(year, month, dayOfMonth);
                 TimePickerView pvTime = new TimePickerBuilder(ModifyTheRecognitionToRaiseActivity.this, new OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {

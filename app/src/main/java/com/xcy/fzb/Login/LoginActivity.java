@@ -164,12 +164,17 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
     private RelativeLayout login_upload_relative;
     private ImageView login_upload_image;
     private ImageView login_cancle_image;
+    private RelativeLayout lingshi_relative;
+    private TextView lingshi_title;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        lingshi_relative = findViewById(R.id.lingshi_relative);
+        lingshi_title = findViewById(R.id.lingshi_title);
+
         editor = getSharedPreferences("data", MODE_PRIVATE).edit();
         pref = getSharedPreferences("data", MODE_PRIVATE);
         index = pref.getInt("index",0);
@@ -307,6 +312,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             } else {
                 Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
+
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Broker_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -1473,6 +1479,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
      * 开启新线程下载apk文件
      */
     private void downloadAPK() {
+        lingshi_title.setText("开启新线程下载apk文件");
+        lingshi_relative.setVisibility(View.GONE);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -1481,7 +1489,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         String sdPath = Environment.getExternalStorageDirectory() + "/";
 //                      文件保存路径
                         mSavePath = sdPath + "fzbdownload";
-
+                        Log.e("文件地址", "文件地址"+url);
                         File dir = new File(mSavePath);
                         if (!dir.exists()){
                             dir.mkdir();
@@ -1502,9 +1510,10 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             count += numread;
                             // 计算进度条的当前位置
                             mProgress = (int) (((float)count/length) * 100);
+
                             // 更新进度条
                             mUpdateProgressHandler.sendEmptyMessage(1);
-
+                            Log.e("更新进度条", "更新进度条"+mProgress);
                             // 下载完成
                             if (numread < 0){
                                 mUpdateProgressHandler.sendEmptyMessage(2);
@@ -1512,6 +1521,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                             }
                             fos.write(buffer, 0, numread);
                         }
+                        Log.e("mIsCancel", "mIsCancel"+mIsCancel);
                         fos.close();
                         is.close();
                     }
@@ -1532,6 +1542,7 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             switch (msg.what){
                 case 1:
                     // 设置进度条
+                    lingshi_title.setText("mProgress:"+mProgress);
                     mProgressBar.setProgress(mProgress);
                     break;
                 case 2:

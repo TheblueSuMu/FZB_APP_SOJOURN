@@ -31,6 +31,7 @@ public class CommissionRecycler extends RecyclerView.Adapter<CommissionRecycler.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.commission_item_title.setText(dataBean.getAmountIncentiveList().get(position).getMainTitle());
         holder.commission_item_price.setText(dataBean.getAmountIncentiveList().get(position).getCommissionFormat());
+
         if (dataBean.getAmountIncentiveList().get(position).getSecondsFormat().equals("") || dataBean.getAmountIncentiveList().get(position).getSecondsFormat().equals("0")) {
             holder.commission_item_time.setText("无秒结");
         }else {

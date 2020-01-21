@@ -53,6 +53,10 @@ public interface MyService {
     //@Field用来标注post请求参数名
     //@FormUrlEncoded与@Post配合使用，要求对post的参数进行网络编码
 
+    //账号注销功能
+    @POST("commonUpdate/updateLoginFlag")
+    Observable<UpdateLoginFlag> getUpdateLoginFlag(@Query("userId") String userId, @Query("sysUserId") String sysUserId);
+
     //关于房坐标 版本更新
     @POST("commonSelect/appPackage")
     Observable<AppPackageBean> getAppPackage(@Query("appType") String appType, @Query("appPackage") String appPackage, @Query("appVeriosn") String appVeriosn);

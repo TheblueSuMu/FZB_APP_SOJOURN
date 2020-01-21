@@ -420,4 +420,21 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/lingshi_relative"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/lingshi_title"
+            android:text="查看进度"
+            android:textColor="#111111"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>

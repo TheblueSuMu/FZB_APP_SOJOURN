@@ -117,6 +117,7 @@
         <activity android:name=".all.view.CityWideActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 同城项目或跨城项目-->
         <activity android:name=".all.view.PhoneActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 通讯录-->
         <activity android:name=".all.view.WeChatBindingActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 微信绑定或解绑-->
+        <activity android:name=".all.view.Close_An_Account" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 公用 账号注销功能-->
 
         <activity android:name=".FinMag" android:theme="@style/LunchTheme">       <!--TODO 域名-->
 <!--            <intent-filter>-->
@@ -207,6 +208,8 @@
         <activity android:name=".project_side.view.TheReasonForRefusalActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>        <!--TODO 专案 拒绝原因-->
         <activity android:name=".project_side.view.CheckPendingTheProjectActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 专案 待我审核 拒绝记录-->
         <activity android:name=".project_side.view.OneKeyActivity" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>        <!--TODO 专案 一键成交-->
+        <activity android:name=".project_side.view.Commission_To_Choose" android:launchMode="singleTop" android:windowSoftInputMode="stateVisible|adjustResize"/>        <!--TODO 专案 佣金列表-->
+
 
         <!--TODO 导购-->
         <activity android:name=".shopping_guide.view.Shopping_Guide_MainActivity" android:launchMode="singleTop" android:windowSoftInputMode="adjustPan"/>       <!--TODO 导购 主页-->

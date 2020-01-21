@@ -2,6 +2,7 @@ package com.xcy.fzb.project_side.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
@@ -36,6 +37,7 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.xcy.fzb.R;
 import com.xcy.fzb.all.adapter.ConfessAdapter;
+import com.xcy.fzb.all.api.CityContents;
 import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.database.TradeAuditBean;
 import com.xcy.fzb.all.modle.BrokerBean;
@@ -474,7 +476,6 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                     ToastUtil.showToast(this, "请输入正确的手机号");
                     return;
                 } else {
-
                     if (project_type.getText().toString().equals("")) {
                         ToastUtil.showToast(this, "请选择产品类型");
                         return;
@@ -539,10 +540,7 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                         isnum1 = 1;
                         initTradeSave();
                     }
-
                 }
-
-
                 break;
             //            TODO 产品类型
             case R.id.fill_in_transaction_information_rl1:
@@ -552,11 +550,9 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                     initData(project_type);
                     ifnum1 = 0;
                 }
-
                 break;
             //            TODO 成交客户与报备客户关系
             case R.id.fill_in_transaction_information_rl2:
-
                 if (ifnum2 == 0) {
                     ifnum2 = 1;
                     List<String> relation = new ArrayList<>();
@@ -568,24 +564,18 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                     initSelect(relation, project_relation);
                     ifnum2 = 0;
                 }
-
-
                 break;
             //            TODO 成交户型
             case R.id.fill_in_transaction_information_rl3:
-
                 if (ifnum3 == 0) {
                     ifnum3 = 1;
                     type = "apartment";
                     initData(house_type);
                     ifnum3 = 0;
                 }
-
-
                 break;
             //            TODO 付款方式
             case R.id.fill_in_transaction_information_rl4:
-
                 if (ifnum4 == 0) {
                     ifnum4 = 1;
                     List<String> payment = new ArrayList<>();
@@ -595,8 +585,6 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                     initSelect(payment, payment_way);
                     ifnum4 = 0;
                 }
-
-
                 break;
             //            TODO 成交时间
             case R.id.fill_in_transaction_information_rl5:
@@ -609,9 +597,9 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
 
                 Calendar selectedDate = Calendar.getInstance();//系统当前时间
                 Calendar startDate = Calendar.getInstance();
-                startDate.set(year, month, dayOfMonth -15);
+                startDate.set(year-2, month, dayOfMonth);
                 final Calendar endDate = Calendar.getInstance();
-                endDate.set(year, month, dayOfMonth +15);
+                endDate.set(year, month, dayOfMonth);
                 TimePickerView pvTime = new TimePickerBuilder(VisitingScheduleActivity.this, new OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {
@@ -632,14 +620,23 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                 break;
             //            TODO 佣金
             case R.id.fill_in_transaction_information_rl6:
-                if (whether) {
-                    transition_layout.setVisibility(View.VISIBLE);
-                    initTimeData();
-                    whether = false;
-                } else {
-                    transition_layout.setVisibility(View.GONE);
-                    whether = true;
+                if (project_time.getText().toString().equals("")) {
+                    ToastUtil.showLongToast(VisitingScheduleActivity.this,"请选择时间后，再进行佣金选择");
+                    return;
                 }
+
+                project_time.getText().toString();
+                Intent intent = new Intent(VisitingScheduleActivity.this,Commission_To_Choose.class);
+                intent.putExtra("time",project_time.getText().toString());
+                startActivity(intent);
+
+//                if (whether) {
+//                    initTimeData();
+//                    whether = false;
+//                } else {
+//                    transition_layout.setVisibility(View.GONE);
+//                    whether = true;
+//                }
                 break;
             //            TODO 佣金选择
             case R.id.transition_layout:
@@ -668,26 +665,35 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(final BrokerBean brokerBean) {
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(VisitingScheduleActivity.this);
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        layoutManager.setScrollEnabled(false);
-                        transition_recycler.setLayoutManager(layoutManager);
-                        TimeRangeAdapter timeRangeAdapter = new TimeRangeAdapter(brokerBean.getData());
-                        transition_recycler.setNestedScrollingEnabled(false);
-                        transition_recycler.setAdapter(timeRangeAdapter);
-                        timeRangeAdapter.setOnItemClickListener(new TimeRangeAdapter.OnItemClickLisenter() {
-                            @Override
-                            public void onItemClick(int postion) {
-                                project_brokerage.setText(brokerBean.getData().get(postion).getCommissionFormat());
-                                FinalContents.setCommissionId(brokerBean.getData().get(postion).getId());
-                                transition_layout.setVisibility(View.GONE);
-                            }
-                        });
-                        timeRangeAdapter.notifyDataSetChanged();
+                        if (brokerBean.getData().size() != 0) {
+                            transition_layout.setVisibility(View.VISIBLE);
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(VisitingScheduleActivity.this);
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            layoutManager.setScrollEnabled(false);
+                            transition_recycler.setLayoutManager(layoutManager);
+                            TimeRangeAdapter timeRangeAdapter = new TimeRangeAdapter(brokerBean.getData());
+                            transition_recycler.setNestedScrollingEnabled(false);
+                            transition_recycler.setAdapter(timeRangeAdapter);
+                            timeRangeAdapter.setOnItemClickListener(new TimeRangeAdapter.OnItemClickLisenter() {
+                                @Override
+                                public void onItemClick(int postion) {
+                                    project_brokerage.setText(brokerBean.getData().get(postion).getCommissionFormat());
+                                    FinalContents.setCommissionId(brokerBean.getData().get(postion).getId());
+                                    transition_layout.setVisibility(View.GONE);
+                                }
+                            });
+                            timeRangeAdapter.notifyDataSetChanged();
+                        }else {
+                            ToastUtil.showLongToast(VisitingScheduleActivity.this,"暂无佣金");
+                            transition_layout.setVisibility(View.GONE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        ToastUtil.showLongToast(VisitingScheduleActivity.this,"佣金列表数据获取错误");
+                        transition_layout.setVisibility(View.GONE);
                         Log.i("列表数据获取错误", "错误" + e);
                     }
 
@@ -968,5 +974,21 @@ public class VisitingScheduleActivity extends AppCompatActivity implements View.
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
         return format.format(date);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!FinalContents.getTiaodan().equals("调单")) {
+            if (!CityContents.getCommissionFormat().equals("")) {
+                project_brokerage.setText(CityContents.getCommissionFormat());
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CityContents.setCommissionFormat("");
     }
 }

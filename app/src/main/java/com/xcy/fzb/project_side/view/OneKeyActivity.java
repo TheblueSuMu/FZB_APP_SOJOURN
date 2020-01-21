@@ -537,9 +537,9 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
 
                 Calendar selectedDate = Calendar.getInstance();//系统当前时间
                 Calendar startDate = Calendar.getInstance();
-                startDate.set(year, month, dayOfMonth -15);
+                startDate.set(year-2, month, dayOfMonth);
                 final Calendar endDate = Calendar.getInstance();
-                endDate.set(year, month, dayOfMonth +15);
+                endDate.set(year, month, dayOfMonth);
                 TimePickerView pvTime = new TimePickerBuilder(OneKeyActivity.this, new OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {
@@ -559,14 +559,23 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             //            TODO 佣金
             case R.id.fill_in_transaction_information_rl6:
-                if (whether) {
-                    transition_layout.setVisibility(View.VISIBLE);
-                    initTimeData();
-                    whether = false;
-                } else {
-                    transition_layout.setVisibility(View.GONE);
-                    whether = true;
+                if (project_time.getText().toString().equals("")) {
+                    ToastUtil.showLongToast(OneKeyActivity.this,"请选择时间后，再进行佣金选择");
+                    return;
                 }
+
+                project_time.getText().toString();
+                Intent intent = new Intent(OneKeyActivity.this,Commission_To_Choose.class);
+                intent.putExtra("time",project_time.getText().toString());
+                startActivity(intent);
+
+//                if (whether) {
+//                    initTimeData();
+//                    whether = false;
+//                } else {
+//                    transition_layout.setVisibility(View.GONE);
+//                    whether = true;
+//                }
                 break;
             //            TODO 佣金选择
             case R.id.transition_layout:
@@ -598,27 +607,36 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
                     @SuppressLint("WrongConstant")
                     @Override
                     public void onNext(final BrokerBean brokerBean) {
-                        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(OneKeyActivity.this);
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        layoutManager.setScrollEnabled(false);
-                        transition_recycler.setLayoutManager(layoutManager);
-                        TimeRangeAdapter timeRangeAdapter = new TimeRangeAdapter(brokerBean.getData());
-                        transition_recycler.setNestedScrollingEnabled(false);
-                        transition_recycler.setAdapter(timeRangeAdapter);
-                        timeRangeAdapter.setOnItemClickListener(new TimeRangeAdapter.OnItemClickLisenter() {
-                            @Override
-                            public void onItemClick(int postion) {
-                                project_brokerage.setText(brokerBean.getData().get(postion).getCommissionFormat());
-                                FinalContents.setCommissionId(brokerBean.getData().get(postion).getId());
-                                transition_layout.setVisibility(View.GONE);
-                                whethe = true;
-                            }
-                        });
-                        timeRangeAdapter.notifyDataSetChanged();
+                        if (brokerBean.getData().size() != 0) {
+                            transition_layout.setVisibility(View.VISIBLE);
+                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(OneKeyActivity.this);
+                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                            layoutManager.setScrollEnabled(false);
+                            transition_recycler.setLayoutManager(layoutManager);
+                            TimeRangeAdapter timeRangeAdapter = new TimeRangeAdapter(brokerBean.getData());
+                            transition_recycler.setNestedScrollingEnabled(false);
+                            transition_recycler.setAdapter(timeRangeAdapter);
+                            timeRangeAdapter.setOnItemClickListener(new TimeRangeAdapter.OnItemClickLisenter() {
+                                @Override
+                                public void onItemClick(int postion) {
+                                    project_brokerage.setText(brokerBean.getData().get(postion).getCommissionFormat());
+                                    FinalContents.setCommissionId(brokerBean.getData().get(postion).getId());
+                                    transition_layout.setVisibility(View.GONE);
+                                    whethe = true;
+                                }
+                            });
+                            timeRangeAdapter.notifyDataSetChanged();
+                        }else {
+                            ToastUtil.showLongToast(OneKeyActivity.this,"暂无佣金");
+                            transition_layout.setVisibility(View.GONE);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        ToastUtil.showLongToast(OneKeyActivity.this,"佣金列表数据获取错误");
+                        transition_layout.setVisibility(View.GONE);
                         Log.i("佣金列表数据获取错误", "错误" + e);
                     }
 
@@ -803,6 +821,11 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
         } else {
             one_key_relative_et3.setText("");
         }
+        if (!FinalContents.getTiaodan().equals("调单")) {
+            if (!CityContents.getCommissionFormat().equals("")) {
+                project_brokerage.setText(CityContents.getCommissionFormat());
+            }
+        }
     }
 
     @Override
@@ -813,6 +836,7 @@ public class OneKeyActivity extends AppCompatActivity implements View.OnClickLis
         FinalContents.setProjectName("");
         FinalContents.setCommissionId("");
         FinalContents.setProject("");
+        CityContents.setCommissionFormat("");
     }
 
     /**

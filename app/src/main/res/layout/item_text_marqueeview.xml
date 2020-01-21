@@ -17,6 +17,7 @@
         android:text=""
         android:textSize="11sp"
         android:textColor="#ff333333"
+        android:singleLine="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
 

@@ -92,6 +92,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
     //  请求链接
     private String url = "http://test.fangzuobiao.com:88/fangfang/static/down/fangzuobiao.apk";
     private ImageView fzb_img;
+    private RelativeLayout fzb_zx;
 
     //https://download.dgstaticresources.net/fusion/android/app-c6-release.apk
     @Override
@@ -130,6 +131,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
         fzb_jc = findViewById(R.id.fzb_jc);
         fzb_mz = findViewById(R.id.fzb_mz);
         fzb_img = findViewById(R.id.fzb_img);
+        fzb_zx = findViewById(R.id.fzb_zx);
         About_Version_NumBer = findViewById(R.id.About_Version_NumBer);
 
         About_Version_NumBer.setText("当前版本" + FinalContents.getVersionNumBer());
@@ -140,7 +142,7 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
         fzb_fx.setOnClickListener(this);
         fzb_jc.setOnClickListener(this);
         fzb_mz.setOnClickListener(this);
-
+        fzb_zx.setOnClickListener(this);
     }
 
     @SingleClick(1000)
@@ -165,6 +167,11 @@ public class AboutFZBActivity extends AllActivity implements View.OnClickListene
 //                TODO 免责声明
             case R.id.fzb_mz:
                 intent = new Intent(AboutFZBActivity.this, DisclaimerActivity.class);
+                startActivity(intent);
+                break;
+            //                TODO 注销账号
+            case R.id.fzb_zx:
+                intent = new Intent(AboutFZBActivity.this, Close_An_Account.class);
                 startActivity(intent);
                 break;
         }

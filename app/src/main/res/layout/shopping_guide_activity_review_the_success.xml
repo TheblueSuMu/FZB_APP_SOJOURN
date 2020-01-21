@@ -203,7 +203,7 @@
                 android:drawableTop="@mipmap/make_a_bargain"
                 android:gravity="center_horizontal"
                 android:drawablePadding="9dp"
-                android:text="成交"
+                android:text="申请成交"
                 android:visibility="visible"
                 android:textColor="#666666" />
 
