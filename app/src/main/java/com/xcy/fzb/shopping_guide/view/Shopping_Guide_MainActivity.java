@@ -140,6 +140,20 @@ public class Shopping_Guide_MainActivity extends AllActivity implements View.OnC
 
                 transaction.commit();
                 message.setChecked(true);
+            } else if (str.equals("10")) {
+                init_No_Network();
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+//                MessageFragment messageFragment = new MessageFragment();
+                messageFragment.setType("1");
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+                transaction.hide(projectFragment);
+                transaction.hide(taskFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
+                transaction.commit();
+                message.setChecked(true);
             }
         }
     }

@@ -43,6 +43,8 @@ import com.xcy.fzb.all.view.MyClientAddActivity;
 import com.xcy.fzb.all.view.PhoneActivity;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +116,8 @@ public class Captain_Team_MyClientFragment extends AllFragment implements View.O
 
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
+        EventBus.getDefault().register(this);
+
         my_client_return = view.findViewById(R.id.my_client_return);
         client_add = view.findViewById(R.id.client_add);
         my_client_ss = view.findViewById(R.id.my_client_ss);
@@ -183,6 +187,7 @@ public class Captain_Team_MyClientFragment extends AllFragment implements View.O
     }
 
     private void initData(){
+        Log.i("业务流提醒","业务流提醒");
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.baseUrl(FinalContents.getBaseUrl());
         builder.addConverterFactory(GsonConverterFactory.create());
@@ -408,6 +413,14 @@ public class Captain_Team_MyClientFragment extends AllFragment implements View.O
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, priority = 100, sticky = false) //在ui线程执行，优先级为100
+    public void onEvent(String nam) {
+        if(nam.equals("修改")){
+            Log.i("我的客户","修改");
+            initData();
+        }
     }
 
 }

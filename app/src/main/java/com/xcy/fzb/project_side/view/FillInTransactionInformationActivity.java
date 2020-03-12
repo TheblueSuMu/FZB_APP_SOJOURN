@@ -120,7 +120,6 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
     private String projecttype;
     private RecyclerView fill_in_transaction_information_rv;
     private TextView fill_in_transaction_information_tishi;
-    private boolean whethe = false;
     private String str = "";
 
     int ifnum1 = 0;
@@ -324,7 +323,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
             fill_in_transaction_information_tishi.setVisibility(View.GONE);
         }
 
-        fill_in_transaction_information_et4.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+        fill_in_transaction_information_et4.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -350,7 +349,7 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
 
         });
 
-        fill_in_transaction_information_et5.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
+        fill_in_transaction_information_et5.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -416,54 +415,51 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
 
     // TODO 添加成交信息数据
     private void initTradeSave() {
+        Log.i("错误","FinalContents.getCommissionId()"+FinalContents.getCommissionId());
         initselect();
-        if (whethe) {
-            if (FinalContents.getCommissionId().equals("")) {
-                Toast.makeText(FillInTransactionInformationActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
-                ifnum6 = 0;
-                return;
-            } else {
-            }
-            Retrofit.Builder builder = new Retrofit.Builder();
-            builder.baseUrl(FinalContents.getBaseUrl());
-            builder.addConverterFactory(GsonConverterFactory.create());
-            builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
-            Retrofit build = builder.build();
-            MyService fzbInterface = build.create(MyService.class);
-            Observable<TradeSaveBean> userMessage = fzbInterface.getTradeSave("", FinalContents.getProjectID(), "", FinalContents.getPreparationId(), FinalContents.getCustomerID(), fang_hao_et1.getText().toString() + "栋" + fang_hao_et2.getText().toString() + "单元" + fang_hao_et3.getText().toString() + "室", apartment, fill_in_transaction_information_et4.getText().toString(), fill_in_transaction_information_et5.getText().toString(), str, payment_way.getText().toString(), FinalContents.getCommissionId(), projecttype, gender, project_relation.getText().toString(), fill_in_transaction_information_et1.getText().toString(), fill_in_transaction_information_et2.getText().toString(), fill_in_transaction_information_et3.getText().toString(), FinalContents.getUserID(), project_time.getText().toString());
-            userMessage.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<TradeSaveBean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
-
-                        }
-
-                        @SuppressLint("WrongConstant")
-                        @Override
-                        public void onNext(TradeSaveBean tradeSaveBean) {
-                            ToastUtil.showToast(FillInTransactionInformationActivity.this, tradeSaveBean.getData().getMessage());
-                            finish();
-                            Log.i("判断", "shuju2：" + ifnum6);
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.i("成交信息", "错误" + e);
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
-            if (FinalContents.getCommissionId().equals("")) {
-                ToastUtil.showToast(FillInTransactionInformationActivity.this, "请选择佣金");
-            } else {
-                FinalContents.setTiaozhuang("成交");
-            }
+        if (FinalContents.getCommissionId().equals("")) {
+            Toast.makeText(FillInTransactionInformationActivity.this, "请选择佣金", Toast.LENGTH_SHORT).show();
+            ifnum6 = 0;
+            return;
         } else {
+        }
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(FinalContents.getBaseUrl());
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        Retrofit build = builder.build();
+        MyService fzbInterface = build.create(MyService.class);
+        Observable<TradeSaveBean> userMessage = fzbInterface.getTradeSave("", FinalContents.getProjectID(), "", FinalContents.getPreparationId(), FinalContents.getCustomerID(), fang_hao_et1.getText().toString() + "栋" + fang_hao_et2.getText().toString() + "单元" + fang_hao_et3.getText().toString() + "室", apartment, fill_in_transaction_information_et4.getText().toString(), fill_in_transaction_information_et5.getText().toString(), str, payment_way.getText().toString(), FinalContents.getCommissionId(), projecttype, gender, project_relation.getText().toString(), fill_in_transaction_information_et1.getText().toString(), fill_in_transaction_information_et2.getText().toString(), fill_in_transaction_information_et3.getText().toString(), FinalContents.getUserID(), project_time.getText().toString());
+        userMessage.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<TradeSaveBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @SuppressLint("WrongConstant")
+                    @Override
+                    public void onNext(TradeSaveBean tradeSaveBean) {
+                        ToastUtil.showToast(FillInTransactionInformationActivity.this, tradeSaveBean.getData().getMessage());
+                        finish();
+                        Log.i("判断", "shuju2：" + ifnum6);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("成交信息", "错误" + e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+        if (FinalContents.getCommissionId().equals("")) {
             ToastUtil.showToast(FillInTransactionInformationActivity.this, "请选择佣金");
+        } else {
+            FinalContents.setTiaozhuang("成交");
         }
     }
 
@@ -679,12 +675,8 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                     return;
                 }
 
-                project_time.getText().toString();
-                Intent intent = new Intent(FillInTransactionInformationActivity.this,Commission_To_Choose.class);
-                intent.putExtra("time",project_time.getText().toString());
-                startActivity(intent);
 //                if (whether) {
-//                    initTimeData();
+                    initTimeData();
 //                    whether = false;
 //                } else {
 //                    transition_layout.setVisibility(View.GONE);
@@ -719,24 +711,10 @@ public class FillInTransactionInformationActivity extends AppCompatActivity impl
                     @Override
                     public void onNext(final BrokerBean brokerBean) {
                         if (brokerBean.getData().size() != 0) {
-                            transition_layout.setVisibility(View.VISIBLE);
-                            MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(FillInTransactionInformationActivity.this);
-                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                            layoutManager.setScrollEnabled(false);
-                            transition_recycler.setLayoutManager(layoutManager);
-                            TimeRangeAdapter timeRangeAdapter = new TimeRangeAdapter(brokerBean.getData());
-                            transition_recycler.setNestedScrollingEnabled(false);
-                            transition_recycler.setAdapter(timeRangeAdapter);
-                            timeRangeAdapter.setOnItemClickListener(new TimeRangeAdapter.OnItemClickLisenter() {
-                                @Override
-                                public void onItemClick(int postion) {
-                                    project_brokerage.setText(brokerBean.getData().get(postion).getCommissionFormat());
-                                    FinalContents.setCommissionId(brokerBean.getData().get(postion).getId());
-                                    transition_layout.setVisibility(View.GONE);
-                                    whethe = true;
-                                }
-                            });
-                            timeRangeAdapter.notifyDataSetChanged();
+                            project_time.getText().toString();
+                            Intent intent = new Intent(FillInTransactionInformationActivity.this,Commission_To_Choose.class);
+                            intent.putExtra("time",project_time.getText().toString());
+                            startActivity(intent);
                         }else {
                             ToastUtil.showLongToast(FillInTransactionInformationActivity.this,"暂无佣金");
                             transition_layout.setVisibility(View.GONE);

@@ -230,8 +230,7 @@ public interface MyService {
 
     //专案端发布楼盘动态数据
     @POST("specialUpdate/addHousesDynamic?")
-    Observable<MessageIssueBean> getAddHousesDynamic(@Query("title") String title, @Query("content") String content, @Query("img") String img, @Query("userId") String userId, @Query("projectId") String projectId);
-
+    Observable<MessageIssueBean> getAddHousesDynamic(@Query("title") String title, @Query("content") String content, @Query("img") String img, @Query("userId") String userId, @Query("projectId") String projectId,@Query("type") String type);
     //专案端待我审核列表
     @POST("specialSelect/toAuditList?")
     Observable<CheckPendingBean> getToAuditList(@Query("userId") String userId, @Query("projectId") String projectId, @Query("type") String type, @Query("status") int status, @Query("pageSize") String pageSize, @Query("tag") String tag, @Query("startDate") String startDate, @Query("endDate") String endDate);
@@ -251,7 +250,8 @@ public interface MyService {
 
     //首页轮播图列表详情数据
     @POST("commonSelect/newsDetails?")
-    Observable<NewsDetailsBean> getNewsDetails(@Query("userId") String userId, @Query("id") String id);
+    Observable<NewsDetailsBean> getNewsDetails(@Query("userId") String userId, @Query("id") String id, @Query("cityCompanyId") String cityCompanyId);
+
 
     //首页新闻头条数据
     @POST("commonSelect/messageList?")
@@ -265,9 +265,9 @@ public interface MyService {
     @POST("commonSelect/projectHousesDynamicsList?")
     Observable<DynamicBean> getDynamicBeanList(@Query("userId") String userId, @Query("pageSize") String pageSize);
 
-    //消息界面楼盘动态数据
+    ///消息界面楼盘动态数据
     @POST("commonSelect/housesDynamicList")
-    Observable<Dynamic2Bean> getDynamicBeanList2(@Query("userId") String userId, @Query("pageSize") String pageSize);
+    Observable<Dynamic2Bean> getDynamicBeanList2(@Query("userId") String userId, @Query("cityCompanyId") String cityCompanyId, @Query("pageSize") String pageSize);
 
     //消息界面通知+房客数据
     @POST("commonSelect/messageList?")
@@ -283,7 +283,7 @@ public interface MyService {
 
     //海外筛选 楼盘特色/项目标签
     @POST("commonSelect/label")
-    Observable<LabelBean> getLabel(@Query("projectType") String projectType, @Query("userId") String userId, @Query("type") String type);
+    Observable<LabelBean> getLabel(@Query("projectType") String projectType, @Query("userId") String userId, @Query("type") String type, @Query("city") String city);
 
     //项目详情 户型解析
     @POST("commonSelect/familyInfo")
@@ -502,7 +502,7 @@ public interface MyService {
 
     //
     @POST("commonSelect/housesDynamicList")
-    Observable<Dynamic2Bean> getDynamicBean(@Query("userId") String userId, @Query("projectId") String projectId, @Query("pageSize") String pageSize);
+    Observable<Dynamic2Bean> getDynamicBean(@Query("userId") String userId, @Query("cityCompanyId") String cityCompanyId, @Query("projectId") String projectId, @Query("pageSize") String pageSize);
 
     //
     @POST("commonSelect/projectBuildingInfo")

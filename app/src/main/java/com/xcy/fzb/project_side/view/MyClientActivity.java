@@ -38,6 +38,8 @@ import com.xcy.fzb.project_side.fragment.MyClientFragment6;
 import com.xcy.fzb.project_side.fragment.MyClientFragment7;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -47,7 +49,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MyClientActivity extends AllActivity implements View.OnClickListener {
+public class MyClientActivity extends AllActivity implements View.OnClickListener,MyClientFragment2.FragmentInteraction,MyClientFragment3.FragmentInteraction,MyClientFragment4.FragmentInteraction,MyClientFragment5.FragmentInteraction,MyClientFragment6.FragmentInteraction,MyClientFragment7.FragmentInteraction{
 
     LinearLayout my_client_return;
     ImageView client_add;
@@ -285,6 +287,7 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
     }
 
     private void initData(){
+        Log.i("业务流提醒","业务流提醒");
         String ProjectID = "";
         if (!CityContents.getIsRead().equals("1")) {
             ProjectID = FinalContents.getProjectID();
@@ -541,5 +544,22 @@ public class MyClientActivity extends AllActivity implements View.OnClickListene
         initData();
     }
 
+    // 3.2 +实现接口，实现回调
+    @Override
+    public void process(String str) {
+        if (str != null) {
+            if (!str.equals("")) {
+                initData();
+            }
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, priority = 100, sticky = false) //在ui线程执行，优先级为100
+    public void onEvent(String nam) {
+        if(nam.equals("修改")){
+            Log.i("我的客户","修改");
+            initData();
+        }
+    }
 
 }

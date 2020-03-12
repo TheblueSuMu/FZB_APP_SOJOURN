@@ -37,9 +37,11 @@ import com.xcy.fzb.all.persente.MyLinearLayoutManager;
 import com.xcy.fzb.all.persente.SingleClick;
 import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
+import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.project_side.adapter.Project_Side_HomeRecyclerAdapter;
 import com.xcy.fzb.project_side.view.CheckPendingTheProjectEndActivity;
 import com.xcy.fzb.project_side.view.CommissionTheProjectEndActivity;
+import com.xcy.fzb.project_side.view.DetailsTheProjectEndActivity;
 import com.xcy.fzb.project_side.view.InitiatedTheReviewActivity;
 import com.xcy.fzb.project_side.view.MyClientActivity;
 import com.xcy.fzb.project_side.view.MyProjectActivity;
@@ -138,6 +140,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
     private int month;
     private int dayOfMonth;
     private String string;
+    private Date selectdate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -298,7 +301,11 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
                         city_home_the_project_end.setText(userBean.getData().getCity());
                         shop_home_the_project_end.setText(userBean.getData().getCityName());
                         position_home_the_project_end.setText("专案");
-                        FinalContents.setCityID(userBean.getData().getCityId());
+                        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+                            FinalContents.setCityID(userBean.getData().getCityId());
+                        } else {
+
+                        }
 
                         Connector.setUserBean(userBean);
                     }
@@ -321,7 +328,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-
+        selectdate = calendar.getTime();
         string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
         time1_home_the_project_end.setText("<" + string);
         time2_home_the_project_end.setText("-" + string + " >");
@@ -356,6 +363,7 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
+                selectdate = date;
                 time1_home_the_project_end.setText("<" + getTime2(date));
                 beforeDate = getTime2(date);
                 NewlyIncreased.setStartDate(getTime2(date));
@@ -383,11 +391,15 @@ public class Project_Side_HomeFragment extends AllFragment implements View.OnCli
         TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                time2_home_the_project_end.setText("-" + getTime2(date) + " >");
-                afterDate = getTime2(date);
-                NewlyIncreased.setEndDate(getTime2(date));
-                NewlyIncreased.setYJendDate(getTime2(date));
-                initViewData();
+                if (selectdate.after(date)) {
+                    ToastUtil.showLongToast(getActivity(),"开始时间不能大于结束时间");
+                }else {
+                    time2_home_the_project_end.setText("-" + getTime2(date) + " >");
+                    afterDate = getTime2(date);
+                    NewlyIncreased.setEndDate(getTime2(date));
+                    NewlyIncreased.setYJendDate(getTime2(date));
+                    initViewData();
+                }
             }
         })
 

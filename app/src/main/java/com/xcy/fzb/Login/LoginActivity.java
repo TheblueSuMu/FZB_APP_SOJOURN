@@ -312,7 +312,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             } else {
                 Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
-
+                    login_et_username.setText(pref.getString("user_name"+(index-1), ""));
+                    login_et_password.setText(pref.getString("user_password"+(index-1), ""));
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Broker_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -334,6 +335,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             } else {
                 Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
+                    login_et_username.setText(pref.getString("user_name"+(index-1), ""));
+                    login_et_password.setText(pref.getString("user_password"+(index-1), ""));
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Market_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -355,6 +358,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             } else {
                 Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
+                    login_et_username.setText(pref.getString("user_name"+(index-1), ""));
+                    login_et_password.setText(pref.getString("user_password"+(index-1), ""));
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Counselor_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -376,6 +381,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             } else {
                 Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
+                    login_et_username.setText(pref.getString("user_name"+(index-1), ""));
+                    login_et_password.setText(pref.getString("user_password"+(index-1), ""));
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Team_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -397,6 +404,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             } else {
                 Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
+                    login_et_username.setText(pref.getString("user_name"+(index-1), ""));
+                    login_et_password.setText(pref.getString("user_password"+(index-1), ""));
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Captain_Assistant_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -418,6 +427,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             } else {
                 Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
+                    login_et_username.setText(pref.getString("user_name"+(index-1), ""));
+                    login_et_password.setText(pref.getString("user_password"+(index-1), ""));
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Project_Attache_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -439,6 +450,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             } else {
                 Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
+                    login_et_username.setText(pref.getString("user_name"+(index-1), ""));
+                    login_et_password.setText(pref.getString("user_password"+(index-1), ""));
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Project_Side_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -460,6 +473,8 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
             } else {
                 Log.i("登录", "加载a");
                 if (pref.getString("login", "").equals("1")) {
+                    login_et_username.setText(pref.getString("user_name"+(index-1), ""));
+                    login_et_password.setText(pref.getString("user_password"+(index-1), ""));
                     Log.i("mmm", "用户成功登录" + pref.getString("userID", ""));
                     Intent intent = new Intent(this, Shopping_Guide_MainActivity.class);
                     FinalContents.setUserID(pref.getString("userID", ""));
@@ -697,11 +712,12 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onNext(UserIdentity userIdentity) {
-//                        if (userIdentity.getData().getIdentity().equals("1") || userIdentity.getData().getIdentity().equals("2") || userIdentity.getData().getIdentity().equals("3")) {
-//                            initBroker();
-//                        } else
-//                        if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63") || userIdentity.getData().getIdentity().equals("8") || userIdentity.getData().getIdentity().equals("9")) {
-//                            }
+                        if (userIdentity.getData().getStatus().equals("2")) {
+                            ToastUtil.showLongToast(LoginActivity.this,userIdentity.getData().getMessage());
+                            login_avi.setVisibility(View.GONE);
+                            login_avi_rl.setVisibility(View.GONE);
+                            return;
+                        }
                         if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63") ) {
                             initExemplary();
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
@@ -823,11 +839,12 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
 
                     @Override
                     public void onNext(UserIdentity userIdentity) {
-//                        if (userIdentity.getData().getIdentity().equals("1") || userIdentity.getData().getIdentity().equals("2") || userIdentity.getData().getIdentity().equals("3")) {
-//                            initBroker();
-//                        } else
-//                        if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63") || userIdentity.getData().getIdentity().equals("8") || userIdentity.getData().getIdentity().equals("9")) {
-//                        }
+                        if (userIdentity.getData().getStatus().equals("2")) {
+                            ToastUtil.showLongToast(LoginActivity.this,userIdentity.getData().getMessage());
+                            login_avi.setVisibility(View.GONE);
+                            login_avi_rl.setVisibility(View.GONE);
+                            return;
+                        }
                         if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63") ) {
                             initExemplary();
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {
@@ -1651,11 +1668,12 @@ public class LoginActivity extends AllActivity implements View.OnClickListener {
                         type = "3";
                         userName = json.toString();
                         passWord = "";
-                        //                        if (userIdentity.getData().getIdentity().equals("1") || userIdentity.getData().getIdentity().equals("2") || userIdentity.getData().getIdentity().equals("3")) {
-//                            initBroker();
-//                        } else
-//                        if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("5") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63") || userIdentity.getData().getIdentity().equals("8") || userIdentity.getData().getIdentity().equals("9")) {
-//                            }
+                        if (userIdentity.getData().getStatus().equals("2")) {
+                            ToastUtil.showLongToast(LoginActivity.this,userIdentity.getData().getMessage());
+                            login_avi.setVisibility(View.GONE);
+                            login_avi_rl.setVisibility(View.GONE);
+                            return;
+                        }
                         if (userIdentity.getData().getIdentity().equals("4") || userIdentity.getData().getIdentity().equals("7")|| userIdentity.getData().getIdentity().equals("63") ) {
                             initExemplary();
                         } else if (userIdentity.getData().getIdentity().equals("60") || userIdentity.getData().getIdentity().equals("61") || userIdentity.getData().getIdentity().equals("62") ) {

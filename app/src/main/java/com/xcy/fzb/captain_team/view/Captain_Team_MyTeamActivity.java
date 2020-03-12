@@ -166,6 +166,9 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
     private int year;
     private int month;
     private int dayOfMonth;
+    private Date select1;
+    private Date select2;
+    private Date select3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -345,6 +348,9 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        select1 = calendar.getTime();
+        select2 = calendar.getTime();
+        select3 = calendar.getTime();
 
         string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
         market_time_time_tv1.setText(string);
@@ -779,6 +785,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         TimePickerView pvTime = new TimePickerBuilder(Captain_Team_MyTeamActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
+                select1 = date;
                 market_time_time_tv1.setText(getTime2(date));
                 startDate1 = getTime2(date);
                 NewlyIncreased.setStartDate(getTime2(date));
@@ -804,10 +811,14 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         TimePickerView pvTime = new TimePickerBuilder(Captain_Team_MyTeamActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                market_time_time_tv2.setText(getTime2(date));
-                endDate1 = getTime2(date);
-                NewlyIncreased.setEndDate(getTime2(date));
-                initDataStatistics();
+                if (select1.after(date)) {
+                    ToastUtil.showLongToast(Captain_Team_MyTeamActivity.this,"开始时间不能大于结束时间");
+                }else {
+                    market_time_time_tv2.setText(getTime2(date));
+                    endDate1 = getTime2(date);
+                    NewlyIncreased.setEndDate(getTime2(date));
+                    initDataStatistics();
+                }
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
@@ -830,6 +841,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         TimePickerView pvTime = new TimePickerBuilder(Captain_Team_MyTeamActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
+                select2 = date;
                 market_time_time_tv3.setText(getTime2(date));
                 startDate2 = getTime2(date);
                 NewlyIncreased.setYJstartDate(getTime2(date));
@@ -855,10 +867,15 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         TimePickerView pvTime = new TimePickerBuilder(Captain_Team_MyTeamActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                market_time_time_tv4.setText(getTime2(date));
-                endDate2 = getTime2(date);
-                NewlyIncreased.setYJendDate(getTime2(date));
-                initTeamCommissions();
+                if (select2.after(date)) {
+                    ToastUtil.showLongToast(Captain_Team_MyTeamActivity.this,"开始时间不能大于结束时间");
+                }else {
+                    market_time_time_tv4.setText(getTime2(date));
+                    endDate2 = getTime2(date);
+                    NewlyIncreased.setYJendDate(getTime2(date));
+                    initTeamCommissions();
+                }
+
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
@@ -881,6 +898,7 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         TimePickerView pvTime = new TimePickerBuilder(Captain_Team_MyTeamActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
+                select3 = date;
                 market_time_time_tv5.setText(getTime2(date));
                 startDate3 = getTime2(date);
             }
@@ -905,9 +923,14 @@ public class Captain_Team_MyTeamActivity extends AllActivity implements View.OnC
         TimePickerView pvTime = new TimePickerBuilder(Captain_Team_MyTeamActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                market_time_time_tv6.setText(getTime2(date));
-                endDate3 = getTime2(date);
-                initDailyTurnover();
+                if (select3.after(date)) {
+                    ToastUtil.showLongToast(Captain_Team_MyTeamActivity.this,"开始时间不能大于结束时间");
+                }else {
+                    market_time_time_tv6.setText(getTime2(date));
+                    endDate3 = getTime2(date);
+                    initDailyTurnover();
+                }
+
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示

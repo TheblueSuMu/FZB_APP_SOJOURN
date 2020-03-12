@@ -31,7 +31,7 @@ public class WeChatBindingActivity extends AllActivity{
 
 
     private Button change_wechat_yanzhengma_1;
-    private EditText change_wechat_et;
+    private TextView change_wechat_et;
     private RelativeLayout change_wechat_return;
     private EditText change_wechat_yanzhengma;
     private Button change_wechat_ensure;
@@ -79,6 +79,9 @@ public class WeChatBindingActivity extends AllActivity{
             change_wechat_title.setText("解绑微信");
         }
 
+        change_wechat_et.setText(CityContents.getPhone().replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2"));
+
+
         change_wechat_yanzhengma_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,7 +107,7 @@ public class WeChatBindingActivity extends AllActivity{
                     ToastUtil.showLongToast(WeChatBindingActivity.this, "验证码不能为空");
                     return;
                 }
-                initData(change_wechat_et.getText().toString(),change_wechat_yanzhengma.getText().toString(), CityContents.getWeChatType(),CityContents.getWeChatJson());
+                initData(CityContents.getPhone(),change_wechat_yanzhengma.getText().toString(), CityContents.getWeChatType(),CityContents.getWeChatJson());
             }
         });
     }
@@ -120,7 +123,7 @@ public class WeChatBindingActivity extends AllActivity{
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<CodeBean> userMessage = fzbInterface.getSendCode(change_wechat_et.getText().toString(),"");
+            Observable<CodeBean> userMessage = fzbInterface.getSendCode(CityContents.getPhone(),"");
             userMessage.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<CodeBean>() {

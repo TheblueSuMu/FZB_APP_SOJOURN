@@ -3,6 +3,7 @@ package com.xcy.fzb.all.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,6 +52,14 @@ public class ProcessDataAdapter extends RecyclerView.Adapter<ProcessDataAdapter.
         holder.client_item_photo.setText("(" + rows.get(position).getAgentPhone() + ")");
         holder.client_item_time.setText(rows.get(position).getDate());
         holder.client_item_project_name.setText(rows.get(position).getProjectName());
+
+        holder.client_item_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + rows.get(position).getAgentPhone()));//跳转到拨号界面，同时传递电话号码
+                context.startActivity(dialIntent);
+            }
+        });
 
 //        if (rows.get(position).getIsRead().equals("0")){
 //            holder.client_item_unread.setVisibility(View.VISIBLE);

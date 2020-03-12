@@ -564,7 +564,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<LabelBean> nationBean = fzbInterface.getLabel(FinalContents.getProjectType(),FinalContents.getUserID(),"1");
+        Observable<LabelBean> nationBean = fzbInterface.getLabel(FinalContents.getProjectType(),FinalContents.getUserID(),"1",FinalContents.getCityID());
         nationBean.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LabelBean>() {
@@ -582,6 +582,9 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                             ProjectLabelAdapter reportItemAdapter = new ProjectLabelAdapter(labelBean.getData());
                             project_lable_rv.setAdapter(reportItemAdapter);
                             reportItemAdapter.notifyDataSetChanged();
+                            for(int i = 0;i < labelBean.getData().size();i++){
+                                LabelMap.put(i,"");
+                            }
                             reportItemAdapter.setOnItemClickListener(new ProjectLabelAdapter.OnItemClickLisenter() {
                                 @Override
                                 public void onItemClick(CheckBox checkBox, int postion) {
@@ -592,7 +595,7 @@ public class OverSeaActivity extends AllActivity implements View.OnClickListener
                                     } else {
                                         LabelMap.put(postion, "");
                                     }
-                                    for (int i = 0; i < LabelMap.size(); i++) {
+                                    for (int i = 0; i < labelBean.getData().size(); i++) {
                                         projectLabel = projectLabel + LabelMap.get(i);
                                     }
 

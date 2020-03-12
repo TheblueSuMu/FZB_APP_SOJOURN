@@ -152,7 +152,7 @@ public class BuildingDynamicActivity extends AllActivity implements Dynamic2Adap
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<Dynamic2Bean> dynamicBean1 = fzbInterface.getDynamicBean(FinalContents.getUserID(), FinalContents.getProjectID(),"1000");
+        Observable<Dynamic2Bean> dynamicBean1 = fzbInterface.getDynamicBean(FinalContents.getUserID(),FinalContents.getCityID(),  FinalContents.getProjectID(),"1000");
         dynamicBean1.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Dynamic2Bean>() {

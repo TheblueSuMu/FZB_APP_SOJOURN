@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.xcy.fzb.R;
+import com.xcy.fzb.all.api.FinalContents;
 import com.xcy.fzb.all.modle.MessageBean;
 
 import java.util.ArrayList;
@@ -94,6 +95,11 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
         holder.room_message.setText(rows.get(position).getContent());
         holder.room_name.setText(rows.get(position).getUserName());
 
+        if (!FinalContents.getCityIs().equals("")) {
+            holder.room_ll_1.setVisibility(View.GONE);
+        }else {
+            holder.room_ll_1.setVisibility(View.VISIBLE);
+        }
 
         holder.room_img.setOnClickListener(new View.OnClickListener() {
             @Override

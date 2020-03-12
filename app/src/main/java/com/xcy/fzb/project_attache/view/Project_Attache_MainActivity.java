@@ -160,6 +160,20 @@ public class Project_Attache_MainActivity extends AllActivity implements View.On
 
                 transaction.commit();
                 button_economics.setChecked(true);
+            } else if (str.equals("10")) {
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+//                MessageFragment messageFragment = new MessageFragment();
+                message_fragment.setType("1");
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(home_fragment);
+                transaction.hide(dFragment);
+                transaction.show(message_fragment);
+                transaction.hide(eFragment);
+
+                transaction.commit();
+                button_economics.setChecked(true);
             }
         }
     }

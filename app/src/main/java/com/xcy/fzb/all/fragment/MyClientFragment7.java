@@ -29,6 +29,8 @@ import com.xcy.fzb.all.persente.StatusBar;
 import com.xcy.fzb.all.service.MyService;
 import com.xcy.fzb.all.view.ReviewTheSuccessActivity;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -107,7 +109,7 @@ public class MyClientFragment7 extends Fragment implements ClientFragmentAdapter
                         }else {
                             initData();
                         }
-
+                        EventBus.getDefault().post("修改");
                     }
                 }, 1000);
             }

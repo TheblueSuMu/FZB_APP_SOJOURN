@@ -141,6 +141,21 @@ public class Captain_Team_MainActivity extends AllActivity implements View.OnCli
                 Log.i("消息跳转","type5："+str);
                 transaction.commit();
                 button_message.setChecked(true);
+            }else if (str.equals("10")) {
+                init_No_Network();
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+//                MessageFragment messageFragment = new MessageFragment();
+                messageFragment.setType("1");
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(captain_team_myClientFragment);
+                transaction.show(messageFragment);
+                transaction.hide(captain_team_meFragment);
+                Log.i("消息跳转","type5："+str);
+                transaction.commit();
+                button_message.setChecked(true);
             }
         }
     }

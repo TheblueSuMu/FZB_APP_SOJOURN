@@ -34,6 +34,16 @@ public class CityContents {
 
     static String CommissionFormat = "";
 
+    static String phone = "";
+
+    public static String getPhone() {
+        return phone;
+    }
+
+    public static void setPhone(String phone) {
+        CityContents.phone = phone;
+    }
+
     static List<ProjectDetailsBean.DataBean.ProjectListVoBean.FfAttacheListBean> FfAttacheList = new ArrayList<>();
 
     public static List<ProjectDetailsBean.DataBean.ProjectListVoBean.FfAttacheListBean> getFfAttacheList() {

@@ -21,7 +21,8 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.xcy.fzb.all.utils.ToastUtil;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -47,6 +48,7 @@ import com.xcy.fzb.all.utils.CommonUtil;
 import com.xcy.fzb.all.utils.GlideEngine;
 import com.xcy.fzb.all.utils.ToastUtil;
 import com.xcy.fzb.all.view.AllActivity;
+import com.xcy.fzb.all.view.FeedbackActivity;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -82,6 +84,7 @@ public class MessageIssueActivity extends AllActivity {
 
     TextView message_issue_tv1;
     TextView message_issue_tv2;
+    TextView message_issue_title;
 
     private List<Object> mDatas;
     private GridViewAdapter adapter;
@@ -106,6 +109,7 @@ public class MessageIssueActivity extends AllActivity {
     private File file;
     private List<File> fileList = new ArrayList<>();
     private List<MultipartBody.Part> parts;
+    private int type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +134,7 @@ public class MessageIssueActivity extends AllActivity {
                     startActivity(getIntent());
                 }
             });
-            Toast.makeText(this, "当前无网络，请检查网络后再进行登录", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(this, "当前无网络，请检查网络后再进行登录");
         }
     }
 
@@ -147,6 +151,7 @@ public class MessageIssueActivity extends AllActivity {
         message_issue_rl2 = findViewById(R.id.message_issue_rl2);
         message_issue_tv1 = findViewById(R.id.message_issue_tv1);
         message_issue_tv2 = findViewById(R.id.message_issue_tv2);
+        message_issue_title = findViewById(R.id.message_issue_title);
 
         initData();
 
@@ -198,6 +203,17 @@ public class MessageIssueActivity extends AllActivity {
 
     //TODO 发布操作
     private void initFB() {
+
+        String s = message_issue_tv1.getText().toString();
+
+        if (s.equals("楼盘动态")) {
+            type = 0;
+        } else if (s.equals("变价通知")) {
+            type = 1;
+        } else if (s.equals("开盘通知")) {
+            type = 2;
+        }
+
         message = message_issue_message.getText().toString();
         imgUrl = stringBuffer.toString();
         Retrofit.Builder builder = new Retrofit.Builder();
@@ -206,7 +222,7 @@ public class MessageIssueActivity extends AllActivity {
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<MessageIssueBean> userMessage = fzbInterface.getAddHousesDynamic(message_issue_tv2.getText().toString(), message, imgUrl, FinalContents.getUserID(), projectID);
+        Observable<MessageIssueBean> userMessage = fzbInterface.getAddHousesDynamic(message_issue_title.getText().toString(), message, imgUrl, FinalContents.getUserID(), projectID, type + "");
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MessageIssueBean>() {
@@ -326,6 +342,9 @@ public class MessageIssueActivity extends AllActivity {
 
                                     }
                                 } else if (i == 1) {
+//                                    Intent getAlbum = new Intent(Intent.ACTION_PICK);
+//                                    getAlbum.setType(IMAGE_TYPE);
+//                                    startActivityForResult(getAlbum, IMAGE_CODE);
                                     int size = 9 - mDatas.size();
                                     EasyPhotos.createAlbum(MessageIssueActivity.this, false, GlideEngine.getInstance())//参数说明：上下文，是否显示相机按钮，[配置Glide为图片加载引擎](https://github.com/HuanTanSheng/EasyPhotos/wiki/12-%E9%85%8D%E7%BD%AEImageEngine%EF%BC%8C%E6%94%AF%E6%8C%81%E6%89%80%E6%9C%89%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93)
                                             .setCount(size)//参数说明：最大可选数，默认1
@@ -365,7 +384,7 @@ public class MessageIssueActivity extends AllActivity {
                                                         }
                                                         parts = mbuilder.build().parts();
 
-                                                        Log.i("批量选择相册","进入前");
+                                                        Log.i("批量选择相册", "进入前");
 
                                                         Retrofit.Builder builder = new Retrofit.Builder();
                                                         builder.baseUrl(FinalContents.getBaseUrl());
@@ -379,14 +398,14 @@ public class MessageIssueActivity extends AllActivity {
                                                                 .subscribe(new Observer<AddPhotoBeanS>() {
                                                                     @Override
                                                                     public void onSubscribe(Disposable d) {
-                                                                        Log.i("批量选择相册","onSubscribe");
+                                                                        Log.i("批量选择相册", "onSubscribe");
                                                                     }
 
                                                                     @Override
                                                                     public void onNext(AddPhotoBeanS addPhotoBean) {
-                                                                        Log.i("批量选择相册","图片地址");
-                                                                        for (int i = 0; i < addPhotoBean.getData().size(); ++i){
-                                                                            Log.i("批量选择相册","图片地址：" + addPhotoBean.getData().get(i).getUrl());
+                                                                        Log.i("批量选择相册", "图片地址");
+                                                                        for (int i = 0; i < addPhotoBean.getData().size(); ++i) {
+                                                                            Log.i("批量选择相册", "图片地址：" + addPhotoBean.getData().get(i).getUrl());
                                                                             if (stringBuffer.length() == 0) {
                                                                                 stringBuffer.append(addPhotoBean.getData().get(i).getUrl());
                                                                             } else {
@@ -402,7 +421,7 @@ public class MessageIssueActivity extends AllActivity {
 
                                                                     @Override
                                                                     public void onError(Throwable e) {
-                                                                        Log.i("批量选择相册","经济圈发布图片上传错误信息：" + e.getMessage());
+                                                                        Log.i("批量选择相册", "经济圈发布图片上传错误信息：" + e.getMessage());
                                                                         Log.i("MyCL", "经济圈发布图片上传错误信息：" + e.getMessage());
                                                                     }
 
@@ -417,6 +436,7 @@ public class MessageIssueActivity extends AllActivity {
                                                     }
                                                 }
                                             });
+
                                 }
                             }
                         });
@@ -438,7 +458,6 @@ public class MessageIssueActivity extends AllActivity {
         });
 
     }
-
 
     //TODO 将Uri转换成File
     private File uri2File(Uri uri) {

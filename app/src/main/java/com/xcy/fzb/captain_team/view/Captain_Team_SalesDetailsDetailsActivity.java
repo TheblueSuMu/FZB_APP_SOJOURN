@@ -130,6 +130,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
     private int year;
     private int month;
     private int dayOfMonth;
+    private Date select;
 
 
     @Override
@@ -908,7 +909,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-
+        select = calendar.getTime();
         string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
         sales_details_details_time1.setText("<" + string);
         sales_details_details_time2.setText("-" + string + " >");
@@ -942,6 +943,7 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         TimePickerView pvTime = new TimePickerBuilder(Captain_Team_SalesDetailsDetailsActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
+                select = date;
                 sales_details_details_time1.setText("<" + getTime2(date));
                 startTime = getTime2(date);
                 NewlyIncreased.setStartDate(getTime2(date));
@@ -968,10 +970,14 @@ public class Captain_Team_SalesDetailsDetailsActivity extends AllActivity implem
         TimePickerView pvTime = new TimePickerBuilder(Captain_Team_SalesDetailsDetailsActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                sales_details_details_time2.setText("-" + getTime2(date) + " >");
-                endTime = getTime2(date);
-                NewlyIncreased.setEndDate(getTime2(date));
-                initDataStatistics();
+                if (select.after(date)) {
+                    ToastUtil.showLongToast(Captain_Team_SalesDetailsDetailsActivity.this,"开始时间不能大于结束时间");
+                }else {
+                    sales_details_details_time2.setText("-" + getTime2(date) + " >");
+                    endTime = getTime2(date);
+                    NewlyIncreased.setEndDate(getTime2(date));
+                    initDataStatistics();
+                }
             }
         })
                 .setType(new boolean[]{true, true, true, false, false, false}) //年月日时分秒 的显示与否，不设置则默认全部显示

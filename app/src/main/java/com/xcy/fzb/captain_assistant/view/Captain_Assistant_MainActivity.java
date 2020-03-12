@@ -164,6 +164,21 @@ public class Captain_Assistant_MainActivity extends AllActivity implements View.
 
                 transaction.commit();
                 message.setChecked(true);
+            }  else if (str.equals("10")) {
+                init_No_Network();
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+//                MessageFragment messageFragment = new MessageFragment();
+                messageFragment.setType("1");
+//                transaction.replace(R.id.team_main_framelayout,messageFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(teamFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
+                transaction.commit();
+                message.setChecked(true);
             } else if (str.equals("63")) {
                 init_No_Network();
                 FragmentManager manager = getSupportFragmentManager();

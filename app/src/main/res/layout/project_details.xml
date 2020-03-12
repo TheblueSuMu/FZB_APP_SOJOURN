@@ -182,6 +182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+
                     <co.lujun.androidtagview.TagContainerLayout
                         android:id="@+id/project_details_productfeature"
                         android:layout_width="wrap_content"
@@ -207,13 +208,12 @@
                         android:layout_width="30dp"
                         android:layout_height="16dp"
                         android:layout_marginLeft="20dp"
-                        android:gravity="center_horizontal"
                         android:background="@drawable/project_salestatus_back"
+                        android:gravity="center_horizontal"
                         android:paddingLeft="2dp"
-                        android:paddingRight="2dp"
                         android:paddingTop="1dp"
                         android:paddingBottom="1dp"
-                        android:text="在售"
+                        android:text="销售"
                         android:textColor="#ffac1e26"
                         android:textSize="10sp" />
 
@@ -424,6 +424,7 @@
                     android:textSize="14sp" />
 
                 <RelativeLayout
+                    android:id="@+id/project_details_relativelayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp">
@@ -891,6 +892,7 @@
                     android:layout_marginTop="24dp"
                     android:orientation="vertical"
                     android:paddingLeft="15dp"
+                    android:visibility="gone"
                     android:paddingRight="12dp">
 
                     <TextView
@@ -1020,7 +1022,6 @@
                     android:id="@+id/linear7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="60dp"
                     android:orientation="vertical"
                     android:paddingLeft="15dp">
 
@@ -1037,6 +1038,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-10dp"
+                        android:orientation="vertical"
                         android:layout_marginTop="5dp">
 
                         <com.google.android.material.tabs.TabLayout
@@ -1050,25 +1052,35 @@
 
                         </com.google.android.material.tabs.TabLayout>
 
+                        <com.amap.api.maps.MapView
+                            android:id="@+id/map_zbpt"
+                            android:layout_marginTop="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"/>
+
                     </LinearLayout>
 
-                    <TextView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/project_details_message"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:lineSpacingMultiplier="1.2"
-                        android:text="周边信息"
-                        android:textColor="#111"
-                        android:textSize="14sp" />
+                        android:layout_marginRight="15dp"
+                        android:layout_height="wrap_content">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/project_details_message"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginTop="15dp"-->
+                    <!--                        android:lineSpacingMultiplier="1.2"-->
+                    <!--                        android:text="周边信息"-->
+                    <!--                        android:textColor="#111"-->
+                    <!--                        android:textSize="14sp" />-->
 
                 </LinearLayout>
 
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
         </LinearLayout>
 
     </com.xcy.fzb.all.persente.GradationScrollView>

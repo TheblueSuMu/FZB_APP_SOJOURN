@@ -14,6 +14,7 @@
         android:gravity="center_vertical"
         android:id="@+id/textbanner_s"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
         android:text=""
         android:textSize="11sp"
         android:singleLine="true"

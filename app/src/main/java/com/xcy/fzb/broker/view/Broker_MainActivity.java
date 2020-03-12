@@ -139,6 +139,21 @@ public class Broker_MainActivity extends AllActivity implements View.OnClickList
 
                 transaction.commit();
                 button_message.setChecked(true);
+            } else if (str.equals("10")) {
+                init_No_Network();
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+//                MessageFragment messageFragment = new MessageFragment();
+                message_fragment.setType("1");
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(home_fragment);
+                transaction.hide(dFragment);
+                transaction.show(message_fragment);
+                transaction.hide(eFragment);
+
+                transaction.commit();
+                button_message.setChecked(true);
             }
         }
 

@@ -175,6 +175,9 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     String tag = "1";
     private String string;
     private Date select;
+    private Date select1;
+    private Date select2;
+    private Date select3;
     private Date endselect;
 
     @Override
@@ -355,6 +358,9 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         month = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         select = calendar.getTime();
+        select1 = calendar.getTime();
+        select2 = calendar.getTime();
+        select3 = calendar.getTime();
         endselect = calendar.getTime();
         string = String.format(Locale.getDefault(), "%d.%02d.%02d", year, month + 1, dayOfMonth);
         details_the_project_end_time1.setText("<" + string);
@@ -425,14 +431,15 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
     }
 
     //            TODO  项目详情    运营数据   开始时间
-    private void initTime1_Date1(){
+    private void initTime1_Date1() {
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year-3, month, dayOfMonth);
+        startDate.set(year - 3, month, dayOfMonth);
         Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
+                select2 = date;
                 details_the_project_end_time1.setText("<" + getTime2(date));
                 beforeDate1 = getTime2(date);
                 NewlyIncreased.setStartDate(getTime2(date));
@@ -444,25 +451,29 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 .isCenterLabel(false)
                 .setDate(selectedDate)
                 .setLineSpacingMultiplier(1.5f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setTextXOffset(-10, 0, 10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
                 .setRangDate(startDate, endDate)
                 .build();
         pvTime.show();
     }
 
     //            TODO  项目详情    运营数据   结束时间
-    private void initTime1_Date2(){
+    private void initTime1_Date2() {
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year-3, month, dayOfMonth);
+        startDate.set(year - 3, month, dayOfMonth);
         Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                afterDate1 = getTime2(date);
-                details_the_project_end_time2.setText("-" + getTime2(date) + " >");
-                NewlyIncreased.setEndDate(getTime2(date));
-                initViewData2();
+                if (select2.after(date)) {
+                    ToastUtil.showLongToast(DetailsTheProjectEndActivity.this, "开始时间不能大于结束时间");
+                } else {
+                    afterDate1 = getTime2(date);
+                    details_the_project_end_time2.setText("-" + getTime2(date) + " >");
+                    NewlyIncreased.setEndDate(getTime2(date));
+                    initViewData2();
+                }
             }
         })
 
@@ -471,21 +482,22 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 .isCenterLabel(false)
                 .setDate(selectedDate)
                 .setLineSpacingMultiplier(1.5f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setTextXOffset(-10, 0, 10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
                 .setRangDate(startDate, endDate)
                 .build();
         pvTime.show();
     }
 
     //            TODO  项目详情    财务数据   开始时间
-    private void initTime2_Date1(){
+    private void initTime2_Date1() {
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year-3, month, dayOfMonth);
+        startDate.set(year - 3, month, dayOfMonth);
         Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
+                select3 = date;
                 beforeDate2 = getTime2(date);
                 details_the_project_end_time3.setText("<" + getTime2(date));
                 NewlyIncreased.setYJstartDate(getTime2(date));
@@ -497,25 +509,29 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 .isCenterLabel(false)
                 .setDate(selectedDate)
                 .setLineSpacingMultiplier(1.5f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setTextXOffset(-10, 0, 10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
                 .setRangDate(startDate, endDate)
                 .build();
         pvTime.show();
     }
 
     //            TODO  项目详情    财务数据   结束时间
-    private void initTime2_Date2(){
+    private void initTime2_Date2() {
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year-3, month, dayOfMonth);
+        startDate.set(year - 3, month, dayOfMonth);
         Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 afterDate2 = getTime2(date);
-                details_the_project_end_time4.setText("-" + getTime2(date) + " >");
-                NewlyIncreased.setYJendDate(getTime2(date));
-                initViewData1();
+                if (select3.after(date)) {
+                    ToastUtil.showLongToast(DetailsTheProjectEndActivity.this, "开始时间不能大于结束时间");
+                } else {
+                    details_the_project_end_time4.setText("-" + getTime2(date) + " >");
+                    NewlyIncreased.setYJendDate(getTime2(date));
+                    initViewData1();
+                }
             }
         })
 
@@ -524,22 +540,23 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 .isCenterLabel(false)
                 .setDate(selectedDate)
                 .setLineSpacingMultiplier(1.5f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setTextXOffset(-10, 0, 10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
                 .setRangDate(startDate, endDate)
                 .build();
         pvTime.show();
     }
 
     //            TODO  项目详情    业务趋势   开始时间
-    private void initTime3_Date1(){
+    private void initTime3_Date1() {
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year-3, month, dayOfMonth);
+        startDate.set(year - 3, month, dayOfMonth);
         Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 select = date;
+                select1 = date;
                 beforeDate3 = getTime2(date);
                 details_the_project_end_time5.setText("<" + getTime2(date));
             }
@@ -550,14 +567,14 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 .isCenterLabel(false)
                 .setDate(selectedDate)
                 .setLineSpacingMultiplier(1.5f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setTextXOffset(-10, 0, 10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
                 .setRangDate(startDate, endDate)
                 .build();
         pvTime.show();
     }
 
     //            TODO  项目详情    业务趋势   结束时间
-    private void initTime3_Date2(){
+    private void initTime3_Date2() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(select);
         int selectyear = calendar.get(Calendar.YEAR);
@@ -565,18 +582,20 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         int selectdayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
         final Calendar selected = Calendar.getInstance();
-        selected.set(selectyear,selectmonth,selectdayOfMonth+100);
+        selected.set(selectyear, selectmonth, selectdayOfMonth + 100);
         select = selected.getTime();
 
         Calendar selectedDate = Calendar.getInstance();//系统当前时间
         Calendar startDate = Calendar.getInstance();
-        startDate.set(year-3, month, dayOfMonth);
+        startDate.set(year - 3, month, dayOfMonth);
         Calendar endDate = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(DetailsTheProjectEndActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                if (select.before(date)) {
-                    ToastUtil.showLongToast(DetailsTheProjectEndActivity.this,"时间间隔不能大于100天");
+                if (select1.after(date)) {
+                    ToastUtil.showLongToast(DetailsTheProjectEndActivity.this, "开始时间不能大于结束时间");
+                } else if (select.before(date)) {
+                    ToastUtil.showLongToast(DetailsTheProjectEndActivity.this, "时间间隔不能大于100天");
                 } else {
                     afterDate3 = getTime2(date);
                     details_the_project_end_time6.setText("-" + getTime2(date) + " >");
@@ -589,7 +608,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 .isCenterLabel(false)
                 .setDate(selectedDate)
                 .setLineSpacingMultiplier(1.5f)
-                .setTextXOffset(-10, 0,10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setTextXOffset(-10, 0, 10, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
                 .setRangDate(startDate, endDate)
                 .build();
         pvTime.show();
@@ -622,18 +641,18 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                         details_the_project_end_tv2.setText("项目地址：" + detailsBean.getData().getProject().getAddress());
                         details_the_project_end_tv3.setText(Html.fromHtml("报备(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getReportAmount() + "</font>" + ")  " + "关注(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getBrowseNum() + "</font>" + ")  " + "收藏(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getCollectionNum() + "</font>" + ")  " + "转发(" + "<font color='#A52A2A'>" + detailsBean.getData().getProject().getForwardingAmount() + "</font>" + ")  "));
 
-                        details_the_project_end_tv12.setText(""+detailsBean.getData().getReceivableMoneyMap().getReceivableMoney());
-                        details_the_project_end_tv13.setText(""+detailsBean.getData().getReceivableMoneyMap().getBackMoney());
-                        details_the_project_end_tv14.setText(""+detailsBean.getData().getReceivableMoneyMap().getInvoiceMoney());
-                        details_the_project_end_tv15.setText(""+detailsBean.getData().getReceivableMoneyMap().getSurplusMoney());
+                        details_the_project_end_tv12.setText("" + detailsBean.getData().getReceivableMoneyMap().getReceivableMoney());
+                        details_the_project_end_tv13.setText("" + detailsBean.getData().getReceivableMoneyMap().getBackMoney());
+                        details_the_project_end_tv14.setText("" + detailsBean.getData().getReceivableMoneyMap().getInvoiceMoney());
+                        details_the_project_end_tv15.setText("" + detailsBean.getData().getReceivableMoneyMap().getSurplusMoney());
 
-                        details_the_project_end_tv4.setText(""+detailsBean.getData().getOperation().getReportNumber());
-                        details_the_project_end_tv5.setText(""+detailsBean.getData().getOperation().getReportOk());
-                        details_the_project_end_tv6.setText(""+detailsBean.getData().getOperation().getAccessingNumber());
-                        details_the_project_end_tv8.setText(""+detailsBean.getData().getOperation().getIsIslandNumber());
-                        details_the_project_end_tv9.setText(""+detailsBean.getData().getOperation().getEarnestMoneyNumber());
-                        details_the_project_end_tv10.setText(""+detailsBean.getData().getOperation().getTradeNumber());
-                        details_the_project_end_tv11.setText(""+detailsBean.getData().getOperation().getInvalidNum());
+                        details_the_project_end_tv4.setText("" + detailsBean.getData().getOperation().getReportNumber());
+                        details_the_project_end_tv5.setText("" + detailsBean.getData().getOperation().getReportOk());
+                        details_the_project_end_tv6.setText("" + detailsBean.getData().getOperation().getAccessingNumber());
+                        details_the_project_end_tv8.setText("" + detailsBean.getData().getOperation().getIsIslandNumber());
+                        details_the_project_end_tv9.setText("" + detailsBean.getData().getOperation().getEarnestMoneyNumber());
+                        details_the_project_end_tv10.setText("" + detailsBean.getData().getOperation().getTradeNumber());
+                        details_the_project_end_tv11.setText("" + detailsBean.getData().getOperation().getInvalidNum());
                         if (detailsBean.getData().getGsonOption().getSeries().get(0).getData().size() != 0) {
                             List<Integer> integers = detailsBean.getData().getGsonOption().getSeries().get(0).getData();
                             indexList = detailsBean.getData().getGsonOption().getXAxis().getData();
@@ -700,7 +719,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
         MyService fzbInterface = build.create(MyService.class);
-        Observable<FinanceBean> userMessage = fzbInterface.getFinanceList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate1, afterDate1, type1,tag);
+        Observable<FinanceBean> userMessage = fzbInterface.getFinanceList(FinalContents.getUserID(), FinalContents.getProjectID(), beforeDate1, afterDate1, type1, tag);
         userMessage.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<FinanceBean>() {
@@ -801,9 +820,9 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             xAxis.setDrawGridLines(false);
             /*解决左右两端柱形图只显示一半的情况 只有使用CombinedChart时会出现，如果单独使用BarChart不会有这个问题*/
             xAxis.setAxisMinimum(-0.2f);
-            Log.i("长度","values.size()"+values.size());
-            Log.i("长度","list.size()"+list.size());
-            Log.i("长度","indexList.size()"+indexList.size());
+            Log.i("长度", "values.size()" + values.size());
+            Log.i("长度", "list.size()" + list.size());
+            Log.i("长度", "indexList.size()" + indexList.size());
             xAxis.setAxisMaximum(values.size() - 0.5f);
             xAxis.setGranularity(1f);
             xAxis.setTextColor(Color.parseColor("#666666"));
@@ -813,7 +832,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 public String getFormattedValue(float value) {
                     if (indexList.size() != 0) {
                         return indexList.get((int) value % indexList.size());
-                    }else {
+                    } else {
                         return "";
                     }
                 }
@@ -821,7 +840,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
 
             float max = 0;
 
-            for (int i = 0;i < list.size();i++){
+            for (int i = 0; i < list.size(); i++) {
                 if (list.get(i) > max) {
                     max = list.get(i);
                 }
@@ -856,7 +875,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
                 @Override
                 public String getFormattedValue(float value) {
                     int n = (int) value;
-                    return n+"";
+                    return n + "";
                 }
             });
             BarData barData = new BarData();
@@ -889,7 +908,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
             combinedData.setData(barData);  // 添加柱形图数据源
             combinedData.setData(lineData); // 添加折线图数据源
             if (indexList.size() > 5) {
-                combinedChart.setVisibleXRange(0,5);
+                combinedChart.setVisibleXRange(0, 5);
             }
             combinedChart.setData(combinedData); // 为组合图设置数据源
             combinedChart.setVisibleXRangeMaximum(12);
@@ -906,7 +925,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         if (NewlyIncreased.getTag().equals("3")) {
             NewlyIncreased.setStartDate(beforeDate1);
             NewlyIncreased.setEndDate(afterDate1);
-        }else {
+        } else {
             NewlyIncreased.setStartDate("");
             NewlyIncreased.setEndDate("");
         }
@@ -914,7 +933,7 @@ public class DetailsTheProjectEndActivity extends AllActivity implements View.On
         if (NewlyIncreased.getYJType().equals("3")) {
             NewlyIncreased.setYJstartDate(beforeDate2);
             NewlyIncreased.setYJendDate(afterDate2);
-        }else {
+        } else {
             NewlyIncreased.setYJstartDate("");
             NewlyIncreased.setYJendDate("");
         }

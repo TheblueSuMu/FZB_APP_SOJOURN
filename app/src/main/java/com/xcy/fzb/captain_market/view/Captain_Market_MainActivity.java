@@ -135,6 +135,20 @@ public class Captain_Market_MainActivity extends AllActivity implements View.OnC
 
                 transaction.commit();
                 button_message.setChecked(true);
+            }else if (str.equals("10")) {
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+//                MessageFragment messageFragment = new MessageFragment();
+                messageFragment.setType("1");
+//                transaction.replace(R.id.main_framelayout,messageFragment);
+
+                transaction.hide(projectFragment);
+                transaction.hide(myClientFragment);
+                transaction.show(messageFragment);
+                transaction.hide(meFragment);
+
+                transaction.commit();
+                button_message.setChecked(true);
             }
         }
     }

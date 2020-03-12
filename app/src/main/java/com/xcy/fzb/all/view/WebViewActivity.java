@@ -50,6 +50,8 @@ public class WebViewActivity extends AllActivity {
     private TextView web_more;
     private TextView web_call;
     private LinearLayout web_share;
+    private RelativeLayout web_bottom_two;
+    private TextView web_more_two;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,8 @@ public class WebViewActivity extends AllActivity {
 
     private void init(){
         webView = findViewById(R.id.webview);
+        web_bottom_two = findViewById(R.id.web_bottom_two);
+        web_more_two = findViewById(R.id.web_more_two);
         title = findViewById(R.id.web_title);
         back = findViewById(R.id.web_return);
         web_f1 = findViewById(R.id.web_fl);
@@ -119,7 +123,7 @@ public class WebViewActivity extends AllActivity {
             builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
             Retrofit build = builder.build();
             MyService fzbInterface = build.create(MyService.class);
-            Observable<NewsDetailsBean> userMessage = fzbInterface.getNewsDetails(FinalContents.getUserID(),FinalContents.getNewID());
+            Observable<NewsDetailsBean> userMessage = fzbInterface.getNewsDetails(FinalContents.getUserID(),FinalContents.getNewID(),FinalContents.getCityID());
             userMessage.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<NewsDetailsBean>() {
@@ -131,11 +135,25 @@ public class WebViewActivity extends AllActivity {
                         @SuppressLint("WrongConstant")
                         @Override
                         public void onNext(final NewsDetailsBean newsDetailsBean) {
+                            if (!FinalContents.getCityIs().equals("")) {
+                                web_bottom.setVisibility(View.GONE);
+                                web_bottom_two.setVisibility(View.VISIBLE);
+                            }else {
+                                web_bottom.setVisibility(View.VISIBLE);
+                                web_bottom_two.setVisibility(View.GONE);
+                            }
                             Log.i("轮播图详情数据","走一波");
                             if (newsDetailsBean.getData().getIsProject() == 1) {
                                 web_bottom.setVisibility(View.VISIBLE);
                             }else {
                                 web_bottom.setVisibility(View.GONE);
+                            }
+
+                            if(newsDetailsBean.getData().getProject().getId().equals("")){
+                                web_bottom_two.setVisibility(View.GONE);
+                                web_bottom.setVisibility(View.GONE);
+                            }else {
+
                             }
 
                             web_share.setOnClickListener(new View.OnClickListener() {
@@ -210,6 +228,16 @@ public class WebViewActivity extends AllActivity {
             }
         });
 
+        web_more_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Log.i("详情","项目中ID"+FinalContents.getProjectID());
+                Log.i("详情","用户中ID"+FinalContents.getUserID());
+                Intent intent1 = new Intent(WebViewActivity.this,ProjectDetails.class);
+                startActivity(intent1);
+            }
+        });
     }
 
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,6 +46,7 @@ import com.xcy.fzb.project_side.view.ConfessToRaiseInformationActivity;
 import com.xcy.fzb.project_side.view.FillInTransactionInformationActivity;
 import com.xcy.fzb.project_side.view.ListOfBackActivity;
 import com.xcy.fzb.project_side.view.ModifyTheRecognitionToRaiseActivity;
+import com.xcy.fzb.project_side.view.OneKeyActivity;
 import com.xcy.fzb.project_side.view.TheReasonForRefusalActivity;
 
 import java.util.ArrayList;
@@ -63,6 +65,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
 
     RelativeLayout review_the_success_return;
     ImageView review_the_success_img1;
+    ImageView review_the_success_img3;
 
     TextView review_the_success_tv1;
     TextView review_the_success_tv2;
@@ -181,6 +184,7 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
         review_the_success_tv2 = findViewById(R.id.review_the_success_tv2);
         review_the_success_tv3 = findViewById(R.id.review_the_success_tv3);
         review_the_success_rv = findViewById(R.id.review_the_success_rv);
+        review_the_success_img3 = findViewById(R.id.review_the_success_img3);
 
         linearlayout_ll = findViewById(R.id.linearlayout_ll);
         review_the_success_bt1 = findViewById(R.id.review_the_success_bt1);
@@ -445,25 +449,52 @@ public class ReviewTheSuccessActivity extends AllActivity implements View.OnClic
                                 Glide.with(ReviewTheSuccessActivity.this).load(FinalContents.getImageUrl() + infoData.getCustomerImg()).into(review_the_success_img1);
                             }
                         }
+                        if(FinalContents.getIdentity().equals("4")){
+                            review_the_success_tv1.setText(infoData.getCustomerName());
+                        }else {
+                            review_the_success_tv1.setText(infoData.getCustomerName()+"("+infoData.getCustomerPhone()+")");
+                        }
 
-                        review_the_success_tv1.setText(infoData.getCustomerName()+"("+infoData.getCustomerPhone()+")");
+                        review_the_success_tv1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + infoData.getCustomerPhone()));//跳转到拨号界面，同时传递电话号码
+                                startActivity(dialIntent);
+                            }
+                        });
                         processData = reportProcessDetailsBean.getData().getProcessData();
 
                         FinalContents.setProjectType(infoData.getProjectType());
                         review_the_success_tv2.setText(infoData.getProjectName());
 
 
-                        if (reportProcessDetailsBean.getData().getAttacheList().size() == 0) {
-                            review_the_success_tv3.setVisibility(View.GONE);
+                        if (FinalContents.getIdentity().equals("4")) {
+                            review_the_success_tv3.setVisibility(View.VISIBLE);
+                            review_the_success_img3.setVisibility(View.VISIBLE);
+                            review_the_success_tv3.setText("电话："+infoData.getCustomerPhone() + "  ");
+                            review_the_success_tv3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + infoData.getCustomerPhone()));//跳转到拨号界面，同时传递电话号码
+                                    startActivity(dialIntent);
+                                }
+                            });
+                            review_the_success_nameRv.setVisibility(View.GONE);
                         }else {
-                            GridLayoutManager gridLayoutManager = new GridLayoutManager(ReviewTheSuccessActivity.this,2);
-                            gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
-                            review_the_success_nameRv.setLayoutManager(gridLayoutManager);
-                            ReviewTheSuccessPhoneAdapter reviewTheSuccessPhoneAdapter = new ReviewTheSuccessPhoneAdapter(reportProcessDetailsBean.getData().getAttacheList());
-                            review_the_success_nameRv.setAdapter(reviewTheSuccessPhoneAdapter);
-                            reviewTheSuccessPhoneAdapter.notifyDataSetChanged();
-                            review_the_success_tv3.setText("项目负责人：");
+                            review_the_success_img3.setVisibility(View.GONE);
+                            if (reportProcessDetailsBean.getData().getAttacheList().size() == 0) {
+                                review_the_success_tv3.setVisibility(View.GONE);
+                            }else {
+                                GridLayoutManager gridLayoutManager = new GridLayoutManager(ReviewTheSuccessActivity.this,2);
+                                gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+                                review_the_success_nameRv.setLayoutManager(gridLayoutManager);
+                                ReviewTheSuccessPhoneAdapter reviewTheSuccessPhoneAdapter = new ReviewTheSuccessPhoneAdapter(reportProcessDetailsBean.getData().getAttacheList());
+                                review_the_success_nameRv.setAdapter(reviewTheSuccessPhoneAdapter);
+                                reviewTheSuccessPhoneAdapter.notifyDataSetChanged();
+                                review_the_success_tv3.setText("项目负责人：");
+                            }
                         }
+
                         FinalContents.setJJrID(infoData.getAgentId());
                         ProjectProgressApi.setCustomerName(infoData.getCustomerName());        //      TODO    客户名
                         FinalContents.setProjectID(infoData.getProjectId());

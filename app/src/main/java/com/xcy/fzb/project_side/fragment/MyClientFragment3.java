@@ -2,6 +2,7 @@ package com.xcy.fzb.project_side.fragment;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,6 +67,7 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         StatusBar.makeStatusBarTransparent(getActivity());
+
         return inflater.inflate(R.layout.fragment_my_client_fragment3, container, false);
     }
 
@@ -91,13 +93,13 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
                     public void run() {
                         ptrClassicFrameLayout.refreshComplete();
                         ptrClassicFrameLayout.setLastUpdateTimeKey("2017-2-10");
-
+                        listterner.process("3"); // 3.1 执行回调
                         if (FinalContents.getZhuanyuan().equals("1")) {
                             initData2("");
                         } else {
                             initData("");
                         }
-
+                        EventBus.getDefault().post("修改");
                     }
                 }, 1000);
             }
@@ -259,5 +261,32 @@ public class MyClientFragment3 extends Fragment implements ClientFragmentAdapter
             initData("");
         }
 
+    }
+
+    // 2.1 定义用来与外部activity交互，获取到宿主activity
+    private FragmentInteraction listterner;
+
+    // 1 定义了所有activity必须实现的接口方法
+    public interface FragmentInteraction {
+        void process(String str);
+    }
+
+    // 当FRagmen被加载到activity的时候会被回调
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        if(activity instanceof FragmentInteraction) {
+            listterner = (FragmentInteraction)activity; // 2.2 获取到宿主activity并赋值
+        } else{
+            throw new IllegalArgumentException("activity must implements FragmentInteraction");
+        }
+    }
+
+    //把传递进来的activity对象释放掉
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listterner = null;
     }
 }

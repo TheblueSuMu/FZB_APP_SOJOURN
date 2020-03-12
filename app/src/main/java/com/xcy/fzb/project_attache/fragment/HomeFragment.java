@@ -63,6 +63,8 @@ import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -323,6 +325,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                                 FinalContents.setCityName(list.get(options1));
                                 FinalContents.setCityID(citylist.get(options1).getId());
                                 initHotList();
+                                initView();
+                                EventBus.getDefault().post("切换");
                             }
                         })
                                 .setSelectOptions(0)//设置选择第一个
@@ -437,6 +441,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                                 messagelist2.add(new Bean(R.mipmap.lodger, messagelist.get(i).getTitle()));
                             } else if (messagelist.get(i).getType().equals("5")) {
                                 messagelist2.add(new Bean(R.mipmap.goodnews, messagelist.get(i).getTitle()));
+                            }else if (messagelist.get(i).getType().equals("10")){
+                                messagelist2.add(new Bean(R.mipmap.buildingdynamicimage,messagelist.get(i).getTitle()));
                             }
                         }
 
@@ -452,6 +458,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Swip
                                     listterner.process("2"); // 3.1 执行回调
                                 } else if (messagelist.get(postion).getType().equals("5")) {
                                     listterner.process("5"); // 3.1 执行回调
+                                }else if (messagelist.get(postion).getType().equals("10")){
+                                    listterner.process("10"); // 3.1 执行回调
+                                }else if (messagelist.get(postion).getType().equals("10")){
+                                    listterner.process("10"); // 3.1 执行回调
                                 }
                             }
                         });

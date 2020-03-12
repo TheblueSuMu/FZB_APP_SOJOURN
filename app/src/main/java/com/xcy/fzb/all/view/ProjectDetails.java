@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdate;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.CameraPosition;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.core.PoiItem;
+import com.amap.api.services.poisearch.PoiResult;
+import com.amap.api.services.poisearch.PoiSearch;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
@@ -44,6 +58,7 @@ import com.xcy.fzb.all.adapter.CommissionRecycler;
 import com.xcy.fzb.all.adapter.DetailsAdapter;
 import com.xcy.fzb.all.adapter.FamilyRecycler;
 import com.xcy.fzb.all.adapter.ProjectDetailsVillaAdapter;
+import com.xcy.fzb.all.adapter.ProjectMapAdapter;
 import com.xcy.fzb.all.adapter.ReportAdapter;
 import com.xcy.fzb.all.adapter.TalktoolRecycler;
 import com.xcy.fzb.all.api.CityContents;
@@ -79,7 +94,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProjectDetails extends AllActivity implements View.OnClickListener, DetailsAdapter.DetailsItem, GradationScrollView.ScrollViewListener {
+public class ProjectDetails extends AllActivity implements View.OnClickListener, DetailsAdapter.DetailsItem, GradationScrollView.ScrollViewListener, PoiSearch.OnPoiSearchListener {
     private ImageView backimg;
     private RelativeLayout back;
     private ImageView building;
@@ -102,7 +117,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
     private TextView house_time;
     private TextView transmit_house;
 
-    private TextView message;
+    private RecyclerView message;
 
     private TextView report;
     private CheckBox collect;
@@ -195,10 +210,35 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
     int mAlpha = 0;
     private LinearLayout project_details_villa_linear;
 
+    private MapView mapView;
+    AMap aMap = null;
+    private UiSettings mUiSettings;//定义一个UiSettings对象
+    private MarkerOptions markerOption;
+    private PoiSearch.Query query;
+    private PoiSearch poiSearch;
+    ProjectMapAdapter projectMapAdapter;
+    private ArrayList<PoiItem> pois;
+    private String title;
+
+    private String selectLL = "0";
+
+    RelativeLayout project_details_relativelayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_details);
+
+        StatusBar.makeStatusBarTransparent(this);
+
+        mapView = (MapView) findViewById(R.id.map_zbpt);
+        mapView.onCreate(savedInstanceState);// 此方法须覆写，虚拟机需要在很多情况下保存地图绘制的当前状态。
+//初始化地图控制器对象
+
+        if (aMap == null) {
+            aMap = mapView.getMap();
+        }
+
         init_No_Network();
     }
 
@@ -207,6 +247,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         if (networkAvailable) {
             initfvb();
             init();
+//            initMap();
         } else {
             RelativeLayout all_no_network = findViewById(R.id.all_no_network);
             Button all_no_reload = findViewById(R.id.all_no_reload);
@@ -226,14 +267,20 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
     //命名区域
     private void initfvb() {
 
-        StatusBar.makeStatusBarTransparent(this);
 
+        project_details_relativelayout = findViewById(R.id.project_details_relativelayout);
+        if (!FinalContents.getCityIs().equals("")) {
+            project_details_relativelayout.setVisibility(View.GONE);
+        } else {
+            project_details_relativelayout.setVisibility(View.VISIBLE);
+        }
         project_details_kai = findViewById(R.id.project_details_kai);
         project_details_family_tvs = findViewById(R.id.project_details_family_tvs);
         project_details_ding = findViewById(R.id.project_details_ding);
         project_details_qt_call = findViewById(R.id.project_details_qt_call);
         details_rv = findViewById(R.id.details_rv);
         details_tv_S = findViewById(R.id.details_tv_S);
+
 
         project_details_kai.setOnClickListener(this);
         project_details_ding.setOnClickListener(this);
@@ -332,7 +379,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         share = findViewById(R.id.project_details_share);
 
         tabLayout = findViewById(R.id.project_details_tab);
-        message = findViewById(R.id.project_details_message);
+
 
         repast = findViewById(R.id.project_details_repast);
         repast_content = findViewById(R.id.project_details_repast_content);
@@ -341,9 +388,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         business = findViewById(R.id.project_details_business);
         business_content = findViewById(R.id.project_details_business_content);
 
+
         project_details_all = findViewById(R.id.project_details_all);
         project_details_share_all = findViewById(R.id.project_details_share_all);
         project_details_collect_all = findViewById(R.id.project_details_collect_all);
+
 
         linear0 = findViewById(R.id.linear0);
         linear3 = findViewById(R.id.linear3);
@@ -372,6 +421,24 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 
         location.setOnClickListener(this);
         project_details_group_booking.setOnClickListener(this);
+
+        if (FinalContents.getCityID().equals(FinalContents.getOldCityId())) {
+            linear7.setPadding(15,0,15,200);
+        } else {
+            linear7.setPadding(15,0,15,0);
+        }
+
+
+//        mapView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent mapintent = new Intent(ProjectDetails.this, MapActivity.class);
+//                mapintent.putExtra("office", "1");
+//                startActivity(mapintent);
+//            }
+//        });
+
+        //拨打电话
         project_details_qt_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -379,9 +446,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                     if (projectDetailsBeanData.getProjectListVo().getFfAttacheList().size() != 0) {
                         List<String> arrayList = new ArrayList<>();
                         for (int index = 0; index < projectDetailsBeanData.getProjectListVo().getFfAttacheList().size(); index++) {
-                            if (!projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(index).getName().equals("")) {
-                                arrayList.add(projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(index).getName());
-                            }
+                            arrayList.add(projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(index).getName());
                         }
                         if (arrayList.size() != 0) {
                             //      监听选中
@@ -401,11 +466,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                             pvOptions.setPicker(arrayList);
                             //      展示
                             pvOptions.show();
-                        }else {
-                            ToastUtil.showLongToast(ProjectDetails.this,"暂无专案");
+                        } else {
+                            ToastUtil.showLongToast(ProjectDetails.this, "暂无专案");
                         }
-                    }else {
-                        ToastUtil.showLongToast(ProjectDetails.this,"暂无专案");
+                    } else if (projectDetailsBeanData.getProjectListVo().getFfAttacheList().size() == 0) {
+                        ToastUtil.showLongToast(ProjectDetails.this, "暂无专案");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -533,8 +598,8 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         pvOptions.setPicker(arrayList);
                         //      展示
                         pvOptions.show();
-                    }else {
-                        ToastUtil.showLongToast(ProjectDetails.this,"暂无专案");
+                    } else {
+                        ToastUtil.showLongToast(ProjectDetails.this, "暂无专案");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -547,23 +612,35 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
         tabLayout.addTab(tabLayout.newTab().setText("商场购物"));
         tabLayout.addTab(tabLayout.newTab().setText("生活娱乐"));
         tabLayout.addTab(tabLayout.newTab().setText("著名景点"));
-
+        initTabSelectedMap("交通服务相关|公交站|地铁站|摆渡车站|机场出发/到达|飞机场|火车站|客运站");
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 //                添加选中Tab的逻辑
                 if (tab.getText().equals("交通出行")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getTraffic());
+                    selectLL = "0";
+                    initTabSelectedMap("交通服务相关|公交站|地铁站|摆渡车站|机场出发/到达|飞机场|火车站|客运站");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getTraffic());
                 } else if (tab.getText().equals("教育教学")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getEducation());
+                    selectLL = "1";
+                    initTabSelectedMap("学校|高等院校|中学|小学|幼儿园|成人教育|职业技术学校");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getEducation());
                 } else if (tab.getText().equals("医疗健康")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getMedical());
+                    selectLL = "2";
+                    initTabSelectedMap("医院|专科医院|综合医院|诊所|急救中心");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getMedical());
                 } else if (tab.getText().equals("商场购物")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getShopping());
+                    selectLL = "3";
+                    initTabSelectedMap("商场|超级市场|购物中心|普通商场|便利店|便民商店|综合市场");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getShopping());
                 } else if (tab.getText().equals("生活娱乐")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getEntertainment());
+                    selectLL = "4";
+                    initTabSelectedMap("生活娱乐|娱乐场所|KTV|迪厅|酒吧|电影院|休闲场所|音乐厅|剧场");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getEntertainment());
                 } else if (tab.getText().equals("著名景点")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getFamousScene());
+                    selectLL = "5";
+                    initTabSelectedMap("著名景点|公园广场|风景名胜");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getFamousScene());
                 }
 
             }
@@ -576,24 +653,95 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
                 //                再次选中tab的逻辑
+                title = tab.getText().toString();
                 if (tab.getText().equals("交通出行")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getTraffic());
+                    selectLL = "0";
+                    initTabSelectedMap("交通服务相关|公交站|地铁站|摆渡车站|机场出发/到达|飞机场|火车站|客运站");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getTraffic());
                 } else if (tab.getText().equals("教育健康")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getEducation());
+                    selectLL = "1";
+                    initTabSelectedMap("学校|高等院校|中学|小学|幼儿园|成人教育|职业技术学校");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getEducation());
                 } else if (tab.getText().equals("医疗健康")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getMedical());
+                    selectLL = "2";
+                    initTabSelectedMap("医院|专科医院|综合医院|诊所|急救中心");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getMedical());
                 } else if (tab.getText().equals("商场购物")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getShopping());
+                    selectLL = "3";
+                    initTabSelectedMap("商场|超级市场|购物中心|普通商场|便利店|便民商店|综合市场");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getShopping());
                 } else if (tab.getText().equals("生活娱乐")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getEntertainment());
+                    selectLL = "4";
+                    initTabSelectedMap("生活娱乐|娱乐场所|KTV|迪厅|酒吧|电影院|休闲场所|音乐厅|剧场");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getEntertainment());
                 } else if (tab.getText().equals("著名景点")) {
-                    message.setText(projectDetailsBeanData.getMatingInformation().getFamousScene());
+                    selectLL = "5";
+                    initTabSelectedMap("著名景点|公园广场|风景名胜");
+//                    message.setText(projectDetailsBeanData.getMatingInformation().getFamousScene());
                 }
             }
         });
 
         initDetails();//楼栋查看全部信息
 
+    }
+
+    //高德地图poi检索
+    private void initTabSelectedMap(String RetrieveName) {
+
+        query = new PoiSearch.Query(RetrieveName, "", "");
+        query.setPageSize(3);// 设置每页最多返回多少条poiitem
+        query.setPageNum(0);//设置查询页码
+        poiSearch = new PoiSearch(this, query);
+        poiSearch.setOnPoiSearchListener(this);
+        poiSearch.setBound(new PoiSearch.SearchBound(new LatLonPoint(FinalContents.getD(),
+                FinalContents.getO()), 5000));
+        poiSearch.searchPOIAsyn();
+
+    }
+
+    //高德地图
+    private void initMap() {
+
+        message = findViewById(R.id.project_details_message);
+        projectMapAdapter = new ProjectMapAdapter();
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        message.setLayoutManager(manager);
+
+        mUiSettings = aMap.getUiSettings();//实例化UiSettings类对象
+        mUiSettings.setZoomControlsEnabled(false);
+        mUiSettings.setZoomGesturesEnabled(false);
+        mUiSettings.setScrollGesturesEnabled(false);
+        mUiSettings.setRotateGesturesEnabled(false);
+        mUiSettings.setTiltGesturesEnabled(false);
+
+        aMap.setOnMapClickListener(new AMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Intent mapintent = new Intent(ProjectDetails.this, MapActivity.class);
+                mapintent.putExtra("office", "1");
+                mapintent.putExtra("selectLL", selectLL);
+                startActivity(mapintent);
+            }
+        });
+
+        Log.i("小地图数据", "FinalContents.getO():" + FinalContents.getO());
+        Log.i("小地图数据", "FinalContents.getD():" + FinalContents.getD());
+        CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(new LatLng(FinalContents.getO(), FinalContents.getD()), 16, 0, 0));
+        aMap.moveCamera(mCameraUpdate);
+
+        markerOption = new MarkerOptions();
+        markerOption.position(new LatLng(FinalContents.getO(), FinalContents.getD()));
+
+        markerOption.draggable(true);//设置Marker可拖动
+
+        markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
+                .decodeResource(getResources(), R.mipmap.zhen1)));
+        // 将Marker设置为贴地显示，可以双指下拉地图查看效果
+        markerOption.setFlat(true);//设置marker平贴地图效果
+        aMap.addMarker(markerOption);
+        initTabSelectedMap("交通服务相关|公交站|地铁站|摆渡车站|机场出发/到达|飞机场|火车站|客运站");
     }
 
     //点击事件
@@ -609,11 +757,12 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                 startActivity(photointent);
                 break;
             case R.id.project_details_more:
-                if (projectDetailsBeanData.getProjectListVo().getFfAttacheList().size() != 0) {
-                    FinalContents.setIPhone(projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(0).getPhone());
-                }
-                List<ProjectDetailsBean.DataBean.ProjectListVoBean.FfAttacheListBean> list = projectDetailsBeanData.getProjectListVo().getFfAttacheList();
-                CityContents.setFfAttacheList(list);
+//                if (projectDetailsBeanData.getProjectListVo().getFfAttacheList().size() != 0) {
+//                    FinalContents.setIPhone(projectDetailsBeanData.getProjectListVo().getFfAttacheList().get(0).getPhone());
+//                }
+                List<ProjectDetailsBean.DataBean.ProjectListVoBean.FfAttacheListBean> ffAttacheList = projectDetailsBeanData.getProjectListVo().getFfAttacheList();
+                Log.i("项目专线", "ffAttacheList:" + ffAttacheList.size());
+                CityContents.setFfAttacheList(ffAttacheList);
                 FinalContents.setProjectName(projectDetailsBeanData.getProjectListVo().getProjectName());
                 FinalContents.setProjectSearchID(projectDetailsBeanData.getProjectListVo().getProjectId());
                 FinalContents.setGuideRuleId(projectDetailsBeanData.getProjectListVo().getGuideRuleId());
@@ -628,6 +777,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             case R.id.project_details_location:
                 Intent mapintent = new Intent(this, MapActivity.class);
                 mapintent.putExtra("office", "1");
+                mapintent.putExtra("selectLL", "0");
                 startActivity(mapintent);
                 break;
             case R.id.project_details_group_booking:
@@ -739,7 +889,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                     @Override
                     public void onNext(BuildingBean buildingBean) {
                         List<BuildingBean.DataBean> data = buildingBean.getData();
-                        Log.i("MyCL","data:" + data.size());
+                        Log.i("MyCL", "data:" + data.size());
                         list.clear();
                         if (data.size() == 0) {
                             linear5.setVisibility(View.GONE);
@@ -886,7 +1036,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         Log.i("wsm", "fdsafd:" + projectDetailsBeanData.getProjectListVo().getProjectImg());
                         if (projectDetailsBean.getData().getProjectListVo().getProjectImg().equals("")) {
                             backimg.setImageResource(R.mipmap.banner_img);
-                        }else {
+                        } else {
                             Glide.with(ProjectDetails.this).load(FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg()).into(backimg);
                         }
 
@@ -896,14 +1046,14 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                                 try {
                                     if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend() != null) {
                                         if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend().equals("0")) {
-                                            ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
-                                        }else if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend().equals("1")){
+                                            ToastUtil.showLongToast(ProjectDetails.this, "暂无数据");
+                                        } else if (projectDetailsBeanData.getProjectListVo().getIsPriceTrend().equals("1")) {
                                             project_details_relative.setVisibility(View.VISIBLE);
-                                        }else{
-                                            ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
+                                        } else {
+                                            ToastUtil.showLongToast(ProjectDetails.this, "暂无数据");
                                         }
-                                    }else {
-                                        ToastUtil.showLongToast(ProjectDetails.this,"暂无数据");
+                                    } else {
+                                        ToastUtil.showLongToast(ProjectDetails.this, "暂无数据");
                                     }
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -925,14 +1075,14 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
 //                        if (FinalContents.getZyHome().equals("1")) {
 //                            project_details_group_booking.setVisibility(View.GONE);
 //                        } else {
-                        if (projectDetailsBeanData.getProjectListVo().getIsgroup().equals("1")) {
-                            project_details_group_booking.setVisibility(View.VISIBLE);
-                        } else {
-                            project_details_group_booking.setVisibility(View.GONE);
-                        }
+//                        if (projectDetailsBeanData.getProjectListVo().getIsgroup().equals("1")) {
+//                            project_details_group_booking.setVisibility(View.VISIBLE);
+//                        } else {
+                        project_details_group_booking.setVisibility(View.GONE);
+//                        }
 //                        }
 
-                        message.setText(projectDetailsBeanData.getMatingInformation().getTraffic());
+//                        message.setText(projectDetailsBeanData.getMatingInformation().getTraffic());
 
                         report.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -976,17 +1126,22 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         share.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-//                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", ProjectDetails.this);
-                                Item_Share.initDaown(ProjectDetails.this,projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1");
+                                Item_Share.initDaown(ProjectDetails.this, projectDetailsBean.getData().getProjectListVo().getProjectName(),
+                                        FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID() + "&type=1",
+                                        projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().
+                                                getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" +
+                                                FinalContents.getProjectID() + "&type=1");
                             }
                         });
 
                         project_details_share_all.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-//                                FinalContents.showShare(projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", ProjectDetails.this);
-                                Item_Share.initDaown(ProjectDetails.this,projectDetailsBean.getData().getProjectListVo().getProjectName(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(), FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID()+"&type=1");
-
+                                Item_Share.initDaown(ProjectDetails.this, projectDetailsBean.getData().getProjectListVo().getProjectName(),
+                                        FinalContents.getAdminUrl() + "/?userId=" + FinalContents.getUserID() + "&id=" +
+                                                FinalContents.getProjectID() + "&type=1", projectDetailsBean.getData().getProjectListVo().getProductFeature(),
+                                        FinalContents.getImageUrl() + projectDetailsBean.getData().getProjectListVo().getProjectImg(), FinalContents.getAdminUrl()
+                                                + "/?userId=" + FinalContents.getUserID() + "&id=" + FinalContents.getProjectID() + "&type=1");
                             }
                         });
 
@@ -1002,6 +1157,16 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                         //地图
                         String ids = projectDetailsBeanData.getProjectListVo().getLocation();//从pd里取出字符串
                         List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
+                        List tag = new ArrayList();
+                        if (tags.size() > 4) {
+                            for (int i = 0; i < 4; i++) {
+                                tag.add(tags.get(i));
+                            }
+                        } else {
+                            for (int i = 0; i < tags.size(); i++) {
+                                tag.add(tags.get(i));
+                            }
+                        }
                         double d = Double.parseDouble(tags.get(0).toString());
                         double o = Double.parseDouble(tags.get(1).toString());
                         if (!projectDetailsBeanData.getProjectListVo().getSalesOfficeLocation().equals("")) {
@@ -1012,11 +1177,12 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                             FinalContents.setO1(o1);
                             FinalContents.setD1(d1);
                             Log.i("经纬度", "查看经纬度" + FinalContents.getO1() + "---" + FinalContents.getD1());
+
                         }
                         FinalContents.setO(o);
                         FinalContents.setD(d);
                         Log.i("经纬度", "查看项目详情经纬度" + FinalContents.getO() + "---" + FinalContents.getD());
-
+                        initMap();
                         //导客规则
                         if (projectDetailsBeanData.getGuideRules().size() == 0) {
                             project_details_layout2.setVisibility(View.GONE);
@@ -1030,6 +1196,17 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                             report_rv.setAdapter(reportAdapter);
                         }
 
+                        String ids2 = projectDetailsBeanData.getProjectListVo().getProductFeature();//从pd里取出字符串
+                        ids2 = "在售," + ids2;
+                        List tags2 = Arrays.asList(ids2.split(","));//根据逗号分隔转化为list
+
+                        if (projectDetailsBeanData.getProjectListVo().getProductFeature().equals("")) {
+                            productfeature.setVisibility(View.GONE);
+                        } else {
+                            productfeature.setVisibility(View.VISIBLE);
+                            productfeature.setTheme(ColorFactory.NONE);
+                            productfeature.setTags(tags2);
+                        }
 
                         name.setText(projectDetailsBeanData.getProjectListVo().getProjectName());
                         location.setText(projectDetailsBeanData.getProjectListVo().getDetailAddress());
@@ -1213,19 +1390,8 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                             recyclerAdapter.setPrice("" + projectDetailsBeanData.getProjectListVo().getProductTotalPrice());
                             family.setAdapter(recyclerAdapter);
                             recyclerAdapter.notifyDataSetChanged();
-                        }
 
-                        String ids2 = projectDetailsBeanData.getProjectListVo().getProductFeature();//从pd里取出字符串
-                        ids2 = "在售,"+ids2;
-                        List tags2 = Arrays.asList(ids2.split(","));//根据逗号分隔转化为list
-                        if (projectDetailsBeanData.getProjectListVo().getProductFeature().equals("")) {
-                            productfeature.setVisibility(View.GONE);
-                        } else {
-                            productfeature.setVisibility(View.VISIBLE);
-                            productfeature.setTheme(ColorFactory.NONE);
-                            productfeature.setTags(tags2);
                         }
-
 
                         //奖励规则
                         if (projectDetailsBeanData.getProjectListVo().getAwardRules().equals("")) {
@@ -1290,6 +1456,10 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                             project_details_qt.setVisibility(View.VISIBLE);
                             project_details_all.setVisibility(View.GONE);
                         }
+                        if (!FinalContents.getCityIs().equals("")) {
+                            project_details_qt.setVisibility(View.GONE);
+                            project_details_all.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override
@@ -1335,6 +1505,16 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                                 linear6.setVisibility(View.VISIBLE);
                                 String ids = houseDataData.getPropertyHouseList().get(0).getContent();//从pd里取出字符串
                                 List tags = Arrays.asList(ids.split(","));//根据逗号分隔转化为list
+                                List tag = new ArrayList();
+                                if (tags.size() > 4) {
+                                    for (int i = 0; i < 4; i++) {
+                                        tag.add(tags.get(i));
+                                    }
+                                } else {
+                                    for (int i = 0; i < tags.size(); i++) {
+                                        tag.add(tags.get(i));
+                                    }
+                                }
 
                                 repast_content.setTheme(ColorFactory.NONE);
                                 repast_content.setTags(tags);
@@ -1493,11 +1673,10 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                                 }
                             }
 
+                            indexList = projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthList();
                             if (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthPriceList().size() != 0) {
-                                indexList = projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthList();
                                 setData(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(0).getMonthPriceList());
                             }
-
 
 
                             project_details_tab_layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -1525,7 +1704,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                                         }
                                         if (tabName.equals(tab.getText().toString())) {
                                             indexList = projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthList();
-                                            setData(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthPriceList());
+                                            if (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthPriceList().size() != 0) {
+                                                setData(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthPriceList());
+                                            }
                                         }
                                     }
 
@@ -1560,7 +1741,9 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                                         }
                                         if (tabName.equals(tab.getText().toString())) {
                                             indexList = projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthList();
-                                            setData(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthPriceList());
+                                            if (projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthPriceList().size() != 0) {
+                                                setData(projectHousesTrendListBean.getData().getHouseTrendResult().getHouseTrendVoList().get(i).getMonthPriceList());
+                                            }
                                         }
                                     }
                                 }
@@ -1606,20 +1789,13 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             combinedChart.setHighlightPerTapEnabled(false);
             combinedChart.getAxisRight().setEnabled(false);
 
-            float max = 0;
-
-            for (int i = 0;i < list.size();i++){
-                if (list.get(i) > max) {
-                    max = list.get(i);
-                }
-            }
-
-            max = (float) (max * 1.1);
-
             XAxis xAxis = combinedChart.getXAxis();
             xAxis.setDrawGridLines(false);
             /*解决左右两端柱形图只显示一半的情况 只有使用CombinedChart时会出现，如果单独使用BarChart不会有这个问题*/
             xAxis.setAxisMinimum(-0.2f);
+            Log.i("长度", "values.size()" + values.size());
+            Log.i("长度", "list.size()" + list.size());
+            Log.i("长度", "indexList.size()" + indexList.size());
             xAxis.setAxisMaximum(values.size() - 0.5f);
             xAxis.setGranularity(1f);
             xAxis.setTextColor(Color.parseColor("#666666"));
@@ -1629,18 +1805,27 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
                 public String getFormattedValue(float value) {
                     if (indexList.size() != 0) {
                         return indexList.get((int) value % indexList.size());
-                    }else {
+                    } else {
                         return "";
                     }
                 }
             });
 
+            int max = 0;
+
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i) > max) {
+                    max = list.get(i);
+                }
+            }
+
             YAxis axisLeft = combinedChart.getAxisLeft(); // 获取左边Y轴操作类
             axisLeft.setAxisMinimum(0); // 设置最小值
-//            axisLeft.setAxisMaximum(max+10); // 设置最大值
-//            axisLeft.setLabelCount(5); // 设置最大值
+//            axisLeft.setAxisMaximum((float) (max * 1.1)); // 设置最大值
             axisLeft.setAxisLineColor(Color.parseColor("#00000000"));
             axisLeft.setTextColor(Color.parseColor("#999999"));
+            axisLeft.setGridColor(Color.parseColor("#999999"));
+
 
             List<Entry> lineEntries = new ArrayList<>();
             List<BarEntry> barEntries = new ArrayList<>();
@@ -1660,11 +1845,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             barDataSet.setColor(Color.parseColor("#6596ba")); // 设置柱形图颜色
             barDataSet.setValueTextColor(Color.parseColor("#666666")); //  设置线形图顶部文本颜色
             barDataSet.setDrawValues(true);
-             barDataSet.setValueFormatter(new ValueFormatter() {
+            barDataSet.setValueFormatter(new ValueFormatter() {
                 @Override
                 public String getFormattedValue(float value) {
                     int n = (int) value;
-                    return n+"";
+                    return n + "";
                 }
             });
             BarData barData = new BarData();
@@ -1686,7 +1871,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             lineDataSet.setLineWidth(1);
             lineDataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
             lineDataSet.setHighlightEnabled(false);
-            lineDataSet.setCubicIntensity(0.2f);
+            lineDataSet.setCubicIntensity(0);
             lineDataSet.setValueTextSize(10);
             lineDataSet.setDrawValues(false);
             LineData lineData = new LineData();
@@ -1697,9 +1882,11 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
             combinedData.setData(barData);  // 添加柱形图数据源
             combinedData.setData(lineData); // 添加折线图数据源
             if (indexList.size() > 5) {
-                combinedChart.setVisibleXRange(0,5);
+                combinedChart.setVisibleXRange(0, 5);
             }
             combinedChart.setData(combinedData); // 为组合图设置数据源
+//            combinedChart.setVisibleXRangeMaximum(12);
+//            combinedChart.setVisibleXRangeMinimum(6);
         }
         combinedChart.animateXY(2000, 2000);
 
@@ -1715,7 +1902,7 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
     @Override
     public void onScrollChanged(GradationScrollView scrollView, int x, final int y, int oldx, int oldy) {
         int minHeight = 50;
-        int maxHeight = (int) (backimg.getMeasuredHeight()*0.5);
+        int maxHeight = (int) (backimg.getMeasuredHeight() * 0.5);
         if (maxHeight == 0) {
             maxHeight = 500;
         }
@@ -1749,8 +1936,33 @@ public class ProjectDetails extends AllActivity implements View.OnClickListener,
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i("数据","走一走:"+CityContents.getIsReport());
+        Log.i("数据", "走一走:" + CityContents.getIsReport());
         CityContents.setIsReport("");
-        CityContents.setFfAttacheList(new ArrayList<>());
+    }
+
+    @Override
+    public void onPoiSearched(PoiResult poiResult, int i) {
+        Log.i("小地图", "进入onPoiSearched1");
+        pois = poiResult.getPois();
+        projectMapAdapter.setPois(pois);
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
+        message.setAdapter(projectMapAdapter);
+        projectMapAdapter.notifyDataSetChanged();
+        Log.i("小地图", "进入onPoiSearched7");
+//        for (int g = 0; g < poiResult.getPois().size(); ++g){
+//            Log.i("小地图","poiResult.getPois().get(g).getTitle()：" + poiResult.getPois().get(g).getTitle());
+//            Log.i("小地图","poiResult.getPois().get(g).getTitle()：" + poiResult.getPois().get(g).getLatLonPoint());
+//        }
+
+    }
+
+    @Override
+    public void onPoiItemSearched(PoiItem poiItem, int i) {
+
     }
 }
